@@ -1,0 +1,880 @@
+  <div class="row">
+ 
+     {{#if photo_vic_fn}}
+       <div class="col-sm-8">
+    {{else}}
+       <div class="col-sm-12">
+     {{/if}}
+
+
+      <h1>{{victim_name}}</h1>
+
+      <p>
+      {{#if victim_sex}}{{Hsex victim_sex}}{{/if}}{{#if victim_age}}{{#ifKnown victim_age}}{{#if victim_sex}},{{/if}}        
+      age {{victim_age}}        
+        {{#if victim_disappeared_killed }}
+         at time of 
+          {{#equal victim_disappeared_killed 1}}
+          disappearance
+          {{/equal}}
+          {{#equal victim_disappeared_killed 2}}
+          killing
+          {{/equal}}
+        {{/if}}
+      {{/ifKnown}}{{/if}}
+      </p>
+
+      {{#equal victim_disappeared_killed 2}}
+        <p>Killed{{Hdate victim_death_date}}</p>
+      {{/equal}}
+
+      {{#equal victim_disappeared_killed 1}}
+        <p>Disappeared{{#equal victim_last_heard_alive 4}}, date unknown{{/equal}}{{#equal victim_last_heard_alive 1}}{{Hdate victim_arrest_date}}{{/equal}}{{#equal victim_last_heard_alive 2}}{{Hdate victim_death_date}}{{/equal}}{{#equal victim_last_heard_alive 3}}{{Hdate dt_last_heard_victim_alive}}{{/equal}}</p>
+      {{/equal}}
+
+
+      <hr>  
+    
+      <h4>Profile</h4>
+
+      {{#equal victim_address_int_loc 1}}
+
+        {{#if village_name}}
+          <div class="row">  
+            <div class="col-sm-2">
+              <p class="kicker">Residence</p>
+            </div>
+            <div class="col-sm-10">
+              <p>{{village_name}}</p>
+            </div>
+          </div>
+        {{/if}}  
+
+      {{/equal}}
+
+      {{#equal victim_address_int_loc 0}}
+
+        {{#if victim_address_other}}
+        <div class="row">  
+          <div class="col-sm-2">
+            <p class="kicker">Residence</p>
+          </div>
+          <div class="col-sm-10">
+            <p>{{Hvictim_address_other victim_address_other}}</p>
+          </div>
+        </div>
+        {{/if}}
+      {{/equal}}
+
+
+
+  
+      {{#if victim_education}}
+      {{#isnot victim_education 11}}
+      <div class="row">  
+        <div class="col-sm-2">
+          <p class="kicker">Education</p>
+        </div>
+        <div class="col-sm-10">
+          <p>{{Heducation victim_education}}</p>
+        </div>
+      </div>
+      {{/isnot}}
+      {{/if}}
+
+
+
+      {{#isnot victim_employment___10 1}}
+      {{#isnot victim_employment___11 1}}
+    
+      {{#ifArray victim_employment___1 victim_employment___2 victim_employment___3 victim_employment___4 victim_employment___5 victim_employment___6 victim_employment___7 victim_employment___8 victim_employment___9 victim_employment___10 victim_employment___11}}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Employment</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{Hvictim_employment victim_employment___1 victim_employment___2 victim_employment___3 victim_employment___4 victim_employment___5 victim_employment___6 victim_employment___7 victim_employment___8 victim_employment___9 victim_employment___10 victim_employment___11 victim_employment_other}}</p>
+      </div>
+      </div>
+      {{/ifArray}}
+
+      {{/isnot}}
+      {{/isnot}}
+
+      {{#if victim_employment_other}}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Employment</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{victim_employment_other}}</p>
+      </div>
+      </div>
+      {{/if}}
+
+
+      {{#isnot victim_marital_status 9}}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Married</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{Hyes_no victim_marital_status}}</p>
+      </div>
+      </div>
+    
+      {{#equal victim_marital_status 1}}
+      {{#if victim_children}}
+      <div class="row">  
+        <div class="col-sm-2">
+          <p class="kicker">Children</p>
+        </div>
+        <div class="col-sm-10">
+          <p>{{victim_children}}</p>
+        </div>
+        </div>
+      {{/if}}
+      {{/equal}}
+    
+      {{/isnot}}
+    
+    
+    
+      {{#isnot victim_religion 6}}
+      {{#isnot victim_religion 7}}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Religion</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{Hreligion victim_religion}}{{#equal victim_amritdhari 1}}, Amritdhari{{/equal}}{{#equal victim_kesdhari 1}}, Kesdhari{{/equal}}
+        </p>
+      </div>
+      </div>
+      {{/isnot}}
+      {{/isnot}}
+
+      {{#if victim_religion_other}}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Religion</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{victim_religion_other}}
+        </p>
+      </div>
+      </div>
+      {{/if}}
+
+
+
+      {{#isnot victim_caste 8}}
+      {{#isnot victim_caste 9}}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Caste</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{Hcaste victim_caste}}</p>
+      </div>
+      </div>
+
+      {{/isnot}}
+      {{/isnot}}
+
+
+
+      {{#if victim_dob}}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Date of birth</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{victim_dob}}</p>
+      </div>
+      </div>
+      {{/if}}
+
+    </div>
+    {{#if photo_vic_fn}}
+      <div class="col-sm-4 photos" >
+        <br>
+        {{{Hphoto photo_vic_fn}}}
+      </div>
+    {{/if}}
+  </div>
+  
+
+
+
+
+  <hr>
+
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>The Militancy & Prior Abuse</h4>
+    </div>
+  </div>
+  
+
+  <div class="row">
+
+
+    <div class="col-sm-6">
+      <p class="kicker">Militant</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hyes_no_unknown victim_militant_status}}</p>
+    </div>
+
+
+
+
+  {{#isnot victim_militant_reason___7 1}}
+  {{#isnot victim_militant_reason___8 1}}
+  {{#isnot victim_militant_reason___9 1}}
+
+    {{#ifArray victim_militant_reason___1 victim_militant_reason___2 victim_militant_reason___3 victim_militant_reason___4 victim_militant_reason___5 victim_militant_reason___6}}
+    <div class="col-sm-6">
+      <p class="kicker">Reason(s) for joining militancy</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hvictim_militant_reason victim_militant_reason___1 victim_militant_reason___2 victim_militant_reason___3 victim_militant_reason___4 victim_militant_reason___5 victim_militant_reason___6 victim_militant_reason___7 victim_militant_reason___8 victim_militant_reason_oth }}</p>
+    </div>
+    {{/ifArray}}
+
+    {{/isnot}}
+    {{/isnot}}
+    {{/isnot}}
+
+    {{#if victim_militant_reason_oth}}
+    <div class="col-sm-6">
+      <p class="kicker">Reason(s) for joining militancy</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{victim_militant_reason_oth}}</p>
+    </div>
+    {{/if}}
+
+  
+
+
+    {{#isnot victim_militant_support 9}}
+    <div class="col-sm-6">
+      <p class="kicker">Militant support provided</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hyes_no victim_militant_support}}{{#if victim_militant_sprt_vol}}{{#isnot victim_militant_sprt_vol 3}}{{#isnot victim_militant_sprt_vol 9}}, {{Hforced victim_militant_sprt_vol}}{{/isnot}}{{/isnot}}{{/if}}</p>
+    </div>
+    {{/isnot}}
+
+
+    {{#isnot victim_prior_detention_st 9}}
+    <div class="col-sm-6">
+      <p class="kicker">Prior detentions</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hyes_no victim_prior_detention_st}}{{#ifKnown victim_prior_detentions}}{{#equal victim_prior_detention_st 1}}, {{victim_prior_detentions}}{{/equal}}{{/ifKnown}}</p>
+    </div>
+    {{/isnot}}
+
+
+    {{#isnot victim_prior_detention_trt 3}}
+    {{#isnot victim_prior_detention_trt 9}}
+    {{#equal victim_prior_detention_st 1}}
+    <div class="col-sm-6">
+      <p class="kicker">Prior torture</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hyes_no_na victim_prior_detention_trt}}</p>
+    </div>
+    {{/equal}}
+    {{/isnot}}
+    {{/isnot}}
+
+
+  </div>
+  
+  
+
+
+  <hr>
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Abduction, Detention, Unlawful Killing, or Disappearance</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid">
+  
+    {{#isnot target_reason___8 1}}
+    {{#isnot target_reason___9 1}}
+
+    {{#ifArray target_reason___1 target_reason___2 target_reason___3 target_reason___4 target_reason___5 target_reason___6 target_reason___7 target_reason___8 target_reason___9}}
+    <div class="col-sm-6">
+      <p class="kicker">Perceived reason for targeting victim</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Htarget_reason target_reason___1 target_reason___2 target_reason___3 target_reason___4 target_reason___5 target_reason___6 target_reason___7 target_reason___8 target_reason___9 target_reason_other}}</p>
+    </div>
+    {{/ifArray}}
+
+    {{/isnot}}
+    {{/isnot}}
+
+    {{#if target_reason_other}}
+    <div class="col-sm-6">
+      <p class="kicker">Perceived reason for targeting victim</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{target_reason_other}}</p>
+    </div>
+    {{/if}}
+
+
+
+    {{#if victim_arrest_status}}
+    <div class="col-sm-6">
+      <p class="kicker">Abduction/arrest prior to killing/disappearance</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hvictim_arrest_status victim_arrest_status}}{{#if victim_arrest_date}}, {{Hvictim_arrest_date victim_arrest_exact_date victim_arrest_date}}{{Hdate_no_on victim_arrest_date}}{{/if}}</p>
+    </div>
+    {{/if}}
+
+
+    {{#isnot victim_arrest_location 1}}
+    {{#isnot victim_arrest_location 11}}
+    {{#equalor victim_arrest_status 2 victim_arrest_status 1}}
+      <div class="col-sm-6">
+        <p class="kicker">Place of abduction/arrest</p>
+      </div>
+      <div class="col-sm-6">
+        <p>{{Hvictim_arrest_location victim_arrest_location}}{{#if victim_arrest_loc_vill}}{{victim_arrest_loc_vill}}{{/if}}{{#if victim_arrest_loc_thsl}}, 
+{{victim_arrest_loc_thsl}}{{/if}}{{#if victim_arrest_loc_dist}}, 
+{{victim_arrest_loc_dist}}{{/if}}{{#if victim_arrest_loc_st}}, 
+{{victim_arrest_loc_st}}{{/if}}</p>
+      </div>
+    {{/equalor}}
+    {{/isnot}}
+    {{/isnot}}
+
+
+
+  {{#ifArray witness_arrest___0	witness_arrest___1	witness_arrest___2	witness_arrest___3	witness_arrest___4	witness_arrest___5	witness_arrest___6	witness_arrest___7	witness_arrest___8	witness_arrest___9	witness_arrest___10	witness_arrest___12 witness_arrest_oth}}
+    <div class="col-sm-6">
+      <p class="kicker">Witness(es) to abduction/arrest</p>
+    </div>
+    <div class="col-sm-6">      
+        <p>{{Hwitness_arrest witness_arrest___0	witness_arrest___1	witness_arrest___2	witness_arrest___3	witness_arrest___4	witness_arrest___5	witness_arrest___6	witness_arrest___7	witness_arrest___8	witness_arrest___9	witness_arrest___10	witness_arrest___12 witness_arrest_oth}}</p>
+    </div>
+  {{/ifArray}}
+
+
+
+
+
+  {{#isnot so_inform_witnesses 9}}          
+  {{#isnot so_inform_witnesses 3}}          
+  {{#if so_inform_witnesses}}          
+    <div class="col-sm-6">
+      <p class="kicker">Security officials informed witnesses about destination</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hyes_no_na so_inform_witnesses}}</p>
+    </div>
+  {{/if}}
+  {{/isnot}}
+  {{/isnot}}
+
+
+
+
+  {{#if security_forces_uniformed}}
+  {{#isnot security_forces_uniformed 9}}
+    <div class="col-sm-6">
+      <p class="kicker">Uniformed</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hyes_no security_forces_uniformed}}</p>
+    </div>
+  {{/isnot}}
+  {{/if}}
+
+
+
+  {{#isnot demands___9 1}}
+  {{#isnot demands___10 1}}
+
+    {{#ifArray demands___1 demands___2 demands___3 demands___4 demands___5 demands___6 demands___7 demands___8 demands___9 demands___10 other_demands}}</p>
+
+    <div class="col-sm-6">
+      <p class="kicker">Demands by security forces</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hdemands demands___1 demands___2 demands___3 demands___4 demands___5 demands___6 demands___7 demands___8 demands___9 demands___10 other_demands }}</p>
+    </div>
+
+   {{/ifArray}}
+
+   {{/isnot}}
+   {{/isnot}}
+
+
+
+  {{#equalor victim_arrest_status 2 victim_arrest_status 1}}
+    <div class="col-sm-6">
+      <p class="kicker">Presented before judge/magistrate</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hyes_no_unknown judge_or_magistrate_status}}</p>
+    </div>
+  {{/equalor}}
+
+
+  {{#isnot judge_or_magistrate_result__3 1 }}
+
+  {{#ifArray judge_or_magistrate_result__1 judge_or_magistrate_result__2 judge_or_magistrate_result__3 judge_or_magistrate_result__4 judge_or_magistrate_resoth}}
+    <div class="col-sm-6">
+      <p class="kicker">Judge or Magistrate Result</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hjudge_or_magistrate_result judge_or_magistrate_result__1 judge_or_magistrate_result__2 judge_or_magistrate_result__3 judge_or_magistrate_result__4 judge_or_magistrate_resoth}}</p>
+    </div>
+  {{/ifArray}}
+
+  {{/isnot}}
+
+
+
+    </div>
+  </div>
+
+
+  {{#if where_victim_detained.0.detention_facility_type}}
+
+  <hr>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Detention Locations</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid">
+
+    <div class="col-sm-6">
+      <p class="kicker">Detention locations known</p>
+    </div>
+    <div class="col-sm-6">
+    
+    {{#each where_victim_detained}}
+
+      <p>{{#if this.detention_facility_type}}{{Hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth}}{{/if}}{{#if this.facility_name}}: {{Hcap this.facility_name}}{{/if}}{{#if this.facility_district}}, {{Hcap this.facility_district}}{{/if}}{{#if this.duration_of_detention}}{{#isnot this.duration_of_detention 'Don\'t know'}}, for {{Hduration_of_detention this.duration_of_detention}}{{/isnot}}{{/if}}
+
+    {{#ifArray this.witness_detention___3 this.witness_detention___4 this.witness_detention___5 this.witness_detention___6 this.witness_detention___7 this.witness_detention___8 this.witness_detention___9 this.witness_detention___10 this.witness_detention___12 this.witness_detention___13 this.witness_detention___14 this.witness_detention_other this.witness_detention_status}}
+        <br>{{Hwitness_detention this.witness_detention___3 this.witness_detention___4 this.witness_detention___5 this.witness_detention___6 this.witness_detention___7 this.witness_detention___8 this.witness_detention___9 this.witness_detention___10 this.witness_detention___12 this.witness_detention___13 this.witness_detention___14 this.witness_detention_other  this.witness_detention_status}}</p>
+    {{/ifArray}}
+      </p>
+
+    {{/each}}
+
+    </div>
+
+    </div>
+  </div>
+
+  {{/if}}
+
+
+
+
+
+
+  <hr>
+  
+  <div class="row">
+    <div class="col-sm-12">
+
+  {{#equal victim_disappeared_killed 2}}
+    <h4>Killed{{Hdate victim_death_date}}</h4>
+  {{/equal}}
+
+  {{#equal victim_disappeared_killed 1}}
+    <h4>Disappeared{{#equal victim_last_heard_alive 4}}, date unknown{{/equal}}{{#equal victim_last_heard_alive 1}}{{Hdate victim_arrest_date}}{{/equal}}{{#equal victim_last_heard_alive 2}}{{Hdate victim_death_date}}{{/equal}}{{#equal victim_last_heard_alive 3}}{{Hdate dt_last_heard_victim_alive}}{{/equal}}</h4>
+  {{/equal}}
+
+      <p class="kicker"><em><strong>Additional data forthcoming</strong></em></p>
+
+    </div>
+  </div>
+
+
+
+
+
+{{#equal victim_disappeared_killed 2}}
+
+  <div class="row">
+    <div class="col-sm-12">
+      <hr>
+      <h5>Disposal of Body</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid">
+
+  {{#if so_return_body}}
+    <div class="col-sm-6">
+      <p class="kicker">Body returned</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hso_return_body so_return_body}}</p>
+    </div>
+  {{/if}}
+
+
+  {{#if so_body_disposal}}
+  {{#isnot so_body_disposal 5}}
+  {{#isnot so_body_disposal 6}}
+    <div class="col-sm-6">
+      <p class="kicker">Body disposal by security forces</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hso_body_disposal so_body_disposal}}</p>
+    </div>
+  {{/isnot}}
+  {{/isnot}}
+  {{/if}}
+
+
+
+  {{#isnot cremation_location_type 4}}
+  {{#if cremation_location_type}}
+    <div class="col-sm-6">
+      <p class="kicker">Cremation location</p>    
+    </div>
+    <div class="col-sm-6">
+      <p>
+      {{#isnot cremation_location_type 5}}{{Hcremation_location_type cremation_location_type}}{{/isnot}}{{#equal cremation_location_type 5}}{{#if cremation_loctype_other}}{{cremation_loctype_other}}{{/if}}{{/equal}}{{#if cremation_location_name }}{{#isnot cremation_location_type 5}}, {{/isnot}}{{Hcap cremation_location_name}}{{/if}}
+      </p>
+    </div>
+  {{/if}}
+  {{/isnot}}
+
+
+  {{#ifArray condition_of_remains___1 condition_of_remains___2 condition_of_remains___3 condition_of_remains___4 condition_of_remains___5 condition_of_remains___6 condition_of_remains___7 other_condition_of_remains}}
+
+    <div class="col-sm-6">
+      <p class="kicker">Condition of remains</p>      
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hcondition_of_remains condition_of_remains___1 condition_of_remains___2 condition_of_remains___3 condition_of_remains___4 condition_of_remains___5 condition_of_remains___6 condition_of_remains___7 other_condition_of_remains }}</p>
+    </div>
+
+  {{/ifArray}}
+
+
+
+    </div>
+  </div>
+
+{{/equal}}<!-- #equal victim_disappeared_killed 2 -->
+
+
+
+
+  {{#ifArray arrest_security_type___1 arrest_security_type___2 arrest_security_type___3 arrest_security_type___4 arrest_security_type___5 arrest_security_type___6 arrest_security_type___7 security_killed}}
+
+  <hr>
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Security Forces Implicated</h4>
+    </div>
+  </div>  
+
+  {{/ifArray}}
+
+
+
+  <div class="row">
+    <div class="grid">
+
+  {{#ifArray arrest_security_type___1 arrest_security_type___2 arrest_security_type___3 arrest_security_type___4 arrest_security_type___5 arrest_security_type___6 arrest_security_type___7}}
+    <div class="col-sm-6">
+      <p class="kicker">Forces involved in abduction/arrest</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Harrest_security_type arrest_security_type___1 arrest_security_type___2 arrest_security_type___3 arrest_security_type___4 arrest_security_type___5 arrest_security_type___6 arrest_security_type___7 arrest_security_type___8 arrest_security_type_oth}}</p>
+    </div>
+  {{/ifArray}}
+
+
+
+    {{#if security_arrest}}
+
+  <!-- arresting -->
+
+    <div class="col-sm-6">
+      <p class="kicker">Security officials involved in abduction</p>
+    </div>
+    <div class="col-sm-6">
+
+    {{#each security_arrest}}
+
+      <p>{{Hcap this.arrest_so_first_name}} {{Hcap this.arrest_so_last_name}}<!-- rank -->{{#if this.arrest_so_rank}}{{#isnot this.arrest_so_rank 13}}{{#isnot this.arrest_so_rank 14}}, 
+{{Harrest_so_rank this.arrest_so_rank}}{{/isnot}}{{/isnot}}{{#equal this.arrest_so_rank 13}}{{#if this.arrest_so_rank_other}}, 
+{{this.arrest_so_rank_other}}{{/if}}{{/equal}}{{/if}}<!-- affiliaton -->{{#if this.arrest_so_affiliation}}{{#isnot this.arrest_so_affiliation 8}}{{#isnot this.arrest_so_affiliation 7}}, 
+{{Haffiliation this.arrest_so_affiliation}}{{/isnot}}{{/isnot}}{{/if}}<!-- arrest_so_affiliation_oth -->{{#if this.arrest_so_affiliation_oth}}, 
+{{this.arrest_so_affiliation_oth}}{{/if}}{{#if this.arrest_so_affiliation_loc}}, {{this.arrest_so_affiliation_loc}}{{/if}}{{#if this.arrest_security_locality}}, {{this.arrest_security_locality}}{{/if}}</p>
+
+    {{/each}}
+
+    </div>
+
+
+    {{/if}}
+
+
+
+
+
+{{#ifArray killing_securityforcestype__1 killing_securityforcestype__2 killing_securityforcestype__3 killing_securityforcestype__4 killing_securityforcestype__5 killing_securityforcestype__6 killing_securityforcestype__7 killing_securityforcestype__8 killing_securityforces_oth}}
+
+    <div class="col-sm-6">
+      <p class="kicker">Forces involved in killing</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{#if killing_securityforces_lcl}}{{Hcap killing_securityforces_lcl}}{{/if}} {{Harrest_security_type killing_securityforcestype__1 killing_securityforcestype__2 killing_securityforcestype__3 killing_securityforcestype__4 killing_securityforcestype__5 killing_securityforcestype__6 killing_securityforcestype__6 killing_securityforcestype__7 killing_securityforcestype__8 killing_securityforces_oth}}</p>
+    </div>
+
+{{/ifArray}}
+
+
+    {{#if security_killed}}
+
+    <div class="col-sm-6">
+      <p class="kicker">Security official involved in killing</p>
+    </div>
+    <div class="col-sm-6">
+
+    {{#each security_killed}}
+
+      <p>{{Hcap this.killing_so_first_name}} {{Hcap this.killing_so_last_name}}<!-- rank -->{{#if this.killing_so_rank}}{{#isnot this.killing_so_rank 13}}{{#isnot this.killing_so_rank 14}}, {{Harrest_so_rank this.killing_so_rank}}{{/isnot}}{{/isnot}}{{#equal this.killing_so_rank 13}}{{#if this.killing_so_rank_other}}, {{this.killing_so_rank_other}}{{/if}}{{/equal}}{{/if}}<!-- affiliation -->{{#if this.killing_so_affiliation}}{{#isnot this.killing_so_affiliation 8}}{{#isnot this.killing_so_affiliation 7}}, {{Haffiliation this.killing_so_affiliation}}{{/isnot}}{{/isnot}}{{/if}}<!-- killing_so_affiliation_oth -->{{#equal this.killing_so_affiliation 8}}{{#if this.killing_so_affiliation_oth}}, {{this.killing_so_affiliation_oth}}{{/if}}{{/equal}}{{#if this.killing_so_affiliation_loc}}, {{this.killing_so_affiliation_loc}}{{/if}} </p>
+
+    {{/each}}
+
+    </div>
+
+    {{/if}}
+
+
+
+
+
+
+
+
+  </div>
+</div>
+
+
+
+  {{#isnot security_officials_apprchd 9}}
+  {{#isnot security_official_response__14 1}}
+  {{#isnot court_or_commission 9}}
+  {{#isnot govnt_response_desired___11 1}}
+
+  <hr>  
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Advocacy & Impact</h4>
+    </div>
+  </div>
+
+  {{/isnot}}
+  {{/isnot}}
+  {{/isnot}}
+  {{/isnot}}
+
+
+  <div class="row">
+    <div class="grid">
+
+  {{#isnot security_officials_apprchd 9}}
+  {{#if security_officials_apprchd}}
+    <div class="col-sm-6">
+      <p class="kicker">Security officlals approached</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hyes_no security_officials_apprchd}}{{#ifArray so_approached_type__1 so_approached_type__2 so_approached_type__3 so_approached_type__4 so_approached_type__5 so_approached_type__6 so_approached_type__7 so_approached_other}}{{Hso_approached_type so_approached_type__1 so_approached_type__2 so_approached_type__3 so_approached_type__4 so_approached_type__5 so_approached_type__6 so_approached_type__7 so_approached_other}}{{/ifArray}}{{#if so_approached_loc}}, from {{Hadd_spaces so_approached_loc}}{{/if}}</p>
+    </div>
+  {{/if}}
+  {{/isnot}}
+
+
+
+  {{#isnot security_official_response__14 1}}
+  {{#ifArray security_official_response__0 security_official_response__1 security_official_response__2 security_official_response__3 security_official_response__4 security_official_response__5 security_official_response__6 security_official_response__7 security_official_response__8 security_official_response__9 security_official_response__10 security_official_response__11 security_official_response__12 security_official_response__13 security_official_response__14 other_so_response}}
+    <div class="col-sm-6">
+      <p class="kicker">Security official response</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hsecurity_official_response security_official_response__0 security_official_response__1 security_official_response__2 security_official_response__3 security_official_response__4 security_official_response__5 security_official_response__6 security_official_response__7 security_official_response__8 security_official_response__9 security_official_response__10 security_official_response__11 security_official_response__12 security_official_response__13 security_official_response__14 other_so_response}}</p>
+    </div>
+  {{/ifArray}}
+  {{/isnot}}
+
+
+  {{#if court_or_commission}}
+  {{#isnot court_or_commission 9}}
+    <div class="col-sm-6">
+      <p class="kicker">Legal remedies pursued</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hyes_no court_or_commission}}{{#ifArray no_action_pursued_reason___1 no_action_pursued_reason___2 no_action_pursued_reason___3 no_action_pursued_reason___4 other_no_action_reason}}, {{Hno_action_pursued_reason no_action_pursued_reason___1 no_action_pursued_reason___2 no_action_pursued_reason___3 no_action_pursued_reason___4 other_no_action_reason}}{{/ifArray}}</p>
+    </div>
+  {{/isnot}}
+  {{/if}}
+
+
+  {{#ifArray family_effects___1 family_effects___2 family_effects___3 family_effects___4 family_effects___5 family_effects___6 family_effects___7 family_effects___8 family_effects___9 family_effects___12 other_family_effects}}
+    <div class="col-sm-6">
+      <p class="kicker">Impact on family</p>      
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hfamily_effects family_effects___1 family_effects___2 family_effects___3 family_effects___4 family_effects___5 family_effects___6 family_effects___7 family_effects___8 family_effects___9 family_effects___12 other_family_effects }}</p>
+    </div>
+  {{/ifArray}}
+
+
+  {{#isnot govnt_response_desired___11 1}}
+    <div class="col-sm-6">
+      <p class="kicker">Response desired by Government</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hgovnt_response_desired govnt_response_desired___1 govnt_response_desired___2 govnt_response_desired___3 govnt_response_desired___4 govnt_response_desired___5 govnt_response_desired___6 govnt_response_desired___7 govnt_response_desired___8 govnt_response_desired___9 govnt_response_desired___10 govnt_response_desired___11 other_govnt_response_desired }}</p>
+    </div>
+  </div>
+  {{/isnot}}
+
+
+    </div>
+  </div>
+
+
+
+  <hr>  
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Related Victims</h4>
+    </div>
+  </div>
+
+
+  {{#isnot number_of_victims 1}}
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="kicker">Unlawful killings/disappearances in family</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{number_of_victims}}</p>
+    </div>
+  </div>
+  {{/isnot}}
+
+
+  {{#if genuine_encounters}}
+  {{#isnot genuine_encounters 9}}
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="kicker">Genuine encounters in family</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hyes_no genuine_encounters}}</p>
+    </div>
+  </div>
+  {{/isnot}}
+  {{/if}}
+
+
+  {{#if others_arrested}}
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="kicker">Co-victims of abduction/arrest</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hothers_arrested others_arrested}}</p>
+    </div>
+  </div>
+  {{/if}}
+
+
+  {{#isnot others_killed___9 1}}
+  {{#ifArray others_killed___0 others_killed___1 others_killed___2 others_killed___3 others_killed___9}}
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="kicker">Co-victims of killing</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{Hothers_killed others_killed___0 others_killed___1 others_killed___2 others_killed___3 others_killed___9}}</p>
+    </div>
+  </div>
+  {{/ifArray}}
+  {{/isnot}}
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <p class="kicker"><em><strong>Links to co-victim profiles forthcoming</strong></em></p>
+    </div>
+  </div>
+
+
+
+
+
+  <hr>  
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Reflections from the Family</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <p class="kicker"><em><strong>Forthcoming</strong></em></p>
+    </div>
+  </div>
+
+
+  {{#if photo_doc_fn}}
+
+  <hr>  
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4></h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12 documents">
+      {{{Hphoto photo_doc_fn}}}
+    </div>
+  </div>
+
+
+    {{/if}}
+
+

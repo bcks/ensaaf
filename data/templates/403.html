@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Not Authorized (403){% endblock %}
+
+{% block content %}
+
+<h1>Not Authorized (403)</h1>
+<p>This request was not authorized. This probably happened as a result of re-submission of a form with a stale CSRF token.</p>
+
+{% endblock %}

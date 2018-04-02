@@ -1,0 +1,909 @@
+{% extends "base.html" %}
+
+{% block title %}{{victim.victim_name}}{% endblock %}
+
+{% block content %}
+
+  <div class="row">
+ 
+     {% if victim.photo_vic_fn|length > 2 %}
+       <div class="col-sm-8">
+    {% else %}
+       <div class="col-sm-12">
+     {% endif %}
+
+
+      <h1>{{victim.victim_name}}</h1>
+
+      <p>
+      {% if victim.victim_sex != '' %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age != '' %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex != '' %},{% endif %}        
+      age {{victim.victim_age}}        
+        {% if victim.victim_disappeared_killed  %}
+         at time of 
+          {% if victim.victim_disappeared_killed == 1 %}
+          disappearance
+          {% endif %}
+          {% if victim.victim_disappeared_killed == 2 %}
+          killing
+          {% endif %}
+        {% endif %}
+      {% endif %}{% endif %}
+      </p>
+
+
+      {% if victim.victim_disappeared_killed == 2 %}
+        <p>Killed{% hdate victim.victim_death_date %}</p>
+      {% endif %}
+
+      {% if victim.victim_disappeared_killed == 1 %}
+        <p>Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% hdate victim.victim_arrest_date %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% hdate victim.victim_death_date %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% hdate dt_last_heard_victim_alive %}{% endif %}</p>
+      {% endif %}
+
+      <hr>  
+    
+      <h4>Profile</h4>
+
+      {% if victim.victim_address_int_loc == 1 %}
+        {% if victim.village_name != '' %}
+          <div class="row">  
+            <div class="col-sm-2">
+              <p class="kicker">Residence</p>
+            </div>
+            <div class="col-sm-10">
+              {% if victim.village_id != '' %}
+                <p><a href="/village/{{victim.village_id}}">{{victim.village_name}}</a></p>
+              {% else %}
+                <p>{{victim.village_name}}</p>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}  
+      {% endif %}
+
+      {% if victim.victim_address_int_loc == 0 %}
+        {% if victim.victim_address_other %}
+        <div class="row">  
+          <div class="col-sm-2">
+            <p class="kicker">Residence</p>
+          </div>
+          <div class="col-sm-10">
+            <p>{% hvictim_address_other victim.victim_address_other %}</p>
+          </div>
+        </div>
+        {% endif %}
+      {% endif %}
+
+
+
+  
+      {% if victim.victim_education != '' %}
+      {% if victim.victim_education != 11 %}
+      <div class="row">  
+        <div class="col-sm-2">
+          <p class="kicker">Education</p>
+        </div>
+        <div class="col-sm-10">
+          <p>{% heducation victim.victim_education %}</p>
+        </div>
+      </div>
+      {% endif %}
+      {% endif %}
+
+
+      {% if victim.victim_employment_10 != 1 %}
+      {% if victim.victim_employment_11 != 1 %}
+    
+      {%if victim.victim_employment_1%}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Employment</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{% hvictim_employment victim.victim_employment_1 victim.victim_employment_2 victim.victim_employment_3 victim.victim_employment_4 victim.victim_employment_5 victim.victim_employment_6 victim.victim_employment_7 victim.victim_employment_8 victim.victim_employment_9 victim.victim_employment_10 victim.victim_employment_11 victim.victim_employment_other %}</p>
+      </div>
+      </div>
+      {% endif %}
+
+      {% endif %}
+      {% endif %}
+
+
+
+      {% if victim.victim_employment_other %}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Employment</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{victim.victim_employment_other}}</p>
+      </div>
+      </div>
+      {% endif %}
+
+
+      {% if victim.victim_marital_status != 9 %}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Married</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{% hyes_no victim.victim_marital_status %}</p>
+      </div>
+      </div>
+    
+      {% if victim.victim_marital_status == 1 %}
+      {% if victim.victim_children != '' %}
+      <div class="row">  
+        <div class="col-sm-2">
+          <p class="kicker">Children</p>
+        </div>
+        <div class="col-sm-10">
+          <p>{{victim.victim_children}}</p>
+        </div>
+        </div>
+      {% endif %}
+      {% endif %}
+    
+      {% endif %}
+    
+    
+    
+      {% if victim.victim_religion != 6 %}
+      {% if victim.victim_religion != 7 %}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Religion</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{% hreligion victim.victim_religion %}{% if victim.victim_amritdhari == 1 %}, Amritdhari{% endif %}{% if victim.victim_kesdhari == 1 %}, Kesdhari{% endif %}</p>
+      </div>
+      </div>
+      {% endif %}
+      {% endif %}
+
+      {% if victim.victim_religion_other %}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Religion</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{victim.victim_religion_other}}
+        </p>
+      </div>
+      </div>
+      {% endif %}
+
+
+
+      {% if victim.victim_caste != 8 %}
+      {% if victim.victim_caste != 9 %}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Caste</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{%hcaste victim.victim_caste %}</p>
+      </div>
+      </div>
+
+      {% endif %}
+      {% endif %}
+
+
+
+      {% if victim.victim_dob %}
+      <div class="row">  
+      <div class="col-sm-2">
+        <p class="kicker">Date of birth</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{victim.victim_dob}}</p>
+      </div>
+      </div>
+      {% endif %}
+
+    </div>
+    {% if victim.photo_vic_fn != '' %}
+      <div class="col-sm-4 photos" >
+        <br>
+        {% autoescape off %}{% hphoto victim.photo_vic_fn %}{% endautoescape %}
+      </div>
+    {% endif %}
+  </div>
+  
+
+
+
+
+  <hr>
+
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>The Militancy & Prior Abuse</h4>
+    </div>
+  </div>
+  
+
+
+
+  <div class="row">
+
+
+    <div class="col-sm-6">
+      <p class="kicker">Militant</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no_unknown victim.victim_militant_status %}</p>
+    </div>
+
+
+
+  {% if victim.victim_militant_reason_7 != 1 %}
+  {% if victim.victim_militant_reason_8 != 1 %}
+  {% if victim.victim_militant_reason_9 != 1 %}
+
+    {% if victim.victim_militant_reason_1 or victim.victim_militant_reason_2 or victim.victim_militant_reason_3 or victim.victim_militant_reason_4 or victim.victim_militant_reason_5 or victim.victim_militant_reason_6 %}
+    <div class="col-sm-6">
+      <p class="kicker">Reason(s) for joining militancy</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{%hvictim_militant_reason victim.victim_militant_reason_1 victim.victim_militant_reason_2 victim.victim_militant_reason_3 victim.victim_militant_reason_4 victim.victim_militant_reason_5 victim.victim_militant_reason_6 victim.victim_militant_reason_7 victim.victim_militant_reason_8 victim.victim_militant_reason_oth %}</p>
+    </div>
+    {% endif %}
+
+  {% endif %}
+  {% endif %}
+  {% endif %}
+
+  {% if victim.victim_militant_reason_oth %}
+    <div class="col-sm-6">
+      <p class="kicker">Reason(s) for joining militancy</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{victim.victim_militant_reason_oth}}</p>
+    </div>
+  {% endif %}
+
+  
+
+
+  {% if victim.victim_militant_support != 9 %}
+    <div class="col-sm-6">
+      <p class="kicker">Militant support provided</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no victim.victim_militant_support %}
+      {% if victim.victim_militant_sprt_vol %}{% if victim.victim_militant_sprt_vol != 3 %}{% if victim.victim_militant_sprt_vol != 9 %}, {% hforced victim.victim_militant_sprt_vol %}{% endif %}{% endif %}{% endif %}</p>
+    </div>
+  {% endif %}
+
+
+
+
+  {% if victim.victim_prior_detention_st != 9 %}
+    <div class="col-sm-6">
+      <p class="kicker">Prior detentions</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no victim.victim_prior_detention_st %}{% if victim.victim_prior_detentions != "Don't know" %}{% if victim.victim_prior_detention_st == 1 %}, {{victim.victim_prior_detentions}}{% endif %}{% endif %}</p>
+    </div>
+  {% endif %}
+
+
+  {% if victim.victim_prior_detention_trt != 3 %}
+  {% if victim.victim_prior_detention_trt != 9 %}
+  {% if victim.victim_prior_detention_st == 1 %}
+    <div class="col-sm-6">
+      <p class="kicker">Prior torture</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no_na victim.victim_prior_detention_trt %}</p>
+    </div>
+  {% endif %}
+  {% endif %}
+  {% endif %}
+
+
+
+  </div>
+  
+
+
+  <hr>
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Abduction, Detention, Unlawful Killing, or Disappearance</h4>
+    </div>
+  </div>
+
+
+
+  <div class="row">
+    <div class="grid">
+    {% if victim.target_reason_8 != 1 %}
+    {% if victim.target_reason_9 != 1 %}
+
+    {% if victim.target_reason_1 or victim.target_reason_2 or victim.target_reason_3 or victim.target_reason_4 or victim.target_reason_5 or victim.target_reason_6 or victim.target_reason_7 or victim.target_reason_8 or victim.target_reason_9 or victim.target_reason_other%}
+    <div class="col-sm-6">
+      <p class="kicker">Perceived reason for targeting victim</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% htarget_reason victim.target_reason_1 victim.target_reason_2 victim.target_reason_3 victim.target_reason_4 victim.target_reason_5 victim.target_reason_6 victim.target_reason_7 victim.target_reason_8 victim.target_reason_9 victim.target_reason_other %}</p>
+    </div>
+    {% endif %}
+
+    {% endif %}
+    {% endif %}
+
+
+
+
+    {% if victim.victim_arrest_status != '' %}
+    <div class="col-sm-6">
+      <p class="kicker">Abduction/arrest prior to killing/disappearance</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date != '' %}, {% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% hdate_no_on victim.victim_arrest_date %}{% endif %}</p>
+  
+    </div>
+    {% endif %}
+
+
+
+
+
+    {% if victim.victim_arrest_location != 1 %}
+    {% if victim.victim_arrest_location != 11 %}
+    {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
+      <div class="col-sm-6">
+        <p class="kicker">Place of abduction/arrest</p>
+      </div>
+      <div class="col-sm-6">
+        <p>{% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.victim_arrest_loc_vill != '' %}{{victim.victim_arrest_loc_vill}}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
+{{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %}, 
+{{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %}, 
+{{victim.victim_arrest_loc_st}}{% endif %}</p>
+      </div>
+    {% endif %}
+    {% endif %}
+    {% endif %}
+
+
+  {%if victim.witness_arrest_0 or victim.witness_arrest_1 or victim.witness_arrest_2 or victim.witness_arrest_3 or victim.witness_arrest_4 or victim.witness_arrest_5 or victim.witness_arrest_6 or victim.witness_arrest_7 or victim.witness_arrest_8 or victim.witness_arrest_9 or victim.witness_arrest_10 or victim.witness_arrest_12 or victim.witness_arrest_oth %}
+    <div class="col-sm-6">
+      <p class="kicker">Witness(es) to abduction/arrest</p>
+    </div>
+    <div class="col-sm-6">      
+        <p>{% hwitness_arrest victim.witness_arrest_0 victim.witness_arrest_1 victim.witness_arrest_2 victim.witness_arrest_3 victim.witness_arrest_4 victim.witness_arrest_5 victim.witness_arrest_6 victim.witness_arrest_7 victim.witness_arrest_8 victim.witness_arrest_9 victim.witness_arrest_10 victim.witness_arrest_12 victim.witness_arrest_oth %}</p>
+    </div>
+  {% endif %}
+
+
+  {% if victim.so_inform_witnesses != 9 %}          
+  {% if victim.so_inform_witnesses != 3 %}          
+  {% if victim.so_inform_witnesses %}          
+    <div class="col-sm-6">
+      <p class="kicker">Security officials informed witnesses about destination</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no_na victim.so_inform_witnesses %}</p>
+    </div>
+  {% endif %}
+  {% endif %}
+  {% endif %}
+
+
+
+  {% if victim.security_forces_uniformed != '' %}
+  {% if victim.security_forces_uniformed != 9 %}
+    <div class="col-sm-6">
+      <p class="kicker">Uniformed</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no victim.security_forces_uniformed %}</p>
+    </div>
+  {% endif %}
+  {% endif %}
+
+
+
+
+
+  {% if victim.demands_9 != 1 %}
+  {% if victim.demands_10 != 1 %}
+
+    {% if victim.demands_1 or victim.demands_2 or victim.demands_3 or victim.demands_4 or victim.demands_5 or victim.demands_6 or victim.demands_7 or victim.demands_8 or victim.demands_9 or victim.demands_10 or victim.other_demands %}
+
+    <div class="col-sm-6">
+      <p class="kicker">Demands by security forces</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hdemands victim.demands_1 victim.demands_2 victim.demands_3 victim.demands_4 victim.demands_5 victim.demands_6 victim.demands_7 victim.demands_8 victim.demands_9 victim.demands_10 victim.other_demands %}</p>
+    </div>
+
+   {% endif %}
+
+   {% endif %}
+   {% endif %}
+
+
+
+  {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
+    <div class="col-sm-6">
+      <p class="kicker">Presented before judge/magistrate</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no_unknown victim.judge_or_magistrate_status %}</p>
+    </div>
+   {% endif %}
+
+
+
+
+  {% if victim.judge_or_magistrate_result_3 != 1  %}
+  {% if victim.judge_or_magistrate_result_1 or victim.judge_or_magistrate_result_2 or victim.judge_or_magistrate_result_3 or victim.judge_or_magistrate_result_4 or victim.judge_or_magistrate_resoth %}
+    <div class="col-sm-6">
+      <p class="kicker">Judge or Magistrate Result</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hjudge_or_magistrate_result victim.judge_or_magistrate_result_1 victim.judge_or_magistrate_result_2 victim.judge_or_magistrate_result_3 victim.judge_or_magistrate_result_4 victim.judge_or_magistrate_resoth %}</p>
+    </div>
+  {% endif %}
+  {% endif %}
+
+
+
+    </div>
+  </div>
+
+
+
+
+  {% if victim.where_victim_detained.all|length > 0 %}
+
+  <hr>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Detention Locations</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid">
+
+    <div class="col-sm-6">
+      <p class="kicker">Detention locations known</p>
+    </div>
+    <div class="col-sm-6">
+    
+    {% for this in victim.where_victim_detained.all %}
+
+      <p>{% if this.detention_facility_type != '' %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endif %}{% if this.facility_name != '' %}: {{this.facility_name|title}}{% endif %}{% if this.facility_district != '' %}, {{this.facility_district|title}}{% endif %}{% if this.duration_of_detention != '' %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
+
+    {% if this.witness_detention_3 or this.witness_detention_4 or this.witness_detention_5 or this.witness_detention_6 or this.witness_detention_7 or this.witness_detention_8 or this.witness_detention_9 or this.witness_detention_10 or this.witness_detention_12 or this.witness_detention_13 or this.witness_detention_14 or this.witness_detention_other or this.witness_detention_status %}
+        <br>{% hwitness_detention this.witness_detention_3 this.witness_detention_4 this.witness_detention_5 this.witness_detention_6 this.witness_detention_7 this.witness_detention_8 this.witness_detention_9 this.witness_detention_10 this.witness_detention_12 this.witness_detention_13 this.witness_detention_14 this.witness_detention_other  this.witness_detention_status %}</p>
+    {% endif %}
+      </p>
+
+    {% endfor %}
+
+    </div>
+
+    </div>
+  </div>
+
+  {% endif %}
+
+
+
+
+
+  <hr>
+  
+  <div class="row">
+    <div class="col-sm-12">
+
+  {% if victim.victim_disappeared_killed == 2 %}
+    <h4>Killed{% hdate victim.victim_death_date %}</h4>
+  {% endif %}
+
+  {% if victim.victim_disappeared_killed == 1 %}
+    <h4>Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% hdate victim.victim_arrest_date %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% hdate victim.victim_death_date %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% hdate dt_last_heard_victim_alive %}{% endif %}</h4>
+  {% endif %}
+
+      <p class="kicker"><em><strong>Additional data forthcoming</strong></em></p>
+
+    </div>
+  </div>
+
+
+
+
+
+{% if victim.victim_disappeared_killed == 2 %}
+
+  <div class="row">
+    <div class="col-sm-12">
+      <hr>
+      <h5>Disposal of Body</h5>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="grid">
+
+  {% if victim.so_return_body != '' %}
+    <div class="col-sm-6">
+      <p class="kicker">Body returned</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hso_return_body victim.so_return_body %}</p>
+    </div>
+  {% endif %}
+
+
+
+
+
+  {% if victim.so_body_disposal %}
+  {% if victim.so_body_disposal != 5 %}
+  {% if victim.so_body_disposal != 6 %}
+    <div class="col-sm-6">
+      <p class="kicker">Body disposal by security forces</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hso_body_disposal victim.so_body_disposal %}</p>
+    </div>
+  {% endif %}
+  {% endif %}
+  {% endif %}
+
+
+
+
+
+
+  {% if victim.cremation_location_type != 4 %}
+  {% if victim.cremation_location_type %}
+    <div class="col-sm-6">
+      <p class="kicker">Cremation location</p>    
+    </div>
+    <div class="col-sm-6">
+      <p>
+      {% if victim.cremation_location_type != 5 %}{% hcremation_location_type victim.cremation_location_type %}{% endif %}{% if victim.cremation_location_type == 5 %}{% if victim.cremation_loctype_other %}{{victim.cremation_loctype_other}}{% endif %}{% endif %}{% if victim.cremation_location_name  %}{% if victim.cremation_location_type != 5 %}, {% endif %}{{victim.cremation_location_name|title}}{% endif %}
+      </p>
+    </div>
+  {% endif %}
+  {% endif %}
+
+
+
+
+
+  {% if victim.condition_of_remains_1 or victim.condition_of_remains_2 or victim.condition_of_remains_3 or victim.condition_of_remains_4 or victim.condition_of_remains_5 or victim.condition_of_remains_6 or victim.condition_of_remains_7 or victim.other_condition_of_remains %}
+
+    <div class="col-sm-6">
+      <p class="kicker">Condition of remains</p>      
+    </div>
+    <div class="col-sm-6">
+      <p>{% hcondition_of_remains victim.condition_of_remains_1 victim.condition_of_remains_2 victim.condition_of_remains_3 victim.condition_of_remains_4 victim.condition_of_remains_5 victim.condition_of_remains_6 victim.condition_of_remains_7 victim.other_condition_of_remains %}</p>
+    </div>
+
+  {% endif %}
+
+
+    </div>
+  </div>
+
+{% endif %}<!-- #equal victim.victim_disappeared_killed 2 -->
+
+
+
+
+
+
+
+
+
+
+  {% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.security_killed %}
+
+  <hr>
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Security Forces Implicated</h4>
+    </div>
+  </div>  
+
+  {% endif %}
+
+
+
+
+
+  <div class="row">
+    <div class="grid">
+
+  {% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%}
+    <div class="col-sm-6">
+      <p class="kicker">Forces involved in abduction/arrest</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% harrest_security_type victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}</p>
+    </div>
+  {% endif %}
+
+
+
+
+
+
+    {% if victim.security_arrest.all|length > 0 %}
+
+  <!-- arresting -->
+
+    <div class="col-sm-6">
+      <p class="kicker">Security officials involved in abduction</p>
+    </div>
+    <div class="col-sm-6">
+
+    {% for this in victim.security_arrest.all %}
+
+      <p>{{this.arrest_so_first_name|title}} {{this.arrest_so_last_name|title}}<!-- rank -->{% if this.arrest_so_rank != '' %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}, 
+{% harrest_so_rank this.arrest_so_rank %}{% endif %}{% endif %}{% if this.arrest_so_rank == 13 %}{% if this.arrest_so_rank_other %}, 
+{{this.arrest_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliaton -->{% if this.arrest_so_affiliation != '' %}{% if this.arrest_so_affiliation != 8 %}{% if this.arrest_so_affiliation != 7 %}, 
+{% haffiliation this.arrest_so_affiliation %}{% endif %}{% endif %}{% endif %}<!-- arrest_so_affiliation_oth -->{% if this.arrest_so_affiliation_oth != '' %}, 
+{{this.arrest_so_affiliation_oth}}{% endif %}{% if this.arrest_so_affiliation_loc != '' %}, {{this.arrest_so_affiliation_loc}}{% endif %}{% if this.arrest_security_locality != '' %}, {{this.arrest_security_locality}}{% endif %}</p>
+
+    {% endfor %}
+
+    </div>
+
+
+    {% endif %}
+
+
+
+
+
+
+
+
+{% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforcestype_7 or victim.killing_securityforces_oth %}
+
+    <div class="col-sm-6">
+      <p class="kicker">Forces involved in killing</p>
+    </div>
+    <div class="col-sm-6">
+          
+      <p>{% if victim.killing_securityforces_lcl != 'Don\'t know' %}{{victim.killing_securityforces_lcl|title}}{% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforcestype_7 or victim.killing_securityforces_oth %}, {% endif %}{% endif %}
+      {% harrest_security_type victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}</p>
+    </div>
+
+{% endif %}
+
+
+
+
+
+    {% if victim.security_killed.all|length > 0 %}
+
+    <div class="col-sm-6">
+      <p class="kicker">Security official involved in killing</p>
+    </div>
+    <div class="col-sm-6">
+
+
+    {%for this in victim.security_killed.all %}
+
+      <p>{{this.killing_so_first_name|title}} {{this.killing_so_last_name|title}}<!-- rank -->{% if this.killing_so_rank != '' %}{% if this.killing_so_rank != 13 %}{% if this.killing_so_rank != 14 %}, {% harrest_so_rank this.killing_so_rank %}{% endif %}{% endif %}{% if this.killing_so_rank == 13 %}{% if this.killing_so_rank_other %}, {{this.killing_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliation -->{% if this.killing_so_affiliation != '' %}{% if this.killing_so_affiliation != 8 %}{% if this.killing_so_affiliation != 7 %}, {% haffiliation this.killing_so_affiliation %}{% endif %}{% endif %}{% endif %}<!-- killing_so_affiliation_oth -->{% if this.killing_so_affiliation == 8 %}{% if this.killing_so_affiliation_oth != '' %}, {{this.killing_so_affiliation_oth}}{% endif %}{% endif %}{% if this.killing_so_affiliation_loc != '' %}, {{this.killing_so_affiliation_loc}}{% endif %} </p>
+
+    {% endfor %}
+
+    </div>
+
+
+    {% endif %}
+
+
+
+
+
+
+
+  </div>
+</div>
+
+
+
+  {% if victim.security_officials_apprchd != 9 %}
+  {% if victim.security_official_response_14 != 1 %}
+  {% if victim.court_or_commission != 9 %}
+  {% if victim.govnt_response_desired_11 != 1 %}
+
+  <hr>  
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Advocacy & Impact</h4>
+    </div>
+  </div>
+
+  {% endif %}
+  {% endif %}
+  {% endif %}
+  {% endif %}
+
+
+  <div class="row">
+    <div class="grid">
+
+  {% if victim.security_officials_apprchd != 9 %}
+  {% if victim.security_officials_apprchd != '' %}
+    <div class="col-sm-6">
+      <p class="kicker">Security officlals approached</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no victim.security_officials_apprchd %}{% if victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or  victim.so_approached_other %}, {% endif %}{% hso_approached_type  victim.so_approached_type_1  victim.so_approached_type_2 victim.so_approached_type_3 victim.so_approached_type_4  victim.so_approached_type_5 victim.so_approached_type_6 victim.so_approached_type_7  victim.so_approached_other %}{% if  victim.so_approached_loc %}, from {% hadd_spaces victim.so_approached_loc %}{% endif %}</p>
+    </div>
+  {% endif %}
+  {% endif %}
+
+
+
+
+  {% if victim.security_official_response_14 != 1 %}
+  {% if victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.security_official_response_13 or victim.security_official_response_14 or victim.other_so_response %}
+    <div class="col-sm-6">
+      <p class="kicker">Security official response</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hsecurity_official_response victim.security_official_response_0 victim.security_official_response_1 victim.security_official_response_2 victim.security_official_response_3 victim.security_official_response_4 victim.security_official_response_5 victim.security_official_response_6 victim.security_official_response_7 victim.security_official_response_8 victim.security_official_response_9 victim.security_official_response_10 victim.security_official_response_11 victim.security_official_response_12 victim.security_official_response_13 victim.security_official_response_14 victim.other_so_response %}</p>
+    </div>
+  {% endif %}
+  {% endif %}
+
+
+
+
+
+
+  {% if victim.court_or_commission != '' %}
+  {% if victim.court_or_commission != 9 %}
+    <div class="col-sm-6">
+      <p class="kicker">Legal remedies pursued</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no victim.court_or_commission %}{% if victim.no_action_pursued_reason_1 or victim.no_action_pursued_reason_2 or victim.no_action_pursued_reason_3 or victim.no_action_pursued_reason_4 or victim.other_no_action_reason %}, {% hno_action_pursued_reason victim.no_action_pursued_reason_1 victim.no_action_pursued_reason_2 victim.no_action_pursued_reason_3 victim.no_action_pursued_reason_4 victim.other_no_action_reason %}{% endif %}</p>
+    </div>
+  {% endif %}
+  {% endif %}
+
+
+
+
+
+  {% if victim.family_effects_1 or victim.family_effects_2 or victim.family_effects_3 or victim.family_effects_4 or victim.family_effects_5 or victim.family_effects_6 or victim.family_effects_7 or victim.family_effects_8 or victim.family_effects_9 or victim.family_effects_12 or victim.other_family_effects %}
+    <div class="col-sm-6">
+      <p class="kicker">Impact on family</p>      
+    </div>
+    <div class="col-sm-6">
+      <p>{% hfamily_effects victim.family_effects_1 victim.family_effects_2 victim.family_effects_3 victim.family_effects_4 victim.family_effects_5 victim.family_effects_6 victim.family_effects_7 victim.family_effects_8 victim.family_effects_9 victim.family_effects_12 victim.other_family_effects %}</p>
+    </div>
+  {% endif %}
+
+
+
+
+  {% if victim.govnt_response_desired_11 != 1 %}
+    <div class="col-sm-6">
+      <p class="kicker">Response desired by Government</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hgovnt_response_desired victim.govnt_response_desired_1 victim.govnt_response_desired_2 victim.govnt_response_desired_3 victim.govnt_response_desired_4 victim.govnt_response_desired_5 victim.govnt_response_desired_6 victim.govnt_response_desired_7 victim.govnt_response_desired_8 victim.govnt_response_desired_9 victim.govnt_response_desired_10 victim.govnt_response_desired_11 victim.other_govnt_response_desired %}</p>
+    </div>
+  {% endif %}
+
+
+    </div>
+  </div>
+
+
+  <hr>  
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Related Victims</h4>
+    </div>
+  </div>
+
+
+  {% if victim.number_of_victims != 1 %}
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="kicker">Unlawful killings/disappearances in family</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{victim.number_of_victims}}</p>
+    </div>
+  </div>
+  {% endif %}
+
+
+  {% if victim.genuine_encounters != '' %}
+  {% if victim.genuine_encounters != 9 %}
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="kicker">Genuine encounters in family</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no victim.genuine_encounters %}</p>
+    </div>
+  </div>
+  {% endif %}
+  {% endif %}
+
+
+
+
+  {% if victim.others_arrested != '' %}
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="kicker">Co-victims of abduction/arrest</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hothers_arrested victim.others_arrested %}</p>
+    </div>
+  </div>
+  {% endif %}
+
+
+
+
+  {% if victim.others_killed_9 != 1 %}
+  {% if victim.others_killed_0 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 or victim.others_killed_9 %}
+  <div class="row">
+    <div class="col-sm-6">
+      <p class="kicker">Co-victims of killing</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hothers_killed victim.others_killed_0 victim.others_killed_1 victim.others_killed_2 victim.others_killed_3 victim.others_killed_9 %}</p>
+    </div>
+  </div>
+  {% endif %}
+  {% endif %}
+
+
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <p class="kicker"><em><strong>Links to co-victim profiles forthcoming</strong></em></p>
+    </div>
+  </div>
+
+
+
+
+
+  <hr>  
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Reflections from the Family</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <p class="kicker"><em><strong>Forthcoming</strong></em></p>
+    </div>
+  </div>
+
+
+{% endblock %}

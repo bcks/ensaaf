@@ -1,0 +1,35 @@
+
+
+So after much trial and error (which is the best way to learn it) here's the way that works for me.
+
+First- externalize all your templates, say you have a template inside script tags like
+
+<script id="tmpl_ownevents" type="text/templates">
+    {{#unless event}}
+        <div class="notfoundevents"><p>No events for you</p></div>    
+    {{/unless}}
+</script>
+
+Create a new file called events.tmpl and copy/paste the template into that. Be sure to remove the script elements themselves, this gotcha bit me in the a..
+
+Install the Handlebars commandline script like so
+
+  npm install -g handlebars
+
+
+go to the folder you have saved profile.tmpl into and run
+
+  handlebars profile.tmpl -f profile.tmpl.js
+
+
+Include the compiled javascript into your HTML after you included Handlebars.js
+
+<script src="profile.tmpl.js"></script>
+
+Now all that is left is change your normal template code into something resembling the following
+
+var template = Handlebars.templates['profile.tmpl'], // your template minus the .js
+    context = profile.all(), // your data
+    html    = template(context);
+
+And there you have it, super fast pre-compiled Handlebars templates.

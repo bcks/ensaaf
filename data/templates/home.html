@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+<div class="home">
+
+
+<div class="row">
+  <div class="col-sm-12 col-md m-2">
+    <p>Random profiles for testing</p>
+    <ul>
+    {% for victim in victims %}
+      <li><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
+<!--
+-number of disappearances and killings documented
+-number of victims per family
+-number of genuine encounters
+-victim sex
+-victim marital status
+-victim kesdhari
+-victim amritdhari
+-victim militant status
+-victim militant support (yes/no. And then further breakdown of voluntary vs. involuntary)
+-victim prior detentions (yes/no) 
+-victim arrest status
+-witnesses to abduction/arrest
+-security officials inform witnesses
+-security forces uniformed
+-presented before judge/magistrate
+-victim detention location known
+-witness to detention
+-security officials return body
+-body disposal by security forces
+-identity of arresting security forces known
+-security officials approached
+-court or commission approached
+-->
+
+
+
+{% endblock %}

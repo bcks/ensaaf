@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}{{victims.all.0.village_name}}{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-sm-12 col-md m-2">
+    <h1>{{victims.all.0.village_name}}</h1>
+  </div>
+</div>
+
+    {% for victim in victims.all %}
+
+<div class="row">
+  <div class="col-sm-12 col-md m-2">
+    
+  <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
+  
+  {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
+  age {{victim.victim_age}}        
+    {% if victim.victim_disappeared_killed  %}
+     at time of 
+      {% if victim.victim_disappeared_killed == 1 %}
+      disappearance
+      {% endif %}
+      {% if victim.victim_disappeared_killed == 2 %}
+      killing
+      {% endif %}
+    {% endif %}
+  {% endif %}{% endif %}
+
+  </div>
+</div>
+      
+    {% endfor %}
+
+<br>
+
+{% endblock %}
