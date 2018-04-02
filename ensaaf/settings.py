@@ -25,7 +25,7 @@ SECRET_KEY = '^c&91u5n2wpr6717u+(4wt0i)%cizz7=0p*=!jj+0o5hjlq!rk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','ensaaf.backspace.com']
+ALLOWED_HOSTS = ['localhost','127.0.0.1','ensaaf.backspace.com','graphonomy.com']
 
 
 # Application definition
