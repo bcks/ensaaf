@@ -50,7 +50,7 @@
               <p class="kicker">Residence</p>
             </div>
             <div class="col-sm-10">
-              {% if victim.village_id != '' %}
+              {% if victim.village_id > 0 %}
                 <p><a href="/village/{{victim.village_id}}">{{victim.village_name}}</a></p>
               {% else %}
                 <p>{{victim.village_name}}</p>
