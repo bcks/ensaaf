@@ -31,6 +31,12 @@ def home(request):
     not_militant = Data.objects.filter(victim_militant_status='0').count()
     militant_support = Data.objects.filter(victim_militant_support='1').count()
     no_militant_support = Data.objects.filter(victim_militant_support='0').count()
+    prior_detentions = Data.objects.filter(victim_prior_detention_st='1').count()
+    no_prior_detentions = Data.objects.filter(victim_prior_detention_st='0').count()
+    security_officials_apprchd = Data.objects.filter(security_officials_apprchd='1').count()
+    no_security_officials_apprchd = Data.objects.filter(security_officials_apprchd='0').count()
+    court_or_commission = Data.objects.filter(court_or_commission='1').count()
+    no_court_or_commission = Data.objects.filter(court_or_commission='0').count()
     return render(request, "home.html", { 
       "victims": victims,
       "total_disappeared": total_disappeared,
@@ -47,6 +53,12 @@ def home(request):
       "not_militant": not_militant,
       "militant_support": militant_support,
       "no_militant_support": no_militant_support,
+      "prior_detentions": prior_detentions,
+      "no_prior_detentions": no_prior_detentions,
+      "security_officials_apprchd": security_officials_apprchd,
+      "no_security_officials_apprchd": no_security_officials_apprchd,
+      "court_or_commission": court_or_commission,
+      "no_court_or_commission": no_court_or_commission,
       })
 
 
