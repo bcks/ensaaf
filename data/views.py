@@ -15,9 +15,39 @@ monthNames = ["", "January", "February", "March", "April", "May", "June", "July"
 
 
 
-def home(request):
+def home(request):    
     victims = Data.objects.order_by('?')[:20]
-    return render(request, "home.html", { "victims": victims } )
+    total_disappeared = Data.objects.filter(victim_disappeared_killed='1').count()
+    total_killed = Data.objects.filter(victim_disappeared_killed='2').count()
+    male = Data.objects.filter(victim_sex='1').count()
+    female = Data.objects.filter(victim_sex='2').count()
+    married = Data.objects.filter(victim_marital_status='1').count()
+    not_married = Data.objects.filter(victim_marital_status='0').count()
+    genuine_encounter = Data.objects.filter(genuine_encounters='1').count()
+    not_genuine_encounter = Data.objects.filter(genuine_encounters='0').count()
+    kesdhari = Data.objects.filter(victim_kesdhari='1').count()
+    amritdhari = Data.objects.filter(victim_amritdhari='1').count()
+    militant = Data.objects.filter(victim_militant_status='1').count()
+    not_militant = Data.objects.filter(victim_militant_status='0').count()
+    militant_support = Data.objects.filter(victim_militant_support='1').count()
+    no_militant_support = Data.objects.filter(victim_militant_support='0').count()
+    return render(request, "home.html", { 
+      "victims": victims,
+      "total_disappeared": total_disappeared,
+      "total_killed": total_killed,
+      "male": male,
+      "female": female,
+      "married": married,
+      "not_married": not_married,
+      "genuine_encounter": genuine_encounter,
+      "not_genuine_encounter": not_genuine_encounter,
+      "kesdhari": kesdhari,
+      "amritdhari": amritdhari,
+      "militant": militant,
+      "not_militant": not_militant,
+      "militant_support": militant_support,
+      "no_militant_support": no_militant_support,
+      })
 
 
 def profile(request, id=None):
