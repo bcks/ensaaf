@@ -531,7 +531,6 @@
   </div>
 
   <div class="row">
-    <div class="grid">
 
   {% if victim.so_return_body != '' %}
     <div class="col-sm-6">
@@ -579,8 +578,6 @@
 
 
 
-
-
   {% if victim.condition_of_remains_1 or victim.condition_of_remains_2 or victim.condition_of_remains_3 or victim.condition_of_remains_4 or victim.condition_of_remains_5 or victim.condition_of_remains_6 or victim.condition_of_remains_7 or victim.other_condition_of_remains %}
 
     <div class="col-sm-6">
@@ -592,8 +589,6 @@
 
   {% endif %}
 
-
-    </div>
   </div>
 
 {% endif %}<!-- #equal victim.victim_disappeared_killed 2 -->
@@ -623,7 +618,6 @@
 
 
   <div class="row">
-    <div class="grid">
 
   {% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%}
     <div class="col-sm-6">
@@ -633,9 +627,6 @@
       <p>{% harrest_security_type victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}</p>
     </div>
   {% endif %}
-
-
-
 
 
 
@@ -662,9 +653,6 @@
 
 
     {% endif %}
-
-
-
 
 
 
@@ -708,19 +696,17 @@
 
 
 
-
-
-
-
-  </div>
 </div>
 
 
 
-  {% if victim.security_officials_apprchd != 9 %}
-  {% if victim.security_official_response_14 != 1 %}
-  {% if victim.court_or_commission != 9 %}
-  {% if victim.govnt_response_desired_11 != 1 %}
+
+
+
+{% if victim.security_officials_apprchd != 9 %}
+{% if victim.security_official_response_14 != 1 %}
+{% if victim.court_or_commission != 9 %}
+{% if victim.govnt_response_desired_11 != 1 %}
 
   <hr>  
 
@@ -730,10 +716,10 @@
     </div>
   </div>
 
-  {% endif %}
-  {% endif %}
-  {% endif %}
-  {% endif %}
+{% endif %}
+{% endif %}
+{% endif %}
+{% endif %}
 
 
   <div class="row">
