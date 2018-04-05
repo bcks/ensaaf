@@ -2,10 +2,13 @@ from django.db import models
 from django.contrib import admin
 
 
+
+
+
 class Data(models.Model):
     victim_name = models.CharField(max_length=256)
     village_name = models.CharField(max_length=256, blank=True, null=True)
-    village_id = models.IntegerField(blank=True, null=True)
+    village_id = models.CharField(max_length=64, blank=True, null=True, unique=True)
     record_id = models.IntegerField(db_column='record_id', primary_key=True)
     othervill_interview = models.CharField(max_length=256, blank=True, null=True)
     publish_information = models.IntegerField(blank=True, null=True)
@@ -214,6 +217,22 @@ class Data(models.Model):
         db_table = 'data'
 
 
+
+
+class Villages(models.Model):
+    village_name = models.CharField(max_length=256)
+    tehsil = models.CharField(max_length=64)
+    district = models.CharField(max_length=64)
+    district_id = models.IntegerField()
+    tehsil_id = models.IntegerField()
+    id = models.CharField(max_length=16, primary_key=True)
+    #id = models.ForeignKey(Data, db_column='id', to_field='village_id', related_name='villages', on_delete=models.CASCADE, primary_key=True)
+
+    class Meta:
+        managed = False
+        db_table = 'villages'
+
+
 class SecurityArrest(models.Model):
     id  = models.IntegerField(primary_key=True)
     record_id = models.ForeignKey(Data, db_column='record_id', to_field='record_id', related_name='security_arrest', on_delete=models.CASCADE, blank=True, null=True, default='NULL')
@@ -276,3 +295,6 @@ class WhereVictimDetained(models.Model):
 
     class Meta:
         db_table = 'where_victim_detained'
+
+
+

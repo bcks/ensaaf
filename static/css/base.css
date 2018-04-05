@@ -18,6 +18,7 @@ body {
   font-family: 'Fira Sans', sans-serif;    
   line-height: 1.4;
 }
+strong { font-family: "Fira Sans Bold"; font-weight: normal; }
 .container { background-color: #ffffff; }
 .navbar {
   background-color: #cc9;

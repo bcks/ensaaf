@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %}{{villages.all.0.district}}{% endblock %}
+
+{% block content %}
+
+
+
+<div class="row">
+  <div class="col-sm-12 col-md m-2">
+    <h1>{{villages.all.0.district}}</h1>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-sm-12 col-md m-2">
+    
+    <p>List of Tehsils:</p>
+
+
+    {% for village in villages.all %}
+
+<div class="row">
+  <div class="col-sm-12 col-md m-2">
+    
+  <a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}}</a>
+  
+  </div>
+</div>
+      
+    {% endfor %}
+
+<br>
+  </div>
+  <div class="col-sm-6 col-md m-2">
+    <h4>Documented Cases in {{villages.all.0.district}}</h4>
+    <p>{{total_killed|intcomma}} killed<br>{{total_disappeared|intcomma}} disappearances</p>
+    <p>{{male|intcomma}} male vicitms<br>{{female|intcomma}} female vicitms</p>
+    <p>{{not_married|intcomma}} not married<br>{{married|intcomma}} married</p>
+    <p>{{genuine_encounter|intcomma}} genuine encounters in family<br>{{not_genuine_encounter|intcomma}} no genuine encounters in family</p>
+    <p>{{amritdhari|intcomma}} Amritdhari<br>{{kesdhari|intcomma}} Kesdhari</p>
+    <p>{{militant|intcomma}} militant<br>{{not_militant|intcomma}} not militant</p>
+    <p>{{militant_support|intcomma}} provided militant support<br>{{no_militant_support|intcomma}} did not provide militant support</p>
+    <p>{{prior_detentions|intcomma}} had prior detentions<br>{{no_prior_detentions|intcomma}} had no prior detentions</p>
+    <p>{{security_officials_apprchd|intcomma}} families approached security officials<br>{{no_security_officials_apprchd|intcomma}} families did not approach security officials</p>
+    <p>{{court_or_commission|intcomma}} families approached court or commission<br>{{no_court_or_commission|intcomma}} families did not approach court or commission</p>
+  </div>
+</div>
+
+
+{% endblock %}
