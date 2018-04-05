@@ -7,10 +7,13 @@
 
 <div class="row">
   <div class="col-sm-12 col-md m-2">
-    <h1>{{victims.all.0.village_name}}</h1>
+    <h1>{{village.village_name}}</h1>
     <p><span class="kicker">Tehsil</span> <a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}}</a> &nbsp; <span class="kicker">District</span> <a href="/district/{{village.district_id}}">{{village.district}}</a></p>
   </div>
 </div>
+
+  {% if victims.all|length > 0 %}
+
 
     {% for victim in victims.all %}
 
@@ -36,6 +39,17 @@
 </div>
       
     {% endfor %}
+    {% else %}
+
+   <div class="row">
+    <div class="col-sm-12 col-md m-2">   
+      <p>No documented cases.</p>
+    </div>
+  </div>
+
+    {% endif %}
+    
+    
 
 <br>
 
