@@ -1,56 +1,34 @@
 {% load humanize %}
 
-<p>{{stats.total_killed|intcomma}} killed<br>{{stats.total_disappeared|intcomma}} disappearances</p>
-<p>{{stats.male|intcomma}} male vicitms<br>{{stats.female|intcomma}} female vicitms</p>
-<p>{{stats.not_married|intcomma}} not married<br>{{stats.married|intcomma}} married</p>
-<p>{{stats.genuine_encounter|intcomma}} genuine encounters in family<br>{{stats.not_genuine_encounter|intcomma}} no genuine encounters in family</p>
-<p>{{stats.amritdhari|intcomma}} Amritdhari<br>{{stats.kesdhari|intcomma}} Kesdhari</p>
-<p>{{stats.militant|intcomma}} militant<br>{{stats.not_militant|intcomma}} not militant</p>
-<p>{{stats.militant_support|intcomma}} provided militant support<br>{{stats.no_militant_support|intcomma}} did not provide militant support</p>
-<p>{{stats.prior_detentions|intcomma}} had prior detentions<br>{{stats.no_prior_detentions|intcomma}} had no prior detentions</p>
-<p>{{stats.security_officials_apprchd|intcomma}} families approached security officials<br>{{stats.no_security_officials_apprchd|intcomma}} families did not approach security officials</p>
-<p>{{stats.court_or_commission|intcomma}} families approached court or commission<br>{{stats.no_court_or_commission|intcomma}} families did not approach court or commission</p>
+    <p>{{stats.total_killed|intcomma}} killed<br>{{stats.total_disappeared|intcomma}} disappearances</p>
+    <p>{{stats.male|intcomma}} male vicitms<br>{{stats.female|intcomma}} female vicitms</p>
+    <p>{{stats.not_married|intcomma}} not married<br>{{stats.married|intcomma}} married</p>
+    <p>{{stats.genuine_encounter|intcomma}} genuine encounters in family<br>{{stats.not_genuine_encounter|intcomma}} no genuine encounters in family</p>
+    <p>{{stats.amritdhari|intcomma}} Amritdhari<br>{{stats.kesdhari|intcomma}} Kesdhari</p>
+    <p>{{stats.militant|intcomma}} militant<br>{{stats.not_militant|intcomma}} not militant</p>
+    <p>{{stats.militant_support|intcomma}} provided militant support<br>{{stats.no_militant_support|intcomma}} did not provide militant support</p>
+    <p>{{stats.prior_detentions|intcomma}} had prior detentions<br>{{stats.no_prior_detentions|intcomma}} had no prior detentions</p>
+    <p>{{stats.security_officials_apprchd|intcomma}} families approached security officials<br>{{stats.no_security_officials_apprchd|intcomma}} families did not approach security officials</p>
+    <p>{{stats.court_or_commission|intcomma}} families approached court or commission<br>{{stats.no_court_or_commission|intcomma}} families did not approach court or commission</p>
+    <p>{{stats.victim_militant_support|intcomma}} victim supported militants<br>{{stats.no_victim_militant_support|intcomma}} victim did not support militants</p>
+    <p>{{stats.victim_militant_support_voluntary|intcomma}} vitcims supported militants voluntarily<br>{{stats.victim_militant_support_forced|intcomma}} victims forced to support militants</p>
+    <p>{{stats.victim_arrest_status|intcomma}} victims taken into custody before killing or disappearence<br>{{stats.no_victim_arrest_status|intcomma}} victims were not taken into custody before killing or disappearence</p>
+    <p>{{stats.so_inform_witnesses|intcomma}} cases where security officials informed witnesses where they were taking the victim<br>{{stats.no_so_inform_witnesses|intcomma}} cases where security officials did not inform witnesses where they were taking the victim</p>
+    <p>{{stats.security_forces_uniformed|intcomma}} cases where security forces were uniformed<br>{{stats.no_security_forces_uniformed|intcomma}} cases where security forces were not uniformed</p>
+    <p>{{stats.judge_or_magistrate_status|intcomma}} victims were presented before a judge or magistrate<br>{{stats.no_judge_or_magistrate_status|intcomma}} victims were not presented before a judge or magistrate</p>
+    <p>{{stats.victim_detention_loc_known|intcomma}} victim detention location known<br>{{stats.no_victim_detention_loc_known|intcomma}} victims detention location not known</p>
+    <p>{{stats.so_return_body|intcomma}} cases where security officials returned the victim’s body<br>{{stats.no_so_return_body|intcomma}} cases where security officials did not return the victim’s body</p>
+    <p>{{stats.securityoff_id_known|intcomma}} cases where the identity of the security officials involved was known<br>{{stats.no_securityoff_id_known|intcomma}} cases where the identity of the security officials involved was not known</p>
 
 
+    <p>number of victims per family
+      - number_of_victims - distribution</p>
 
-<!--
+    <p>witnesses to abduction/arrest
+      witness_arrest - multi</p>
 
--number of victims per family
-  - number_of_victims - distribution
-
--victim militant support (yes/no. And then further breakdown of voluntary vs. involuntary)
-  victim_militant_status - yes, no
-  victim_militant_sprt_vol - Voluntary, Forced
-
--victim arrest status
-  victim_arrest_status - yes, no
-
--witnesses to abduction/arrest
-  witness_arrest - multi
-
--security officials inform witnesses
-  so_inform_witnesses - yes, no
-
--security forces uniformed
-  security_forces_uniformed - yes, no
-
--presented before judge/magistrate
-  judge_or_magistrate_status - yes, no
-
--victim detention location known
-  victim_detention_loc_known - yes, no
-
--witness to detention
-  witness_detention - multi
-
--security officials return body
-  so_return_body - yes, no, don't know
-
--body disposal by security forces
-  so_body_disposal - multi
-  
--identity of arresting security forces known
-  securityoff_id_known - yes, no
-
--->
-
+    <p>witness to detention
+      witness_detention - multi</p>
+      
+    <p>body disposal by security forces
+      so_body_disposal - multi</p>
