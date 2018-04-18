@@ -51,14 +51,18 @@ def tehsil(request, slug=None):
                             .values('village_id')\
                             .annotate(Count('village_id'))\
                             .values('village_id__count')    
-    villages = Villages.objects.filter(tehsil_id=slug)\
+
+    villages_with_count = Villages.objects.filter(tehsil_id=slug)\
                                   .annotate(data_count=Subquery(datas))\
                                   .exclude(data_count=None).order_by('-data_count','village_name')
+
+    villages = Villages.objects.filter(tehsil_id=slug)
 
     all = Data.objects.filter(village_id__in=Subquery(villages.values('id'))).order_by('victim_name')
     stats = calculate_stats(all)
     return render(request, "tehsil.html", {
-      "villages": villages,
+      'villages_with_count': villages_with_count,
+      'villages': villages,
       "stats": stats
       })
 
