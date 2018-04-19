@@ -51,11 +51,19 @@ def hdate(var):
       parts[2] = int(parts[2]) + 1900
     if int(parts[5]) < 1900:
       parts[5] = int(parts[5]) + 1900
-    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ', ' +  str(parts[5]);
+
+    if (int(parts[1]) > 12):
+      return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ', ' +  str(parts[5])
+    else:
+      return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ', ' +  str(parts[5])
   else:
     if int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]);
+    if (int(parts[1]) > 12):
+      return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2]);
+    else:
+      return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]);
+
 
 
 
@@ -90,7 +98,7 @@ def hphoto(value):
       if not second_dir:
         second_dir = first_dir
       photopath = path + '/' + first_dir[0] + '/' + second_dir[0] + '/' + thisName + '.jpg'
-      photos.append('<a href="'+photopath+'"><img src="'+photopath+'" alt="photo"></a>' )
+      photos.append(photopath)
     return s.join(photos)
   else:
     return ''
@@ -223,11 +231,17 @@ def hdate_no_on(var):
       parts[2] = int(parts[2]) + 1900
     if int(parts[5]) < 1900:
       parts[5] = int(parts[5]) + 1900
-    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ', ' +  str(parts[5])
+    if (int(parts[1]) > 12):
+      return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ', ' +  str(parts[5])
+    else:
+      return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ', ' +  str(parts[5])
   else:
     if int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2])
+    if (int(parts[1]) > 12):
+      return monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2])
+    else:
+      return monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2])
   return
 
 

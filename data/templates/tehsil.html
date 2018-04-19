@@ -22,11 +22,11 @@
 
     {% for village in villages_with_count %}
 
-<div class="row">
-  <div class="col-sm-12 col-md m-2">
-    <a href="/village/{{village.id}}">{{village.village_name}}</a>, {{village.data_count}}{% if forloop.first %} case{{village.data_count|pluralize }}{% endif %}
-  </div>
-</div>
+    <div class="row">
+      <div class="col-sm-12 col-md m-2">
+        <a href="/village/{{village.id}}">{{village.village_name}}</a>, {{village.data_count}}{% if forloop.first %} case{{village.data_count|pluralize }}{% endif %}
+      </div>
+    </div>
       
     {% endfor %}
 

@@ -1,3 +1,4 @@
+from django.db.models import Count
 
 
 def calculate_stats(all):
@@ -40,6 +41,41 @@ def calculate_stats(all):
     securityoff_id_known = all.filter(victim_arrest_status='1').count()
     no_securityoff_id_known = all.filter(victim_arrest_status='0').count()
 
+    so_body_disposal_1 = all.filter(so_body_disposal='1').count()
+    so_body_disposal_2 = all.filter(so_body_disposal='2').count()
+    so_body_disposal_3 = all.filter(so_body_disposal='3').count()
+    so_body_disposal_4 = all.filter(so_body_disposal='4').count()
+    so_body_disposal_6 = all.filter(so_body_disposal='6').count()
+
+    witness_arrest_0 = all.filter(witness_arrest_0 ='1').count()
+    witness_arrest_1 = all.filter(witness_arrest_1 ='1').count()
+    witness_arrest_2 = all.filter(witness_arrest_2 ='1').count()
+    witness_arrest_3 = all.filter(witness_arrest_3 ='1').count()
+    witness_arrest_4 = all.filter(witness_arrest_4 ='1').count()
+    witness_arrest_5 = all.filter(witness_arrest_5 ='1').count()
+    witness_arrest_6 = all.filter(witness_arrest_6 ='1').count()
+    witness_arrest_7 = all.filter(witness_arrest_7 ='1').count()
+    witness_arrest_8 = all.filter(witness_arrest_8 ='1').count()
+    witness_arrest_9 = all.filter(witness_arrest_9 ='1').count()
+    witness_arrest_10 = all.filter(witness_arrest_10 ='1').count()
+    witness_arrest_11 = all.filter(witness_arrest_11 ='1').count()
+    witness_arrest_12 = all.filter(witness_arrest_12 ='1').count()
+
+    number_of_victims = all.values('number_of_victims').annotate(Count('number_of_victims')).order_by('number_of_victims')
+
+    witness_detention_3 = all.filter(where_victim_detained__witness_detention_3='1').count()
+    witness_detention_4 = all.filter(where_victim_detained__witness_detention_4='1').count()
+    witness_detention_5 = all.filter(where_victim_detained__witness_detention_5='1').count()
+    witness_detention_6 = all.filter(where_victim_detained__witness_detention_6='1').count()
+    witness_detention_7 = all.filter(where_victim_detained__witness_detention_7='1').count()
+    witness_detention_8 = all.filter(where_victim_detained__witness_detention_8='1').count()
+    witness_detention_9 = all.filter(where_victim_detained__witness_detention_9='1').count()
+    witness_detention_10 = all.filter(where_victim_detained__witness_detention_10='1').count()
+    witness_detention_11 = all.filter(where_victim_detained__witness_detention_11='1').count()
+    witness_detention_12 = all.filter(where_victim_detained__witness_detention_12='1').count()
+    witness_detention_13 = all.filter(where_victim_detained__witness_detention_13='1').count()
+    witness_detention_14 = all.filter(where_victim_detained__witness_detention_14='1').count()
+
     return {
       "total_disappeared": total_disappeared,
       "total_killed": total_killed,
@@ -79,5 +115,35 @@ def calculate_stats(all):
       "no_so_return_body": no_so_return_body,
       "securityoff_id_known": securityoff_id_known,
       "no_securityoff_id_known": no_securityoff_id_known,
+      "so_body_disposal_1": so_body_disposal_1,
+      "so_body_disposal_2": so_body_disposal_2,
+      "so_body_disposal_3": so_body_disposal_3,
+      "so_body_disposal_4": so_body_disposal_4,
+      "so_body_disposal_6": so_body_disposal_6,
+      "witness_detention_3": witness_detention_3,
+      "witness_detention_4": witness_detention_4,
+      "witness_detention_5": witness_detention_5,
+      "witness_detention_6": witness_detention_6,
+      "witness_detention_7": witness_detention_7,
+      "witness_detention_8": witness_detention_8,
+      "witness_detention_9": witness_detention_9,
+      "witness_detention_10": witness_detention_10,
+      "witness_detention_11": witness_detention_11,
+      "witness_detention_12": witness_detention_12,
+      "witness_detention_13": witness_detention_13,
+      "witness_detention_14": witness_detention_14,
+      "witness_arrest_0": witness_arrest_0,
+      "witness_arrest_1": witness_arrest_1,
+      "witness_arrest_2": witness_arrest_2,
+      "witness_arrest_3": witness_arrest_3,
+      "witness_arrest_4": witness_arrest_4,
+      "witness_arrest_5": witness_arrest_5,
+      "witness_arrest_6": witness_arrest_6,
+      "witness_arrest_7": witness_arrest_7,
+      "witness_arrest_8": witness_arrest_8,
+      "witness_arrest_9": witness_arrest_9,
+      "witness_arrest_10": witness_arrest_10,
+      "witness_arrest_11": witness_arrest_11,
+      "number_of_victims": number_of_victims,
       }
 

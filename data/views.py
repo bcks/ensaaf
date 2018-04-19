@@ -22,6 +22,14 @@ def home(request):
       })
 
 
+def overview(request):    
+    all = Data.objects.all();
+    stats = calculate_stats(all)    
+    return render(request, "overview.html", { 
+      "stats": stats
+      })
+
+
 def profile(request, id=None):
     queryset = Data.objects.filter(record_id=id)
     victim = queryset[:1].get()
@@ -46,7 +54,6 @@ def village(request, slug=None):
 
 
 def tehsil(request, slug=None):
-    # villages = Villages.objects.filter(tehsil_id=slug).order_by('village_name')
     datas = Data.objects.filter(village_id=OuterRef('pk'))\
                             .values('village_id')\
                             .annotate(Count('village_id'))\
@@ -56,7 +63,7 @@ def tehsil(request, slug=None):
                                   .annotate(data_count=Subquery(datas))\
                                   .exclude(data_count=None).order_by('-data_count','village_name')
 
-    villages = Villages.objects.filter(tehsil_id=slug)
+    villages = Villages.objects.filter(tehsil_id=slug).values('id','district','district_id','tehsil')
 
     all = Data.objects.filter(village_id__in=Subquery(villages.values('id'))).order_by('victim_name')
     stats = calculate_stats(all)
@@ -80,5 +87,12 @@ def district(request, slug=None):
       "villages": villages_distinct,
       "stats": stats
       })
+
+
+def page(request, directory=None, slug=None):
+    page = Page.objects.get(slug=slug)
+    if id is not None and page is None:
+        return messages.warning(request,"page %s was not found"%id)
+    return render(request, "page.html", { "page":page } )
 
 

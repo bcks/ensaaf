@@ -51,3 +51,31 @@ tr { vertical-align: top; }
     margin-top: 1em;
   }
 }
+
+
+.home-box {
+	position: relative;	
+	overflow: hidden;	
+	height: 300px;
+	color: #fff;
+	text-shadow: 0px 0px 10px #666;
+	margin-bottom: 30px;
+	background-color: #732;
+	background-position: center;
+	background-size: cover;
+}
+.home-box a {
+  font-family: 'Alfa Slab One', sans;
+  font-weight: normal;
+	color: #fff;
+}
+.home-box .names {
+	position: absolute;
+	z-index: 1;
+	padding: 10px;
+	bottom: 0;
+}
+.home-box .names p {
+  margin-bottom: 0;
+  font-size: 75%;
+}

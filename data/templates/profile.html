@@ -209,7 +209,7 @@
     {% if victim.photo_vic_fn != '' %}
       <div class="col-sm-4 photos" >
         <br>
-        {% autoescape off %}{% hphoto victim.photo_vic_fn %}{% endautoescape %}
+        <img src="{% hphoto victim.photo_vic_fn %}" alt="photo" onerror="this.src='/static/images/error.jpg';">
       </div>
     {% endif %}
   </div>

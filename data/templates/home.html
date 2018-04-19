@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
+{% load profiletags %}
+
+
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
@@ -7,19 +10,48 @@
 <div class="home">
 
 
-<div class="row">
-  <div class="col-sm-6 col-md m-2">
-    <h4>Random Profiles for Testing</h4>
-    <ul>
+  <div class="row">
+    <div class="col-12">
+      <br>
+      <h6><a href="/overview">Statistical Overview »</a></h6>
+      <hr>
+      <h6>Profiles of the Victims</h6>
+    </div>
+  </div>
+
+  <div class="row">
+
     {% for victim in victims %}
-      <li><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></li>
+
+    <div class="col-sm-4 col-md-3" onclick="window.location.href='/profile/{{victim.record_id}}';">
+
+     {% if victim.photo_vic_fn %}
+      <div class="home-box" style="background-image:url({% hphoto victim.photo_vic_fn %})">
+     {% else %}
+      <div class="home-box" style="background-image:url(static/images/gray.jpg)">
+     {% endif %}
+
+        <div class="names">
+          <h5><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></h4>
+
+          <p>
+          {% if victim.victim_disappeared_killed == 2 %}
+            Killed{% hdate victim.victim_death_date %}
+          {% endif %}
+          {% if victim.victim_disappeared_killed == 1 %}
+            Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% hdate victim.victim_arrest_date %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% hdate victim.victim_death_date %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% hdate dt_last_heard_victim_alive %}{% endif %}
+          {% endif %}
+          </p>
+
+        </div>
+
+      </div>
+    </div>
     {% endfor %}
-    </ul>
+
+
   </div>
-  <div class="col-sm-6 col-md m-2">
-    <h4>Overview of Documented Cases</h4>
-    {% include 'stats.html' %}
-  </div>
+
 </div>
 
 {% endblock %}

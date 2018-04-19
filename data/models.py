@@ -298,3 +298,26 @@ class WhereVictimDetained(models.Model):
 
 
 
+
+
+
+class Page(models.Model):
+    title = models.CharField(max_length=200, unique=True)
+    body = models.TextField()
+    slug = models.SlugField(max_length=100, unique=True)
+    directory = models.SlugField(max_length=100)
+    class Meta:
+        db_table = 'Page'
+
+
+
+
+class PageAdmin(admin.ModelAdmin):
+    # define which columns displayed in changelist
+    list_display = ('title', 'slug', 'body')
+    # add search field 
+    search_fields = ['title', 'body']
+
+admin.site.register(Page, PageAdmin)
+
+
