@@ -79,3 +79,14 @@ tr { vertical-align: top; }
   margin-bottom: 0;
   font-size: 75%;
 }
+
+
+.percent {
+  font-family: 'PT Sans Narrow', sans-serif;
+  font-size: 2em;
+  text-align: right;
+}
+.number-of-cases {
+  color: #999;
+  font-size: 80%;
+}

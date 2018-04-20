@@ -644,5 +644,16 @@ def haffiliation(var):
 
 
 @register.simple_tag()
+def percentage(item1, item2):  
+    try:  
+        return "%.1f" % ((float(item1) / float(item1 + item2)) * 100)  
+    except ValueError:  
+        return ''  
+
+
+
+@register.simple_tag()
 def dump(var):
     return vars(var)
+
+
