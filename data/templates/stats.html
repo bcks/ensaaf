@@ -2,44 +2,404 @@
 {% load profiletags %}
 
 
-    <p>{% percentage stats.total_killed stats.total_disappeared %}% &nbsp; {{stats.total_killed|intcomma}} killed<br>
-    {% percentage stats.total_disappeared stats.total_killed %}% &nbsp; {{stats.total_disappeared|intcomma}} disappearances</p>
-    <p>{% percentage stats.male stats.female %}% &nbsp; {{stats.male|intcomma}} male vicitms<br>
-    {% percentage stats.female stats.male %}% &nbsp; {{stats.female|intcomma}} female vicitms</p>
-    <p>{% percentage stats.not_married stats.married %}% &nbsp; {{stats.not_married|intcomma}} not married<br>
-    {% percentage stats.married stats.not_married %}% &nbsp; {{stats.married|intcomma}} married</p>
-    <p>{% percentage stats.genuine_encounter stats.not_genuine_encounter %}% &nbsp; {{stats.genuine_encounter|intcomma}} genuine encounters in family<br>
-    {% percentage stats.not_genuine_encounter stats.genuine_encounter %}% &nbsp; {{stats.not_genuine_encounter|intcomma}} no genuine encounters in family</p>
-    <p>{% percentage stats.amritdhari stats.kesdhari %}% &nbsp; {{stats.amritdhari|intcomma}} Amritdhari<br>
-    {% percentage stats.kesdhari stats.amritdhari %}% &nbsp; {{stats.kesdhari|intcomma}} Kesdhari</p>
-    <p>{% percentage stats.militant stats.not_militant %}% &nbsp; {{stats.militant|intcomma}} militant<br>
-    {% percentage stats.not_militant stats.militant %}% &nbsp; {{stats.not_militant|intcomma}} not militant</p>
-    <p>{% percentage stats.militant_support stats.no_militant_support %}% &nbsp; {{stats.militant_support|intcomma}} provided militant support<br>
-    {% percentage stats.no_militant_support stats.militant_support %}% &nbsp; {{stats.no_militant_support|intcomma}} did not provide militant support</p>
-    <p>{% percentage stats.prior_detentions stats.no_prior_detentions %}% &nbsp; {{stats.prior_detentions|intcomma}} had prior detentions<br>
-    {% percentage stats.no_prior_detentions stats.prior_detentions %}% &nbsp; {{stats.no_prior_detentions|intcomma}} had no prior detentions</p>
-    <p>{% percentage stats.security_officials_apprchd stats.no_security_officials_apprchd %}% &nbsp; {{stats.security_officials_apprchd|intcomma}} families approached security officials<br>
-    {% percentage stats.no_security_officials_apprchd stats.security_officials_apprchd %}% &nbsp; {{stats.no_security_officials_apprchd|intcomma}} families did not approach security officials</p>
-    <p>{% percentage stats.court_or_commission stats.no_court_or_commission %}% &nbsp; {{stats.court_or_commission|intcomma}} families approached court or commission<br>
-    {% percentage stats.no_court_or_commission stats.court_or_commission %}% &nbsp; {{stats.no_court_or_commission|intcomma}} families did not approach court or commission</p>
-    <p>{% percentage stats.victim_militant_support stats.no_victim_militant_support %}% &nbsp; {{stats.victim_militant_support|intcomma}} victim supported militants<br>
-    {% percentage stats.no_victim_militant_support stats.victim_militant_support %}% &nbsp; {{stats.no_victim_militant_support|intcomma}} victim did not support militants</p>
-    <p>{% percentage stats.victim_militant_support_voluntary stats.victim_militant_support_forced %}% &nbsp; {{stats.victim_militant_support_voluntary|intcomma}} vitcims supported militants voluntarily<br>
-    {% percentage stats.victim_militant_support_forced stats.victim_militant_support_voluntary %}% &nbsp; {{stats.victim_militant_support_forced|intcomma}} victims forced to support militants</p>
-    <p>{% percentage stats.victim_arrest_status stats.no_victim_arrest_status %}% &nbsp; {{stats.victim_arrest_status|intcomma}} victims taken into custody before killing or disappearence<br>
-    {% percentage stats.no_victim_arrest_status stats.victim_arrest_status %}% &nbsp; {{stats.no_victim_arrest_status|intcomma}} victims were not taken into custody before killing or disappearence</p>
-    <p>{% percentage stats.so_inform_witnesses stats.no_so_inform_witnesses %}% &nbsp; {{stats.so_inform_witnesses|intcomma}} cases where security officials informed witnesses where they were taking the victim<br>
-    {% percentage stats.no_so_inform_witnesses stats.so_inform_witnesses %}% &nbsp; {{stats.no_so_inform_witnesses|intcomma}} cases where security officials did not inform witnesses where they were taking the victim</p>
-    <p>{% percentage stats.security_forces_uniformed stats.no_security_forces_uniformed %}% &nbsp; {{stats.security_forces_uniformed|intcomma}} cases where security forces were uniformed<br>
-    {% percentage stats.no_security_forces_uniformed stats.security_forces_uniformed %}% &nbsp; {{stats.no_security_forces_uniformed|intcomma}} cases where security forces were not uniformed</p>
-    <p>{% percentage stats.judge_or_magistrate_status stats.no_judge_or_magistrate_status %}% &nbsp; {{stats.judge_or_magistrate_status|intcomma}} victims were presented before a judge or magistrate<br>
-    {% percentage stats.no_judge_or_magistrate_status stats.judge_or_magistrate_status %}% &nbsp; {{stats.no_judge_or_magistrate_status|intcomma}} victims were not presented before a judge or magistrate</p>
-    <p>{% percentage stats.victim_detention_loc_known stats.no_victim_detention_loc_known %}% &nbsp; {{stats.victim_detention_loc_known|intcomma}} victim detention location known<br>
-    {% percentage stats.no_victim_detention_loc_known stats.victim_detention_loc_known %}% &nbsp; {{stats.no_victim_detention_loc_known|intcomma}} victims detention location not known</p>
-    <p>{% percentage stats.so_return_body stats.no_so_return_body %}% &nbsp; {{stats.so_return_body|intcomma}} cases where security officials returned the victim’s body<br>
-    {% percentage stats.no_so_return_body stats.so_return_body %}% &nbsp; {{stats.no_so_return_body|intcomma}} cases where security officials did not return the victim’s body</p>
-    <p>{% percentage stats.securityoff_id_known stats.no_securityoff_id_known %}% &nbsp; {{stats.securityoff_id_known|intcomma}} cases where the identity of the security officials involved was known<br>
-    {% percentage stats.no_securityoff_id_known stats.securityoff_id_known %}% &nbsp; {{stats.no_securityoff_id_known|intcomma}} cases where the identity of the security officials involved was not known</p>
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.total_killed stats.total_disappeared %}%</span>
+    Killed
+    <span class="number-of-cases">{{stats.total_killed|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.total_killed stats.total_disappeared %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.total_disappeared stats.total_killed %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.total_disappeared stats.total_killed %}%</span>
+    Disappeared
+    <span class="number-of-cases">{{stats.total_disappeared|intcomma}}</<span>
+  </div> 
+</div>
+
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.male stats.female %}%</span>
+    Male vicitms
+    <span class="number-of-cases">{{stats.male|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.male stats.female %}%">&nbsp;</div>
+  </div> 
+
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.female stats.male %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.female stats.male %}%</span>
+    Female vicitms
+    <span class="number-of-cases">{{stats.female|intcomma}}</span>
+  </div> 
+
+</div> 
+    
+<hr>
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.not_married stats.married %}%</span>
+    Not married
+    <span class="number-of-cases">{{stats.not_married|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.not_married stats.married %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.married stats.not_married %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.married stats.not_married %}%</span>
+    Married
+    <span class="number-of-cases">{{stats.married|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.genuine_encounter stats.not_genuine_encounter %}%</span>
+    Genuine encounters in family
+    <span class="number-of-cases">{{stats.genuine_encounter|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.genuine_encounter stats.not_genuine_encounter %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.not_genuine_encounter stats.genuine_encounter %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.not_genuine_encounter stats.genuine_encounter %}%</span>
+    No genuine encounters in family
+    <span class="number-of-cases">{{stats.not_genuine_encounter|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.amritdhari stats.kesdhari %}%</span>
+    Amritdhari
+    <span class="number-of-cases">{{stats.amritdhari|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.amritdhari stats.kesdhari %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.kesdhari stats.amritdhari %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.kesdhari stats.amritdhari %}%</span>
+    Kesdhari
+    <span class="number-of-cases">{{stats.kesdhari|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.militant stats.not_militant %}%</span>
+    Militant
+    <span class="number-of-cases">{{stats.militant|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.militant stats.not_militant %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.not_militant stats.militant %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.not_militant stats.militant %}%</span>
+    Not militant
+    <span class="number-of-cases">{{stats.not_militant|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.militant_support stats.no_militant_support %}%</span>
+    Provided militant support
+    <span class="number-of-cases">{{stats.militant_support|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.militant_support stats.no_militant_support %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_militant_support stats.militant_support %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_militant_support stats.militant_support %}%</span>
+    Did not provide militant support
+    <span class="number-of-cases">{{stats.no_militant_support|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.prior_detentions stats.no_prior_detentions %}%</span>
+    Had prior detentions
+    <span class="number-of-cases">{{stats.prior_detentions|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.prior_detentions stats.no_prior_detentions %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_prior_detentions stats.prior_detentions %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_prior_detentions stats.prior_detentions %}%</span>
+    Had no prior detentions
+    <span class="number-of-cases">{{stats.no_prior_detentions|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.security_officials_apprchd stats.no_security_officials_apprchd %}%</span>
+    Families approached security officials
+    <span class="number-of-cases">{{stats.security_officials_apprchd|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.security_officials_apprchd stats.no_security_officials_apprchd %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_security_officials_apprchd stats.security_officials_apprchd %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_security_officials_apprchd stats.security_officials_apprchd %}%</span>
+    Families did not approach security officials
+    <span class="number-of-cases">{{stats.no_security_officials_apprchd|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.court_or_commission stats.no_court_or_commission %}%</span>
+    Families approached court or commission
+    <span class="number-of-cases">{{stats.court_or_commission|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.court_or_commission stats.no_court_or_commission %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_court_or_commission stats.court_or_commission %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_court_or_commission stats.court_or_commission %}%</span>
+    Families did not approach court or commission
+    <span class="number-of-cases">{{stats.no_court_or_commission|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.victim_militant_support stats.no_victim_militant_support %}%</span>
+    Victim supported militants
+    <span class="number-of-cases">{{stats.victim_militant_support|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.victim_militant_support stats.no_victim_militant_support %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_victim_militant_support stats.victim_militant_support %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_victim_militant_support stats.victim_militant_support %}%</span>
+    Victim did not support militants
+    <span class="number-of-cases">{{stats.no_victim_militant_support|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.victim_militant_support_voluntary stats.victim_militant_support_forced %}%</span>
+    Vitcims supported militants voluntarily
+    <span class="number-of-cases">{{stats.victim_militant_support_voluntary|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.victim_militant_support_voluntary stats.victim_militant_support_forced %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.victim_militant_support_forced stats.victim_militant_support_voluntary %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.victim_militant_support_forced stats.victim_militant_support_voluntary %}%</span>
+    Victims forced to support militants
+    <span class="number-of-cases">{{stats.victim_militant_support_forced|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.victim_arrest_status stats.no_victim_arrest_status %}%</span>
+    Victims taken into custody before killing or disappearence
+    <span class="number-of-cases">{{stats.victim_arrest_status|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.victim_arrest_status stats.no_victim_arrest_status %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_victim_arrest_status stats.victim_arrest_status %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_victim_arrest_status stats.victim_arrest_status %}%</span>
+    Victims were not taken into custody before killing or disappearence
+    <span class="number-of-cases">{{stats.no_victim_arrest_status|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.so_inform_witnesses stats.no_so_inform_witnesses %}%</span>
+    Cases where security officials informed witnesses where they were taking the victim
+    <span class="number-of-cases">{{stats.so_inform_witnesses|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.so_inform_witnesses stats.no_so_inform_witnesses %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_so_inform_witnesses stats.so_inform_witnesses %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_so_inform_witnesses stats.so_inform_witnesses %}%</span>
+    Cases where security officials did not inform witnesses where they were taking the victim
+    <span class="number-of-cases">{{stats.no_so_inform_witnesses|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.security_forces_uniformed stats.no_security_forces_uniformed %}%</span>
+    Cases where security forces were uniformed
+    <span class="number-of-cases">{{stats.security_forces_uniformed|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.security_forces_uniformed stats.no_security_forces_uniformed %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_security_forces_uniformed stats.security_forces_uniformed %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_security_forces_uniformed stats.security_forces_uniformed %}%</span>
+    Cases where security forces were not uniformed
+    <span class="number-of-cases">{{stats.no_security_forces_uniformed|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.judge_or_magistrate_status stats.no_judge_or_magistrate_status %}%</span>
+    Victims were presented before a judge or magistrate
+    <span class="number-of-cases">{{stats.judge_or_magistrate_status|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.judge_or_magistrate_status stats.no_judge_or_magistrate_status %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_judge_or_magistrate_status stats.judge_or_magistrate_status %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_judge_or_magistrate_status stats.judge_or_magistrate_status %}%</span>
+    Victims were not presented before a judge or magistrate
+    <span class="number-of-cases">{{stats.no_judge_or_magistrate_status|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.victim_detention_loc_known stats.no_victim_detention_loc_known %}%</span>
+    Victim detention location known
+    <span class="number-of-cases">{{stats.victim_detention_loc_known|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.victim_detention_loc_known stats.no_victim_detention_loc_known %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_victim_detention_loc_known stats.victim_detention_loc_known %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_victim_detention_loc_known stats.victim_detention_loc_known %}%</span>
+    Victims detention location not known
+    <span class="number-of-cases">{{stats.no_victim_detention_loc_known|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.so_return_body stats.no_so_return_body %}%</span>
+    Cases where security officials returned the victim’s body
+    <span class="number-of-cases">{{stats.so_return_body|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.so_return_body stats.no_so_return_body %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_so_return_body stats.so_return_body %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_so_return_body stats.so_return_body %}%</span>
+    Cases where security officials did not return the victim’s body
+    <span class="number-of-cases">{{stats.no_so_return_body|intcomma}}</span>
+  </div> 
+
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
+    <span class="percent">{% percentage stats.securityoff_id_known stats.no_securityoff_id_known %}%</span>
+    Cases where the identity of the security officials involved was known
+    <span class="number-of-cases">{{stats.securityoff_id_known|intcomma}}</span>
+    <div class="percent-bar" style="width:{% percentage stats.securityoff_id_known stats.no_securityoff_id_known %}%">&nbsp;</div>
+  </div> 
+
+  <div class="col-12">
+    <div class="percent-bar" style="width:{% percentage stats.no_securityoff_id_known stats.securityoff_id_known %}%">&nbsp;</div>
+    <span class="percent">{% percentage stats.no_securityoff_id_known stats.securityoff_id_known %}%</span>
+    Cases where the identity of the security officials involved was not known
+    <span class="number-of-cases">{{stats.no_securityoff_id_known|intcomma}}</span>
+  </div> 
+
+</div> 
+    
+<hr>
+
+<div class="row">
+
+  <div class="col-12">
 
     <p>Witnesses to abduction/arrest:</p>
       <ul>
@@ -93,3 +453,8 @@
       {%if stats.so_body_disposal_4 %}<li>{{stats.so_body_disposal_4|intcomma}} Buried the body</li>{%endif%}
       {%if stats.so_body_disposal_6 %}<li>{{stats.so_body_disposal_6|intcomma}} Other</li>{%endif%}
       </ul>
+
+
+
+    </div>
+  </div>
