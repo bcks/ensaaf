@@ -233,6 +233,20 @@ class Villages(models.Model):
         db_table = 'villages'
 
 
+COUNT_CHOICES = (
+    ('tehsil', 'Tehsil'),
+    ('district', 'District'),
+    )
+
+class CountCache(models.Model):
+    object_type = models.CharField(max_length=20, choices=COUNT_CHOICES)
+    object_id = models.IntegerField()
+    updated_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add = True)
+    value = models.IntegerField(default = 0)
+    name = models.CharField(max_length=64)
+    
+
 class SecurityArrest(models.Model):
     id  = models.IntegerField(primary_key=True)
     record_id = models.ForeignKey(Data, db_column='record_id', to_field='record_id', related_name='security_arrest', on_delete=models.CASCADE, blank=True, null=True, default='NULL')

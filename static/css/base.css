@@ -1,3 +1,5 @@
+/* @override http://localhost:8000/static/css/base.css */
+
 @font-face {
   font-family: "Fira Sans Bold";
   src: url("/static/fonts/Fira/firasans-bold-webfont.eot");
@@ -82,11 +84,16 @@ tr { vertical-align: top; }
 
 
 .percent {
-  font-family: 'PT Sans Narrow', sans-serif;
-  font-size: 2em;
-  text-align: right;
+	font-weight: bold;
+	margin: 0 .25em;
 }
 .number-of-cases {
   color: #999;
-  font-size: 80%;
+  font-size: 90%;
 }
+.percent-bar {
+	height: 6px;
+	background-color: #fa0;
+	margin: 3px 0;
+}
+
