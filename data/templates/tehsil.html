@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load humanize %}
+
 {% block title %}{{villages.all.0.tehsil}}, {{villages.all.0.district}}{% endblock %}
 
 {% block content %}
@@ -17,7 +19,7 @@
 <div class="row">
   <div class="col-sm-7">
 
-    <p>Documented Cases in {{villages.all.0.tehsil}}</p>
+    <p>{{stats.total|intcomma}} documented cases in {{villages.all.0.tehsil}} Tehsil</p>
     {% include 'stats.html' %}
 
   </div>
