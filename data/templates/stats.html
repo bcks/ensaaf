@@ -398,63 +398,107 @@
 <hr>
 
 <div class="row">
-
   <div class="col-12">
 
     <p>Witnesses to abduction/arrest:</p>
-      <ul>
-      {%if stats.witness_arrest_0 %}<li>{{stats.witness_arrest_0|intcomma}} No witness</li>{%endif%}
-      {%if stats.witness_arrest_1 %}<li>{{stats.witness_arrest_1|intcomma}} Spouse</li>{%endif%}
-      {%if stats.witness_arrest_2 %}<li>{{stats.witness_arrest_2|intcomma}} Parents</li>{%endif%}
-      {%if stats.witness_arrest_3 %}<li>{{stats.witness_arrest_3|intcomma}} Children</li>{%endif%}
-      {%if stats.witness_arrest_4 %}<li>{{stats.witness_arrest_4|intcomma}} Sibling</li>{%endif%}
-      {%if stats.witness_arrest_5 %}<li>{{stats.witness_arrest_5|intcomma}} Grandparent</li>{%endif%}
-      {%if stats.witness_arrest_6 %}<li>{{stats.witness_arrest_6|intcomma}} Cousin</li>{%endif%}
-      {%if stats.witness_arrest_7 %}<li>{{stats.witness_arrest_7|intcomma}} Aunt/Uncle</li>{%endif%}
-      {%if stats.witness_arrest_8 %}<li>{{stats.witness_arrest_8|intcomma}} Friend</li>{%endif%}
-      {%if stats.witness_arrest_9 %}<li>{{stats.witness_arrest_9|intcomma}} Co-villager</li>{%endif%}
-      {%if stats.witness_arrest_10 %}<li>{{stats.witness_arrest_10|intcomma}} Interviewee</li>{%endif%}
-      {%if stats.witness_arrest_11 %}<li>{{stats.witness_arrest_11|intcomma}} Other</li>{%endif%}
-      </ul>
 
+       {% for o in stats.witness_arrest %}
+       {%if o.1 %}
 
-    <p>Number of victims per family:</p>
-      <ul>
-       {% for o in stats.number_of_victims %}
-       {% if o.number_of_victims %}
-       <li>{{o.number_of_victims}}: {{o.number_of_victims__count|intcomma}}</li>       
+        <div>
+        <span class="percent">{% percent_total o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent_total o.1 stats.total %}%">&nbsp;</div>        
+        </div>
+
        {% endif %}
        {% endfor %}
-      </ul>
 
+  </div>
+</div>
+  
+    <hr>
+
+<div class="row">
+  <div class="col-12">
+
+    <p>Number of victims per family:</p>
+       {% for o in stats.number_of_victims %}
+       {% if o.number_of_victims %}
+       
+        <div>
+        <strong>{{o.number_of_victims}}</strong> victim{{ o.number_of_victims|pluralize }} &nbsp; {% percent_total o.number_of_victims__count stats.total %}% &nbsp; <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent_total o.number_of_victims__count stats.total %}%">&nbsp;</div>        
+        </div>
+       
+       {% endif %}
+       {% endfor %}
+
+  </div>
+</div>
+  
+    <hr>
+
+<div class="row">
+  <div class="col-12">
 
       <p>Witness to detention:</p>
-      <ul>
-      {%if stats.witness_detention_3 %}<li>{{stats.witness_detention_3|intcomma}} Interviewee</li>{%endif%}
-      {%if stats.witness_detention_4 %}<li>{{stats.witness_detention_4|intcomma}} Relative</li>{%endif%}
-      {%if stats.witness_detention_5 %}<li>{{stats.witness_detention_5|intcomma}} Other Detainee</li>{%endif%}
-      {%if stats.witness_detention_6 %}<li>{{stats.witness_detention_6|intcomma}} Sarpanch/politician</li>{%endif%}
-      {%if stats.witness_detention_7 %}<li>{{stats.witness_detention_7|intcomma}} Newspaper</li>{%endif%}
-      {%if stats.witness_detention_8 %}<li>{{stats.witness_detention_8|intcomma}} Security official</li>{%endif%}
-      {%if stats.witness_detention_9 %}<li>{{stats.witness_detention_9|intcomma}} Friend</li>{%endif%}
-      {%if stats.witness_detention_10 %}<li>{{stats.witness_detention_10|intcomma}} Other witness</li>{%endif%}
-      {%if stats.witness_detention_11 %}<li>{{stats.witness_detention_11|intcomma}} Interview Belief (No Source)</li>{%endif%}
-      {%if stats.witness_detention_12 %}<li>{{stats.witness_detention_12|intcomma}} Doctor</li>{%endif%}
-      {%if stats.witness_detention_13 %}<li>{{stats.witness_detention_13|intcomma}} Other Victim Family</li>{%endif%}
-      {%if stats.witness_detention_14 %}<li>{{stats.witness_detention_14|intcomma}} Other</li>{%endif%}
-      </ul>
 
+       {% for o in stats.witness_detention %}
+       {%if o.1 %}
+
+        <div>
+        <span class="percent">{% percent_total o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent_total o.1 stats.total %}%">&nbsp;</div>        
+        </div>
+
+       {% endif %}
+       {% endfor %}
+
+  </div>
+</div>
+  
+    <hr>
+
+<div class="row">
+  <div class="col-12">
 
       <p>Body disposal by security forces:<p>
-      <ul>
-      {%if stats.so_body_disposal_1 %}<li>{{stats.so_body_disposal_1|intcomma}} Cremated the body</li>{%endif%}
-      {%if stats.so_body_disposal_2 %}<li>{{stats.so_body_disposal_2|intcomma}} Dumped body in canal or river</li>{%endif%}
-      {%if stats.so_body_disposal_3 %}<li>{{stats.so_body_disposal_3|intcomma}} Dumped body in well or drain</li>{%endif%}
-      {%if stats.so_body_disposal_4 %}<li>{{stats.so_body_disposal_4|intcomma}} Buried the body</li>{%endif%}
-      {%if stats.so_body_disposal_6 %}<li>{{stats.so_body_disposal_6|intcomma}} Other</li>{%endif%}
-      </ul>
 
+      {%if stats.so_body_disposal_1 %}
+        <div>
+        <span class="percent">{% percent_total stats.so_body_disposal_1 stats.total %}% </span> Cremated the body &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_1|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent_total stats.so_body_disposal_1 stats.total %}%">&nbsp;</div>        
+        </div>
+      {%endif%}
 
+      {%if stats.so_body_disposal_2 %}
+        <div>
+        <span class="percent">{% percent_total stats.so_body_disposal_2 stats.total %}% </span> Dumped body in canal or river &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_2|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent_total stats.so_body_disposal_2 stats.total %}%">&nbsp;</div>        
+        </div>
+      {%endif%}
+
+      {%if stats.so_body_disposal_3 %}
+        <div>
+        <span class="percent">{% percent_total stats.so_body_disposal_3 stats.total %}% </span> Dumped body in well or drain &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_3|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent_total stats.so_body_disposal_3 stats.total %}%">&nbsp;</div>        
+        </div>
+      {%endif%}
+
+      {%if stats.so_body_disposal_4 %}
+        <div>
+        <span class="percent">{% percent_total stats.so_body_disposal_4 stats.total %}% </span> Buried the body &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_4|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent_total stats.so_body_disposal_4 stats.total %}%">&nbsp;</div>        
+        </div>
+      {%endif%}
+
+      {%if stats.so_body_disposal_6 %}
+        <div>
+        <span class="percent">{% percent_total stats.so_body_disposal_6 stats.total %}% </span> Other &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_6|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent_total stats.so_body_disposal_6 stats.total %}%">&nbsp;</div>        
+        </div>
+      {%endif%}
+      
 
     </div>
   </div>

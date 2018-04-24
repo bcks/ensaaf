@@ -1,4 +1,5 @@
 from django.db.models import Count
+import operator
 
 
 def calculate_stats(all):
@@ -61,6 +62,22 @@ def calculate_stats(all):
     witness_arrest_11 = all.filter(witness_arrest_11 ='1').count()
     witness_arrest_12 = all.filter(witness_arrest_12 ='1').count()
 
+    witness_arrest = {
+      "No witness": witness_arrest_0,
+      "Spouse": witness_arrest_1,
+      "Parents": witness_arrest_2,
+      "Children": witness_arrest_3,
+      "Sibling": witness_arrest_4,
+      "Grandparent": witness_arrest_5,
+      "Cousin": witness_arrest_6,
+      "Aunt/Uncle": witness_arrest_7,
+      "Friend": witness_arrest_8,
+      "Co-villager": witness_arrest_9,
+      "Interviewee": witness_arrest_10,
+      "Other": witness_arrest_11,
+    }
+    witness_arrest = sorted(witness_arrest.items(), key=operator.itemgetter(1), reverse=True)
+
     number_of_victims = all.values('number_of_victims').annotate(Count('number_of_victims')).order_by('number_of_victims')
 
     witness_detention_3 = all.filter(where_victim_detained__witness_detention_3='1').count()
@@ -76,7 +93,26 @@ def calculate_stats(all):
     witness_detention_13 = all.filter(where_victim_detained__witness_detention_13='1').count()
     witness_detention_14 = all.filter(where_victim_detained__witness_detention_14='1').count()
 
+    witness_detention = {
+      "Interviewee": witness_detention_3,
+      "Relative": witness_detention_4,
+      "Other Detainee": witness_detention_5,
+      "Sarpanch/politician": witness_detention_6,
+      "Newspaper": witness_detention_7,
+      "Security official": witness_detention_8,
+      "Friend": witness_detention_9,
+      "Other witness": witness_detention_10,
+      "Interview Belief (No Source)": witness_detention_11,
+      "Doctor": witness_detention_12,
+      "Other Victim Family": witness_detention_13,
+      "Other": witness_detention_14,
+    }
+    witness_detention = sorted(witness_detention.items(), key=operator.itemgetter(1), reverse=True)
+    
+    total = all.values('record_id').count()
+
     return {
+      "total": total,
       "total_disappeared": total_disappeared,
       "total_killed": total_killed,
       "male": male,
@@ -120,30 +156,10 @@ def calculate_stats(all):
       "so_body_disposal_3": so_body_disposal_3,
       "so_body_disposal_4": so_body_disposal_4,
       "so_body_disposal_6": so_body_disposal_6,
-      "witness_detention_3": witness_detention_3,
-      "witness_detention_4": witness_detention_4,
-      "witness_detention_5": witness_detention_5,
-      "witness_detention_6": witness_detention_6,
-      "witness_detention_7": witness_detention_7,
-      "witness_detention_8": witness_detention_8,
-      "witness_detention_9": witness_detention_9,
-      "witness_detention_10": witness_detention_10,
-      "witness_detention_11": witness_detention_11,
-      "witness_detention_12": witness_detention_12,
-      "witness_detention_13": witness_detention_13,
-      "witness_detention_14": witness_detention_14,
-      "witness_arrest_0": witness_arrest_0,
-      "witness_arrest_1": witness_arrest_1,
-      "witness_arrest_2": witness_arrest_2,
-      "witness_arrest_3": witness_arrest_3,
-      "witness_arrest_4": witness_arrest_4,
-      "witness_arrest_5": witness_arrest_5,
-      "witness_arrest_6": witness_arrest_6,
-      "witness_arrest_7": witness_arrest_7,
-      "witness_arrest_8": witness_arrest_8,
-      "witness_arrest_9": witness_arrest_9,
-      "witness_arrest_10": witness_arrest_10,
-      "witness_arrest_11": witness_arrest_11,
+      
+      "witness_arrest": witness_arrest,
+      "witness_detention": witness_detention,
+
       "number_of_victims": number_of_victims,
       }
 

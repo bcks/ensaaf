@@ -125,7 +125,7 @@ def hvictim_militant_reason(v1, v2, v3, v4, v5, v6, v7, v8, other):
       return s.join(groups)
   else:
       return ''
-      
+
 
 @register.simple_tag()
 def hvictim_employment(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, other):
@@ -532,69 +532,69 @@ def hwitness_detention(v3, v4, v5, v6, v7, v8, v9, v10, v12, v13, v14, other, st
 
   if (v3 == 1):
     if (status):
-      groups.append('SeenSeen by respondent')             
+      groups.append('SeenSeen by respondent')
     else:
-      groups.append('Relative') 
-  
+      groups.append('Relative')
+
   if (v4 == 1):
     if (status):
-      groups.append('Seen by relative')             
+      groups.append('Seen by relative')
     else:
-      groups.append('Relative') 
+      groups.append('Relative')
 
   if (v5 == 1):
     if (status):
-      groups.append('Seen by other detainee')             
+      groups.append('Seen by other detainee')
     else:
-      groups.append('Other detainee') 
-  
+      groups.append('Other detainee')
+
   if (v6 == 1):
     if (status):
-      groups.append('Seen by sarpanch/politician')             
+      groups.append('Seen by sarpanch/politician')
     else:
-      groups.append('Sarpanch/politician') 
-  
+      groups.append('Sarpanch/politician')
+
   if (v7 == 1):
     if (status):
-      groups.append('Seen by newspaper')             
+      groups.append('Seen by newspaper')
     else:
-      groups.append('Newspaper') 
-            
+      groups.append('Newspaper')
+
   if (v8 == 1):
     if (status):
-      groups.append('Seen by security official')             
+      groups.append('Seen by security official')
     else:
-      groups.append('Security official') 
+      groups.append('Security official')
 
   if (v9 == 1):
     if (status):
-      groups.append('Seen by friend')             
+      groups.append('Seen by friend')
     else:
-      groups.append('Friend') 
+      groups.append('Friend')
 
   if (v10 == 1):
     if (status):
-      groups.append('Seen by other witness (non-relative)')             
+      groups.append('Seen by other witness (non-relative)')
     else:
-      groups.append('Other witness (non-relative)') 
+      groups.append('Other witness (non-relative)')
 
   # if (v11 == 1): groups.append('Respondent belief (no source)')
 
   if (v12 == 1):
     if (status):
-      groups.append('Seen by doctor')             
+      groups.append('Seen by doctor')
     else:
-      groups.append('Doctor') 
+      groups.append('Doctor')
 
   if (v13 == 1):
     if (status):
-      groups.append('Seen by other victim family')             
+      groups.append('Seen by other victim family')
     else:
-      groups.append('Other victim family') 
+      groups.append('Other victim family')
 
   if (other):
     if (status):
-      groups.append('Seen by '+other)             
+      groups.append('Seen by '+other)
     else:
       groups.append(other)
 
@@ -621,7 +621,7 @@ def hduration_of_detention(v1):
   try:
      val = int(v1)
      if val > 1:
-      return v1 + ' days'     
+      return v1 + ' days'
      else:
       return v1 + ' day'
   except ValueError:
@@ -644,11 +644,19 @@ def haffiliation(var):
 
 
 @register.simple_tag()
-def percentage(item1, item2):  
-    try:  
-        return "%.1f" % ((float(item1) / float(item1 + item2)) * 100)  
-    except ValueError:  
-        return ''  
+def percentage(item1, item2):
+    try:
+        return "%.1f" % ((float(item1) / float(item1 + item2)) * 100)
+    except ValueError:
+        return ''
+
+
+@register.simple_tag()
+def percent_total(item1, item2):
+    try:
+        return "%.1f" % ((float(item1) / float(item2)) * 100)
+    except ValueError:
+        return ''
 
 
 
