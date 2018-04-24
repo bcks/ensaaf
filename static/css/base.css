@@ -94,6 +94,9 @@ tr { vertical-align: top; }
 .percent-bar {
 	height: 6px;
 	background-color: #fa0;
-	margin: 3px 0;
+	margin: 3px 0 1px 0;
 }
-
+.bar-2 {
+	margin: 1px 0 3px 0;
+	background-color: #d30;
+}

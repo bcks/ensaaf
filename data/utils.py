@@ -39,8 +39,8 @@ def calculate_stats(all):
     no_victim_detention_loc_known = all.filter(victim_detention_loc_known='0').count()    
     so_return_body = all.filter(victim_arrest_status__in=['1','2']).count()
     no_so_return_body = all.filter(victim_arrest_status='3').count()
-    securityoff_id_known = all.filter(victim_arrest_status='1').count()
-    no_securityoff_id_known = all.filter(victim_arrest_status='0').count()
+    securityoff_id_known = all.filter(securityoff_id_known='1').count()
+    no_securityoff_id_known = all.filter(securityoff_id_known='0').count()
 
     so_body_disposal_1 = all.filter(so_body_disposal='1').count()
     so_body_disposal_2 = all.filter(so_body_disposal='2').count()
@@ -95,16 +95,16 @@ def calculate_stats(all):
 
     witness_detention = {
       "Interviewee": witness_detention_3,
-      "Relative": witness_detention_4,
-      "Other Detainee": witness_detention_5,
+      "Other relative": witness_detention_4,
+      "Other detainee": witness_detention_5,
       "Sarpanch/politician": witness_detention_6,
       "Newspaper": witness_detention_7,
       "Security official": witness_detention_8,
       "Friend": witness_detention_9,
       "Other witness": witness_detention_10,
-      "Interview Belief (No Source)": witness_detention_11,
+      "Interview belief (no source)": witness_detention_11,
       "Doctor": witness_detention_12,
-      "Other Victim Family": witness_detention_13,
+      "Other victim family": witness_detention_13,
       "Other": witness_detention_14,
     }
     witness_detention = sorted(witness_detention.items(), key=operator.itemgetter(1), reverse=True)
