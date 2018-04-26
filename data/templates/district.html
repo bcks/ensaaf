@@ -2,7 +2,7 @@
 
 {% load humanize %}
 
-{% block title %}{{villages.all.0.district}} District{% endblock %}
+{% block title %}{{villages.0.district}} District{% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <h1>{{villages.all.0.district}}</h1>
+    <h1>{{villages.0.district}}</h1>
   </div>
 </div>
 
@@ -19,21 +19,21 @@
 <div class="row">
   <div class="col-sm-7">
 
-    <p>{{stats.total|intcomma}} documented cases in {{villages.all.0.district}} District</p>
+    <p>{{stats.total|intcomma}} documented cases in {{villages.0.district}} District</p>
 
     {% include 'stats.html' %}
 
   </div>  
   <div class="col-sm-5 border-left">
     
-    <p>List of Tehsils:</p>
+    <p>Documented cases in Tehsils:</p>
 
-    {% for village in villages.all %}
+    {% for village in villages %}
 
     <div class="row">
       <div class="col-sm-12 col-md m-2">
     
-      <a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}}</a>
+      <a href="{% url 'tehsil' village.tehsil_id %}">{{village.tehsil}},</a> {{village.data_count}} {% if forloop.first %} case{{village.data_count|pluralize}} {% endif %}
   
       </div>
     </div>

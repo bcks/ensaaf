@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.urls import path, include
 from data.views import *
 
+from django.conf import settings
+from django.conf.urls import include, url
+
 urlpatterns = [
     path('profile/<int:id>/', profile, name="profile"),
     path('village/<slug:slug>/', village, name="village"),
@@ -12,5 +15,12 @@ urlpatterns = [
     path('overview/', overview, name="overview"),
     path('<slug:directory>/<slug:slug>/', page),
     path('', home, name="home"),
-    path('', home, name="home"),
 ]
+
+
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        url(r'^__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns
+

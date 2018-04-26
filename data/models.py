@@ -215,6 +215,10 @@ class Data(models.Model):
 
     class Meta:
         db_table = 'data'
+        indexes = [
+          models.Index(fields=['village_id']),
+          models.Index(fields=['village_name']),
+        ]
 
 
 
@@ -229,8 +233,13 @@ class Villages(models.Model):
     #id = models.ForeignKey(Data, db_column='id', to_field='village_id', related_name='villages', on_delete=models.CASCADE, primary_key=True)
 
     class Meta:
-        managed = False
+        # managed = False
         db_table = 'villages'
+        indexes = [
+            models.Index(fields=['tehsil_id']),
+            models.Index(fields=['district_id']),
+            models.Index(fields=['id']),            
+        ]
 
 
 COUNT_CHOICES = (

@@ -75,18 +75,46 @@ def tehsil(request, slug=None):
 
 
 def district(request, slug=None):
+
+    # Single query approach - slower
+    # datas = Data.objects.filter(village_id=OuterRef('pk'))\
+    #                 .values('village_id')\
+    #                 .annotate(Count('village_id'))\
+    #                 .values('village_id__count')
+    # villages_data_count = Villages.objects.filter(tehsil_id=OuterRef('tehsil_id'))\
+    #                                 .annotate(data_count=Subquery(datas))\
+    #                                 .order_by('-data_count')\
+    #                                 .values('data_count')[:1]
+    # tehsils = Villages.objects.filter(district_id=slug)\
+    #                             .annotate(data_count=Subquery(villages_data_count))\
+    #                             .values('tehsil', 'tehsil_id', 'data_count')\
+    #                             .distinct()
+
+    # Multiple queries approach - faster
+    tehsils = list(Villages.objects.filter(district_id=slug)\
+                                .values('tehsil', 'tehsil_id', 'district')\
+                                .distinct())
+    for tehsil in tehsils:
+        datas = Data.objects.filter(village_id=OuterRef('pk'))\
+                        .values('village_id')\
+                        .annotate(Count('village_id'))\
+                        .values('village_id__count')
+        villages_data_count = Villages.objects.filter(tehsil_id=tehsil.get('tehsil_id'))\
+                                        .annotate(data_count=Subquery(datas))\
+                                        .order_by('-data_count')\
+                                        .values('data_count')[:1]
+        tehsil['data_count'] = villages_data_count.first().get('data_count')
+
     villages = Villages.objects.filter(district_id=slug).order_by('village_name')
-
-    # trying to annotate with number of cases per village    
-    villages_distinct = Villages.objects.filter(district_id=slug).values('district','tehsil','tehsil_id').distinct()
-
     all = Data.objects.filter(village_id__in=Subquery(villages.values('id'))).order_by('victim_name')
     stats = calculate_stats(all)
     
     return render(request, "district.html", {
-      "villages": villages_distinct,
+      "villages": tehsils,
       "stats": stats
       })
+
+
 
 
 def page(request, directory=None, slug=None):
