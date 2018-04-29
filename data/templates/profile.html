@@ -34,11 +34,11 @@
 
 
       {% if victim.victim_disappeared_killed == 2 %}
-        <p>Killed{% hdate victim.victim_death_date %}</p>
+        <p>Killed{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}</p>
       {% endif %}
 
       {% if victim.victim_disappeared_killed == 1 %}
-        <p>Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% hdate victim.victim_arrest_date %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% hdate victim.victim_death_date %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% hdate dt_last_heard_victim_alive %}{% endif %}</p>
+        <p>Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% autoescape off %}{% hdate_link victim.victim_arrest_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% autoescape off %}{% hdate_link dt_last_heard_victim_alive %}{% endautoescape %}{% endif %}</p>
       {% endif %}
 
       <hr>  
@@ -508,11 +508,11 @@
     <div class="col-sm-12">
 
   {% if victim.victim_disappeared_killed == 2 %}
-    <h4>Killed{% hdate victim.victim_death_date %}</h4>
+    <h4>Killed{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}</h4>
   {% endif %}
 
   {% if victim.victim_disappeared_killed == 1 %}
-    <h4>Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% hdate victim.victim_arrest_date %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% hdate victim.victim_death_date %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% hdate dt_last_heard_victim_alive %}{% endif %}</h4>
+    <h4>Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% autoescape off %}{% hdate_link victim.victim_arrest_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% autoescape off %}{% hdate_link dt_last_heard_victim_alive %}{% endautoescape %}{% endif %}</h4>
   {% endif %}
 
       <p class="kicker"><em><strong>Additional data forthcoming</strong></em></p>
