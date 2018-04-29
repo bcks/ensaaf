@@ -54,9 +54,9 @@ def hdate_link(var):
       parts[5] = int(parts[5]) + 1900
 
     if (int(parts[1]) > 12):
-      return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="/year/'+str(parts[2])+'">' +  str(parts[5]) + '</a>'
+      return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
     else:
-      return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="/year/'+str(parts[2])+'">' +  str(parts[5]) + '</a>'
+      return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
   else:
     if int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
