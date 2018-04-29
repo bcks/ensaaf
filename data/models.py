@@ -10,6 +10,8 @@ class Data(models.Model):
     village_name = models.CharField(max_length=256, blank=True, null=True)
     village_id = models.CharField(max_length=64, blank=True, null=True, unique=True)
     record_id = models.IntegerField(db_column='record_id', primary_key=True)
+    timeline_start = models.DateField(db_column='timeline_start', null=True)
+    timeline_end = models.DateField(db_column='timeline_end', null=True)
     othervill_interview = models.CharField(max_length=256, blank=True, null=True)
     publish_information = models.IntegerField(blank=True, null=True)
     publish_restriction = models.IntegerField(blank=True, null=True)
@@ -242,18 +244,18 @@ class Villages(models.Model):
         ]
 
 
-COUNT_CHOICES = (
-    ('tehsil', 'Tehsil'),
-    ('district', 'District'),
-    )
-
-class CountCache(models.Model):
-    object_type = models.CharField(max_length=20, choices=COUNT_CHOICES)
-    object_id = models.IntegerField()
-    updated_at = models.DateTimeField(auto_now=True)
-    created_at = models.DateTimeField(auto_now_add = True)
-    value = models.IntegerField(default = 0)
-    name = models.CharField(max_length=64)
+# COUNT_CHOICES = (
+#     ('tehsil', 'Tehsil'),
+#     ('district', 'District'),
+#     )
+# 
+# class CountCache(models.Model):
+#     object_type = models.CharField(max_length=20, choices=COUNT_CHOICES)
+#     object_id = models.IntegerField()
+#     updated_at = models.DateTimeField(auto_now=True)
+#     created_at = models.DateTimeField(auto_now_add = True)
+#     value = models.IntegerField(default = 0)
+#     name = models.CharField(max_length=64)
     
 
 class SecurityArrest(models.Model):

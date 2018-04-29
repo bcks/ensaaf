@@ -10,6 +10,7 @@ urlpatterns = [
     path('village/<slug:slug>/', village, name="village"),
     path('tehsil/<slug:slug>/', tehsil, name="tehsil"),
     path('district/<slug:slug>/', district, name="district"),
+    path('year/<int:id>/', year, name="year"),
     path('search/', include('haystack.urls')),
     path('admin/', admin.site.urls),
     path('overview/', overview, name="overview"),

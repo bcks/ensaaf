@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+{% load profiletags %}
+
+{% block title %}Documented cases in {{year}}{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-sm-12 col-md m-2">
+    <h1>{{year}}</h1>
+  </div>
+</div>
+
+{% if victims.all|length > 0 %}
+
+ <div class="row">
+  <div class="col-sm-12 col-md m-2">   
+    <p>{{stats.total|intcomma}} documented case{{stats.total|pluralize}} in {{year}}:</p>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-5">
+
+  {% for victim in victims.all %}
+
+  <div class="row">
+    <div class="col-sm-12 col-md m-2">
+
+  
+    <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
+
+
+    {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
+    age {{victim.victim_age}}        
+      {% if victim.victim_disappeared_killed  %}
+       at time of 
+        {% if victim.victim_disappeared_killed == 1 %}
+        disappearance
+        {% endif %}
+        {% if victim.victim_disappeared_killed == 2 %}
+        killing
+        {% endif %}
+      {% endif %}
+    {% endif %}{% endif %}
+
+
+    </div>
+  </div>
+    
+  {% endfor %}
+
+  
+  </div>      
+  <div class="col-sm-7">
+
+    {% include 'stats.html' %}
+
+  </div>      
+</div>      
+  
+  
+  {% else %}
+
+  <div class="row">
+    <div class="col-sm-12 col-md m-2">   
+      <p>No documented cases for {{year}}.</p>
+    </div>
+  </div>
+
+  {% endif %}
+  
+
+<br>
+
+{% endblock %}
