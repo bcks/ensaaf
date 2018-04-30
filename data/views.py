@@ -53,12 +53,12 @@ def village(request, slug=None):
     return render(request, "village.html", { "victims": victims, "village":village } )
 
 
-def year(request, id=None):
-    victims = Data.objects.filter(timeline_start__year=id).order_by('victim_name')
+def year(request, year=None):
+    victims = Data.objects.filter(timeline_start__year=year,timeline_end__year=year).order_by('victim_name')
     stats = calculate_stats(victims)
     if id is not None and id is None:
         return messages.warning(request,"Year %s was not found"%id)
-    return render(request, "year.html", { "victims": victims, "year":id, "stats": stats } )
+    return render(request, "year.html", { "victims": victims, "year":year, "stats": stats } )
 
 
 def tehsil(request, slug=None):
