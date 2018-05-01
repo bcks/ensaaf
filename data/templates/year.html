@@ -26,11 +26,21 @@
 <div class="row">
   <div class="col-sm-5">
 
-  {% for victim in victims.all %}
+  {% regroup victims.all by tehsil as tehsil_list %}
+
+  {% for tehsil in tehsil_list %}
+
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">
+      {% if tehsil.grouper %}<br><h2>{{ tehsil.grouper }}</h2>{% endif %}
+    </div>
+  </div>
 
+  {% for victim in tehsil.list %}
+
+  <div class="row">
+    <div class="col-sm-12 col-md m-2">
   
     <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
 
@@ -47,11 +57,13 @@
         {% endif %}
       {% endif %}
     {% endif %}{% endif %}
+    <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
 
 
     </div>
   </div>
     
+  {% endfor %}
   {% endfor %}
 
   

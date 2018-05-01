@@ -54,7 +54,18 @@ def village(request, slug=None):
 
 
 def year(request, year=None):
-    victims = Data.objects.filter(timeline_start__year=year,timeline_end__year=year).order_by('victim_name')
+
+    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+    victims = Data.objects.filter(timeline_start__year=year,timeline_end__year=year)\
+      .annotate(village_name_checked=Subquery(village))\
+      .annotate(tehsil=Subquery(tehsil))\
+      .annotate(tehsil_id=Subquery(tehsil_id))\
+      .order_by('tehsil','village_name','victim_name')
+
+#    victims = Data.objects.filter(timeline_start__year=year,timeline_end__year=year).order_by('victim_name')
+
     stats = calculate_stats(victims)
     if id is not None and id is None:
         return messages.warning(request,"Year %s was not found"%id)
