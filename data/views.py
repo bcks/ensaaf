@@ -59,9 +59,7 @@ def year(request, year=None):
     tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
     village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
     victims = Data.objects.filter(timeline_start__year=year,timeline_end__year=year)\
-      .annotate(village_name_checked=Subquery(village))\
-      .annotate(tehsil=Subquery(tehsil))\
-      .annotate(tehsil_id=Subquery(tehsil_id))\
+      .annotate(village_name_checked=Subquery(village), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id))\
       .order_by('tehsil','village_name','victim_name')
 
 #    victims = Data.objects.filter(timeline_start__year=year,timeline_end__year=year).order_by('victim_name')

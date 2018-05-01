@@ -30,42 +30,90 @@
 
   {% for tehsil in tehsil_list %}
 
+  {% if tehsil.grouper %}
 
-  <div class="row">
-    <div class="col-sm-12 col-md m-2">
-      {% if tehsil.grouper %}<br><h2>{{ tehsil.grouper }}</h2>{% endif %}
+    <div class="row">
+      <div class="col-sm-12 col-md m-2">
+        <br><h2>{{ tehsil.grouper }}</h2>
+      </div>
     </div>
-  </div>
 
-  {% for victim in tehsil.list %}
+    {% for victim in tehsil.list %}
 
-  <div class="row">
-    <div class="col-sm-12 col-md m-2">
+    <div class="row">
+      <div class="col-sm-12 col-md m-2">
   
-    <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
+      <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
 
 
-    {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
-    age {{victim.victim_age}}        
-      {% if victim.victim_disappeared_killed  %}
-       at time of 
-        {% if victim.victim_disappeared_killed == 1 %}
-        disappearance
+      {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
+      age {{victim.victim_age}}        
+        {% if victim.victim_disappeared_killed  %}
+         at time of 
+          {% if victim.victim_disappeared_killed == 1 %}
+          disappearance
+          {% endif %}
+          {% if victim.victim_disappeared_killed == 2 %}
+          killing
+          {% endif %}
         {% endif %}
-        {% if victim.victim_disappeared_killed == 2 %}
-        killing
-        {% endif %}
-      {% endif %}
-    {% endif %}{% endif %}
-    <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
+      {% endif %}{% endif %}
+      <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
 
 
+      </div>
     </div>
-  </div>
     
-  {% endfor %}
+    {% endfor %}
+  
+  {% endif %}
   {% endfor %}
 
+
+
+
+
+  {% for tehsil in tehsil_list %}
+  {% if tehsil.grouper == None %}
+
+    <div class="row">
+      <div class="col-sm-12 col-md m-2">
+        <br><h2>—</h2>
+      </div>
+    </div>
+
+    {% for victim in tehsil.list %}
+
+    <div class="row">
+      <div class="col-sm-12 col-md m-2">
+  
+      <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
+
+
+      {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
+      age {{victim.victim_age}}        
+        {% if victim.victim_disappeared_killed  %}
+         at time of 
+          {% if victim.victim_disappeared_killed == 1 %}
+          disappearance
+          {% endif %}
+          {% if victim.victim_disappeared_killed == 2 %}
+          killing
+          {% endif %}
+        {% endif %}
+      {% endif %}{% endif %}
+      <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
+
+
+      </div>
+    </div>
+    
+    {% endfor %}
+  
+  
+  
+  {% endif %}
+  {% endfor %}
   
   </div>      
   <div class="col-sm-7">
