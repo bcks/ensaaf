@@ -53,7 +53,7 @@
             </div>
             <div class="col-sm-10">
               {% if victim.village_id|add:"0" > 0 and village.tehsil%}
-                <p><a href="/village/{{victim.village_id}}">{{victim.village_name}},</a> <a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}},</a>
+                <p><a href="{% url 'village' victim.village_id %}">{{victim.village_name}},</a> <a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}},</a>
                 <a href="/district/{{village.district_id}}">{{village.district}}</a></p>
               {% else %}
                 <p>{{victim.village_name}}</p>
@@ -642,11 +642,11 @@
 
     {% for this in victim.security_arrest.all %}
 
-      <p>{{this.arrest_so_first_name|title}} {{this.arrest_so_last_name|title}}<!-- rank -->{% if this.arrest_so_rank != '' %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}, 
+      <p><a href="{% url 'securityarrest' this.id %}">{{this.arrest_so_first_name|title}} {{this.arrest_so_last_name|title}}<!-- rank -->{% if this.arrest_so_rank != '' %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}, 
 {% harrest_so_rank this.arrest_so_rank %}{% endif %}{% endif %}{% if this.arrest_so_rank == 13 %}{% if this.arrest_so_rank_other %}, 
 {{this.arrest_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliaton -->{% if this.arrest_so_affiliation != '' %}{% if this.arrest_so_affiliation != 8 %}{% if this.arrest_so_affiliation != 7 %}, 
 {% haffiliation this.arrest_so_affiliation %}{% endif %}{% endif %}{% endif %}<!-- arrest_so_affiliation_oth -->{% if this.arrest_so_affiliation_oth != '' %}, 
-{{this.arrest_so_affiliation_oth}}{% endif %}{% if this.arrest_so_affiliation_loc != '' %}, {{this.arrest_so_affiliation_loc}}{% endif %}{% if this.arrest_security_locality != '' %}, {{this.arrest_security_locality}}{% endif %}</p>
+{{this.arrest_so_affiliation_oth}}{% endif %}{% if this.arrest_so_affiliation_loc != '' %}, {{this.arrest_so_affiliation_loc}}{% endif %}{% if this.arrest_security_locality != '' %}, {{this.arrest_security_locality}}{% endif %}</a></p>
 
     {% endfor %}
 
@@ -665,8 +665,8 @@
     </div>
     <div class="col-sm-6">
           
-      <p>{% if victim.killing_securityforces_lcl != 'Don\'t know' %}{{victim.killing_securityforces_lcl|title}}{% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforcestype_7 or victim.killing_securityforces_oth %}, {% endif %}{% endif %}
-      {% harrest_security_type victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}</p>
+      <p>{% if victim.killing_securityforces_lcl != 'Don\'t know' %}
+      {{victim.killing_securityforces_lcl|title}}{% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforcestype_7 or victim.killing_securityforces_oth %}{% if victim.killing_securityforces_lcl %}, {% endif %}{% endif %}{% endif %}{% harrest_security_type victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}</p>
     </div>
 
 {% endif %}
@@ -685,7 +685,7 @@
 
     {%for this in victim.security_killed.all %}
 
-      <p>{{this.killing_so_first_name|title}} {{this.killing_so_last_name|title}}<!-- rank -->{% if this.killing_so_rank != '' %}{% if this.killing_so_rank != 13 %}{% if this.killing_so_rank != 14 %}, {% harrest_so_rank this.killing_so_rank %}{% endif %}{% endif %}{% if this.killing_so_rank == 13 %}{% if this.killing_so_rank_other %}, {{this.killing_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliation -->{% if this.killing_so_affiliation != '' %}{% if this.killing_so_affiliation != 8 %}{% if this.killing_so_affiliation != 7 %}, {% haffiliation this.killing_so_affiliation %}{% endif %}{% endif %}{% endif %}<!-- killing_so_affiliation_oth -->{% if this.killing_so_affiliation == 8 %}{% if this.killing_so_affiliation_oth != '' %}, {{this.killing_so_affiliation_oth}}{% endif %}{% endif %}{% if this.killing_so_affiliation_loc != '' %}, {{this.killing_so_affiliation_loc}}{% endif %} </p>
+      <p><a href="{% url 'securitykilled' this.id %}">{% if this.killing_so_first_name != 'Don\'t know' %}{{this.killing_so_first_name|title}}{% endif %} {%if this.killing_so_last_name != 'Don\'t Know' %}{{this.killing_so_last_name|title}}{% endif %}<!-- rank -->{% if this.killing_so_rank != '' %}{% if this.killing_so_rank != 13 %}{% if this.killing_so_rank != 14 %}, {% harrest_so_rank this.killing_so_rank %}{% endif %}{% endif %}{% if this.killing_so_rank == 13 %}{% if this.killing_so_rank_other %}, {{this.killing_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliation -->{% if this.killing_so_affiliation != '' %}{% if this.killing_so_affiliation != 8 %}{% if this.killing_so_affiliation != 7 %}, {% haffiliation this.killing_so_affiliation %}{% endif %}{% endif %}{% endif %}<!-- killing_so_affiliation_oth -->{% if this.killing_so_affiliation == 8 %}{% if this.killing_so_affiliation_oth != '' %}, {{this.killing_so_affiliation_oth}}{% endif %}{% endif %}{% if this.killing_so_affiliation_loc != '' %}, {{this.killing_so_affiliation_loc}}{% endif %}</a></p>
 
     {% endfor %}
 

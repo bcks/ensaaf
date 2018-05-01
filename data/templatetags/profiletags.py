@@ -4,7 +4,7 @@ from django import template
 register = template.Library()
 
 
-monthNames = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
+monthNames = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December","13####","14####","15####","16####","17####","18####","19####","20####","21####","22####","23####","24####","25####","26####","27####","28####","29####","30####","31####","32####","33####","34####","35####", ]
 
 
 @register.simple_tag()
@@ -45,26 +45,36 @@ def hdate_link(var):
     return ', date unknown'
   if (var == ''):
     return ', date unknown'
-  var = var.replace('/','-')
-  parts = var.split('-')
-  if (len(parts) > 3):
+
+  # 09/20/1988-10/05/1988
+  #      pattern => '%m/%d/%Y',
+  if '/' in var and '-' in var:
+    var = var.replace('/','-')
+    parts = var.split('-')
+    return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+
+  # 15-02-1992 - 15-03-1992    
+  #        pattern => '%d-%m-%Y',
+  if ' - ' in var:
+    var = var.replace(' ','')
+    parts = var.split('-')
+    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+
+  # 23-07-1991
+  #    pattern => '%d-%m-%Y',
+  if '-' in var:
+    parts = var.split('-')
     if int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    if int(parts[5]) < 1900:
-      parts[5] = int(parts[5]) + 1900
+    return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
-    if (int(parts[1]) > 12):
-      return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
-    else:
-      return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
-  else:
-    if int(parts[2]) < 1900:
-      parts[2] = int(parts[2]) + 1900
-    if (int(parts[1]) > 12):
-      return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
-    else:
-      return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
-
+  # 10/15/1992
+  #      pattern => '%m/%d/%Y',
+  if '/' in var:
+    parts = var.split('/')
+    if int(parts[0]) < 1900:
+      parts[0] = int(parts[0]) + 1900
+    return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
 
 @register.simple_tag()
@@ -73,25 +83,36 @@ def hdate(var):
     return ', date unknown'
   if (var == ''):
     return ', date unknown'
-  var = var.replace('/','-')
-  parts = var.split('-')
-  if (len(parts) > 3):
-    if int(parts[2]) < 1900:
-      parts[2] = int(parts[2]) + 1900
-    if int(parts[5]) < 1900:
-      parts[5] = int(parts[5]) + 1900
 
-    if (int(parts[1]) > 12):
-      return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ', ' +  str(parts[5])
-    else:
-      return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ', ' +  str(parts[5])
-  else:
+  # 09/20/1988-10/05/1988
+  #      pattern => '%m/%d/%Y',
+  if '/' in var and '-' in var:
+    var = var.replace('/','-')
+    parts = var.split('-')
+    return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  ' +  str(parts[5])
+
+  # 15-02-1992 - 15-03-1992    
+  #        pattern => '%d-%m-%Y',
+  if ' - ' in var:
+    var = var.replace(' ','')
+    parts = var.split('-')
+    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  ' +  str(parts[5])
+
+  # 23-07-1991
+  #    pattern => '%d-%m-%Y',
+  if '-' in var:
+    parts = var.split('-')
     if int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    if (int(parts[1]) > 12):
-      return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2]);
-    else:
-      return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]);
+    return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2])
+
+  # 10/15/1992
+  #      pattern => '%m/%d/%Y',
+  if '/' in var:
+    parts = var.split('/')
+    if int(parts[2]) < 1900:
+      parts[2] = int(parts[2]) + 1900
+    return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2])
 
 
 
@@ -260,7 +281,7 @@ def hdate_no_on(var):
       parts[2] = int(parts[2]) + 1900
     if int(parts[5]) < 1900:
       parts[5] = int(parts[5]) + 1900
-    if (int(parts[1]) > 12):
+    if (int(parts[0]) < 13):
       return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ', ' +  str(parts[5])
     else:
       return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ', ' +  str(parts[5])
