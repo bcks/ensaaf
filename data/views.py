@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
 from django.contrib import messages
-from django.db.models import OuterRef, Subquery, Count, Sum
+from django.db.models import OuterRef, Subquery, Count, Sum, F
 from django.template.defaulttags import register
 
 from .models import *
@@ -54,21 +54,17 @@ def village(request, slug=None):
 
 
 def year(request, year=None):
-
+    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
     tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
     village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
     victims = Data.objects.filter(timeline_start__year=year,timeline_end__year=year)\
-      .annotate(village_name_checked=Subquery(village), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id))\
-      .order_by('tehsil','village_name','victim_name')
-
-#    victims = Data.objects.filter(timeline_start__year=year,timeline_end__year=year).order_by('victim_name')
-
+      .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
+      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
     stats = calculate_stats(victims)
     if id is not None and id is None:
         return messages.warning(request,"Year %s was not found"%id)
     return render(request, "year.html", { "victims": victims, "year":year, "stats": stats } )
-
 
 
 def securityarrest(request, id=None):
