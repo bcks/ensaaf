@@ -2,7 +2,7 @@
 
 {% load humanize %}
 
-{% block title %}{{villages.0.district}} District{% endblock %}
+{% block title %}{{district.0.district}} District{% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <h1>{{villages.0.district}}</h1>
+    <h1>{{district.0.district}}</h1>
   </div>
 </div>
 
@@ -19,7 +19,7 @@
 <div class="row">
   <div class="col-sm-7">
 
-    <p>{{stats.total|intcomma}} documented cases in {{villages.0.district}} District</p>
+    <p>{{stats.total|intcomma}} documented cases in {{district.0.district}} District</p>
 
     {% include 'stats.html' %}
 
@@ -45,5 +45,10 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-12 footnotes">
+    <p>Note: Tehsil and district boundaries are based on the 2001 census. Read more about <a href="/about/methodology">our methodology</a>.</p>
+  </div>
+</div>
 
 {% endblock %}

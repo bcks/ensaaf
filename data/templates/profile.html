@@ -642,11 +642,11 @@
 
     {% for this in victim.security_arrest.all %}
 
-      <p><a href="{% url 'securityarrest' this.id %}">{{this.arrest_so_first_name|title}} {{this.arrest_so_last_name|title}}<!-- rank -->{% if this.arrest_so_rank != '' %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}, 
+      <p>{{this.arrest_so_first_name|title}} {{this.arrest_so_last_name|title}}<!-- rank -->{% if this.arrest_so_rank != '' %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}, 
 {% harrest_so_rank this.arrest_so_rank %}{% endif %}{% endif %}{% if this.arrest_so_rank == 13 %}{% if this.arrest_so_rank_other %}, 
 {{this.arrest_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliaton -->{% if this.arrest_so_affiliation != '' %}{% if this.arrest_so_affiliation != 8 %}{% if this.arrest_so_affiliation != 7 %}, 
 {% haffiliation this.arrest_so_affiliation %}{% endif %}{% endif %}{% endif %}<!-- arrest_so_affiliation_oth -->{% if this.arrest_so_affiliation_oth != '' %}, 
-{{this.arrest_so_affiliation_oth}}{% endif %}{% if this.arrest_so_affiliation_loc != '' %}, {{this.arrest_so_affiliation_loc}}{% endif %}{% if this.arrest_security_locality != '' %}, {{this.arrest_security_locality}}{% endif %}</a></p>
+{{this.arrest_so_affiliation_oth}}{% endif %}{% if this.arrest_so_affiliation_loc != '' %}, {{this.arrest_so_affiliation_loc}}{% endif %}{% if this.arrest_security_locality != '' %}, {{this.arrest_security_locality}}{% endif %}</p>
 
     {% endfor %}
 
@@ -685,7 +685,7 @@
 
     {%for this in victim.security_killed.all %}
 
-      <p><a href="{% url 'securitykilled' this.id %}">{% if this.killing_so_first_name != 'Don\'t know' %}{{this.killing_so_first_name|title}}{% endif %} {%if this.killing_so_last_name != 'Don\'t Know' %}{{this.killing_so_last_name|title}}{% endif %}<!-- rank -->{% if this.killing_so_rank != '' %}{% if this.killing_so_rank != 13 %}{% if this.killing_so_rank != 14 %}, {% harrest_so_rank this.killing_so_rank %}{% endif %}{% endif %}{% if this.killing_so_rank == 13 %}{% if this.killing_so_rank_other %}, {{this.killing_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliation -->{% if this.killing_so_affiliation != '' %}{% if this.killing_so_affiliation != 8 %}{% if this.killing_so_affiliation != 7 %}, {% haffiliation this.killing_so_affiliation %}{% endif %}{% endif %}{% endif %}<!-- killing_so_affiliation_oth -->{% if this.killing_so_affiliation == 8 %}{% if this.killing_so_affiliation_oth != '' %}, {{this.killing_so_affiliation_oth}}{% endif %}{% endif %}{% if this.killing_so_affiliation_loc != '' %}, {{this.killing_so_affiliation_loc}}{% endif %}</a></p>
+      <p>{% if this.killing_so_first_name != 'Don\'t know' %}{{this.killing_so_first_name|title}}{% endif %} {%if this.killing_so_last_name != 'Don\'t Know' %}{{this.killing_so_last_name|title}}{% endif %}<!-- rank -->{% if this.killing_so_rank != '' %}{% if this.killing_so_rank != 13 %}{% if this.killing_so_rank != 14 %}, {% harrest_so_rank this.killing_so_rank %}{% endif %}{% endif %}{% if this.killing_so_rank == 13 %}{% if this.killing_so_rank_other %}, {{this.killing_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliation -->{% if this.killing_so_affiliation != '' %}{% if this.killing_so_affiliation != 8 %}{% if this.killing_so_affiliation != 7 %}, {% haffiliation this.killing_so_affiliation %}{% endif %}{% endif %}{% endif %}<!-- killing_so_affiliation_oth -->{% if this.killing_so_affiliation == 8 %}{% if this.killing_so_affiliation_oth != '' %}, {{this.killing_so_affiliation_oth}}{% endif %}{% endif %}{% if this.killing_so_affiliation_loc != '' %}, {{this.killing_so_affiliation_loc}}{% endif %}</p>
 
     {% endfor %}
 
@@ -886,6 +886,14 @@
       <p class="kicker"><em><strong>Forthcoming</strong></em></p>
     </div>
   </div>
+
+
+
+<div class="row">
+  <div class="col-12 footnotes">
+    <p>Note: Tehsil and district boundaries are based on the 2001 census. Read more about <a href="/about/methodology">our methodology</a>.</p>
+  </div>
+</div>
 
 
 {% endblock %}

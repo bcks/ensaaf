@@ -67,62 +67,6 @@ def year(request, year=None):
     return render(request, "year.html", { "victims": victims, "year":year, "stats": stats } )
 
 
-def securityarrest(request, id=None):
-    security_arrest = SecurityArrest.objects.filter(id=id)[:1].get()
-
-    security_arrest_victims = SecurityArrest.objects.filter(
-      arrest_so_first_name=security_arrest.arrest_so_first_name,
-      arrest_so_last_name=security_arrest.arrest_so_last_name,
-      arrest_so_rank=security_arrest.arrest_so_rank,
-      arrest_so_affiliation=security_arrest.arrest_so_affiliation,
-      ).values('record_id')
-
-    security_killed_victims = SecurityKilled.objects.filter(
-      killing_so_first_name=security_arrest.arrest_so_first_name,
-      killing_so_last_name=security_arrest.arrest_so_last_name,
-      killing_so_rank=security_arrest.arrest_so_rank,
-      killing_so_affiliation=security_arrest.arrest_so_affiliation,
-      ).values('record_id')
-      
-    victims_arrest = Data.objects.filter(record_id__in=security_arrest_victims).order_by('victim_name')
-    victims_killed = Data.objects.filter(record_id__in=security_killed_victims).order_by('victim_name')
-    
-    victims = victims_arrest | victims_killed
-
-    stats = calculate_stats(victims)
-    if id is not None and id is None:
-        return messages.warning(request,"Year %s was not found"%id)
-    return render(request, "security.html", { "victims": victims, "stats": stats } )
-
-
-def securitykilled(request, id=None):
-    security_killed = SecurityKilled.objects.filter(id=id)[:1].get()
-
-    security_arrest_victims = SecurityArrest.objects.filter(
-      arrest_so_first_name=security_killed.killing_so_first_name,
-      arrest_so_last_name=security_killed.killing_so_last_name,
-      arrest_so_rank=security_killed.killing_so_rank,
-      arrest_so_affiliation=security_killed.killing_so_affiliation,
-      ).values('record_id')
-
-    security_killed_victims = SecurityKilled.objects.filter(
-      killing_so_first_name=security_killed.killing_so_first_name,
-      killing_so_last_name=security_killed.killing_so_last_name,
-      killing_so_rank=security_killed.killing_so_rank,
-      killing_so_affiliation=security_killed.killing_so_affiliation,
-      ).values('record_id')
-                
-    victims_arrest = Data.objects.filter(record_id__in=security_arrest_victims).order_by('victim_name')
-    victims_killed = Data.objects.filter(record_id__in=security_killed_victims).order_by('victim_name')
-    
-    victims = victims_arrest | victims_killed
-
-    stats = calculate_stats(victims)
-    if id is not None and id is None:
-        return messages.warning(request,"Year %s was not found"%id)
-    return render(request, "security.html", { "victims": victims, "stats": stats } )
-
-
 
 def tehsil(request, slug=None):
     datas = Data.objects.filter(village_id=OuterRef('pk'))\
@@ -147,44 +91,31 @@ def tehsil(request, slug=None):
 
 def district(request, slug=None):
 
-    # Single query approach - slower
-    # datas = Data.objects.filter(village_id=OuterRef('pk'))\
-    #                 .values('village_id')\
-    #                 .annotate(Count('village_id'))\
-    #                 .values('village_id__count')
-    # villages_data_count = Villages.objects.filter(tehsil_id=OuterRef('tehsil_id'))\
-    #                                 .annotate(data_count=Subquery(datas))\
-    #                                 .order_by('-data_count')\
-    #                                 .values('data_count')[:1]
-    # tehsils = Villages.objects.filter(district_id=slug)\
-    #                             .annotate(data_count=Subquery(villages_data_count))\
-    #                             .values('tehsil', 'tehsil_id', 'data_count')\
-    #                             .distinct()
-
-    # Multiple queries approach - faster
-    tehsils = list(Villages.objects.filter(district_id=slug)\
-                                .values('tehsil', 'tehsil_id', 'district')\
-                                .distinct())
+    tehsils = Villages.objects.filter(district_id=slug)\
+                                    .values('tehsil', 'tehsil_id')\
+                                    .distinct()
     for tehsil in tehsils:
         datas = Data.objects.filter(village_id=OuterRef('pk'))\
-                        .values('village_id')\
-                        .annotate(Count('village_id'))\
-                        .values('village_id__count')
+                            .values('village_id')\
+                            .annotate(Count('village_id'))\
+                            .values('village_id__count')
         villages_data_count = Villages.objects.filter(tehsil_id=tehsil.get('tehsil_id'))\
+                                        .values('id')\
                                         .annotate(data_count=Subquery(datas))\
                                         .order_by('-data_count')\
-                                        .values('data_count')[:1]
-        tehsil['data_count'] = villages_data_count.first().get('data_count')
-
+                                        .values('data_count')
+        tehsil['data_count'] = villages_data_count.aggregate(Sum('data_count'))\
+                                                    .get('data_count__sum')
     villages = Villages.objects.filter(district_id=slug).order_by('village_name')
+    district = Villages.objects.filter(district_id=slug)[:1].values('district')
     all = Data.objects.filter(village_id__in=Subquery(villages.values('id'))).order_by('victim_name')
     stats = calculate_stats(all)
     
     return render(request, "district.html", {
+      "district": district,
       "villages": tehsils,
       "stats": stats
       })
-
 
 
 
