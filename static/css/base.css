@@ -54,6 +54,14 @@ tr { vertical-align: top; }
   }
 }
 
+.footnotes {
+  margin-top: 1em;
+  margin-bottom: 3em;
+  padding-top: 1em;
+  font-size: 80%;
+  color: #777;
+}
+
 
 .home-box {
 	position: relative;	
