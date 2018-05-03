@@ -89,23 +89,57 @@ def tehsil(request, slug=None):
       })
 
 
-def district(request, slug=None):
 
-    tehsils = Villages.objects.filter(district_id=slug)\
-                                    .values('tehsil', 'tehsil_id')\
-                                    .distinct()
-    for tehsil in tehsils:
-        datas = Data.objects.filter(village_id=OuterRef('pk'))\
-                            .values('village_id')\
-                            .annotate(Count('village_id'))\
-                            .values('village_id__count')
-        villages_data_count = Villages.objects.filter(tehsil_id=tehsil.get('tehsil_id'))\
+
+def get_tehsils(slug):
+    tehsils = cache.get("tehsils" + slug)
+    if tehsils:
+        return tehsils
+    try:
+      tehsils = Villages.objects.filter(district_id=slug)\
+                        .values('tehsil', 'tehsil_id')\
+                        .distinct()
+      for tehsil in tehsils:
+          datas = Data.objects.filter(village_id=OuterRef('pk'))\
+                              .values('village_id')\
+                              .annotate(Count('village_id'))\
+                              .values('village_id__count')
+          villages_data_count = Villages.objects.filter(tehsil_id=tehsil.get('tehsil_id'))\
                                         .values('id')\
                                         .annotate(data_count=Subquery(datas))\
                                         .order_by('-data_count')\
                                         .values('data_count')
-        tehsil['data_count'] = villages_data_count.aggregate(Sum('data_count'))\
+          tehsil['data_count'] = villages_data_count.aggregate(Sum('data_count'))\
                                                     .get('data_count__sum')
+
+      cache.set("tehsils" + slug, tehsils, 3600) # 60 * 60 seconds!
+      return tehsils
+
+    except Exception as e:
+        return messages.warning("Exception get_tehsils:"%e)
+        return None
+
+
+
+def district(request, slug=None):
+
+#    tehsils = Villages.objects.filter(district_id=slug)\
+#                                    .values('tehsil', 'tehsil_id')\
+#                                    .distinct()
+#    for tehsil in tehsils:
+#        datas = Data.objects.filter(village_id=OuterRef('pk'))\
+#                            .values('village_id')\
+#                            .annotate(Count('village_id'))\
+#                            .values('village_id__count')
+#        villages_data_count = Villages.objects.filter(tehsil_id=tehsil.get('tehsil_id'))\
+#                                        .values('id')\
+#                                        .annotate(data_count=Subquery(datas))\
+#                                        .order_by('-data_count')\
+#                                        .values('data_count')
+#        tehsil['data_count'] = villages_data_count.aggregate(Sum('data_count'))\
+#                                                    .get('data_count__sum')
+
+    tehsils = get_tehsils(slug)
     villages = Villages.objects.filter(district_id=slug).order_by('village_name')
     district = Villages.objects.filter(district_id=slug)[:1].values('district')
     all = Data.objects.filter(village_id__in=Subquery(villages.values('id'))).order_by('victim_name')
