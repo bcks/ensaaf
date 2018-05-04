@@ -39,8 +39,8 @@ def calculate_stats(all):
     no_victim_detention_loc_known = all.filter(victim_detention_loc_known='0').count()    
     so_return_body = all.filter(victim_arrest_status__in=['1','2']).count()
     no_so_return_body = all.filter(victim_arrest_status='3').count()
-    securityoff_id_known = all.filter(securityoff_id_known='1').count()
-    no_securityoff_id_known = all.filter(securityoff_id_known='0').count()
+    securityoff_id_known = all.filter(securityoff_id_known='1').count() + all.filter(securityforces_idknown__in=['1','2']).count()
+    no_securityoff_id_known = all.filter(securityoff_id_known='0').count() + all.filter(securityforces_idknown='3').count()
 
     so_body_disposal_1 = all.filter(so_body_disposal='1').count()
     so_body_disposal_2 = all.filter(so_body_disposal='2').count()
