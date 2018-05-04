@@ -123,17 +123,16 @@
 <hr>
 
 <div class="row">
-
   <div class="col-12">
-    <span class="percent">{% percent stats.so_inform_witnesses stats.total%}%</span>
+    <span class="percent">{% percent stats.so_inform_witnesses stats.witness_total%}%</span>
     Cases where security officials informed witnesses where they were taking the victim
     <span class="number-of-cases">{{stats.so_inform_witnesses|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.so_inform_witnesses stats.total%}%">&nbsp;</div>
+    <div class="percent-bar" style="width:{% percent stats.so_inform_witnesses stats.witness_total%}%">&nbsp;</div>
   </div> 
 
   <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_so_inform_witnesses stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_so_inform_witnesses stats.total%}%</span>
+    <div class="percent-bar bar-2" style="width:{% percent stats.no_so_inform_witnesses stats.witness_total%}%">&nbsp;</div>
+    <span class="percent">{% percent stats.no_so_inform_witnesses stats.witness_total%}%</span>
     Cases where security officials did not inform witnesses where they were taking the victim
     <span class="number-of-cases">{{stats.no_so_inform_witnesses|intcomma}}</span>
   </div> 
@@ -165,15 +164,15 @@
 <div class="row">
 
   <div class="col-12">
-    <span class="percent">{% percent stats.security_forces_uniformed stats.total%}%</span>
+    <span class="percent">{% percent stats.security_forces_uniformed stats.witness_total%}%</span>
     Cases where security forces were uniformed
     <span class="number-of-cases">{{stats.security_forces_uniformed|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.security_forces_uniformed stats.total%}%">&nbsp;</div>
+    <div class="percent-bar" style="width:{% percent stats.security_forces_uniformed stats.witness_total%}%">&nbsp;</div>
   </div> 
 
   <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_security_forces_uniformed stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_security_forces_uniformed stats.total%}%</span>
+    <div class="percent-bar bar-2" style="width:{% percent stats.no_security_forces_uniformed stats.witness_total%}%">&nbsp;</div>
+    <span class="percent">{% percent stats.no_security_forces_uniformed stats.witness_total%}%</span>
     Cases where security forces were not uniformed
     <span class="number-of-cases">{{stats.no_security_forces_uniformed|intcomma}}</span>
   </div> 

@@ -274,25 +274,38 @@ def hdate_no_on(var):
     return ', date unknown'
   if (var == ''):
     return ', date unknown'
-  var = var.replace('/','-')
-  parts = var.split('-')
-  if (len(parts) > 3):
+
+  # 09/20/1988-10/05/1988
+  #      pattern => '%m/%d/%Y',
+  if '/' in var and '-' in var:
+    var = var.replace('/','-')
+    parts = var.split('-')
+    return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+
+  # 15-02-1992 - 15-03-1992    
+  #        pattern => '%d-%m-%Y',
+  if ' - ' in var:
+    var = var.replace(' ','')
+    parts = var.split('-')
+    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+
+  # 23-07-1991
+  #    pattern => '%d-%m-%Y',
+  if '-' in var:
+    parts = var.split('-')
     if int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    if int(parts[5]) < 1900:
-      parts[5] = int(parts[5]) + 1900
-    if (int(parts[0]) < 13):
-      return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ', ' +  str(parts[5])
-    else:
-      return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ', ' +  str(parts[5])
-  else:
-    if int(parts[2]) < 1900:
-      parts[2] = int(parts[2]) + 1900
-    if (int(parts[1]) > 12):
-      return monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2])
-    else:
-      return monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2])
-  return
+    return monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+
+  # 10/15/1992
+  #      pattern => '%m/%d/%Y',
+  if '/' in var:
+    parts = var.split('/')
+    if int(parts[0]) < 1900:
+      parts[0] = int(parts[0]) + 1900
+    return monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+
+  return ''
 
 
 

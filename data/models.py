@@ -240,7 +240,7 @@ class Villages(models.Model):
         indexes = [
             models.Index(fields=['tehsil_id']),
             models.Index(fields=['district_id']),
-            models.Index(fields=['id']),            
+            models.Index(fields=['id']),
         ]
 
 

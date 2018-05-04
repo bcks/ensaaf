@@ -350,7 +350,7 @@
       <p class="kicker">Abduction/arrest prior to killing/disappearance</p>
     </div>
     <div class="col-sm-6">
-      <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date != '' %}, {% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% hdate_no_on victim.victim_arrest_date %}{% endif %}</p>
+      <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date != '' %}, {% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% autoescape off %}{% hdate_no_on victim.victim_arrest_date %}{% endautoescape %}{% endif %}</p>
   
     </div>
     {% endif %}

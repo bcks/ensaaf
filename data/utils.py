@@ -62,6 +62,11 @@ def calculate_stats(all):
     witness_arrest_11 = all.filter(witness_arrest_11 ='1').count()
     witness_arrest_12 = all.filter(witness_arrest_12 ='1').count()
 
+    witness_total = witness_arrest_1 + witness_arrest_2 + witness_arrest_3 + \
+                    witness_arrest_4 + witness_arrest_5 + witness_arrest_6 + \
+                    witness_arrest_7 + witness_arrest_8 + witness_arrest_9 + \
+                    witness_arrest_10 + witness_arrest_11
+
     witness_arrest = {
       "No witness": witness_arrest_0,
       "Spouse": witness_arrest_1,
@@ -158,6 +163,7 @@ def calculate_stats(all):
       "so_body_disposal_6": so_body_disposal_6,
       
       "witness_arrest": witness_arrest,
+      "witness_total": witness_total,
       "witness_detention": witness_detention,
 
       "number_of_victims": number_of_victims,

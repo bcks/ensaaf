@@ -16,15 +16,11 @@
 
 {% if victims.all|length > 0 %}
 
- <div class="row">
-  <div class="col-sm-12 col-md m-2">   
-    <p>{{stats.total|intcomma}} documented case{{stats.total|pluralize}} in {{year}}:</p>
-  </div>
-</div>
-
 
 <div class="row">
   <div class="col-sm-5">
+      
+  <p>&nbsp;{{stats.total|intcomma}} documented case{{stats.total|pluralize}} in {{year}}:</p>
 
   {% regroup victims.all by district as district_list %}
 
@@ -85,14 +81,20 @@
   {% endfor %}
 
   
-  </div>      
-  <div class="col-sm-7">
+  </div>
+  
+  
+  <div class="col-sm-7 border-left">
+    
+    <p>Overview of cases in {{year}}:</p>
 
     {% include 'stats.html' %}
 
   </div>      
 </div>      
   
+
+
   
   {% else %}
 

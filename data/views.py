@@ -112,7 +112,7 @@ def get_tehsils(slug):
           tehsil['data_count'] = villages_data_count.aggregate(Sum('data_count'))\
                                                     .get('data_count__sum')
 
-      cache.set("tehsils" + slug, tehsils, 3600) # 60 * 60 seconds!
+      cache.set("tehsils" + slug, tehsils, 3600) # 60 * 60 seconds
       return tehsils
 
     except Exception as e:
