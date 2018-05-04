@@ -5,10 +5,65 @@ import operator
 def calculate_stats(all):
     total_disappeared = all.filter(victim_disappeared_killed='1').count()
     total_killed = all.filter(victim_disappeared_killed='2').count()
+
     male = all.filter(victim_sex='1').count()
     female = all.filter(victim_sex='2').count()
     married = all.filter(victim_marital_status='1').count()
     not_married = all.filter(victim_marital_status='0').count()
+
+    religion = {
+      "Sikhism": all.filter(victim_religion='1').count(),
+      "Hinduism": all.filter(victim_religion='2').count(),
+      "Islam": all.filter(victim_religion='3').count(),
+      "Christianity": all.filter(victim_religion='4').count(),
+      "No religion": all.filter(victim_religion='5').count(),
+      "Other": all.filter(victim_religion='7').count(),
+    }
+    religion = sorted(religion.items(), key=operator.itemgetter(1), reverse=True)
+
+    caste = {
+      "Jat": all.filter(victim_religion='1').count(),
+      "Ramgarhia": all.filter(victim_religion='2').count(),
+      "Dalit/SC/BC": all.filter(victim_religion='3').count(),
+      "Mazbi": all.filter(victim_religion='4').count(),
+      "Chamar": all.filter(victim_religion='5').count(),
+      "Khatri": all.filter(victim_religion='6').count(),
+      "Naee": all.filter(victim_religion='7').count(),
+      "Other": all.filter(victim_religion='9').count(),
+    }
+    caste = sorted(caste.items(), key=operator.itemgetter(1), reverse=True)
+
+    education = {
+      "No education": all.filter(victim_education='0').count(),
+      "Primary school/5th standard": all.filter(victim_education='1').count(),
+      "Middle school/8th standard": all.filter(victim_education='2').count(),
+      "High school/matriculated": all.filter(victim_education='3').count(),
+      "10 plus 1": all.filter(victim_education='4').count(),
+      "10 plus 2/senior secondary": all.filter(victim_education='5').count(),
+      "Some college, bachelors degree": all.filter(victim_education='6').count(),
+      "Masters/graduate diploma": all.filter(victim_education='7').count(),
+      "Vocational diploma": all.filter(victim_education='8').count(),
+      "Giyani": all.filter(victim_education='9').count(),
+    }
+    education = sorted(education.items(), key=operator.itemgetter(1), reverse=True)
+
+    employment = {
+      "Farmer/agriculture": all.filter(victim_employment_1='1').count(),
+      "Shopkeeper": all.filter(victim_employment_2='1').count(),
+      "Day labourer": all.filter(victim_employment_3='1').count(),
+      "Driver (bus/truck/car)": all.filter(victim_employment_4='1').count(),
+      "Mechanic": all.filter(victim_employment_5='1').count(),
+      "Student": all.filter(victim_employment_6='1').count(),
+      "Housewife": all.filter(victim_employment_7='1').count(),
+      "Carpenter": all.filter(victim_employment_8='1').count(),
+      "Unemployed": all.filter(victim_employment_9='1').count(),
+      "Other": all.filter(victim_employment_11='1').count(),
+    }
+    employment = sorted(employment.items(), key=operator.itemgetter(1), reverse=True)
+
+    age = all.values('victim_age').extra({'victim_age': "CAST(victim_age as UNSIGNED)"}).annotate(Count('victim_age')).order_by('victim_age')
+    children = all.values('victim_children').extra({'victim_children': "CAST(victim_children as UNSIGNED)"}).annotate(Count('victim_children')).order_by('victim_children')
+
     genuine_encounter = all.filter(genuine_encounters='1').count()
     not_genuine_encounter = all.filter(genuine_encounters='0').count()
     kesdhari = all.filter(victim_kesdhari='1').count()
@@ -124,6 +179,12 @@ def calculate_stats(all):
       "female": female,
       "married": married,
       "not_married": not_married,
+      "religion": religion,
+      "caste": caste,
+      "education": education,
+      "employment": employment,
+      "age": age,
+      "children": children,
       "genuine_encounter": genuine_encounter,
       "not_genuine_encounter": not_genuine_encounter,
       "kesdhari": kesdhari,
