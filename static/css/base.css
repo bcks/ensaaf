@@ -91,6 +91,8 @@ tr { vertical-align: top; }
 }
 
 
+
+
 .percent {
 	font-weight: bold;
 	margin: 0 .25em;
@@ -107,4 +109,7 @@ tr { vertical-align: top; }
 .bar-2 {
 	margin: 1px 0 3px 0;
 	background-color: #d30;
+}
+.stats-block .toggle {
+  display: none;
 }

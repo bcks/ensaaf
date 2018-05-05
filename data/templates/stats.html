@@ -2,599 +2,675 @@
 {% load profiletags %}
 
 
-<div class="row">
 
-  <div class="col-12">
-    <span class="percent">{% percent stats.total_killed stats.total%}%</span>
-    Killed
-    <span class="number-of-cases">{{stats.total_killed|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.total_killed stats.total%}%">&nbsp;</div>
-  </div> 
 
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.total_disappeared stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.total_disappeared stats.total%}%</span>
-    Disappeared
-    <span class="number-of-cases">{{stats.total_disappeared|intcomma}}</<span>
-  </div> 
-</div>
 
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.male stats.total%}%</span>
-    Male victims
-    <span class="number-of-cases">{{stats.male|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.male stats.total%}%">&nbsp;</div>
-  </div> 
-
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.female stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.female stats.total%}%</span>
-    Female victims
-    <span class="number-of-cases">{{stats.female|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.not_married stats.total%}%</span>
-    Not married
-    <span class="number-of-cases">{{stats.not_married|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.not_married stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.married stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.married stats.total%}%</span>
-    Married
-    <span class="number-of-cases">{{stats.married|intcomma}}</span>
-  </div> 
-
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.amritdhari stats.total%}%</span>
-    Amritdhari
-    <span class="number-of-cases">{{stats.amritdhari|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.amritdhari stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.kesdhari stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.kesdhari stats.total%}%</span>
-    Kesdhari
-    <span class="number-of-cases">{{stats.kesdhari|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-  <div class="col-12">
-
-    <p>Victim religion:</p>
-
-       {% for o in stats.religion %}
-       {%if o.1 %}
-       
-        <div>
-        <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-        </div>
-       
-       {% endif %}
-       {% endfor %}
-
-  </div>
-</div>
-    
-<hr>
-
-<div class="row">
-  <div class="col-12">
-
-    <p>Caste:</p>
-
-       {% for o in stats.caste %}
-       {%if o.1 %}
-       
-        <div>
-        <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-        </div>
-       
-       {% endif %}
-       {% endfor %}
-
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-  <div class="col-12">
-
-    <p>Education:</p>
-
-       {% for o in stats.education %}
-       {%if o.1 %}
-       
-        <div>
-        <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-        </div>
-       
-       {% endif %}
-       {% endfor %}
-
-  </div>
-</div>
-
-
-<hr>
-
-<div class="row">
-  <div class="col-12">
-
-    <p>Employment:</p>
-
-       {% for o in stats.employment %}
-       {%if o.1 %}
-       
-        <div>
-        <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-        </div>
-       
-       {% endif %}
-       {% endfor %}
-
-  </div>
-</div>
-
-
-<hr>
-
-
-{% comment %}
-
-<div class="row">
-  <div class="col-12">
-
-    <p>Victim age:</p>
-       {% for o in stats.age %}
-       {% if o.victim_age__count and o.victim_age %}
-       
-        <div>
-        <strong>{{o.victim_age}}</strong> age &nbsp; {% percent o.victim_age__count stats.total %}% &nbsp; <span class="number-of-cases">{{o.victim_age__count|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent o.victim_age__count stats.total %}%">&nbsp;</div>        
-        </div>
-       
-       {% endif %}
-       {% endfor %}
-
-  </div>
-</div>
-
-<hr>
-
-{% endcomment %}
-
-<div class="row">
-  <div class="col-12">
-
-    <p>If married, how many children did the victim have?</p>
-       {% for o in stats.children %}
-       {% if o.victim_children__count and o.victim_children and o.victim_children != "Don't know" %}
-       
-        <div>
-        <strong>{{o.victim_children}}</strong> chil{{ o.victim_children|pluralize:"d,dren" }} &nbsp; {% percent o.victim_children__count stats.married %}% &nbsp; <span class="number-of-cases">{{o.victim_children__count|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent o.victim_children__count stats.married %}%">&nbsp;</div>        
-        </div>
-       
-       {% endif %}
-       {% endfor %}
-
-  </div>
-</div>
-
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.prior_detentions stats.total%}%</span>
-    Previously detained
-    <span class="number-of-cases">{{stats.prior_detentions|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.prior_detentions stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_prior_detentions stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_prior_detentions stats.total%}%</span>
-    Not previously detained
-    <span class="number-of-cases">{{stats.no_prior_detentions|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.victim_arrest_status stats.total%}%</span>
-    Victim abducted or detained immediately before disappearance or killing
-    <span class="number-of-cases">{{stats.victim_arrest_status|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.victim_arrest_status stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_arrest_status stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_victim_arrest_status stats.total%}%</span>
-    Victim was not abducted or detained before killing or disappearence
-    <span class="number-of-cases">{{stats.no_victim_arrest_status|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-  <div class="col-12">
-    <span class="percent">{% percent stats.so_inform_witnesses stats.witness_total%}%</span>
-    Cases where security officials informed witnesses where they were taking the victim
-    <span class="number-of-cases">{{stats.so_inform_witnesses|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.so_inform_witnesses stats.witness_total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_so_inform_witnesses stats.witness_total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_so_inform_witnesses stats.witness_total%}%</span>
-    Cases where security officials did not inform witnesses where they were taking the victim
-    <span class="number-of-cases">{{stats.no_so_inform_witnesses|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.securityoff_id_known stats.total%}%</span>
-    Cases where the names of the security officials involved was known
-    <span class="number-of-cases">{{stats.securityoff_id_known|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.securityoff_id_known stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_securityoff_id_known stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_securityoff_id_known stats.total%}%</span>
-    Cases where the names of security forces involved was not known
-    <span class="number-of-cases">{{stats.no_securityoff_id_known|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.security_forces_uniformed stats.witness_total%}%</span>
-    Cases where security forces were uniformed
-    <span class="number-of-cases">{{stats.security_forces_uniformed|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.security_forces_uniformed stats.witness_total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_security_forces_uniformed stats.witness_total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_security_forces_uniformed stats.witness_total%}%</span>
-    Cases where security forces were not uniformed
-    <span class="number-of-cases">{{stats.no_security_forces_uniformed|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.judge_or_magistrate_status stats.total%}%</span>
-    Victim was presented before a judge or magistrate
-    <span class="number-of-cases">{{stats.judge_or_magistrate_status|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.judge_or_magistrate_status stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_judge_or_magistrate_status stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_judge_or_magistrate_status stats.total%}%</span>
-    Victim was not presented before a judge or magistrate
-    <span class="number-of-cases">{{stats.no_judge_or_magistrate_status|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.victim_detention_loc_known stats.total%}%</span>
-    Victim detention location known
-    <span class="number-of-cases">{{stats.victim_detention_loc_known|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.victim_detention_loc_known stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_detention_loc_known stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_victim_detention_loc_known stats.total%}%</span>
-    Victim detention location not known
-    <span class="number-of-cases">{{stats.no_victim_detention_loc_known|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.militant stats.total%}%</span>
-    Militant
-    <span class="number-of-cases">{{stats.militant|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.militant stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.not_militant stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.not_militant stats.total%}%</span>
-    Not militant
-    <span class="number-of-cases">{{stats.not_militant|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.militant_support stats.total%}%</span>
-    Provided militant support
-    <span class="number-of-cases">{{stats.militant_support|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.militant_support stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_militant_support stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_militant_support stats.total%}%</span>
-    Did not provide militant support
-    <span class="number-of-cases">{{stats.no_militant_support|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.victim_militant_support_voluntary stats.total%}%</span>
-    Victim supported militants voluntarily
-    <span class="number-of-cases">{{stats.victim_militant_support_voluntary|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.victim_militant_support_voluntary stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.victim_militant_support_forced stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.victim_militant_support_forced stats.total%}%</span>
-    Victim forced to support militants
-    <span class="number-of-cases">{{stats.victim_militant_support_forced|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.security_officials_apprchd stats.total%}%</span>
-    Family approached security officials
-    <span class="number-of-cases">{{stats.security_officials_apprchd|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.security_officials_apprchd stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_security_officials_apprchd stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_security_officials_apprchd stats.total%}%</span>
-    Family did not approach security officials
-    <span class="number-of-cases">{{stats.no_security_officials_apprchd|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.court_or_commission stats.total%}%</span>
-    Family approached court or commission
-    <span class="number-of-cases">{{stats.court_or_commission|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.court_or_commission stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_court_or_commission stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_court_or_commission stats.total%}%</span>
-    Family did not approach court or commission
-    <span class="number-of-cases">{{stats.no_court_or_commission|intcomma}}</span>
-  </div> 
-
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.so_return_body stats.total%}%</span>
-    Cases where security officials returned the victim’s body
-    <span class="number-of-cases">{{stats.so_return_body|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.so_return_body stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.no_so_return_body stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.no_so_return_body stats.total%}%</span>
-    Cases where security officials did not return the victim’s body
-    <span class="number-of-cases">{{stats.no_so_return_body|intcomma}}</span>
-  </div> 
-
-</div> 
-    
-<hr>
-
-<div class="row">
-
-  <div class="col-12">
-    <span class="percent">{% percent stats.genuine_encounter stats.total%}%</span>
-    Genuine encounters in family
-    <span class="number-of-cases">{{stats.genuine_encounter|intcomma}}</span>
-    <div class="percent-bar" style="width:{% percent stats.genuine_encounter stats.total%}%">&nbsp;</div>
-  </div> 
-
-  <div class="col-12">
-    <div class="percent-bar bar-2" style="width:{% percent stats.not_genuine_encounter stats.total%}%">&nbsp;</div>
-    <span class="percent">{% percent stats.not_genuine_encounter stats.total%}%</span>
-    No genuine encounters in family
-    <span class="number-of-cases">{{stats.not_genuine_encounter|intcomma}}</span>
-  </div> 
-
-</div> 
-
-<hr>
-
-<div class="row">
-  <div class="col-12">
-
-    <p>Witnesses to abduction/arrest:</p>
-
-       {% for o in stats.witness_arrest %}
-       {%if o.1 %}
-
-        <div>
-        <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-        </div>
-
-       {% endif %}
-       {% endfor %}
-
-  </div>
-</div>
-  
-    <hr>
-
-<div class="row">
-  <div class="col-12">
-
-    <p>Number of victims per family:</p>
-       {% for o in stats.number_of_victims %}
-       {% if o.number_of_victims %}
-       
-        <div>
-        <strong>{{o.number_of_victims}}</strong> victim{{ o.number_of_victims|pluralize }} &nbsp; {% percent o.number_of_victims__count stats.total %}% &nbsp; <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent o.number_of_victims__count stats.total %}%">&nbsp;</div>        
-        </div>
-       
-       {% endif %}
-       {% endfor %}
-
-  </div>
-</div>
-  
-    <hr>
-
-<div class="row">
-  <div class="col-12">
-
-      <p>Witness to detention:</p>
-
-       {% for o in stats.witness_detention %}
-       {%if o.1 %}
-
-        <div>
-        <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-        </div>
-
-       {% endif %}
-       {% endfor %}
-
-  </div>
-</div>
-  
-    <hr>
-
-<div class="row">
-  <div class="col-12">
-
-      <p>Body disposal by security forces:<p>
-
-      {%if stats.so_body_disposal_1 %}
-        <div>
-        <span class="percent">{% percent stats.so_body_disposal_1 stats.total %}% </span> Cremated the body &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_1|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent stats.so_body_disposal_1 stats.total %}%">&nbsp;</div>        
-        </div>
-      {%endif%}
-
-      {%if stats.so_body_disposal_2 %}
-        <div>
-        <span class="percent">{% percent stats.so_body_disposal_2 stats.total %}% </span> Dumped body in canal or river &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_2|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent stats.so_body_disposal_2 stats.total %}%">&nbsp;</div>        
-        </div>
-      {%endif%}
-
-      {%if stats.so_body_disposal_3 %}
-        <div>
-        <span class="percent">{% percent stats.so_body_disposal_3 stats.total %}% </span> Dumped body in well or drain &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_3|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent stats.so_body_disposal_3 stats.total %}%">&nbsp;</div>        
-        </div>
-      {%endif%}
-
-      {%if stats.so_body_disposal_4 %}
-        <div>
-        <span class="percent">{% percent stats.so_body_disposal_4 stats.total %}% </span> Buried the body &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_4|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent stats.so_body_disposal_4 stats.total %}%">&nbsp;</div>        
-        </div>
-      {%endif%}
-
-      {%if stats.so_body_disposal_6 %}
-        <div>
-        <span class="percent">{% percent stats.so_body_disposal_6 stats.total %}% </span> Other &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_6|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent stats.so_body_disposal_6 stats.total %}%">&nbsp;</div>        
-        </div>
-      {%endif%}
-      
-
+<div id="stats-profile" class="stats-block">
+  <p><strong><a href="#">Victim Profile »</a></strong></p>
+  <div class="toggle">
+ 
+    <div class="row">
+
+      <div class="col-12">
+        <span class="percent">{% percent stats.total_killed stats.total%}%</span>
+        Killed
+        <span class="number-of-cases">{{stats.total_killed|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent stats.total_killed stats.total%}%">&nbsp;</div>
+      </div> 
+
+      <div class="col-12">
+        <div class="percent-bar bar-2" style="width:{% percent stats.total_disappeared stats.total%}%">&nbsp;</div>
+        <span class="percent">{% percent stats.total_disappeared stats.total%}%</span>
+        Disappeared
+        <span class="number-of-cases">{{stats.total_disappeared|intcomma}}</<span>
+      </div> 
     </div>
+
+    <hr>
+
+    <div class="row">
+
+      <div class="col-12">
+        <span class="percent">{% percent stats.male stats.total%}%</span>
+        Male victims
+        <span class="number-of-cases">{{stats.male|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent stats.male stats.total%}%">&nbsp;</div>
+      </div> 
+
+
+      <div class="col-12">
+        <div class="percent-bar bar-2" style="width:{% percent stats.female stats.total%}%">&nbsp;</div>
+        <span class="percent">{% percent stats.female stats.total%}%</span>
+        Female victims
+        <span class="number-of-cases">{{stats.female|intcomma}}</span>
+      </div> 
+
+    </div> 
+    
+    <hr>
+    <div class="row">
+
+      <div class="col-12">
+        <span class="percent">{% percent stats.not_married stats.total%}%</span>
+        Not married
+        <span class="number-of-cases">{{stats.not_married|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent stats.not_married stats.total%}%">&nbsp;</div>
+      </div> 
+
+      <div class="col-12">
+        <div class="percent-bar bar-2" style="width:{% percent stats.married stats.total%}%">&nbsp;</div>
+        <span class="percent">{% percent stats.married stats.total%}%</span>
+        Married
+        <span class="number-of-cases">{{stats.married|intcomma}}</span>
+      </div> 
+
+
+    </div> 
+    
+    <hr>
+
+    <div class="row">
+
+      <div class="col-12">
+        <span class="percent">{% percent stats.amritdhari stats.total%}%</span>
+        Amritdhari
+        <span class="number-of-cases">{{stats.amritdhari|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent stats.amritdhari stats.total%}%">&nbsp;</div>
+      </div> 
+
+      <div class="col-12">
+        <div class="percent-bar bar-2" style="width:{% percent stats.kesdhari stats.total%}%">&nbsp;</div>
+        <span class="percent">{% percent stats.kesdhari stats.total%}%</span>
+        Kesdhari
+        <span class="number-of-cases">{{stats.kesdhari|intcomma}}</span>
+      </div> 
+
+    </div> 
+    
+    <hr>
+
+    <div class="row">
+      <div class="col-12">
+
+        <p>Victim religion:</p>
+
+           {% for o in stats.religion %}
+           {%if o.1 %}
+       
+            <div>
+            <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            </div>
+       
+           {% endif %}
+           {% endfor %}
+
+      </div>
+    </div>
+    
+    <hr>
+
+    <div class="row">
+      <div class="col-12">
+
+        <p>Caste:</p>
+
+           {% for o in stats.caste %}
+           {%if o.1 %}
+       
+            <div>
+            <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            </div>
+       
+           {% endif %}
+           {% endfor %}
+
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-12">
+
+        <p>Education:</p>
+
+           {% for o in stats.education %}
+           {%if o.1 %}
+       
+            <div>
+            <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            </div>
+       
+           {% endif %}
+           {% endfor %}
+
+      </div>
+    </div>
+
+
+    <hr>
+
+    <div class="row">
+      <div class="col-12">
+
+        <p>Employment:</p>
+
+           {% for o in stats.employment %}
+           {%if o.1 %}
+       
+            <div>
+            <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            </div>
+       
+           {% endif %}
+           {% endfor %}
+
+      </div>
+    </div>
+
+
+    <hr>
+
+
+    {% comment %}
+
+    <div class="row">
+      <div class="col-12">
+
+        <p>Victim age:</p>
+           {% for o in stats.age %}
+           {% if o.victim_age__count and o.victim_age %}
+       
+            <div>
+            <strong>{{o.victim_age}}</strong> age &nbsp; {% percent o.victim_age__count stats.total %}% &nbsp; <span class="number-of-cases">{{o.victim_age__count|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.victim_age__count stats.total %}%">&nbsp;</div>        
+            </div>
+       
+           {% endif %}
+           {% endfor %}
+
+      </div>
+    </div>
+
+    <hr>
+
+    {% endcomment %}
+
+    <div class="row">
+      <div class="col-12">
+
+        <p>If married, how many children did the victim have?</p>
+           {% for o in stats.children %}
+           {% if o.victim_children__count and o.victim_children and o.victim_children != "Don't know" %}
+       
+            <div>
+            <strong>{{o.victim_children}}</strong> chil{{ o.victim_children|pluralize:"d,dren" }} &nbsp; {% percent o.victim_children__count stats.married %}% &nbsp; <span class="number-of-cases">{{o.victim_children__count|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.victim_children__count stats.married %}%">&nbsp;</div>        
+            </div>
+       
+           {% endif %}
+           {% endfor %}
+
+      </div>
+    </div>
+
+</div>
+</div>
+
+
+<hr>
+
+<div id="stats-detention" class="stats-block">
+  <p><strong><a href="#">Abduction, Detention, Unlawful Killing, or Disappearance »</a></strong></p>
+  <div class="toggle">
+
+
+      <div class="row">
+
+        <div class="col-12">
+          <span class="percent">{% percent stats.prior_detentions stats.total%}%</span>
+          Previously detained
+          <span class="number-of-cases">{{stats.prior_detentions|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.prior_detentions stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_prior_detentions stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_prior_detentions stats.total%}%</span>
+          Not previously detained
+          <span class="number-of-cases">{{stats.no_prior_detentions|intcomma}}</span>
+        </div> 
+
+      </div> 
+    
+      <hr>
+
+      <div class="row">
+
+        <div class="col-12">
+          <span class="percent">{% percent stats.victim_arrest_status stats.total%}%</span>
+          Victim abducted or detained immediately before disappearance or killing
+          <span class="number-of-cases">{{stats.victim_arrest_status|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.victim_arrest_status stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_arrest_status stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_victim_arrest_status stats.total%}%</span>
+          Victim was not abducted or detained before killing or disappearence
+          <span class="number-of-cases">{{stats.no_victim_arrest_status|intcomma}}</span>
+        </div> 
+
+      </div> 
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+          <span class="percent">{% percent stats.so_inform_witnesses stats.witness_total%}%</span>
+          Cases where security officials informed witnesses where they were taking the victim
+          <span class="number-of-cases">{{stats.so_inform_witnesses|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.so_inform_witnesses stats.witness_total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_so_inform_witnesses stats.witness_total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_so_inform_witnesses stats.witness_total%}%</span>
+          Cases where security officials did not inform witnesses where they were taking the victim
+          <span class="number-of-cases">{{stats.no_so_inform_witnesses|intcomma}}</span>
+        </div> 
+
+      </div> 
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+          <p>Witnesses to abduction/arrest:</p>
+
+             {% for o in stats.witness_arrest %}
+             {%if o.1 %}
+
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+            <p>Witness to detention:</p>
+
+             {% for o in stats.witness_detention %}
+             {%if o.1 %}
+
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+      
+      <hr>
+
+      <div class="row">
+
+        <div class="col-12">
+          <span class="percent">{% percent stats.judge_or_magistrate_status stats.total%}%</span>
+          Victim was presented before a judge or magistrate
+          <span class="number-of-cases">{{stats.judge_or_magistrate_status|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.judge_or_magistrate_status stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_judge_or_magistrate_status stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_judge_or_magistrate_status stats.total%}%</span>
+          Victim was not presented before a judge or magistrate
+          <span class="number-of-cases">{{stats.no_judge_or_magistrate_status|intcomma}}</span>
+        </div> 
+
+      </div> 
+
+  
+      <hr>
+
+      <div class="row">
+
+        <div class="col-12">
+          <span class="percent">{% percent stats.victim_detention_loc_known stats.total%}%</span>
+          Victim detention location known
+          <span class="number-of-cases">{{stats.victim_detention_loc_known|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.victim_detention_loc_known stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_detention_loc_known stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_victim_detention_loc_known stats.total%}%</span>
+          Victim detention location not known
+          <span class="number-of-cases">{{stats.no_victim_detention_loc_known|intcomma}}</span>
+        </div> 
+
+      </div> 
+
+        
   </div>
+</div>
+
+<hr>
+
+
+
+<div id="stats-security" class="stats-block">
+  <p><strong><a href="#">Security Forces Implicated »</a></strong></p>
+  <div class="toggle">
+
+
+      <div class="row">
+
+        <div class="col-12">
+          <span class="percent">{% percent stats.securityoff_id_known stats.total%}%</span>
+          Cases where the names of the security officials involved was known
+          <span class="number-of-cases">{{stats.securityoff_id_known|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.securityoff_id_known stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_securityoff_id_known stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_securityoff_id_known stats.total%}%</span>
+          Cases where the names of security forces involved was not known
+          <span class="number-of-cases">{{stats.no_securityoff_id_known|intcomma}}</span>
+        </div> 
+
+      </div> 
+    
+      <hr>
+
+      <div class="row">
+
+        <div class="col-12">
+          <span class="percent">{% percent stats.security_forces_uniformed stats.witness_total%}%</span>
+          Cases where security forces were uniformed
+          <span class="number-of-cases">{{stats.security_forces_uniformed|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.security_forces_uniformed stats.witness_total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_security_forces_uniformed stats.witness_total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_security_forces_uniformed stats.witness_total%}%</span>
+          Cases where security forces were not uniformed
+          <span class="number-of-cases">{{stats.no_security_forces_uniformed|intcomma}}</span>
+        </div> 
+
+      </div> 
+
+
+
+  </div>
+</div>
+
+
+<hr>
+
+<div id="stats-militancy" class="stats-block">
+  <p><strong><a href="#">The Militancy & Prior Abuse »</a></strong></p>
+  <div class="toggle">
+
+        <div class="row">
+
+          <div class="col-12">
+            <span class="percent">{% percent stats.militant stats.total%}%</span>
+            Militant
+            <span class="number-of-cases">{{stats.militant|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent stats.militant stats.total%}%">&nbsp;</div>
+          </div> 
+
+          <div class="col-12">
+            <div class="percent-bar bar-2" style="width:{% percent stats.not_militant stats.total%}%">&nbsp;</div>
+            <span class="percent">{% percent stats.not_militant stats.total%}%</span>
+            Not militant
+            <span class="number-of-cases">{{stats.not_militant|intcomma}}</span>
+          </div> 
+
+        </div> 
+    
+        <hr>
+
+        <div class="row">
+
+          <div class="col-12">
+            <span class="percent">{% percent stats.militant_support stats.total%}%</span>
+            Provided militant support
+            <span class="number-of-cases">{{stats.militant_support|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent stats.militant_support stats.total%}%">&nbsp;</div>
+          </div> 
+
+          <div class="col-12">
+            <div class="percent-bar bar-2" style="width:{% percent stats.no_militant_support stats.total%}%">&nbsp;</div>
+            <span class="percent">{% percent stats.no_militant_support stats.total%}%</span>
+            Did not provide militant support
+            <span class="number-of-cases">{{stats.no_militant_support|intcomma}}</span>
+          </div> 
+
+        </div> 
+    
+        <hr>
+
+        <div class="row">
+
+          <div class="col-12">
+            <span class="percent">{% percent stats.victim_militant_support_voluntary stats.total%}%</span>
+            Victim supported militants voluntarily
+            <span class="number-of-cases">{{stats.victim_militant_support_voluntary|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent stats.victim_militant_support_voluntary stats.total%}%">&nbsp;</div>
+          </div> 
+
+          <div class="col-12">
+            <div class="percent-bar bar-2" style="width:{% percent stats.victim_militant_support_forced stats.total%}%">&nbsp;</div>
+            <span class="percent">{% percent stats.victim_militant_support_forced stats.total%}%</span>
+            Victim forced to support militants
+            <span class="number-of-cases">{{stats.victim_militant_support_forced|intcomma}}</span>
+          </div> 
+
+        </div> 
+    
+  </div>
+</div>
+    
+    
+<hr>
+
+
+
+<div id="stats-disposal" class="stats-block">
+  <p><strong><a href="#">Disposal of Body »</a></strong></p>
+  <div class="toggle">
+
+
+      <div class="row">
+
+        <div class="col-12">
+          <span class="percent">{% percent stats.so_return_body stats.total%}%</span>
+          Cases where security officials returned the victim’s body
+          <span class="number-of-cases">{{stats.so_return_body|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.so_return_body stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_so_return_body stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_so_return_body stats.total%}%</span>
+          Cases where security officials did not return the victim’s body
+          <span class="number-of-cases">{{stats.no_so_return_body|intcomma}}</span>
+        </div> 
+
+      </div> 
+    
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+            <p>Body disposal by security forces:<p>
+
+            {%if stats.so_body_disposal_1 %}
+              <div>
+              <span class="percent">{% percent stats.so_body_disposal_1 stats.total %}% </span> Cremated the body &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent stats.so_body_disposal_1 stats.total %}%">&nbsp;</div>        
+              </div>
+            {%endif%}
+
+            {%if stats.so_body_disposal_2 %}
+              <div>
+              <span class="percent">{% percent stats.so_body_disposal_2 stats.total %}% </span> Dumped body in canal or river &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_2|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent stats.so_body_disposal_2 stats.total %}%">&nbsp;</div>        
+              </div>
+            {%endif%}
+
+            {%if stats.so_body_disposal_3 %}
+              <div>
+              <span class="percent">{% percent stats.so_body_disposal_3 stats.total %}% </span> Dumped body in well or drain &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_3|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent stats.so_body_disposal_3 stats.total %}%">&nbsp;</div>        
+              </div>
+            {%endif%}
+
+            {%if stats.so_body_disposal_4 %}
+              <div>
+              <span class="percent">{% percent stats.so_body_disposal_4 stats.total %}% </span> Buried the body &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_4|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent stats.so_body_disposal_4 stats.total %}%">&nbsp;</div>        
+              </div>
+            {%endif%}
+
+            {%if stats.so_body_disposal_6 %}
+              <div>
+              <span class="percent">{% percent stats.so_body_disposal_6 stats.total %}% </span> Other &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_6|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent stats.so_body_disposal_6 stats.total %}%">&nbsp;</div>        
+              </div>
+            {%endif%}      
+
+          </div>
+        </div>
+
+
+  </div>
+</div>
+
+<hr>
+
+
+
+<div id="stats-advocacy" class="stats-block">
+  <p><strong><a href="#">Advocacy & Impact »</a></strong></p>
+  <div class="toggle">
+
+
+
+      <div class="row">
+
+        <div class="col-12">
+          <span class="percent">{% percent stats.security_officials_apprchd stats.total%}%</span>
+          Family approached security officials
+          <span class="number-of-cases">{{stats.security_officials_apprchd|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.security_officials_apprchd stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_security_officials_apprchd stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_security_officials_apprchd stats.total%}%</span>
+          Family did not approach security officials
+          <span class="number-of-cases">{{stats.no_security_officials_apprchd|intcomma}}</span>
+        </div> 
+
+      </div> 
+    
+      <hr>
+
+      <div class="row">
+
+        <div class="col-12">
+          <span class="percent">{% percent stats.court_or_commission stats.total%}%</span>
+          Family approached court or commission
+          <span class="number-of-cases">{{stats.court_or_commission|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.court_or_commission stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_court_or_commission stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_court_or_commission stats.total%}%</span>
+          Family did not approach court or commission
+          <span class="number-of-cases">{{stats.no_court_or_commission|intcomma}}</span>
+        </div> 
+
+
+      </div> 
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+          <p>Number of victims per family:</p>
+             {% for o in stats.number_of_victims %}
+             {% if o.number_of_victims %}
+       
+              <div>
+              <strong>{{o.number_of_victims}}</strong> victim{{ o.number_of_victims|pluralize }} &nbsp; {% percent o.number_of_victims__count stats.total %}% &nbsp; <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.number_of_victims__count stats.total %}%">&nbsp;</div>        
+              </div>
+       
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
+
+
+
+
+  </div>
+</div>
+
+    
+<hr>
+
+
+<div id="stats-related" class="stats-block">
+  <p><strong><a href="#">Related Victims »</a></strong></p>
+  <div class="toggle">
+
+      <div class="row">
+
+        <div class="col-12">
+          <span class="percent">{% percent stats.genuine_encounter stats.total%}%</span>
+          Genuine encounters in family
+          <span class="number-of-cases">{{stats.genuine_encounter|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.genuine_encounter stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.not_genuine_encounter stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.not_genuine_encounter stats.total%}%</span>
+          No genuine encounters in family
+          <span class="number-of-cases">{{stats.not_genuine_encounter|intcomma}}</span>
+        </div> 
+
+      </div> 
+
+  </div>
+</div>
