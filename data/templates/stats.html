@@ -196,13 +196,13 @@
 <div class="row">
   <div class="col-12">
 
-    <p>How many children did the victim have?:</p>
+    <p>If married, how many children did the victim have?</p>
        {% for o in stats.children %}
        {% if o.victim_children__count and o.victim_children and o.victim_children != "Don't know" %}
        
         <div>
-        <strong>{{o.victim_children}}</strong> chil{{ o.victim_children|pluralize:"d,dren" }} &nbsp; {% percent o.victim_children__count stats.total %}% &nbsp; <span class="number-of-cases">{{o.victim_children__count|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent o.victim_children__count stats.total %}%">&nbsp;</div>        
+        <strong>{{o.victim_children}}</strong> chil{{ o.victim_children|pluralize:"d,dren" }} &nbsp; {% percent o.victim_children__count stats.married %}% &nbsp; <span class="number-of-cases">{{o.victim_children__count|intcomma}}</span>
+        <div class="percent-bar" style="width:{% percent o.victim_children__count stats.married %}%">&nbsp;</div>        
         </div>
        
        {% endif %}
