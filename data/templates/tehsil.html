@@ -17,13 +17,7 @@
 
 
 <div class="row">
-  <div class="col-sm-7">
-
-    <p>{{stats.total|intcomma}} documented cases in {{villages.all.0.tehsil}} Tehsil</p>
-    {% include 'stats.html' %}
-
-  </div>
-  <div class="col-sm-5 border-left">
+  <div class="col-sm-6">
     
     <p>Villages with documented cases:</p>
 
@@ -36,6 +30,12 @@
     </div>
       
     {% endfor %}
+
+  </div>
+  <div class="col-sm-6 border-left">
+
+    <p>{{stats.total|intcomma}} documented cases in {{villages.all.0.tehsil}} Tehsil</p>
+    {% include 'stats.html' %}
 
   </div>
 </div>
