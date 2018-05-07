@@ -618,7 +618,6 @@
   <div class="toggle">
 
 
-
       <div class="row">
 
         <div class="col-12">
@@ -636,6 +635,27 @@
         </div> 
 
       </div> 
+      
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+              <p><strong>Security officials approached</strong></p>
+
+             {% for o in stats.so_approached_type %}
+             {%if o.1 %}
+       
+              <div>
+              <span class="percent">{% percent o.1 stats.security_officials_apprchd %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.security_officials_apprchd %}%">&nbsp;</div>        
+              </div>
+       
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
     
       <hr>
 
@@ -663,6 +683,72 @@
       <div class="row">
         <div class="col-12">
 
+              <p><strong>Reason the family did not pursue any kind of action</strong></p>
+
+             {% for o in stats.no_action_pursued_reason %}
+             {%if o.1 %}
+       
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+       
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
+      <hr>
+
+
+      <div class="row">
+        <div class="col-12">
+
+              <p><strong>Government responses desired</strong></p>
+
+             {% for o in stats.govnt_response_desired %}
+             {%if o.1 %}
+       
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+       
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
+      <hr>
+      
+
+      <div class="row">
+        <div class="col-12">
+
+              <p><strong>Effect on victim’s family</strong></p>
+
+             {% for o in stats.family_effects %}
+             {%if o.1 %}
+       
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+       
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
+      <hr>
+      
+      
+      <div class="row">
+        <div class="col-12">
+
           <p><strong>Number of victims per family</strong></p>
              {% for o in stats.number_of_victims %}
              {% if o.number_of_victims %}
@@ -677,9 +763,6 @@
 
         </div>
       </div>
-
-
-
 
 
   </div>

@@ -89,6 +89,57 @@ def calculate_stats(all):
     employment = sorted(employment.items(), key=operator.itemgetter(1), reverse=True)
 
 
+    no_action_pursued_reason = {
+      "Not Applicable": all.filter(no_action_pursued_reason_0='1').count(),
+      "Afraid of retaliation": all.filter(no_action_pursued_reason_1='1').count(),
+      "Believed it would have been ineffective": all.filter(no_action_pursued_reason_2='1').count(),
+      "Didn’t know what to do": all.filter(no_action_pursued_reason_3='1').count(),
+      "Couldn’t Afford": all.filter(no_action_pursued_reason_4='1').count(),
+      "Other": all.filter(no_action_pursued_reason_6='1').count(),
+    }
+    no_action_pursued_reason = sorted(no_action_pursued_reason.items(), key=operator.itemgetter(1), reverse=True)
+
+
+    so_approached_type = {
+      "Same as officials involved in abduction/killing": all.filter(so_approached_type_1='1').count(),
+      "Punjab Police": all.filter(so_approached_type_2='1').count(),
+      "BSF": all.filter(so_approached_type_3='1').count(),
+      "CRPF": all.filter(so_approached_type_4='1').count(),
+      "Army": all.filter(so_approached_type_5='1').count(),
+      "CIA": all.filter(so_approached_type_6='1').count(),
+      "Black Cat": all.filter(so_approached_type_7='1').count(),
+      "Other": all.filter(so_approached_type_9='1').count(),
+    }
+    so_approached_type = sorted(so_approached_type.items(), key=operator.itemgetter(1), reverse=True)
+
+    family_effects = {
+      "No drastic action": all.filter(family_effects_1='1').count(),
+      "Someone ran away": all.filter(family_effects_2='1').count(),
+      "Militant activity": all.filter(family_effects_3='1').count(),
+      "Dropped out of school": all.filter(family_effects_4='1').count(),
+      "Alcohol/Drug Abuse": all.filter(family_effects_5='1').count(),
+      "Suicide": all.filter(family_effects_6='1').count(),
+      "Family Abandoned Home": all.filter(family_effects_7='1').count(),
+      "Someone died due to depression/shock": all.filter(family_effects_8='1').count(),
+      "Mentally disturbed": all.filter(family_effects_9='1').count(),
+      "Significant loss of income / became impoverished": all.filter(family_effects_12='1').count(),
+      "Other": all.filter(family_effects_11='1').count(),
+    }
+    family_effects = sorted(family_effects.items(), key=operator.itemgetter(1), reverse=True)
+
+    govnt_response_desired = {
+      "Monetary compensation to family": all.filter(govnt_response_desired_1='1').count(),
+      "Rehabilitation services to family members": all.filter(govnt_response_desired_2='1').count(),
+      "Public acknowledgement of wrongful deaths": all.filter(govnt_response_desired_3='1').count(),
+      "Criminal Sanctions against those responsible": all.filter(govnt_response_desired_4='1').count(),
+      "Employment": all.filter(govnt_response_desired_5='1').count(),
+      "Truth commission": all.filter(govnt_response_desired_6='1').count(),
+      "Investigations into abuses": all.filter(govnt_response_desired_7='1').count(),
+      "Memorial for victims": all.filter(govnt_response_desired_8='1').count(),
+      "Desire nothing from government": all.filter(govnt_response_desired_9='1').count(),
+      "Other": all.filter(govnt_response_desired_10='1').count(),
+    }
+    govnt_response_desired = sorted(govnt_response_desired.items(), key=operator.itemgetter(1), reverse=True)
 
 
     children = all.values('victim_children').extra({'victim_children': "CAST(victim_children as UNSIGNED)"}).annotate(Count('victim_children')).order_by('victim_children')
@@ -276,6 +327,10 @@ def calculate_stats(all):
       "no_securityoff_id_known": no_securityoff_id_known,
 
       "so_body_disposal": so_body_disposal,
+      "no_action_pursued_reason": no_action_pursued_reason,
+      "so_approached_type": so_approached_type,
+      "family_effects": family_effects,
+      "govnt_response_desired": govnt_response_desired,
       
       "witness_arrest": witness_arrest,
       "witness_total": witness_total,
