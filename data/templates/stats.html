@@ -98,8 +98,8 @@
            {%if o.1 %}
        
             <div>
-            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
    
            {% endif %}
@@ -120,8 +120,8 @@
            {%if o.1 %}
        
             <div>
-            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
            {% endif %}
@@ -141,8 +141,8 @@
            {%if o.1 %}
        
             <div>
-            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
            {% endif %}
@@ -163,8 +163,8 @@
            {%if o.1 %}
        
             <div>
-            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
            {% endif %}
@@ -185,8 +185,8 @@
            {%if o.1 %}
        
             <div>
-            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
            {% endif %}
@@ -205,8 +205,8 @@
            {% if o.victim_children__count and o.victim_children and o.victim_children != "Don't know" %}
        
             <div>
-            <div class="percent-bar" style="width:{% percent o.victim_children__count stats.married %}%">&nbsp;</div>        
             <span class="percent">{% percent o.victim_children__count stats.married %}%</span> {{o.victim_children}} chil{{ o.victim_children|pluralize:"d,dren" }} <span class="number-of-cases">{{o.victim_children__count|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.victim_children__count stats.married %}%">&nbsp;</div>        
             </div>
        
            {% endif %}
@@ -294,8 +294,8 @@
              {%if o.1 %}
 
               <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
               </div>
 
              {% endif %}
@@ -315,8 +315,8 @@
              {%if o.1 %}
 
               <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
               </div>
 
              {% endif %}
@@ -344,7 +344,6 @@
         </div> 
 
       </div> 
-
   
       <hr>
 
@@ -369,6 +368,8 @@
         
   </div>
 </div>
+
+
 
 <hr>
 
@@ -417,6 +418,50 @@
 
       </div> 
 
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+            <p><strong>What types of security forces were involved in the arrest/abduction?</strong></p>
+
+             {% for o in stats.arrest_security_type %}
+             {%if o.1 %}
+
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
+
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+            <p><strong>What type(s) of security forces were involved in the killing?</strong></p>
+
+             {% for o in stats.killing_securityforcestype %}
+             {%if o.1 %}
+
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
 
 
   </div>
@@ -458,8 +503,8 @@
                {%if o.1 %}
        
                 <div>
-                <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
                 <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+                <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
                 </div>
        
                {% endif %}
@@ -549,8 +594,8 @@
            {%if o.1 %}
        
             <div>
-            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
            {% endif %}
@@ -623,8 +668,8 @@
              {% if o.number_of_victims %}
        
               <div>
+              <span class="percent">{% percent o.number_of_victims__count stats.total %}%</span> {{o.number_of_victims}} victim{{ o.number_of_victims|pluralize }} <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.number_of_victims__count stats.total %}%">&nbsp;</div>        
-               <span class="percent">{% percent o.number_of_victims__count stats.total %}%</span> {{o.number_of_victims}} victim{{ o.number_of_victims|pluralize }} <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
               </div>
        
              {% endif %}

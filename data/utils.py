@@ -201,6 +201,29 @@ def calculate_stats(all):
       "Other": witness_detention_14,
     }
     witness_detention = sorted(witness_detention.items(), key=operator.itemgetter(1), reverse=True)
+
+    arrest_security_type = {
+      "Punjab Police": all.filter(arrest_security_type_1='1').count(),
+      "BSF": all.filter(arrest_security_type_2='1').count(),
+      "CRPF": all.filter(arrest_security_type_3='1').count(),
+      "Army": all.filter(arrest_security_type_4='1').count(),
+      "CIA": all.filter(arrest_security_type_5='1').count(),
+      "Black cat": all.filter(arrest_security_type_6='1').count(),
+      "Other": all.filter(arrest_security_type_8='1').count(),
+    }
+    arrest_security_type = sorted(arrest_security_type.items(), key=operator.itemgetter(1), reverse=True)
+
+    killing_securityforcestype = {
+      "Punjab police": all.filter(killing_securityforcestype_1='1').count(),
+      "BSF": all.filter(killing_securityforcestype_2='1').count(),
+      "CRPF": all.filter(killing_securityforcestype_3='1').count(),
+      "Army": all.filter(killing_securityforcestype_4='1').count(),
+      "CIA": all.filter(killing_securityforcestype_5='1').count(),
+      "Black cat": all.filter(killing_securityforcestype_6='1').count(),
+      "Other": all.filter(killing_securityforcestype_8='1').count(),
+    }
+    killing_securityforcestype = sorted(killing_securityforcestype.items(), key=operator.itemgetter(1), reverse=True)
+    
     
     total = all.values('record_id').count()
 
@@ -257,6 +280,8 @@ def calculate_stats(all):
       "witness_arrest": witness_arrest,
       "witness_total": witness_total,
       "witness_detention": witness_detention,
+      "killing_securityforcestype": killing_securityforcestype,
+      "arrest_security_type": arrest_security_type,
 
       "number_of_victims": number_of_victims,
       }
