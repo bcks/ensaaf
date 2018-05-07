@@ -621,6 +621,29 @@
       <div class="row">
 
         <div class="col-12">
+          <span class="percent">{% percent stats.court_or_commission stats.total%}%</span>
+          Family approached court or commission
+          <span class="number-of-cases">{{stats.court_or_commission|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.court_or_commission stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div class="col-12">
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_court_or_commission stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_court_or_commission stats.total%}%</span>
+          Family did not approach court or commission
+          <span class="number-of-cases">{{stats.no_court_or_commission|intcomma}}</span>
+        </div> 
+
+
+      </div> 
+
+
+      <hr>
+      
+      
+      <div class="row">
+
+        <div class="col-12">
           <span class="percent">{% percent stats.security_officials_apprchd stats.total%}%</span>
           Family approached security officials
           <span class="number-of-cases">{{stats.security_officials_apprchd|intcomma}}</span>
@@ -659,26 +682,6 @@
     
       <hr>
 
-      <div class="row">
-
-        <div class="col-12">
-          <span class="percent">{% percent stats.court_or_commission stats.total%}%</span>
-          Family approached court or commission
-          <span class="number-of-cases">{{stats.court_or_commission|intcomma}}</span>
-          <div class="percent-bar" style="width:{% percent stats.court_or_commission stats.total%}%">&nbsp;</div>
-        </div> 
-
-        <div class="col-12">
-          <div class="percent-bar bar-2" style="width:{% percent stats.no_court_or_commission stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_court_or_commission stats.total%}%</span>
-          Family did not approach court or commission
-          <span class="number-of-cases">{{stats.no_court_or_commission|intcomma}}</span>
-        </div> 
-
-
-      </div> 
-
-      <hr>
 
       <div class="row">
         <div class="col-12">
