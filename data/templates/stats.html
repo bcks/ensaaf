@@ -175,19 +175,17 @@
 
     <hr>
 
-
-    {% comment %}
-
     <div class="row">
       <div class="col-12">
 
         <p>Victim age:</p>
-           {% for o in stats.age %}
-           {% if o.victim_age__count and o.victim_age %}
+
+           {% for o in stats.age_range %}
+           {%if o.1 %}
        
             <div>
-            <strong>{{o.victim_age}}</strong> age &nbsp; {% percent o.victim_age__count stats.total %}% &nbsp; <span class="number-of-cases">{{o.victim_age__count|intcomma}}</span>
-            <div class="percent-bar" style="width:{% percent o.victim_age__count stats.total %}%">&nbsp;</div>        
+            <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
            {% endif %}
@@ -197,8 +195,6 @@
     </div>
 
     <hr>
-
-    {% endcomment %}
 
     <div class="row">
       <div class="col-12">

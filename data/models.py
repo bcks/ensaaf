@@ -21,6 +21,7 @@ class Data(models.Model):
     respondent_information_complete = models.IntegerField()
     victim_sex = models.IntegerField(blank=True, null=True)
     victim_age = models.CharField(max_length=64)
+    victim_age_averaged = models.IntegerField(db_column='victim_age_averaged', blank=True, null=True)
     victim_address_int_loc = models.IntegerField(blank=True, null=True)
     victim_address_other = models.CharField(max_length=256, blank=True, null=True)
     victim_education = models.IntegerField()
