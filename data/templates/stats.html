@@ -92,16 +92,16 @@
     <div class="row">
       <div class="col-12">
 
-        <p>Victim religion:</p>
+          <p><strong>Victim religion</strong></p>
 
            {% for o in stats.religion %}
            {%if o.1 %}
        
             <div>
-            <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
             </div>
-       
+   
            {% endif %}
            {% endfor %}
 
@@ -113,14 +113,15 @@
     <div class="row">
       <div class="col-12">
 
-        <p>Caste:</p>
+
+          <p><strong>Caste</strong></p>
 
            {% for o in stats.caste %}
            {%if o.1 %}
        
             <div>
-            <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
             </div>
        
            {% endif %}
@@ -134,14 +135,14 @@
     <div class="row">
       <div class="col-12">
 
-        <p>Education:</p>
+          <p><strong>Education</strong></p>
 
            {% for o in stats.education %}
            {%if o.1 %}
        
             <div>
-            <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
             </div>
        
            {% endif %}
@@ -156,14 +157,14 @@
     <div class="row">
       <div class="col-12">
 
-        <p>Employment:</p>
+            <p><strong>Employment</strong></p>
 
            {% for o in stats.employment %}
            {%if o.1 %}
        
             <div>
-            <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
             </div>
        
            {% endif %}
@@ -178,14 +179,14 @@
     <div class="row">
       <div class="col-12">
 
-        <p>Victim age:</p>
+        <p><strong>Victim age</strong></p>
 
            {% for o in stats.age_range %}
            {%if o.1 %}
        
             <div>
-            <strong>{{o.0}}</strong>, {% percent o.1 stats.total %}% &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
             </div>
        
            {% endif %}
@@ -199,13 +200,13 @@
     <div class="row">
       <div class="col-12">
 
-        <p>If married, how many children did the victim have?</p>
+        <p><strong>If married, how many children did the victim have?</strong></p>
            {% for o in stats.children %}
            {% if o.victim_children__count and o.victim_children and o.victim_children != "Don't know" %}
        
             <div>
-            <strong>{{o.victim_children}}</strong> chil{{ o.victim_children|pluralize:"d,dren" }} &nbsp; {% percent o.victim_children__count stats.married %}% &nbsp; <span class="number-of-cases">{{o.victim_children__count|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent o.victim_children__count stats.married %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.victim_children__count stats.married %}%</span> {{o.victim_children}} chil{{ o.victim_children|pluralize:"d,dren" }} <span class="number-of-cases">{{o.victim_children__count|intcomma}}</span>
             </div>
        
            {% endif %}
@@ -287,14 +288,14 @@
       <div class="row">
         <div class="col-12">
 
-          <p>Witnesses to abduction/arrest:</p>
+          <p><strong>Witnesses to abduction/arrest</strong></p>
 
              {% for o in stats.witness_arrest %}
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
               </div>
 
              {% endif %}
@@ -308,14 +309,14 @@
       <div class="row">
         <div class="col-12">
 
-            <p>Witness to detention:</p>
+            <p><strong>Witness to detention</strong></p>
 
              {% for o in stats.witness_detention %}
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} &nbsp; <span class="number-of-cases">{{o.1|intcomma}}</span>
               </div>
 
              {% endif %}
@@ -449,7 +450,27 @@
         <hr>
 
         <div class="row">
+          <div class="col-12">
 
+            <p><strong>Why did the victim join the militancy?</strong></p>
+
+               {% for o in stats.victim_militant_reason %}
+               {%if o.1 %}
+       
+                <div>
+                <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+                <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+                </div>
+       
+               {% endif %}
+               {% endfor %}
+
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row">
           <div class="col-12">
             <span class="percent">{% percent stats.militant_support stats.total%}%</span>
             Provided militant support
@@ -522,42 +543,19 @@
       <div class="row">
         <div class="col-12">
 
-            <p>Body disposal by security forces:<p>
+            <p><strong>Body disposal by security forces</strong><p>
 
-            {%if stats.so_body_disposal_1 %}
-              <div>
-              <span class="percent">{% percent stats.so_body_disposal_1 stats.total %}% </span> Cremated the body &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_1|intcomma}}</span>
-              <div class="percent-bar" style="width:{% percent stats.so_body_disposal_1 stats.total %}%">&nbsp;</div>        
-              </div>
-            {%endif%}
+           {% for o in stats.so_body_disposal %}
+           {%if o.1 %}
+       
+            <div>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            </div>
+       
+           {% endif %}
+           {% endfor %}
 
-            {%if stats.so_body_disposal_2 %}
-              <div>
-              <span class="percent">{% percent stats.so_body_disposal_2 stats.total %}% </span> Dumped body in canal or river &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_2|intcomma}}</span>
-              <div class="percent-bar" style="width:{% percent stats.so_body_disposal_2 stats.total %}%">&nbsp;</div>        
-              </div>
-            {%endif%}
-
-            {%if stats.so_body_disposal_3 %}
-              <div>
-              <span class="percent">{% percent stats.so_body_disposal_3 stats.total %}% </span> Dumped body in well or drain &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_3|intcomma}}</span>
-              <div class="percent-bar" style="width:{% percent stats.so_body_disposal_3 stats.total %}%">&nbsp;</div>        
-              </div>
-            {%endif%}
-
-            {%if stats.so_body_disposal_4 %}
-              <div>
-              <span class="percent">{% percent stats.so_body_disposal_4 stats.total %}% </span> Buried the body &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_4|intcomma}}</span>
-              <div class="percent-bar" style="width:{% percent stats.so_body_disposal_4 stats.total %}%">&nbsp;</div>        
-              </div>
-            {%endif%}
-
-            {%if stats.so_body_disposal_6 %}
-              <div>
-              <span class="percent">{% percent stats.so_body_disposal_6 stats.total %}% </span> Other &nbsp; <span class="number-of-cases">{{stats.so_body_disposal_6|intcomma}}</span>
-              <div class="percent-bar" style="width:{% percent stats.so_body_disposal_6 stats.total %}%">&nbsp;</div>        
-              </div>
-            {%endif%}      
 
           </div>
         </div>
@@ -620,13 +618,13 @@
       <div class="row">
         <div class="col-12">
 
-          <p>Number of victims per family:</p>
+          <p><strong>Number of victims per family</strong></p>
              {% for o in stats.number_of_victims %}
              {% if o.number_of_victims %}
        
               <div>
-              <strong>{{o.number_of_victims}}</strong> victim{{ o.number_of_victims|pluralize }} &nbsp; {% percent o.number_of_victims__count stats.total %}% &nbsp; <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.number_of_victims__count stats.total %}%">&nbsp;</div>        
+               <span class="percent">{% percent o.number_of_victims__count stats.total %}%</span> {{o.number_of_victims}} victim{{ o.number_of_victims|pluralize }} <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
               </div>
        
              {% endif %}

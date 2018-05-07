@@ -62,6 +62,18 @@ def calculate_stats(all):
     age_range = sorted(age_range.items(), key=operator.itemgetter(0))
 
 
+    victim_militant_reason = {
+      "Because of Bluestar": all.filter(victim_militant_reason_1='1').count(),
+      "Persecution (i.e. arbitrary arrest, torture, self-defense)": all.filter(victim_militant_reason_2='1').count(),
+      "Persecution of a family member or a friend": all.filter(victim_militant_reason_3='1').count(),
+      "General persecution of Sikhs": all.filter(victim_militant_reason_4='1').count(),
+      "Supported the goals of the militancy movement": all.filter(victim_militant_reason_5='1').count(),
+      "Was forced to join": all.filter(victim_militant_reason_6='1').count(),
+      "Other": all.filter(victim_militant_reason_8='1').count(),
+    }
+    victim_militant_reason = sorted(victim_militant_reason.items(), key=operator.itemgetter(1), reverse=True)
+
+
     employment = {
       "Farmer/agriculture": all.filter(victim_employment_1='1').count(),
       "Shopkeeper": all.filter(victim_employment_2='1').count(),
@@ -75,6 +87,9 @@ def calculate_stats(all):
       "Other": all.filter(victim_employment_11='1').count(),
     }
     employment = sorted(employment.items(), key=operator.itemgetter(1), reverse=True)
+
+
+
 
     children = all.values('victim_children').extra({'victim_children': "CAST(victim_children as UNSIGNED)"}).annotate(Count('victim_children')).order_by('victim_children')
 
@@ -111,11 +126,15 @@ def calculate_stats(all):
     securityoff_id_known = all.filter(securityoff_id_known='1').count() + all.filter(securityforces_idknown__in=['1','2']).count()
     no_securityoff_id_known = all.filter(securityoff_id_known='0').count() + all.filter(securityforces_idknown='3').count()
 
-    so_body_disposal_1 = all.filter(so_body_disposal='1').count()
-    so_body_disposal_2 = all.filter(so_body_disposal='2').count()
-    so_body_disposal_3 = all.filter(so_body_disposal='3').count()
-    so_body_disposal_4 = all.filter(so_body_disposal='4').count()
-    so_body_disposal_6 = all.filter(so_body_disposal='6').count()
+
+    so_body_disposal = {
+      "Cremated the body": all.filter(so_body_disposal='1').count(),
+      "Dumped body in canal or river": all.filter(so_body_disposal='2').count(),
+      "Dumped body in well or drain": all.filter(so_body_disposal='3').count(),
+      "Buried the body": all.filter(so_body_disposal='4').count(),
+      "Other": all.filter(so_body_disposal='6').count(),
+    }
+    so_body_disposal = sorted(so_body_disposal.items(), key=operator.itemgetter(1), reverse=True)
 
     witness_arrest_0 = all.filter(witness_arrest_0 ='1').count()
     witness_arrest_1 = all.filter(witness_arrest_1 ='1').count()
@@ -217,6 +236,7 @@ def calculate_stats(all):
       "no_victim_militant_support": no_victim_militant_support,
       "victim_militant_support_voluntary": victim_militant_support_voluntary,
       "victim_militant_support_forced": victim_militant_support_forced,
+      "victim_militant_reason": victim_militant_reason,
       "victim_arrest_status": victim_arrest_status,
       "no_victim_arrest_status": no_victim_arrest_status,
       "so_inform_witnesses": so_inform_witnesses,
@@ -231,11 +251,8 @@ def calculate_stats(all):
       "no_so_return_body": no_so_return_body,
       "securityoff_id_known": securityoff_id_known,
       "no_securityoff_id_known": no_securityoff_id_known,
-      "so_body_disposal_1": so_body_disposal_1,
-      "so_body_disposal_2": so_body_disposal_2,
-      "so_body_disposal_3": so_body_disposal_3,
-      "so_body_disposal_4": so_body_disposal_4,
-      "so_body_disposal_6": so_body_disposal_6,
+
+      "so_body_disposal": so_body_disposal,
       
       "witness_arrest": witness_arrest,
       "witness_total": witness_total,

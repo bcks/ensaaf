@@ -92,14 +92,14 @@ tr { vertical-align: top; }
 
 
 
-
 .percent {
-	font-weight: bold;
-	margin: 0 .25em;
+  color: #963;
+	margin-right: .25em;
 }
 .number-of-cases {
   color: #999;
   font-size: 90%;
+  margin-left: .25em;
 }
 .percent-bar {
 	height: 6px;
