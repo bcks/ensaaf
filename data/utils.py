@@ -48,16 +48,11 @@ def calculate_stats(all):
     education = sorted(education.items(), key=operator.itemgetter(1), reverse=True)
 
     age_range = { # Dataset.objects.filter(i_end_int__gte=x,i_begin_int__lte=x)
-      "0-10": all.filter(victim_age_averaged__gte=0,victim_age_averaged__lte=10).count(),
-      "11-20": all.filter(victim_age_averaged__gte=11,victim_age_averaged__lte=20).count(),
-      "21-30": all.filter(victim_age_averaged__gte=21,victim_age_averaged__lte=30).count(),
-      "31-40": all.filter(victim_age_averaged__gte=31,victim_age_averaged__lte=40).count(),
-      "41-50": all.filter(victim_age_averaged__gte=41,victim_age_averaged__lte=50).count(),
-      "51-60": all.filter(victim_age_averaged__gte=51,victim_age_averaged__lte=60).count(),
-      "61-70": all.filter(victim_age_averaged__gte=61,victim_age_averaged__lte=70).count(),
-      "71-80": all.filter(victim_age_averaged__gte=71,victim_age_averaged__lte=80).count(),
-      "81-90": all.filter(victim_age_averaged__gte=81,victim_age_averaged__lte=90).count(),
-      "91-100": all.filter(victim_age_averaged__gte=91,victim_age_averaged__lte=100).count(),
+      "0-17": all.filter(victim_age_averaged__gte=0,victim_age_averaged__lte=17).count(),
+      "18-34": all.filter(victim_age_averaged__gte=18,victim_age_averaged__lte=24).count(),
+      "35-51": all.filter(victim_age_averaged__gte=35,victim_age_averaged__lte=51).count(),
+      "52-68": all.filter(victim_age_averaged__gte=52,victim_age_averaged__lte=68).count(),
+      "69-90": all.filter(victim_age_averaged__gte=69,victim_age_averaged__lte=100).count(),
     }
     age_range = sorted(age_range.items(), key=operator.itemgetter(0))
 
