@@ -309,6 +309,90 @@
       <div class="row">
         <div class="col-12">
 
+          <p><strong>Reasons the victim was targeted</strong></p>
+
+             {% for o in stats.target_reason %}
+             {%if o.1 %}
+
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+          <p><strong>Victim arrest location</strong></p>
+
+             {% for o in stats.victim_arrest_location %}
+             {%if o.1 %}
+
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+          <p><strong>Detention Facility Type</strong></p>
+
+             {% for o in stats.detention_facility_type %}
+             {%if o.1 %}
+
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+          <p><strong>Condition of Remains</strong></p>
+
+             {% for o in stats.condition_of_remains %}
+             {%if o.1 %}
+
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
             <p><strong>Witness to detention</strong></p>
 
              {% for o in stats.witness_detention %}
@@ -324,7 +408,28 @@
 
         </div>
       </div>
-      
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+              <p><strong>Security official responses</strong></p>
+
+             {% for o in stats.security_official_response %}
+             {%if o.1 %}
+       
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+       
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+            
       <hr>
 
       <div class="row">
@@ -703,7 +808,6 @@
       </div>
 
       <hr>
-
 
       <div class="row">
         <div class="col-12">

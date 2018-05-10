@@ -68,6 +68,19 @@ def calculate_stats(all):
     }
     victim_militant_reason = sorted(victim_militant_reason.items(), key=operator.itemgetter(1), reverse=True)
 
+    target_reason = {
+      "Victim was a militant": all.filter(victim_militant_reason_1='1').count(),
+      "Victim was related to a militant": all.filter(victim_militant_reason_2='1').count(),
+      "Victim gave support to a militant": all.filter(victim_militant_reason_3='1').count(),
+      "Victim was involved in criminal activities": all.filter(victim_militant_reason_4='1').count(),
+      "Victim was identifiably Sikh": all.filter(victim_militant_reason_5='1').count(),
+      "Security forces thought victim was a militant": all.filter(victim_militant_reason_6='1').count(),
+      "Mistaken for a wanted individual": all.filter(victim_militant_reason_7='1').count(),
+      "Don't Know": all.filter(victim_militant_reason_8='1').count(),
+      "Other": all.filter(victim_militant_reason_9='1').count(),
+    }
+    target_reason = sorted(target_reason.items(), key=operator.itemgetter(1), reverse=True)
+
 
     employment = {
       "Farmer/agriculture": all.filter(victim_employment_1='1').count(),
@@ -219,34 +232,50 @@ def calculate_stats(all):
 
     number_of_victims = all.values('number_of_victims').annotate(Count('number_of_victims')).order_by('number_of_victims')
 
-    witness_detention_3 = all.filter(where_victim_detained__witness_detention_3='1').count()
-    witness_detention_4 = all.filter(where_victim_detained__witness_detention_4='1').count()
-    witness_detention_5 = all.filter(where_victim_detained__witness_detention_5='1').count()
-    witness_detention_6 = all.filter(where_victim_detained__witness_detention_6='1').count()
-    witness_detention_7 = all.filter(where_victim_detained__witness_detention_7='1').count()
-    witness_detention_8 = all.filter(where_victim_detained__witness_detention_8='1').count()
-    witness_detention_9 = all.filter(where_victim_detained__witness_detention_9='1').count()
-    witness_detention_10 = all.filter(where_victim_detained__witness_detention_10='1').count()
-    witness_detention_11 = all.filter(where_victim_detained__witness_detention_11='1').count()
-    witness_detention_12 = all.filter(where_victim_detained__witness_detention_12='1').count()
-    witness_detention_13 = all.filter(where_victim_detained__witness_detention_13='1').count()
-    witness_detention_14 = all.filter(where_victim_detained__witness_detention_14='1').count()
 
     witness_detention = {
-      "Interviewee": witness_detention_3,
-      "Other relative": witness_detention_4,
-      "Other detainee": witness_detention_5,
-      "Sarpanch/politician": witness_detention_6,
-      "Newspaper": witness_detention_7,
-      "Security official": witness_detention_8,
-      "Friend": witness_detention_9,
-      "Other witness": witness_detention_10,
-      "Interview belief (no source)": witness_detention_11,
-      "Doctor": witness_detention_12,
-      "Other victim family": witness_detention_13,
-      "Other": witness_detention_14,
+      "Interviewee": all.filter(where_victim_detained__witness_detention_3='1').count(),
+      "Other relative": all.filter(where_victim_detained__witness_detention_4='1').count(),
+      "Other detainee": all.filter(where_victim_detained__witness_detention_5='1').count(),
+      "Sarpanch/politician": all.filter(where_victim_detained__witness_detention_6='1').count(),
+      "Newspaper": all.filter(where_victim_detained__witness_detention_7='1').count(),
+      "Security official": all.filter(where_victim_detained__witness_detention_8='1').count(),
+      "Friend": all.filter(where_victim_detained__witness_detention_9='1').count(),
+      "Other witness": all.filter(where_victim_detained__witness_detention_10='1').count(),
+      "Interview belief (no source)": all.filter(where_victim_detained__witness_detention_11='1').count(),
+      "Doctor": all.filter(where_victim_detained__witness_detention_12='1').count(),
+      "Other victim family": all.filter(where_victim_detained__witness_detention_13='1').count(),
+      "Other": all.filter(where_victim_detained__witness_detention_14='1').count(),
     }
     witness_detention = sorted(witness_detention.items(), key=operator.itemgetter(1), reverse=True)
+
+
+    victim_arrest_location = {
+      "Victim’s Residence": all.filter(victim_arrest_location='2').count(),
+      "Friend/Relative's residence": all.filter(victim_arrest_location='3').count(),
+      "Checkpoint (Naka)": all.filter(victim_arrest_location='4').count(),
+      "Roadside": all.filter(victim_arrest_location='5').count(),
+      "Village Fields": all.filter(victim_arrest_location='6').count(),
+      "Market/Bazaar": all.filter(victim_arrest_location='7').count(),
+      "Bus Station/Stand": all.filter(victim_arrest_location='8').count(),
+      "Police Station": all.filter(victim_arrest_location='9').count(),
+      "Village Drain": all.filter(victim_arrest_location='10').count(),
+      "Other": all.filter(victim_arrest_location='11').count(),
+    }
+    victim_arrest_location = sorted(victim_arrest_location.items(), key=operator.itemgetter(1), reverse=True)
+
+
+    detention_facility_type = {
+      "Police Station/Post": all.filter(victim_arrest_location='1').count(),
+      "CIA Staff": all.filter(victim_arrest_location='2').count(),
+      "BSF": all.filter(victim_arrest_location='3').count(),
+      "CRPF Camp": all.filter(victim_arrest_location='4').count(),
+      "Army Camp": all.filter(victim_arrest_location='5').count(),
+      "Interrogation Center": all.filter(victim_arrest_location='6').count(),
+      "Other": all.filter(victim_arrest_location='8').count(),
+    }
+    detention_facility_type = sorted(detention_facility_type.items(), key=operator.itemgetter(1), reverse=True)
+
 
     arrest_security_type = {
       "Punjab Police": all.filter(arrest_security_type_1='1').count(),
@@ -259,6 +288,22 @@ def calculate_stats(all):
     }
     arrest_security_type = sorted(arrest_security_type.items(), key=operator.itemgetter(1), reverse=True)
 
+
+
+    condition_of_remains = {
+      "Bruises": all.filter(condition_of_remains_1='1').count(),
+      "Bullet wounds": all.filter(condition_of_remains_2='1').count(),
+      "Cuts/wounds": all.filter(condition_of_remains_3='1').count(),
+      "Broken bones": all.filter(condition_of_remains_4='1').count(),
+      "Missing hair from head or face": all.filter(condition_of_remains_5='1').count(),
+      "Missing fingernails": all.filter(condition_of_remains_6='1').count(),
+      "Burn marks": all.filter(condition_of_remains_7='1').count(),
+      "Other": all.filter(condition_of_remains_9='1').count(),
+    }
+    condition_of_remains = sorted(condition_of_remains.items(), key=operator.itemgetter(1), reverse=True)
+
+
+
     killing_securityforcestype = {
       "Punjab police": all.filter(killing_securityforcestype_1='1').count(),
       "BSF": all.filter(killing_securityforcestype_2='1').count(),
@@ -269,70 +314,92 @@ def calculate_stats(all):
       "Other": all.filter(killing_securityforcestype_8='1').count(),
     }
     killing_securityforcestype = sorted(killing_securityforcestype.items(), key=operator.itemgetter(1), reverse=True)
+
+
+    security_official_response = {
+      "No Response": all.filter(security_official_response_0='1').count(),
+      "Killed victim in an “encounter”": all.filter(security_official_response_1='1').count(),
+      "Denied involvement": all.filter(security_official_response_2='1').count(),
+      "Admitted killing with no explanation": all.filter(security_official_response_3='1').count(),
+      "Admitted custody only": all.filter(security_official_response_4='1').count(),
+      "Victim had escaped": all.filter(security_official_response_5='1').count(),
+      "Victim killed will trying to escape": all.filter(security_official_response_6='1').count(),
+      "Victim killed by militants": all.filter(security_official_response_7='1').count(),
+      "Told family to go to another police station": all.filter(security_official_response_8='1').count(),
+      "Victim killed in crossfire with militants": all.filter(security_official_response_9='1').count(),
+      "Victim accidentally killed in custody": all.filter(security_official_response_10='1').count(),
+      "Victim killed while resisting arrest/search": all.filter(security_official_response_11='1').count(),
+      "Victim killed by Black Cats": all.filter(security_official_response_12='1').count(),
+      "Other": all.filter(security_official_response_13='1').count(),
+    }
+    security_official_response = sorted(security_official_response.items(), key=operator.itemgetter(1), reverse=True)
+
     
     
     total = all.values('record_id').count()
 
     return {
-      "total": total,
-      "total_disappeared": total_disappeared,
-      "total_killed": total_killed,
-      "male": male,
-      "female": female,
-      "married": married,
-      "not_married": not_married,
-      "religion": religion,
+      "age_range": age_range,
+      "amritdhari": amritdhari,
+      "arrest_security_type": arrest_security_type,
       "caste": caste,
+      "children": children,
+      "condition_of_remains": condition_of_remains,
+      "court_or_commission": court_or_commission,
+      "detention_facility_type": detention_facility_type,
       "education": education,
       "employment": employment,
-      "age_range": age_range,
-      "children": children,
-      "genuine_encounter": genuine_encounter,
-      "not_genuine_encounter": not_genuine_encounter,
-      "kesdhari": kesdhari,
-      "amritdhari": amritdhari,
-      "militant": militant,
-      "not_militant": not_militant,
-      "militant_support": militant_support,
-      "no_militant_support": no_militant_support,
-      "prior_detentions": prior_detentions,
-      "no_prior_detentions": no_prior_detentions,
-      "security_officials_apprchd": security_officials_apprchd,
-      "no_security_officials_apprchd": no_security_officials_apprchd,
-      "court_or_commission": court_or_commission,
-      "no_court_or_commission": no_court_or_commission,
-      "victim_militant_support": victim_militant_support,
-      "no_victim_militant_support": no_victim_militant_support,
-      "victim_militant_support_voluntary": victim_militant_support_voluntary,
-      "victim_militant_support_forced": victim_militant_support_forced,
-      "victim_militant_reason": victim_militant_reason,
-      "victim_arrest_status": victim_arrest_status,
-      "no_victim_arrest_status": no_victim_arrest_status,
-      "so_inform_witnesses": so_inform_witnesses,
-      "no_so_inform_witnesses": no_so_inform_witnesses,
-      "security_forces_uniformed": security_forces_uniformed,
-      "no_security_forces_uniformed": no_security_forces_uniformed,
-      "judge_or_magistrate_status": judge_or_magistrate_status,
-      "no_judge_or_magistrate_status": no_judge_or_magistrate_status,
-      "victim_detention_loc_known": victim_detention_loc_known,
-      "no_victim_detention_loc_known": no_victim_detention_loc_known,
-      "so_return_body": so_return_body,
-      "no_so_return_body": no_so_return_body,
-      "securityoff_id_known": securityoff_id_known,
-      "no_securityoff_id_known": no_securityoff_id_known,
-
-      "so_body_disposal": so_body_disposal,
-      "no_action_pursued_reason": no_action_pursued_reason,
-      "so_approached_type": so_approached_type,
       "family_effects": family_effects,
+      "female": female,
+      "genuine_encounter": genuine_encounter,
       "govnt_response_desired": govnt_response_desired,
-      
-      "witness_arrest": witness_arrest,
-      "witness_total": witness_total,
-      "witness_detention": witness_detention,
+      "judge_or_magistrate_status": judge_or_magistrate_status,
+      "kesdhari": kesdhari,
       "killing_securityforcestype": killing_securityforcestype,
-      "arrest_security_type": arrest_security_type,
-
+      "male": male,
+      "married": married,
+      "militant_support": militant_support,
+      "militant": militant,
+      "no_action_pursued_reason": no_action_pursued_reason,
+      "no_court_or_commission": no_court_or_commission,
+      "no_judge_or_magistrate_status": no_judge_or_magistrate_status,
+      "no_militant_support": no_militant_support,
+      "no_prior_detentions": no_prior_detentions,
+      "no_security_forces_uniformed": no_security_forces_uniformed,
+      "no_security_officials_apprchd": no_security_officials_apprchd,
+      "no_securityoff_id_known": no_securityoff_id_known,
+      "no_so_inform_witnesses": no_so_inform_witnesses,
+      "no_so_return_body": no_so_return_body,
+      "no_victim_arrest_status": no_victim_arrest_status,
+      "no_victim_detention_loc_known": no_victim_detention_loc_known,
+      "no_victim_militant_support": no_victim_militant_support,
+      "not_genuine_encounter": not_genuine_encounter,
+      "not_married": not_married,
+      "not_militant": not_militant,
       "number_of_victims": number_of_victims,
+      "prior_detentions": prior_detentions,
+      "religion": religion,
+      "security_forces_uniformed": security_forces_uniformed,
+      "security_official_response": security_official_response,
+      "security_officials_apprchd": security_officials_apprchd,
+      "securityoff_id_known": securityoff_id_known,
+      "so_approached_type": so_approached_type,
+      "so_body_disposal": so_body_disposal,
+      "so_inform_witnesses": so_inform_witnesses,
+      "so_return_body": so_return_body,
+      "target_reason": target_reason,
+      "total_disappeared": total_disappeared,
+      "total_killed": total_killed,
+      "total": total,
+      "victim_arrest_location": victim_arrest_location,
+      "victim_arrest_status": victim_arrest_status,
+      "victim_detention_loc_known": victim_detention_loc_known,
+      "victim_militant_reason": victim_militant_reason,
+      "victim_militant_support_forced": victim_militant_support_forced,
+      "victim_militant_support_voluntary": victim_militant_support_voluntary,
+      "victim_militant_support": victim_militant_support,
+      "witness_arrest": witness_arrest,
+      "witness_detention": witness_detention,
+      "witness_total": witness_total,
       }
 
