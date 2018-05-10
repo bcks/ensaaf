@@ -11,14 +11,15 @@
   <div class="col-sm-12 col-md m-2">
     <h1>{{village.village_name}}</h1>
     <p><span class="kicker">Tehsil</span> <a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}}</a> &nbsp; <span class="kicker">District</span> <a href="/district/{{village.district_id}}">{{village.district}}</a></p>
+    <p class="kicker">Boundaries based on the 2001 census. Read about <a href="/about/methodology">our methodology</a>.</p>
   </div>
 </div>
 
   {% if victims.all|length > 0 %}
 
    <div class="row">
-    <div class="col-sm-12 col-md m-2">   
-      <p>Documented cases:</p>
+    <div class="col-sm-12 col-md m-2"><br>
+      <h5>Documented cases:</h5>
     </div>
   </div>
 
@@ -58,12 +59,4 @@
     {% endif %}
     
     
-<div class="row">
-  <div class="col-12">
-    <div class="border-top footnotes">
-      <p>Note: Tehsil and district boundaries are based on the 2001 census. Read more about <a href="/about/methodology">our methodology</a>.</p>
-    </div>
-  </div>
-</div>
-
 {% endblock %}
