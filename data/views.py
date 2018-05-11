@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
 from django.contrib import messages
-from django.db.models import OuterRef, Subquery, Count, Sum, F
+from django.db.models import OuterRef, Subquery, Count, Sum, F, Q
 from django.template.defaulttags import register
 
 from .models import *
@@ -65,6 +65,48 @@ def year(request, year=None):
     if id is not None and id is None:
         return messages.warning(request,"Year %s was not found"%id)
     return render(request, "year.html", { "victims": victims, "year":year, "stats": stats } )
+
+
+
+
+def securityforce(request, slug=None):
+
+    forcemap = {
+      "police" : Q(arrest_security_type_1=1) | Q(killing_securityforcestype_1=1) | Q(so_approached_type_2=1) | Q(killing_so_affiliation=1),
+      "bsf" : Q(arrest_security_type_2=1) | Q(killing_securityforcestype_2=1) | Q(so_approached_type_3=1) | Q(killing_so_affiliation=2),
+      "crpf" : Q(arrest_security_type_3=1) | Q(killing_securityforcestype_3=1) | Q(so_approached_type_4=1) | Q(killing_so_affiliation=3),
+      "army" : Q(arrest_security_type_4=1) | Q(killing_securityforcestype_4=1) | Q(so_approached_type_5=1) | Q(killing_so_affiliation=4),
+      "cia" : Q(arrest_security_type_5=1) | Q(killing_securityforcestype_5=1) | Q(so_approached_type_6=1) | Q(killing_so_affiliation=5),
+      "black-cat" : Q(arrest_security_type_6=1) | Q(killing_securityforcestype_6=1) | Q(so_approached_type_7=1) | Q(killing_so_affiliation=6),
+    }
+
+    # need to reverse PK query: cia arrest_so_affiliation=5, detention_facility_type=2
+
+    unslug = {
+      "police": "Punjab Police",
+      "bsf": "BSF",
+      "crpf": "CRPF",
+      "army": "Army",
+      "cia": "CIA",
+      "black-cat": "Black Cat"
+    }
+
+    _query =  forcemap.get(slug)
+    name =  unslug.get(slug)
+    
+    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+
+    victims = Data.objects.filter( _query )\
+      .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
+      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
+
+    stats = calculate_stats(victims)
+    if id is not None and id is None:
+        return messages.warning(request,"Year %s was not found"%id)
+    return render(request, "securityforce.html", { "victims": victims, "name": name, "stats": stats } )
 
 
 
