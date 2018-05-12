@@ -22,14 +22,14 @@ def calculate_stats(all):
     religion = sorted(religion.items(), key=operator.itemgetter(1), reverse=True)
 
     caste = {
-      "Jat": all.filter(victim_religion='1').count(),
-      "Ramgarhia": all.filter(victim_religion='2').count(),
-      "Dalit/SC/BC": all.filter(victim_religion='3').count(),
-      "Mazbi": all.filter(victim_religion='4').count(),
-      "Chamar": all.filter(victim_religion='5').count(),
-      "Khatri": all.filter(victim_religion='6').count(),
-      "Naee": all.filter(victim_religion='7').count(),
-      "Other": all.filter(victim_religion='9').count(),
+      "Jat": all.filter(victim_caste='1').count(),
+      "Ramgarhia": all.filter(victim_caste='2').count(),
+      "Dalit/SC/BC": all.filter(victim_caste='3').count(),
+      "Mazbi": all.filter(victim_caste='4').count(),
+      "Chamar": all.filter(victim_caste='5').count(),
+      "Khatri": all.filter(victim_caste='6').count(),
+      "Naee": all.filter(victim_caste='7').count(),
+      "Other": all.filter(victim_caste='9').count(),
     }
     caste = sorted(caste.items(), key=operator.itemgetter(1), reverse=True)
 
