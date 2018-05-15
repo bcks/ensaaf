@@ -336,12 +336,12 @@ def hwitness_arrest(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v12, other):
 @register.simple_tag()
 def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
   groups = []
-  groups.append('Punjab Police') if v1 == 1 else 0
-  groups.append('BSF') if v2 == 1 else 0
-  groups.append('CRPF') if v3 == 1 else 0
-  groups.append('Army') if v4 == 1 else 0
-  groups.append('CIA') if v5 == 1 else 0
-  groups.append('Black cat') if v6 == 1 else 0
+  groups.append('<a href="/securityforce/police/">Punjab Police</a>') if v1 == 1 else 0
+  groups.append('<a href="/securityforce/bsf/">BSF</a>') if v2 == 1 else 0
+  groups.append('<a href="/securityforce/crpf/">CRPF</a>') if v3 == 1 else 0
+  groups.append('<a href="/securityforce/army/">Army</a>') if v4 == 1 else 0
+  groups.append('<a href="/securityforce/cia/">CIA</a>') if v5 == 1 else 0
+  groups.append('<a href="/securityforce/black-cat/">Black cat</a>') if v6 == 1 else 0
   groups.append('Don’t know') if v7 == 1 else 0
   if (other):
     groups.append(other)
@@ -357,12 +357,12 @@ def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
 def hso_approached_type(v1, v2, v3, v4, v5, v6, v7, other):
   groups = []
   groups.append('Same as officials involved in abduction/killing') if v1 == 1 else 0
-  groups.append('Punjab Police') if v2 == 1 else 0
-  groups.append('BSF') if v3 == 1 else 0
-  groups.append('CRPF') if v4 == 1 else 0
-  groups.append('Army') if v5 == 1 else 0
-  groups.append('CIA') if v6 == 1 else 0
-  groups.append('Black cat') if v7 == 1 else 0
+  groups.append('<a href="/securityforce/police/">Punjab Police</a>') if v2 == 1 else 0
+  groups.append('<a href="/securityforce/bsf/">BSF</a>') if v3 == 1 else 0
+  groups.append('<a href="/securityforce/crpf/">CRPF</a>') if v4 == 1 else 0
+  groups.append('<a href="/securityforce/army/">Army</a>') if v5 == 1 else 0
+  groups.append('<a href="/securityforce/cia/">CIA</a>') if v6 == 1 else 0
+  groups.append('<a href="/securityforce/black-cat/">Black cat</a>') if v7 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
