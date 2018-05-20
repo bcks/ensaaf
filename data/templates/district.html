@@ -24,15 +24,15 @@
     <h5>Documented cases in Tehsils</h5>
 
     {% for village in villages %}
+      {% if village.data_count != None %}
 
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-    
-      <a href="{% url 'tehsil' village.tehsil_id %}">{{village.tehsil}},</a> {{village.data_count}} {% if forloop.first %} case{{village.data_count|pluralize}} {% endif %}
-  
+      <a href="{% url 'tehsil' village.tehsil_id %}">{{village.tehsil}},</a> {{village.data_count}} {% if forloop.first %} case{{village.data_count|pluralize}} {% endif %}  
       </div>
     </div>
       
+      {% endif %}
     {% endfor %}
 
     <br>
