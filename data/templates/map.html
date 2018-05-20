@@ -1,0 +1,368 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+{% load profiletags %}
+
+{% block title %}Timeline of Killings and Disappearances{% endblock %}
+
+{% block head %}
+
+
+<style>
+  .bar { fill: #900; stroke: #900; }
+  .dot { fill: #900; }
+  .axis line, .axis path { stroke: #aaa; }
+  .tick { font-family: 'Fira Sans', sans-serif; }
+  #timeline { height: 300px;}
+  #map {
+    height:300px;
+    width:100%;
+  }
+
+  .tultip {
+      background-color: #fff;
+      margin-left: 20px; 
+      z-index: 10;
+      position: absolute;
+      visibility: hidden;
+      -webkit-box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+         -moz-box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+              box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5), 0 1px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  #village-list ul { list-style: none; }
+  #village-list ul li:before{ content:"• "; font-size:10pt; color: #666; }
+  
+</style>
+
+<script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
+<script type="text/javascript" src="/static/js/lodash.min.js"></script>
+
+{% endblock %}
+
+{% block content %}
+
+
+
+
+
+<div class="container">
+  <h1>Timeline</h1>
+  <div class="row">
+    <div class="col-sm-6">
+      <div id="map">
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div id="village-list"></div>
+    </div>    
+  </div>
+  <div id="timeline"></div>
+  <p><br></p>
+</div>
+  
+
+
+<script type="text/javascript">
+
+
+  function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+
+
+  function formatDate(date) {
+    var monthNames = [
+      "January", "February", "March",
+      "April", "May", "June", "July",
+      "August", "September", "October",
+      "November", "December"
+    ];
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var year = date.getFullYear();
+    //  return day + ' ' + monthNames[monthIndex] + ' ' + year;
+    return monthNames[monthIndex] + ' ' + year;
+  }
+
+
+
+  var timeCapsule = [
+    {% for o in all %}{% if o.timeline_start != None %}
+      {victim: { village_id: "{{o.village_id}}", village_name: "{{o.village_name}}", timeline_start: {{o.timeline_start|date:"U"}}, timeline_end: {{o.timeline_end|date:"U"}} }},{% endif %}{% endfor %}
+  ];
+  
+  for (var i=0;i<timeCapsule.length;i++) {
+      timeCapsule[i]['date'] = (timeCapsule[i]['victim']['timeline_end'] + timeCapsule[i]['victim']['timeline_start']) / 2;
+      var d = new Date(0);
+      timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
+      timeCapsule[i]['victim']['timeline_end'] = d.setUTCSeconds( timeCapsule[i]['victim']['timeline_end'] );
+      timeCapsule[i]['victim']['timeline_start'] = d.setUTCSeconds( timeCapsule[i]['victim']['timeline_start'] );
+  }  
+    
+  var villages = {};
+  var villageNames = {};
+  var villageShow = {};
+  var globalVillages = [];
+
+  $.getJSON("/static/js/village_loc.json", function(json) {
+      makeTimeline();
+      makeMap(json);
+  });
+
+
+
+
+  function makeVillageNames(start, end) {
+    
+    villages = {};
+    villageNames = {};
+    villageShow = {};
+    
+    for (var i=0;i<timeCapsule.length;i++) {
+        if ((end >= timeCapsule[i]['victim']['timeline_end']) && (timeCapsule[i]['victim']['timeline_start'] >= start))  {
+          var id = timeCapsule[i]['victim']['village_id'];
+          villages[id] = (villages[id] || 0) + 1;
+          villageNames[id] = timeCapsule[i]['victim']['village_name'];        
+          villageShow[id] = timeCapsule[i]['date'];
+        }
+    }
+
+    // make top 14 list
+    var keys = Object.keys(villages);
+    keys.sort(function(a, b) { return villages[b] - villages[a] });
+    var villageList = '<ul>';
+    for (var i=0;i<14;i++) {
+      if (villageNames[keys[i]]) {
+        if (keys[i]) {
+          villageList += '<li><a href="/village/'+keys[i]+'">' + villageNames[keys[i]] + ' (' + numberWithCommas( villages[keys[i]] ) + ')' + '</a></li>';
+        } else {
+          villageList += '<li>' + villageNames[keys[i]] + ' (' + numberWithCommas( villages[keys[i]] ) + ')' + '</li>';
+        }
+      }
+    }
+    // villageList += '<li><a href="#">More...</a></li></ul>';
+    $('#village-list').html(villageList);
+
+    updateMap(start, end);
+  }
+
+
+
+  function makeMap(villageCentroids, start, end) {
+    globalVillages = villageCentroids;
+    // make map
+    var points = [];
+    var keys = Object.keys(villages);
+    
+    console.log(villages);
+    
+    for (var i in keys) {
+      var thisVillage = _.find(villageCentroids, function(o) {
+        return o.CODE.endsWith(keys[i]);        
+      });
+      if (keys[i]) {
+        points.push({'id':keys[i],'show':villageShow[keys[i]],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':villageNames[keys[i]]});
+      }
+    }
+    points = points.sort(function compare(a, b) { return a.show - b.show; });
+
+    var map = d3.select('#map svg').selectAll("circle")
+    .data(points).enter()
+    .append("circle")
+    .attr("class","dot")
+    .attr("fill", "red")
+    .attr("cx", function (d) { return projection(d.coord)[0]; })
+    .attr("cy", function (d) { return projection(d.coord)[1]; })
+    .attr('opacity',0)
+    .on("mouseover", function(d, i){
+          var tultipText = '<div class="name">' + d.name + ', ';
+          if (d.subdist !== d.dist) {
+           tultipText += d.subdist + ', ';
+          }
+          tultipText += d.dist + '</div><div class="position">' + d.size + ' Victim';
+          if (d.size > 1) { tultipText += 's'; }
+          tultipText += '</div>';
+          return tultip.style("visibility", "visible").style("padding", "10px").html( tultipText );
+      })
+      .on("mousemove", function(){ return tultip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px"); })
+      .on("mouseout", function(){return tultip.style("visibility", "hidden");})
+
+    updateMap(start, end);
+  }
+
+
+
+  function updateMap(start, end) {
+
+    var map = d3.select('#map svg').selectAll("circle");
+    map.transition(750).delay(function(d,i) { return i; })
+    .attr("r", function (d) { return d.size + 1 + 'px'; })
+    .attr("opacity", function (d) {
+      
+      if (!start) { return 1; }
+      
+      if ((end >= d.show) && (d.show >= start))  {
+        return 1;      
+      } else {
+        return 0;
+      }
+    });
+
+  }
+
+
+
+  function Hdate(value) {
+      let parts = [];
+      if (value.indexOf('/') == -1) {
+        parts = value.split(/-/);
+      } else {
+        parts = value.split(/\//);
+      }        
+      if (value == 'Don\'t know') { return [null, null]; }
+      if (value == '') { return [null, null]; }
+      if (parts.length > 3) {
+        return [ new Date(parts[2],parts[1]-1,parts[0]), new Date(parts[5],parts[4]-1,parts[3]) ];
+      } else {
+        return [ new Date(parts[2],parts[1]-1,parts[0]), new Date(parts[2],parts[1]-1,parts[0]) ];
+      }        
+  }
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+
+/* map */
+var projection = d3.geoMercator();
+
+// create path variable
+var path = d3.geoPath()
+    .projection(projection);
+
+
+// set projection parameters
+projection
+  .scale(5000)
+  .center([79,30]);
+
+// create svg variable
+var map = d3.select("#map").append("svg")
+        .attr("width", $('#map').width())
+        .attr("height", $('#map').height());
+
+
+var tultip = d3.select("body")
+    .append("div")
+    .attr("class", "tultip")
+    .html("123123");      
+
+
+
+
+
+function makeTimeline() {
+    
+  var margin = {top: 10, right: 30, bottom: 50, left: 40},
+      width = $('#timeline').width() - margin.left - margin.right,
+      height = $('#timeline').height() - margin.top - margin.bottom;
+
+  var start = d3.min(d3.entries(timeCapsule), function(d) {
+    if (d.value.date > 0) {
+      return d.value.date;
+    }
+  });
+
+
+  var end = d3.max(d3.entries(timeCapsule), function(d) {        
+    return d.value.date;
+  });
+
+  makeVillageNames(start, end);  
+
+  var x = d3.scaleTime()
+      .domain([start, end])
+      .rangeRound([0, width]);
+
+  var y = d3.scaleLinear()
+      .range([height, 0]);
+
+  var brush = d3.brushX()
+      .extent([[0, 0], [width, height]])
+      .on("brush end", brushed);
+
+  var histogram = d3.histogram()
+      .value(function(d) { return d.date; })
+      .domain(x.domain())
+      .thresholds(x.ticks(d3.timeMonth));
+  
+  var svg = d3.select("#timeline").append("svg")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", 
+            "translate(" + margin.left + "," + margin.top + ")");
+
+  function brushed() {
+    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
+    var s = d3.event.selection || x.range();
+    // udpateMap( x.invert(s[0]), x.invert(s[1]) );
+    makeVillageNames( x.invert(s[0]), x.invert(s[1]) );
+
+  }
+
+
+  var bins = histogram(timeCapsule);
+
+  y.domain([-3, d3.max(bins, function(d) { return d.length; })]);
+
+  svg.selectAll("rect")
+      .data(bins)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", 1)
+      .attr("transform", function(d) {
+      return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
+      .attr("width", function(d) { return x(d.x1) - x(d.x0); })
+      .style("opacity", function(d) { 
+          if (d.length < 1) { 
+            return 0;
+          } else {
+            return 1;
+          }
+        })
+      .attr("height", function(d) { return height - y(d.length); })
+          .on("mouseover", function(d, i){ 
+              var tultipText = '<div class="name">' + formatDate(d[0].date) + '</div><div class="position">' + d.length + ' Victim';
+              if (d.length > 1) { tultipText += 's'; }
+              tultipText += '</div>';
+              return tultip.style("visibility", "visible").style("padding", "10px").html( tultipText );
+          })
+          .on("mousemove", function(){ return tultip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px"); })
+          .on("mouseout", function(){return tultip.style("visibility", "hidden");})
+
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .attr('class','axis')
+      .call(d3.axisBottom(x));
+
+  svg.append("g")
+      .attr('class','axis')
+      .call(d3.axisLeft(y));
+
+  svg.append("g")
+      .attr("class", "brush")
+      .call(brush)
+      .call(brush.move, x.range());
+
+} // end makeTimeline
+
+</script>
+
+{% endblock %}

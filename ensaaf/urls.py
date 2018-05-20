@@ -16,6 +16,7 @@ urlpatterns = [
     path('search/', include('haystack.urls')),
     path('admin/', admin.site.urls),
     path('overview/', overview, name="overview"),
+    path('map/', map, name="map"),
     path('<slug:directory>/<slug:slug>/', page),
     path('', home, name="home"),
 ]

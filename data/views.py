@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
 from django.contrib import messages
-from django.db.models import OuterRef, Subquery, Count, Sum, F, Q
+from django.db.models import OuterRef, Subquery, Count, Sum, F, Q, Avg
 from django.template.defaulttags import register
 
 from .models import *
@@ -28,6 +28,11 @@ def overview(request):
     return render(request, "overview.html", { 
       "stats": stats
       })
+
+
+def map(request):
+    all = Data.objects.filter(timeline_start__gte='1980-01-01').values('village_id','village_name','timeline_start','timeline_end')
+    return render(request, "map.html", { "all": all })
 
 
 def profile(request, id=None):
