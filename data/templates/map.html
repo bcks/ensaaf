@@ -10,12 +10,15 @@
 
 <style>
   .bar { fill: #900; stroke: #900; }
-  .dot { fill: #900; }
+  .dot {
+    fill: #900;
+    cursor: pointer;
+    }
   .axis line, .axis path { stroke: #aaa; }
   .tick { font-family: 'Fira Sans', sans-serif; }
   #timeline { height: 300px;}
   #map {
-    height:300px;
+    height:330px;
     width:100%;
   }
 
@@ -88,6 +91,32 @@
 
 
 
+/* map */
+var projection = d3.geoMercator().scale(5000).center([79,30.1]);
+var path = d3.geoPath().projection(projection);
+
+var map = d3.select("#map").append("svg")
+        .attr("width", $('#map').width())
+        .attr("height", $('#map').height());
+
+
+var tultip = d3.select("body")
+    .append("div")
+    .attr("class", "tultip")
+    .html("");      
+
+function drawMap(geojson) {
+  map.selectAll("path")
+    .data(geojson.features)
+    .enter()
+    .append("path")
+    .attr("d", path)
+    .attr("fill", "#fff")
+    .attr("stroke", "#ddc");    
+}
+
+
+
   var timeCapsule = [
     {% for o in all %}{% if o.timeline_start != None %}
       {victim: { village_id: "{{o.village_id}}", village_name: "{{o.village_name}}", timeline_start: {{o.timeline_start|date:"U"}}, timeline_end: {{o.timeline_end|date:"U"}} }},{% endif %}{% endfor %}
@@ -106,9 +135,13 @@
   var villageShow = {};
   var globalVillages = [];
 
-  $.getJSON("/static/js/village_loc.json", function(json) {
-      makeTimeline();
-      makeMap(json);
+
+  $.getJSON("/static/js/punjab.geojson", function(pujabjson) {
+    drawMap(pujabjson);
+    $.getJSON("/static/js/village_loc.json", function(json) {
+        makeTimeline();
+        makeMap(json);
+    });
   });
 
 
@@ -121,7 +154,7 @@
     villageShow = {};
     
     for (var i=0;i<timeCapsule.length;i++) {
-        if ((end >= timeCapsule[i]['victim']['timeline_end']) && (timeCapsule[i]['victim']['timeline_start'] >= start))  {
+        if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start))  {
           var id = timeCapsule[i]['victim']['village_id'];
           villages[id] = (villages[id] || 0) + 1;
           villageNames[id] = timeCapsule[i]['victim']['village_name'];        
@@ -129,6 +162,9 @@
         }
     }
 
+
+    console.log(villageNames);
+    
     // make top 14 list
     var keys = Object.keys(villages);
     keys.sort(function(a, b) { return villages[b] - villages[a] });
@@ -155,9 +191,7 @@
     // make map
     var points = [];
     var keys = Object.keys(villages);
-    
-    console.log(villages);
-    
+        
     for (var i in keys) {
       var thisVillage = _.find(villageCentroids, function(o) {
         return o.CODE.endsWith(keys[i]);        
@@ -171,10 +205,9 @@
     var map = d3.select('#map svg').selectAll("circle")
     .data(points).enter()
     .append("circle")
-    .attr("class","dot")
-    .attr("fill", "red")
-    .attr("cx", function (d) { return projection(d.coord)[0]; })
-    .attr("cy", function (d) { return projection(d.coord)[1]; })
+    .attr('class',"dot")
+    .attr('cx', function (d) { return projection(d.coord)[0]; })
+    .attr('cy', function (d) { return projection(d.coord)[1]; })
     .attr('opacity',0)
     .on("mouseover", function(d, i){
           var tultipText = '<div class="name">' + d.name + ', ';
@@ -188,17 +221,19 @@
       })
       .on("mousemove", function(){ return tultip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px"); })
       .on("mouseout", function(){return tultip.style("visibility", "hidden");})
+      .on("click", function(d){ document.location.href = '/village/'+d.id; });
 
     updateMap(start, end);
   }
 
 
+  var area = d3.scalePow().exponent(0.5).domain([0, 100]).range([.4, 10]);
 
   function updateMap(start, end) {
 
     var map = d3.select('#map svg').selectAll("circle");
     map.transition(750).delay(function(d,i) { return i; })
-    .attr("r", function (d) { return d.size + 1 + 'px'; })
+    .attr("r", function (d) { return area(d.size) + 'px'; })
     .attr("opacity", function (d) {
       
       if (!start) { return 1; }
@@ -211,58 +246,6 @@
     });
 
   }
-
-
-
-  function Hdate(value) {
-      let parts = [];
-      if (value.indexOf('/') == -1) {
-        parts = value.split(/-/);
-      } else {
-        parts = value.split(/\//);
-      }        
-      if (value == 'Don\'t know') { return [null, null]; }
-      if (value == '') { return [null, null]; }
-      if (parts.length > 3) {
-        return [ new Date(parts[2],parts[1]-1,parts[0]), new Date(parts[5],parts[4]-1,parts[3]) ];
-      } else {
-        return [ new Date(parts[2],parts[1]-1,parts[0]), new Date(parts[2],parts[1]-1,parts[0]) ];
-      }        
-  }
-
-</script>
-
-
-
-
-
-<script type="text/javascript">
-
-
-/* map */
-var projection = d3.geoMercator();
-
-// create path variable
-var path = d3.geoPath()
-    .projection(projection);
-
-
-// set projection parameters
-projection
-  .scale(5000)
-  .center([79,30]);
-
-// create svg variable
-var map = d3.select("#map").append("svg")
-        .attr("width", $('#map').width())
-        .attr("height", $('#map').height());
-
-
-var tultip = d3.select("body")
-    .append("div")
-    .attr("class", "tultip")
-    .html("123123");      
-
 
 
 
@@ -280,9 +263,7 @@ function makeTimeline() {
   });
 
 
-  var end = d3.max(d3.entries(timeCapsule), function(d) {        
-    return d.value.date;
-  });
+  var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
 
   makeVillageNames(start, end);  
 
@@ -317,7 +298,6 @@ function makeTimeline() {
 
   }
 
-
   var bins = histogram(timeCapsule);
 
   y.domain([-3, d3.max(bins, function(d) { return d.length; })]);
@@ -337,7 +317,9 @@ function makeTimeline() {
             return 1;
           }
         })
-      .attr("height", function(d) { return height - y(d.length); })
+      .attr("height", function(d) { return height - y(d.length); });
+      /*
+      // moot if brushable
           .on("mouseover", function(d, i){ 
               var tultipText = '<div class="name">' + formatDate(d[0].date) + '</div><div class="position">' + d.length + ' Victim';
               if (d.length > 1) { tultipText += 's'; }
@@ -346,6 +328,8 @@ function makeTimeline() {
           })
           .on("mousemove", function(){ return tultip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px"); })
           .on("mouseout", function(){return tultip.style("visibility", "hidden");})
+      */
+
 
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
@@ -362,6 +346,8 @@ function makeTimeline() {
       .call(brush.move, x.range());
 
 } // end makeTimeline
+
+
 
 </script>
 
