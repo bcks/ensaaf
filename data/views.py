@@ -31,7 +31,7 @@ def overview(request):
 
 
 def map(request):
-    all = Data.objects.filter(timeline_start__gte='1980-01-01').values('village_id','village_name','timeline_start','timeline_end')
+    all = Data.objects.filter(timeline_start__gte='1980-01-01').values('village_id','village_name','timeline_start','timeline_end','victim_disappeared_killed')
     return render(request, "map.html", { "all": all })
 
 
