@@ -7,9 +7,10 @@ body {
 strong { font-family: "Muli"; font-weight: 800; }
 
 
+
 .navbar {
   color: #fff;
-  background-color: #000;
+  background-color: #161616;
   margin-bottom: 2rem; 
 }
 .navbar-dark .navbar-nav .nav-link {
@@ -21,9 +22,9 @@ strong { font-family: "Muli"; font-weight: 800; }
 .navbar-brand {
   background: url(/static/images/ensaaf-logo.png);
   background-repeat: no-repeat;
-  background-size: 80px 30px;
-  width: 80px;
-  height: 30px;
+  background-size: 70px 26px;
+  width: 70px;
+  height: 26px;
   text-indent: -99999px;
 }
 
