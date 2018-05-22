@@ -5,6 +5,8 @@ body {
   color: #808080;
 }
 strong { font-family: "Muli"; font-weight: 800; }
+
+
 .navbar {
   color: #fff;
   background-color: #000;
@@ -16,6 +18,15 @@ strong { font-family: "Muli"; font-weight: 800; }
   font-size: 90%;
   letter-spacing: 1px;
 }
+.navbar-brand {
+  background: url(/static/images/ensaaf-logo.png);
+  background-repeat: no-repeat;
+  background-size: 80px 30px;
+  width: 80px;
+  height: 30px;
+  text-indent: -99999px;
+}
+
 
 h1 { font-family: 'Muli', sans; font-weight: 800; }
 h1, h2, h3, h4, h5, h6, h7 {
