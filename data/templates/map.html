@@ -6,42 +6,31 @@
 {% block title %}Timeline of Killings and Disappearances{% endblock %}
 
 {% block head %}
+  <link rel="stylesheet" href="/static/css/leaflet.css" />
+  <script src="/static/js/leaflet.js"></script>
+  <style>
+    .bar { fill: #900; stroke: #900; }
+    .axis line, .axis path { stroke: #aaa; }
+    .tick { font-family: 'Fira Sans', sans-serif; }
 
-<link rel="stylesheet" href="/static/css/leaflet.css" />
-<script src="/static/js/leaflet.js"></script>
+    #timeline { height: 300px;}
 
-<style>
-  .bar { fill: #900; stroke: #900; }
-  .dot {
-    fill: #900;
-    cursor: pointer;
+    #mapid {
+      height:400px;
+      width:100%;
     }
-  .axis line, .axis path { stroke: #aaa; }
-  .tick { font-family: 'Fira Sans', sans-serif; }
+    .leaflet-control-attribution { display: none; }
 
-  #timeline { height: 300px;}
-
-  #mapid {
-    height:400px;
-    width:100%;
-  }
-  .leaflet-control-attribution { display: none; }
-
-  #village-list ul { list-style: none; }
-  #village-list ul li:before{ content:"• "; font-size:10pt; color: #666; }
+    #village-list ul { list-style: none; }
+    #village-list ul li:before{ content:"• "; font-size:10pt; color: #666; }
   
-</style>
-
-<script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
-<script type="text/javascript" src="/static/js/lodash.min.js"></script>
-
+  </style>
+  <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
+  <script type="text/javascript" src="/static/js/lodash.min.js"></script>
 {% endblock %}
 
+
 {% block content %}
-
-
-
-
 
 <div class="container">
   <h1>Map and Timeline of Killings and Disappearences</h1>
@@ -146,9 +135,8 @@ var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
   
 var villages = {};
 var villageNames = {};
-var villageShow = {};
 var villageCentroids = [];
-var markers = [];
+var markers = {};
 
 
 var mymap = L.map('mapid').setView([31.0157601,75], 7);
@@ -163,7 +151,6 @@ $.getJSON("/static/js/punjab.geojson", function(pujabjson) {
   $.getJSON("/static/js/village_loc.json", function(json) {
       villageCentroids = json
       makeTimeline();
-      makeMap();
   });
 });
 
@@ -171,10 +158,9 @@ $.getJSON("/static/js/punjab.geojson", function(pujabjson) {
 
 
 function makeVillageNames(start, end) {
-    
+
     villages = {};
     villageNames = {};
-    villageShow = {};
     
     // update size per village
     for (var i=0;i<timeCapsule.length;i++) {
@@ -182,10 +168,10 @@ function makeVillageNames(start, end) {
           var id = timeCapsule[i]['victim']['village_id'];
           villages[id] = (villages[id] || 0) + 1;
           villageNames[id] = timeCapsule[i]['victim']['village_name'];        
-          villageShow[id] = timeCapsule[i]['date'];
         }
     }
 
+    /*
 
     // make top 14 list
     var keys = Object.keys(villages);
@@ -202,87 +188,89 @@ function makeVillageNames(start, end) {
     }
     // villageList += '<li><a href="#">More...</a></li></ul>';
     $('#village-list').html(villageList);
+    
+    */
 
     updateMap(start, end);
 }
 
 
-  var area = d3.scalePow().exponent(0.5).domain([0, 100]).range([1, 15]);
 
-  function makeMap() {  
+var area = d3.scalePow().exponent(0.5).domain([0, 100]).range([1, 15]);
+
+
+
+function updateMap(start, end) {
+
     // make map
     var points = [];
-    var keys = Object.keys(villages);        
+    var keys = Object.keys(villages);
     for (var i in keys) {
       var thisVillage = _.find(villageCentroids, function(o) {
         return o.CODE.endsWith(keys[i]);        
       });
       if (keys[i]) {
-        points.push({'id':keys[i],'show':villageShow[keys[i]],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':villageNames[keys[i]]});
+        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':villageNames[keys[i]]});
       }
     }
-    points = points.sort(function compare(a, b) { return a.show - b.show; });
 
-    for (var i in points) {
-      var d = points[i];
+    if (Object.keys(markers).length > 0) {
 
-      var customCircleMarker = L.CircleMarker.extend({
-         options: { 
-            url: '/village/' + points[i].id,
-         }
-      });
+        // update markers
+        _.forEach(markers, function(value, key) {
+          if ( d = _.find(points, { 'id': key }) ) {
+              markers[key].setStyle({fillOpacity: .5});
+              markers[key].setRadius(area(d.size));
 
-      markers[d.id] = new customCircleMarker([d.coord[1],d.coord[0]], {
-          stroke: false,
-          fillColor: '#c00',
-          fillOpacity: 0.5,
-          radius: area(d.size),
-          url: '/village/' + points[i].id,
-      }).addTo(mymap);
+              var tultipText = '<div class="name">' + d.name + ', ';
+                if (d.subdist !== d.dist) { tultipText += d.subdist + ', '; }
+                tultipText += d.dist + '</div><div class="position">' + d.size + ' Victim';
+                if (d.size > 1) { tultipText += 's'; }
+                tultipText += '</div>';
 
-      var tultipText = '<div class="name">' + d.name + ', ';
-        if (d.subdist !== d.dist) { tultipText += d.subdist + ', '; }
-        tultipText += d.dist + '</div><div class="position">' + d.size + ' Victim';
-        if (d.size > 1) { tultipText += 's'; }
-        tultipText += '</div>';
+              markers[key].bindPopup(tultipText);
 
-      var url = '/village/' + points[i].id;
+          } else {
+            markers[key].setStyle({fillOpacity: 0});            
+            markers[key].unbindPopup();
+          }
+        });
+    
+    } else {
+        
+        // create map
+        _.forEach(points, function(d) {
+          var customCircleMarker = L.CircleMarker.extend({
+             options: { 
+                url: '/village/' + d.id,
+             }
+          });
 
-      markers[d.id].bindPopup(tultipText);
-      markers[d.id].on('mouseover', function (e) {
-          this.openPopup();
-      });
-      markers[d.id].on('mouseout', function (e) {
-          this.closePopup();
-      });
-      markers[d.id].on('click', function (e) {
-          document.location.href = this.options.url; 
-      });
+          markers[String(d.id)] = new customCircleMarker([d.coord[1],d.coord[0]], {
+              stroke: false,
+              fillColor: '#c00',
+              fillOpacity: 0.5,
+              url: '/village/' + d.id,
+          }).addTo(mymap);
 
-    }
+          var tultipText = '<div class="name">' + d.name + ', ';
+            if (d.subdist !== d.dist) { tultipText += d.subdist + ', '; }
+            tultipText += d.dist + '</div><div class="position">' + d.size + ' Victim';
+            if (d.size > 1) { tultipText += 's'; }
+            tultipText += '</div>';
 
-    updateMap(start, end);
-  }
+          var url = '/village/' + d.id;
 
+          markers[String(d.id)].bindPopup(tultipText);
+          markers[String(d.id)].on('mouseover', function (e) { this.openPopup(); });
+          markers[String(d.id)].on('mouseout', function (e) { this.closePopup(); });
+          markers[String(d.id)].on('click', function (e) { document.location.href = this.options.url; });
+          
+        }); // end for points
 
+    } // end if markers
 
-  function updateMap(start, end) {
-
-    var map = d3.select('#map svg').selectAll("circle");
-    map.transition(750).delay(function(d,i) { return i; })
-    .attr("r", function (d) { return area(d.size) + 'px'; })
-    .attr("opacity", function (d) {
-      
-      if (!start) { return 1; }
-      
-      if ((end >= d.show) && (d.show >= start))  {
-        return 1;      
-      } else {
-        return 0;
-      }
-    });
-
-  }
+}
 
 
 
@@ -301,8 +289,6 @@ function makeTimeline() {
 
 
   var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
-
-  makeVillageNames(start, end);  
 
   var x = d3.scaleTime()
       .domain([start, end])
