@@ -71,6 +71,8 @@ function formatDate(date) {
 
 
 
+
+
 /* map */
 var width = $('#map').width();
 var height = width / 1.85;
@@ -100,14 +102,8 @@ function drawMap(geojson) {
 }
 
 
-d3.select(window).on('resize', resize);
 
 
-function resize() {  
-  var width = $('#timeline').width();
-  d3.select("#timeline svg").attr("width",width);
-  d3.selectAll("path").attr('d', path);
-}
 
 
 
@@ -134,7 +130,6 @@ var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
 
   
 var villages = {};
-var villageNames = {};
 var villageCentroids = [];
 var markers = {};
 
@@ -160,14 +155,12 @@ $.getJSON("/static/js/punjab.geojson", function(pujabjson) {
 function makeVillageNames(start, end) {
 
     villages = {};
-    villageNames = {};
     
     // update size per village
     for (var i=0;i<timeCapsule.length;i++) {
         if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start))  {
           var id = timeCapsule[i]['victim']['village_id'];
           villages[id] = (villages[id] || 0) + 1;
-          villageNames[id] = timeCapsule[i]['victim']['village_name'];        
         }
     }
 
@@ -210,7 +203,7 @@ function updateMap(start, end) {
         return o.CODE.endsWith(keys[i]);        
       });
       if (keys[i]) {
-        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':villageNames[keys[i]]});
+        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':thisVillage.NAME});
       }
     }
 
@@ -275,11 +268,52 @@ function updateMap(start, end) {
 
 
 
+
+
+d3.select(window).on('resize', resize);
+
+var timeline_margin = {top: 10, right: 0, bottom: 50, left: 30};
+
+function resize() {  
+
+  var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
+      height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
+
+  // Update the range of the scale with new width/height
+/*
+  // Update the range of the scale with new width/height
+  xScale.range([0, width]);
+  yScale.rangeRoundBands([height, 0], 0.1);
+
+  // Update the axis and text with the new scale
+  svg.select(".x.axis")
+    .call(xAxis)
+    .attr("transform", "translate(0," + height + ")")
+    .select(".label")
+      .attr("transform", "translate(" + width / 2 + "," + margin.bottom / 1.5 + ")");
+
+  svg.select(".y.axis")
+    .call(yAxis);
+
+  // Update the tick marks
+  xAxis.ticks(Math.max(width/75, 2), " $");
+
+  // Force D3 to recalculate and update the line
+  svg.selectAll(".bar")
+    .attr("width", function(d) { return xScale(d["total"]); })
+    .attr("y", function(d) { return yScale(d["Name"]); })
+    .attr("height", yScale.rangeBand());
+*/
+
+  d3.select("#timeline svg").attr("width",width);
+  d3.selectAll("path").attr('d', path);
+}
+
+
 function makeTimeline() {
     
-  var margin = {top: 10, right: 30, bottom: 50, left: 40},
-      width = $('#timeline').width() - margin.left - margin.right,
-      height = $('#timeline').height() - margin.top - margin.bottom;
+  var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
+      height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
 
   var start = d3.min(d3.entries(timeCapsule), function(d) {
     if (d.value.date > 0) {
@@ -290,7 +324,7 @@ function makeTimeline() {
 
   var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
 
-  var x = d3.scaleTime()
+  var xScale = d3.scaleTime()
       .domain([start, end])
       .rangeRound([0, width]);
 
@@ -303,20 +337,20 @@ function makeTimeline() {
 
   var histogram = d3.histogram()
       .value(function(d) { return d.date; })
-      .domain(x.domain())
-      .thresholds(x.ticks(d3.timeMonth));
+      .domain(xScale.domain())
+      .thresholds(xScale.ticks(d3.timeMonth));
   
   var svg = d3.select("#timeline").append("svg")
-      .attr("width", width + margin.left + margin.right)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("width", width + timeline_margin.left + timeline_margin.right)
+      .attr("height", height + timeline_margin.top + timeline_margin.bottom)
     .append("g")
       .attr("transform", 
-            "translate(" + margin.left + "," + margin.top + ")");
+            "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
 
   function brushed() {
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
-    var s = d3.event.selection || x.range();
-    makeVillageNames( x.invert(s[0]), x.invert(s[1]) );
+    var s = d3.event.selection || xScale.range();
+    makeVillageNames( xScale.invert(s[0]), xScale.invert(s[1]) );
   }
 
   var bins = histogram(timeCapsule);
@@ -329,8 +363,8 @@ function makeTimeline() {
       .attr("class", "bar")
       .attr("x", 1)
       .attr("transform", function(d) {
-      return "translate(" + x(d.x0) + "," + y(d.length) + ")"; })
-      .attr("width", function(d) { return x(d.x1) - x(d.x0); })
+      return "translate(" + xScale(d.x0) + "," + y(d.length) + ")"; })
+      .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0); })
       .style("opacity", function(d) { 
           if (d.length < 1) { 
             return 0;
@@ -339,23 +373,11 @@ function makeTimeline() {
           }
         })
       .attr("height", function(d) { return height - y(d.length); });
-      /*
-      // moot if brushable
-          .on("mouseover", function(d, i){ 
-              var tultipText = '<div class="name">' + formatDate(d[0].date) + '</div><div class="position">' + d.length + ' Victim';
-              if (d.length > 1) { tultipText += 's'; }
-              tultipText += '</div>';
-              return tultip.style("visibility", "visible").style("padding", "10px").html( tultipText );
-          })
-          .on("mousemove", function(){ return tultip.style("top", (event.pageY-10)+"px").style("left",(event.pageX+10)+"px"); })
-          .on("mouseout", function(){return tultip.style("visibility", "hidden");})
-      */
-
 
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .attr('class','axis')
-      .call(d3.axisBottom(x));
+      .call(d3.axisBottom(xScale));
 
   svg.append("g")
       .attr('class','axis')
@@ -364,7 +386,7 @@ function makeTimeline() {
   svg.append("g")
       .attr("class", "brush")
       .call(brush)
-      .call(brush.move, x.range());
+      .call(brush.move, xScale.range());
 
 } // end makeTimeline
 
