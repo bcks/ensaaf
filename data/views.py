@@ -73,6 +73,42 @@ def year(request, year=None):
 
 
 
+def official(request, slug=None):
+    officials = {
+      "S0001":"Sumedh Singh [Saini]",
+      "S0002":"Mohd. Izhar Alam",
+      "S0003":"Suresh	Arora",
+      "S0004":"Lok Nath	Angra",
+      "S0005":"Swaran	Singh [Ghotna]",
+      "S0006":"Ajit Singh	Sandhu",
+      "S0007":"Jasminder [Jaswinder]	Singh",
+      "S0008":"Gur Iqbal Singh Bhullar",
+      "S0009":"Dinkar Gupta",
+      "S0010":"Bua Singh",
+      "S0011":"Shiv Kumar",
+      "S0012":"Sant Kumar",
+      "S0013":"Raj Kishan	Bedi",
+      "S0014":"Harinder Singh [Chahal]",
+      "S0015":"Gurmeet Singh [Pinky]",
+    }
+    name =  officials.get(slug)
+
+    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+
+    victims = Data.objects.filter(security_arrest__soa_code=slug)\
+      .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
+      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
+
+    stats = calculate_stats(victims)
+    if id is not None and id is None:
+        return messages.warning(request,"Year %s was not found"%id)
+    return render(request, "securityforce.html", { "victims": victims, "name": name, "stats": stats } )
+
+
+
 
 def securityforce(request, slug=None):
 
@@ -108,7 +144,7 @@ def securityforce(request, slug=None):
 
     stats = calculate_stats(victims)
     if id is not None and id is None:
-        return messages.warning(request,"Year %s was not found"%id)
+        return messages.warning(request,"Security Force %s was not found"%id)
     return render(request, "securityforce.html", { "victims": victims, "name": name, "stats": stats } )
 
 

@@ -269,7 +269,7 @@ class SecurityArrest(models.Model):
     arrest_so_affiliation = models.IntegerField(blank=True, null=True)
     arrest_so_affiliation_oth = models.CharField(max_length=256, blank=True, null=True)
     arrest_so_affiliation_loc = models.CharField(max_length=256, blank=True, null=True)
-    soa_code = models.IntegerField(blank=True, null=True)
+    soa_code = models.CharField(max_length=8, blank=True, null=True)
 
     class Meta:
         db_table = 'security_arrest'

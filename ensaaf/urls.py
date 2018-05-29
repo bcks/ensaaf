@@ -13,6 +13,7 @@ urlpatterns = [
     path('year/<year>/', year, name="year"),
 #    path('securityarrest/<int:id>/', securityarrest, name="securityarrest"),
     path('securityforce/<slug:slug>/', securityforce, name="securityforce"),
+    path('official/<slug:slug>/', official, name="official"),
     path('search/', include('haystack.urls')),
     path('admin/', admin.site.urls),
     path('overview/', overview, name="overview"),
