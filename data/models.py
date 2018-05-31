@@ -285,7 +285,7 @@ class SecurityKilled(models.Model):
     killing_so_affiliation = models.IntegerField(blank=True, null=True)
     killing_so_affiliation_oth = models.CharField(max_length=256, blank=True, null=True)
     killing_so_affiliation_loc = models.CharField(max_length=256, blank=True, null=True)
-    sok_code = models.IntegerField(blank=True, null=True)
+    sok_code = models.CharField(max_length=8, blank=True, null=True)
 
     class Meta:
         db_table = 'security_killed'
