@@ -122,7 +122,12 @@ def official(request, slug=None):
     tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
     village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
 
-    victims = Data.objects.filter( Q(security_arrest__soa_code=slug) | Q(security_killed__sok_code=slug) )\
+
+    soas = SecurityArrest.objects.filter(soa_code=slug).values_list('record_id', flat=True)
+    soks = SecurityKilled.objects.filter(sok_code=slug).values_list('record_id', flat=True)
+    records = list(soas) + list(soks)
+        
+    victims = Data.objects.filter( record_id__in=records )\
       .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
       .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
 
