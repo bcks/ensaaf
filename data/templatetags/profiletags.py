@@ -4,7 +4,11 @@ from django import template
 register = template.Library()
 
 
-monthNames = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December","13####","14####","15####","16####","17####","18####","19####","20####","21####","22####","23####","24####","25####","26####","27####","28####","29####","30####","31####","32####","33####","34####","35####", ]
+monthNames = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October",\
+  "November", "December","13####","14####","15####","16####","17####","18####","19####",\
+  "20####","21####","22####","23####","24####","25####","26####","27####","28####","29####",
+  "30####","31####","32####","33####","34####","35####","36####","37####","38####","39####",
+  "40####","41####","42####","43####","44####","45####","46####","47####","48####","49####",]
 
 
 @register.simple_tag()
@@ -14,6 +18,12 @@ def sex(var):
     if var == 2:
       return 'Female'
     return
+
+
+
+@register.filter(name='uncensus')
+def uncensus(value):
+    return value.lstrip('0123456789.- ')
 
 
 
@@ -72,8 +82,8 @@ def hdate_link(var):
   #      pattern => '%m/%d/%Y',
   if '/' in var:
     parts = var.split('/')
-    if int(parts[0]) < 1900:
-      parts[0] = int(parts[0]) + 1900
+    if int(parts[2]) < 1900:
+      parts[2] = int(parts[2]) + 1900
     return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
 
@@ -301,8 +311,8 @@ def hdate_no_on(var):
   #      pattern => '%m/%d/%Y',
   if '/' in var:
     parts = var.split('/')
-    if int(parts[0]) < 1900:
-      parts[0] = int(parts[0]) + 1900
+    if int(parts[2]) < 1900:
+      parts[2] = int(parts[2]) + 1900
     return monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
   return ''

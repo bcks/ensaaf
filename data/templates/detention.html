@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+{% load profiletags %}
+
+{% block title %}Documented cases affiliated with {{facilityname|uncensus|title}}{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-sm-12 col-md m-2">
+    <h1>{{facilityname|uncensus|title}}</h1>
+  </div>
+</div>
+
+{% if victims.all|length > 0 %}
+
+
+<div class="row">
+  <div class="col-sm-6">
+      
+  <p>&nbsp;{{stats.total|intcomma}} documented case{{stats.total|pluralize}} in {{facilityname|uncensus|title}}:</p>
+
+  {% regroup victims.all by district as district_list %}
+
+  {% for district in district_list %}
+
+    <div class="row">
+      <div class="col-sm-12 col-md m-2">
+        {% if forloop.first %}{% else %}
+          <br><hr>
+        {% endif %}
+        <h2>{{ district.grouper|default_if_none:""  }}</h2>
+      </div>
+    </div>
+    
+    
+
+
+  {% regroup district.list by tehsil as tehsil_list %}
+
+  {% for tehsil in tehsil_list %}
+
+    <div class="row">
+      <div class="col-sm-12 col-md m-2">
+        <h5>{{ tehsil.grouper|default_if_none:""  }}</h5>
+      </div>
+    </div>
+
+    {% for victim in tehsil.list %}
+
+    <div class="row">
+      <div class="col-sm-12 col-md m-2">
+  
+      <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
+
+
+      {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
+      age {{victim.victim_age}}        
+        {% if victim.victim_disappeared_killed  %}
+         at time of 
+          {% if victim.victim_disappeared_killed == 1 %}
+          disappearance
+          {% endif %}
+          {% if victim.victim_disappeared_killed == 2 %}
+          killing
+          {% endif %}
+        {% endif %}
+      {% endif %}{% endif %}
+      <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
+
+
+      </div>
+    </div>
+    
+    {% endfor %}
+  
+  {% endfor %}
+
+  {% endfor %}
+
+  
+  </div>
+  
+  
+  <div class="col-sm-6 border-left">
+    
+    <p>Overview of cases in {{year}}:</p>
+
+    {% include 'stats.html' %}
+
+  </div>      
+</div>      
+  
+
+
+  
+  {% else %}
+
+  <div class="row">
+    <div class="col-sm-12 col-md m-2">   
+      <p>No documented cases for {{facilityname}}.</p>
+    </div>
+  </div>
+
+  {% endif %}
+  
+
+{% endblock %}

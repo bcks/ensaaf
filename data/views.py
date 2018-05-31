@@ -72,6 +72,23 @@ def year(request, year=None):
     return render(request, "year.html", { "victims": victims, "year":year, "stats": stats } )
 
 
+def detention(request, type=None, name=None):
+
+    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+
+    victims = Data.objects.filter(where_victim_detained__detention_facility_type=type, where_victim_detained__facility_name=name)\
+      .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
+      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
+
+    stats = calculate_stats(victims)
+    if name is not None and name is None:
+        return messages.warning(request,"Detention %s was not found"%id)
+    return render(request, "detention.html", { "victims": victims, "facilityname": name, "stats": stats } )
+
+
 
 def official(request, slug=None):
     officials = {
@@ -98,7 +115,7 @@ def official(request, slug=None):
     tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
     village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
 
-    victims = Data.objects.filter(security_arrest__soa_code=slug)\
+    victims = Data.objects.filter(Q(security_arrest__soa_code=slug) | Q(security_killed__sok_code=slug))\
       .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
       .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
 
