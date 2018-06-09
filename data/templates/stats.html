@@ -73,7 +73,7 @@
 
       <div class="col-12">
         <span class="percent">{% percent stats.amritdhari stats.total%}%</span>
-        Amritdhari
+        <span define="An initiated Sikh, belonging to the Khalsa">Amritdhari</span>
         <span class="number-of-cases">{{stats.amritdhari|intcomma}}</span>
         <div class="percent-bar" style="width:{% percent stats.amritdhari stats.total%}%">&nbsp;</div>
       </div> 
@@ -81,7 +81,7 @@
       <div class="col-12">
         <div class="percent-bar bar-2" style="width:{% percent stats.kesdhari stats.total%}%">&nbsp;</div>
         <span class="percent">{% percent stats.kesdhari stats.total%}%</span>
-        Kesdhari
+        <span define="A Sikh with uncut hair">Kesdhari</span>
         <span class="number-of-cases">{{stats.kesdhari|intcomma}}</span>
       </div> 
 
@@ -357,7 +357,7 @@
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0|safe}} <span class="number-of-cases">{{o.1|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
 
@@ -420,7 +420,7 @@
              {%if o.1 %}
        
               <div>
-              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0|safe}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
        
@@ -534,7 +534,7 @@
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0|safe}} <span class="number-of-cases">{{o.1|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
 
@@ -557,7 +557,7 @@
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0|safe}} <span class="number-of-cases">{{o.1|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
 
@@ -775,7 +775,7 @@
              {%if o.1 %}
        
               <div>
-              <span class="percent">{% percent o.1 stats.security_officials_apprchd %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <span class="percent">{% percent o.1 stats.security_officials_apprchd %}%</span>  {{o.0|safe}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.security_officials_apprchd %}%">&nbsp;</div>        
               </div>
        

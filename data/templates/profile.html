@@ -158,7 +158,7 @@
         <p class="kicker">Religion</p>
       </div>
       <div class="col-sm-10">
-        <p>{% hreligion victim.victim_religion %}{% if victim.victim_amritdhari == 1 %}, Amritdhari{% endif %}{% if victim.victim_kesdhari == 1 %}, Kesdhari{% endif %}</p>
+        <p>{% hreligion victim.victim_religion %}{% if victim.victim_amritdhari == 1 %}, <span define="An initiated Sikh, belonging to the Khalsa">Amritdhari</span>{% endif %}{% if victim.victim_kesdhari == 1 %}, <span define="A Sikh with uncut hair">Kesdhari</span>{% endif %}</p>
       </div>
       </div>
       {% endif %}

@@ -123,3 +123,41 @@ tr { vertical-align: top; }
 .stats-block .toggle {
   display: none;
 }
+
+
+
+
+[define]{
+  position:relative;
+  background-image: linear-gradient(to right, #09c 33%, rgba(255,255,255,0) 0%);
+  background-position: bottom;
+  background-size: 3px 1px;
+  background-repeat: repeat-x;
+}
+[define]:hover::before {
+  content: "";
+  position: absolute;
+  top:-6px;
+  left:50%;
+  transform: translateX(-50%);
+  border-width: 4px 6px 0 6px;
+  border-style: solid;
+  border-color: rgba(0,0,0,0.7) transparent transparent     transparent;
+  z-index: 100;
+}
+[define]:hover::after {
+  content: attr(define);
+  position: absolute;
+  left:50%;
+  top:-6px;
+  transform: translateX(-50%)   translateY(-100%);
+  background: rgba(0,0,0,0.7);
+  text-align: center;
+  color: #fff;
+  padding:4px 2px;
+  font-size: 12px;
+  min-width: 100px;
+  border-radius: 5px;
+  padding: 4px;
+  pointer-events: none;
+}
