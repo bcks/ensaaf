@@ -484,10 +484,10 @@
     
     {% for this in victim.where_victim_detained.all %}
 
-      <p>{% if this.detention_facility_type != '' %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endif %}{% if this.facility_name != '' %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_district != '' %}, {{this.facility_district|title}}{% endif %}{% if this.duration_of_detention != '' %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
+      <p>{% if this.detention_facility_type != '' %}{% autoescape off %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endautoescape %}{% endif %}{% if this.facility_name != '' %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_district != '' %}, {{this.facility_district|title}}{% endif %}{% if this.duration_of_detention != '' %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
 
     {% if this.witness_detention_3 or this.witness_detention_4 or this.witness_detention_5 or this.witness_detention_6 or this.witness_detention_7 or this.witness_detention_8 or this.witness_detention_9 or this.witness_detention_10 or this.witness_detention_12 or this.witness_detention_13 or this.witness_detention_14 or this.witness_detention_other or this.witness_detention_status %}
-        <br>{% hwitness_detention this.witness_detention_3 this.witness_detention_4 this.witness_detention_5 this.witness_detention_6 this.witness_detention_7 this.witness_detention_8 this.witness_detention_9 this.witness_detention_10 this.witness_detention_12 this.witness_detention_13 this.witness_detention_14 this.witness_detention_other  this.witness_detention_status %}</p>
+        <br>{% autoescape off %}{% hwitness_detention this.witness_detention_3 this.witness_detention_4 this.witness_detention_5 this.witness_detention_6 this.witness_detention_7 this.witness_detention_8 this.witness_detention_9 this.witness_detention_10 this.witness_detention_12 this.witness_detention_13 this.witness_detention_14 this.witness_detention_other  this.witness_detention_status %}{% endautoescape %}</p>
     {% endif %}
       </p>
 
@@ -645,7 +645,7 @@
       <p>{% if this.soa_code %}<a href="{% url 'official' this.soa_code %}">{% endif %}{{this.arrest_so_first_name|title}} {{this.arrest_so_last_name|title}}{% if this.soa_code %}</a>{% endif %}<!-- rank -->{% if this.arrest_so_rank != '' %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}, 
 {% harrest_so_rank this.arrest_so_rank %}{% endif %}{% endif %}{% if this.arrest_so_rank == 13 %}{% if this.arrest_so_rank_other %}, 
 {{this.arrest_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliaton -->{% if this.arrest_so_affiliation != '' %}{% if this.arrest_so_affiliation != 8 %}{% if this.arrest_so_affiliation != 7 %}, 
-{% haffiliation this.arrest_so_affiliation %}{% endif %}{% endif %}{% endif %}<!-- arrest_so_affiliation_oth -->{% if this.arrest_so_affiliation_oth != '' %}, 
+{% autoescape off %}{% haffiliation this.arrest_so_affiliation %}{% endautoescape %}{% endif %}{% endif %}{% endif %}<!-- arrest_so_affiliation_oth -->{% if this.arrest_so_affiliation_oth != '' %}, 
 {{this.arrest_so_affiliation_oth}}{% endif %}{% if this.arrest_so_affiliation_loc != '' %}, {{this.arrest_so_affiliation_loc|uncensus}}{% endif %}{% if this.arrest_security_locality != None %}, {{this.arrest_security_locality}}{% endif %}</p>
 
     {% endfor %}
@@ -685,7 +685,7 @@
 
     {%for this in victim.security_killed.all %}
 
-      <p>{% if this.sok_code %}<a href="{% url 'official' this.sok_code %}">{% endif %}{% if this.killing_so_first_name != 'Don\'t know' %}{{this.killing_so_first_name|title}}{% endif %} {%if this.killing_so_last_name != 'Don\'t Know' %}{{this.killing_so_last_name|title}}{% endif %}{% if this.sok_code %}</a>{% endif %}<!-- rank -->{% if this.killing_so_rank != '' %}{% if this.killing_so_rank != 13 %}{% if this.killing_so_rank != 14 %}, {% harrest_so_rank this.killing_so_rank %}{% endif %}{% endif %}{% if this.killing_so_rank == 13 %}{% if this.killing_so_rank_other %}, {{this.killing_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliation -->{% if this.killing_so_affiliation != '' %}{% if this.killing_so_affiliation != 8 %}{% if this.killing_so_affiliation != 7 %}, {% haffiliation this.killing_so_affiliation %}{% endif %}{% endif %}{% endif %}<!-- killing_so_affiliation_oth -->{% if this.killing_so_affiliation == 8 %}{% if this.killing_so_affiliation_oth != '' %}, {{this.killing_so_affiliation_oth}}{% endif %}{% endif %}{% if this.killing_so_affiliation_loc != '' %}, {{this.killing_so_affiliation_loc}}{% endif %}</p>
+      <p>{% if this.sok_code %}<a href="{% url 'official' this.sok_code %}">{% endif %}{% if this.killing_so_first_name != 'Don\'t know' %}{{this.killing_so_first_name|title}}{% endif %} {%if this.killing_so_last_name != 'Don\'t Know' %}{{this.killing_so_last_name|title}}{% endif %}{% if this.sok_code %}</a>{% endif %}<!-- rank -->{% if this.killing_so_rank != '' %}{% if this.killing_so_rank != 13 %}{% if this.killing_so_rank != 14 %}, {% harrest_so_rank this.killing_so_rank %}{% endif %}{% endif %}{% if this.killing_so_rank == 13 %}{% if this.killing_so_rank_other %}, {{this.killing_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliation -->{% if this.killing_so_affiliation != '' %}{% if this.killing_so_affiliation != 8 %}{% if this.killing_so_affiliation != 7 %}, {% autoescape off %}{% haffiliation this.killing_so_affiliation %}{% endautoescape %}{% endif %}{% endif %}{% endif %}<!-- killing_so_affiliation_oth -->{% if this.killing_so_affiliation == 8 %}{% if this.killing_so_affiliation_oth != '' %}, {{this.killing_so_affiliation_oth}}{% endif %}{% endif %}{% if this.killing_so_affiliation_loc != '' %}, {{this.killing_so_affiliation_loc}}{% endif %}</p>
 
     {% endfor %}
 
@@ -731,7 +731,7 @@
       <p class="kicker">Security officlals approached</p>
     </div>
     <div class="col-sm-6">
-      <p>{% hyes_no victim.security_officials_apprchd %}{% if victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or  victim.so_approached_other %}, {% endif %}{% autoescape off %}{% hso_approached_type  victim.so_approached_type_1  victim.so_approached_type_2 victim.so_approached_type_3 victim.so_approached_type_4  victim.so_approached_type_5 victim.so_approached_type_6 victim.so_approached_type_7  victim.so_approached_other %}{% endautoescape %}{% if  victim.so_approached_loc %}, from {% hadd_spaces victim.so_approached_loc %}{% endif %}</p>
+      <p>{% hyes_no victim.security_officials_apprchd %}{% if victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or  victim.so_approached_other %}, {% endif %}{% autoescape off %}{% hso_approached_type  victim.so_approached_type_1  victim.so_approached_type_2 victim.so_approached_type_3 victim.so_approached_type_4  victim.so_approached_type_5 victim.so_approached_type_6 victim.so_approached_type_7  victim.so_approached_other %}{% endautoescape %}{% if  victim.so_approached_loc %}, from {% hadd_spaces victim.so_approached_loc|uncensus %}{% endif %}</p>
     </div>
   {% endif %}
   {% endif %}
@@ -744,7 +744,7 @@
       <p class="kicker">Security official response</p>
     </div>
     <div class="col-sm-6">
-      <p>{% hsecurity_official_response victim.security_official_response_0 victim.security_official_response_1 victim.security_official_response_2 victim.security_official_response_3 victim.security_official_response_4 victim.security_official_response_5 victim.security_official_response_6 victim.security_official_response_7 victim.security_official_response_8 victim.security_official_response_9 victim.security_official_response_10 victim.security_official_response_11 victim.security_official_response_12 victim.security_official_response_13 victim.security_official_response_14 victim.other_so_response %}</p>
+      <p>{% autoescape off %}{% hsecurity_official_response victim.security_official_response_0 victim.security_official_response_1 victim.security_official_response_2 victim.security_official_response_3 victim.security_official_response_4 victim.security_official_response_5 victim.security_official_response_6 victim.security_official_response_7 victim.security_official_response_8 victim.security_official_response_9 victim.security_official_response_10 victim.security_official_response_11 victim.security_official_response_12 victim.security_official_response_13 victim.security_official_response_14 victim.other_so_response %}{% endautoescape %}</p>
     </div>
   {% endif %}
   {% endif %}

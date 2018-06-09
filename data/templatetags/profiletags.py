@@ -23,7 +23,7 @@ def sex(var):
 
 @register.filter(name='uncensus')
 def uncensus(value):
-    return value.lstrip('0123456789.- ')
+    return re.sub(r'([0123456789.]+)-','', value)
 
 
 
