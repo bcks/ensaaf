@@ -351,7 +351,7 @@ def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
   groups.append('<a href="/securityforce/crpf/"><span define="Central Reserve Police Force">CRPF</span></a>') if v3 == 1 else 0
   groups.append('<a href="/securityforce/army/">Army</a>') if v4 == 1 else 0
   groups.append('<a href="/securityforce/cia/"><span define="Criminal Investigation Agency">CIA</span></a>') if v5 == 1 else 0
-  groups.append('<a href="/securityforce/black-cat/"><span define="Irregular undercover security force, consisting often of criminals">Black cat</span></a>') if v6 == 1 else 0
+  groups.append('<a href="/securityforce/black-cat/"><span define="Irregular undercover security force, often consisting of criminals">Black cat</span></a>') if v6 == 1 else 0
   groups.append('Don’t know') if v7 == 1 else 0
   if (other):
     groups.append(other)
@@ -372,7 +372,7 @@ def hso_approached_type(v1, v2, v3, v4, v5, v6, v7, other):
   groups.append('<a href="/securityforce/crpf/"><span define="Central Reserve Police Force">CRPF</span></a>') if v4 == 1 else 0
   groups.append('<a href="/securityforce/army/">Army</a>') if v5 == 1 else 0
   groups.append('<a href="/securityforce/cia/"><span define="Criminal Investigation Agency">CIA</span></a>') if v6 == 1 else 0
-  groups.append('<a href="/securityforce/black-cat/"><span define="Irregular undercover security force, consisting often of criminals">Black cat</span></a>') if v7 == 1 else 0
+  groups.append('<a href="/securityforce/black-cat/"><span define="Irregular undercover security force, often consisting of criminals">Black cat</span></a>') if v7 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -498,7 +498,7 @@ def hsecurity_official_response(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11
   groups.append('Victim killed in crossfire with militants') if v9 == 1 else 0
   groups.append('Victim accidentally killed in custody') if v10 == 1 else 0
   groups.append('Victim killed while resisting arrest/search') if v11 == 1 else 0
-  groups.append('Victim killed by <span define="Irregular undercover security force, consisting often of criminals">black cat</span>s') if v12 == 1 else 0
+  groups.append('Victim killed by <span define="Irregular undercover security force, often consisting of criminals">black cat</span>s') if v12 == 1 else 0
   groups.append('Don’t know') if v14 == 1 else 0
   if v3 == 1:
     if (other):
@@ -711,7 +711,7 @@ def harrest_so_rank(var):
 
 @register.simple_tag()
 def haffiliation(var):
-  affilation = ['','Punjab Police','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span>','Army','<span define="Criminal Investigation Agency">CIA</span>','<span define="Irregular undercover security force, consisting often of criminals">Black Cat</span>','Don’t Know','Other']
+  affilation = ['','Punjab Police','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span>','Army','<span define="Criminal Investigation Agency">CIA</span>','<span define="Irregular undercover security force, often consisting of criminals">Black Cat</span>','Don’t Know','Other']
   return affilation[var];
 
 

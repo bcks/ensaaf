@@ -115,7 +115,7 @@ def calculate_stats(all):
       "<span define=\"Central Reserve Police Force\">CRPF</span>": all.filter(so_approached_type_4='1').count(),
       "Army": all.filter(so_approached_type_5='1').count(),
       "<span define=\"Criminal Investigation Agency\">CIA</span>": all.filter(so_approached_type_6='1').count(),
-      "<span define=\"Irregular undercover security force, consisting often of criminals\">Black cat</span>": all.filter(so_approached_type_7='1').count(),
+      "<span define=\"Irregular undercover security force, often consisting of criminals\">Black cat</span>": all.filter(so_approached_type_7='1').count(),
       "Other": all.filter(so_approached_type_9='1').count(),
     }
     so_approached_type = sorted(so_approached_type.items(), key=operator.itemgetter(1), reverse=True)
@@ -283,7 +283,7 @@ def calculate_stats(all):
       "<span define=\"Central Reserve Police Force\">CRPF</span>": all.filter(arrest_security_type_3='1').count(),
       "Army": all.filter(arrest_security_type_4='1').count(),
       "<span define=\"Criminal Investigation Agency\">CIA</span>": all.filter(arrest_security_type_5='1').count(),
-      "<span define=\"Irregular undercover security force, consisting often of criminals\">Black cat</span>": all.filter(arrest_security_type_6='1').count(),
+      "<span define=\"Irregular undercover security force, often consisting of criminals\">Black cat</span>": all.filter(arrest_security_type_6='1').count(),
       "Other": all.filter(arrest_security_type_8='1').count(),
     }
     arrest_security_type = sorted(arrest_security_type.items(), key=operator.itemgetter(1), reverse=True)
@@ -310,7 +310,7 @@ def calculate_stats(all):
       "<span define=\"Central Reserve Police Force\">CRPF</span>": all.filter(killing_securityforcestype_3='1').count(),
       "Army": all.filter(killing_securityforcestype_4='1').count(),
       "<span define=\"Criminal Investigation Agency\">CIA</span>": all.filter(killing_securityforcestype_5='1').count(),
-      "<span define=\"Irregular undercover security force, consisting often of criminals\">Black cat</span>": all.filter(killing_securityforcestype_6='1').count(),
+      "<span define=\"Irregular undercover security force, often consisting of criminals\">Black cat</span>": all.filter(killing_securityforcestype_6='1').count(),
       "Other": all.filter(killing_securityforcestype_8='1').count(),
     }
     killing_securityforcestype = sorted(killing_securityforcestype.items(), key=operator.itemgetter(1), reverse=True)
@@ -329,7 +329,7 @@ def calculate_stats(all):
       "Victim killed in crossfire with militants": all.filter(security_official_response_9='1').count(),
       "Victim accidentally killed in custody": all.filter(security_official_response_10='1').count(),
       "Victim killed while resisting arrest/search": all.filter(security_official_response_11='1').count(),
-      "Victim killed by <span define=\"Irregular undercover security force, consisting often of criminals\">Black cat</span>s": all.filter(security_official_response_12='1').count(),
+      "Victim killed by <span define=\"Irregular undercover security force, often consisting of criminals\">Black cat</span>s": all.filter(security_official_response_12='1').count(),
       "Other": all.filter(security_official_response_13='1').count(),
     }
     security_official_response = sorted(security_official_response.items(), key=operator.itemgetter(1), reverse=True)
