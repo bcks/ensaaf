@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'whoosh',
     'haystack',
     'debug_toolbar',
+    'graphene_django',
 ]
 
 MIDDLEWARE = [
@@ -97,6 +98,9 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
+GRAPHENE = {
+    'SCHEMA': 'data.schema.schema'
+}
 
 # load a secrets file that isn't in source control; backup is using environ config
 try:

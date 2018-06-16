@@ -4,6 +4,7 @@ from data.views import *
 
 from django.conf import settings
 from django.conf.urls import include, url
+from graphene_django.views import GraphQLView
 
 urlpatterns = [
     path('profile/<int:id>/', profile, name="profile"),
@@ -19,6 +20,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('overview/', overview, name="overview"),
     path('map/', map, name="map"),
+    path('change/', change, name="change"),
+    url(r'^graphql', GraphQLView.as_view(graphiql=True)),
     path('<slug:directory>/<slug:slug>/', page),
     path('', home, name="home"),
 ]

@@ -1,0 +1,314 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+{% load profiletags %}
+
+{% block title %}Changes over Time{% endblock %}
+
+{% block head %}
+  <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
+  <script type="text/javascript" src="/static/js/lodash.min.js"></script>
+  <style>
+    .bar { fill: #900; }
+    .axis line, .axis path { stroke: #aaa; }
+    .tick { font-family: 'Fira Sans', sans-serif; }
+    #chart { width: 100%; height: 300px; }
+  </style>
+{% endblock %}
+
+
+{% block content %}
+
+<h1>Changes over Time</h1>
+
+<ul>
+<li><a href="#" id="disposal">How did the disposal of bodies change?</a></li>
+<li><a href="#" id="witnesses">How did the presence of witnesses at abduction change?</a></li>
+<li><a href="#" id="prior_detentions">How did the prior persecution of victims change?</a></li>
+<li><a href="#" id="militant">How did the militant vs. non-militant background of victims change?</a></li>
+</ul>
+
+<hr>
+
+<div id="chart"></div>
+
+
+
+
+
+<script>
+
+d3.select(window).on('resize', resize);
+
+var timeline_margin = {top: 10, right: 0, bottom: 50, left: 30};
+
+var width = $('#chart').width() - timeline_margin.left - timeline_margin.right,
+    height = $('#chart').height() - timeline_margin.top - timeline_margin.bottom;
+
+var y = d3.scaleLinear()
+    .range([height, 0]);
+
+
+function resize() {
+  var width = $('#chart').width() - timeline_margin.left - timeline_margin.right,
+      height = $('#chart').height() - timeline_margin.top - timeline_margin.bottom;
+  d3.select("#chart svg").attr("width",width);
+  d3.selectAll("path").attr('d', path);
+}
+
+
+
+
+
+
+function makeChart(data, values, field) {
+
+  //console.log(data);
+
+  $('#chart').html('');
+
+  data.forEach( function(d) {
+    if (d.timeline) {
+      var p = d.timeline.split('-');
+      var date = new Date(p[0], p[1] - 1, p[2]);
+      if ( (p[0] > 1979) && (p[0] < 2020) ) {
+        d.date = date;
+      }
+    }
+  });
+
+  var start = d3.min(d3.entries(data), function(d) { return d.value.date; } );
+  var end = d3.max(d3.entries(data), function(d) { return d.value.date; } );
+
+  var xScale = d3.scaleTime()
+      .domain([start, end])
+      .rangeRound([0, width]);
+
+  var histogram = d3.histogram()
+      .value(function(d) { return d.date; })
+      .domain(xScale.domain())
+      .thresholds(xScale.ticks(d3.timeMonth));
+
+
+  // get max height for all values
+  var max = null;
+  values.forEach( function(v) {
+    var thisData = [];
+    data.forEach( function(d) {
+      if (d[field] == v.datum) {
+        thisData.push(d);
+      }
+    });
+    var bins = histogram(thisData);
+    var thisMax = d3.max(bins, function(d) { return d.length; });
+    if (thisMax > max) { max = thisMax };
+  });
+  y.domain([0, max]);
+  
+  
+
+  values.forEach( function(v) {
+
+      var thisData = [];
+      
+      data.forEach( function(d) {
+        if (d[field] == v.datum) {
+          thisData.push(d);
+        }
+      });
+
+
+      d3.select("#chart").append("div").html(v.label);
+
+      var svg = d3.select("#chart").append("svg")
+          .attr("width", width + timeline_margin.left + timeline_margin.right)
+          .attr("height", height + timeline_margin.top + timeline_margin.bottom)
+        .append("g")
+          .attr("transform", 
+                "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
+
+      bins = histogram(thisData);
+
+      svg.selectAll("rect")
+          .data(bins)
+        .enter().append("rect")
+          .attr("class", "bar")
+          .attr("x", 1)
+          .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + y(d.length) + ")"; })
+          .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0); })
+          .style("opacity", function(d) { 
+              if (d.length < 1) { 
+                return 0;
+              } else {
+                return 1;
+              }
+            })
+          .attr("height", function(d) { return height - y(d.length); });
+
+
+      svg.append("g")
+          .attr("transform", "translate(0," + height + ")")
+          .attr('class','axis')
+          .call(d3.axisBottom(xScale));
+
+      svg.append("g")
+          .attr('class','axis')
+          .call(d3.axisLeft(y));
+      
+  });
+
+}
+
+
+
+
+
+
+
+function getAjax(e, url, callback) {
+    e.preventDefault();
+    $('#chart').html('Loading');
+    $.ajax({
+      method: 'get',
+      url: url,
+    }).done(function(results) {
+      callback(results)
+    });  
+
+}
+
+
+
+// How did the disposal of bodies change?
+$('#disposal').click(function(e) {
+
+  /*
+  1	Cremated the body
+  2	Dumped body in canal/river
+  3	Dumped body in well/drain
+  4	Buried the body
+  5	Don't Know
+  6	Other (specify details in Free Text)
+  */
+
+  var values = [
+    {"datum":1,"label":"Cremated the body"},
+    {"datum":2,"label":"Dumped body in canal/river"},
+    {"datum":3,"label":"Dumped body in well/drain"},
+    {"datum":4,"label":"Buried the body"},
+  ];
+  var field = 'soBodyDisposal';
+
+  getAjax( e,       '/graphql?query=%7B%0A%20%20data%20%7B%0A%20%20%20%20soBodyDisposal%0A%20%20%20%20timeline%0A%20%20%7D%0A%7D%0A',
+    function(results) {  
+      makeChart(results.data.data, values, field);
+    }
+  );
+    
+});
+
+
+// How did the presence of witnesses at abduction change?
+$('#witnesses').click(function(e) {
+
+    /*
+      0	witness_arrest___0	No witness
+      1	witness_arrest___1	Spouse
+      2	witness_arrest___2	Parents
+      3	witness_arrest___3	Children
+      4	witness_arrest___4	Sibling
+      5	witness_arrest___5	Grandparent
+      6	witness_arrest___6	Cousin
+      7	witness_arrest___7	Aunt/uncle
+      8	witness_arrest___8	Friend
+      9	witness_arrest___9	Co-villager
+      10	witness_arrest___10	Respondent
+      11	witness_arrest___11	Other
+      12	witness_arrest___12	Don't Know
+    */
+    
+  var values = [
+    {"datum":0,"label":"No witness"},
+    {"datum":1,"label":"Spouse"},
+    {"datum":2,"label":"Parents"},
+    {"datum":3,"label":"Children"},
+    {"datum":4,"label":"Sibling"},
+    {"datum":5,"label":"Grandparent"},
+    {"datum":6,"label":"Cousin"},
+    {"datum":7,"label":"Aunt/uncle"},
+    {"datum":8,"label":"Friend"},
+    {"datum":9,"label":"Co-villager"},
+    {"datum":10,"label":"Respondent"}
+  ];
+  var field = 'witness_arrest';
+
+  getAjax( e,             '/graphql?query=%7B%0A%20%20data%20%7B%0A%20%20%20%20witnessArrest0%0A%20%20%20%20witnessArrest1%0A%20%20%20%20witnessArrest2%0A%20%20%20%20witnessArrest3%0A%20%20%20%20witnessArrest4%0A%20%20%20%20witnessArrest5%0A%20%20%20%20witnessArrest6%0A%20%20%20%20witnessArrest7%0A%20%20%20%20witnessArrest8%0A%20%20%20%20witnessArrest9%0A%20%20%20%20witnessArrest10%0A%20%20%20%20timeline%0A%20%20%7D%0A%7D%0A',
+    function(results) {  
+
+      var data = [];
+      results.data.data.forEach( function(d) {
+        for (var j = 0; j <= 10; j++) {
+          var whichWitness = 'witnessArrest'+j;
+          if (d[whichWitness] == 1) {
+            data.push({'witness_arrest': j, "timeline": d.timeline});
+          }
+        }
+      });
+      makeChart(data, values, field);
+    }
+  );
+
+
+});
+
+
+
+
+
+// How did the prior persecution of victims change?
+$('#prior_detentions').click(function(e) {
+
+  var values = [
+    {"datum":1,"label":"Victim had prior detention"},
+    {"datum":0,"label":"Victim did not have prior detention"},
+  ];
+  var field = 'victimPriorDetentionSt';
+
+  getAjax( e,       '/graphql?query=%7B%0A%20%20data%20%7B%0A%20%20%20%20victimPriorDetentionSt%0A%20%20%20%20timeline%0A%20%20%7D%0A%7D%0A',
+    function(results) {  
+      makeChart(results.data.data, values, field);
+    }
+  );
+
+});
+
+
+
+// How did the militant vs. non-militant background of victims change?
+$('#militant').click(function(e) {
+
+
+  var values = [
+    {"datum":1,"label":"Victim had militant background"},
+    {"datum":0,"label":"Victim did not have militant background"},
+  ];
+  var field = 'victimMilitantStatus';
+
+    getAjax( e,       '/graphql?query=%7B%0A%20%20data%20%7B%0A%20%20%20%20victimMilitantStatus%0A%20%20%20%20timeline%0A%20%20%7D%0A%7D%0A',
+    function(results) {  
+      makeChart(results.data.data, values, field);
+    }
+  );
+
+
+    /*
+1	Yes
+0	No
+9	Don't Know
+    */
+});
+
+</script>
+
+
+{% endblock %}

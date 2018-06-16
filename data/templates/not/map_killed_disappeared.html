@@ -10,6 +10,7 @@
   <script src="/static/js/leaflet.js"></script>
   <style>
     .bar { fill: #900; }
+    .bark { fill: #900;  }
     .axis line, .axis path { stroke: #aaa; }
     .tick { font-family: 'Fira Sans', sans-serif; }
 
@@ -108,16 +109,16 @@ function drawMap(geojson) {
 
 
 var timeCapsule = [
-  {% for o in all %}{% if o.timeline != None %}
-    {victim: { village_id: "{{o.village_id}}", village_name: "{{o.village_name}}", timeline: {{o.timeline|date:"U"}} }},{% endif %}{% endfor %}
+  {% for o in all %}{% if o.timeline_start != None %}
+    {victim: { village_id: "{{o.village_id}}", village_name: "{{o.village_name}}", kd: "{{o.victim_disappeared_killed}}", timeline_start: {{o.timeline_start|date:"U"}}, timeline_end: {{o.timeline_end|date:"U"}} }},{% endif %}{% endfor %}
 ];
 
 for (var i=0;i<timeCapsule.length;i++) {
-    if ( timeCapsule[i]['victim']['timeline']  < 1514764800 ) {
-      timeCapsule[i]['date'] = timeCapsule[i]['victim']['timeline'];
-      var d = new Date(0);
-      timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
-    }
+    timeCapsule[i]['date'] = (timeCapsule[i]['victim']['timeline_end'] + timeCapsule[i]['victim']['timeline_start']) / 2;
+    var d = new Date(0);
+    timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
+    timeCapsule[i]['victim']['timeline_end'] = d.setUTCSeconds( timeCapsule[i]['victim']['timeline_end'] );
+    timeCapsule[i]['victim']['timeline_start'] = d.setUTCSeconds( timeCapsule[i]['victim']['timeline_start'] );
 }  
 
 var start = d3.min(d3.entries(timeCapsule), function(d) {
@@ -354,14 +355,35 @@ function makeTimeline() {
 
   var bins = histogram(timeCapsule);
 
+  var disappearedTime = _.filter(timeCapsule, function(o) { if (o.victim.kd == 1) { return o; } });
+  var killedTime = _.filter(timeCapsule, function(o) { if (o.victim.kd == 2) { return o; } });
+  var killed_bins = histogram(killedTime);
+  var disappeared_bins = histogram(disappearedTime);
+
   y.domain([-3, d3.max(bins, function(d) { return d.length; })]);
 
   svg.selectAll("rect")
-      .data(bins)
+      .data(disappeared_bins)
     .enter().append("rect")
       .attr("class", "bar")
       .attr("x", 1)
       .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + y(d.length) + ")"; })
+      .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0); })
+      .style("opacity", function(d) { 
+          if (d.length < 1) { 
+            return 0;
+          } else {
+            return 1;
+          }
+        })
+      .attr("height", function(d) { return height - y(d.length); })
+    .exit()
+      .data(killed_bins)
+    .enter().append("rect")
+      .attr("class", "bark")
+      .attr("x", 1)
+      .attr("y", function(d,i) { return y(disappeared_bins[i].length) - height + 5; })
+      .attr("transform", function(d, i) { return "translate(" + xScale(d.x0) + "," + y(d.length) + ")"; })
       .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0); })
       .style("opacity", function(d) { 
           if (d.length < 1) { 
