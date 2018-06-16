@@ -13,6 +13,9 @@
     .axis line, .axis path { stroke: #aaa; }
     .tick { font-family: 'Fira Sans', sans-serif; }
     #chart { width: 100%; height: 300px; }
+    .line { 
+      fill: none;
+    }
   </style>
 {% endblock %}
 
@@ -68,6 +71,7 @@ function makeChart(data, values, field) {
 
   $('#chart').html('');
 
+
   data.forEach( function(d) {
     if (d.timeline) {
       var p = d.timeline.split('-');
@@ -80,6 +84,10 @@ function makeChart(data, values, field) {
 
   var start = d3.min(d3.entries(data), function(d) { return d.value.date; } );
   var end = d3.max(d3.entries(data), function(d) { return d.value.date; } );
+
+
+
+  var color = d3.scaleOrdinal(d3.schemeCategory10);
 
   var xScale = d3.scaleTime()
       .domain([start, end])
@@ -107,8 +115,17 @@ function makeChart(data, values, field) {
   y.domain([0, max]);
   
   
+  
 
-  values.forEach( function(v) {
+  var svg = d3.select("#chart").append("svg")
+      .attr("width", width + timeline_margin.left + timeline_margin.right)
+      .attr("height", height + timeline_margin.top + timeline_margin.bottom)
+    .append("g")
+      .attr("transform", 
+            "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
+
+
+  values.forEach( function(v, i) {
 
       var thisData = [];
       
@@ -118,18 +135,27 @@ function makeChart(data, values, field) {
         }
       });
 
-
-      d3.select("#chart").append("div").html(v.label);
-
-      var svg = d3.select("#chart").append("svg")
-          .attr("width", width + timeline_margin.left + timeline_margin.right)
-          .attr("height", height + timeline_margin.top + timeline_margin.bottom)
-        .append("g")
-          .attr("transform", 
-                "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
-
       bins = histogram(thisData);
 
+      // define the line
+      var valueline = d3.line()
+          .x(function(d) { return xScale(d.x0); })
+          .y(function(d) { return y(d.length); });
+
+
+      console.log( color(i) );
+
+      // Add the valueline path.
+      svg.append("path")
+          .data([bins])
+          .attr("class", "line")
+          .attr("stroke", color(i) )
+          .attr("d", valueline);
+
+      d3.select("#chart").append("div").html('<span style="color:'+color(i)+'">•</span> ' + v.label);
+
+
+/*
       svg.selectAll("rect")
           .data(bins)
         .enter().append("rect")
@@ -145,6 +171,7 @@ function makeChart(data, values, field) {
               }
             })
           .attr("height", function(d) { return height - y(d.length); });
+*/
 
 
       svg.append("g")
