@@ -26,6 +26,7 @@
 <li><a href="#" id="witnesses">How did the presence of witnesses at abduction change?</a></li>
 <li><a href="#" id="prior_detentions">How did the prior persecution of victims change?</a></li>
 <li><a href="#" id="militant">How did the militant vs. non-militant background of victims change?</a></li>
+<li><a href="#" id="militant_reason">Why did the victim join the militancy?</a></li>
 </ul>
 
 <hr>
@@ -208,6 +209,47 @@ $('#disposal').click(function(e) {
 });
 
 
+// Why did the victim join the militancy?
+$('#militant_reason').click(function(e) {
+    /*
+1	victim_militant_reason___1	1984 Indian Army attack on the Harmandir Sahib
+2	victim_militant_reason___2	Persecution (i.e. arbitrary arrest, torture, self-defense)
+3	victim_militant_reason___3	Persecution of a family member or a friend
+4	victim_militant_reason___4	General persecution of Sikhs
+5	victim_militant_reason___5	Supported the goals of the militancy movement
+6	victim_militant_reason___6	Was forced to join
+  */
+    
+  var values = [
+    {"datum":1,"label":"1984 Indian Army attack on the Harmandir Sahib"},
+    {"datum":2,"label":"Persecution (i.e. arbitrary arrest, torture, self-defense)"},
+    {"datum":3,"label":"Persecution of a family member or a friend"},
+    {"datum":4,"label":"General persecution of Sikhs"},
+    {"datum":5,"label":"Supported the goals of the militancy movement"},
+    {"datum":6,"label":"Was forced to join"},
+  ];
+  var field = 'militant_reason';
+
+  getAjax( e,             '/graphql?operationName=null&query=%7B%0A%20%20data%20%7B%0A%20%20%20%20victimMilitantReason1%0A%20%20%20%20victimMilitantReason2%0A%20%20%20%20victimMilitantReason3%0A%20%20%20%20victimMilitantReason4%0A%20%20%20%20victimMilitantReason5%0A%20%20%20%20victimMilitantReason6%0A%20%20%20%20timeline%0A%20%20%7D%0A%7D%0A',
+    function(results) {  
+
+      var data = [];
+      results.data.data.forEach( function(d) {
+        for (var j = 0; j <= 10; j++) {
+          var whichWitness = 'victimMilitantReason'+j;
+          if (d[whichWitness] == 1) {
+            data.push({'militant_reason': j, "timeline": d.timeline});
+          }
+        }
+      });
+      makeChart(data, values, field);
+    }
+  );
+
+
+});
+
+
 // How did the presence of witnesses at abduction change?
 $('#witnesses').click(function(e) {
 
@@ -288,6 +330,12 @@ $('#prior_detentions').click(function(e) {
 $('#militant').click(function(e) {
 
 
+    /*
+1	Yes
+0	No
+9	Don't Know
+    */
+
   var values = [
     {"datum":1,"label":"Victim had militant background"},
     {"datum":0,"label":"Victim did not have militant background"},
@@ -300,12 +348,6 @@ $('#militant').click(function(e) {
     }
   );
 
-
-    /*
-1	Yes
-0	No
-9	Don't Know
-    */
 });
 
 </script>
