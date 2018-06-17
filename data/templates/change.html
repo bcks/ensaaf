@@ -9,12 +9,17 @@
   <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
   <script type="text/javascript" src="/static/js/lodash.min.js"></script>
   <style>
-    .bar { fill: #900; }
     .axis line, .axis path { stroke: #aaa; }
     .tick { font-family: 'Fira Sans', sans-serif; }
-    #chart { width: 100%; height: 300px; }
-    .line { 
+    #chart { width: 100%; height: 500px; }
+    .line {
       fill: none;
+      stroke-width: 1.5px;
+    }
+    .zoom {
+      cursor: move;
+      fill: none;
+      pointer-events: all;
     }
   </style>
 {% endblock %}
@@ -42,16 +47,10 @@
 
 <script>
 
+
+/*
+
 d3.select(window).on('resize', resize);
-
-var timeline_margin = {top: 10, right: 0, bottom: 50, left: 30};
-
-var width = $('#chart').width() - timeline_margin.left - timeline_margin.right,
-    height = $('#chart').height() - timeline_margin.top - timeline_margin.bottom;
-
-var y = d3.scaleLinear()
-    .range([height, 0]);
-
 
 function resize() {
   var width = $('#chart').width() - timeline_margin.left - timeline_margin.right,
@@ -59,8 +58,7 @@ function resize() {
   d3.select("#chart svg").attr("width",width);
   d3.selectAll("path").attr('d', path);
 }
-
-
+*/
 
 
 
@@ -70,6 +68,25 @@ function makeChart(data, values, field) {
   //console.log(data);
 
   $('#chart').html('');
+
+
+  d3.select("#chart").append("svg").attr('width', $('#chart').width() ).attr('height',$('#chart').height());
+
+  var svg = d3.select("svg"),
+      margin = {top: 20, right: 20, bottom: 110, left: 40},
+      margin2 = {top: 430, right: 20, bottom: 30, left: 40},
+      width = +svg.attr("width") - margin.left - margin.right,
+      height = +svg.attr("height") - margin.top - margin.bottom,
+      height2 = +svg.attr("height") - margin2.top - margin2.bottom;
+
+
+  var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+  var x = d3.scaleTime().range([0, width]),
+      x2 = d3.scaleTime().range([0, width]),
+      y = d3.scaleLinear().range([height, 0]),
+      y2 = d3.scaleLinear().range([height2, 0]);
+
 
 
   data.forEach( function(d) {
@@ -85,18 +102,14 @@ function makeChart(data, values, field) {
   var start = d3.min(d3.entries(data), function(d) { return d.value.date; } );
   var end = d3.max(d3.entries(data), function(d) { return d.value.date; } );
 
+  x.domain([start, end]);
+  x2.domain([start, end]);
 
-
-  var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-  var xScale = d3.scaleTime()
-      .domain([start, end])
-      .rangeRound([0, width]);
 
   var histogram = d3.histogram()
       .value(function(d) { return d.date; })
-      .domain(xScale.domain())
-      .thresholds(xScale.ticks(d3.timeMonth));
+      .domain(x.domain())
+      .thresholds(x.ticks(d3.timeMonth));
 
 
   // get max height for all values
@@ -113,16 +126,72 @@ function makeChart(data, values, field) {
     if (thisMax > max) { max = thisMax };
   });
   y.domain([0, max]);
-  
-  
-  
+  y2.domain(y.domain());
 
+
+  var xAxis = d3.axisBottom(x),
+      xAxis2 = d3.axisBottom(x2),
+      yAxis = d3.axisLeft(y);
+
+  var brush = d3.brushX()
+      .extent([[0, 0], [width, height2]])
+      .on("brush end", brushed);
+
+  var zoom = d3.zoom()
+      .scaleExtent([1, Infinity])
+      .translateExtent([[0, 0], [width, height]])
+      .extent([[0, 0], [width, height]])
+      .on("zoom", zoomed);
+
+  var clip = svg.append("defs").append("svg:clipPath")
+      .attr("id", "clip")
+      .append("svg:rect")
+      .attr("width", width)
+      .attr("height", height)
+      .attr("x", 0)
+      .attr("y", 0); 
+
+  var Line_chart = svg.append("g")
+      .attr("class", "focus")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .attr("clip-path", "url(#clip)");
+
+  var focus = svg.append("g")
+      .attr("class", "focus")
+      .attr("transform", "translate(" + margin.left + "," +  margin.top  + ")");
+
+  var context = svg.append("g")
+      .attr("class", "context")
+      .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
+
+  var line = d3.line()
+      .x(function(d) { return x(d.x0); })
+      .y(function(d) { return y(d.length); });
+
+  var line2 = d3.line()
+      .x(function (d) { return x2(d.x0); })
+      .y(function (d) { return y2(d.length); });
+
+
+    focus.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    focus.append("g")
+        .attr("class", "axis axis--y")
+        .call(yAxis);
+  
+  
+  
+/*
   var svg = d3.select("#chart").append("svg")
       .attr("width", width + timeline_margin.left + timeline_margin.right)
       .attr("height", height + timeline_margin.top + timeline_margin.bottom)
     .append("g")
       .attr("transform", 
             "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
+*/
 
 
   values.forEach( function(v, i) {
@@ -138,52 +207,75 @@ function makeChart(data, values, field) {
       bins = histogram(thisData);
 
       // define the line
-      var valueline = d3.line()
-          .x(function(d) { return xScale(d.x0); })
-          .y(function(d) { return y(d.length); });
 
+      Line_chart.append("path")
+          .datum(bins)
+          .attr("class", "line")
+          .attr("stroke", color(i) )
+          .attr("stroke-width", "1.5px" )
+          .attr("fill", "none" )
+          .attr("d", line);
 
-      console.log( color(i) );
+      context.append("path")
+          .datum(bins)
+          .attr("stroke", color(i) )
+          .attr("stroke-width", "1.5px" )
+          .attr("fill", "none" )
+          .attr("d", line2);
 
       // Add the valueline path.
+      /*
       svg.append("path")
           .data([bins])
           .attr("class", "line")
           .attr("stroke", color(i) )
           .attr("d", valueline);
+      */
 
       d3.select("#chart").append("div").html('<span style="color:'+color(i)+'">•</span> ' + v.label);
 
 
-/*
-      svg.selectAll("rect")
-          .data(bins)
-        .enter().append("rect")
-          .attr("class", "bar")
-          .attr("x", 1)
-          .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + y(d.length) + ")"; })
-          .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0); })
-          .style("opacity", function(d) { 
-              if (d.length < 1) { 
-                return 0;
-              } else {
-                return 1;
-              }
-            })
-          .attr("height", function(d) { return height - y(d.length); });
-*/
-
-
-      svg.append("g")
-          .attr("transform", "translate(0," + height + ")")
-          .attr('class','axis')
-          .call(d3.axisBottom(xScale));
-
-      svg.append("g")
-          .attr('class','axis')
-          .call(d3.axisLeft(y));
-      
   });
+
+
+    context.append("g")
+        .attr("class", "axis axis--x")
+        .attr("transform", "translate(0," + height2 + ")")
+        .call(xAxis2);
+
+    context.append("g")
+        .attr("class", "brush")
+        .call(brush)
+        .call(brush.move, x.range());
+
+    svg.append("rect")
+        .attr("class", "zoom")
+        .attr("width", width)
+        .attr("height", height)
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        .call(zoom);
+
+  function brushed() {
+    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
+    var s = d3.event.selection || x2.range();
+    x.domain(s.map(x2.invert, x2));
+    Line_chart.selectAll(".line").attr("d", line);
+    focus.select(".axis--x").call(xAxis);
+    svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
+        .scale(width / (s[1] - s[0]))
+        .translate(-s[0], 0));
+  }
+
+  function zoomed() {
+    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
+    var t = d3.event.transform;
+    x.domain(t.rescaleX(x2).domain());
+    Line_chart.selectAll(".line").attr("d", line);
+    focus.select(".axis--x").call(xAxis);
+    context.select(".brush").call(brush.move, x.range().map(t.invertX, t));
+  }
+
+
 
 }
 
