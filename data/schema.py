@@ -12,6 +12,7 @@ class Query(graphene.ObjectType):
     data = graphene.List(Data)
 
     def resolve_data(self, info):
-        return DataModel.objects.all()
+        return DataModel.objects.filter(timeline__range=["1970-01-01", "1997-01-01"])
+
 
 schema = graphene.Schema(query=Query)
