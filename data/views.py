@@ -34,6 +34,12 @@ def map(request):
     all = Data.objects.filter(timeline__gte='1980-01-01').values('village_id','village_name','timeline')
     return render(request, "map.html", { "all": all })
 
+
+def imagetest(request):
+    all = Data.objects.all().values('record_id','photo_vic_fn')
+    return render(request, "imagetest.html", { "victims": all })
+
+
 def change(request):
     return render(request, "change.html")
 

@@ -7,6 +7,7 @@ from django.conf.urls import include, url
 from graphene_django.views import GraphQLView
 
 urlpatterns = [
+    path('imagetest/', imagetest, name="imagetest"),
     path('profile/<int:id>/', profile, name="profile"),
     path('village/<slug:slug>/', village, name="village"),
     path('tehsil/<slug:slug>/', tehsil, name="tehsil"),
@@ -14,7 +15,7 @@ urlpatterns = [
     path('year/<year>/', year, name="year"),
 #    path('securityarrest/<int:id>/', securityarrest, name="securityarrest"),
     path('securityforce/<slug:slug>/', securityforce, name="securityforce"),
-    url(r'^detention/(?P<type>[0-9]+)/(?P<name>[A-Za-z0-9 \/+_]+)/$', detention, name="detention"),
+    url(r'^detention/(?P<type>[0-9]+)/(?P<name>[A-Za-z0-9 \/+_\-]+)/$', detention, name="detention"),
     path('official/<slug:slug>/', official, name="official"),
     path('search/', include('haystack.urls')),
     path('admin/', admin.site.urls),

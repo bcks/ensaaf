@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load profiletags %}
+
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+
+
+  <div class="row">
+    {% for victim in victims %}
+
+     {% if victim.photo_vic_fn %}
+    <div class="col-sm-3">
+      <img src="{% hphoto victim.photo_vic_fn %}" style="width:10px;height:10px;" onerror="console.log('{{victim.record_id}}: {{victim.photo_vic_fn}}');this.src='/static/images/error.jpg';">
+    </div>
+     {% endif %}
+  
+    {% endfor %}
+  </div>
+
+{% endblock %}
