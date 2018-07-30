@@ -31,7 +31,7 @@
         {% if forloop.first %}{% else %}
           <br><hr>
         {% endif %}
-        <h2>{{ district.grouper|default_if_none:""  }}</h2>
+        <h2>{{ district.grouper|default_if_none:""  }} District</h2>
       </div>
     </div>
     
@@ -44,7 +44,7 @@
 
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        <h5>{{ tehsil.grouper|default_if_none:""  }}</h5>
+        <h5>{{ tehsil.grouper|default_if_none:""  }} Tehsil (Subdistrict)</h5>
       </div>
     </div>
 
@@ -68,8 +68,7 @@
           {% endif %}
         {% endif %}
       {% endif %}{% endif %}
-      <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
-
+      <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a> Village{% else %}{{victim.village_name}}  Village{% endif %}
 
       </div>
     </div>

@@ -13,7 +13,7 @@
     .axis line, .axis path { stroke: #aaa; }
     .tick { font-family: 'Fira Sans', sans-serif; }
 
-    #timeline { height: 300px;}
+    #timeline { height: 300px; }
 
     #mapid {
       height:400px;
@@ -31,26 +31,22 @@
 
 
 {% block content %}
+  <h1>Map and Timeline of Killings and Disappearences</h1>
+</div>
+
+<div id="mapid"></div>
 
 <div class="container">
-  <h1>Map and Timeline of Killings and Disappearences</h1>
   <div class="row">
-    <div class="col-sm-12">
-    
-      <p>Drag the gray area on the timeline to update the map. Zoom into the map to see individual villages. Clicking on the red dots will take you to individual profiles from that village, excluding anonymous profiles.</p>
-    
-      <div id="mapid"></div>
-      <!-- <div id="map"></div> -->
+    <div class="col-sm-12">    
+      <p><br>Drag the gray area on the timeline to update the map. Zoom into the map to see individual villages. Clicking on the red dots will take you to individual profiles from that village, excluding anonymous profiles.</p>
     </div>
   </div>
   <div id="timeline"></div>
   <p><br></p>
-</div>
   
-
-
+  
 <script type="text/javascript">
-
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -138,8 +134,9 @@ var markers = {};
 
 var mymap = L.map('mapid').setView([31.0157601,75], 7);
 
-L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 18,
+	subdomains: 'abcd',
   attribution: '',
 }).addTo(mymap);
 
@@ -243,7 +240,7 @@ function updateMap(start, end) {
 
           markers[String(d.id)] = new customCircleMarker([d.coord[1],d.coord[0]], {
               stroke: false,
-              fillColor: '#c00',
+              fillColor: '#fc0',
               fillOpacity: 0.5,
               url: '/village/' + d.id,
           }).addTo(mymap);

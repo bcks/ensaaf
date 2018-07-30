@@ -41,7 +41,7 @@
         <p>Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% autoescape off %}{% hdate_link victim.victim_arrest_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% autoescape off %}{% hdate_link dt_last_heard_victim_alive %}{% endautoescape %}{% endif %}</p>
       {% endif %}
 
-      <hr>  
+      <p><br></p>  
     
       <h4>Profile</h4>
 
@@ -49,7 +49,7 @@
         {% if victim.village_name != '' %}
           <div class="row">  
             <div class="col-sm-2">
-              <p class="kicker">Residence</p>
+              <p class="kicker dots">Residence</p>
             </div>
             <div class="col-sm-10">
               {% if victim.village_id|add:"0" > 0 and village.tehsil%}
@@ -67,7 +67,7 @@
         {% if victim.victim_address_other != 'Don\'t know' %}
         <div class="row">  
           <div class="col-sm-2">
-            <p class="kicker">Residence</p>
+            <p class="kicker dots">Residence</p>
           </div>
           <div class="col-sm-10">
             <p>{% hvictim_address_other victim.victim_address_other %}</p>
@@ -83,7 +83,7 @@
       {% if victim.victim_education != 11 %}
       <div class="row">  
         <div class="col-sm-2">
-          <p class="kicker">Education</p>
+          <p class="kicker dots">Education</p>
         </div>
         <div class="col-sm-10">
           <p>{% heducation victim.victim_education %}</p>
@@ -99,7 +99,7 @@
       {%if victim.victim_employment_1%}
       <div class="row">  
       <div class="col-sm-2">
-        <p class="kicker">Employment</p>
+        <p class="kicker dots">Employment</p>
       </div>
       <div class="col-sm-10">
         <p>{% hvictim_employment victim.victim_employment_1 victim.victim_employment_2 victim.victim_employment_3 victim.victim_employment_4 victim.victim_employment_5 victim.victim_employment_6 victim.victim_employment_7 victim.victim_employment_8 victim.victim_employment_9 victim.victim_employment_10 victim.victim_employment_11 victim.victim_employment_other %}</p>
@@ -115,7 +115,7 @@
       {% if victim.victim_employment_other %}
       <div class="row">  
       <div class="col-sm-2">
-        <p class="kicker">Employment</p>
+        <p class="kicker dots">Employment</p>
       </div>
       <div class="col-sm-10">
         <p>{{victim.victim_employment_other}}</p>
@@ -127,7 +127,7 @@
       {% if victim.victim_marital_status != 9 %}
       <div class="row">  
       <div class="col-sm-2">
-        <p class="kicker">Married</p>
+        <p class="kicker dots">Married</p>
       </div>
       <div class="col-sm-10">
         <p>{% hyes_no victim.victim_marital_status %}</p>
@@ -138,7 +138,7 @@
       {% if victim.victim_children != '' %}
       <div class="row">  
         <div class="col-sm-2">
-          <p class="kicker">Children</p>
+          <p class="kicker dots">Children</p>
         </div>
         <div class="col-sm-10">
           <p>{{victim.victim_children}}</p>
@@ -155,7 +155,7 @@
       {% if victim.victim_religion != 7 %}
       <div class="row">  
       <div class="col-sm-2">
-        <p class="kicker">Religion</p>
+        <p class="kicker dots">Religion</p>
       </div>
       <div class="col-sm-10">
         <p>{% hreligion victim.victim_religion %}{% if victim.victim_amritdhari == 1 %}, <span define="An initiated Sikh, belonging to the Khalsa">Amritdhari</span>{% endif %}{% if victim.victim_kesdhari == 1 %}, <span define="A Sikh with uncut hair">Kesdhari</span>{% endif %}</p>
@@ -167,7 +167,7 @@
       {% if victim.victim_religion_other %}
       <div class="row">  
       <div class="col-sm-2">
-        <p class="kicker">Religion</p>
+        <p class="kicker dots">Religion</p>
       </div>
       <div class="col-sm-10">
         <p>{{victim.victim_religion_other}}
@@ -182,7 +182,7 @@
       {% if victim.victim_caste != 9 %}
       <div class="row">  
       <div class="col-sm-2">
-        <p class="kicker">Caste</p>
+        <p class="kicker dots">Caste</p>
       </div>
       <div class="col-sm-10">
         <p>{%hcaste victim.victim_caste %}</p>
@@ -197,7 +197,7 @@
       {% if victim.victim_dob %}
       <div class="row">  
       <div class="col-sm-2">
-        <p class="kicker">Date of birth</p>
+        <p class="kicker dots">Date of birth</p>
       </div>
       <div class="col-sm-10">
         <p>{{victim.victim_dob}}</p>
@@ -218,7 +218,7 @@
 
 
 
-  <hr>
+  <p><br></p>
 
 
 
@@ -235,7 +235,7 @@
 
 
     <div class="col-sm-6">
-      <p class="kicker">Militant</p>
+      <p class="kicker dots">Militant</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no_unknown victim.victim_militant_status %}</p>
@@ -249,7 +249,7 @@
 
     {% if victim.victim_militant_reason_1 or victim.victim_militant_reason_2 or victim.victim_militant_reason_3 or victim.victim_militant_reason_4 or victim.victim_militant_reason_5 or victim.victim_militant_reason_6 %}
     <div class="col-sm-6">
-      <p class="kicker">Reason(s) for joining militancy</p>
+      <p class="kicker dots">Reason(s) for joining militancy</p>
     </div>
     <div class="col-sm-6">
       <p>{%hvictim_militant_reason victim.victim_militant_reason_1 victim.victim_militant_reason_2 victim.victim_militant_reason_3 victim.victim_militant_reason_4 victim.victim_militant_reason_5 victim.victim_militant_reason_6 victim.victim_militant_reason_7 victim.victim_militant_reason_8 victim.victim_militant_reason_oth %}</p>
@@ -262,7 +262,7 @@
 
   {% if victim.victim_militant_reason_oth %}
     <div class="col-sm-6">
-      <p class="kicker">Reason(s) for joining militancy</p>
+      <p class="kicker dots">Reason(s) for joining militancy</p>
     </div>
     <div class="col-sm-6">
       <p>{{victim.victim_militant_reason_oth}}</p>
@@ -274,7 +274,7 @@
 
   {% if victim.victim_militant_support != 9 %}
     <div class="col-sm-6">
-      <p class="kicker">Militant support provided</p>
+      <p class="kicker dots">Militant support provided</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no victim.victim_militant_support %}
@@ -287,7 +287,7 @@
 
   {% if victim.victim_prior_detention_st != 9 %}
     <div class="col-sm-6">
-      <p class="kicker">Prior detentions</p>
+      <p class="kicker dots">Prior detentions</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no victim.victim_prior_detention_st %}{% if victim.victim_prior_detentions != "Don't know" %}{% if victim.victim_prior_detention_st == 1 %}, {{victim.victim_prior_detentions}}{% endif %}{% endif %}</p>
@@ -299,7 +299,7 @@
   {% if victim.victim_prior_detention_trt != 9 %}
   {% if victim.victim_prior_detention_st == 1 %}
     <div class="col-sm-6">
-      <p class="kicker">Prior torture</p>
+      <p class="kicker dots">Prior torture</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no_na victim.victim_prior_detention_trt %}</p>
@@ -314,7 +314,7 @@
   
 
 
-  <hr>
+  <p><br></p>
 
 
   <div class="row">
@@ -332,7 +332,7 @@
 
     {% if victim.target_reason_1 or victim.target_reason_2 or victim.target_reason_3 or victim.target_reason_4 or victim.target_reason_5 or victim.target_reason_6 or victim.target_reason_7 or victim.target_reason_8 or victim.target_reason_9 or victim.target_reason_other%}
     <div class="col-sm-6">
-      <p class="kicker">Perceived reason for targeting victim</p>
+      <p class="kicker dots">Perceived reason for targeting victim</p>
     </div>
     <div class="col-sm-6">
       <p>{% htarget_reason victim.target_reason_1 victim.target_reason_2 victim.target_reason_3 victim.target_reason_4 victim.target_reason_5 victim.target_reason_6 victim.target_reason_7 victim.target_reason_8 victim.target_reason_9 victim.target_reason_other %}</p>
@@ -347,7 +347,7 @@
 
     {% if victim.victim_arrest_status != '' %}
     <div class="col-sm-6">
-      <p class="kicker">Abduction/arrest prior to killing/disappearance</p>
+      <p class="kicker dots">Abduction/arrest prior to killing/disappearance</p>
     </div>
     <div class="col-sm-6">
       <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date != '' %}, {% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% autoescape off %}{% hdate_no_on victim.victim_arrest_date %}{% endautoescape %}{% endif %}</p>
@@ -363,7 +363,7 @@
     {% if victim.victim_arrest_location != 11 %}
     {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
       <div class="col-sm-6">
-        <p class="kicker">Place of abduction/arrest</p>
+        <p class="kicker dots">Place of abduction/arrest</p>
       </div>
       <div class="col-sm-6">
         <p>{% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.victim_arrest_loc_vill != '' %}{{victim.victim_arrest_loc_vill}}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
@@ -378,7 +378,7 @@
 
   {%if victim.witness_arrest_0 or victim.witness_arrest_1 or victim.witness_arrest_2 or victim.witness_arrest_3 or victim.witness_arrest_4 or victim.witness_arrest_5 or victim.witness_arrest_6 or victim.witness_arrest_7 or victim.witness_arrest_8 or victim.witness_arrest_9 or victim.witness_arrest_10 or victim.witness_arrest_12 or victim.witness_arrest_oth %}
     <div class="col-sm-6">
-      <p class="kicker">Witness(es) to abduction/arrest</p>
+      <p class="kicker dots">Witness(es) to abduction/arrest</p>
     </div>
     <div class="col-sm-6">      
         <p>{% hwitness_arrest victim.witness_arrest_0 victim.witness_arrest_1 victim.witness_arrest_2 victim.witness_arrest_3 victim.witness_arrest_4 victim.witness_arrest_5 victim.witness_arrest_6 victim.witness_arrest_7 victim.witness_arrest_8 victim.witness_arrest_9 victim.witness_arrest_10 victim.witness_arrest_12 victim.witness_arrest_oth %}</p>
@@ -390,7 +390,7 @@
   {% if victim.so_inform_witnesses != 3 %}          
   {% if victim.so_inform_witnesses %}          
     <div class="col-sm-6">
-      <p class="kicker">Security officials informed witnesses about destination</p>
+      <p class="kicker dots">Security officials informed witnesses about destination</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no_na victim.so_inform_witnesses %}</p>
@@ -404,7 +404,7 @@
   {% if victim.security_forces_uniformed != '' %}
   {% if victim.security_forces_uniformed != 9 %}
     <div class="col-sm-6">
-      <p class="kicker">Uniformed</p>
+      <p class="kicker dots">Uniformed</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no victim.security_forces_uniformed %}</p>
@@ -422,7 +422,7 @@
     {% if victim.demands_1 or victim.demands_2 or victim.demands_3 or victim.demands_4 or victim.demands_5 or victim.demands_6 or victim.demands_7 or victim.demands_8 or victim.demands_9 or victim.demands_10 or victim.other_demands %}
 
     <div class="col-sm-6">
-      <p class="kicker">Demands by security forces</p>
+      <p class="kicker dots">Demands by security forces</p>
     </div>
     <div class="col-sm-6">
       <p>{% hdemands victim.demands_1 victim.demands_2 victim.demands_3 victim.demands_4 victim.demands_5 victim.demands_6 victim.demands_7 victim.demands_8 victim.demands_9 victim.demands_10 victim.other_demands %}</p>
@@ -437,7 +437,7 @@
 
   {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
     <div class="col-sm-6">
-      <p class="kicker">Presented before judge/magistrate</p>
+      <p class="kicker dots">Presented before judge/magistrate</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no_unknown victim.judge_or_magistrate_status %}</p>
@@ -450,7 +450,7 @@
   {% if victim.judge_or_magistrate_result_3 != 1  %}
   {% if victim.judge_or_magistrate_result_1 or victim.judge_or_magistrate_result_2 or victim.judge_or_magistrate_result_3 or victim.judge_or_magistrate_result_4 or victim.judge_or_magistrate_resoth %}
     <div class="col-sm-6">
-      <p class="kicker">Judge or Magistrate Result</p>
+      <p class="kicker dots">Judge or Magistrate Result</p>
     </div>
     <div class="col-sm-6">
       <p>{% hjudge_or_magistrate_result victim.judge_or_magistrate_result_1 victim.judge_or_magistrate_result_2 victim.judge_or_magistrate_result_3 victim.judge_or_magistrate_result_4 victim.judge_or_magistrate_resoth %}</p>
@@ -468,7 +468,7 @@
 
   {# if victim.where_victim_detained.all|length > 0 #} <!-- was here -->
 
-  <hr>
+  <p><br></p>
   
   <div class="row">
     <div class="col-sm-12">
@@ -484,7 +484,7 @@
   {% if victim.where_victim_detained.all|length > 0 %}
 
     <div class="col-sm-6">
-      <p class="kicker">Detention locations known</p>
+      <p class="kicker dots">Detention locations known</p>
     </div>
     <div class="col-sm-6">
     
@@ -516,7 +516,7 @@
 
 
 
-  <hr>
+  <p><br></p>
   
   <div class="row">
     <div class="col-sm-12">
@@ -542,7 +542,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <hr>
+      <p><br></p>
       <h5>Disposal of Body</h5>
     </div>
   </div>
@@ -551,7 +551,7 @@
 
   {% if victim.so_return_body != '' %}
     <div class="col-sm-6">
-      <p class="kicker">Body returned</p>
+      <p class="kicker dots">Body returned</p>
     </div>
     <div class="col-sm-6">
       <p>{% hso_return_body victim.so_return_body %}</p>
@@ -566,7 +566,7 @@
   {% if victim.so_body_disposal != 5 %}
   {% if victim.so_body_disposal != 6 %}
     <div class="col-sm-6">
-      <p class="kicker">Body disposal by security forces</p>
+      <p class="kicker dots">Body disposal by security forces</p>
     </div>
     <div class="col-sm-6">
       <p>{% hso_body_disposal victim.so_body_disposal %}</p>
@@ -583,7 +583,7 @@
   {% if victim.cremation_location_type != 4 %}
   {% if victim.cremation_location_type %}
     <div class="col-sm-6">
-      <p class="kicker">Cremation location</p>    
+      <p class="kicker dots">Cremation location</p>    
     </div>
     <div class="col-sm-6">
       <p>
@@ -598,7 +598,7 @@
   {% if victim.condition_of_remains_1 or victim.condition_of_remains_2 or victim.condition_of_remains_3 or victim.condition_of_remains_4 or victim.condition_of_remains_5 or victim.condition_of_remains_6 or victim.condition_of_remains_7 or victim.other_condition_of_remains %}
 
     <div class="col-sm-6">
-      <p class="kicker">Condition of remains</p>      
+      <p class="kicker dots">Condition of remains</p>      
     </div>
     <div class="col-sm-6">
       <p>{% hcondition_of_remains victim.condition_of_remains_1 victim.condition_of_remains_2 victim.condition_of_remains_3 victim.condition_of_remains_4 victim.condition_of_remains_5 victim.condition_of_remains_6 victim.condition_of_remains_7 victim.other_condition_of_remains %}</p>
@@ -621,7 +621,7 @@
 
   {% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.security_killed %}
 
-  <hr>
+  <p><br></p>
   <div class="row">
     <div class="col-sm-12">
       <h4>Security Forces Implicated</h4>
@@ -638,7 +638,7 @@
 
   {% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%}
     <div class="col-sm-6">
-      <p class="kicker">Forces involved in abduction/arrest</p>
+      <p class="kicker dots">Forces involved in abduction/arrest</p>
     </div>
     <div class="col-sm-6">
       <p>{% autoescape off %}{% harrest_security_type victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}</p>
@@ -650,7 +650,7 @@
   {% if victim.security_arrest.all|length > 0 %}
 
     <div class="col-sm-6">
-      <p class="kicker">Security officials involved in abduction</p>
+      <p class="kicker dots">Security officials involved in abduction</p>
     </div>
     <div class="col-sm-6">
 
@@ -674,7 +674,7 @@
 {% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforcestype_7 or victim.killing_securityforces_oth %}
 
     <div class="col-sm-6">
-      <p class="kicker">Forces involved in killing</p>
+      <p class="kicker dots">Forces involved in killing</p>
     </div>
     <div class="col-sm-6">
           
@@ -690,7 +690,7 @@
 {# if victim.security_killed.all|length > 0 #} <!-- was here -->
 
     <div class="col-sm-6">
-      <p class="kicker">Security official involved in killing</p>
+      <p class="kicker dots">Security official involved in killing</p>
     </div>
     <div class="col-sm-6">
 
@@ -725,7 +725,7 @@
 {% if victim.court_or_commission != 9 %}
 {% if victim.govnt_response_desired_11 != 1 %}
 
-  <hr>  
+  <p><br></p>  
 
   <div class="row">
     <div class="col-sm-12">
@@ -745,7 +745,7 @@
   {% if victim.security_officials_apprchd != 9 %}
   {% if victim.security_officials_apprchd != '' %}
     <div class="col-sm-6">
-      <p class="kicker">Security officlals approached</p>
+      <p class="kicker dots">Security officlals approached</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no victim.security_officials_apprchd %}{% if victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or  victim.so_approached_other %}, {% endif %}{% autoescape off %}{% hso_approached_type  victim.so_approached_type_1  victim.so_approached_type_2 victim.so_approached_type_3 victim.so_approached_type_4  victim.so_approached_type_5 victim.so_approached_type_6 victim.so_approached_type_7  victim.so_approached_other %}{% endautoescape %}{% if  victim.so_approached_loc %}, from {% hadd_spaces victim.so_approached_loc|uncensus %}{% endif %}</p>
@@ -758,7 +758,7 @@
   {% if victim.security_official_response_14 != 1 %}
   {% if victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.security_official_response_13 or victim.security_official_response_14 or victim.other_so_response %}
     <div class="col-sm-6">
-      <p class="kicker">Security official response</p>
+      <p class="kicker dots">Security official response</p>
     </div>
     <div class="col-sm-6">
       <p>{% autoescape off %}{% hsecurity_official_response victim.security_official_response_0 victim.security_official_response_1 victim.security_official_response_2 victim.security_official_response_3 victim.security_official_response_4 victim.security_official_response_5 victim.security_official_response_6 victim.security_official_response_7 victim.security_official_response_8 victim.security_official_response_9 victim.security_official_response_10 victim.security_official_response_11 victim.security_official_response_12 victim.security_official_response_13 victim.security_official_response_14 victim.other_so_response %}{% endautoescape %}</p>
@@ -774,7 +774,7 @@
   {% if victim.court_or_commission != '' %}
   {% if victim.court_or_commission != 9 %}
     <div class="col-sm-6">
-      <p class="kicker">Legal remedies pursued</p>
+      <p class="kicker dots">Legal remedies pursued</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no victim.court_or_commission %}{% if victim.no_action_pursued_reason_1 or victim.no_action_pursued_reason_2 or victim.no_action_pursued_reason_3 or victim.no_action_pursued_reason_4 or victim.other_no_action_reason %}, {% hno_action_pursued_reason victim.no_action_pursued_reason_1 victim.no_action_pursued_reason_2 victim.no_action_pursued_reason_3 victim.no_action_pursued_reason_4 victim.other_no_action_reason %}{% endif %}</p>
@@ -788,7 +788,7 @@
 
   {% if victim.family_effects_1 or victim.family_effects_2 or victim.family_effects_3 or victim.family_effects_4 or victim.family_effects_5 or victim.family_effects_6 or victim.family_effects_7 or victim.family_effects_8 or victim.family_effects_9 or victim.family_effects_12 or victim.other_family_effects %}
     <div class="col-sm-6">
-      <p class="kicker">Impact on family</p>      
+      <p class="kicker dots">Impact on family</p>      
     </div>
     <div class="col-sm-6">
       <p>{% hfamily_effects victim.family_effects_1 victim.family_effects_2 victim.family_effects_3 victim.family_effects_4 victim.family_effects_5 victim.family_effects_6 victim.family_effects_7 victim.family_effects_8 victim.family_effects_9 victim.family_effects_12 victim.other_family_effects %}</p>
@@ -800,7 +800,7 @@
 
   {% if victim.govnt_response_desired_11 != 1 %}
     <div class="col-sm-6">
-      <p class="kicker">Response desired by Government</p>
+      <p class="kicker dots">Response desired by Government</p>
     </div>
     <div class="col-sm-6">
       <p>{% hgovnt_response_desired victim.govnt_response_desired_1 victim.govnt_response_desired_2 victim.govnt_response_desired_3 victim.govnt_response_desired_4 victim.govnt_response_desired_5 victim.govnt_response_desired_6 victim.govnt_response_desired_7 victim.govnt_response_desired_8 victim.govnt_response_desired_9 victim.govnt_response_desired_10 victim.govnt_response_desired_11 victim.other_govnt_response_desired %}</p>
@@ -812,7 +812,7 @@
   </div>
 
 
-  <hr>  
+  <p><br></p>  
 
   <div class="row">
     <div class="col-sm-12">
@@ -824,7 +824,7 @@
   {% if victim.number_of_victims != 1 %}
   <div class="row">
     <div class="col-sm-6">
-      <p class="kicker">Unlawful killings/disappearances in family</p>
+      <p class="kicker dots">Unlawful killings/disappearances in family</p>
     </div>
     <div class="col-sm-6">
       <p>{{victim.number_of_victims}}</p>
@@ -837,7 +837,7 @@
   {% if victim.genuine_encounters != 9 %}
   <div class="row">
     <div class="col-sm-6">
-      <p class="kicker">Genuine encounters in family</p>
+      <p class="kicker dots">Genuine encounters in family</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no victim.genuine_encounters %}</p>
@@ -852,7 +852,7 @@
   {% if victim.others_arrested != '' %}
   <div class="row">
     <div class="col-sm-6">
-      <p class="kicker">Co-victims of abduction/arrest</p>
+      <p class="kicker dots">Co-victims of abduction/arrest</p>
     </div>
     <div class="col-sm-6">
       <p>{% hothers_arrested victim.others_arrested %}</p>
@@ -867,7 +867,7 @@
   {% if victim.others_killed_0 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 or victim.others_killed_9 %}
   <div class="row">
     <div class="col-sm-6">
-      <p class="kicker">Co-victims of killing</p>
+      <p class="kicker dots">Co-victims of killing</p>
     </div>
     <div class="col-sm-6">
       <p>{% hothers_killed victim.others_killed_0 victim.others_killed_1 victim.others_killed_2 victim.others_killed_3 victim.others_killed_9 %}</p>
@@ -881,7 +881,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <p class="kicker"><em><strong>Links to co-victim profiles forthcoming</strong></em></p>
+      <p class="kicker dots"><em><strong>Links to co-victim profiles forthcoming</strong></em></p>
     </div>
   </div>
 
@@ -889,7 +889,7 @@
 
 
 
-  <hr>  
+  <p><br></p>  
 
   <div class="row">
     <div class="col-sm-12">
@@ -899,7 +899,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <p class="kicker"><em><strong>Forthcoming</strong></em></p>
+      <p class="kicker dots"><em><strong>Forthcoming</strong></em></p>
     </div>
   </div>
 
@@ -907,7 +907,7 @@
 
 <div class="row">
   <div class="col-12">
-    <div class="border-top footnotes">
+    <div class="footnotes">
       <p>Note: Tehsil and district boundaries are based on the 2001 census. Read more about <a href="/about/methodology">our methodology</a>.</p>
     </div>
   </div>
