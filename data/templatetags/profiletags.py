@@ -128,6 +128,46 @@ def hdate(var):
 
 
 @register.simple_tag()
+def hyear(var):
+  if (var == 'Don\'t know'):
+    return ', date unknown'
+  if (var == ''):
+    return ', date unknown'
+
+  # 09/20/1988-10/05/1988
+  #      pattern => '%m/%d/%Y',
+  if '/' in var and '-' in var:
+    var = var.replace('/','-')
+    parts = var.split('-')
+    return ', ' + str(parts[5])
+
+  # 15-02-1992 - 15-03-1992    
+  #        pattern => '%d-%m-%Y',
+  if ' - ' in var:
+    var = var.replace(' ','')
+    parts = var.split('-')
+    return ', ' + str(parts[5])
+
+  # 23-07-1991
+  #    pattern => '%d-%m-%Y',
+  if '-' in var:
+    parts = var.split('-')
+    if int(parts[2]) < 1900:
+      parts[2] = int(parts[2]) + 1900
+    return ', ' + str(parts[2])
+
+  # 10/15/1992
+  #      pattern => '%m/%d/%Y',
+  if '/' in var:
+    parts = var.split('/')
+    if int(parts[2]) < 1900:
+      parts[2] = int(parts[2]) + 1900
+    return ', ' + str(parts[2])
+
+
+
+
+@register.simple_tag()
 def hvictim_address_other(value):
   str = value.split('_')
   str = str[0]

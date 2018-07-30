@@ -13,15 +13,15 @@ from .utils import calculate_stats
 
 
 def home(request):    
-    all = Data.objects.all();
-    victims = all.order_by('?')[:20]    
+    all = Data.objects.all().exclude(victim_name__exact='Anonymous')
+    victims = all.order_by('?')[:10]    
     return render(request, "home.html", { 
       "victims": victims
       })
 
 def profiles(request):    
     all = Data.objects.all();
-    victims = all.order_by('?')[:20]    
+    victims = all.order_by('?')[:50]    
     return render(request, "profiles.html", { 
       "victims": victims,
       })
