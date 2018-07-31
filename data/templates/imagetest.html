@@ -12,9 +12,7 @@
     {% for victim in victims %}
 
      {% if victim.photo_vic_fn %}
-    <div class="col-sm-3">
-      <img src="{% hphoto victim.photo_vic_fn %}" style="width:10px;height:10px;" onerror="console.log('{{victim.record_id}}: {{victim.photo_vic_fn}}');this.src='/static/images/error.jpg';">
-    </div>
+      <a href="{% hphoto victim.photo_vic_fn %}"><img src="{% hphoto victim.photo_vic_fn %}" style="width:50px;height:75px;padding:3px;" onerror="console.log('{{victim.record_id}}: {{victim.photo_vic_fn}}');this.src='/static/images/error.jpg';"></a>
      {% endif %}
   
     {% endfor %}
