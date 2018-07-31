@@ -22,7 +22,16 @@
 
   <div class="row victims">
 
-    {% for victim in victims %}
+  {% regroup victims by year as year_list %}
+
+    {% for year in year_list %}
+
+    <div class="col-12">
+      <hr>
+      <h3>{{year.grouper|date:"Y"}}</h3>
+    </div>
+
+    {% for victim in year.list %}
 
     <div class="col-6 col-sm-4 col-md-3" onclick="window.location.href='/profile/{{victim.record_id}}';">
 
@@ -45,6 +54,7 @@
         </div>
 
     </div>
+    {% endfor %}
     {% endfor %}
 
 

@@ -2,12 +2,16 @@ from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
 from django.contrib import messages
-from django.db.models import OuterRef, Subquery, Count, Sum, F, Q, Avg
+from django.db.models import OuterRef, Subquery, Count, Sum, F, Q, DateField
+from django.db.models.functions import Trunc
 from django.template.defaulttags import register
 
 from .models import *
 from django.shortcuts import render
 from .utils import calculate_stats
+
+
+
 
 
 
@@ -19,9 +23,9 @@ def home(request):
       "victims": victims
       })
 
+
 def profiles(request):    
-    all = Data.objects.all();
-    victims = all.order_by('?')[:50]    
+    victims = Data.objects.all().annotate(year=Trunc('timeline', 'year', output_field=DateField() )).order_by('-timeline')
     return render(request, "profiles.html", { 
       "victims": victims,
       })
