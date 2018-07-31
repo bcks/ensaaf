@@ -44,6 +44,7 @@
 
         <div class="names">
           <h5 style="margin: 0;"><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></h5>
+          {{victim.village_name}}<br>
           {% if victim.victim_disappeared_killed == 2 %}
             Killed{% hyear victim.victim_death_date %}
           {% endif %}
