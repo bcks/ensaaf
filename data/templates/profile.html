@@ -481,8 +481,8 @@
   <div class="row">
   
   
+ {% comment %}
   {% if victim.where_victim_detained.all|length > 0 %}
-
     <div class="col-sm-6">
       <p class="kicker dots">Detention locations known</p>
     </div>
@@ -501,6 +501,7 @@
 
     </div>
   {% endif %} <!-- move down -->
+ {% endcomment %}
 
     <div class="col-sm-12">
       <p class="kicker"><em><strong>Information forthcoming in late 2018</strong></em></p>
@@ -694,6 +695,7 @@
     </div>
     <div class="col-sm-6">
 
+{% comment %}
 
     {% if victim.security_killed.all|length > 0 %}
     {%for this in victim.security_killed.all %}
@@ -703,6 +705,7 @@
     {% endfor %}
     {% endif %}
 
+{% endcomment %}
 
       <p class="kicker"><em><strong>Information forthcoming in late 2018</strong></em></p>
 
