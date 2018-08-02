@@ -109,7 +109,7 @@ def calculate_stats(all):
 
 
     so_approached_type = {
-      "Same as officials involved in abduction/killing": all.filter(so_approached_type_1='1').count(),
+      "Same as officials involved in abduction/extrajudicial execution": all.filter(so_approached_type_1='1').count(),
       "Punjab Police": all.filter(so_approached_type_2='1').count(),
       "<span define=\"Border Security Force\">BSF</span>": all.filter(so_approached_type_3='1').count(),
       "<span define=\"Central Reserve Police Force\">CRPF</span>": all.filter(so_approached_type_4='1').count(),
@@ -320,7 +320,7 @@ def calculate_stats(all):
       "No Response": all.filter(security_official_response_0='1').count(),
       "Killed victim in an “encounter”": all.filter(security_official_response_1='1').count(),
       "Denied involvement": all.filter(security_official_response_2='1').count(),
-      "Admitted killing with no explanation": all.filter(security_official_response_3='1').count(),
+      "Admitted extrajudicial execution with no explanation": all.filter(security_official_response_3='1').count(),
       "Admitted custody only": all.filter(security_official_response_4='1').count(),
       "Victim had escaped": all.filter(security_official_response_5='1').count(),
       "Victim killed will trying to escape": all.filter(security_official_response_6='1').count(),

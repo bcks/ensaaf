@@ -43,7 +43,7 @@
         <div class="names">
           <h5 style="margin: 0;"><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></h5>
           {% if victim.victim_disappeared_killed == 2 %}
-            Killed{% hyear victim.victim_death_date %}
+            Extrajudicial execution{% hyear victim.victim_death_date %}
           {% endif %}
           {% if victim.victim_disappeared_killed == 1 %}
             Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% hyear victim.victim_arrest_date %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% hyear victim.victim_death_date %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% hyear dt_last_heard_victim_alive %}{% endif %}

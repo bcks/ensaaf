@@ -26,7 +26,7 @@
           disappearance
           {% endif %}
           {% if victim.victim_disappeared_killed == 2 %}
-          killing
+          extrajudicial execution
           {% endif %}
         {% endif %}
       {% endif %}{% endif %}
@@ -34,7 +34,7 @@
 
 
       {% if victim.victim_disappeared_killed == 2 %}
-        <p>Killed{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}</p>
+        <p>Extrajudicial execution{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}</p>
       {% endif %}
 
       {% if victim.victim_disappeared_killed == 1 %}
@@ -319,7 +319,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>Abduction, Detention, Unlawful Killing, or Disappearance</h4>
+      <h4>Abduction, Detention, Extrajudicial Execution, or Disappearance</h4>
     </div>
   </div>
 
@@ -347,7 +347,7 @@
 
     {% if victim.victim_arrest_status != '' %}
     <div class="col-sm-6">
-      <p class="kicker dots">Abduction/arrest prior to killing/disappearance</p>
+      <p class="kicker dots">Abduction/arrest prior to extrajudicial execution/disappearance</p>
     </div>
     <div class="col-sm-6">
       <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date != '' %}, {% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% autoescape off %}{% hdate_no_on victim.victim_arrest_date %}{% endautoescape %}{% endif %}</p>
@@ -523,7 +523,7 @@
     <div class="col-sm-12">
 
   {% if victim.victim_disappeared_killed == 2 %}
-    <h4>Killed{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}</h4>
+    <h4>Extrajudicial Execution{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}</h4>
   {% endif %}
 
   {% if victim.victim_disappeared_killed == 1 %}
@@ -675,7 +675,7 @@
 {% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforcestype_7 or victim.killing_securityforces_oth %}
 
     <div class="col-sm-6">
-      <p class="kicker dots">Forces involved in killing</p>
+      <p class="kicker dots">Forces involved in extrajudicial execution</p>
     </div>
     <div class="col-sm-6">
           
@@ -691,7 +691,7 @@
 {# if victim.security_killed.all|length > 0 #} <!-- was here -->
 
     <div class="col-sm-6">
-      <p class="kicker dots">Security official involved in killing</p>
+      <p class="kicker dots">Security official involved in extrajudicial execution</p>
     </div>
     <div class="col-sm-6">
 
@@ -712,9 +712,6 @@
     </div>
 
 {# endif #}
-
-
-
 
 </div>
 
@@ -827,7 +824,7 @@
   {% if victim.number_of_victims != 1 %}
   <div class="row">
     <div class="col-sm-6">
-      <p class="kicker dots">Unlawful killings/disappearances in family</p>
+      <p class="kicker dots">Extrajudicial executions/disappearances in family</p>
     </div>
     <div class="col-sm-6">
       <p>{{victim.number_of_victims}}</p>
@@ -870,7 +867,7 @@
   {% if victim.others_killed_0 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 or victim.others_killed_9 %}
   <div class="row">
     <div class="col-sm-6">
-      <p class="kicker dots">Co-victims of killing</p>
+      <p class="kicker dots">Co-victims of extrajudicial execution</p>
     </div>
     <div class="col-sm-6">
       <p>{% hothers_killed victim.others_killed_0 victim.others_killed_1 victim.others_killed_2 victim.others_killed_3 victim.others_killed_9 %}</p>

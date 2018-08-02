@@ -13,7 +13,7 @@
 
       <div class="col-12">
         <span class="percent">{% percent stats.total_killed stats.total%}%</span>
-        Killed
+        Extrajudicial execution
         <span class="number-of-cases">{{stats.total_killed|intcomma}}</span>
         <div class="percent-bar" style="width:{% percent stats.total_killed stats.total%}%">&nbsp;</div>
       </div> 
@@ -222,7 +222,7 @@
 <hr>
 
 <div id="stats-detention" class="stats-block">
-  <p><strong><a href="#">Abduction, Detention, Unlawful Killing, or Disappearance&nbsp;»</a></strong></p>
+  <p><strong><a href="#">Abduction, Detention, Extrajudicial Execution, or Disappearance&nbsp;»</a></strong></p>
   <div class="toggle">
 
 
@@ -250,7 +250,7 @@
 
         <div class="col-12">
           <span class="percent">{% percent stats.victim_arrest_status stats.total%}%</span>
-          Victim abducted or detained immediately before disappearance or killing
+          Victim abducted or detained immediately before disappearance or extrajudicial execution
           <span class="number-of-cases">{{stats.victim_arrest_status|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.victim_arrest_status stats.total%}%">&nbsp;</div>
         </div> 
@@ -258,7 +258,7 @@
         <div class="col-12">
           <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_arrest_status stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.no_victim_arrest_status stats.total%}%</span>
-          Victim was not abducted or detained before killing or disappearence
+          Victim was not abducted or detained before extrajudicial execution or disappearence
           <span class="number-of-cases">{{stats.no_victim_arrest_status|intcomma}}</span>
         </div> 
 
@@ -551,7 +551,7 @@
       <div class="row">
         <div class="col-12">
 
-            <p><strong>What type(s) of security forces were involved in the killing?</strong></p>
+            <p><strong>What type(s) of security forces were involved in the extrajudicial execution?</strong></p>
 
              {% for o in stats.killing_securityforcestype %}
              {%if o.1 %}

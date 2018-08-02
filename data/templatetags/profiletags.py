@@ -406,7 +406,7 @@ def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
 @register.simple_tag()
 def hso_approached_type(v1, v2, v3, v4, v5, v6, v7, other):
   groups = []
-  groups.append('Same as officials involved in abduction/killing') if v1 == 1 else 0
+  groups.append('Same as officials involved in abduction/extrajudicial execution') if v1 == 1 else 0
   groups.append('<a href="/securityforce/police/">Punjab Police</a>') if v2 == 1 else 0
   groups.append('<a href="/securityforce/bsf/"><span define="Border Security Force">BSF</span></a>') if v3 == 1 else 0
   groups.append('<a href="/securityforce/crpf/"><span define="Central Reserve Police Force">CRPF</span></a>') if v4 == 1 else 0
@@ -529,7 +529,7 @@ def hsecurity_official_response(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11
   groups.append('No Response') if v0 == 1 else 0
   groups.append('Killed [victim] in an "encounter"') if v1 == 1 else 0
   groups.append('Denied involvement') if v2 == 1 else 0
-  groups.append('Admitted killing with no explanation') if v3 == 1 else 0
+  groups.append('Admitted extrajudicial execution with no explanation') if v3 == 1 else 0
   groups.append('Admitted custody only') if v4 == 1 else 0
   groups.append('Victim had escaped') if v5 == 1 else 0
   groups.append('Victim killed will trying to escape') if v6 == 1 else 0
