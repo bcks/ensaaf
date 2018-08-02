@@ -390,7 +390,7 @@ def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
   groups.append('<a href="/securityforce/bsf/"><span define="Border Security Force">BSF</span></a>') if v2 == 1 else 0
   groups.append('<a href="/securityforce/crpf/"><span define="Central Reserve Police Force">CRPF</span></a>') if v3 == 1 else 0
   groups.append('<a href="/securityforce/army/">Army</a>') if v4 == 1 else 0
-  groups.append('<a href="/securityforce/cia/"><span define="Criminal Investigation Agency">CIA</span></a>') if v5 == 1 else 0
+  groups.append('<a href="/securityforce/cia/">Criminal Investigation Agency</a>') if v5 == 1 else 0
   groups.append('<a href="/securityforce/black-cat/"><span define="Irregular undercover security force, often consisting of criminals">Black cat</span></a>') if v6 == 1 else 0
   groups.append('Don’t know') if v7 == 1 else 0
   if (other):
@@ -411,7 +411,7 @@ def hso_approached_type(v1, v2, v3, v4, v5, v6, v7, other):
   groups.append('<a href="/securityforce/bsf/"><span define="Border Security Force">BSF</span></a>') if v3 == 1 else 0
   groups.append('<a href="/securityforce/crpf/"><span define="Central Reserve Police Force">CRPF</span></a>') if v4 == 1 else 0
   groups.append('<a href="/securityforce/army/">Army</a>') if v5 == 1 else 0
-  groups.append('<a href="/securityforce/cia/"><span define="Criminal Investigation Agency">CIA</span></a>') if v6 == 1 else 0
+  groups.append('<a href="/securityforce/cia/">Criminal Investigation Agency</a>') if v6 == 1 else 0
   groups.append('<a href="/securityforce/black-cat/"><span define="Irregular undercover security force, often consisting of criminals">Black cat</span></a>') if v7 == 1 else 0
   if (other):
     groups.append(other)
@@ -721,7 +721,7 @@ def hwitness_detention(v3, v4, v5, v6, v7, v8, v9, v10, v12, v13, v14, other, st
 
 @register.simple_tag()
 def hdetention_facility_type(var, other):
-  opt = ['','Police station/post','<span define="Criminal Investigation Agency">CIA</span> staff','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span> camp','Army camp','<span define="Unofficial interrogation location">Interrogation center</span>','Don’t know','Other']
+  opt = ['','Police station/post','Criminal Investigation Agency staff','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span> camp','Army camp','<span define="Unofficial interrogation location">Interrogation center</span>','Don’t know','Other']
   if var == 8:
     if (other):
       return other
@@ -751,7 +751,7 @@ def harrest_so_rank(var):
 
 @register.simple_tag()
 def haffiliation(var):
-  affilation = ['','Punjab Police','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span>','Army','<span define="Criminal Investigation Agency">CIA</span>','<span define="Irregular undercover security force, often consisting of criminals">Black Cat</span>','Don’t Know','Other']
+  affilation = ['','Punjab Police','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span>','Army','Criminal Investigation Agency','<span define="Irregular undercover security force, often consisting of criminals">Black Cat</span>','Don’t Know','Other']
   return affilation[var];
 
 

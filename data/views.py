@@ -172,7 +172,7 @@ def securityforce(request, slug=None):
       "bsf": "BSF",
       "crpf": "CRPF",
       "army": "Army",
-      "cia": "CIA",
+      "cia": "Criminal Investigation Agency",
       "black-cat": "Black Cat"
     }
 

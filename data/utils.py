@@ -114,7 +114,7 @@ def calculate_stats(all):
       "<span define=\"Border Security Force\">BSF</span>": all.filter(so_approached_type_3='1').count(),
       "<span define=\"Central Reserve Police Force\">CRPF</span>": all.filter(so_approached_type_4='1').count(),
       "Army": all.filter(so_approached_type_5='1').count(),
-      "<span define=\"Criminal Investigation Agency\">CIA</span>": all.filter(so_approached_type_6='1').count(),
+      "Criminal Investigation Agency": all.filter(so_approached_type_6='1').count(),
       "<span define=\"Irregular undercover security force, often consisting of criminals\">Black cat</span>": all.filter(so_approached_type_7='1').count(),
       "Other": all.filter(so_approached_type_9='1').count(),
     }
@@ -267,7 +267,7 @@ def calculate_stats(all):
 
     detention_facility_type = {
       "Police Station/Post": all.filter(victim_arrest_location='1').count(),
-      "<span define=\"Criminal Investigation Agency\">CIA</span> Staff": all.filter(victim_arrest_location='2').count(),
+      "Criminal Investigation Agency Staff": all.filter(victim_arrest_location='2').count(),
       "<span define=\"Border Security Force\">BSF</span>": all.filter(victim_arrest_location='3').count(),
       "<span define=\"Central Reserve Police Force\">CRPF</span> Camp": all.filter(victim_arrest_location='4').count(),
       "Army Camp": all.filter(victim_arrest_location='5').count(),
@@ -282,7 +282,7 @@ def calculate_stats(all):
       "<span define=\"Border Security Force\">BSF</span>": all.filter(arrest_security_type_2='1').count(),
       "<span define=\"Central Reserve Police Force\">CRPF</span>": all.filter(arrest_security_type_3='1').count(),
       "Army": all.filter(arrest_security_type_4='1').count(),
-      "<span define=\"Criminal Investigation Agency\">CIA</span>": all.filter(arrest_security_type_5='1').count(),
+      "Criminal Investigation Agency": all.filter(arrest_security_type_5='1').count(),
       "<span define=\"Irregular undercover security force, often consisting of criminals\">Black cat</span>": all.filter(arrest_security_type_6='1').count(),
       "Other": all.filter(arrest_security_type_8='1').count(),
     }
@@ -309,7 +309,7 @@ def calculate_stats(all):
       "<span define=\"Border Security Force\">BSF</span>": all.filter(killing_securityforcestype_2='1').count(),
       "<span define=\"Central Reserve Police Force\">CRPF</span>": all.filter(killing_securityforcestype_3='1').count(),
       "Army": all.filter(killing_securityforcestype_4='1').count(),
-      "<span define=\"Criminal Investigation Agency\">CIA</span>": all.filter(killing_securityforcestype_5='1').count(),
+      "Criminal Investigation Agency": all.filter(killing_securityforcestype_5='1').count(),
       "<span define=\"Irregular undercover security force, often consisting of criminals\">Black cat</span>": all.filter(killing_securityforcestype_6='1').count(),
       "Other": all.filter(killing_securityforcestype_8='1').count(),
     }
