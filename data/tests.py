@@ -39,7 +39,7 @@ class ViewTest(TestCase):
     def test_district_village_annotation(self):
         """
         Test data:
-        A District has 2 Tehsils: T1 and T2.
+        A District has 2 Subdistricts: T1 and T2.
         T1 has 2 villages: V1 and V2.
             V1 has 2 Data objects: D1 and D2.
             V2 has 1 Data object: D3

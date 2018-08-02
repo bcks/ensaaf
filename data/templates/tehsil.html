@@ -9,7 +9,7 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <p>Tehsil (Subdistrict):</p>
+    <p>Subdistrict:</p>
     <h1>{{villages.all.0.tehsil}}</h1>
     <p><span class="kicker">District:</span> <a href="/district/{{villages.all.0.district_id}}">{{villages.all.0.district}}</a></p>
     <p class="kicker">Boundaries based on the 2001 census. Read about <a href="/about/methodology">our methodology</a>.</p>
@@ -37,7 +37,7 @@
   </div>
   <div class="col-sm-6 border-left">
 
-    <p>{{stats.total|intcomma}} documented cases in {{villages.all.0.tehsil}} Tehsil (Subdistrict)</p>
+    <p>{{stats.total|intcomma}} documented cases in {{villages.all.0.tehsil}} Subdistrict</p>
     {% include 'stats.html' %}
 
   </div>

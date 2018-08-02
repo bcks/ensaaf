@@ -247,7 +247,7 @@ class Villages(models.Model):
 
 
 # COUNT_CHOICES = (
-#     ('tehsil', 'Tehsil'),
+#     ('tehsil', 'Subdistrict'),
 #     ('district', 'District'),
 #     )
 # 

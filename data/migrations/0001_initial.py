@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
             name='CountCache',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('object_type', models.CharField(choices=[('tehsil', 'Tehsil'), ('district', 'District')], max_length=20)),
+                ('object_type', models.CharField(choices=[('tehsil', 'Subdistrict'), ('district', 'District')], max_length=20)),
                 ('object_id', models.IntegerField()),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),

@@ -527,18 +527,18 @@ def hjudge_or_magistrate_result(v1, v2, v3, v4, other):
 def hsecurity_official_response(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, other):
   groups = []
   groups.append('No Response') if v0 == 1 else 0
-  groups.append('Killed [victim] in an "encounter"') if v1 == 1 else 0
+  groups.append('Extrajudicial execution [of victim] in an "encounter"') if v1 == 1 else 0
   groups.append('Denied involvement') if v2 == 1 else 0
   groups.append('Admitted extrajudicial execution with no explanation') if v3 == 1 else 0
   groups.append('Admitted custody only') if v4 == 1 else 0
   groups.append('Victim had escaped') if v5 == 1 else 0
-  groups.append('Victim killed will trying to escape') if v6 == 1 else 0
-  groups.append('Victim killed by militants') if v7 == 1 else 0
+  groups.append('Victim extrajudicial execution will trying to escape') if v6 == 1 else 0
+  groups.append('Victim extrajudicial execution by militants') if v7 == 1 else 0
   groups.append('Told family to go to another police station') if v8 == 1 else 0
-  groups.append('Victim killed in crossfire with militants') if v9 == 1 else 0
+  groups.append('Victim extrajudicial execution in crossfire with militants') if v9 == 1 else 0
   groups.append('Victim accidentally killed in custody') if v10 == 1 else 0
-  groups.append('Victim killed while resisting arrest/search') if v11 == 1 else 0
-  groups.append('Victim killed by <span define="Irregular undercover security force, often consisting of criminals">black cat</span>s') if v12 == 1 else 0
+  groups.append('Victim extrajudicial execution while resisting arrest/search') if v11 == 1 else 0
+  groups.append('Victim extrajudicial execution by <span define="Irregular undercover security force, often consisting of criminals">black cat</span>s') if v12 == 1 else 0
   groups.append('Don’t know') if v14 == 1 else 0
   if v3 == 1:
     if (other):
