@@ -92,7 +92,7 @@ tr { vertical-align: top; }
     flex-wrap: wrap;
   }
   .grid .col-sm-6 {
-    margin-bottom: .75em;    
+    margin-bottom: .5rem;    
   }
   .grid .col-sm-3 {
     display: inline-block;
