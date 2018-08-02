@@ -279,7 +279,7 @@ def htarget_reason(v1, v2, v3, v4, v5, v6, v7, v8, v9, other):
 
 @register.simple_tag()
 def hcaste(value):
-  caste = ['', 'Jat','Ramgarhia','Dalit/SC/BC','Mazbi','Chamar','Khatri','Naee','Don’t know','Other']
+  caste = ['', '<span define="A caste associated with agriculture">Jat</span>','Ramgarhia','Dalit/SC/BC','Mazbi','Chamar','Khatri','Naee','Don’t know','Other']
   return caste[value]
 
 
@@ -481,9 +481,9 @@ def hcondition_of_remains(v1, v2, v3, v4, v5, v6, v7, other):
 
 
 @register.simple_tag()
-def hdemands(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, other):
+def hdemands(v2, v3, v4, v5, v6, v7, v8, v10, other):
   groups = []
-  groups.append('None') if v1 == 1 else 0
+  # groups.append('None') if v1 == 1 else 0
   groups.append('Money') if v2 == 1 else 0
   groups.append('Information about another person') if v3 == 1 else 0
   groups.append('Forced identification of another person') if v4 == 1 else 0
@@ -491,7 +491,7 @@ def hdemands(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, other):
   groups.append('Signature on blank papers') if v6 == 1 else 0
   groups.append('Valuables (jewelry/electronics/land/etc.)') if v7 == 1 else 0
   groups.append('Land') if v8 == 1 else 0
-  groups.append('Don’t know') if v9 == 1 else 0
+  # groups.append('Don’t know') if v9 == 1 else 0
   if v10 == 1:
     if (other):
       groups.append(other)
