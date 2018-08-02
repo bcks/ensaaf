@@ -762,7 +762,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>Remedies & Impact</h4>
+      <h4>Remedies {% if victim.family_effects_1 == 1 %}{% else %}& Impact{% endif %}</h4>
     </div>
   </div>
 
@@ -791,7 +791,7 @@
   {% if victim.security_official_response_14 != 1 %}
   {% if victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.security_official_response_13 or victim.security_official_response_14 or victim.other_so_response %}
     <div class="col-sm-6">
-      <p class="kicker dots">Security official response</p>
+      <p class="kicker dots">Response by officials</p>
     </div>
     <div class="col-sm-6">
       <p>{% autoescape off %}{% hsecurity_official_response victim.security_official_response_0 victim.security_official_response_1 victim.security_official_response_2 victim.security_official_response_3 victim.security_official_response_4 victim.security_official_response_5 victim.security_official_response_6 victim.security_official_response_7 victim.security_official_response_8 victim.security_official_response_9 victim.security_official_response_10 victim.security_official_response_11 victim.security_official_response_12 victim.security_official_response_13 victim.security_official_response_14 victim.other_so_response %}{% endautoescape %}</p>
@@ -833,7 +833,7 @@
 
   {% if victim.govnt_response_desired_11 != 1 %}
     <div class="col-sm-6">
-      <p class="kicker dots">Response desired by Government</p>
+      <p class="kicker dots">Remedies desired from government</p>
     </div>
     <div class="col-sm-6">
       <p>{% hgovnt_response_desired victim.govnt_response_desired_1 victim.govnt_response_desired_2 victim.govnt_response_desired_3 victim.govnt_response_desired_4 victim.govnt_response_desired_5 victim.govnt_response_desired_6 victim.govnt_response_desired_7 victim.govnt_response_desired_8 victim.govnt_response_desired_9 victim.govnt_response_desired_10 victim.govnt_response_desired_11 victim.other_govnt_response_desired %}</p>
