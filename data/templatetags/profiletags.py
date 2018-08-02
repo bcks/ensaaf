@@ -178,7 +178,7 @@ def hvictim_address_other(value):
 
 @register.simple_tag()
 def heducation(value):
-  education  = ['No education','Primary school/5th standard','Middle school/8th standard','High school/matriculated','10 plus 1','10 plus 2/senior secondary','Some college','Bachelor’s degree','Master’s/graduate diploma','Vocational diploma','Giyani','Don’t know']
+  education  = ['No education','Primary school','Middle school','High school','High school','High school','Some college','College degree','Graduate diploma','Vocational degree','Vocational degree','Don’t know']
   return education[value]
 
 
@@ -286,7 +286,7 @@ def hcaste(value):
 
 @register.simple_tag()
 def hreligion(value):
-  religion = ['','Sikhism','Hinduism','Islam','Christianity','No religion','Don’t know','Other']
+  religion = ['','Sikh','Hinduism','Islam','Christianity','No religion','Don’t know','Other']
   return religion[value]
 
 
@@ -362,6 +362,7 @@ def hdate_no_on(var):
 @register.simple_tag()
 def hwitness_arrest(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v12, other):
   groups = []
+  groups.append('No witness') if v0 == 1 else 0
   groups.append('Spouse') if v1 == 1 else 0
   groups.append('Parents') if v2 == 1 else 0
   groups.append('Children') if v3 == 1 else 0

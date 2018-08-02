@@ -12,7 +12,7 @@ def calculate_stats(all):
     not_married = all.filter(victim_marital_status='0').count()
 
     religion = {
-      "Sikhism": all.filter(victim_religion='1').count(),
+      "Sikh": all.filter(victim_religion='1').count(),
       "Hinduism": all.filter(victim_religion='2').count(),
       "Islam": all.filter(victim_religion='3').count(),
       "Christianity": all.filter(victim_religion='4').count(),
@@ -35,15 +35,13 @@ def calculate_stats(all):
 
     education = {
       "No education": all.filter(victim_education='0').count(),
-      "Primary school/5th standard": all.filter(victim_education='1').count(),
-      "Middle school/8th standard": all.filter(victim_education='2').count(),
-      "High school/matriculated": all.filter(victim_education='3').count(),
-      "10 plus 1": all.filter(victim_education='4').count(),
-      "10 plus 2/senior secondary": all.filter(victim_education='5').count(),
-      "Some college, bachelors degree": all.filter(victim_education='6').count(),
-      "Masters/graduate diploma": all.filter(victim_education='7').count(),
-      "Vocational diploma": all.filter(victim_education='8').count(),
-      "Giyani": all.filter(victim_education='9').count(),
+      "Primary school": all.filter(victim_education='1').count(),
+      "Middle school": all.filter(victim_education='2').count(),
+      "High school": all.filter(victim_education__in=['3','4','5']).count(),
+      "Some college": all.filter(victim_education='6').count(),
+      "College degree": all.filter(victim_education='7').count(),
+      "Graduate degree": all.filter(victim_education='8').count(),
+      "Vocational degree": all.filter(victim_education__in=['9','10']).count(),
     }
     education = sorted(education.items(), key=operator.itemgetter(1), reverse=True)
 
