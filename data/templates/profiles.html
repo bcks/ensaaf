@@ -26,9 +26,14 @@
 
     {% for year in year_list %}
 
-    <div class="col-12">
-      <hr>
-      <h3>{{year.grouper|date:"Y"}}</h3>
+    <div class="col-6 col-sm-4 col-md-3"> 
+      <div class="home-box" style="background-color:#fec;padding:1rem;">
+      {% if year.grouper == None %}
+        <h3 style="color:#987;text-shadow:none;">Date Unknown</h3>
+      {% else %}
+        <h3 style="color:#987;text-shadow:none;">{{year.grouper|date:"Y"}}</h3>
+      {% endif %}
+      </div>
     </div>
 
     {% for victim in year.list %}
