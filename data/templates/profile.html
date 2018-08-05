@@ -15,41 +15,25 @@
      {% endif %}
 
 
-      <h1>{{victim.victim_name}}</h1>
+      <h1 style="margin-bottom:1rem;">{{victim.victim_name}}</h1>
 
-
-      <div class="row">  
-        <div class="col-sm-2">
-          <p class="kicker dots">Incident type</p>
-        </div>
-        <div class="col-sm-10">
-
+      <p>
       {% if victim.victim_disappeared_killed == 2 %}
-        <p>Extrajudicial execution{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}</p>
+        Extrajudicial execution{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}
       {% endif %}
 
       {% if victim.victim_disappeared_killed == 1 %}
-        <p>Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% autoescape off %}{% hdate_link victim.victim_arrest_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% autoescape off %}{% hdate_link dt_last_heard_victim_alive %}{% endautoescape %}{% endif %}</p>
+        Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% autoescape off %}{% hdate_link victim.victim_arrest_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% autoescape off %}{% hdate_link dt_last_heard_victim_alive %}{% endautoescape %}{% endif %}
       {% endif %}
+      </p>
 
-        </div>
-      </div>
+      <p>
+      {% if victim.victim_sex != '' %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age != '' %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex != '' %},{% endif %}        
+      age {{victim.victim_age}}        
+      {% endif %}{% endif %}
+      </p>
 
 
-      <div class="row">  
-        <div class="col-sm-2">
-          <p class="kicker dots">Gender, age</p>
-        </div>
-        <div class="col-sm-10">
-
-          <p>
-          {% if victim.victim_sex != '' %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age != '' %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex != '' %},{% endif %}        
-          age {{victim.victim_age}}        
-          {% endif %}{% endif %}
-          </p>
-
-        </div>
-      </div>
           
                     
                 
@@ -418,7 +402,7 @@
   {% if victim.judge_or_magistrate_result_3 != 1  %}
   {% if victim.judge_or_magistrate_result_1 or victim.judge_or_magistrate_result_2 or victim.judge_or_magistrate_result_3 or victim.judge_or_magistrate_result_4 or victim.judge_or_magistrate_resoth %}
     <div class="col-sm-6">
-      <p class="kicker dots">Judge or Magistrate result</p>
+      <p class="kicker dots">Judge or magistrate result</p>
     </div>
     <div class="col-sm-6">
       <p>{% hjudge_or_magistrate_result victim.judge_or_magistrate_result_1 victim.judge_or_magistrate_result_2 victim.judge_or_magistrate_result_3 victim.judge_or_magistrate_result_4 victim.judge_or_magistrate_resoth %}</p>

@@ -139,8 +139,6 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}
   attribution: '',
 }).addTo(mymap);
 
-mymap.scrollWheelZoom.disable();
-
 $.getJSON("/static/js/punjab.geojson", function(pujabjson) {
   drawMap(pujabjson);
   $.getJSON("/static/js/village_loc.json", function(json) {
@@ -215,7 +213,9 @@ function updateMap(start, end) {
               markers[key].setStyle({fillOpacity: .5});
               markers[key].setRadius(area(d.size));
 
-              var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + d.size + ' Victim';
+              var tultipText = '<div class="name">' + d.name + ', ';
+                if (d.subdist !== d.dist) { tultipText += d.subdist + ', '; }
+                tultipText += d.dist + '</div><div class="position">' + d.size + ' Victim';
                 if (d.size > 1) { tultipText += 's'; }
                 tultipText += '</div>';
 
