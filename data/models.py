@@ -332,7 +332,6 @@ class Page(models.Model):
     title = models.CharField(max_length=200, unique=True)
     body = models.TextField()
     slug = models.SlugField(max_length=100, unique=True)
-    directory = models.SlugField(max_length=100)
     class Meta:
         db_table = 'Page'
 
