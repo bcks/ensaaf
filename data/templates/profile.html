@@ -226,16 +226,18 @@
     <div class="col-sm-12">
       <h4>
       {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-        Abduction,
+        Abduction{% if victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 or victim.victim_prior_detention_trt == 1 %},{% endif %}
       {% endif %}
 
       {% if victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}      
-        Detention,
+        Detention{% if victim.victim_prior_detention_trt == 1 %},{% endif %}
       {% endif %}
 
-      {% if victim.victim_prior_detention_trt == 1 %}      
-        Torture,
+      {% if victim.victim_prior_detention_trt == 1 %}
+        Torture
       {% endif %}
+
+{% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 or victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 or victim.victim_prior_detention_trt == 1 %}&{% endif %}
       
       {% if victim.victim_disappeared_killed == 2 %}
         Extrajudicial Execution
