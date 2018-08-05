@@ -307,53 +307,45 @@ def hvictim_arrest_status(value):
 
 @register.simple_tag()
 def hvictim_arrest_date(victim_arrest_exact_date, victim_arrest_date):
-  if (victim_arrest_date == "Don't know"):
-    return ' '
-  parts = victim_arrest_date.split('-');
-  if (len(parts) > 3):
-    return ' '
-  if victim_arrest_exact_date != '' and victim_arrest_exact_date == 0 or victim_arrest_exact_date == 9:
-    return ' around '
-  return ' '
 
-
-
-@register.simple_tag()
-def hdate_no_on(var):
-  if (var == 'Don\'t know'):
+  if (victim_arrest_date == 'Don\'t know'):
     return ', date unknown'
-  if (var == ''):
+  if (victim_arrest_date == ''):
     return ', date unknown'
 
   # 09/20/1988-10/05/1988
   #      pattern => '%m/%d/%Y',
-  if '/' in var and '-' in var:
-    var = var.replace('/','-')
-    parts = var.split('-')
+  if '/' in victim_arrest_date and '-' in victim_arrest_date:
+    victim_arrest_date = victim_arrest_date.replace('/','-')
+    parts = victim_arrest_date.split('-')
     return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
-  if ' - ' in var:
-    var = var.replace(' ','')
-    parts = var.split('-')
+  if ' - ' in victim_arrest_date:
+    victim_arrest_date = victim_arrest_date.replace(' ','')
+    parts = victim_arrest_date.split('-')
     return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+
+  around = ''
+  if victim_arrest_exact_date != '' and victim_arrest_exact_date == 0 or victim_arrest_exact_date == 9:
+    around = ' around '
 
   # 23-07-1991
   #    pattern => '%d-%m-%Y',
-  if '-' in var:
-    parts = var.split('-')
+  if '-' in victim_arrest_date:
+    parts = victim_arrest_date.split('-')
     if int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+    return around + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
-  if '/' in var:
-    parts = var.split('/')
+  if '/' in victim_arrest_date:
+    parts = victim_arrest_date.split('/')
     if int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+    return around + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
   return ''
 
@@ -625,7 +617,7 @@ def hothers_arrested(value):
 
 
 @register.simple_tag()
-def hothers_killed(v0, v1, v2, v3, v9):
+def hothers_killed(v0, v1, v2, v3):
   if v0 == 1:
     return('No')
   if v1 == 1:
@@ -634,8 +626,8 @@ def hothers_killed(v0, v1, v2, v3, v9):
     return('Yes')
   if v3 == 1:
     return('Yes')
-  if v9 == 1:
-    return('Unknown')
+#  if v9 == 1:
+#    return('Unknown')
   return ''
 
 

@@ -313,7 +313,7 @@
     </p>
     </div>
     <div class="col-sm-6">
-      <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date != '' %}, {% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% autoescape off %}{% hdate_no_on victim.victim_arrest_date %}{% endautoescape %}{% endif %}</p>
+      <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date != '' %}, {% autoescape off %}{% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% endautoescape %}{% endif %}</p>
   
     </div>
     {% endif %}
@@ -721,7 +721,7 @@
 
   
 
-
+  {% if victim.victim_militant_status == 0 %}
   {% if victim.victim_militant_support != 9 %}
     <div class="col-sm-6">
       <p class="kicker dots">Militant support provided</p>
@@ -729,6 +729,7 @@
     <div class="col-sm-6">
       <p>{% hyes_no victim.victim_militant_support %}{% if victim.victim_militant_sprt_vol %}{% if victim.victim_militant_sprt_vol != 3 %}{% if victim.victim_militant_sprt_vol != 9 %}, {% hforced victim.victim_militant_sprt_vol %}{% endif %}{% endif %}{% endif %}</p>
     </div>
+  {% endif %}
   {% endif %}
 
   </div>
@@ -831,6 +832,13 @@
   </div>
 
 
+
+
+{# hide of no connected victims or members of family #}
+
+{% if victim.number_of_victims > 1 and victim.genuine_encounters != '' and victim.genuine_encounters != 9 or victim.others_arrested == 1 or victim.others_arrested == 2 and victim.others_killed_9 != 1 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 %}
+
+
   <p><br></p>  
 
   <div class="row">
@@ -866,8 +874,6 @@
   {% endif %}
 
 
-
-
   {% if victim.others_arrested != '' %}
   <div class="row">
     <div class="col-sm-6">
@@ -880,22 +886,18 @@
   {% endif %}
 
 
-
-
   {% if victim.others_killed_9 != 1 %}
-  {% if victim.others_killed_0 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 or victim.others_killed_9 %}
+  {% if victim.others_killed_0 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 %}
   <div class="row">
     <div class="col-sm-6">
       <p class="kicker dots">Co-victims of extrajudicial execution</p>
     </div>
     <div class="col-sm-6">
-      <p>{% hothers_killed victim.others_killed_0 victim.others_killed_1 victim.others_killed_2 victim.others_killed_3 victim.others_killed_9 %}</p>
+      <p>{% hothers_killed victim.others_killed_0 victim.others_killed_1 victim.others_killed_2 victim.others_killed_3 %}</p>
     </div>
   </div>
   {% endif %}
   {% endif %}
-
-
 
 
   <div class="row">
@@ -903,6 +905,9 @@
       <p class="dots"><span class="kicker"><em><strong>Links to co-victim profiles forthcoming</strong></em></span></p>
     </div>
   </div>
+
+
+{% endif %}
 
 
 
