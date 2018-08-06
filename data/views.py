@@ -26,8 +26,11 @@ def home(request):
 
 def profiles(request):    
     victims = Data.objects.all().annotate(year=Trunc('timeline', 'year', output_field=DateField() )).order_by('-timeline')
+    years = list(reversed(range(1981,2008)))
+    years.append('Date Unknown')
     return render(request, "profiles.html", { 
       "victims": victims,
+      "years": years,
       })
 
 

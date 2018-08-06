@@ -128,6 +128,19 @@ def hdate(var):
 
 
 @register.simple_tag()
+def hdateslash(start, end):
+  if (start == None):
+    return 'date unknown'
+  start = str(start).split('-')[0]
+  end = str(end).split('-')[0]
+  if start == end:
+    return start
+  else:
+    return start + '/' + end
+
+
+
+@register.simple_tag()
 def hyear(var):
   if (var == 'Don\'t know'):
     return ', date unknown'
