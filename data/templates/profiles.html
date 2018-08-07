@@ -12,8 +12,27 @@
   <form method="get">
 
   <div class="row">
-    <div class="col-12">
-      <h1>Profiles of the Victims</h1>
+    <div class="col-md-8">
+      <h1 style="margin-bottom:.5rem;">Profiles of the Victims</h1>
+    </div>
+    <div class="col-md-4">
+      {% if selected %}<p><br><a href="?">Clear filters</a></p>{% endif %}
+    </div>
+    
+
+    <!--
+    * District (both)
+    * Subdistrict (both)
+    * Militant/Non-militant (both)
+    -->
+    
+    
+    <div class="form-group  filter col-4">
+      <select class="form-control" id="classification" name="classification" onchange="this.form.submit()">
+        <option value="">Classification</option>
+        <option {% if selected_classification == 'Enforced Disappearance' %} selected=selected{% endif %} value="Enforced Disappearance">Enforced Disappearance</option>
+        <option {% if selected_classification == 'Extrajudicial Execution' %} selected=selected{% endif %} value="Extrajudicial Execution">Extrajudicial Execution</option>
+      </select>
     </div>
     
     <div class="form-group  filter col-4">
@@ -33,8 +52,16 @@
       </select>
     </div>
 
-
-
+    <div class="form-group filter col-4">
+      <select class="form-control" id="age" name="age" onchange="this.form.submit()">
+        <option value="">Age</option>
+        <option{% if selected_age == '0-17' %} selected=selected{% endif %}>0-17</option>
+        <option{% if selected_age == '18-34' %} selected=selected{% endif %}>18-34</option>
+        <option{% if selected_age == '35-51' %} selected=selected{% endif %}>35-51</option>
+        <option{% if selected_age == '52-68' %} selected=selected{% endif %}>52-68</option>
+        <option{% if selected_age == '69-90' %} selected=selected{% endif %}>69-90</option>
+      </select>
+    </div>
 
     <div class="form-group filter col-4">
       <select class="form-control" id="caste" name="caste" onchange="this.form.submit()">
@@ -46,10 +73,22 @@
         <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %}>Chamar</option>
         <option{% if selected_caste == 'Khatri' %} selected=selected{% endif %}>Khatri</option>
         <option{% if selected_caste == 'Naee' %} selected=selected{% endif %}>Naee</option>
+        <option{% if selected_caste == 'Other' %} selected=selected{% endif %}>Other</option>
       </select>
     </div>
 
-      
+    <div class="form-group filter col-4">
+      <select class="form-control" id="religion" name="religion" onchange="this.form.submit()">
+        <option value="">Religion</option>
+        <option{% if selected_religion == 'Sikh' %} selected=selected{% endif %}>Sikh</option>
+        <option{% if selected_religion == 'Hinduism' %} selected=selected{% endif %}>Hinduism</option>
+        <option{% if selected_religion == 'Islam' %} selected=selected{% endif %}>Islam</option>
+        <option{% if selected_religion == 'Christianity' %} selected=selected{% endif %}>Christianity</option>
+        <option{% if selected_religion == 'No religion' %} selected=selected{% endif %}>No religion</option>
+        <option{% if selected_religion == 'Other' %} selected=selected{% endif %}>Other</option>
+      </select>
+    </div>
+    
   </div>
 
   </form>
@@ -103,8 +142,17 @@
     {% endfor %}
     {% endfor %}
 
-
   </div>
 </div>
+
+
+{% if victims %}{% else %}
+  <div class="row"> 
+    <div class="col-12"> 
+    <p>No matching results for
+    {% for t in selected %} {% if not forloop.first %} and {% endif %} <strong>{{ t }}</strong> {% endfor %}</p>
+  </div>
+</div>
+{% endif %}
 
 {% endblock %}

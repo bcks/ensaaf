@@ -25,20 +25,27 @@ def home(request):
       })
 
 
-def profiles(request):    
-
-    selected_year = request.GET.get('year','')
-    selected_gender = request.GET.get('gender','')
+def profiles(request):
+    selected_age = request.GET.get('age','')
     selected_caste = request.GET.get('caste','')
+    selected_classification = request.GET.get('classification','')
+    selected_gender = request.GET.get('gender','')
+    selected_religion = request.GET.get('religion','')
+    selected_year = request.GET.get('year','')
 
     selected = []
-    if selected_gender:
-      selected.append(selected_gender)
-    if selected_year:
-      selected.append(selected_year)
+    if selected_age:
+      selected.append(selected_age)
     if selected_caste:
       selected.append(selected_caste)
-
+    if selected_classification:
+      selected.append(selected_classification)
+    if selected_gender:
+      selected.append(selected_gender)
+    if selected_religion:
+      selected.append(selected_religion)
+    if selected_year:
+      selected.append(selected_year)
 
     victim_list = Data.objects.all().values(\
       'victim_name','victim_disappeared_killed','timeline_start','timeline_end','village_name','photo_vic_fn','record_id')\
@@ -52,9 +59,12 @@ def profiles(request):
     return render(request, "profiles.html", { 
       "victims": victim_filter.qs,
       "years": years,
-      'selected_year': selected_year,
-      'selected_gender': selected_gender,
+      'selected_age': selected_age,
       'selected_caste': selected_caste,
+      'selected_classification': selected_classification,
+      'selected_gender': selected_gender,
+      'selected_religion': selected_religion,
+      'selected_year': selected_year,
       'selected': selected,
       })
 
