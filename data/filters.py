@@ -4,6 +4,13 @@ import django_filters
 
 class DataFilter(django_filters.FilterSet):
 
+
+  caste = django_filters.CharFilter(method='caste_filter')
+  def caste_filter(self, queryset, name, value):
+    indexNumber = ['X', 'Jat','Ramgarhia','Dalit/SC/BC','Mazbi','Chamar','Khatri','Naee'].index(value)
+    if indexNumber:
+      return queryset.filter(**{'victim_caste': indexNumber})    
+
   gender = django_filters.CharFilter(method='gender_filter')
   def gender_filter(self, queryset, name, value):
     if value == 'Male':

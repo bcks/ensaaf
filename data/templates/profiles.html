@@ -9,12 +9,13 @@
 <div class="home">
 
 
+  <form method="get">
+
   <div class="row">
     <div class="col-12">
       <h1>Profiles of the Victims</h1>
-
-  <form method="get">
-
+    </div>
+    
     <div class="form-group  filter col-4">
       <select class="form-control" id="gender" name="gender" onchange="this.form.submit()">
         <option value="">Gender</option>
@@ -32,12 +33,29 @@
       </select>
     </div>
 
-  </form>
+
+
+
+    <div class="form-group filter col-4">
+      <select class="form-control" id="caste" name="caste" onchange="this.form.submit()">
+        <option value="">Caste</option>
+        <option{% if selected_caste == 'Jat' %} selected=selected{% endif %}>Jat</option>
+        <option{% if selected_caste == 'Ramgarhia' %} selected=selected{% endif %}>Ramgarhia</option>
+        <option{% if selected_caste == 'Dalit/SC/BC' %} selected=selected{% endif %}>Dalit/SC/BC</option>
+        <option{% if selected_caste == 'Mazbi' %} selected=selected{% endif %}>Mazbi</option>
+        <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %}>Chamar</option>
+        <option{% if selected_caste == 'Khatri' %} selected=selected{% endif %}>Khatri</option>
+        <option{% if selected_caste == 'Naee' %} selected=selected{% endif %}>Naee</option>
+      </select>
+    </div>
 
       
-
-    </div>
   </div>
+
+  </form>
+
+
+  <br><br>
 
 
 

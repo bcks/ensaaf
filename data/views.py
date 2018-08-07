@@ -29,12 +29,15 @@ def profiles(request):
 
     selected_year = request.GET.get('year','')
     selected_gender = request.GET.get('gender','')
+    selected_caste = request.GET.get('caste','')
 
     selected = []
     if selected_gender:
       selected.append(selected_gender)
     if selected_year:
       selected.append(selected_year)
+    if selected_caste:
+      selected.append(selected_caste)
 
 
     victim_list = Data.objects.all().values(\
@@ -51,6 +54,7 @@ def profiles(request):
       "years": years,
       'selected_year': selected_year,
       'selected_gender': selected_gender,
+      'selected_caste': selected_caste,
       'selected': selected,
       })
 
