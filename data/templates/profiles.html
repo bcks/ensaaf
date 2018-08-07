@@ -12,22 +12,28 @@
   <div class="row">
     <div class="col-12">
       <h1>Profiles of the Victims</h1>
-      
 
   <form method="get">
 
-    <div class="form-group  filter">
-      <select class="form-control" id="id_outcome" name="outcome" onchange="this.form.submit()">
+    <div class="form-group  filter col-4">
+      <select class="form-control" id="gender" name="gender" onchange="this.form.submit()">
+        <option value="">Gender</option>
+        <option {% if selected_gender == 'Male' %} selected=selected{% endif %} value="Male">Male</option>
+        <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">Female</option>
+      </select>
+    </div>
+
+    <div class="form-group filter col-4">
+      <select class="form-control" id="year" name="year" onchange="this.form.submit()">
         <option value="">Year</option>
         {% for o in years %}
-        {% if o %}
-        <option{% ifequal selected_year o %} selected=selected{% endifequal %}>{{o}}</option>
-        {% endif %}
+        <option{% if selected_year|add:"0" == o %} selected=selected{% endif %}>{{o}}</option>
         {% endfor %}
       </select>
     </div>
 
   </form>
+
       
 
     </div>
@@ -42,18 +48,18 @@
     {% for year in year_list %}
 
     <div class="col-6 col-sm-4 col-md-3"> 
-      <div class="home-box" style="background-color:#fec;padding:1rem;">
+      <div class="home-box year">
       {% if year.grouper == None %}
-        <h3 style="color:#987;text-shadow:none;">Date Unknown</h3>
+        <h3>Date Unknown</h3>
       {% else %}
-        <h3 style="color:#987;text-shadow:none;">{{year.grouper|date:"Y"}}</h3>
+        <h3>{{year.grouper|date:"Y"}}</h3>
       {% endif %}
       </div>
     </div>
 
     {% for victim in year.list %}
 
-    <div class="col-6 col-sm-4 col-md-3" onclick="window.location.href='/profile/{{victim.record_id}}';">
+    <div class="col-6 col-sm-4 col-md-3 victim" onclick="window.location.href='/profile/{{victim.record_id}}';" id="p{{victim.record_id}}">
 
      {% if victim.photo_vic_fn %}
       <div class="home-box" style="background-image:url({% hphoto victim.photo_vic_fn %})">
@@ -80,9 +86,7 @@
     {% endfor %}
 
 
-
   </div>
-
 </div>
 
 {% endblock %}

@@ -9,6 +9,7 @@ from django.template.defaulttags import register
 from .models import *
 from django.shortcuts import render
 from .utils import calculate_stats
+from .filters import DataFilter
 
 
 
@@ -25,12 +26,32 @@ def home(request):
 
 
 def profiles(request):    
-    victims = Data.objects.all().annotate(year=Trunc('timeline', 'year', output_field=DateField() )).order_by('-timeline')
+
+    selected_year = request.GET.get('year','')
+    selected_gender = request.GET.get('gender','')
+
+    selected = []
+    if selected_gender:
+      selected.append(selected_gender)
+    if selected_year:
+      selected.append(selected_year)
+
+
+    victim_list = Data.objects.all().values(\
+      'victim_name','victim_disappeared_killed','timeline_start','timeline_end','village_name','photo_vic_fn','record_id')\
+      .annotate(year=Trunc('timeline', 'year', output_field=DateField() )).order_by('-timeline')
+
+    victim_filter = DataFilter(request.GET, queryset=victim_list)
+
     years = list(reversed(range(1981,2008)))
     years.append('Date Unknown')
+
     return render(request, "profiles.html", { 
-      "victims": victims,
+      "victims": victim_filter.qs,
       "years": years,
+      'selected_year': selected_year,
+      'selected_gender': selected_gender,
+      'selected': selected,
       })
 
 
