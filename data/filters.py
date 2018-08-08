@@ -25,6 +25,10 @@ class DataFilter(django_filters.FilterSet):
     elif value == 'Extrajudicial Execution':
       return queryset.filter(**{'victim_disappeared_killed': '2'})
 
+  first_name = django_filters.CharFilter(method='first_name_filter')
+  def first_name_filter(self, queryset, name, value):
+    return queryset.filter(**{'victim_first_name': value})    
+
   gender = django_filters.CharFilter(method='gender_filter')
   def gender_filter(self, queryset, name, value):
     if value == 'Male':
@@ -65,6 +69,7 @@ class DataFilter(django_filters.FilterSet):
       'age',
       'caste',
       'classification',
+      'first_name',
       'gender',
       'militancy',
       'religion',

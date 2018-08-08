@@ -20,6 +20,7 @@ class Data(models.Model):
     number_of_victims = models.IntegerField(blank=True, null=True)
     genuine_encounters = models.IntegerField(blank=True, null=True)
     respondent_information_complete = models.IntegerField()
+    victim_first_name = models.CharField(max_length=256)
     victim_sex = models.IntegerField(blank=True, null=True)
     victim_age = models.CharField(max_length=64)
     victim_age_averaged = models.IntegerField(db_column='victim_age_averaged', blank=True, null=True)

@@ -42,6 +42,15 @@
         <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">Female</option>
       </select>
     </div>
+    
+    <div class="form-group  filter col-4">
+      <select class="form-control" id="first_name" name="first_name" onchange="this.form.submit()">
+        <option value="">First Name</option>
+        {% for o in first_names %}
+        <option{% if selected_first_name == o.victim_first_name %} selected=selected{% endif %}>{{o.victim_first_name}}</option>
+        {% endfor %}
+      </select>
+    </div>
 
     <div class="form-group  filter col-4">
       <select class="form-control" id="militancy" name="militancy" onchange="this.form.submit()">

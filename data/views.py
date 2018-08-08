@@ -29,6 +29,7 @@ def profiles(request):
     selected_age = request.GET.get('age','')
     selected_caste = request.GET.get('caste','')
     selected_classification = request.GET.get('classification','')
+    selected_first_name = request.GET.get('first_name','')
     selected_gender = request.GET.get('gender','')
     selected_militancy = request.GET.get('militancy','')
     selected_religion = request.GET.get('religion','')
@@ -41,6 +42,8 @@ def profiles(request):
       selected.append(selected_caste)
     if selected_classification:
       selected.append(selected_classification)
+    if selected_first_name:
+      selected.append(selected_first_name)
     if selected_gender:
       selected.append(selected_gender)
     if selected_militancy:
@@ -58,13 +61,16 @@ def profiles(request):
 
     years = list(reversed(range(1981,2008)))
     years.append('Date Unknown')
+    first_names = get_first_names()
 
     return render(request, "profiles.html", { 
       "victims": victim_filter.qs,
       "years": years,
+      "first_names": first_names,
       'selected_age': selected_age,
       'selected_caste': selected_caste,
       'selected_classification': selected_classification,
+      'selected_first_name': selected_first_name,
       'selected_gender': selected_gender,
       'selected_religion': selected_religion,
       'selected_year': selected_year,
@@ -257,6 +263,21 @@ def tehsil(request, slug=None):
       })
 
 
+
+def get_first_names():
+    first_names = cache.get("first_names")
+    if first_names:
+        return first_names
+    try:
+      first_names = Data.objects.all()\
+                        .values('victim_first_name')\
+                        .distinct().order_by('victim_first_name')
+      cache.set("first_names", first_names, 3600) # 60 * 60 seconds
+      return first_names
+    except Exception as e:
+        return messages.warning("Exception get_first_names:"%e)
+        return None
+        
 
 
 def get_tehsils(slug):
