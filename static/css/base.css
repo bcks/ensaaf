@@ -114,7 +114,6 @@ tr { vertical-align: top; }
 	transform: rotate(90deg);
 	right: 18px;
 	position: absolute;
-	top:  12px;
 	color: #008eaf;
 	pointer-events: none;
 }
