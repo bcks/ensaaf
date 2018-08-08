@@ -112,9 +112,9 @@ tr { vertical-align: top; }
 	-moz-transform: rotate(90deg);
 	-ms-transform: rotate(90deg);
 	transform: rotate(90deg);
-	right: 19px;
+	right: 18px;
 	position: absolute;
-	top:  6px;
+	top:  5px;
 	color: #008eaf;
 	pointer-events: none;
 }
@@ -166,7 +166,7 @@ tr { vertical-align: top; }
 }
 
 .year {
-  background-color:#fee;
+  background-color:#eee;
   padding:1rem;
 }
 .year h3 {
