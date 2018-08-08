@@ -106,7 +106,7 @@ tr { vertical-align: top; }
 	font-weight: bold;
 	border-bottom: 1px solid #ccc;
 }
-.filter:after {
+.filter::after {
 	content: '❯';
 	-webkit-transform: rotate(90deg);
 	-moz-transform: rotate(90deg);
@@ -114,11 +114,11 @@ tr { vertical-align: top; }
 	transform: rotate(90deg);
 	right: 18px;
 	position: absolute;
-	top:  0px;
+	top:  4px;
 	color: #008eaf;
 	pointer-events: none;
 }
-.filter.selected:after {
+.filter.selected::after {
   color: #b9b9b9;
 }
 
@@ -166,7 +166,7 @@ tr { vertical-align: top; }
 }
 
 .year {
-  background-color:#ffefdf;
+  background-color:#fee;
   padding:1rem;
 }
 .year h3 {
