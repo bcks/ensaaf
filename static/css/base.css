@@ -112,9 +112,9 @@ tr { vertical-align: top; }
 	-moz-transform: rotate(90deg);
 	-ms-transform: rotate(90deg);
 	transform: rotate(90deg);
-	right: 18px;
+	right: 19px;
 	position: absolute;
-	top:  4px;
+	top:  5px;
 	color: #008eaf;
 	pointer-events: none;
 }
