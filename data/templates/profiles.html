@@ -21,9 +21,9 @@
     
 
     <!--
+    * First Name (both)
     * District (both)
     * Subdistrict (both)
-    * Militant/Non-militant (both)
     -->
     
     
@@ -40,6 +40,15 @@
         <option value="">Gender</option>
         <option {% if selected_gender == 'Male' %} selected=selected{% endif %} value="Male">Male</option>
         <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">Female</option>
+      </select>
+    </div>
+
+    <div class="form-group  filter col-4">
+      <select class="form-control" id="militancy" name="militancy" onchange="this.form.submit()">
+        <option value="">Militant Status</option>
+        <option {% if selected_militancy == 'Militant' %} selected=selected{% endif %} value="Militant">Militant</option>
+        <option {% if selected_militancy == 'Not a Militant' %} selected=selected{% endif %} value="Not a Militant">Not a Militant</option>
+        <option {% if selected_militancy == 'Unknown' %} selected=selected{% endif %} value="Unknown">Unknown</option>
       </select>
     </div>
 

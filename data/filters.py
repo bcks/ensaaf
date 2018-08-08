@@ -37,7 +37,16 @@ class DataFilter(django_filters.FilterSet):
     indexNumber = ['X','Sikh','Hinduism','Islam','Christianity','No religion','Don’t know','Other'].index(value)
     if indexNumber:
       return queryset.filter(**{'victim_religion': indexNumber})    
-    
+
+  militancy = django_filters.CharFilter(method='militancy_filter')
+  def militancy_filter(self, queryset, name, value):
+    if value == 'Militant':
+      return queryset.filter(**{'victim_militant_status': '1'})    
+    elif value == 'Not a Militant':
+      return queryset.filter(**{'victim_militant_status': '0'})
+    elif value == 'Unknown':
+      return queryset.filter(**{'victim_militant_status': '9'})
+
   year = django_filters.CharFilter(method='year_filter')
   def year_filter(self, queryset, name, value):
     if value == 'Date Unknown':
@@ -57,6 +66,7 @@ class DataFilter(django_filters.FilterSet):
       'caste',
       'classification',
       'gender',
+      'militancy',
       'religion',
       'year',
     ]

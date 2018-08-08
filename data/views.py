@@ -30,6 +30,7 @@ def profiles(request):
     selected_caste = request.GET.get('caste','')
     selected_classification = request.GET.get('classification','')
     selected_gender = request.GET.get('gender','')
+    selected_militancy = request.GET.get('militancy','')
     selected_religion = request.GET.get('religion','')
     selected_year = request.GET.get('year','')
 
@@ -42,6 +43,8 @@ def profiles(request):
       selected.append(selected_classification)
     if selected_gender:
       selected.append(selected_gender)
+    if selected_militancy:
+      selected.append(selected_militancy)
     if selected_religion:
       selected.append(selected_religion)
     if selected_year:
