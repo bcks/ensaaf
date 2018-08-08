@@ -1,4 +1,4 @@
-from .models import Data
+from .models import Data, Villages
 import django_filters
 
 
@@ -42,6 +42,16 @@ class DataFilter(django_filters.FilterSet):
     if indexNumber:
       return queryset.filter(**{'victim_religion': indexNumber})    
 
+  tehsil = django_filters.CharFilter(method='tehsil_filter')
+  def tehsil_filter(self, queryset, name, value):
+    villages = Villages.objects.filter(tehsil_id=value).order_by('village_name')
+    return queryset.filter(**{'village_id__in': villages.values('id') })
+
+  district = django_filters.CharFilter(method='district_filter')
+  def district_filter(self, queryset, name, value):
+    villages = Villages.objects.filter(district_id=value).order_by('village_name')
+    return queryset.filter(**{'village_id__in': villages.values('id') })
+
   militancy = django_filters.CharFilter(method='militancy_filter')
   def militancy_filter(self, queryset, name, value):
     if value == 'Militant':
@@ -69,9 +79,11 @@ class DataFilter(django_filters.FilterSet):
       'age',
       'caste',
       'classification',
+      'district',
       'first_name',
       'gender',
       'militancy',
       'religion',
+      'tehsil',
       'year',
     ]

@@ -33,6 +33,8 @@ def profiles(request):
     selected_gender = request.GET.get('gender','')
     selected_militancy = request.GET.get('militancy','')
     selected_religion = request.GET.get('religion','')
+    selected_district = request.GET.get('district','')
+    selected_tehsil = request.GET.get('tehsil','')
     selected_year = request.GET.get('year','')
 
     selected = []
@@ -40,6 +42,8 @@ def profiles(request):
       selected.append(selected_age)
     if selected_caste:
       selected.append(selected_caste)
+    if selected_district:
+      selected.append( get_district_name(selected_district) )
     if selected_classification:
       selected.append(selected_classification)
     if selected_first_name:
@@ -50,6 +54,8 @@ def profiles(request):
       selected.append(selected_militancy)
     if selected_religion:
       selected.append(selected_religion)
+    if selected_tehsil:
+      selected.append( get_tehsil_name(selected_tehsil) )
     if selected_year:
       selected.append(selected_year)
 
@@ -62,17 +68,23 @@ def profiles(request):
     years = list(reversed(range(1981,2008)))
     years.append('Date Unknown')
     first_names = get_first_names()
+    tehsil_list = get_tehsil_list()
+    district_list = get_district_list()
 
     return render(request, "profiles.html", { 
       "victims": victim_filter.qs,
       "years": years,
       "first_names": first_names,
+      "tehsil_list": tehsil_list,
+      "district_list": district_list,
       'selected_age': selected_age,
       'selected_caste': selected_caste,
       'selected_classification': selected_classification,
+      'selected_district': selected_district,
       'selected_first_name': selected_first_name,
       'selected_gender': selected_gender,
       'selected_religion': selected_religion,
+      'selected_tehsil': selected_tehsil,
       'selected_year': selected_year,
       'selected': selected,
       })
@@ -278,6 +290,50 @@ def get_first_names():
         return messages.warning("Exception get_first_names:"%e)
         return None
         
+
+
+def get_tehsil_list():
+    tehsil_list = cache.get("tehsil_list")
+    if tehsil_list:
+        return tehsil_list
+    try:
+      tehsil_list = Villages.objects.all()\
+                        .values('tehsil', 'tehsil_id')\
+                        .distinct().order_by('tehsil')
+      cache.set("tehsil_list", tehsil_list, 3600) # 60 * 60 seconds
+      return tehsil_list
+    except Exception as e:
+        return messages.warning("Exception get_tehsil_list:"%e)
+        return None
+     
+def get_district_list():
+    district_list = cache.get("district_list")
+    if district_list:
+        return district_list
+    try:
+      district_list = Villages.objects.all()\
+                        .values('district', 'district_id')\
+                        .distinct().order_by('district')
+      cache.set("district_list", district_list, 3600) # 60 * 60 seconds
+      return district_list
+    except Exception as e:
+        return messages.warning("Exception get_district_list:"%e)
+        return None
+     
+
+def get_tehsil_name(value):
+    if value:
+      tehsil_name = Villages.objects.filter(tehsil_id=value).values('tehsil')[:1].get()
+      return tehsil_name['tehsil']
+    else:
+      return None
+
+def get_district_name(value):
+    if value:
+      district_name = Villages.objects.filter(district_id=value).values('district')[:1].get()
+      return district_name['district']
+    else:
+      return None
 
 
 def get_tehsils(slug):
