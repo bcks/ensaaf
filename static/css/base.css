@@ -114,7 +114,7 @@ tr { vertical-align: top; }
 	transform: rotate(90deg);
 	right: 18px;
 	position: absolute;
-	top:  12px;
+	top:  0px;
 	color: #008eaf;
 	pointer-events: none;
 }
@@ -166,7 +166,7 @@ tr { vertical-align: top; }
 }
 
 .year {
-  background-color:#fec;
+  background-color:#ffefdf;
   padding:1rem;
 }
 .year h3 {
