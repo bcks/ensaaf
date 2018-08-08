@@ -6,6 +6,8 @@ class DataFilter(django_filters.FilterSet):
 
   age = django_filters.CharFilter(method='age_filter')
   def age_filter(self, queryset, name, value):
+    if value == "65+":
+      value = "65-99"
     age_start, age_end = value.split('-')
     return queryset.filter(**{
       'victim_age__gte': age_start,
@@ -38,7 +40,7 @@ class DataFilter(django_filters.FilterSet):
 
   religion = django_filters.CharFilter(method='religion_filter')
   def religion_filter(self, queryset, name, value):
-    indexNumber = ['X','Sikh','Hinduism','Islam','Christianity','No religion','Don’t know','Other'].index(value)
+    indexNumber = ['X','Sikh','Hindu','Muslim','Christian','No religion','Don’t know','Other'].index(value)
     if indexNumber:
       return queryset.filter(**{'victim_religion': indexNumber})    
 
