@@ -67,15 +67,16 @@ def profiles(request):
         'victim_name','victim_disappeared_killed','timeline_start','timeline_end','village_name','photo_vic_fn','record_id')\
         .annotate(year=Trunc('timeline', 'year', output_field=DateField() ))\
         .order_by('-timeline')
+      years = list(reversed(range(1981,2008)))
     else:
       victim_list = Data.objects.all().values(\
         'victim_name','victim_disappeared_killed','timeline_start','timeline_end','village_name','photo_vic_fn','record_id')\
         .annotate(year=Trunc('timeline', 'year', output_field=DateField() ))\
         .extra(select={'timeline_is_null': "timeline = '0000-00-00'"}, order_by=['timeline_is_null', 'timeline'])
+      years = list(range(1981,2008))
 
     victim_filter = DataFilter(request.GET, queryset=victim_list)
 
-    years = list(reversed(range(1981,2008)))
     years.append('Date Unknown')
     first_names = get_first_names()
     tehsil_list = get_tehsil_list()
