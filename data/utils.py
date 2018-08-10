@@ -131,8 +131,8 @@ def calculate_stats(all):
     so_return_body = all.filter(victim_arrest_status__in=['1','2']).count()
     no_so_return_body = all.filter(victim_arrest_status='3').count()
 
-    securityoff_id_known = all.filter( Q(securityoff_id_known='1') | Q(securityforces_idknown__in=['1','2']) ).count()
-    no_securityoff_id_known = all.filter( Q(securityoff_id_known='0') | Q(securityforces_idknown='3') ).count()
+    securityoff_id_known = all.filter( Q(securityoff_id_known='1') | Q(securityforces_idknown_1='1') | Q(securityforces_idknown_2='1') ).count()
+    no_securityoff_id_known = all.filter( Q(securityoff_id_known='0') | Q(securityforces_idknown_3='1') ).count()
 
     so_body_disposal = {
       "Cremated the body": all.filter(so_body_disposal='1').count(),
