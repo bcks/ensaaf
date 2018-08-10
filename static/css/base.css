@@ -186,13 +186,13 @@ tr { vertical-align: top; }
   margin-left: .25em;
 }
 .percent-bar {
-	height: 6px;
-	background-color: #fa0;
+	height: 12px;
+	background-color: #fda;
 	margin: 3px 0 1px 0;
 }
 .bar-2 {
 	margin: 1px 0 3px 0;
-	background-color: #d30;
+	background-color: #9cf;
 }
 .stats-block .toggle {
   display: none;

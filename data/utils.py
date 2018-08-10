@@ -1,4 +1,4 @@
-from django.db.models import Count
+from django.db.models import Count, Sum
 import operator
 
 
@@ -13,44 +13,42 @@ def calculate_stats(all):
 
     religion = {
       "Sikh": all.filter(victim_religion='1').count(),
-      "Hinduism": all.filter(victim_religion='2').count(),
-      "Islam": all.filter(victim_religion='3').count(),
-      "Christianity": all.filter(victim_religion='4').count(),
-      "No religion": all.filter(victim_religion='5').count(),
-      "Other": all.filter(victim_religion='7').count(),
+      "Non-Sikh": all.filter(victim_religion__in=['2','3','4','5','7']).count(),
     }
     religion = sorted(religion.items(), key=operator.itemgetter(1), reverse=True)
 
     caste = {
       "Jat": all.filter(victim_caste='1').count(),
-      "Ramgarhia": all.filter(victim_caste='2').count(),
-      "Dalit/SC/BC": all.filter(victim_caste='3').count(),
-      "Mazbi": all.filter(victim_caste='4').count(),
-      "Chamar": all.filter(victim_caste='5').count(),
-      "Khatri": all.filter(victim_caste='6').count(),
-      "Naee": all.filter(victim_caste='7').count(),
-      "Other": all.filter(victim_caste='9').count(),
+      "Non-Jat": all.filter(victim_caste__in=['2','3','4','5','6','7','9']).count(),
+      # "Dalit/SC/BC": all.filter(victim_caste='3').count(),
+      # "Mazbi": all.filter(victim_caste='4').count(),
+      # "Chamar": all.filter(victim_caste='5').count(),
+      # "Khatri": all.filter(victim_caste='6').count(),
+      # "Naee": all.filter(victim_caste='7').count(),
+      # "Other": all.filter(victim_caste='9').count(),
     }
     caste = sorted(caste.items(), key=operator.itemgetter(1), reverse=True)
 
     education = {
       "No education": all.filter(victim_education='0').count(),
-      "Primary school": all.filter(victim_education='1').count(),
-      "Middle school": all.filter(victim_education='2').count(),
-      "High school": all.filter(victim_education__in=['3','4','5']).count(),
-      "Some college": all.filter(victim_education='6').count(),
-      "College degree": all.filter(victim_education='7').count(),
-      "Graduate degree": all.filter(victim_education='8').count(),
-      "Vocational degree": all.filter(victim_education__in=['9','10']).count(),
+      " Primary school": all.filter(victim_education='1').count(),
+      "  Middle school": all.filter(victim_education='2').count(),
+      "   High school": all.filter(victim_education__in=['3','4','5']).count(),
+      "    Some college": all.filter(victim_education='6').count(),
+      "     College degree": all.filter(victim_education='7').count(),
+      "      Graduate degree": all.filter(victim_education='8').count(),
+      "       Vocational degree": all.filter(victim_education__in=['9','10']).count(),
     }
-    education = sorted(education.items(), key=operator.itemgetter(1), reverse=True)
+    # education = sorted(education.items(), key=operator.itemgetter(1), reverse=True)
+    education = sorted(education.items(), key=operator.itemgetter(0), reverse=True)
 
     age_range = { # Dataset.objects.filter(i_end_int__gte=x,i_begin_int__lte=x)
       "0-17": all.filter(victim_age_averaged__gte=0,victim_age_averaged__lte=17).count(),
-      "18-34": all.filter(victim_age_averaged__gte=18,victim_age_averaged__lte=24).count(),
-      "35-51": all.filter(victim_age_averaged__gte=35,victim_age_averaged__lte=51).count(),
-      "52-68": all.filter(victim_age_averaged__gte=52,victim_age_averaged__lte=68).count(),
-      "69-90": all.filter(victim_age_averaged__gte=69,victim_age_averaged__lte=100).count(),
+      "18-33": all.filter(victim_age_averaged__gte=18,victim_age_averaged__lte=33).count(),
+      "34-49": all.filter(victim_age_averaged__gte=34,victim_age_averaged__lte=49).count(),
+      "50-64": all.filter(victim_age_averaged__gte=50,victim_age_averaged__lte=64).count(),
+      "65+": all.filter(victim_age_averaged__gte=65,victim_age_averaged__lte=99).count(),
+      "Age unknown": all.filter(victim_age__in=["Don't know",""]).count(),
     }
     age_range = sorted(age_range.items(), key=operator.itemgetter(0))
 
@@ -90,10 +88,10 @@ def calculate_stats(all):
       "Housewife": all.filter(victim_employment_7='1').count(),
       "Carpenter": all.filter(victim_employment_8='1').count(),
       "Unemployed": all.filter(victim_employment_9='1').count(),
-      "Other": all.filter(victim_employment_11='1').count(),
     }
     employment = sorted(employment.items(), key=operator.itemgetter(1), reverse=True)
-
+    employment.append(('Other', all.filter(victim_employment_11='1').count()))
+    
 
     no_action_pursued_reason = {
       "Not Applicable": all.filter(no_action_pursued_reason_0='1').count(),
@@ -147,8 +145,14 @@ def calculate_stats(all):
     }
     govnt_response_desired = sorted(govnt_response_desired.items(), key=operator.itemgetter(1), reverse=True)
 
+    children = {
+      "No": all.filter(victim_children='0').count(),
+      "Yes": all.filter(victim_children__gte='1').count(),
+    }
+    children = sorted(children.items(), key=operator.itemgetter(1), reverse=True)
 
-    children = all.values('victim_children').extra({'victim_children': "CAST(victim_children as UNSIGNED)"}).annotate(Count('victim_children')).order_by('victim_children')
+    total_children = all.filter(victim_children__gte='1').aggregate(Sum('victim_children'))
+    total_children = int( total_children['victim_children__sum'] )
 
     genuine_encounter = all.filter(genuine_encounters='1').count()
     not_genuine_encounter = all.filter(genuine_encounters='0').count()
@@ -342,6 +346,7 @@ def calculate_stats(all):
       "arrest_security_type": arrest_security_type,
       "caste": caste,
       "children": children,
+      "total_children": total_children,
       "condition_of_remains": condition_of_remains,
       "court_or_commission": court_or_commission,
       "detention_facility_type": detention_facility_type,

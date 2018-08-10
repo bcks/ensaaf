@@ -158,7 +158,7 @@
     <div class="col-6 col-sm-4 col-md-3 victim" onclick="window.location.href='/profile/{{victim.record_id}}';" id="p{{victim.record_id}}">
 
      {% if victim.photo_vic_fn %}
-      <div class="home-box" style="background-image:url({% hphoto victim.photo_vic_fn %})">
+      <div class="home-box" style="background-image:url('{% hphoto victim.photo_vic_fn %}')">
      {% else %}
       <div class="home-box" style="background-image:url(/static/images/gray.jpg)">
      {% endif %}

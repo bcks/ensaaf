@@ -2,9 +2,6 @@
 {% load profiletags %}
 
 
-
-
-
 <div id="stats-profile" class="stats-block">
   <p><strong><a href="#">Victim Profile&nbsp;»</a></strong></p>
   <div class="toggle">
@@ -41,7 +38,7 @@
       <div class="col-12">
         <div class="percent-bar bar-2" style="width:{% percent stats.female stats.total%}%">&nbsp;</div>
         <span class="percent">{% percent stats.female stats.total%}%</span>
-        Female victims
+        <a href="/profiles/?gender=Female">Female victims</a>
         <span class="number-of-cases">{{stats.female|intcomma}}</span>
       </div> 
 
@@ -100,7 +97,7 @@
            {%if o.1 %}
        
             <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
@@ -182,16 +179,18 @@
 
         <p><strong>Did the victim have children?</strong></p>
            {% for o in stats.children %}
-           {% if o.victim_children__count and o.victim_children and o.victim_children != "Don't know" %}
+           {%if o.1 %}
        
             <div>
-            <span class="percent">{% percent o.victim_children__count stats.married %}%</span> {{o.victim_children}} chil{{ o.victim_children|pluralize:"d,dren" }} <span class="number-of-cases">{{o.victim_children__count|intcomma}}</span>
-            <div class="percent-bar" style="width:{% percent o.victim_children__count stats.married %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
            {% endif %}
            {% endfor %}
 
+
+        <p><br>Total children surviving victims: {{stats.total_children|intcomma}}</p>
       </div>
     </div>
 
@@ -301,7 +300,7 @@
       <div class="row">
         <div class="col-12">
 
-          <p><strong>Witnesses to abduction/arrest</strong></p>
+          <p><strong>If abduction known, witness to abduction</strong></p>
 
              {% for o in stats.witness_arrest %}
              {%if o.1 %}
@@ -364,7 +363,7 @@
       <div class="row">
         <div class="col-12">
 
-          <p><strong>Condition of remains</strong></p>
+          <p><strong>Condition of corpse, if known</strong></p>
 
              {% for o in stats.condition_of_remains %}
              {%if o.1 %}
@@ -406,7 +405,7 @@
       <div class="row">
         <div class="col-12">
 
-              <p><strong>Security official response</strong></p>
+              <p><strong>Security official response to victim status</strong></p>
 
              {% for o in stats.security_official_response %}
              {%if o.1 %}
