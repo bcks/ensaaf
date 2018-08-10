@@ -1,4 +1,4 @@
-from django.db.models import Count, Sum
+from django.db.models import Q, Count, Sum
 import operator
 
 
@@ -53,31 +53,6 @@ def calculate_stats(all):
     age_range = sorted(age_range.items(), key=operator.itemgetter(0))
 
 
-    victim_militant_reason = {
-      "Because of Bluestar": all.filter(victim_militant_reason_1='1').count(),
-      "Persecution (i.e. arbitrary arrest, torture, self-defense)": all.filter(victim_militant_reason_2='1').count(),
-      "Persecution of a family member or a friend": all.filter(victim_militant_reason_3='1').count(),
-      "General persecution of Sikhs": all.filter(victim_militant_reason_4='1').count(),
-      "Supported the goals of the militancy movement": all.filter(victim_militant_reason_5='1').count(),
-      "Was forced to join": all.filter(victim_militant_reason_6='1').count(),
-      "Other": all.filter(victim_militant_reason_8='1').count(),
-    }
-    victim_militant_reason = sorted(victim_militant_reason.items(), key=operator.itemgetter(1), reverse=True)
-
-    target_reason = {
-      "Victim was a militant": all.filter(victim_militant_reason_1='1').count(),
-      "Victim was related to a militant": all.filter(victim_militant_reason_2='1').count(),
-      "Victim gave support to a militant": all.filter(victim_militant_reason_3='1').count(),
-      "Victim was involved in criminal activities": all.filter(victim_militant_reason_4='1').count(),
-      "Victim was identifiably Sikh": all.filter(victim_militant_reason_5='1').count(),
-      "Security forces thought victim was a militant": all.filter(victim_militant_reason_6='1').count(),
-      "Mistaken for a wanted individual": all.filter(victim_militant_reason_7='1').count(),
-      "Don't Know": all.filter(victim_militant_reason_8='1').count(),
-      "Other": all.filter(victim_militant_reason_9='1').count(),
-    }
-    target_reason = sorted(target_reason.items(), key=operator.itemgetter(1), reverse=True)
-
-
     employment = {
       "Farmer/agriculture": all.filter(victim_employment_1='1').count(),
       "Shopkeeper": all.filter(victim_employment_2='1').count(),
@@ -104,33 +79,6 @@ def calculate_stats(all):
     no_action_pursued_reason = sorted(no_action_pursued_reason.items(), key=operator.itemgetter(1), reverse=True)
 
 
-    so_approached_type = {
-      "Same as officials involved in abduction/extrajudicial execution": all.filter(so_approached_type_1='1').count(),
-      "Punjab Police": all.filter(so_approached_type_2='1').count(),
-      "<span define=\"Border Security Force\">BSF</span>": all.filter(so_approached_type_3='1').count(),
-      "<span define=\"Central Reserve Police Force\">CRPF</span>": all.filter(so_approached_type_4='1').count(),
-      "Army": all.filter(so_approached_type_5='1').count(),
-      "Criminal Investigation Agency": all.filter(so_approached_type_6='1').count(),
-      "<span define=\"Irregular undercover security force, often consisting of criminals\">Black cat</span>": all.filter(so_approached_type_7='1').count(),
-      "Other": all.filter(so_approached_type_9='1').count(),
-    }
-    so_approached_type = sorted(so_approached_type.items(), key=operator.itemgetter(1), reverse=True)
-
-    family_effects = {
-      "No drastic action": all.filter(family_effects_1='1').count(),
-      "Someone ran away": all.filter(family_effects_2='1').count(),
-      "Militant activity": all.filter(family_effects_3='1').count(),
-      "Dropped out of school": all.filter(family_effects_4='1').count(),
-      "Alcohol/Drug Abuse": all.filter(family_effects_5='1').count(),
-      "Suicide": all.filter(family_effects_6='1').count(),
-      "Family Abandoned Home": all.filter(family_effects_7='1').count(),
-      "Someone died due to depression/shock": all.filter(family_effects_8='1').count(),
-      "Mentally disturbed": all.filter(family_effects_9='1').count(),
-      "Significant loss of income / became impoverished": all.filter(family_effects_12='1').count(),
-      "Other": all.filter(family_effects_11='1').count(),
-    }
-    family_effects = sorted(family_effects.items(), key=operator.itemgetter(1), reverse=True)
-
     govnt_response_desired = {
       "Monetary compensation to family": all.filter(govnt_response_desired_1='1').count(),
       "Rehabilitation services to family members": all.filter(govnt_response_desired_2='1').count(),
@@ -156,8 +104,6 @@ def calculate_stats(all):
 
     genuine_encounter = all.filter(genuine_encounters='1').count()
     not_genuine_encounter = all.filter(genuine_encounters='0').count()
-    kesdhari = all.filter(victim_kesdhari='1').count()
-    amritdhari = all.filter(victim_amritdhari='1').count()
     militant = all.filter(victim_militant_status='1').count()
     not_militant = all.filter(victim_militant_status='0').count()
     militant_support = all.filter(victim_militant_support='1',victim_militant_status='0').count()
@@ -184,9 +130,9 @@ def calculate_stats(all):
     no_victim_detention_loc_known = all.filter(victim_detention_loc_known='0').count()    
     so_return_body = all.filter(victim_arrest_status__in=['1','2']).count()
     no_so_return_body = all.filter(victim_arrest_status='3').count()
-    securityoff_id_known = all.filter(securityoff_id_known='1').count() + all.filter(securityforces_idknown__in=['1','2']).count()
-    no_securityoff_id_known = all.filter(securityoff_id_known='0').count() + all.filter(securityforces_idknown='3').count()
 
+    securityoff_id_known = all.filter( Q(securityoff_id_known='1') | Q(securityforces_idknown__in=['1','2']) ).count()
+    no_securityoff_id_known = all.filter( Q(securityoff_id_known='0') | Q(securityforces_idknown='3') ).count()
 
     so_body_disposal = {
       "Cremated the body": all.filter(so_body_disposal='1').count(),
@@ -197,38 +143,24 @@ def calculate_stats(all):
     }
     so_body_disposal = sorted(so_body_disposal.items(), key=operator.itemgetter(1), reverse=True)
 
-    witness_arrest_0 = all.filter(witness_arrest_0 ='1').count()
-    witness_arrest_1 = all.filter(witness_arrest_1 ='1').count()
-    witness_arrest_2 = all.filter(witness_arrest_2 ='1').count()
-    witness_arrest_3 = all.filter(witness_arrest_3 ='1').count()
-    witness_arrest_4 = all.filter(witness_arrest_4 ='1').count()
-    witness_arrest_5 = all.filter(witness_arrest_5 ='1').count()
-    witness_arrest_6 = all.filter(witness_arrest_6 ='1').count()
-    witness_arrest_7 = all.filter(witness_arrest_7 ='1').count()
-    witness_arrest_8 = all.filter(witness_arrest_8 ='1').count()
-    witness_arrest_9 = all.filter(witness_arrest_9 ='1').count()
-    witness_arrest_10 = all.filter(witness_arrest_10 ='1').count()
-    witness_arrest_11 = all.filter(witness_arrest_11 ='1').count()
-    witness_arrest_12 = all.filter(witness_arrest_12 ='1').count()
 
-    witness_total = witness_arrest_1 + witness_arrest_2 + witness_arrest_3 + \
-                    witness_arrest_4 + witness_arrest_5 + witness_arrest_6 + \
-                    witness_arrest_7 + witness_arrest_8 + witness_arrest_9 + \
-                    witness_arrest_10 + witness_arrest_11
+    witness_arrest_no = all.filter(witness_arrest_0 ='1').count()
+
+    witness_arrest_yes = all.filter(Q(witness_arrest_1='1') | \
+        Q(witness_arrest_2='1') | \
+        Q(witness_arrest_3='1') | \
+        Q(witness_arrest_4='1') | \
+        Q(witness_arrest_5='1') | \
+        Q(witness_arrest_6='1') | \
+        Q(witness_arrest_7='1') | \
+        Q(witness_arrest_8='1') | \
+        Q(witness_arrest_9='1') | \
+        Q(witness_arrest_10='1') | \
+        Q(witness_arrest_12='1') ).count()
 
     witness_arrest = {
-      "No witness": witness_arrest_0,
-      "Spouse": witness_arrest_1,
-      "Parents": witness_arrest_2,
-      "Children": witness_arrest_3,
-      "Sibling": witness_arrest_4,
-      "Grandparent": witness_arrest_5,
-      "Cousin": witness_arrest_6,
-      "Aunt/Uncle": witness_arrest_7,
-      "Friend": witness_arrest_8,
-      "Co-villager": witness_arrest_9,
-      "Interviewee": witness_arrest_10,
-      "Other": witness_arrest_11,
+      "No": witness_arrest_no,
+      "Yes": witness_arrest_yes,
     }
     witness_arrest = sorted(witness_arrest.items(), key=operator.itemgetter(1), reverse=True)
 
@@ -319,7 +251,7 @@ def calculate_stats(all):
 
 
     security_official_response = {
-      "No Response": all.filter(security_official_response_0='1').count(),
+      "Gave no response": all.filter(security_official_response_0='1').count(),
       "Killed victim in an “encounter”": all.filter(security_official_response_1='1').count(),
       "Denied involvement": all.filter(security_official_response_2='1').count(),
       "Admitted extrajudicial execution with no explanation": all.filter(security_official_response_3='1').count(),
@@ -342,7 +274,6 @@ def calculate_stats(all):
 
     return {
       "age_range": age_range,
-      "amritdhari": amritdhari,
       "arrest_security_type": arrest_security_type,
       "caste": caste,
       "children": children,
@@ -352,12 +283,10 @@ def calculate_stats(all):
       "detention_facility_type": detention_facility_type,
       "education": education,
       "employment": employment,
-      "family_effects": family_effects,
       "female": female,
       "genuine_encounter": genuine_encounter,
       "govnt_response_desired": govnt_response_desired,
       "judge_or_magistrate_status": judge_or_magistrate_status,
-      "kesdhari": kesdhari,
       "killing_securityforcestype": killing_securityforcestype,
       "male": male,
       "married": married,
@@ -386,23 +315,19 @@ def calculate_stats(all):
       "security_official_response": security_official_response,
       "security_officials_apprchd": security_officials_apprchd,
       "securityoff_id_known": securityoff_id_known,
-      "so_approached_type": so_approached_type,
       "so_body_disposal": so_body_disposal,
       "so_inform_witnesses": so_inform_witnesses,
       "so_return_body": so_return_body,
-      "target_reason": target_reason,
       "total_disappeared": total_disappeared,
       "total_killed": total_killed,
       "total": total,
       "victim_arrest_location": victim_arrest_location,
       "victim_arrest_status": victim_arrest_status,
       "victim_detention_loc_known": victim_detention_loc_known,
-      "victim_militant_reason": victim_militant_reason,
       "victim_militant_support_forced": victim_militant_support_forced,
       "victim_militant_support_voluntary": victim_militant_support_voluntary,
       "victim_militant_support": victim_militant_support,
       "witness_arrest": witness_arrest,
       "witness_detention": witness_detention,
-      "witness_total": witness_total,
       }
 

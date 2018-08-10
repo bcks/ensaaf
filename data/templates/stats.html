@@ -279,15 +279,15 @@
           <p><strong>Security officials told witnesses where they were taking the victim</strong></p>
 
           <div>
-          <span class="percent">{% percent stats.so_inform_witnesses stats.witness_total%}%</span>
+          <span class="percent">{% percent stats.so_inform_witnesses stats.witness_arrest_yes%}%</span>
           Yes
           <span class="number-of-cases">{{stats.so_inform_witnesses|intcomma}}</span>
-          <div class="percent-bar" style="width:{% percent stats.so_inform_witnesses stats.witness_total%}%">&nbsp;</div>
+          <div class="percent-bar" style="width:{% percent stats.so_inform_witnesses stats.witness_arrest_yes%}%">&nbsp;</div>
           </div> 
 
           <div>
-          <div class="percent-bar bar-2" style="width:{% percent stats.no_so_inform_witnesses stats.witness_total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_so_inform_witnesses stats.witness_total%}%</span>
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_so_inform_witnesses stats.witness_arrest_yes%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_so_inform_witnesses stats.witness_arrest_yes%}%</span>
           No
           <span class="number-of-cases">{{stats.no_so_inform_witnesses|intcomma}}</span>
           </div> 
@@ -344,6 +344,9 @@
 
           <p><strong>Detention facility type</strong></p>
 
+          <p><em>Data forthcoming</em></p>
+
+          {% comment %}
              {% for o in stats.detention_facility_type %}
              {%if o.1 %}
 
@@ -354,6 +357,7 @@
 
              {% endif %}
              {% endfor %}
+          {% endcomment %}
 
         </div>
       </div>
@@ -384,8 +388,12 @@
       <div class="row">
         <div class="col-12">
 
-            <p><strong>Witness to detention</strong></p>
+            <p><strong>Witness to detention preceding disappearance/extrajudicial execution</strong></p>
+            
+            <p><em>Data forthcoming</em></p>
 
+             {% comment %}
+              
              {% for o in stats.witness_detention %}
              {%if o.1 %}
 
@@ -396,6 +404,8 @@
 
              {% endif %}
              {% endfor %}
+
+             {% endcomment %}
 
         </div>
       </div>
@@ -484,19 +494,23 @@
       <div class="row">
 
         <div class="col-12">
+          <p><strong>Names of involved security officials known</strong></p>
+        
+          <div>
           <span class="percent">{% percent stats.securityoff_id_known stats.total%}%</span>
-          Cases where the names of the security officials involved was known
+          Yes
           <span class="number-of-cases">{{stats.securityoff_id_known|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.securityoff_id_known stats.total%}%">&nbsp;</div>
-        </div> 
+         </div> 
 
-        <div class="col-12">
+          <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_securityoff_id_known stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.no_securityoff_id_known stats.total%}%</span>
-          Cases where the names of security forces involved was not known
+          No
           <span class="number-of-cases">{{stats.no_securityoff_id_known|intcomma}}</span>
-        </div> 
+          </div> 
 
+        </div> 
       </div> 
     
       <hr>
@@ -507,15 +521,15 @@
           <p><strong>Security forces wore uniforms</strong></p>
 
           <div>
-          <span class="percent">{% percent stats.security_forces_uniformed stats.witness_total%}%</span>
+          <span class="percent">{% percent stats.security_forces_uniformed stats.witness_arrest_yes%}%</span>
           Yes
           <span class="number-of-cases">{{stats.security_forces_uniformed|intcomma}}</span>
-          <div class="percent-bar" style="width:{% percent stats.security_forces_uniformed stats.witness_total%}%">&nbsp;</div>
+          <div class="percent-bar" style="width:{% percent stats.security_forces_uniformed stats.witness_arrest_yes%}%">&nbsp;</div>
           </div> 
 
           <div>
-          <div class="percent-bar bar-2" style="width:{% percent stats.no_security_forces_uniformed stats.witness_total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_security_forces_uniformed stats.witness_total%}%</span>
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_security_forces_uniformed stats.witness_arrest_yes%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_security_forces_uniformed stats.witness_arrest_yes%}%</span>
           No
           <span class="number-of-cases">{{stats.no_security_forces_uniformed|intcomma}}</span>
           </div> 
