@@ -74,7 +74,9 @@ def hdate_link(var):
   #    pattern => '%d-%m-%Y',
   if '-' in var:
     parts = var.split('-')
-    if int(parts[2]) < 1900:
+    if int(parts[2]) < 20:
+      parts[2] = int(parts[2]) + 2000    
+    elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
     return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
@@ -82,7 +84,9 @@ def hdate_link(var):
   #      pattern => '%m/%d/%Y',
   if '/' in var:
     parts = var.split('/')
-    if int(parts[2]) < 1900:
+    if int(parts[2]) < 20:
+      parts[2] = int(parts[2]) + 2000    
+    elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
     return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
@@ -112,7 +116,9 @@ def hdate(var):
   #    pattern => '%d-%m-%Y',
   if '-' in var:
     parts = var.split('-')
-    if int(parts[2]) < 1900:
+    if int(parts[2]) < 20:
+      parts[2] = int(parts[2]) + 2000    
+    elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
     return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2])
 
@@ -120,7 +126,9 @@ def hdate(var):
   #      pattern => '%m/%d/%Y',
   if '/' in var:
     parts = var.split('/')
-    if int(parts[2]) < 1900:
+    if int(parts[2]) < 20:
+      parts[2] = int(parts[2]) + 2000    
+    elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
     return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2])
 
@@ -165,7 +173,9 @@ def hyear(var):
   #    pattern => '%d-%m-%Y',
   if '-' in var:
     parts = var.split('-')
-    if int(parts[2]) < 1900:
+    if int(parts[2]) < 20:
+      parts[2] = int(parts[2]) + 2000    
+    elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
     return ', ' + str(parts[2])
 
@@ -173,7 +183,9 @@ def hyear(var):
   #      pattern => '%m/%d/%Y',
   if '/' in var:
     parts = var.split('/')
-    if int(parts[2]) < 1900:
+    if int(parts[2]) < 20:
+      parts[2] = int(parts[2]) + 2000    
+    elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
     return ', ' + str(parts[2])
 
@@ -348,7 +360,9 @@ def hvictim_arrest_date(victim_arrest_exact_date, victim_arrest_date):
   #    pattern => '%d-%m-%Y',
   if '-' in victim_arrest_date:
     parts = victim_arrest_date.split('-')
-    if int(parts[2]) < 1900:
+    if int(parts[2]) < 20:
+      parts[2] = int(parts[2]) + 2000    
+    elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
     return around + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
@@ -356,7 +370,9 @@ def hvictim_arrest_date(victim_arrest_exact_date, victim_arrest_date):
   #      pattern => '%m/%d/%Y',
   if '/' in victim_arrest_date:
     parts = victim_arrest_date.split('/')
-    if int(parts[2]) < 1900:
+    if int(parts[2]) < 20:
+      parts[2] = int(parts[2]) + 2000    
+    elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
     return around + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
