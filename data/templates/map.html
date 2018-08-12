@@ -29,9 +29,138 @@
 
 
 {% block content %}
-  <h1 style="margin-bottom:0;">Mapping Crimes Against Humanity in Punjab, India</h1>
-  <h2 style="margin-top:0;">Enforced Disappearances and Extrajudicial Executions</h2>
+
+
+<h1 style="margin-bottom:0;">Mapping Crimes Against Humanity in Punjab, India</h1>
+<h2 style="margin-top:0;">Enforced Disappearances and Extrajudicial Executions</h2>
+
+
+{% if selected or selected_sort %}<p><br><a href="?">Clear filters</a></p>{% endif %}
+
+
+<form method="get">
+
+<div class="row">
+
+
+
+
+    <div class="form-group filter{% if selected_age %} selected{% endif %} col-4">
+      <select class="form-control" id="age" name="age" onchange="this.form.submit()">
+        <option value="">Age</option>
+        <option{% if selected_age == '0-17' %} selected=selected{% endif %}>0-17</option>
+        <option{% if selected_age == '18-33' %} selected=selected{% endif %}>18-33</option>
+        <option{% if selected_age == '34-49' %} selected=selected{% endif %}>34-49</option>
+        <option{% if selected_age == '50-64' %} selected=selected{% endif %}>50-64</option>
+        <option{% if selected_age == '65+' %} selected=selected{% endif %}>65+</option>
+      </select>
+    </div>
+
+
+    <div class="form-group filter{% if selected_caste %} selected{% endif %} col-4">
+      <select class="form-control" id="caste" name="caste" onchange="this.form.submit()">
+        <option value="">Caste</option>
+        <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %}>Chamar</option>
+        <option{% if selected_caste == 'Dalit/SC/BC' %} selected=selected{% endif %}>Dalit/SC/BC</option>
+        <option{% if selected_caste == 'Jat' %} selected=selected{% endif %}>Jat</option>
+        <option{% if selected_caste == 'Khatri' %} selected=selected{% endif %}>Khatri</option>
+        <option{% if selected_caste == 'Mazbi' %} selected=selected{% endif %}>Mazbi</option>
+        <option{% if selected_caste == 'Naee' %} selected=selected{% endif %}>Naee</option>
+        <option{% if selected_caste == 'Ramgarhia' %} selected=selected{% endif %}>Ramgarhia</option>
+        <option{% if selected_caste == 'Other' %} selected=selected{% endif %}>Other</option>
+      </select>
+    </div>
+        
+    <div class="form-group filter{% if selected_classification %} selected{% endif %} col-4">
+      <select class="form-control" id="classification" name="classification" onchange="this.form.submit()">
+        <option value="">Classification</option>
+        <option {% if selected_classification == 'Enforced Disappearance' %} selected=selected{% endif %} value="Enforced Disappearance">Enforced Disappearance</option>
+        <option {% if selected_classification == 'Extrajudicial Execution' %} selected=selected{% endif %} value="Extrajudicial Execution">Extrajudicial Execution</option>
+      </select>
+    </div>
+    
+    <div class="form-group filter{% if selected_first_name %} selected{% endif %} col-4">
+      <select class="form-control" id="first_name" name="first_name" onchange="this.form.submit()">
+        <option value="">First Name</option>
+        {% for o in first_names %}
+        <option{% if selected_first_name == o.victim_first_name %} selected=selected{% endif %}>{{o.victim_first_name}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    
+    <div class="form-group filter{% if selected_gender %} selected{% endif %} col-4">
+      <select class="form-control" id="gender" name="gender" onchange="this.form.submit()">
+        <option value="">Gender</option>
+        <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">Female</option>
+        <option {% if selected_gender == 'Male' %} selected=selected{% endif %} value="Male">Male</option>
+      </select>
+    </div>
+
+    <div class="form-group filter{% if selected_militancy %} selected{% endif %} col-4">
+      <select class="form-control" id="militancy" name="militancy" onchange="this.form.submit()">
+        <option value="">Militant Status</option>
+        <option {% if selected_militancy == 'Militant' %} selected=selected{% endif %} value="Militant">Militant</option>
+        <option {% if selected_militancy == 'Not a Militant' %} selected=selected{% endif %} value="Not a Militant">Not a Militant</option>
+        <option {% if selected_militancy == 'Unknown' %} selected=selected{% endif %} value="Unknown">Unknown</option>
+      </select>
+    </div>
+
+    <div class="form-group filter{% if selected_religion %} selected{% endif %} col-4">
+      <select class="form-control" id="religion" name="religion" onchange="this.form.submit()">
+        <option value="">Religion</option>
+        <option{% if selected_religion == 'Christian' %} selected=selected{% endif %}>Christian</option>
+        <option{% if selected_religion == 'Hindu' %} selected=selected{% endif %}>Hindu</option>
+        <option{% if selected_religion == 'Muslim' %} selected=selected{% endif %}>Muslim</option>
+        <option{% if selected_religion == 'Sikh' %} selected=selected{% endif %}>Sikh</option>
+        <option{% if selected_religion == 'No religion' %} selected=selected{% endif %}>No religion</option>
+        <option{% if selected_religion == 'Other' %} selected=selected{% endif %}>Other</option>
+      </select>
+    </div>
+
+
+    <div class="form-group filter{% if selected_district %} selected{% endif %} col-4">
+      <select class="form-control" id="district" name="district" onchange="this.form.submit()">
+        <option value="">District</option>
+        {% for o in district_list %}
+        <option value={{o.district_id}} {% if selected_district == o.district_id %} selected=selected{% endif %}>{{o.district}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    
+    <div class="form-group filter{% if selected_tehsil %} selected{% endif %} col-4">
+      <select class="form-control" id="tehsil" name="tehsil" onchange="this.form.submit()">
+        <option value="">Subdistrict</option>
+        {% for o in tehsil_list %}
+        <option value={{o.tehsil_id}} {% if selected_tehsil == o.tehsil_id %} selected=selected{% endif %}>{{o.tehsil}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group filter{% if selected_year %} selected{% endif %} col-4">
+      <select class="form-control" id="year" name="year" onchange="this.form.submit()">
+        <option value="">Year</option>
+        {% for o in years %}
+        <option{% if selected_year|add:"0" == o %} selected=selected{% endif %}>{{o}}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+
+    <div class="form-group filter{% if selected_urban_rural %} selected{% endif %} col-4">
+      <select class="form-control" id="urban_rural" name="urban_rural" onchange="this.form.submit()">
+        <option value="">Urban/Rural</option>
+        <option{% if selected_urban_rural == "Urban" %} selected=selected{% endif %}>Urban</option>
+        <option{% if selected_urban_rural == "Rural" %} selected=selected{% endif %}>Rural</option>
+      </select>
+    </div>
+
 </div>
+    
+</form>
+
+
+</div><!-- end container -->
+
 
 <div id="mapid"></div>
 
@@ -70,49 +199,11 @@ function formatDate(date) {
 
 
 
-
-/* map */
-var width = $('#map').width();
-var height = width / 1.85;
-$('#map').height( height )
-
-var projection = d3.geoMercator().scale(width * 10).translate([width, height/1.1]).center([79,30.1]);
-var path = d3.geoPath().projection(projection);
-
-var map = d3.select("#map").append("svg")
-        .attr("width", width)
-        .attr("height", width/1.85 );
-
-
-var tultip = d3.select("body")
-    .append("div")
-    .attr("class", "tultip")
-    .html("");      
-
-function drawMap(geojson) {
-  map.selectAll("path")
-    .data(geojson.features)
-    .enter()
-    .append("path")
-    .attr("d", path)
-    .attr("fill", "#fff")
-    .attr("stroke", "#ddc");    
-}
-
-
-
-
-
-
-
-var timeCapsule = [
-  {% for o in all %}{% if o.timeline != None %}
-    {victim: { village_id: "{{o.village_id}}", village_name: "{{o.village_name}}", timeline: {{o.timeline|date:"U"}} }},{% endif %}{% endfor %}
-];
+var timeCapsule = [{% for o in all %}{% if o.timeline != None %}{v:{ vid:"{{o.village_id}}",t:{{o.timeline|date:"U"}} }},{% endif %}{% endfor %}];
 
 for (var i=0;i<timeCapsule.length;i++) {
-    if ( timeCapsule[i]['victim']['timeline']  < 1514764800 ) {
-      timeCapsule[i]['date'] = timeCapsule[i]['victim']['timeline'];
+    if ( timeCapsule[i]['v']['t']  < 1514764800 ) {
+      timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
       var d = new Date(0);
       timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
     }
@@ -131,6 +222,8 @@ var villageCentroids = [];
 var markers = {};
 
 
+
+
 var mymap = L.map('mapid').setView([31.0157601,75], 8);
 
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
@@ -141,12 +234,9 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}
 
 mymap.scrollWheelZoom.disable();
 
-$.getJSON("/static/js/punjab.geojson", function(pujabjson) {
-  drawMap(pujabjson);
-  $.getJSON("/static/js/village_loc.json", function(json) {
-      villageCentroids = json
-      makeTimeline();
-  });
+$.getJSON("/static/js/village_loc.json", function(json) {
+    villageCentroids = json
+    makeTimeline();
 });
 
 
@@ -159,30 +249,10 @@ function makeVillageNames(start, end) {
     // update size per village
     for (var i=0;i<timeCapsule.length;i++) {
         if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start))  {
-          var id = timeCapsule[i]['victim']['village_id'];
+          var id = timeCapsule[i]['v']['vid'];
           villages[id] = (villages[id] || 0) + 1;
         }
     }
-
-    /*
-
-    // make top 14 list
-    var keys = Object.keys(villages);
-    keys.sort(function(a, b) { return villages[b] - villages[a] });
-    var villageList = '<ul>';
-    for (var i=0;i<14;i++) {
-      if (villageNames[keys[i]]) {
-        if (keys[i]) {
-          villageList += '<li><a href="/village/'+keys[i]+'">' + villageNames[keys[i]] + ' (' + numberWithCommas( villages[keys[i]] ) + ')' + '</a></li>';
-        } else {
-          villageList += '<li>' + villageNames[keys[i]] + ' (' + numberWithCommas( villages[keys[i]] ) + ')' + '</li>';
-        }
-      }
-    }
-    // villageList += '<li><a href="#">More...</a></li></ul>';
-    $('#village-list').html(villageList);
-    
-    */
 
     updateMap(start, end);
 }

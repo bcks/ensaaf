@@ -7,7 +7,6 @@ from django.conf.urls import include, url
 from graphene_django.views import GraphQLView
 
 urlpatterns = [
-    path('imagetest/', imagetest, name="imagetest"),
     path('profile/<int:id>/', profile, name="profile"),
     path('village/<slug:slug>/', village, name="village"),
     path('tehsil/<slug:slug>/', tehsil, name="tehsil"),
@@ -21,6 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('overview/', overview, name="overview"),
     path('map/', map, name="map"),
+    path('map_ajax/', map_ajax, name="map_ajax"),
     path('change/', change, name="change"),
     path('profiles/', profiles, name="profiles"),
     url(r'^graphql', GraphQLView.as_view(graphiql=True)),

@@ -112,13 +112,76 @@ def overview(request):
 
 
 def map(request):
-    all = Data.objects.filter(timeline__gte='1980-01-01',timeline__lte='2000-12-31').values('village_id','village_name','timeline')
-    return render(request, "map.html", { "all": all })
+    selected_age = request.GET.get('age','')
+    selected_caste = request.GET.get('caste','')
+    selected_classification = request.GET.get('classification','')
+    selected_first_name = request.GET.get('first_name','')
+    selected_gender = request.GET.get('gender','')
+    selected_militancy = request.GET.get('militancy','')
+    selected_religion = request.GET.get('religion','')
+    selected_district = request.GET.get('district','')
+    selected_tehsil = request.GET.get('tehsil','')
+    selected_year = request.GET.get('year','')
+    selected_urban_rural = request.GET.get('urban_rural','')
+
+    selected = []
+    if selected_age:
+      selected.append(selected_age)
+    if selected_caste:
+      selected.append(selected_caste)
+    if selected_district:
+      selected.append( get_district_name(selected_district) )
+    if selected_classification:
+      selected.append(selected_classification)
+    if selected_first_name:
+      selected.append(selected_first_name)
+    if selected_gender:
+      selected.append(selected_gender)
+    if selected_militancy:
+      selected.append(selected_militancy)
+    if selected_religion:
+      selected.append(selected_religion)
+    if selected_tehsil:
+      selected.append( get_tehsil_name(selected_tehsil) )
+    if selected_year:
+      selected.append(selected_year)
+    if selected_urban_rural:
+      selected.append(selected_urban_rural)
+      
+    victim_list = Data.objects.filter(timeline__gte='1980-01-01',timeline__lte='2000-12-31').values('village_id','village_name','timeline')
+    victim_filter = DataFilter(request.GET, queryset=victim_list)
+
+    years = list(range(1981,2008))
+    years.append('Date Unknown')
+
+    first_names = get_first_names()
+    tehsil_list = get_tehsil_list()
+    district_list = get_district_list()
+
+    return render(request, "map.html", { 
+      "all": victim_filter.qs,
+      "years": years,
+      "first_names": first_names,
+      "tehsil_list": tehsil_list,
+      "district_list": district_list,
+      'selected_age': selected_age,
+      'selected_caste': selected_caste,
+      'selected_classification': selected_classification,
+      'selected_district': selected_district,
+      'selected_first_name': selected_first_name,
+      'selected_gender': selected_gender,
+      'selected_religion': selected_religion,
+      'selected_militancy': selected_militancy,
+      'selected_tehsil': selected_tehsil,
+      'selected_year': selected_year,
+      'selected': selected,
+      })
 
 
-def imagetest(request):
-    all = Data.objects.all().values('record_id','photo_vic_fn')
-    return render(request, "imagetest.html", { "victims": all })
+def map_ajax(request):
+    victim_list = Data.objects.filter(timeline__gte='1980-01-01',timeline__lte='2000-12-31').values('village_id','village_name','timeline')    
+    victim_filter = DataFilter(request.GET, queryset=victim_list)
+    return render(request, "map_ajax.html", { "all": victim_filter.qs, })
 
 
 def change(request):
