@@ -144,7 +144,7 @@ def hdateslash(start, end):
   if start == end:
     return start
   else:
-    return start + '/' + end
+    return start + '-' + end
 
 
 

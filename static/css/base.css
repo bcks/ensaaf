@@ -1,5 +1,3 @@
-/* @override http://localhost:8000/static/css/base.css */
-
 body {
   background-color: #fff;
   font-family: 'Inconsolata', monospace;
@@ -120,6 +118,9 @@ tr { vertical-align: top; }
 }
 .filter.selected::after {
   color: #b9b9b9;
+}
+.form-group.filter select.form-control {
+  height: 1.75rem;
 }
 
 
