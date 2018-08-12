@@ -1,1 +1,1 @@
-[{% for o in all %}{% if o.timeline != None %}{v:{vid:"{{o.village_id}}",t:{{o.timeline|date:"U"}}}},{% endif %}{% endfor %}]
+{"timeline":[{% for o in all %}{% if o.timeline != None %}{"v":{"vid":"{{o.village_id}}","t":{{o.timeline|date:"U"}}}}{% if forloop.last %}{%else%},{% endif %}{% endif %}{% endfor %}]}

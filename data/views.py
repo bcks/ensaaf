@@ -181,8 +181,7 @@ def map(request):
 def map_ajax(request):
     victim_list = Data.objects.filter(timeline__gte='1980-01-01',timeline__lte='2000-12-31').values('village_id','village_name','timeline')    
     victim_filter = DataFilter(request.GET, queryset=victim_list)
-    return render(request, "map_ajax.html", { "all": victim_filter.qs, })
-
+    return render(request, "map_ajax.html", { "all": victim_filter.qs, }, content_type='application/json')
 
 def change(request):
     return render(request, "change.html")
