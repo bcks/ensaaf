@@ -115,7 +115,6 @@ def map(request):
     selected_age = request.GET.get('age','')
     selected_caste = request.GET.get('caste','')
     selected_classification = request.GET.get('classification','')
-    selected_first_name = request.GET.get('first_name','')
     selected_gender = request.GET.get('gender','')
     selected_militancy = request.GET.get('militancy','')
     selected_religion = request.GET.get('religion','')
@@ -133,8 +132,6 @@ def map(request):
       selected.append( get_district_name(selected_district) )
     if selected_classification:
       selected.append(selected_classification)
-    if selected_first_name:
-      selected.append(selected_first_name)
     if selected_gender:
       selected.append(selected_gender)
     if selected_militancy:
@@ -154,26 +151,24 @@ def map(request):
     years = list(range(1981,2008))
     years.append('Date Unknown')
 
-    first_names = get_first_names()
     tehsil_list = get_tehsil_list()
     district_list = get_district_list()
 
     return render(request, "map.html", { 
       "all": victim_filter.qs,
       "years": years,
-      "first_names": first_names,
       "tehsil_list": tehsil_list,
       "district_list": district_list,
       'selected_age': selected_age,
       'selected_caste': selected_caste,
       'selected_classification': selected_classification,
       'selected_district': selected_district,
-      'selected_first_name': selected_first_name,
       'selected_gender': selected_gender,
       'selected_religion': selected_religion,
       'selected_militancy': selected_militancy,
       'selected_tehsil': selected_tehsil,
       'selected_year': selected_year,
+      'selected_urban_rural': selected_urban_rural,
       'selected': selected,
       })
 

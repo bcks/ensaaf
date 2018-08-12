@@ -79,15 +79,6 @@
       </select>
     </div>
     
-    <div class="form-group filter{% if selected_first_name %} selected{% endif %} col-4">
-      <select class="form-control" id="first_name" name="first_name" onchange="updateMapData()">
-        <option value="">First Name</option>
-        {% for o in first_names %}
-        <option{% if selected_first_name == o.victim_first_name %} selected=selected{% endif %}>{{o.victim_first_name}}</option>
-        {% endfor %}
-      </select>
-    </div>
-    
     <div class="form-group filter{% if selected_gender %} selected{% endif %} col-4">
       <select class="form-control" id="gender" name="gender" onchange="updateMapData()">
         <option value="">Gender</option>
@@ -247,7 +238,9 @@ function updateMapData() {
             var d = new Date(0);
             timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
           }
-      }  
+      } 
+     // todo 
+     // window.history.pushState({"html":'',"pageTitle":'Mapping Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions'},"", "/map?" + params);
 
       makeVillageNames(start, end);
   });

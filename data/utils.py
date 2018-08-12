@@ -329,5 +329,6 @@ def calculate_stats(all):
       "victim_militant_support": victim_militant_support,
       "witness_arrest": witness_arrest,
       "witness_detention": witness_detention,
+      "witness_arrest_yes": witness_arrest_yes,
       }
 
