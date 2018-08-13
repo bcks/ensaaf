@@ -3,7 +3,7 @@
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Documented cases affiliated with {{name}}{% endblock %}
+{% block title %}Documented cases implicating the {{name}}{% endblock %}
 
 {% block content %}
 
@@ -20,7 +20,7 @@
 <div class="row">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} affiliated with {{name}}:</p>
+  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} implicating the {{name}}:</p>
 
   {% regroup victims.all by district as district_list %}
 
@@ -85,7 +85,7 @@
   
   <div class="col-sm-6 border-left">
     
-    <p>Key statistics of cases affiliated with {{name}}:</p>
+    <p>Key statistics of cases implicating the {{name}}:</p>
 
     {% include 'stats.html' %}
 
@@ -99,7 +99,7 @@
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
-      <p>No documented cases affiliated with {{name}}.</p>
+      <p>No documented cases implicating the {{name}}.</p>
     </div>
   </div>
 
