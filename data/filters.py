@@ -44,14 +44,12 @@ class DataFilter(django_filters.FilterSet):
     if indexNumber:
       return queryset.filter(**{'victim_religion': indexNumber})    
 
-  tehsil = django_filters.CharFilter(method='tehsil_filter')
-  def tehsil_filter(self, queryset, name, value):
-    villages = Villages.objects.filter(tehsil_id=value).order_by('village_name')
-    return queryset.filter(**{'village_id__in': villages.values('id') })
-
   district = django_filters.CharFilter(method='district_filter')
   def district_filter(self, queryset, name, value):
-    villages = Villages.objects.filter(district_id=value).order_by('village_name')
+    if len(value) < 4:
+      villages = Villages.objects.filter(district_id=value).order_by('village_name')
+    else:
+      villages = Villages.objects.filter(tehsil_id=value).order_by('village_name')
     return queryset.filter(**{'village_id__in': villages.values('id') })
 
   militancy = django_filters.CharFilter(method='militancy_filter')
@@ -86,6 +84,5 @@ class DataFilter(django_filters.FilterSet):
       'gender',
       'militancy',
       'religion',
-      'tehsil',
       'year',
     ]

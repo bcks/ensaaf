@@ -92,21 +92,14 @@
       </select>
     </div>
 
-
     <div class="form-group filter{% if selected_district %} selected{% endif %} col-4">
       <select class="form-control" id="district" name="district" onchange="this.form.submit()">
         <option value="">District</option>
-        {% for o in district_list %}
-        <option value={{o.district_id}} {% if selected_district == o.district_id %} selected=selected{% endif %}>{{o.district}}</option>
+        {% for o in districts %}
+        <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{{o.district}}</option>
+        {% for t in o.subdistricts %}
+        <option value="{{t.tehsil_id}}" {% if selected_district|add:"0" == t.tehsil_id %} selected=selected{% endif %}>&nbsp;&nbsp;- {{t.tehsil}}</option>
         {% endfor %}
-      </select>
-    </div>
-    
-    <div class="form-group filter{% if selected_tehsil %} selected{% endif %} col-4">
-      <select class="form-control" id="tehsil" name="tehsil" onchange="this.form.submit()">
-        <option value="">Subdistrict</option>
-        {% for o in tehsil_list %}
-        <option value={{o.tehsil_id}} {% if selected_tehsil == o.tehsil_id %} selected=selected{% endif %}>{{o.tehsil}}</option>
         {% endfor %}
       </select>
     </div>
