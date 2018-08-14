@@ -8,6 +8,7 @@
 {% block head %}
   <link rel="stylesheet" href="/static/css/leaflet.css" />
   <script src="/static/js/leaflet.js"></script>
+
   <style>
     .bar { fill: #900; }
     .axis line, .axis path { stroke: #aaa; }
@@ -251,6 +252,52 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}
 }).addTo(mymap);
 
 mymap.scrollWheelZoom.disable();
+
+
+
+
+var punjabStyle = { "color": "#999", "weight": 1, "opacity": 0.65, "fillOpacity": 0 };
+var punjab = new L.geoJson();
+punjab.addTo(mymap);
+$.ajax({
+  dataType: "json",
+  url: "/static/js/punjab.geojson",
+  success: function(data) {
+      $(data.features).each(function(key, data) {
+          punjab.addData(data);
+      });
+      punjab.setStyle(punjabStyle);
+  }
+});
+
+var indiaStyle = { "color": "#fff", "weight": 1, "opacity": 0.65, "fillOpacity": 0 };
+var india = new L.geoJson();
+india.addTo(mymap);
+$.ajax({
+  dataType: "json",
+  url: "/static/js/india.geojson",
+  success: function(data) {
+      $(data.features).each(function(key, data) {
+          india.addData(data);
+      });
+      india.setStyle(indiaStyle);
+  }
+});
+
+
+var disputedStyle = { "color": "#666", "weight": 1, "opacity": 0.65, "fillOpacity": 0, "dashArray": "2 2" };
+var disputed = new L.geoJson();
+disputed.addTo(mymap);
+$.ajax({
+  dataType: "json",
+  url: "/static/js/disputed.geojson",
+  success: function(data) {
+      $(data.features).each(function(key, data) {
+          disputed.addData(data);
+      });
+      disputed.setStyle(disputedStyle);
+  }
+});
 
 $.getJSON("/static/js/village_loc.json", function(json) {
     villageCentroids = json
