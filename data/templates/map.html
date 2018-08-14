@@ -138,7 +138,7 @@
 -->
 
     <div class="form-group col-6 col-md-4 col-lg-3" id="clear-filters"{%if selected %} style="display:block;"{%endif%}>
-        <p><a href="?">Clear filters</a></p>
+        <p><a href="#" onclick="clearFilters();return false;">Clear filters</a></p>
     </div>
 
 </div>
@@ -211,8 +211,15 @@ var markers = {};
 
 
 
+function clearFilters() {
+  $("#form option[selected]").removeAttr("selected");    
+  $("#form .filter").removeClass('selected');
+  $("#form .filter select").val($("#form option:first").val());
+  updateMapData();
+}
+
+
 function updateMapData() {
-  var targetForm = $('#form');
 
   var hasFilters = 0;
   
@@ -232,7 +239,7 @@ function updateMapData() {
     $('#clear-filters').hide(); 
   }
 
-  var params = targetForm.serialize();
+  var params = $('#form').serialize();
   $.getJSON("/map_ajax/?" + params, function(json) {
       timeCapsule = [];
       timeCapsule = json.timeline;
