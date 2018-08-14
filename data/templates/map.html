@@ -36,9 +36,6 @@
 <h2 style="margin-top:0;">Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India</h2>
 
 
-{% if selected or selected_sort %}<p><br><a href="?">Clear filters</a></p>{% endif %}
-
-
 <form method="get" id="form">
 
 <div class="row">
@@ -46,7 +43,7 @@
 
 
 
-    <div class="form-group filter{% if selected_age %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_age %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="age" name="age" onchange="updateMapData()">
         <option value="">Age</option>
         <option{% if selected_age == '0-17' %} selected=selected{% endif %}>0-17</option>
@@ -58,7 +55,7 @@
     </div>
 
 
-    <div class="form-group filter{% if selected_caste %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_caste %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="caste" name="caste" onchange="updateMapData()">
         <option value="">Caste</option>
         <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %}>Chamar</option>
@@ -72,7 +69,7 @@
       </select>
     </div>
         
-    <div class="form-group filter{% if selected_classification %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_classification %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="classification" name="classification" onchange="updateMapData()">
         <option value="">Classification</option>
         <option {% if selected_classification == 'Enforced Disappearance' %} selected=selected{% endif %} value="Enforced Disappearance">Enforced Disappearance</option>
@@ -80,7 +77,7 @@
       </select>
     </div>
     
-    <div class="form-group filter{% if selected_gender %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_gender %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="gender" name="gender" onchange="updateMapData()">
         <option value="">Gender</option>
         <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">Female</option>
@@ -88,7 +85,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_militancy %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_militancy %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="militancy" name="militancy" onchange="updateMapData()">
         <option value="">Militant Status</option>
         <option {% if selected_militancy == 'Militant' %} selected=selected{% endif %} value="Militant">Militant</option>
@@ -97,7 +94,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_religion %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_religion %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="religion" name="religion" onchange="updateMapData()">
         <option value="">Religion</option>
         <option{% if selected_religion == 'Christian' %} selected=selected{% endif %}>Christian</option>
@@ -109,7 +106,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_district %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_district %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="district" name="district" onchange="updateMapData()">
         <option value="">District</option>
         {% for o in districts %}
@@ -121,7 +118,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_year %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_year %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="year" name="year" onchange="updateMapData()">
         <option value="">Year</option>
         {% for o in years %}
@@ -131,7 +128,7 @@
     </div>
 
 <!--
-    <div class="form-group filter{% if selected_urban_rural %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_urban_rural %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="urban_rural" name="urban_rural" onchange="updateMapData()">
         <option value="">Urban/Rural</option>
         <option{% if selected_urban_rural == "Urban" %} selected=selected{% endif %}>Urban</option>
@@ -139,6 +136,10 @@
       </select>
     </div>
 -->
+
+    <div class="form-group col-6 col-md-4 col-lg-3" id="clear-filters"{%if selected %} style="display:block;"{%endif%}>
+        <p><a href="?">Clear filters</a></p>
+    </div>
 
 </div>
     
@@ -213,15 +214,24 @@ var markers = {};
 function updateMapData() {
   var targetForm = $('#form');
 
+  var hasFilters = 0;
+  
   $('.filter select').each(function(i, obj) {
     $o = $(obj);
     if ($o.val() !== '') {
       $o.parent().addClass('selected'); 
+      hasFilters = 1;
     } else {
       $o.parent().removeClass('selected');
     }
   });
-  
+
+  if (hasFilters) {
+    $('#clear-filters').fadeIn(); 
+  } else {
+    $('#clear-filters').hide(); 
+  }
+
   var params = targetForm.serialize();
   $.getJSON("/map_ajax/?" + params, function(json) {
       timeCapsule = [];
@@ -372,7 +382,7 @@ function updateMap(start, end) {
              }
           });
 
-          markers[String(d.id)] = new customCircleMarker([d.coord[1],d.coord[0]], {
+          markers[String(d.id)] = new customCircleMarker([d.coord[1] + .015,d.coord[0] - .025], {
               stroke: false,
               fillColor: '#fc0',
               fillOpacity: 0.5,
@@ -412,35 +422,12 @@ function resize() {
   var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
       height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
 
-  // Update the range of the scale with new width/height
-/*
-  // Update the range of the scale with new width/height
-  xScale.range([0, width]);
-  yScale.rangeRoundBands([height, 0], 0.1);
-
-  // Update the axis and text with the new scale
-  svg.select(".x.axis")
-    .call(xAxis)
-    .attr("transform", "translate(0," + height + ")")
-    .select(".label")
-      .attr("transform", "translate(" + width / 2 + "," + margin.bottom / 1.5 + ")");
-
-  svg.select(".y.axis")
-    .call(yAxis);
-
-  // Update the tick marks
-  xAxis.ticks(Math.max(width/75, 2), " $");
-
-  // Force D3 to recalculate and update the line
-  svg.selectAll(".bar")
-    .attr("width", function(d) { return xScale(d["total"]); })
-    .attr("y", function(d) { return yScale(d["Name"]); })
-    .attr("height", yScale.rangeBand());
-*/
-
   d3.select("#timeline svg").attr("width",width);
   d3.selectAll("path").attr('d', path);
 }
+
+
+
 
 
 function makeTimeline() {
