@@ -32,8 +32,16 @@
 
 {% block content %}
 
-<h1 style="margin-bottom:0;">Mapping Crimes Against Humanity</h1>
-<h2 style="margin-top:0;">Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India</h2>
+<div class="row">
+    <div class="col-sm-10">
+      <h1 style="margin-bottom:0;">Mapping Crimes Against Humanity</h1>
+      <h2 style="margin-top:0;">Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India</h2>
+    </div>
+    <div class="col-sm-2">
+        <p id="clear-filters"{%if selected %} style="display:block;"{%endif%}><br><a href="#" onclick="clearFilters();return false;">Clear filters</a></p>
+    </div>
+</div>
+
 
 
 <form method="get" id="form">
@@ -136,10 +144,6 @@
       </select>
     </div>
 -->
-
-    <div class="form-group col-6 col-md-4 col-lg-3" id="clear-filters"{%if selected %} style="display:block;"{%endif%}>
-        <p><a href="#" onclick="clearFilters();return false;">Clear filters</a></p>
-    </div>
 
 </div>
     
