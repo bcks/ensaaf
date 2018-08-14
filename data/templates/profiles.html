@@ -20,7 +20,7 @@
     </div>
 
 
-    <div class="form-group filter{% if selected_age %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_age %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="age" name="age" onchange="this.form.submit()">
         <option value="">Age</option>
         <option{% if selected_age == '0-17' %} selected=selected{% endif %}>0-17</option>
@@ -32,7 +32,7 @@
     </div>
 
 
-    <div class="form-group filter{% if selected_caste %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_caste %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="caste" name="caste" onchange="this.form.submit()">
         <option value="">Caste</option>
         <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %}>Chamar</option>
@@ -46,7 +46,7 @@
       </select>
     </div>
         
-    <div class="form-group filter{% if selected_classification %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_classification %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="classification" name="classification" onchange="this.form.submit()">
         <option value="">Classification</option>
         <option {% if selected_classification == 'Enforced Disappearance' %} selected=selected{% endif %} value="Enforced Disappearance">Enforced Disappearance</option>
@@ -54,7 +54,7 @@
       </select>
     </div>
     
-    <div class="form-group filter{% if selected_first_name %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_first_name %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="first_name" name="first_name" onchange="this.form.submit()">
         <option value="">First Name</option>
         {% for o in first_names %}
@@ -63,7 +63,7 @@
       </select>
     </div>
     
-    <div class="form-group filter{% if selected_gender %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_gender %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="gender" name="gender" onchange="this.form.submit()">
         <option value="">Gender</option>
         <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">Female</option>
@@ -71,7 +71,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_militancy %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_militancy %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="militancy" name="militancy" onchange="this.form.submit()">
         <option value="">Militant Status</option>
         <option {% if selected_militancy == 'Militant' %} selected=selected{% endif %} value="Militant">Militant</option>
@@ -80,7 +80,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_religion %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_religion %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="religion" name="religion" onchange="this.form.submit()">
         <option value="">Religion</option>
         <option{% if selected_religion == 'Christian' %} selected=selected{% endif %}>Christian</option>
@@ -92,9 +92,9 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_district %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_district %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="district" name="district" onchange="this.form.submit()">
-        <option value="">District</option>
+        <option value="">District / Subdistrict</option>
         {% for o in districts %}
         <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{{o.district}}</option>
         {% for t in o.subdistricts %}
@@ -104,7 +104,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_year %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_year %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="year" name="year" onchange="this.form.submit()">
         <option value="">Year</option>
         {% for o in years %}
@@ -113,7 +113,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_sort %} selected{% endif %} col-4">
+    <div class="form-group filter{% if selected_sort %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="sort" name="sort" onchange="this.form.submit()">
         <option value="">Sort Order</option>
         <option{% if selected_sort == "Oldest to Newest" %} selected=selected{% endif %}>Oldest to Newest</option>
