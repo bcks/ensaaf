@@ -19,6 +19,7 @@
     #mapid {
       height:600px;
       width:100%;
+      background-color: #000;
     }
     .leaflet-interactive { cursor: default; }
     .leaflet-popup-content-wrapper { border-radius: 2px; }
@@ -282,7 +283,6 @@ $.ajax({
   }
 });
 
-
 var disputedStyle = { "color": "#666", "weight": 1, "opacity": 0.65, "fillOpacity": 0, "dashArray": "2 2" };
 var disputed = new L.geoJson();
 disputed.addTo(mymap);
@@ -296,6 +296,8 @@ $.ajax({
       disputed.setStyle(disputedStyle);
   }
 });
+
+
 
 $.getJSON("/static/js/village_loc.json", function(json) {
     villageCentroids = json

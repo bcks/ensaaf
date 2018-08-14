@@ -74,10 +74,19 @@
            {% for o in stats.religion %}
            {%if o.1 %}
        
+            {% if forloop.first %}
             <div>
             <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
+           {% endif %}
+
+            {% if forloop.last %}
+            <div>
+            <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            </div>
+           {% endif %}
    
            {% endif %}
            {% endfor %}
@@ -96,10 +105,19 @@
            {% for o in stats.caste %}
            {%if o.1 %}
        
+            {% if forloop.first %}
             <div>
             <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
+           {% endif %}
+
+            {% if forloop.last %}
+            <div>
+            <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}
+            </div>
+           {% endif %}
        
            {% endif %}
            {% endfor %}
@@ -181,10 +199,19 @@
            {% for o in stats.children %}
            {%if o.1 %}
        
+            {% if forloop.first %}
             <div>
             <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
+            {% endif %}
+
+            {% if forloop.last %}
+            <div>
+            <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            </div>
+            {% endif %}
        
            {% endif %}
            {% endfor %}
@@ -305,10 +332,18 @@
              {% for o in stats.witness_arrest %}
              {%if o.1 %}
 
+            {% if forloop.first %}
               <div>
               <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
+            {% endif %}
+            {% if forloop.last %}
+              <div>
+              <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              </div>
+            {% endif %}
 
              {% endif %}
              {% endfor %}
