@@ -25,19 +25,22 @@
   {% regroup victims.all by district as district_list %}
 
   {% for district in district_list %}
+    {% if forloop.first %}
+      <hr>
+      <ul>{% endif %}
+        <li><a href="#{{district.grouper|default_if_none:"Location Witheld"|slugify}}">{{ district.grouper|default_if_none:"Location Witheld"  }}</a></li>
+    {% if forloop.last %}</ul>{% endif %}        
+  {% endfor %}
+  
 
+  {% for district in district_list %}
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        {% if forloop.first %}{% else %}
-          <br><hr>
-        {% endif %}
-        <h2>{{ district.grouper|default_if_none:""  }}</h2>
+          <hr>
+        <h2><a name="{{district.grouper|default_if_none:"Location Witheld"|slugify}}"></a>{{ district.grouper|default_if_none:"Location Witheld"  }} District</h2>
       </div>
     </div>
     
-    
-
-
   {% regroup district.list by tehsil as tehsil_list %}
 
   {% for tehsil in tehsil_list %}

@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.db.models import OuterRef, Subquery, Count, Sum, F, Q, DateField
 from django.db.models.functions import Trunc
 from django.template.defaulttags import register
+from django.views.decorators.cache import cache_page
 
 from .models import *
 from django.shortcuts import render
@@ -25,6 +26,7 @@ def home(request):
       })
 
 
+@cache_page(60 * 60)
 def profiles(request):
     selected_age = request.GET.get('age','')
     selected_caste = request.GET.get('caste','')
@@ -96,6 +98,7 @@ def profiles(request):
       })
 
 
+@cache_page(60 * 60)
 def overview(request):    
     all = Data.objects.all();
     stats = calculate_stats(all)    
@@ -104,6 +107,7 @@ def overview(request):
       })
 
 
+@cache_page(60 * 60)
 def map(request):
     selected_age = request.GET.get('age','')
     selected_caste = request.GET.get('caste','')
@@ -163,10 +167,12 @@ def map_ajax(request):
     victim_filter = DataFilter(request.GET, queryset=victim_list)
     return render(request, "map_ajax.html", { "all": victim_filter.qs, }, content_type='application/json')
 
+
 def change(request):
     return render(request, "change.html")
 
 
+@cache_page(60 * 60)
 def profile(request, id=None):
     queryset = Data.objects.filter(record_id=id)
     victim = queryset[:1].get()
@@ -190,6 +196,7 @@ def village(request, slug=None):
     return render(request, "village.html", { "victims": victims, "village":village } )
 
 
+@cache_page(60 * 60)
 def year(request, year=None):
     district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
@@ -204,8 +211,8 @@ def year(request, year=None):
     return render(request, "year.html", { "victims": victims, "year":year, "stats": stats } )
 
 
+@cache_page(60 * 60)
 def detention(request, type=None, name=None):
-
     district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
     tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
@@ -246,6 +253,7 @@ def seniorofficial(value):
 
 
 
+@cache_page(60 * 60)
 def official(request, slug=None):
     name =  officials.get(slug)
 
@@ -269,7 +277,7 @@ def official(request, slug=None):
 
 
 
-
+@cache_page(60 * 60)
 def securityforce(request, slug=None):
 
     forcemap = {
@@ -309,6 +317,7 @@ def securityforce(request, slug=None):
 
 
 
+@cache_page(60 * 60)
 def tehsil(request, slug=None):
     datas = Data.objects.filter(village_id=OuterRef('pk'))\
                             .values('village_id')\
@@ -344,8 +353,6 @@ def get_first_names():
     except Exception as e:
         return messages.warning("Exception get_first_names:"%e)
         return None
-        
-
 
 def get_tehsil_list():
     tehsil_list = cache.get("tehsil_list")
@@ -425,6 +432,7 @@ def get_tehsils(slug):
 
 
 
+@cache_page(60 * 60)
 def district(request, slug=None):
 
 #    tehsils = Villages.objects.filter(district_id=slug)\
@@ -456,7 +464,7 @@ def district(request, slug=None):
       })
 
 
-
+@cache_page(60 * 60)
 def page(request, directory=None, slug=None):
     page = Page.objects.get(slug=slug)
     if id is not None and page is None:
