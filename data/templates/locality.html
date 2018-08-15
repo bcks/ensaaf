@@ -3,7 +3,7 @@
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Documented cases in {{name}}{% endblock %}
+{% block title %}Documented cases implicating security forces based in {{name}}{% endblock %}
 
 {% block content %}
 
@@ -20,7 +20,7 @@
 <div class="row">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} in {{name}}</p>
+  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} implicating security forces based in {{name}}</p>
 
   {% regroup victims.all by district as district_list %}
 
