@@ -93,6 +93,7 @@ class Data(models.Model):
     arrest_security_type_6 = models.IntegerField(db_column='arrest_security_type___6')
     arrest_security_type_7 = models.IntegerField(db_column='arrest_security_type___7')
     arrest_security_type_8 = models.IntegerField(db_column='arrest_security_type___8')
+    arrest_security_locality = models.IntegerField(db_column='arrest_security_locality')
     securityoff_id_known = models.IntegerField(blank=True, null=True)
     security_forces_uniformed = models.IntegerField(blank=True, null=True)
     witness_arrest_0 = models.IntegerField(db_column='witness_arrest___0')

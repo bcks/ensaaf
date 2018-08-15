@@ -3,14 +3,14 @@
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Documented cases affiliated with {{facilityname|uncensus|title}}{% endblock %}
+{% block title %}Documented cases in {{name}}{% endblock %}
 
 {% block content %}
 
 
 <div class="row">
   <div class="col-sm-12 col-md m-2">
-    <h1>{{facilityname|uncensus|title}}</h1>
+    <h1>{{name}}</h1>
   </div>
 </div>
 
@@ -20,7 +20,7 @@
 <div class="row">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} affiliated with {{facilityname|uncensus|title}}</p>
+  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} in {{name}}</p>
 
   {% regroup victims.all by district as district_list %}
 
@@ -44,6 +44,7 @@
   {% regroup district.list by tehsil as tehsil_list %}
 
   {% for tehsil in tehsil_list %}
+
     <div class="row">
       <div class="col-sm-12 col-md m-2">
         <h5>{{ tehsil.grouper|default_if_none:""  }} Subdistrict</h5>
@@ -70,8 +71,7 @@
           {% endif %}
         {% endif %}
       {% endif %}{% endif %}
-      <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
-
+      <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a> Village{% else %}{{victim.village_name}}  Village{% endif %}
 
       </div>
     </div>
@@ -88,7 +88,7 @@
   
   <div class="col-sm-6 border-left">
     
-    <p>Key statistics for cases in {{year}}:</p>
+    <p>Key statistics of cases implicating the {{name}}:</p>
 
     {% include 'stats.html' %}
 
@@ -102,11 +102,20 @@
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
-      <p>No documented cases for {{facilityname}}.</p>
+      <p>No documented cases implicating the {{name}}.</p>
     </div>
   </div>
 
   {% endif %}
   
+
+
+<div class="row">
+  <div class="col-12">
+    <div class="border-top footnotes">
+      <p> Boundaries based on the 2001 census. Read about <a href="/methodology">our methodology</a>.</p>
+    </div>
+  </div>
+</div>
 
 {% endblock %}

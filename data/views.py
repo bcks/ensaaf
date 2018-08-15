@@ -162,6 +162,7 @@ def map(request):
       })
 
 
+@cache_page(60 * 60)
 def map_ajax(request):
     victim_list = Data.objects.filter(timeline__gte='1980-01-01',timeline__lte='2000-12-31').values('village_id','village_name','timeline')    
     victim_filter = DataFilter(request.GET, queryset=victim_list)
@@ -170,6 +171,9 @@ def map_ajax(request):
 
 def change(request):
     return render(request, "change.html")
+
+
+
 
 
 @cache_page(60 * 60)
@@ -188,6 +192,7 @@ def profile(request, id=None):
     return render(request, "profile.html", { "victim": victim, "village":village } )
 
 
+@cache_page(60 * 60)
 def village(request, slug=None):
     victims = Data.objects.filter(village_id=slug).order_by('victim_name')
     village = Villages.objects.filter(id=slug)[:1].get()
@@ -253,6 +258,7 @@ def seniorofficial(value):
 
 
 
+
 @cache_page(60 * 60)
 def official(request, slug=None):
     name =  officials.get(slug)
@@ -274,6 +280,32 @@ def official(request, slug=None):
     if id is not None and id is None:
         return messages.warning(request,"Year %s was not found"%id)
     return render(request, "securityforce.html", { "victims": victims, "name": name, "stats": stats } )
+
+
+
+
+@cache_page(60 * 60)
+def locality(request, id=None):
+    
+    _arrest_so_affiliation_loc = SecurityArrest.objects.filter(arrest_so_affiliation_loc__contains=id).values_list('record_id', flat=True)
+    _query = Q(arrest_security_locality__contains=id) | Q(killing_securityforces_lcl__contains=id) | Q( record_id__in= _arrest_so_affiliation_loc )
+
+    name = get_village_name(id)
+
+    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+
+    victims = Data.objects.filter( _query )\
+      .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
+      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
+
+    stats = calculate_stats(victims)
+    if id is not None and id is None:
+        return messages.warning(request,"Security Force %s was not found"%id)
+    return render(request, "locality.html", { "victims": victims, "name": name, "stats": stats } )
+
 
 
 
@@ -383,6 +415,13 @@ def get_district_list():
         return None
      
 
+def get_village_name(value):
+    if value:
+      village_name = Villages.objects.filter(id=value).values('village_name')[:1].get()
+      return village_name['village_name']
+    else:
+      return None
+      
 def get_tehsil_name(value):
     if value:
       tehsil_name = Villages.objects.filter(tehsil_id=value).values('tehsil')[:1].get()

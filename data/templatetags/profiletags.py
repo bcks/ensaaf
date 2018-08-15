@@ -27,6 +27,27 @@ def uncensus(value):
 
 
 
+@register.filter(name='censuslink')
+def censuslink(value):
+    
+    # split on comma
+    parts = value.split(',')
+    
+    # make href from each census-ed name
+    regexp = re.compile(r'([0123456789]+)-')
+    newparts = []
+    for part in parts:
+      if regexp.search(part):
+        newparts.append(
+          '<a href="/locality/' + regexp.search(part).group(1)  + '">' + \
+           re.sub(r'([0123456789.]+)-','', part) + \
+           '</a>')
+
+    s = ", ";
+    return s.join(newparts)
+
+
+
 @register.simple_tag()
 def hyes_no(var):
     opt = ["No", "Yes", "", "", "", "", "", "", "", "Don’t know"]
