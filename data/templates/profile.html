@@ -596,10 +596,13 @@
       <p class="kicker dots">Forces involved in abduction</p>
     </div>
     <div class="col-sm-6">
-      <p>{% autoescape off %}{% harrest_security_type victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}</p>
+      <p>{% autoescape off %}
+      
+      {% if victim.arrest_security_locality != None %}{{victim.arrest_security_locality|censuslink}}, {% endif %}
+      
+      {% harrest_security_type victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}</p>
     </div>
   {% endif %}
-
 
 
   {% if victim.security_arrest.all|length > 0 %}
@@ -615,7 +618,7 @@
 {% harrest_so_rank this.arrest_so_rank %}{% endif %}{% endif %}{% if this.arrest_so_rank == 13 %}{% if this.arrest_so_rank_other %}, 
 {{this.arrest_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliaton -->{% if this.arrest_so_affiliation != '' %}{% if this.arrest_so_affiliation != 8 %}{% if this.arrest_so_affiliation != 7 %}, 
 {% autoescape off %}{% haffiliation this.arrest_so_affiliation %}{% endautoescape %}{% endif %}{% endif %}{% endif %}<!-- arrest_so_affiliation_oth -->{% if this.arrest_so_affiliation_oth != '' %}, 
-{{this.arrest_so_affiliation_oth}}{% endif %}{% if this.arrest_so_affiliation_loc != None %}, {% autoescape off %}{{this.arrest_so_affiliation_loc|censuslink}}{% endautoescape %}{% endif %}{% if this.arrest_security_locality != None %}, {% autoescape off %}{{this.arrest_security_locality|censuslink}}{% endautoescape %}{% endif %}</p>
+{{this.arrest_so_affiliation_oth}}{% endif %}{% if this.arrest_so_affiliation_loc != None %}, {% autoescape off %}{{this.arrest_so_affiliation_loc|censuslink}}{% endautoescape %}{% endif %}</p>
 
     {% endfor %}
 
