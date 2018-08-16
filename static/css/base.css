@@ -56,6 +56,9 @@ h1, h2, h3, h4, h5, h6, h7 {
 }
 h5 { margin-top: 1em; }
 
+.keyword h2 { margin-bottom: 0; }
+.m-2-top { margin-top: .5rem; }
+
 img { width: 100%; height: auto; }
 .documents img { vertical-align: top; max-width: 200px; }
 .vwrap { color: #900; }

@@ -17,18 +17,17 @@
 {% if victims.all|length > 0 %}
 
 
-<div class="row">
+<div class="row keyword">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} affiliated with {{facilityname|uncensus|title}}</p>
+  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} affiliated with {{facilityname|uncensus|title}}:</p>
 
   {% regroup victims.all by district as district_list %}
 
   {% for district in district_list %}
     {% if forloop.first %}
-      <hr>
       <ul>{% endif %}
-        <li><a href="#{{district.grouper|default_if_none:"Location Witheld"|slugify}}">{{ district.grouper|default_if_none:"Location Witheld"  }}</a></li>
+        <li><a href="#{{district.grouper|default_if_none:"Location Withheld"|slugify}}">{{ district.grouper|default_if_none:"Location Withheld"  }}</a></li>
     {% if forloop.last %}</ul>{% endif %}        
   {% endfor %}
   
@@ -37,13 +36,23 @@
     <div class="row">
       <div class="col-sm-12 col-md m-2">
           <hr>
-        <h2><a name="{{district.grouper|default_if_none:"Location Witheld"|slugify}}"></a>{{ district.grouper|default_if_none:"Location Witheld"  }} District</h2>
+        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{{ district.grouper|default_if_none:"Location Withheld"  }} {% if district.grouper != None %}District{% endif %}</h2>
       </div>
     </div>
     
   {% regroup district.list by tehsil as tehsil_list %}
 
   {% for tehsil in tehsil_list %}
+
+    {%if tehsil.grouper %}
+    <div class="row">
+      <div class="col-sm-12 col-md m-2">
+        <h5>{{ tehsil.grouper|default_if_none:""  }} Subdistrict</h5>
+      </div>
+    </div>
+    {% endif %}
+
+    {% for victim in tehsil.list %}
     <div class="row">
       <div class="col-sm-12 col-md m-2">
         <h5>{{ tehsil.grouper|default_if_none:""  }} Subdistrict</h5>
@@ -88,7 +97,7 @@
   
   <div class="col-sm-6 border-left">
     
-    <p>Key statistics for cases in {{year}}:</p>
+    <p class="m-2-top">Key statistics for cases in {{year}}:</p>
 
     {% include 'stats.html' %}
 
