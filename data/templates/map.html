@@ -14,12 +14,17 @@
     .axis line, .axis path { stroke: #aaa; }
     .tick { font-family: 'Fira Sans', sans-serif; }
 
-    #timeline { height: 300px; }
-
     #mapid {
       height:600px;
       width:100%;
       background-color: #000;
+    }
+    #buttons {
+      text-align: center;
+      background-color: #000;    
+    }
+    #buttons button { 
+      margin: 2px;
     }
     .leaflet-interactive { cursor: default; }
     .leaflet-popup-content-wrapper { border-radius: 2px; }
@@ -154,18 +159,37 @@
 
 
 <div id="mapid"></div>
+<div id="buttons"></div>
+
+
 
 <div class="container">
+  <!--
   <div class="row">
     <div class="col-sm-12">    
       <p><br>Drag the gray area on the timeline to update the map. Zoom into the map to see individual villages. Clicking on the red dots will take you to individual profiles from that village, excluding anonymous profiles.</p>
     </div>
   </div>
+  -->
   <div id="timeline"></div>
   <p><br></p>
   
   
 <script type="text/javascript">
+
+
+
+for (i = 1981; i<=2000; i++) {
+  $('#buttons').append('<button type="button" class="btn btn-dark">'+i+'</button>');
+}
+$('#buttons button').on('click', function(e) {
+  console.log(e);
+  $("#year").val(e.target.innerText);
+  updateMapData();
+});
+
+
+
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -446,31 +470,24 @@ function makeTimeline() {
   var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
       height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
 
-  var start = d3.min(d3.entries(timeCapsule), function(d) {
-    if (d.value.date > 0) {
-      return d.value.date;
-    }
-  });
+  var start = 369792000000; // d3.min(d3.entries(timeCapsule), function(d) { if (d.value.date > 0) { return d.value.date; } });
+  var end = 962409600000; // d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
 
+  var xScale = d3.scaleTime().domain([start, end]).rangeRound([0, width]);
 
-  var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
+  var brush = d3.brushX().extent([[0, 0], [width, height]]).on("brush end", brushed);
 
-  var xScale = d3.scaleTime()
-      .domain([start, end])
-      .rangeRound([0, width]);
+  /*
 
   var y = d3.scaleLinear()
       .range([height, 0]);
-
-  var brush = d3.brushX()
-      .extent([[0, 0], [width, height]])
-      .on("brush end", brushed);
 
   var histogram = d3.histogram()
       .value(function(d) { return d.date; })
       .domain(xScale.domain())
       .thresholds(xScale.ticks(d3.timeMonth));
-  
+  */
+
   var svg = d3.select("#timeline").append("svg")
       .attr("width", width + timeline_margin.left + timeline_margin.right)
       .attr("height", height + timeline_margin.top + timeline_margin.bottom)
@@ -483,6 +500,8 @@ function makeTimeline() {
     var s = d3.event.selection || xScale.range();
     makeVillageNames( xScale.invert(s[0]), xScale.invert(s[1]) );
   }
+
+  /*
 
   var bins = histogram(timeCapsule);
 
@@ -513,11 +532,13 @@ function makeTimeline() {
   svg.append("g")
       .attr('class','axis')
       .call(d3.axisLeft(y));
+  */
 
   svg.append("g")
       .attr("class", "brush")
       .call(brush)
       .call(brush.move, xScale.range());
+  
 
 } // end makeTimeline
 
