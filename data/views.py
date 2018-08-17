@@ -207,7 +207,11 @@ def year(request, year=None):
     tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
     tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
     village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
-    victims = Data.objects.filter(timeline_start__year=year,timeline_end__year=year)\
+    start = year + '-01-01'
+    end = year + '-12-31'
+
+    # SELECT * FROM data WHERE NOT (timeline_start > end OR timeline_end < start)
+    victims = Data.objects.filter( ~Q(timeline_start__gt=end), ~Q(timeline_end__lt=start) )\
       .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
       .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
     stats = calculate_stats(victims)

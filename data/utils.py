@@ -100,7 +100,10 @@ def calculate_stats(all):
     children = sorted(children.items(), key=operator.itemgetter(1), reverse=True)
 
     total_children = all.filter(victim_children__gte='1').aggregate(Sum('victim_children'))
-    total_children = int( total_children['victim_children__sum'] )
+    if total_children['victim_children__sum'] != None:
+      total_children = int( total_children['victim_children__sum'] )
+    else:
+      total_children = 0
 
     genuine_encounter = all.filter(genuine_encounters='1').count()
     not_genuine_encounter = all.filter(genuine_encounters='0').count()

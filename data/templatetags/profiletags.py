@@ -801,6 +801,8 @@ def haffiliation(var):
 
 @register.simple_tag()
 def percent(item1, total):
+    if total == 0:
+      return 0
     try:
         return "%.1f" % ((float(item1) / float(total)) * 100)
     except ValueError:
