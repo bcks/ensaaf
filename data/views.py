@@ -175,7 +175,6 @@ def change(request):
 
 
 
-
 @cache_page(60 * 60)
 def profile(request, id=None):
     queryset = Data.objects.filter(record_id=id)
@@ -240,19 +239,36 @@ def detention(request, type=None, name=None):
 officials = {
   "S0001":"Sumedh Singh [Saini]",
   "S0002":"Mohd. Izhar Alam",
-  "S0003":"Suresh	Arora",
-  "S0004":"Lok Nath	Angra",
-  "S0005":"Swaran	Singh [Ghotna]",
-  "S0006":"Ajit Singh	Sandhu",
-  "S0007":"Jasminder [Jaswinder]	Singh",
+  "S0003":"Suresh Arora",
+  "S0004":"Lok Nath Angra",
+  "S0005":"Swaran Singh [Ghotna]",
+  "S0006":"Ajit Singh Sandhu",
+  "S0007":"Jasminder [Jaswinder] Singh",
   "S0008":"Gur Iqbal Singh Bhullar",
   "S0009":"Dinkar Gupta",
   "S0010":"Bua Singh",
   "S0011":"Shiv Kumar",
   "S0012":"Sant Kumar",
-  "S0013":"Raj Kishan	Bedi",
+  "S0013":"Raj Kishan Bedi",
   "S0014":"Harinder Singh [Chahal]",
   "S0015":"Gurmeet Singh [Pinky]",
+  "S0016":"D.R. Bhatti",
+  "S0017":"Mohd. Mustafa",
+  "S0018":"Satish Kumar Sharma",
+  "S0019":"Harkishan Singh Kahlon",
+  "S0020":"Gobind Ram",
+  "S0021":"Anil Kumar Sharma",
+  "S0022":"Mahinder Singh",
+  "S0023":"M.K. Tiwari",
+  "S0024":"Samant Kumar Goel",
+  "S0025":"Ravinderpal Singh",
+  "S0026":"J.P. Birdi",
+  "S0027":"A.P. Pandey",
+  "S0028":"Sita Ram",
+  "S0029":"Bakhshi Ram",
+  "S0030":"Sanjiv Gupta",
+  "S0031":"Khubi Ram",
+  "S0032":"Sidharth Chattopadhyaya",
 }
 
 
