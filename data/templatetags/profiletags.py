@@ -217,6 +217,7 @@ def hyear(var):
 def hvictim_address_other(value):
   str = value.split('_')
   str = str[0]
+  str = re.sub(r'([0123456789.]+)-','', str)
   # TODO get VILLAGE FROM CENSUS CODE
   return str
 
