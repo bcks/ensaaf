@@ -143,11 +143,13 @@ def map(request):
       
     victim_list = Data.objects.filter(timeline__gte='1980-01-01',timeline__lte='2000-12-31').values('village_id','village_name','timeline')
     victim_filter = DataFilter(request.GET, queryset=victim_list)
+    total = Data.objects.count()
 
     years = list(range(1981,2008))
     years.append('Date Unknown')
 
     return render(request, "map.html", { 
+      "total": total,
       "all": victim_filter.qs,
       "years": years,
       "districts": districts,

@@ -128,6 +128,13 @@ tr { vertical-align: top; }
 #clear-filters {  display: none; }
 
 
+#map-over {
+	padding: 1rem 0 .5rem 0;
+	color: #fff;
+	background-color: #000;
+}
+
+
 
 @media only screen and (min-width: 640px) {
   .grid {

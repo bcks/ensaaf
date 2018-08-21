@@ -158,7 +158,14 @@
 </div><!-- end container -->
 
 
-<div id="mapid"></div>
+
+<div id="map-over">
+  <div class="container">
+  Punjab, India: At least <span id="count">{{total|intcomma}}</span> Extrajudicial Executions/Enforced Disappearance<span id="count-plural">s</span></p>
+  </div><!-- end container -->
+</div>
+<div id="mapid">
+</div>
 <div id="buttons"></div>
 
 
@@ -245,6 +252,8 @@ function clearFilters() {
   $("#form .filter").removeClass('selected');
   $("#form .filter select").val($("#form option:first").val());
   updateMapData();
+  $("#count").html("{{total|intcomma}}");
+  $("#count-plural").html("s");
 }
 
 
@@ -272,6 +281,15 @@ function updateMapData() {
   $.getJSON("/map_ajax/?" + params, function(json) {
       timeCapsule = [];
       timeCapsule = json.timeline;
+      
+      console.log( numberWithCommas(timeCapsule.length) );
+      $("#count").html( numberWithCommas(timeCapsule.length) );
+      if (timeCapsule.length == 1) {
+        $("#count-plural").html("");
+      } else {     
+        $("#count-plural").html("s");
+      }
+      
       for (var i=0;i<timeCapsule.length;i++) {
           if ( timeCapsule[i]['v']['t']  < 1514764800 ) {
             timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
