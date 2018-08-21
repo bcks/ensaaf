@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
@@ -183,7 +185,7 @@ def profile(request, id=None):
       try:
         village = Villages.objects.filter(id=victim.village_id)[:1].get()
       except Villages.DoesNotExist:
-          village = None
+        village = None
     else:
       village = None
     if id is not None and victim is None:
@@ -529,5 +531,29 @@ def page(request, directory=None, slug=None):
     if id is not None and page is None:
         return messages.warning(request,"page %s was not found"%id)
     return render(request, "page.html", { "page":page } )
+
+
+
+
+@register.simple_tag()
+def hvictim_address_other(value):
+  str = value.split('_')
+  str = str[0]
+  p = re.compile(r'([0123456789.]+)-')
+  m = p.search(str)
+  if m:
+    census_id = m.group(1)
+    print (census_id)
+    try:
+      village = Villages.objects.filter( id=census_id )[:1].get()
+      return '<span define="Village"><a href="/village/' + census_id + '">' + village.village_name + '</a></span>, '\
+        '<span define="Subdistrict"><a href="/tehsil/' + village.tehsil_id + '">' + village.tehsil + '</a></span>, '\
+        '<span define="District"><a href="/district/' + village.district_id + '">' + village.district + '</a></span>'
+    except Villages.DoesNotExist:
+      str = re.sub(r'([0123456789.]+)-','', str)
+      return str + ' hi'
+  else:
+    str = re.sub(r'([0123456789.]+)-','', str)
+    return str
 
 

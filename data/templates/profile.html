@@ -67,7 +67,9 @@
             <p class="kicker dots">Residence</p>
           </div>
           <div class="col-sm-10">
+            {% autoescape off %}
             <p>{% hvictim_address_other victim.victim_address_other %}</p>
+            {% endautoescape %}
           </div>
         </div>
         {% endif %}
@@ -596,10 +598,9 @@
       <p class="kicker dots">Forces involved in abduction</p>
     </div>
     <div class="col-sm-6">
-      <p>{% autoescape off %}
-      
-      {% if victim.arrest_security_locality != None %}{{victim.arrest_security_locality|censuslink}}, {% endif %}
-      
+    
+      <p>{% autoescape off %}      
+      {% if victim.arrest_security_locality %}{{victim.arrest_security_locality|censuslink}}, {% endif %}      
       {% harrest_security_type victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}</p>
     </div>
   {% endif %}
@@ -807,9 +808,9 @@
 
 
 
+  
 
-
-  {% if victim.family_effects_1 or victim.family_effects_2 or victim.family_effects_3 or victim.family_effects_4 or victim.family_effects_5 or victim.family_effects_6 or victim.family_effects_7 or victim.family_effects_8 or victim.family_effects_9 or victim.family_effects_12 or victim.other_family_effects %}
+  {% if victim.family_effects_2 or victim.family_effects_3 or victim.family_effects_4 or victim.family_effects_5 or victim.family_effects_6 or victim.family_effects_7 or victim.family_effects_8 or victim.family_effects_9 or victim.family_effects_12 or victim.other_family_effects and not victim.family_effects_1%}
     <div class="col-sm-6">
       <p class="kicker dots">Impact on family</p>      
     </div>

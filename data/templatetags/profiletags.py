@@ -26,6 +26,18 @@ def uncensus(value):
     return re.sub(r'([0123456789.]+)-','', value)
 
 
+# moved to views
+#@register.simple_tag()
+#def hvictim_address_other(value):
+#  str = value.split('_')
+#  str = str[0]
+#  str = re.sub(r'([0123456789.]+)-','', str)
+#  # TODO get VILLAGE FROM CENSUS CODE
+#  village = Villages.objects.filter(id=village_id).get()
+#  print (village)  
+#  return str
+
+
 
 @register.filter(name='censuslink')
 def censuslink(value):
@@ -210,16 +222,6 @@ def hyear(var):
       parts[2] = int(parts[2]) + 1900
     return ', ' + str(parts[2])
 
-
-
-
-@register.simple_tag()
-def hvictim_address_other(value):
-  str = value.split('_')
-  str = str[0]
-  str = re.sub(r'([0123456789.]+)-','', str)
-  # TODO get VILLAGE FROM CENSUS CODE
-  return str
 
 
 
@@ -593,7 +595,7 @@ def hsecurity_official_response(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11
       s = ', '
       return s.join(groups)
   else:
-      return 0
+      return "None"
 
 
 
