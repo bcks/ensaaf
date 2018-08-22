@@ -479,7 +479,7 @@ def hadd_spaces(value):
 
 @register.simple_tag()
 def hvictim_arrest_location(value):
-  location = ['', '', 'Victim\'s residence', 'Friend/relative\'s residence', 'Checkpoint (naka)', 'Roadside', 'Village fields', 'Market/bazaar', 'Bus station/stand', 'Police station', 'Village drain']
+  location = ['', '', 'Victim\'s residence', 'Friend/relative\'s residence', 'Checkpoint (naka)', 'Roadside', 'Village fields', 'Shop/market', 'Bus station/stand', 'Police station', 'Village drain']
   return location[value]
 
 

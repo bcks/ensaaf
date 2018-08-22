@@ -43,7 +43,7 @@ def calculate_stats(all):
     education = sorted(education.items(), key=operator.itemgetter(0), reverse=True)
 
     age_range = { # Dataset.objects.filter(i_end_int__gte=x,i_begin_int__lte=x)
-      "0-17": all.filter(victim_age_averaged__gte=0,victim_age_averaged__lte=17).count(),
+      "0-17": all.filter(victim_age_averaged__gte=0,victim_age_averaged__lte=17).exclude(victim_age__exact='').count(),
       "18-33": all.filter(victim_age_averaged__gte=18,victim_age_averaged__lte=33).count(),
       "34-49": all.filter(victim_age_averaged__gte=34,victim_age_averaged__lte=49).count(),
       "50-64": all.filter(victim_age_averaged__gte=50,victim_age_averaged__lte=64).count(),
@@ -69,11 +69,11 @@ def calculate_stats(all):
     
 
     no_action_pursued_reason = {
-      "Not Applicable": all.filter(no_action_pursued_reason_0='1').count(),
+      "Not applicable": all.filter(no_action_pursued_reason_0='1').count(),
       "Afraid of retaliation": all.filter(no_action_pursued_reason_1='1').count(),
       "Believed it would have been ineffective": all.filter(no_action_pursued_reason_2='1').count(),
       "Didn’t know what to do": all.filter(no_action_pursued_reason_3='1').count(),
-      "Couldn’t Afford": all.filter(no_action_pursued_reason_4='1').count(),
+      "Couldn’t afford": all.filter(no_action_pursued_reason_4='1').count(),
       "Other": all.filter(no_action_pursued_reason_6='1').count(),
     }
     no_action_pursued_reason = sorted(no_action_pursued_reason.items(), key=operator.itemgetter(1), reverse=True)
@@ -117,10 +117,25 @@ def calculate_stats(all):
     no_security_officials_apprchd = all.filter(security_officials_apprchd='0').count()
     court_or_commission = all.filter(court_or_commission='1').count()
     no_court_or_commission = all.filter(court_or_commission='0').count()
+
     victim_militant_support = all.filter(victim_militant_support='1').count()
     no_victim_militant_support = all.filter(victim_militant_support='0').count()
-    victim_militant_support_voluntary = all.filter(victim_militant_sprt_vol='1').count()
-    victim_militant_support_forced = all.filter(victim_militant_sprt_vol='2').count()
+
+    # (1) the victim was not a militant,
+    # (2) and the victim provided support,
+    # (3) the support was involuntary
+    victim_militant_support_voluntary = all.filter(\
+      victim_militant_status='0',\
+      victim_militant_support='1',\
+      victim_militant_sprt_vol='1'
+      ).count()
+
+    victim_militant_support_forced = all.filter(\
+      victim_militant_status='0',\
+      victim_militant_support='1',\
+      victim_militant_sprt_vol='2'
+      ).count()
+
     victim_arrest_status = all.filter(victim_arrest_status__in=['0','1']).count()
     no_victim_arrest_status = all.filter(victim_arrest_status='2').count()
     so_inform_witnesses = all.filter(so_inform_witnesses='1').count()
@@ -131,8 +146,10 @@ def calculate_stats(all):
     no_judge_or_magistrate_status = all.filter(judge_or_magistrate_status='0').count()
     victim_detention_loc_known = all.filter(victim_detention_loc_known='1').count()
     no_victim_detention_loc_known = all.filter(victim_detention_loc_known='0').count()    
-    so_return_body = all.filter(victim_arrest_status__in=['1','2']).count()
-    no_so_return_body = all.filter(victim_arrest_status='3').count()
+
+    so_return_body_1 = all.filter(so_return_body='1').count()
+    so_return_body_2 = all.filter(so_return_body='2').count()
+    no_so_return_body = all.filter(so_return_body='3').count()
 
     securityoff_id_known = all.filter( Q(securityoff_id_known='1') | Q(securityforces_idknown_1='1') | Q(securityforces_idknown_2='1') ).count()
     no_securityoff_id_known = all.filter(securityoff_id_known='0',securityforces_idknown_3='1').count()
@@ -193,7 +210,7 @@ def calculate_stats(all):
       "Checkpoint (naka)": all.filter(victim_arrest_location='4').count(),
       "Roadside": all.filter(victim_arrest_location='5').count(),
       "Village fields": all.filter(victim_arrest_location='6').count(),
-      "Market/bazaar": all.filter(victim_arrest_location='7').count(),
+      "Shop/market": all.filter(victim_arrest_location='7').count(),
       "Bus station/stand": all.filter(victim_arrest_location='8').count(),
       "Police station": all.filter(victim_arrest_location='9').count(),
       "Village drain": all.filter(victim_arrest_location='10').count(),
@@ -266,7 +283,7 @@ def calculate_stats(all):
       "Victim killed in crossfire with militants": all.filter(security_official_response_9='1').count(),
       "Victim accidentally killed in custody": all.filter(security_official_response_10='1').count(),
       "Victim killed while resisting arrest/search": all.filter(security_official_response_11='1').count(),
-      "Victim killed by <span define=\"Irregular undercover security force, often consisting of criminals\">Black cat</span>s": all.filter(security_official_response_12='1').count(),
+      "Victim killed by <span define=\"Irregular undercover security force, often consisting of criminals\">black cat</span>s": all.filter(security_official_response_12='1').count(),
       "Other": all.filter(security_official_response_13='1').count(),
     }
     security_official_response = sorted(security_official_response.items(), key=operator.itemgetter(1), reverse=True)
@@ -304,6 +321,8 @@ def calculate_stats(all):
       "no_security_officials_apprchd": no_security_officials_apprchd,
       "no_securityoff_id_known": no_securityoff_id_known,
       "no_so_inform_witnesses": no_so_inform_witnesses,
+      "so_return_body_1": so_return_body_1,
+      "so_return_body_2": so_return_body_2,
       "no_so_return_body": no_so_return_body,
       "no_victim_arrest_status": no_victim_arrest_status,
       "no_victim_detention_loc_known": no_victim_detention_loc_known,
@@ -320,7 +339,6 @@ def calculate_stats(all):
       "securityoff_id_known": securityoff_id_known,
       "so_body_disposal": so_body_disposal,
       "so_inform_witnesses": so_inform_witnesses,
-      "so_return_body": so_return_body,
       "total_disappeared": total_disappeared,
       "total_killed": total_killed,
       "total": total,
