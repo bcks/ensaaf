@@ -188,18 +188,18 @@ def calculate_stats(all):
 
 
     victim_arrest_location = {
-      "Victim’s Residence": all.filter(victim_arrest_location='2').count(),
-      "Friend/Relative's residence": all.filter(victim_arrest_location='3').count(),
-      "Checkpoint (Naka)": all.filter(victim_arrest_location='4').count(),
+      "Victim’s residence": all.filter(victim_arrest_location='2').count(),
+      "Friend/relative's residence": all.filter(victim_arrest_location='3').count(),
+      "Checkpoint (naka)": all.filter(victim_arrest_location='4').count(),
       "Roadside": all.filter(victim_arrest_location='5').count(),
-      "Village Fields": all.filter(victim_arrest_location='6').count(),
-      "Market/Bazaar": all.filter(victim_arrest_location='7').count(),
-      "Bus Station/Stand": all.filter(victim_arrest_location='8').count(),
-      "Police Station": all.filter(victim_arrest_location='9').count(),
-      "Village Drain": all.filter(victim_arrest_location='10').count(),
-      "Other": all.filter(victim_arrest_location='11').count(),
+      "Village fields": all.filter(victim_arrest_location='6').count(),
+      "Market/bazaar": all.filter(victim_arrest_location='7').count(),
+      "Bus station/stand": all.filter(victim_arrest_location='8').count(),
+      "Police station": all.filter(victim_arrest_location='9').count(),
+      "Village drain": all.filter(victim_arrest_location='10').count(),
     }
     victim_arrest_location = sorted(victim_arrest_location.items(), key=operator.itemgetter(1), reverse=True)
+    victim_arrest_location.append(( "Other", all.filter(victim_arrest_location='11').count() ))
 
 
     detention_facility_type = {
@@ -260,7 +260,7 @@ def calculate_stats(all):
       "Admitted extrajudicial execution with no explanation": all.filter(security_official_response_3='1').count(),
       "Admitted custody only": all.filter(security_official_response_4='1').count(),
       "Victim had escaped": all.filter(security_official_response_5='1').count(),
-      "Victim killed will trying to escape": all.filter(security_official_response_6='1').count(),
+      "Victim killed while trying to escape": all.filter(security_official_response_6='1').count(),
       "Victim killed by militants": all.filter(security_official_response_7='1').count(),
       "Told family to go to another police station": all.filter(security_official_response_8='1').count(),
       "Victim killed in crossfire with militants": all.filter(security_official_response_9='1').count(),

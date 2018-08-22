@@ -2,74 +2,94 @@
 {% load profiletags %}
 
 
+
 <div id="stats-profile" class="stats-block">
-  <p><strong><a href="#">Victim Profile&nbsp;»</a></strong></p>
+  <p><strong><a href="#">Victim Demographics&nbsp;»</a></strong></p>
   <div class="toggle">
  
     <div class="row">
-
       <div class="col-12">
-        <span class="percent">{% percent stats.total_killed stats.total%}%</span>
-        Extrajudicial executions
-        <span class="number-of-cases">{{stats.total_killed|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent stats.total_killed stats.total%}%">&nbsp;</div>
-      </div> 
 
-      <div class="col-12">
-        <div class="percent-bar bar-2" style="width:{% percent stats.total_disappeared stats.total%}%">&nbsp;</div>
-        <span class="percent">{% percent stats.total_disappeared stats.total%}%</span>
-        Disappearances
-        <span class="number-of-cases">{{stats.total_disappeared|intcomma}}</<span>
+        <p><strong>Gender</strong></p>
+
+        <div>
+          <span class="percent">{% percent stats.male stats.total%}%</span>
+          Male
+          <span class="number-of-cases">{{stats.male|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.male stats.total%}%">&nbsp;</div>
+        </div> 
+        <div>
+          <div class="percent-bar bar-2" style="width:{% percent stats.female stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.female stats.total%}%</span>
+          <a href="/profiles/?gender=Female">Female</a>
+          <span class="number-of-cases">{{stats.female|intcomma}}</span>
+        </div> 
+
       </div> 
+    </div> 
+    
+    <hr>
+
+    <div class="row">
+      <div class="col-12">
+
+        <p><strong>Marital Status</strong></p>
+
+        <div>
+          <span class="percent">{% percent stats.not_married stats.total%}%</span>
+          Not married
+          <span class="number-of-cases">{{stats.not_married|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.not_married stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div>
+          <div class="percent-bar bar-2" style="width:{% percent stats.married stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.married stats.total%}%</span>
+          Married
+          <span class="number-of-cases">{{stats.married|intcomma}}</span>
+        </div> 
+
+
+      </div> 
+    </div> 
+    
+    <hr>
+
+    <div class="row">
+      <div class="col-12">
+
+        <p><strong>Did the victim have children?</strong></p>
+           {% for o in stats.children %}
+           {%if o.1 %}
+       
+            {% if forloop.first %}
+            <div>
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            </div>
+            {% endif %}
+
+            {% if forloop.last %}
+            <div>
+            <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            </div>
+            {% endif %}
+       
+           {% endif %}
+           {% endfor %}
+
+
+        <p><br>Total children surviving victims: {{stats.total_children|intcomma}}</p>
+      </div>
     </div>
-
-    <hr>
-
-    <div class="row">
-
-      <div class="col-12">
-        <span class="percent">{% percent stats.male stats.total%}%</span>
-        Male victims
-        <span class="number-of-cases">{{stats.male|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent stats.male stats.total%}%">&nbsp;</div>
-      </div> 
-
-
-      <div class="col-12">
-        <div class="percent-bar bar-2" style="width:{% percent stats.female stats.total%}%">&nbsp;</div>
-        <span class="percent">{% percent stats.female stats.total%}%</span>
-        <a href="/profiles/?gender=Female">Female victims</a>
-        <span class="number-of-cases">{{stats.female|intcomma}}</span>
-      </div> 
-
-    </div> 
-    
-    <hr>
-    <div class="row">
-
-      <div class="col-12">
-        <span class="percent">{% percent stats.not_married stats.total%}%</span>
-        Not married
-        <span class="number-of-cases">{{stats.not_married|intcomma}}</span>
-        <div class="percent-bar" style="width:{% percent stats.not_married stats.total%}%">&nbsp;</div>
-      </div> 
-
-      <div class="col-12">
-        <div class="percent-bar bar-2" style="width:{% percent stats.married stats.total%}%">&nbsp;</div>
-        <span class="percent">{% percent stats.married stats.total%}%</span>
-        Married
-        <span class="number-of-cases">{{stats.married|intcomma}}</span>
-      </div> 
-
-
-    </div> 
     
     <hr>
 
     <div class="row">
       <div class="col-12">
 
-          <p><strong>Victim religion</strong></p>
+          <p><strong>Religion</strong></p>
 
            {% for o in stats.religion %}
            {%if o.1 %}
@@ -99,7 +119,6 @@
     <div class="row">
       <div class="col-12">
 
-
           <p><strong>Caste</strong></p>
 
            {% for o in stats.caste %}
@@ -107,7 +126,7 @@
        
             {% if forloop.first %}
             <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
            {% endif %}
@@ -115,7 +134,7 @@
             {% if forloop.last %}
             <div>
             <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
             </div>
            {% endif %}
        
@@ -174,7 +193,7 @@
     <div class="row">
       <div class="col-12">
 
-        <p><strong>Victim age</strong></p>
+        <p><strong>Age</strong></p>
 
            {% for o in stats.age_range %}
            {%if o.1 %}
@@ -190,71 +209,19 @@
       </div>
     </div>
 
-    <hr>
 
-    <div class="row">
-      <div class="col-12">
-
-        <p><strong>Did the victim have children?</strong></p>
-           {% for o in stats.children %}
-           {%if o.1 %}
-       
-            {% if forloop.first %}
-            <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
-            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-            </div>
-            {% endif %}
-
-            {% if forloop.last %}
-            <div>
-            <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
-            </div>
-            {% endif %}
-       
-           {% endif %}
-           {% endfor %}
-
-
-        <p><br>Total children surviving victims: {{stats.total_children|intcomma}}</p>
-      </div>
-    </div>
-
-    <hr>
-    
-    <div class="row">
-      <div class="col-12">
-
-        <p><strong>Number of victims per family</strong></p>
-           {% for o in stats.number_of_victims %}
-           {% if o.number_of_victims %}
-     
-            <div>
-            <span class="percent">{% percent o.number_of_victims__count stats.total %}%</span> {{o.number_of_victims}} victim{{ o.number_of_victims|pluralize }} <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
-            <div class="percent-bar" style="width:{% percent o.number_of_victims__count stats.total %}%">&nbsp;</div>        
-            </div>
-     
-           {% endif %}
-           {% endfor %}
-
-      </div>
-    </div>
-
-
-</div>
+  </div>
 </div>
 
 
 <hr>
 
 <div id="stats-detention" class="stats-block">
-  <p><strong><a href="#">Abduction, Detention, Extrajudicial Execution, or Disappearance&nbsp;»</a></strong></p>
+  <p><strong><a href="#">Abduction, Detention, & Torture&nbsp;»</a></strong></p>
   <div class="toggle">
 
 
       <div class="row">
-
         <div class="col-12">
         
           <p><strong>Prior detentions</strong></p>
@@ -281,7 +248,7 @@
       <div class="row">
 
         <div class="col-12">
-          <p><strong>Abduction preceding disappearance / extrajudicial execution</strong></p>
+          <p><strong>Abduction preceding enforced disappearance/extrajudicial execution</strong></p>
 
           <div>
           <span class="percent">{% percent stats.victim_arrest_status stats.total%}%</span>
@@ -303,7 +270,7 @@
 
       <div class="row">
         <div class="col-12">
-          <p><strong>Security officials informed witnesses about destination</strong></p>
+          <p><strong>Security officials informed witnesses where they were taking the victim</strong></p>
 
           <div>
           <span class="percent">{% percent stats.so_inform_witnesses stats.witness_arrest_yes%}%</span>
@@ -327,7 +294,7 @@
       <div class="row">
         <div class="col-12">
 
-          <p><strong>If abduction known, witness to abduction</strong></p>
+          <p><strong>Witnesses to abduction</strong></p>
 
              {% for o in stats.witness_arrest %}
              {%if o.1 %}
@@ -401,29 +368,30 @@
 
       <div class="row">
         <div class="col-12">
+          <p><strong>Preceding detention location known</strong></p>
 
-          <p><strong>Condition of corpse, if known</strong></p>
+          <div>
+            <span class="percent">{% percent stats.victim_detention_loc_known stats.total%}%</span>
+            Yes
+            <span class="number-of-cases">{{stats.victim_detention_loc_known|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent stats.victim_detention_loc_known stats.total%}%">&nbsp;</div>
+          </div>
+          <div>
+            <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_detention_loc_known stats.total%}%">&nbsp;</div>
+            <span class="percent">{% percent stats.no_victim_detention_loc_known stats.total%}%</span>
+            No
+            <span class="number-of-cases">{{stats.no_victim_detention_loc_known|intcomma}}</span>
+          </div> 
 
-             {% for o in stats.condition_of_remains %}
-             {%if o.1 %}
-
-              <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
-              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-              </div>
-
-             {% endif %}
-             {% endfor %}
-
-        </div>
-      </div>
+        </div> 
+      </div> 
 
       <hr>
 
       <div class="row">
         <div class="col-12">
 
-            <p><strong>Witness to detention prior to disappearance/extrajudicial execution</strong></p>
+            <p><strong>Witnesses to detention preceding enforced disappearance/extrajudicial execution</strong></p>
             
             <p><em>Data forthcoming</em></p>
 
@@ -469,7 +437,6 @@
       <hr>
 
       <div class="row">
-
         <div class="col-12">
         
           <p><strong>Victim presented before judge/magistrate</strong></p>
@@ -491,27 +458,86 @@
         </div> 
       </div> 
   
-      <hr>
+        
+  </div>
+</div>
 
-      <div class="row">
 
-        <div class="col-12">
-          <span class="percent">{% percent stats.victim_detention_loc_known stats.total%}%</span>
-          Victim detention location known
-          <span class="number-of-cases">{{stats.victim_detention_loc_known|intcomma}}</span>
-          <div class="percent-bar" style="width:{% percent stats.victim_detention_loc_known stats.total%}%">&nbsp;</div>
+<hr>
+
+<div id="stats-execution" class="stats-block">
+  <p><strong><a href="#">Enforced Disappearances vs. Extrajudicial Executions&nbsp;»</a></strong></p>
+  <div class="toggle">
+
+    <div class="row">
+      <div class="col-12">
+        <p><strong>Classification</strong></p>
+              
+        <div>
+          <span class="percent">{% percent stats.total_killed stats.total%}%</span>
+          Extrajudicial executions
+          <span class="number-of-cases">{{stats.total_killed|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.total_killed stats.total%}%">&nbsp;</div>
         </div> 
 
-        <div class="col-12">
-          <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_detention_loc_known stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_victim_detention_loc_known stats.total%}%</span>
-          Victim detention location not known
-          <span class="number-of-cases">{{stats.no_victim_detention_loc_known|intcomma}}</span>
+        <div>
+          <div class="percent-bar bar-2" style="width:{% percent stats.total_disappeared stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.total_disappeared stats.total%}%</span>
+          Enforced disappearances
+          <span class="number-of-cases">{{stats.total_disappeared|intcomma}}</<span>
+        </div> 
+
+      </div>
+    </div>
+
+
+    <hr>
+    
+    <div class="row">
+      <div class="col-12">
+
+        <p><strong>Number of victims per family</strong></p>
+           {% for o in stats.number_of_victims %}
+           {% if o.number_of_victims %}
+     
+            <div>
+            <span class="percent">{% percent o.number_of_victims__count stats.total %}%</span> {{o.number_of_victims}} victim{{ o.number_of_victims|pluralize }} <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.number_of_victims__count stats.total %}%">&nbsp;</div>        
+            </div>
+     
+           {% endif %}
+           {% endfor %}
+
+      </div>
+    </div>
+
+
+    <hr>
+
+
+    <div class="row">
+      <div class="col-12">
+
+        <p><strong>Related incidents</strong></p>
+
+        <div>
+          <span class="percent">{% percent stats.genuine_encounter stats.total%}%</span>
+          Genuine encounters in family
+          <span class="number-of-cases">{{stats.genuine_encounter|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.genuine_encounter stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div>
+          <div class="percent-bar bar-2" style="width:{% percent stats.not_genuine_encounter stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.not_genuine_encounter stats.total%}%</span>
+          No genuine encounters in family
+          <span class="number-of-cases">{{stats.not_genuine_encounter|intcomma}}</span>
         </div> 
 
       </div> 
+    </div> 
 
-        
+
   </div>
 </div>
 
@@ -520,6 +546,85 @@
 <hr>
 
 
+
+<div id="stats-disposal" class="stats-block">
+  <p><strong><a href="#">Body Disposal&nbsp;»</a></strong></p>
+  <div class="toggle">
+
+
+      <div class="row">
+        <div class="col-12">
+
+            <p><strong>Body disposal by security forces</strong><p>
+
+           {% for o in stats.so_body_disposal %}
+           {%if o.1 %}
+       
+            <div>
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            </div>
+       
+           {% endif %}
+           {% endfor %}
+
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+        <p><strong>Security forces returned body</strong></p>
+
+        <div>
+          <span class="percent">{% percent stats.so_return_body stats.total%}%</span>
+          Yes
+          <span class="number-of-cases">{{stats.so_return_body|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.so_return_body stats.total%}%">&nbsp;</div>
+        </div> 
+
+        <div>
+          <div class="percent-bar bar-2" style="width:{% percent stats.no_so_return_body stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.no_so_return_body stats.total%}%</span>
+          No
+          <span class="number-of-cases">{{stats.no_so_return_body|intcomma}}</span>
+        </div> 
+
+      </div> 
+    </div> 
+
+
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+          <p><strong>Condition of corpse, if known</strong></p>
+
+             {% for o in stats.condition_of_remains %}
+             {%if o.1 %}
+
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+
+             {% endif %}
+             {% endfor %}
+
+        </div>
+      </div>
+      
+      
+  </div>
+</div>
+
+    
+
+
+<hr>
 
 <div id="stats-security" class="stats-block">
   <p><strong><a href="#">Security Forces Implicated&nbsp;»</a></strong></p>
@@ -555,7 +660,7 @@
       <div class="row">
         <div class="col-12">
         
-          <p><strong>Security forces wore uniforms</strong></p>
+          <p><strong>Security forces uniformed</strong></p>
 
           <div>
           <span class="percent">{% percent stats.security_forces_uniformed stats.witness_arrest_yes%}%</span>
@@ -629,16 +734,16 @@
 <hr>
 
 <div id="stats-militancy" class="stats-block">
-  <p><strong><a href="#">The Militancy&nbsp;»</a></strong></p>
+  <p><strong><a href="#">Militancy Involvement&nbsp;»</a></strong></p>
   <div class="toggle">
 
         <div class="row">
           <div class="col-12">
-            <p><strong>Victim’s militancy status</strong></p>
+            <p><strong>Combatant status</strong></p>
 
           <div>
             <span class="percent">{% percent stats.militant stats.total%}%</span>
-            Militant
+            Combatant
             <span class="number-of-cases">{{stats.militant|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent stats.militant stats.total%}%">&nbsp;</div>
           </div> 
@@ -646,7 +751,7 @@
           <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.not_militant stats.total%}%">&nbsp;</div>
             <span class="percent">{% percent stats.not_militant stats.total%}%</span>
-            Not militant
+            Not-combatant
             <span class="number-of-cases">{{stats.not_militant|intcomma}}</span>
           </div> 
 
@@ -657,7 +762,7 @@
 
         <div class="row">
           <div class="col-12">
-            <p><strong>Non-militant, provided militant support</strong></p>
+            <p><strong>Non-combatant, provided support to militants</strong></p>
 
             <div>          
             <span class="percent">{% percent stats.militant_support stats.total%}%</span>
@@ -706,65 +811,8 @@
 
 
 
-<div id="stats-disposal" class="stats-block">
-  <p><strong><a href="#">Disposal of Body&nbsp;»</a></strong></p>
-  <div class="toggle">
-
-
-      <div class="row">
-        <div class="col-12">
-
-        <p><strong>Security officials returned the victim’s body</strong></p>
-
-        <div>
-          <span class="percent">{% percent stats.so_return_body stats.total%}%</span>
-          Yes
-          <span class="number-of-cases">{{stats.so_return_body|intcomma}}</span>
-          <div class="percent-bar" style="width:{% percent stats.so_return_body stats.total%}%">&nbsp;</div>
-        </div> 
-
-        <div>
-          <div class="percent-bar bar-2" style="width:{% percent stats.no_so_return_body stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_so_return_body stats.total%}%</span>
-          No
-          <span class="number-of-cases">{{stats.no_so_return_body|intcomma}}</span>
-        </div> 
-
-      </div> 
-    </div> 
-    
-      <hr>
-
-      <div class="row">
-        <div class="col-12">
-
-            <p><strong>Body disposal by security forces</strong><p>
-
-           {% for o in stats.so_body_disposal %}
-           {%if o.1 %}
-       
-            <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
-            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-            </div>
-       
-           {% endif %}
-           {% endfor %}
-
-
-          </div>
-        </div>
-
-
-  </div>
-</div>
-
-<hr>
-
-
-
 <div id="stats-advocacy" class="stats-block">
-  <p><strong><a href="#">Advocacy & Impact&nbsp;»</a></strong></p>
+  <p><strong><a href="#">Remedies & Impact&nbsp;»</a></strong></p>
   <div class="toggle">
 
 
@@ -856,30 +904,3 @@
 </div>
 
     
-<hr>
-
-
-<div id="stats-related" class="stats-block">
-  <p><strong><a href="#">Related Incidents&nbsp;»</a></strong></p>
-  <div class="toggle">
-
-      <div class="row">
-
-        <div class="col-12">
-          <span class="percent">{% percent stats.genuine_encounter stats.total%}%</span>
-          Genuine encounters in family
-          <span class="number-of-cases">{{stats.genuine_encounter|intcomma}}</span>
-          <div class="percent-bar" style="width:{% percent stats.genuine_encounter stats.total%}%">&nbsp;</div>
-        </div> 
-
-        <div class="col-12">
-          <div class="percent-bar bar-2" style="width:{% percent stats.not_genuine_encounter stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.not_genuine_encounter stats.total%}%</span>
-          No genuine encounters in family
-          <span class="number-of-cases">{{stats.not_genuine_encounter|intcomma}}</span>
-        </div> 
-
-      </div> 
-
-  </div>
-</div>
