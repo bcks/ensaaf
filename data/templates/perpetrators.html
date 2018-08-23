@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load profiletags %}
+
+{% block title %}Key Perpetrators{% endblock %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-12">
+    
+      <h1>Key Perpetrators</h1>
+
+      <ul>
+    {% for o in officials %}
+        <li><a href="/official/{{o.0}}">{{o.1}}</li>
+    {% endfor %}
+      </ul>
+
+      <p><br></p>
+
+  </div>
+</div>
+
+
+{% endblock %}

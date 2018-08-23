@@ -22,6 +22,7 @@ urlpatterns = [
     path('map_ajax/', map_ajax, name="map_ajax"),
     path('change/', change, name="change"),
     path('profiles/', profiles, name="profiles"),
+    path('perpetrators/', perpetrators, name="perpetrators"),
     url(r'^graphql', GraphQLView.as_view(graphiql=True)),
     path('<slug:slug>/', page),
     path('', map, name="map"),

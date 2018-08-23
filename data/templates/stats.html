@@ -245,6 +245,30 @@
     
       <hr>
 
+
+      <div class="row">
+        <div class="col-12">
+          <p><strong>Prior torture</strong></p>
+
+          <div>          
+          <span class="percent">{% percent stats.prior_torture_yes stats.total%}%</span>
+          Yes
+          <span class="number-of-cases">{{stats.prior_torture_yes|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.prior_torture_yes stats.total%}%">&nbsp;</div>
+          </div> 
+          <div>
+          <div class="percent-bar bar-2" style="width:{% percent stats.prior_torture_no stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.prior_torture_no stats.total%}%</span>
+          No
+          <span class="number-of-cases">{{stats.prior_torture_no|intcomma}}</span>
+        </div> 
+
+        </div> 
+      </div> 
+      
+        
+      <hr>
+
       <div class="row">
 
         <div class="col-12">

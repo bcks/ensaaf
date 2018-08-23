@@ -1,4 +1,5 @@
 import re
+import operator
 
 from django.shortcuts import render
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -26,6 +27,8 @@ districts = [{"district":"Amritsar","district_id":302,"subdistricts":[{"tehsil":
 #    return render(request, "home.html", { 
 #      "victims": victims
 #      })
+
+
 
 
 @cache_page(60 * 60)
@@ -281,6 +284,11 @@ def seniorofficial(value):
     return officials.get(value)
 
 
+
+@cache_page(60 * 60)
+def perpetrators(request):
+    s_officials = sorted(officials.items(), key=operator.itemgetter(1))
+    return render(request, "perpetrators.html", { "officials": s_officials })
 
 
 @cache_page(60 * 60)
