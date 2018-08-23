@@ -307,7 +307,7 @@ def htarget_reason(v1, v2, v3, v4, v5, v6, v7, v8, v9, other):
   groups = []
   groups.append('Victim was a militant') if v1 == 1 else 0
   groups.append('Victim was related to a militant') if v2 == 1 else 0
-  groups.append('Victim gave support to a militant') if v3 == 1 else 0
+  groups.append('Victim gave support to militants') if v3 == 1 else 0
   groups.append('Victim was involved in criminal activities') if v4 == 1 else 0
   groups.append('Victim was identifiably Sikh') if v5 == 1 else 0
   groups.append('Security forces thought victim was a militant') if v6 == 1 else 0
@@ -407,7 +407,10 @@ def hvictim_arrest_date(victim_arrest_exact_date, victim_arrest_date):
 @register.simple_tag()
 def hwitness_arrest(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v12, other):
   groups = []
-  groups.append('No witness') if v0 == 1 else 0
+  
+  if v0 == 1 or v12 == 1:
+    groups.append('Unknown')
+    
   groups.append('Spouse') if v1 == 1 else 0
   groups.append('Parents') if v2 == 1 else 0
   groups.append('Children') if v3 == 1 else 0
@@ -418,7 +421,6 @@ def hwitness_arrest(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v12, other):
   groups.append('Friend') if v8 == 1 else 0
   groups.append('Co-villager') if v9 == 1 else 0
   groups.append('Respondent') if v10 == 1 else 0
-  groups.append('Unknown') if v12 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -620,7 +622,7 @@ def hno_action_pursued_reason(v1, v2, v3, v4, other):
 def hfamily_effects(v1, v2, v3, v4, v5, v6, v7, v8, v9, v12, other):
   groups = []
   groups.append('No drastic action') if v1 == 1 else 0
-  groups.append('Family member(s) ran away') if v2 == 1 else 0
+  groups.append('Family members ran away') if v2 == 1 else 0
   groups.append('Family member(s) engaged in militant activity') if v3 == 1 else 0
   groups.append('Family member(s) dropped out of school') if v4 == 1 else 0
   groups.append('Family member(s) abused alcohol/drugs') if v5 == 1 else 0
@@ -643,7 +645,7 @@ def hfamily_effects(v1, v2, v3, v4, v5, v6, v7, v8, v9, v12, other):
 def hgovnt_response_desired(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, other):
   groups = []
   groups.append('Monetary compensation to family') if v1 == 1 else 0
-  groups.append('Rehabilitation services to family members') if v2 == 1 else 0
+  groups.append('Rehabilitation services to family') if v2 == 1 else 0
   groups.append('Public acknowledgement of wrongful deaths') if v3 == 1 else 0
   groups.append('Criminal prosecution of those responsible') if v4 == 1 else 0
   groups.append('Employment') if v5 == 1 else 0

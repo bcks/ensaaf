@@ -19,13 +19,12 @@ urlpatterns = [
     path('search/', include('haystack.urls')),
     path('admin/', admin.site.urls),
     path('overview/', overview, name="overview"),
-    path('map/', map, name="map"),
     path('map_ajax/', map_ajax, name="map_ajax"),
     path('change/', change, name="change"),
     path('profiles/', profiles, name="profiles"),
     url(r'^graphql', GraphQLView.as_view(graphiql=True)),
     path('<slug:slug>/', page),
-    path('', home, name="home"),
+    path('', map, name="map"),
 ]
 
 

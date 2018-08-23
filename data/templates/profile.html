@@ -39,7 +39,7 @@
                 
       <p><br></p>  
     
-      <h4>Profile</h4>
+      <h4>Demographics</h4>
 
       {% if victim.victim_address_int_loc == 1 %}
         {% if victim.village_name != '' %}
@@ -227,26 +227,27 @@
   <div class="row">
     <div class="col-sm-12">
       <h4>
+      
       {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-        Abduction{% if victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 or victim.victim_prior_detention_trt == 1 %},{% endif %}
+        Abduction{% if victim.victim_prior_detention_trt == 1 %},{% endif %}
       {% endif %}
 
       {% if victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}      
-        Detention{% if victim.victim_prior_detention_trt == 1 %},{% endif %}
+
+
+      {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 and victim.victim_prior_detention_trt == 0 %}&{% endif %}
+      
+              Detention{% if victim.victim_prior_detention_trt == 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %},{% endif %}
       {% endif %}
+
 
       {% if victim.victim_prior_detention_trt == 1 %}
-        Torture
+
+      {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 or victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}&{% endif %}
+      
+              Torture
       {% endif %}
 
-{% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 or victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 or victim.victim_prior_detention_trt == 1 %}&{% endif %}
-      
-      {% if victim.victim_disappeared_killed == 2 %}
-        Extrajudicial Execution
-      {% endif %}
-      {% if victim.victim_disappeared_killed == 1 %}
-        Disappearance
-      {% endif %}
       
       
       </h4>
@@ -303,7 +304,7 @@
 
     {% if victim.victim_arrest_status != '' %}
     <div class="col-sm-6">
-      <p class="kicker dots">Abduction prior to
+      <p class="kicker dots">Abduction preceding
       {% if victim.victim_disappeared_killed == 2 %}
         extrajudicial execution
       {% endif %}
@@ -313,11 +314,9 @@
     </p>
     </div>
     <div class="col-sm-6">
-      <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date != '' %}, {% autoescape off %}{% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% endautoescape %}{% endif %}</p>
-  
+      <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date != '' %}, {% autoescape off %}{% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% endautoescape %}{% endif %}</p>  
     </div>
     {% endif %}
-
 
 
 
@@ -404,7 +403,7 @@
   {% if victim.judge_or_magistrate_result_3 != 1  %}
   {% if victim.judge_or_magistrate_result_1 or victim.judge_or_magistrate_result_2 or victim.judge_or_magistrate_result_3 or victim.judge_or_magistrate_result_4 or victim.judge_or_magistrate_resoth %}
     <div class="col-sm-6">
-      <p class="kicker dots">Judge or magistrate result</p>
+      <p class="kicker dots">Judge/magistrate result</p>
     </div>
     <div class="col-sm-6">
       <p>{% hjudge_or_magistrate_result victim.judge_or_magistrate_result_1 victim.judge_or_magistrate_result_2 victim.judge_or_magistrate_result_3 victim.judge_or_magistrate_result_4 victim.judge_or_magistrate_resoth %}</p>
@@ -498,7 +497,7 @@
   <div class="row">
     <div class="col-sm-12">
       <p><br></p>
-      <h4>Disposal of Body</h5>
+      <h4>Body Disposal</h5>
     </div>
   </div>
 
@@ -553,7 +552,7 @@
   {% if victim.condition_of_remains_1 or victim.condition_of_remains_2 or victim.condition_of_remains_3 or victim.condition_of_remains_4 or victim.condition_of_remains_5 or victim.condition_of_remains_6 or victim.condition_of_remains_7 or victim.other_condition_of_remains %}
 
     <div class="col-sm-6">
-      <p class="kicker dots">Condition of remains</p>      
+      <p class="kicker dots">Condition of corpse</p>      
     </div>
     <div class="col-sm-6">
       <p>{% hcondition_of_remains victim.condition_of_remains_1 victim.condition_of_remains_2 victim.condition_of_remains_3 victim.condition_of_remains_4 victim.condition_of_remains_5 victim.condition_of_remains_6 victim.condition_of_remains_7 victim.other_condition_of_remains %}</p>
@@ -669,15 +668,11 @@
 </div>
 
 
-
-<!-- put militancy here -->
-
-
   <p><br></p>
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>Militancy Status</h4>
+      <h4>Militancy Involvement</h4>
     </div>
   </div>
   
@@ -737,6 +732,19 @@
 
 
 
+  <p><br></p>  
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4>Related Incidents</h4>
+    </div>
+
+    <div class="col-sm-6">
+      <p class="dots"><span class="kicker"><em><strong>Forthcoming</strong></em></span></p>
+    </div>
+  </div>
+
+
 
 
 {% if victim.security_officials_apprchd != 9 %}
@@ -763,7 +771,7 @@
   {% if victim.security_officials_apprchd != 9 %}
   {% if victim.security_officials_apprchd != '' %}
     <div class="col-sm-6">
-      <p class="kicker dots">Officials approached</p>
+      <p class="kicker dots">Security officials approached</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no victim.security_officials_apprchd %}{% if victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or  victim.so_approached_other %}, {% endif %}{% autoescape off %}{% hso_approached_type  victim.so_approached_type_1  victim.so_approached_type_2 victim.so_approached_type_3 victim.so_approached_type_4  victim.so_approached_type_5 victim.so_approached_type_6 victim.so_approached_type_7  victim.so_approached_other %}{% endautoescape %}{% if  victim.so_approached_loc %}, from {% hadd_spaces victim.so_approached_loc|uncensus %}{% endif %}</p>
@@ -914,7 +922,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>Reflections from the Family</h4>
+      <h4>Family Reflections</h4>
     </div>
   </div>
 
