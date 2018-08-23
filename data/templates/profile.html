@@ -503,7 +503,9 @@
 
   <div class="row">
 
-  {% if victim.so_return_body != '' %}
+
+
+  {% if victim.so_return_body != '' and victim.so_return_body != 0 %}
     <div class="col-sm-6">
       <p class="kicker dots">Body returned</p>
     </div>
@@ -511,8 +513,6 @@
       <p>{% hso_return_body victim.so_return_body %}</p>
     </div>
   {% endif %}
-
-
 
 
 
@@ -541,7 +541,7 @@
     </div>
     <div class="col-sm-6">
       <p>
-      {% if victim.cremation_location_type != 5 %}{% hcremation_location_type victim.cremation_location_type %}{% endif %}{% if victim.cremation_location_type == 5 %}{% if victim.cremation_loctype_other %}{{victim.cremation_loctype_other}}{% endif %}{% endif %}{% if victim.cremation_location_name  %}{% if victim.cremation_location_type != 5 %}, {% endif %}{{victim.cremation_location_name|uncensus|title}}{% endif %}
+      {% if victim.cremation_location_type != 5 %}{% hcremation_location_type victim.cremation_location_type %}{% endif %}{% if victim.cremation_location_type == 5 %}{% if victim.cremation_loctype_other %}{{victim.cremation_loctype_other}}{% endif %}{% endif %}{% if victim.cremation_location_name  %}{% if victim.cremation_location_type != 5 %}, {% endif %}{{victim.cremation_location_name|uncensus}}{% endif %}
       </p>
     </div>
   {% endif %}
@@ -559,6 +559,8 @@
     </div>
 
   {% endif %}
+
+
 
   </div>
 
