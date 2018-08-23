@@ -52,11 +52,11 @@ class DataFilter(django_filters.FilterSet):
       villages = Villages.objects.filter(tehsil_id=value).order_by('village_name')
     return queryset.filter(**{'village_id__in': villages.values('id') })
 
-  militancy = django_filters.CharFilter(method='militancy_filter')
-  def militancy_filter(self, queryset, name, value):
-    if value == 'Militant':
+  combatant = django_filters.CharFilter(method='combatant_filter')
+  def combatant_filter(self, queryset, name, value):
+    if value == 'Combatant':
       return queryset.filter(**{'victim_militant_status': '1'})    
-    elif value == 'Not a Militant':
+    elif value == 'Non-Combatant':
       return queryset.filter(**{'victim_militant_status': '0'})
     elif value == 'Unknown':
       return queryset.filter(**{'victim_militant_status': '9'})
@@ -82,7 +82,7 @@ class DataFilter(django_filters.FilterSet):
       'district',
       'first_name',
       'gender',
-      'militancy',
+      'combatant',
       'religion',
       'year',
     ]

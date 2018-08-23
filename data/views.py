@@ -38,7 +38,7 @@ def profiles(request):
     selected_classification = request.GET.get('classification','')
     selected_first_name = request.GET.get('first_name','')
     selected_gender = request.GET.get('gender','')
-    selected_militancy = request.GET.get('militancy','')
+    selected_combatant = request.GET.get('combatant','')
     selected_religion = request.GET.get('religion','')
     selected_district = request.GET.get('district','')
     selected_year = request.GET.get('year','')
@@ -57,8 +57,8 @@ def profiles(request):
       selected.append(selected_first_name)
     if selected_gender:
       selected.append(selected_gender)
-    if selected_militancy:
-      selected.append(selected_militancy)
+    if selected_combatant:
+      selected.append(selected_combatant)
     if selected_religion:
       selected.append(selected_religion)
     if selected_year:
@@ -96,7 +96,7 @@ def profiles(request):
       'selected_first_name': selected_first_name,
       'selected_gender': selected_gender,
       'selected_religion': selected_religion,
-      'selected_militancy': selected_militancy,
+      'selected_combatant': selected_combatant,
       'selected_year': selected_year,
       'selected_sort': selected_sort,
       'selected': selected,
@@ -118,7 +118,7 @@ def map(request):
     selected_caste = request.GET.get('caste','')
     selected_classification = request.GET.get('classification','')
     selected_gender = request.GET.get('gender','')
-    selected_militancy = request.GET.get('militancy','')
+    selected_combatant = request.GET.get('combatant','')
     selected_religion = request.GET.get('religion','')
     selected_district = request.GET.get('district','')
     selected_year = request.GET.get('year','')
@@ -135,8 +135,8 @@ def map(request):
       selected.append(selected_classification)
     if selected_gender:
       selected.append(selected_gender)
-    if selected_militancy:
-      selected.append(selected_militancy)
+    if selected_combatant:
+      selected.append(selected_combatant)
     if selected_religion:
       selected.append(selected_religion)
     if selected_year:
@@ -162,7 +162,7 @@ def map(request):
       'selected_district': selected_district,
       'selected_gender': selected_gender,
       'selected_religion': selected_religion,
-      'selected_militancy': selected_militancy,
+      'selected_combatant': selected_combatant,
       'selected_year': selected_year,
       'selected_urban_rural': selected_urban_rural,
       'selected': selected,

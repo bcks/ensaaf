@@ -130,10 +130,20 @@ tr { vertical-align: top; }
 
 #map-over {
 	padding: 1rem 0 .5rem 0;
-	color: #fff;
 	background-color: #000;
 }
+#map-over h3, #map-over h4 {
+	color: #fc0;
+}
 
+#year_buttons {
+  text-align: center;
+  background-color: #000;    
+}
+#year_buttons button { 
+  font-size: 1.5rem;
+  margin: 2px;
+}
 
 
 @media only screen and (min-width: 640px) {

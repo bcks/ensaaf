@@ -19,13 +19,6 @@
       width:100%;
       background-color: #000;
     }
-    #buttons {
-      text-align: center;
-      background-color: #000;    
-    }
-    #buttons button { 
-      margin: 2px;
-    }
     .leaflet-interactive { cursor: default; }
     .leaflet-popup-content-wrapper { border-radius: 2px; }
     .leaflet-control-attribution { display: none; }  
@@ -38,12 +31,9 @@
 {% block content %}
 
 <div class="row">
-    <div class="col-sm-10">
-      <h1 style="margin-bottom:0;">Mapping Crimes Against Humanity</h1>
-      <h2 style="margin-top:0;">Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India</h2>
-    </div>
-    <div class="col-sm-2">
-        <p id="clear-filters"{%if selected %} style="display:block;"{%endif%}><br><a href="#" onclick="clearFilters();return false;">Clear filters</a></p>
+    <div class="col-12">
+      <h2 style="margin-bottom:0;">Mapping Crimes Against Humanity</h2>
+      <h4 style="margin-top:0;">Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India</h4>
     </div>
 </div>
 
@@ -51,10 +41,14 @@
 
 <form method="get" id="form">
 
+
+<div class="row" id="clear-filters"{%if selected %} style="display:block;"{%endif%}>
+  <div class="col-12">
+      <p class="float-right"><a href="#" onclick="clearFilters();return false;">Clear filters</a></p>
+  </div>
+</div>
+
 <div class="row">
-
-
-
 
     <div class="form-group filter{% if selected_age %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="age" name="age" onchange="updateMapData()">
@@ -98,12 +92,12 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_militancy %} selected{% endif %} col-6 col-md-4 col-lg-3">
-      <select class="form-control" id="militancy" name="militancy" onchange="updateMapData()">
-        <option value="">Militant Status</option>
-        <option {% if selected_militancy == 'Militant' %} selected=selected{% endif %} value="Militant">Militant</option>
-        <option {% if selected_militancy == 'Not a Militant' %} selected=selected{% endif %} value="Not a Militant">Not a Militant</option>
-        <option {% if selected_militancy == 'Unknown' %} selected=selected{% endif %} value="Unknown">Unknown</option>
+    <div class="form-group filter{% if selected_combatant %} selected{% endif %} col-6 col-md-4 col-lg-3">
+      <select class="form-control" id="combatant" name="combatant" onchange="updateMapData()">
+        <option value="">Combatant Status</option>
+        <option {% if selected_combatant == 'Combatant' %} selected=selected{% endif %} value="Combatant">Combatant</option>
+        <option {% if selected_combatant == 'Non-Combatant' %} selected=selected{% endif %} value="Non-Combatant">Non-Combatant</option>
+        <option {% if selected_combatant == 'Unknown' %} selected=selected{% endif %} value="Unknown">Unknown</option>
       </select>
     </div>
 
@@ -161,12 +155,12 @@
 
 <div id="map-over">
   <div class="container">
-  Punjab, India: At least <span id="count">{{total|intcomma}}</span> Extrajudicial Executions/Enforced Disappearance<span id="count-plural">s</span></p>
+    <h4><span id="count">At least {{total|intcomma}}</span> Extrajudicial Executions/Enforced Disappearance<span id="count-plural">s</span></h4>
   </div><!-- end container -->
 </div>
 <div id="mapid">
 </div>
-<div id="buttons"></div>
+<div id="year_buttons"></div>
 
 
 
@@ -187,10 +181,10 @@
 
 
 // make year buttons
-for (i = 1981; i<=2000; i++) {
-  $('#buttons').append('<button type="button" class="btn btn-dark">'+i+'</button>');
+for (i = 1984; i<=2000; i++) {
+  $('#year_buttons').append('<button type="button" class="btn btn-dark">'+i+'</button>');
 }
-$('#buttons button').on('click', function(e) {
+$('#year_buttons button').on('click', function(e) {
   console.log(e);
   $("#year").val(e.target.innerText);
   updateMapData();
