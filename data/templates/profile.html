@@ -49,7 +49,7 @@
             </div>
             <div class="col-sm-10">
               {% if victim.village_id|add:"0" > 0 and village.tehsil%}
-                <p><span define="Village"><a href="{% url 'village' victim.village_id %}">{{victim.village_name}},</a></span>
+                <p><span define="Village/town/city"><a href="{% url 'village' victim.village_id %}">{{victim.village_name}},</a></span>
                 <span define="Subdistrict"><a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}},</a></span>
                 <span define="District"><a href="/district/{{village.district_id}}">{{village.district}}</a></span></p>
               {% else %}

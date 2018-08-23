@@ -144,7 +144,7 @@ def map(request):
     if selected_urban_rural:
       selected.append(selected_urban_rural)
       
-    victim_list = Data.objects.filter(timeline__gte='1980-01-01',timeline__lte='2000-12-31').values('village_id','village_name','timeline')
+    victim_list = Data.objects.values('village_id','village_name','timeline')
     victim_filter = DataFilter(request.GET, queryset=victim_list)
     total = Data.objects.count()
 
@@ -171,7 +171,7 @@ def map(request):
 
 @cache_page(60 * 60)
 def map_ajax(request):
-    victim_list = Data.objects.filter(timeline__gte='1980-01-01',timeline__lte='2000-12-31').values('village_id','village_name','timeline')    
+    victim_list = Data.objects.values('village_id','village_name','timeline')    
     victim_filter = DataFilter(request.GET, queryset=victim_list)
     return render(request, "map_ajax.html", { "all": victim_filter.qs, }, content_type='application/json')
 
@@ -556,7 +556,7 @@ def hvictim_address_other(value):
     print (census_id)
     try:
       village = Villages.objects.filter( id=census_id )[:1].get()
-      return '<span define="Village"><a href="/village/' + census_id + '">' + village.village_name + '</a></span>, '\
+      return '<span define="Village/town/city"><a href="/village/' + census_id + '">' + village.village_name + '</a></span>, '\
         '<span define="Subdistrict"><a href="/tehsil/' + village.tehsil_id + '">' + village.tehsil + '</a></span>, '\
         '<span define="District"><a href="/district/' + village.district_id + '">' + village.district + '</a></span>'
     except Villages.DoesNotExist:
