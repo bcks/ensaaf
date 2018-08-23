@@ -235,7 +235,7 @@
       {% if victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}      
 
 
-      {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 and victim.victim_prior_detention_trt == 0 %}&{% endif %}
+      {% if victim.victim_prior_detention_trt != 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}&{% endif %}
       
               Detention{% if victim.victim_prior_detention_trt == 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %},{% endif %}
       {% endif %}
