@@ -70,6 +70,13 @@ h1, h2, h3, h4, h5, h6, h7 {
 }
 h5 { margin-top: 1em; }
 
+.smallparen { 
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: normal;
+  color: #808080;
+}
+
 .keyword h2 { margin-bottom: 0; }
 .m-2-top { margin-top: .5rem; }
 
@@ -281,12 +288,11 @@ tr { vertical-align: top; }
 footer { margin-top: 2rem; }
 footer .row { margin: 0; }
 
-footer, footer h3, h4, h5 { 
+footer, footer h3, footer h4, footer h5 { 
   font: 14px/1.7 "Open Sans",Arial,Helvetica,sans-serif;
   color: #ccd; 
 }
-footer h3, h4, h5 { 
-  font: 14px/1.7 "Open Sans",Arial,Helvetica,sans-serif;
+footer h3, footer h4, footer h5 { 
   color: #fff; 
 }
 img.footer_logo { margin-bottom: 1rem; }

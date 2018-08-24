@@ -253,6 +253,13 @@ def hphoto(value):
     return ''
 
 
+@register.filter(name='smallparen')
+def smallparen(value):
+    value = re.sub('\(','<div class="smallparen">(', value)
+    value = re.sub('\)',')</div>', value)
+    return value
+
+
 
 @register.simple_tag()
 def hvictim_militant_reason(v1, v2, v3, v4, v5, v6, v7, v8, other):
