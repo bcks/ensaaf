@@ -7,7 +7,9 @@
 
 {% block head %}
   <link rel="stylesheet" href="/static/css/leaflet.css" />
-  <script src="/static/js/leaflet.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"/>
+  <script type="text/javascript" src="/static/js/leaflet.js"></script>
+  <script type="text/javascript" src="/static/js/leaflet.zoomhome.min.js"></script>
 
   <style>
     .bar { fill: #900; }
@@ -23,6 +25,16 @@
     .leaflet-interactive { cursor: default; }
     .leaflet-popup-content-wrapper { border-radius: 2px; }
     .leaflet-control-attribution { display: none; }  
+
+    .leaflet-control-zoomhome a {
+        font: bold 18px "Lucida Console",Monaco,monospace;
+    }
+    a.leaflet-control-zoomhome-in,
+    a.leaflet-control-zoomhome-out {
+      font-size: 1.5em;
+      line-height: 26px;
+    }
+
   </style>
   <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
   <script type="text/javascript" src="/static/js/lodash.min.js"></script>
@@ -156,7 +168,7 @@
 
 <div id="map-over">
   <div class="container">
-    <h4><span id="count">At least {{total|intcomma}}</span> Extrajudicial Executions/Enforced Disappearance<span id="count-plural">s</span></h4>
+    <h4><span id="count">At least {{all|length|intcomma}}</span> Extrajudicial Executions/Enforced Disappearance<span id="count-plural">s</span></h4>
   </div><!-- end container -->
 </div>
 <div id="mapid">
@@ -233,8 +245,6 @@ function clearFilters() {
   $("#form .filter").removeClass('selected');
   $("#form .filter select").val($("#form option:first").val());
   updateMapData();
-  $("#count").html("{{total|intcomma}}");
-  $("#count-plural").html("s");
 }
 
 
@@ -281,7 +291,8 @@ function updateMapData() {
           }
       } 
      // todo 
-     // window.history.pushState({"html":'',"pageTitle":'Mapping Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions'},"", "/map?" + params);
+     
+     history.pushState(params,'Mapping Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions', "/?" + params);
 
       makeVillageNames(start, end);
   })
@@ -293,7 +304,7 @@ function updateMapData() {
 }
 
 
-var options = { minZoom: 4, maxZoom: 12 };
+var options = { minZoom: 4, maxZoom: 12, zoomControl: false };
 
 var mymap = L.map('mapid', options).setView([31.0157601,75.45], 8);
 
@@ -302,8 +313,11 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}
   attribution: '',
 }).addTo(mymap);
 
-mymap.scrollWheelZoom.disable();
+var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
+zoomHome.addTo(mymap);
 
+mymap.scrollWheelZoom.disable();
+ 
 
 
 var punjabStyle = { "color": "#999", "weight": 1, "opacity": 0.65, "fillOpacity": 0 };
@@ -394,6 +408,11 @@ function updateMap(start, end) {
       }
     }
 
+
+
+    // test Object.keys(markers).length to see less than total? see if need to recreate map or just update
+
+
     if (Object.keys(markers).length > 0) {
 
         // update markers
@@ -457,19 +476,20 @@ function updateMap(start, end) {
 
 
 
-//d3.select(window).on('resize', resize);
 
 var timeline_margin = {top: 10, right: 0, bottom: 50, left: 30};
 
-function resize() {  
 
+/*
+d3.select(window).on('resize', resize);
+
+function resize() {  
   var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
       height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
-
-  //d3.select("#timeline svg").attr("width",width);
-  //d3.selectAll("path").attr('d', path);
+  d3.select("#timeline svg").attr("width",width);
+  d3.selectAll("path").attr('d', path);
 }
-
+*/
 
 
 
