@@ -102,6 +102,7 @@ GRAPHENE = {
     'SCHEMA': 'data.schema.schema'
 }
 
+
 # load a secrets file that isn't in source control; backup is using environ config
 try:
     secrets = open(os.path.join(BASE_DIR, 'ensaaf/secrets.json'))
