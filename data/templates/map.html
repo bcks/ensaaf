@@ -272,11 +272,13 @@ function updateMapData() {
   }
 
   var params = $('#form').serialize();
+
+  console.log(params);
+
   $.getJSON("/map_ajax/?" + params, function(json) {
       timeCapsule = [];
       timeCapsule = json.timeline;
-      
-      console.log( numberWithCommas(timeCapsule.length) );
+
       $("#count").html( numberWithCommas(timeCapsule.length) );
       if (timeCapsule.length == 1) {
         $("#count-plural").html("");
@@ -295,7 +297,11 @@ function updateMapData() {
      // window.history.pushState({"html":'',"pageTitle":'Mapping Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions'},"", "/map?" + params);
 
       makeVillageNames(start, end);
-  });
+  })
+  .fail(function(error) {
+    console.log("error");
+    console.log(error);
+  })
 
 }
 
