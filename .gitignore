@@ -63,6 +63,7 @@ target/
 
 # local static files
 staticfiles
+static/photos
 
 postactivate
 predeactivate
