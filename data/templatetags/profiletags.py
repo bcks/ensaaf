@@ -238,7 +238,7 @@ def hphoto(value):
   names = value.split(',')
   s = "";
   photos = []
-  path = 'http://graphonomy.com/ensaaf/photos'
+  path = 'https://data.ensaaf.org/static/photos'
   if value:
     for n in names:
       thisName = n.strip()
