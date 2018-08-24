@@ -551,12 +551,12 @@ def hvictim_address_other(value):
   str = str[0]
   p = re.compile(r'([0123456789.]+)-')
   m = p.search(str)
+  vname = re.sub(r'([0123456789.]+)-','', str)
   if m:
     census_id = m.group(1)
-    print (census_id)
     try:
       village = Villages.objects.filter( id=census_id )[:1].get()
-      return '<span define="Village/town/city"><a href="/village/' + census_id + '">' + village.village_name + '</a></span>, '\
+      return '<span define="Village/town/city"><a href="/village/' + census_id + '">' + vname + '</a></span>, '\
         '<span define="Subdistrict"><a href="/tehsil/' + village.tehsil_id + '">' + village.tehsil + '</a></span>, '\
         '<span define="District"><a href="/district/' + village.district_id + '">' + village.district + '</a></span>'
     except Villages.DoesNotExist:
