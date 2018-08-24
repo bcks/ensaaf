@@ -216,21 +216,17 @@ function formatDate(date) {
 
 
 
-var timeCapsule = [{% for o in all %}{% if o.timeline != None %}{v:{ vid:"{{o.village_id}}",t:{{o.timeline|date:"U"}} }},{% endif %}{% endfor %}];
+var timeCapsule = [{% for o in all %}{"v":{"vid":"{{o.village_id|default:"0"}}","t":{{o.timeline|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}];
 
 for (var i=0;i<timeCapsule.length;i++) {
-    if ( timeCapsule[i]['v']['t']  < 1514764800 ) {
+    if ( ( timeCapsule[i]['v']['t']  < 1514764800 ) && ( timeCapsule[i]['v']['t'] ) && ( timeCapsule[i]['v']['vid'] ) ) {
       timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
       var d = new Date(0);
       timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
     }
 }  
 
-var start = d3.min(d3.entries(timeCapsule), function(d) {
-  if (d.value.date > 0) {
-    return d.value.date;
-  }
-});
+var start = d3.min(d3.entries(timeCapsule), function(d) { return d.value.date; });
 
 var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
 
@@ -306,9 +302,9 @@ function updateMapData() {
 }
 
 
-var options = { minZoom: 8, maxZoom: 12 };
+var options = { minZoom: 4, maxZoom: 12 };
 
-var mymap = L.map('mapid', options).setView([31.0157601,75], 8);
+var mymap = L.map('mapid', options).setView([31.0157601,75.45], 8);
 
 L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
 	subdomains: 'abcd',
@@ -378,12 +374,12 @@ function makeVillageNames(start, end) {
     
     // update size per village
     for (var i=0;i<timeCapsule.length;i++) {
-        if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start))  {
+        if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start) && ( timeCapsule[i]['v']['vid'] ))  {
           var id = timeCapsule[i]['v']['vid'];
           villages[id] = (villages[id] || 0) + 1;
         }
     }
-
+    
     updateMap(start, end);
 }
 
@@ -402,7 +398,7 @@ function updateMap(start, end) {
       var thisVillage = _.find(villageCentroids, function(o) {
         return o.CODE.endsWith(keys[i]);        
       });
-      if (keys[i]) {
+      if (keys[i] && thisVillage) {
         points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':thisVillage.NAME});
       }
     }
@@ -431,31 +427,33 @@ function updateMap(start, end) {
         
         // create map
         _.forEach(points, function(d) {
-          var customCircleMarker = L.CircleMarker.extend({
-             options: { 
+
+          if (d.id !== '0') {
+            var customCircleMarker = L.CircleMarker.extend({
+               options: { 
+                  url: '/village/' + d.id,
+               }
+            });
+            markers[String(d.id)] = new customCircleMarker([d.coord[1] + .015,d.coord[0] - .025], {
+                stroke: false,
+                fillColor: '#fc0',
+                fillOpacity: 0.5,
                 url: '/village/' + d.id,
-             }
-          });
+            }).addTo(mymap);
 
-          markers[String(d.id)] = new customCircleMarker([d.coord[1] + .015,d.coord[0] - .025], {
-              stroke: false,
-              fillColor: '#fc0',
-              fillOpacity: 0.5,
-              url: '/village/' + d.id,
-          }).addTo(mymap);
+            var tultipText = '<div class="name">' + d.name + ', ';
+              if (d.subdist !== d.dist) { tultipText += d.subdist + ', '; }
+              tultipText += d.dist + '</div><div class="position">' + d.size + ' Victim';
+              if (d.size > 1) { tultipText += 's'; }
+              tultipText += '</div>';
 
-          var tultipText = '<div class="name">' + d.name + ', ';
-            if (d.subdist !== d.dist) { tultipText += d.subdist + ', '; }
-            tultipText += d.dist + '</div><div class="position">' + d.size + ' Victim';
-            if (d.size > 1) { tultipText += 's'; }
-            tultipText += '</div>';
+            var url = '/village/' + d.id;
 
-          var url = '/village/' + d.id;
-
-          markers[String(d.id)].bindPopup(tultipText);
-          markers[String(d.id)].on('mouseover', function (e) { this.openPopup(); });
-          markers[String(d.id)].on('mouseout', function (e) { this.closePopup(); });
-          markers[String(d.id)].on('click', function (e) { document.location.href = this.options.url; });
+            markers[String(d.id)].bindPopup(tultipText);
+            markers[String(d.id)].on('mouseover', function (e) { this.openPopup(); });
+            markers[String(d.id)].on('mouseout', function (e) { this.closePopup(); });
+            markers[String(d.id)].on('click', function (e) { document.location.href = this.options.url; });
+          }
           
         }); // end for points
 
@@ -490,8 +488,8 @@ function makeTimeline() {
   var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
       height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
 
-  var start = 369792000000; // d3.min(d3.entries(timeCapsule), function(d) { if (d.value.date > 0) { return d.value.date; } });
-  var end = 962409600000; // d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
+  var start = d3.min(d3.entries(timeCapsule), function(d) { return d.value.date; });
+  var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
 
   var xScale = d3.scaleTime().domain([start, end]).rangeRound([0, width]);
 
