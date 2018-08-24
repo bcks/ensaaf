@@ -153,6 +153,7 @@ tr { vertical-align: top; }
 #year_buttons {
   text-align: center;
   background-color: #000;    
+  margin-bottom: -2rem;
 }
 #year_buttons button { 
   font-size: 1.5rem;
@@ -278,6 +279,7 @@ tr { vertical-align: top; }
 /* footer! */
 
 footer { margin-top: 2rem; }
+footer .row { margin: 0; }
 
 footer, footer h3, h4, h5 { 
   font: 14px/1.7 "Open Sans",Arial,Helvetica,sans-serif;
