@@ -272,3 +272,31 @@ tr { vertical-align: top; }
   padding: 4px;
   pointer-events: none;
 }
+
+
+
+/* footer! */
+
+footer { margin-top: 2rem; }
+
+footer, footer h3, h4, h5 { 
+  font: 14px/1.7 "Open Sans",Arial,Helvetica,sans-serif;
+  color: #ccd; 
+}
+footer h3, h4, h5 { 
+  font: 14px/1.7 "Open Sans",Arial,Helvetica,sans-serif;
+  color: #fff; 
+}
+img.footer_logo { margin-bottom: 1rem; }
+.footer_charity-name  { margin-bottom: .5rem; }
+.footer_info { margin: 0; }
+.footer_scroll-to-top a { color: #fff; }
+.footer_top{ 
+  background-color: #3a4159;
+  padding: 2rem 1rem 1rem 1rem;
+}
+.footer_bottom{
+  padding: 1rem 1rem 0 1rem;
+  background-color: #343a4f;
+}
+.footer_info, .footer_bottom{  font-size: .75rem; }
