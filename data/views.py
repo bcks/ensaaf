@@ -31,7 +31,7 @@ districts = [{"district":"Amritsar","district_id":302,"subdistricts":[{"tehsil":
 
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def profiles(request):
     selected_age = request.GET.get('age','')
     selected_caste = request.GET.get('caste','')
@@ -65,19 +65,20 @@ def profiles(request):
       selected.append(selected_year)
 
 
-
     if selected_sort == 'Newest to Oldest':
       victim_list = Data.objects.all().values(\
         'victim_name','victim_disappeared_killed','timeline_start','timeline_end','village_name','photo_vic_fn','record_id')\
         .annotate(year=Trunc('timeline', 'year', output_field=DateField() ))\
         .order_by('-timeline')
       years = list(reversed(range(1981,2008)))
+      years.insert(0, 2012)
     else:
       victim_list = Data.objects.all().values(\
         'victim_name','victim_disappeared_killed','timeline_start','timeline_end','village_name','photo_vic_fn','record_id')\
         .annotate(year=Trunc('timeline', 'year', output_field=DateField() ))\
         .extra(select={'timeline_is_null': "timeline = '0000-00-00'"}, order_by=['timeline_is_null', 'timeline'])
       years = list(range(1981,2008))
+      years.append(2012)
 
     victim_filter = DataFilter(request.GET, queryset=victim_list)
 
@@ -103,7 +104,7 @@ def profiles(request):
       })
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def overview(request):    
     all = Data.objects.all();
     stats = calculate_stats(all)    
@@ -112,7 +113,7 @@ def overview(request):
       })
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def map(request):
     selected_age = request.GET.get('age','')
     selected_caste = request.GET.get('caste','')
@@ -149,6 +150,7 @@ def map(request):
     total = Data.objects.count()
 
     years = list(range(1981,2008))
+    years.append(2012)
     years.append('Date Unknown')
 
     return render(request, "map.html", { 
@@ -169,7 +171,7 @@ def map(request):
       })
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def map_ajax(request):
     victim_list = Data.objects.values('village_id','village_name','timeline')    
     victim_filter = DataFilter(request.GET, queryset=victim_list)
@@ -182,7 +184,7 @@ def change(request):
 
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def profile(request, id=None):
     queryset = Data.objects.filter(record_id=id)
     victim = queryset[:1].get()
@@ -198,7 +200,7 @@ def profile(request, id=None):
     return render(request, "profile.html", { "victim": victim, "village":village } )
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def village(request, slug=None):
     victims = Data.objects.filter(village_id=slug).order_by('victim_name')
     village = Villages.objects.filter(id=slug)[:1].get()
@@ -207,7 +209,7 @@ def village(request, slug=None):
     return render(request, "village.html", { "victims": victims, "village":village } )
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def year(request, year=None):
     district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
@@ -226,7 +228,7 @@ def year(request, year=None):
     return render(request, "year.html", { "victims": victims, "year":year, "stats": stats } )
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def detention(request, type=None, name=None):
     district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
@@ -285,13 +287,13 @@ def seniorofficial(value):
 
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def perpetrators(request):
     s_officials = sorted(officials.items(), key=operator.itemgetter(1))
     return render(request, "perpetrators.html", { "officials": s_officials })
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def official(request, slug=None):
     name =  officials.get(slug)
 
@@ -316,7 +318,7 @@ def official(request, slug=None):
 
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def locality(request, id=None):
     
     _arrest_so_affiliation_loc = SecurityArrest.objects.filter(arrest_so_affiliation_loc__contains=id).values_list('record_id', flat=True)
@@ -341,7 +343,7 @@ def locality(request, id=None):
 
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def securityforce(request, slug=None):
 
     forcemap = {
@@ -381,7 +383,7 @@ def securityforce(request, slug=None):
 
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def tehsil(request, slug=None):
     datas = Data.objects.filter(village_id=OuterRef('pk'))\
                             .values('village_id')\
@@ -503,7 +505,7 @@ def get_tehsils(slug):
 
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def district(request, slug=None):
 
 #    tehsils = Villages.objects.filter(district_id=slug)\
@@ -535,7 +537,7 @@ def district(request, slug=None):
       })
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def page(request, directory=None, slug=None):
     page = Page.objects.get(slug=slug)
     if id is not None and page is None:
