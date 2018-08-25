@@ -8,40 +8,31 @@ strong { font-family: 'Inconsolata', monospace; font-weight: 800; }
 a { color: #008eaf; }
 
 .navbar {
-  color: #fff;
-  background-color: #161616;
   margin-bottom: 2rem;
   padding-bottom: 0;
   padding-top: 0;
 }
 
+
+
+
 #site-title {
-  background-color: #161616;
-  padding: 15px 15px 0px 15px;
+  padding: 15px 15px 0px 0px;
   color: #999;
   display: flex;
 }
 
-.navbar-dark button,
-.navbar-dark .navbar-nav .nav-link {
-  color: #e7902c;
+.navbar-light button,
+.navbar-light .navbar-nav .nav-link {
+  color: #008eaf;
   text-transform: uppercase;
   font-size: 90%;
   letter-spacing: 1px;
-  padding: 0 .75rem;
-}
-.navbar-expand-lg .nav-item:first-of-type .nav-link {
-  padding-left: 2px;
 }
 .navbar-expand-lg .nav-link {
-  border-right: 1px solid #333;
+  border-left: 1px solid #ddd;
 }
 
-.navbar-collapse { z-index: 10; }
-.navbar-collapse .nav-item:first-of-type .nav-link,
-.navbar-collapse .nav-item .nav-link {
-  padding: .75rem;
-}
 
 .navbar-brand {
   background: url(/static/images/ensaaf-logo.png);
@@ -52,10 +43,53 @@ a { color: #008eaf; }
   text-indent: -99999px;
   flex: 0 0 70px;
 }
+.navbar-toggler  {
+  margin-top: 1rem;
+}
+
+@media only screen and (min-width : 992px) {
+  nav { flex-wrap: wrap !important; }  
+  #site-title { width: 100%; }
+  nav.navbar-expand-lg .nav-item:first-of-type .nav-link {
+    padding-left: 2px;
+    border-left: 0;
+  }
+}
+
+@media only screen and (max-width : 992px) {
+  .navbar-collapse {
+    margin-top: 10px;
+    border: 1px solid #ddd;  
+  }
+  .nav-item .nav-link {
+    border-left: 0;
+    border-bottom: 1px solid #ddd;
+  }
+  .navbar-brand {
+    background-size: 50px 18px;
+    width: 50px;
+    height: 18px;
+    flex: 0 0 50px;
+    margin-right: .75rem;
+  }
+  #site-title {
+    font-size: .9rem;
+  }
+
+
+}
+
+.navbar-collapse { z-index: 10; }
+.navbar-collapse .nav-item:first-of-type .nav-link,
+.navbar-collapse .nav-item .nav-link {
+  padding: .1rem .75rem;
+}
+
+
 
 #search-toggle { 
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border: 0px;
 }
 .st0{fill:none;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
@@ -160,7 +194,7 @@ tr { vertical-align: top; }
 #year_buttons {
   text-align: center;
   background-color: #000;    
-  margin-bottom: -2rem;
+  margin-bottom: -3rem;
 }
 #year_buttons button { 
   font-size: 1.5rem;
@@ -285,26 +319,25 @@ tr { vertical-align: top; }
 
 /* footer! */
 
-footer { margin-top: 2rem; }
+footer { 
+  border-top: 1px solid #ccc;
+  margin-top: 3rem; 
+}
 footer .row { margin: 0; }
 
 footer, footer h3, footer h4, footer h5 { 
   font: 14px/1.7 "Open Sans",Arial,Helvetica,sans-serif;
-  color: #ccd; 
 }
 footer h3, footer h4, footer h5 { 
-  color: #fff; 
+  color: #000; 
 }
 img.footer_logo { margin-bottom: 1rem; }
 .footer_charity-name  { margin-bottom: .5rem; }
 .footer_info { margin: 0; }
-.footer_scroll-to-top a { color: #fff; }
 .footer_top{ 
-  background-color: #3a4159;
   padding: 2rem 1rem 1rem 1rem;
 }
 .footer_bottom{
   padding: 1rem 1rem 0 1rem;
-  background-color: #343a4f;
 }
 .footer_info, .footer_bottom{  font-size: .75rem; }
