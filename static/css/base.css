@@ -4,10 +4,16 @@ body {
   line-height: 1.4;
   color: #808080;
 }
+
+#app-wrapper {
+  margin-top: 115px;
+}
+
 strong { font-family: 'Inconsolata', monospace; font-weight: 800; }
 a { color: #008eaf; }
 
 .navbar {
+  background-color: #fff;
   margin-bottom: 2rem;
   padding-bottom: 0;
   padding-top: 0;
@@ -44,7 +50,8 @@ a { color: #008eaf; }
   flex: 0 0 70px;
 }
 .navbar-toggler  {
-  margin-top: 1rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
 }
 
 @media only screen and (min-width : 992px) {
@@ -53,6 +60,9 @@ a { color: #008eaf; }
   nav.navbar-expand-lg .nav-item:first-of-type .nav-link {
     padding-left: 2px;
     border-left: 0;
+  }
+  .navbar-collapse {
+    margin-top: 5px;
   }
 }
 
@@ -73,6 +83,7 @@ a { color: #008eaf; }
     margin-right: .75rem;
   }
   #site-title {
+    padding-top: 0px;
     font-size: .9rem;
   }
 
