@@ -150,13 +150,9 @@
 
     {% for victim in year.list %}
 
-    <div class="col-6 col-sm-4 col-md-3 victim" onclick="window.location.href='/profile/{{victim.record_id}}';" id="p{{victim.record_id}}">
+    <div class="col-6 col-sm-4 col-md-3 victim">
 
-     {% if victim.photo_vic_fn %}
-      <div class="home-box" style="background-image:url('{% hphoto victim.photo_vic_fn %}')">
-     {% else %}
-      <div class="home-box" style="background-image:url(/static/images/gray.jpg)">
-     {% endif %}
+      <div class="home-box" style="background-image:url('{% if victim.photo_vic_fn %}{% hphoto victim.photo_vic_fn %}{% else %}/static/images/gray.jpg{% endif %}')" onclick="window.location.href='/profile/{{victim.record_id}}';" id="p{{victim.record_id}}">     
       </div>
 
         <div class="names">

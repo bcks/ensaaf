@@ -236,19 +236,22 @@
 
 
       {% if victim.victim_prior_detention_trt != 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}&{% endif %}
-      
-              Detention{% if victim.victim_prior_detention_trt == 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %},{% endif %}
+          Detention{% if victim.victim_prior_detention_trt == 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %},{% endif %}
       {% endif %}
 
 
       {% if victim.victim_prior_detention_trt == 1 %}
 
-      {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 or victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}&{% endif %}
-      
-              Torture
+        {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 or victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}&{% endif %}      
+
+        Torture
+
       {% endif %}
 
-      
+
+
+      {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}Prior Abuse{% endif %}      
+
       
       </h4>
     </div>
@@ -362,8 +365,8 @@
 
 
 
-  {% if victim.security_forces_uniformed != '' %}
-  {% if victim.security_forces_uniformed != 9 %}
+  {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
+  {% if victim.security_forces_uniformed != '' and victim.security_forces_uniformed != 9 %}
     <div class="col-sm-6">
       <p class="kicker dots">Security officials uniformed</p>
     </div>
@@ -374,8 +377,7 @@
   {% endif %}
 
 
-
-    {% if victim.demands_2 or victim.demands_3 or victim.demands_4 or victim.demands_5 or victim.demands_6 or victim.demands_7 or victim.demands_8 or victim.demands_10 or victim.other_demands %}
+  {% if victim.demands_2 or victim.demands_3 or victim.demands_4 or victim.demands_5 or victim.demands_6 or victim.demands_7 or victim.demands_8 or victim.demands_10 or victim.other_demands %}
 
     <div class="col-sm-6">
       <p class="kicker dots">Demands by security forces</p>
@@ -384,7 +386,7 @@
       <p>{% hdemands victim.demands_2 victim.demands_3 victim.demands_4 victim.demands_5 victim.demands_6 victim.demands_7 victim.demands_8 victim.demands_10 victim.other_demands %}</p>
     </div>
 
-   {% endif %}
+  {% endif %}
 
 
 
@@ -681,7 +683,7 @@
   <div class="row">
 
     <div class="col-sm-6">
-      <p class="kicker dots">Militant</p>
+      <p class="kicker dots">Combatant</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no_unknown victim.victim_militant_status %}</p>
