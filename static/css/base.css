@@ -1,3 +1,5 @@
+/* @override http://localhost:8000/static/css/base.css */
+
 body {
   background-color: #fff;
   font-family: 'Inconsolata', monospace;
@@ -26,7 +28,15 @@ a { color: #008eaf; }
   padding: 15px 15px 0px 0px;
   color: #999;
   display: flex;
+  justify-content: space-between;
+  line-height: .2;
 }
+#site-title span { display: none; }
+#site-title .social-media {
+  margin-left: 1rem;
+  margin-top: -5px;
+}
+#site-title .social-media img { height: 25px; width: 25px; }
 
 .navbar-light button,
 .navbar-light .navbar-nav .nav-link {
@@ -56,7 +66,6 @@ a { color: #008eaf; }
 
 @media only screen and (min-width : 992px) {
   nav { flex-wrap: wrap !important; }  
-  #site-title { width: 100%; }
   nav.navbar-expand-lg .nav-item:first-of-type .nav-link {
     padding-left: 2px;
     border-left: 0;
@@ -64,6 +73,9 @@ a { color: #008eaf; }
   .navbar-collapse {
     margin-top: 5px;
   }
+  #site-title { width: 100%; line-height: .5; }
+  #site-title .social-media img {  height: 30px; width: 30px; }
+  #site-title span { display: inline; }
 }
 
 @media only screen and (max-width : 992px) {
@@ -86,7 +98,6 @@ a { color: #008eaf; }
     padding-top: 0px;
     font-size: .9rem;
   }
-
 
 }
 
