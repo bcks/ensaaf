@@ -319,8 +319,9 @@ def official(request, slug=None):
 
 
 @cache_page(60 * 60)
-def locality(request, id=None):
-    
+def locality(request, slug=None):
+    id = slug
+
     _arrest_so_affiliation_loc = SecurityArrest.objects.filter(arrest_so_affiliation_loc__contains=id).values_list('record_id', flat=True)
     _query = Q(arrest_security_locality__contains=id) | Q(killing_securityforces_lcl__contains=id) | Q( record_id__in= _arrest_so_affiliation_loc )
 
@@ -451,8 +452,11 @@ def get_district_list():
 
 def get_village_name(value):
     if value:
-      village_name = Villages.objects.filter(id=value).values('village_name')[:1].get()
-      return village_name['village_name']
+      try:
+        village_name = Villages.objects.filter(id=value).values('village_name')[:1].get()
+        return village_name['village_name']
+      except Exception as e:
+        return None        
     else:
       return None
       
