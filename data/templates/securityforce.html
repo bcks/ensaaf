@@ -3,7 +3,7 @@
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Documented cases implicating {{name}}{% endblock %}
+{% block title %}Documented cases directly implicating {{name}}{% endblock %}
 
 {% block content %}
 
@@ -20,7 +20,7 @@
 <div class="row keyword">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} implicating {{name}}:</p>
+  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} directly implicating {{name}}:</p>
 
   {% regroup victims.all by district as district_list %}
 
@@ -64,15 +64,7 @@
       age {{victim.victim_age}}        
         {% if victim.victim_disappeared_killed  %}
          at time of 
-          {% if victim.victim_disappeared_killed == 1 %}
-          disappearance
-          {% endif %}
-          {% if victim.victim_disappeared_killed == 2 %}
-          extrajudicial execution
-          {% endif %}
-        {% endif %}
-      {% endif %}{% endif %}
-      <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a> Village{% else %}{{victim.village_name}}  {% if village_name != None %}Village{% endif %}{% endif %}
+        {% if victim.victim_disappeared_killed == 1 %}disappearance{% endif %}{% if victim.victim_disappeared_killed == 2 %}extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}  {% if village_name != None %}Village{% endif %}{% endif %}
 
       </div>
     </div>
@@ -89,7 +81,7 @@
   
   <div class="col-sm-6 border-left">
     
-    <p class="m-2-top">Key statistics of cases implicating the {{name}}:</p>
+    <p class="m-2-top">Key statistics of cases directly implicating {{name}}:</p>
 
     {% include 'stats.html' %}
 
@@ -103,7 +95,7 @@
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
-      <p>No documented cases implicating the {{name}}.</p>
+      <p>No documented cases directly implicating {{name}}.</p>
     </div>
   </div>
 
