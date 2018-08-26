@@ -64,7 +64,7 @@
       age {{victim.victim_age}}        
         {% if victim.victim_disappeared_killed  %}
          at time of 
-        {% if victim.victim_disappeared_killed == 1 %}disappearance{% endif %}{% if victim.victim_disappeared_killed == 2 %}extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}  {% if village_name != None %}Village{% endif %}{% endif %}
+        {% if victim.victim_disappeared_killed == 1 %}disappearance{% endif %}{% if victim.victim_disappeared_killed == 2 %}extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}
 
       </div>
     </div>

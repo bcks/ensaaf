@@ -263,6 +263,13 @@ def smallparen(value):
 def unparen(value):
     return re.sub(r' \(.+\)','', value)
 
+@register.filter(name='lowercaselocationwithheld')
+def lowercaselocationwithheld(value):
+    if value == 'Location withheld':
+      return 'location withheld'
+    else:
+      return value
+
 
 
 @register.simple_tag()
