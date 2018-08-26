@@ -222,7 +222,7 @@ function formatDate(date) {
 var timeCapsule = [{% for o in all %}{"v":{"vid":"{{o.village_id|default:"0"}}","t":{{o.timeline|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}];
 
 for (var i=0;i<timeCapsule.length;i++) {
-    if ( ( timeCapsule[i]['v']['t']  < 1514764800 ) && ( timeCapsule[i]['v']['t'] ) && ( timeCapsule[i]['v']['vid'] ) ) {
+    if ( ( timeCapsule[i]['v']['t']  < 1514764800 ) && ( timeCapsule[i]['v']['vid'] ) ) {
       timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
       var d = new Date(0);
       timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
@@ -374,7 +374,7 @@ $.getJSON("/static/js/village_loc.json", function(json) {
 function makeVillageNames(start, end) {
 
     villages = {};
-    
+
     // update size per village
     for (var i=0;i<timeCapsule.length;i++) {
         if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start) && ( timeCapsule[i]['v']['vid'] ))  {
@@ -503,6 +503,11 @@ function makeTimeline() {
 
   var start = d3.min(d3.entries(timeCapsule), function(d) { return d.value.date; });
   var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
+
+
+  // Some victims have t=0. will have to account for this when we put the brushable timline back in
+  if ( $( "#year" ).val() == '' ) {  start = new Date(0); }
+
 
   var xScale = d3.scaleTime().domain([start, end]).rangeRound([0, width]);
 
