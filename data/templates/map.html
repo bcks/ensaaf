@@ -270,8 +270,6 @@ function updateMapData() {
 
   var params = $('#form').serialize();
 
-  console.log(params);
-
   $.getJSON("/map_ajax/?" + params, function(json) {
       timeCapsule = [];
       timeCapsule = json.timeline;
@@ -415,6 +413,8 @@ function updateMap(start, end) {
 
     if (Object.keys(markers).length > 0) {
 
+        var params = $('#form').serialize();
+
         // update markers
         _.forEach(markers, function(value, key) {
           if ( d = _.find(points, { 'id': key }) ) {
@@ -426,7 +426,6 @@ function updateMap(start, end) {
                 tultipText += '</div>';
 
               markers[key].bindPopup(tultipText);
-
           } else {
             markers[key].setStyle({fillOpacity: 0});            
             markers[key].unbindPopup();
@@ -462,7 +461,10 @@ function updateMap(start, end) {
             markers[String(d.id)].bindPopup(tultipText);
             markers[String(d.id)].on('mouseover', function (e) { this.openPopup(); });
             markers[String(d.id)].on('mouseout', function (e) { this.closePopup(); });
-            markers[String(d.id)].on('click', function (e) { document.location.href = this.options.url; });
+            markers[String(d.id)].on('click', function (e) {
+              var params = $('#form').serialize();
+              document.location.href = this.options.url + '/?' + params;
+            });
           }
           
         }); // end for points

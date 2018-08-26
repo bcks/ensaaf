@@ -2,7 +2,7 @@
 
 {% load profiletags %}
 
-{% block title %}{{victims.all.0.village_name}}, {{village.tehsil}}, {{village.district}}{% endblock %}
+{% block title %}{{village.village_name}}, {{village.tehsil}}, {{village.district}}{% endblock %}
 
 {% block content %}
 
@@ -14,40 +14,59 @@
   </div>
 </div>
 
-  {% if victims.all|length > 0 %}
-
-   <div class="row">
-    <div class="col-sm-12 m-2"><br>
-      <h5>{{victims.all|length}} documented cases:</h5>
-    </div>
-  </div>
 
 
-    {% for victim in victims.all %}
+{% if victims.qs|length > 0 %}
 
-<div class="row">
-  <div class="col-sm-12 col-md m-2">
-    
-  <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
-  
-  {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
-  age {{victim.victim_age}}        
-    {% if victim.victim_disappeared_killed  %}
-     at time of 
-      {% if victim.victim_disappeared_killed == 1 %}
-      disappearance
-      {% endif %}
-      {% if victim.victim_disappeared_killed == 2 %}
-      extrajudicial execution
-      {% endif %}
+    {% if victims.qs|length == total_victims  %}
+
+      <div class="row">
+        <div class="col-sm-12 m-2"><br>
+          <h5>{{victims.qs|length}} documented case{{victims.qs|pluralize}}:</h5>
+        </div>
+      </div>
+
+    {% else %}
+
+      <div class="row">
+        <div class="col-sm-12 m-2"><br>
+          <h5>Displaying {{victims.qs|length}} of {{total_victims}} documented cases in {{village.village_name|unparen}}:</h5>
+          <hr>
+          <p><a href="/village/{{id}}">Show all documented cases in {{village.village_name|unparen}}</a></p>
+          <hr>
+        </div>
+      </div>
+
     {% endif %}
-  {% endif %}{% endif %}
 
-  </div>
-</div>
+
+
+    {% for victim in victims.qs %}
+
+      <div class="row">
+        <div class="col-sm-12 col-md m-2">
+    
+        <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
+  
+        {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
+        age {{victim.victim_age}}        
+          {% if victim.victim_disappeared_killed  %}
+           at time of 
+            {% if victim.victim_disappeared_killed == 1 %}
+            disappearance
+            {% endif %}
+            {% if victim.victim_disappeared_killed == 2 %}
+            extrajudicial execution
+            {% endif %}
+          {% endif %}
+        {% endif %}{% endif %}
+
+        </div>
+      </div>
       
     {% endfor %}
-    {% else %}
+
+{% else %}
 
    <div class="row">
     <div class="col-sm-12 col-md m-2">   
@@ -55,7 +74,7 @@
     </div>
   </div>
 
-    {% endif %}
+{% endif %}
     
     
 {% endblock %}

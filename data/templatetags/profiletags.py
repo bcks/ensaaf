@@ -259,6 +259,10 @@ def smallparen(value):
     value = re.sub('\)',')</div>', value)
     return value
 
+@register.filter(name='unparen')
+def unparen(value):
+    return re.sub(r' \(.+\)','', value)
+
 
 
 @register.simple_tag()

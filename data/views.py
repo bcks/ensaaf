@@ -202,11 +202,16 @@ def profile(request, id=None):
 
 @cache_page(60 * 60)
 def village(request, slug=None):
-    victims = Data.objects.filter(village_id=slug).order_by('victim_name')
+
+    victim_list = Data.objects.filter(village_id=slug).order_by('victim_name')
+    victim_filter = DataFilter(request.GET, queryset=victim_list)
+    total_victims = victim_list.count()
+    
     village = Villages.objects.filter(id=slug)[:1].get()
+
     if id is not None and id is None:
         return messages.warning(request,"Village %s was not found"%id)
-    return render(request, "village.html", { "victims": victims, "village":village } )
+    return render(request, "village.html", { "id": slug, "total_victims": total_victims, "victims": victim_filter, "village":village } )
 
 
 @cache_page(60 * 60)
@@ -255,7 +260,6 @@ officials = {
   "S0007":"Jasminder [Jaswinder] Singh",
   "S0008":"Gur Iqbal Singh Bhullar",
   "S0009":"Dinkar Gupta",
-  "S0010":"Bua Singh",
   "S0011":"Shiv Kumar",
   "S0012":"Sant Kumar",
   "S0013":"Raj Kishan Bedi",
@@ -267,18 +271,19 @@ officials = {
   "S0019":"Harkishan Singh Kahlon",
   "S0020":"Gobind Ram",
   "S0021":"Anil Kumar Sharma",
-  "S0022":"Mahinder Singh",
   "S0023":"M.K. Tiwari",
   "S0024":"Samant Kumar Goel",
-  "S0025":"Ravinderpal Singh",
   "S0026":"J.P. Birdi",
   "S0027":"A.P. Pandey",
   "S0028":"Sita Ram",
-  "S0029":"Bakhshi Ram",
   "S0030":"Sanjiv Gupta",
   "S0031":"Khubi Ram",
   "S0032":"Sidharth Chattopadhyaya",
 }
+#  "S0010":"Bua Singh",
+#  "S0022":"Mahinder Singh",
+#  "S0025":"Ravinderpal Singh",
+#  "S0029":"Bakhshi Ram",
 
 
 @register.filter(name='seniorofficial')
