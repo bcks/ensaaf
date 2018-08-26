@@ -516,23 +516,6 @@ def get_tehsils(slug):
 
 @cache_page(60 * 60)
 def district(request, slug=None):
-
-#    tehsils = Villages.objects.filter(district_id=slug)\
-#                                    .values('tehsil', 'tehsil_id')\
-#                                    .distinct()
-#    for tehsil in tehsils:
-#        datas = Data.objects.filter(village_id=OuterRef('pk'))\
-#                            .values('village_id')\
-#                            .annotate(Count('village_id'))\
-#                            .values('village_id__count')
-#        villages_data_count = Villages.objects.filter(tehsil_id=tehsil.get('tehsil_id'))\
-#                                        .values('id')\
-#                                        .annotate(data_count=Subquery(datas))\
-#                                        .order_by('-data_count')\
-#                                        .values('data_count')
-#        tehsil['data_count'] = villages_data_count.aggregate(Sum('data_count'))\
-#                                                    .get('data_count__sum')
-
     tehsils = get_tehsils(slug)
     villages = Villages.objects.filter(district_id=slug).order_by('village_name')
     district = Villages.objects.filter(district_id=slug)[:1].values('district')

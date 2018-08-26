@@ -10,9 +10,8 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <p>District:</p>
-    <h1>{{district.0.district}}</h1>
-    <p class="kicker">Boundaries based on the 2001 census. Read about <a href="/methodology">our methodology</a>.</p>
+    <h1 style="margin-bottom:1rem;">{{district.0.district}}</h1>
+    <p class="kicker" style="margin-bottom:1rem;">Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.</p>
     <br>
   </div>
 </div>
@@ -22,7 +21,7 @@
 <div class="row">
   <div class="col-sm-6">
     
-    <h5>Documented cases in subdistricts:</h5>
+    <p>{{stats.total|intcomma}} documented cases in {{district.0.district}} District</p>
 
     {% for village in villages %}
       {% if village.data_count != None %}
@@ -41,7 +40,8 @@
   </div>
   <div class="col-sm-6 border-left">
 
-    <p>{{stats.total|intcomma}} documented cases in {{district.0.district}} District</p>
+
+    <p>Key statistics for documented cases in {{district.0.district}} District</p>
 
     {% include 'stats.html' %}
 
