@@ -414,6 +414,7 @@ function updateMap(start, end) {
     if (Object.keys(markers).length > 0) {
 
         var params = $('#form').serialize();
+        var markers_array = [];
 
         // update markers
         _.forEach(markers, function(value, key) {
@@ -426,11 +427,18 @@ function updateMap(start, end) {
                 tultipText += '</div>';
 
               markers[key].bindPopup(tultipText);
+              markers_array.push( markers[key] );
           } else {
             markers[key].setStyle({fillOpacity: 0});            
             markers[key].unbindPopup();
           }
         });
+
+        
+        if ( $( "#district" ).val() !== '' ) {
+          var group = new L.featureGroup(markers_array);
+          mymap.flyToBounds(group.getBounds());
+        }
     
     } else {
         
