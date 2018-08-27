@@ -9,7 +9,9 @@
     <h1>{{page.title}}</h1>
     
     <article>
-      {{page.body|linebreaks}}
+      {% autoescape off %}
+      {{page.body}}
+      {% endautoescape %}
     </article>
 
   </div>
