@@ -104,7 +104,7 @@ def profiles(request):
       })
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def overview(request):    
     all = Data.objects.all();
     stats = calculate_stats(all)    
