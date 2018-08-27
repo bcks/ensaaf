@@ -13,20 +13,15 @@ body {
 strong { font-family: 'Inconsolata', monospace; font-weight: 800; }
 a { color: #008eaf; }
 
+
+
+
 .navbar {
   background-color: #fff;
   margin-bottom: 2rem;
   padding-bottom: 0;
   padding-top: 0;
 }
-
-blockquote {
-  margin-left: 1rem;
-  margin-right: 1rem;
-  font-style: italic;
-}
-
-
 
 #site-title {
   padding: 15px 15px 0px 0px;
@@ -355,16 +350,21 @@ tr { vertical-align: top; }
 }
 
 
+
+
+
+blockquote {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  font-style: italic;
+}
+blockquote em { font-style: normal; }
 article h3 {
   margin-top: 2rem;
   margin-bottom: 1rem;
 }
-article li {
-  margin-bottom: 1rem;
-}
-article ul.toc li {
-  margin-bottom: 0;
-}
+article li { margin-bottom: 1rem; }
+article ul.toc li { margin-bottom: 0; }
 
 
 
