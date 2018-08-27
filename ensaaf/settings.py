@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'haystack',
     'debug_toolbar',
     'graphene_django',
+    'admin_honeypot',
 ]
 
 MIDDLEWARE = [

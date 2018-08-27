@@ -1,6 +1,7 @@
 aniso8601==3.0.0
 construct==2.5.3
 Django==2.0.3
+django-admin-honeypot==1.1.0
 django-debug-toolbar==1.9.1
 django-filter==2.0.0
 django-haystack==2.8.1
