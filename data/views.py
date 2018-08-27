@@ -31,7 +31,7 @@ districts = [{"district":"Amritsar","district_id":302,"subdistricts":[{"tehsil":
 
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def profiles(request):
     selected_age = request.GET.get('age','')
     selected_caste = request.GET.get('caste','')
@@ -104,7 +104,7 @@ def profiles(request):
       })
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def overview(request):    
     all = Data.objects.all();
     stats = calculate_stats(all)    
@@ -113,7 +113,7 @@ def overview(request):
       })
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def map(request):
     selected_age = request.GET.get('age','')
     selected_caste = request.GET.get('caste','')
@@ -171,7 +171,7 @@ def map(request):
       })
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def map_ajax(request):
     victim_list = Data.objects.values('village_id','village_name','timeline')    
     victim_filter = DataFilter(request.GET, queryset=victim_list)
@@ -184,7 +184,7 @@ def change(request):
 
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def profile(request, id=None):
     queryset = Data.objects.filter(record_id=id)
     victim = queryset[:1].get()
@@ -200,7 +200,7 @@ def profile(request, id=None):
     return render(request, "profile.html", { "victim": victim, "village":village } )
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def village(request, slug=None):
 
     victim_list = Data.objects.filter(village_id=slug).order_by('victim_name')
@@ -214,7 +214,7 @@ def village(request, slug=None):
     return render(request, "village.html", { "id": slug, "total_victims": total_victims, "victims": victim_filter, "village":village } )
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def year(request, year=None):
     district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
@@ -233,7 +233,7 @@ def year(request, year=None):
     return render(request, "year.html", { "victims": victims, "year":year, "stats": stats } )
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def detention(request, type=None, name=None):
     district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
@@ -292,13 +292,13 @@ def seniorofficial(value):
 
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def perpetrators(request):
     s_officials = sorted(officials.items(), key=operator.itemgetter(1))
     return render(request, "perpetrators.html", { "officials": s_officials })
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def official(request, slug=None):
     name =  officials.get(slug)
 
@@ -323,7 +323,7 @@ def official(request, slug=None):
 
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def locality(request, slug=None):
     id = slug
 
@@ -349,7 +349,7 @@ def locality(request, slug=None):
 
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def securityforce(request, slug=None):
 
     forcemap = {
@@ -389,7 +389,7 @@ def securityforce(request, slug=None):
 
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def tehsil(request, slug=None):
     datas = Data.objects.filter(village_id=OuterRef('pk'))\
                             .values('village_id')\
@@ -514,7 +514,7 @@ def get_tehsils(slug):
 
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def district(request, slug=None):
     tehsils = get_tehsils(slug)
     villages = Villages.objects.filter(district_id=slug).order_by('village_name')
@@ -529,7 +529,7 @@ def district(request, slug=None):
       })
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def page(request, directory=None, slug=None):
     page = Page.objects.get(slug=slug)
     if id is not None and page is None:
