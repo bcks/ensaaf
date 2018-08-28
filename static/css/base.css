@@ -1,3 +1,5 @@
+/* @override http://localhost:8000/static/css/base.css */
+
 
 body {
   background-color: #fff;
@@ -208,13 +210,18 @@ tr { vertical-align: top; }
 	padding: 1rem 0 .5rem 0;
 	background-color: #000;
 }
-#map-over h3, #map-over h4 {
+#map-over h4 {
+	color: #b28f00;
+	font-weight: normal;
+}
+#count {
+	font-weight: bold;
 	color: #fc0;
 }
 
 #year_buttons {
   text-align: center;
-  background-color: #000;    
+  background-color: #000;
   margin-bottom: -3rem;
 }
 #year_buttons button { 
@@ -285,7 +292,7 @@ tr { vertical-align: top; }
 	margin-right: .25em;
 }
 .number-of-cases {
-  color: #999;
+  color: #963;
   font-size: 90%;
   margin-left: .25em;
 }
