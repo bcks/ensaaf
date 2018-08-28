@@ -172,7 +172,7 @@ def change(request):
 
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def profile(request, id=None):
     queryset = Data.objects.filter(record_id=id)
     victim = queryset[:1].get()

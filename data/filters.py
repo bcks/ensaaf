@@ -64,7 +64,7 @@ class DataFilter(django_filters.FilterSet):
   year = django_filters.CharFilter(method='year_filter')
   def year_filter(self, queryset, name, value):
     if value == 'Date Unknown':
-      return queryset.filter(**{'timeline__lte': '1979-12-31'})    
+      return queryset.filter(**{'timeline': None})
     else:
       startvalue = value + '-01-01'
       endvalue = value + '-12-31'
