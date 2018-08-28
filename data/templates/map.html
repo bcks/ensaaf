@@ -12,16 +12,11 @@
   <script type="text/javascript" src="/static/js/leaflet.zoomhome.min.js"></script>
 
   <style>
-    .bar { fill: #900; }
-    .axis line, .axis path { stroke: #aaa; }
-    .tick { font-family: 'Fira Sans', sans-serif; }
-
     #mapid {
       height:600px;
       width:100%;
       background-color: #000;
     }
-    #timeline { display: none; }
     .leaflet-interactive { cursor: default; }
     .leaflet-popup-content-wrapper { border-radius: 2px; }
     .leaflet-control-attribution { display: none; }  
@@ -34,7 +29,6 @@
       font-size: 1.5em;
       line-height: 26px;
     }
-
   </style>
   <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
   <script type="text/javascript" src="/static/js/lodash.min.js"></script>
@@ -178,9 +172,12 @@
 <div id="timeline"></div>
   
 <div class="container">
-  
-<script type="text/javascript">
 
+
+
+
+
+<script type="text/javascript">
 
 
 // make year buttons
@@ -195,34 +192,16 @@ $('#year_buttons button').on('click', function(e) {
 
 
 
-
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 
 
-function formatDate(date) {
-  var monthNames = [
-    "January", "February", "March",
-    "April", "May", "June", "July",
-    "August", "September", "October",
-    "November", "December"
-  ];
-  var day = date.getDate();
-  var monthIndex = date.getMonth();
-  var year = date.getFullYear();
-  //  return day + ' ' + monthNames[monthIndex] + ' ' + year;
-  return monthNames[monthIndex] + ' ' + year;
-}
-
-
-
-
 var timeCapsule = [{% for o in all %}{"v":{"vid":"{{o.village_id|default:"0"}}","t":{{o.timeline|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}];
 
 for (var i=0;i<timeCapsule.length;i++) {
-    if ( ( timeCapsule[i]['v']['t']  < 1514764800 ) && ( timeCapsule[i]['v']['vid'] ) ) {
+    if ( timeCapsule[i]['v']['vid'] ) {
       timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
       var d = new Date(0);
       timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
@@ -230,7 +209,6 @@ for (var i=0;i<timeCapsule.length;i++) {
 }  
 
 var start = d3.min(d3.entries(timeCapsule), function(d) { return d.value.date; });
-
 var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
 
 var villages = {};
@@ -303,6 +281,16 @@ function updateMapData() {
 }
 
 
+
+
+
+// init
+
+var previousDistrict = '';
+
+
+// load basemap
+
 var options = { minZoom: 4, maxZoom: 12, zoomControl: false };
 
 var mymap = L.map('mapid', options).setView([31.0157601,75.45], 8);
@@ -312,14 +300,13 @@ L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}
   attribution: '',
 }).addTo(mymap);
 
-var previousDistrict = '';
-
 var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
 zoomHome.addTo(mymap);
-
 mymap.scrollWheelZoom.disable();
  
 
+
+// load punjab provinces
 
 var punjabStyle = { "color": "#999", "weight": 1, "opacity": 0.65, "fillOpacity": 0 };
 var punjab = new L.geoJson();
@@ -336,6 +323,10 @@ $.ajax({
   }
 });
 
+
+
+// load India country borders
+
 var indiaStyle = { "color": "#fff", "weight": 1, "opacity": 0.65, "fillOpacity": 0 };
 var india = new L.geoJson();
 india.addTo(mymap);
@@ -351,6 +342,10 @@ $.ajax({
   }
 });
 
+
+
+// load disputed borders
+
 var disputedStyle = { "color": "#666", "weight": 1, "opacity": 0.65, "fillOpacity": 0, "dashArray": "2 2" };
 var disputed = new L.geoJson();
 disputed.addTo(mymap);
@@ -365,6 +360,10 @@ $.ajax({
       disputed.bringToBack()
   }
 });
+
+
+
+// load village centroids
 
 $.getJSON("/static/js/village_loc.json", function(json) {
     villageCentroids = json
@@ -437,12 +436,13 @@ function updateMap(start, end) {
           }
         });
 
-        
         if ( $( "#district" ).val() !== '' ) {
+          // zoom to district
           var group = new L.featureGroup(markers_array);
           mymap.flyToBounds(group.getBounds());
           previousDistrict = $( "#district" ).val();
         } else if (previousDistrict) {
+          // reset map zoom
           mymap.setView([31.0157601,75.45], 8);            
         }
     
@@ -491,104 +491,29 @@ function updateMap(start, end) {
 
 
 
-
-
-var timeline_margin = {top: 10, right: 0, bottom: 50, left: 30};
-
-
-/*
-d3.select(window).on('resize', resize);
-
-function resize() {  
-  var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
-      height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
-  d3.select("#timeline svg").attr("width",width);
-  d3.selectAll("path").attr('d', path);
-}
-*/
-
-
-
-
 function makeTimeline() {
     
-  var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
-      height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
-
   var start = d3.min(d3.entries(timeCapsule), function(d) { return d.value.date; });
   var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
-
 
   // Some victims have t=0. will have to account for this when we put the brushable timline back in
   if ( $( "#year" ).val() == '' ) {  start = new Date(0); }
 
+  var xScale = d3.scaleTime().domain([start, end]).rangeRound([0, 100]);
 
-  var xScale = d3.scaleTime().domain([start, end]).rangeRound([0, width]);
+  var brush = d3.brushX().on("brush end", brushed);
 
-  var brush = d3.brushX().extent([[0, 0], [width, height]]).on("brush end", brushed);
-
-  /*
-
-  var y = d3.scaleLinear()
-      .range([height, 0]);
-
-  var histogram = d3.histogram()
-      .value(function(d) { return d.date; })
-      .domain(xScale.domain())
-      .thresholds(xScale.ticks(d3.timeMonth));
-  */
-
-  var svg = d3.select("#timeline").append("svg")
-      .attr("width", width + timeline_margin.left + timeline_margin.right)
-      .attr("height", height + timeline_margin.top + timeline_margin.bottom)
-    .append("g")
-      .attr("transform", 
-            "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
+  var svg = d3.select("#timeline").append("svg");
 
   function brushed() {
-    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
-    var s = d3.event.selection || xScale.range();
+    var s = xScale.range();
     makeVillageNames( xScale.invert(s[0]), xScale.invert(s[1]) );
   }
-
-  /*
-
-  var bins = histogram(timeCapsule);
-
-  y.domain([-3, d3.max(bins, function(d) { return d.length; })]);
-
-  svg.selectAll("rect")
-      .data(bins)
-    .enter().append("rect")
-      .attr("class", "bar")
-      .attr("x", 1)
-      .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + y(d.length) + ")"; })
-      .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0); })
-      .style("opacity", function(d) { 
-          if (d.length < 1) { 
-            return 0;
-          } else {
-            return 1;
-          }
-        })
-      .attr("height", function(d) { return height - y(d.length); });
-
-
-  svg.append("g")
-      .attr("transform", "translate(0," + height + ")")
-      .attr('class','axis')
-      .call(d3.axisBottom(xScale));
-
-  svg.append("g")
-      .attr('class','axis')
-      .call(d3.axisLeft(y));
-  */
 
   svg.append("g")
       .attr("class", "brush")
       .call(brush)
       .call(brush.move, xScale.range());
-  
 
 } // end makeTimeline
 
