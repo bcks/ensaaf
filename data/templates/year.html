@@ -59,7 +59,7 @@
       <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
 
       {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
-      age {{victim.victim_age}}        
+      age {{victim.victim_age|default:"unknown"}}        
         {% if victim.victim_disappeared_killed  %}
          at time of 
           {% if victim.victim_disappeared_killed == 1 %}

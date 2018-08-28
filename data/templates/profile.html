@@ -28,13 +28,10 @@
       </p>
 
       <p>
-      {% if victim.victim_sex != None %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age != None %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex != None %},{% endif %}        
-      age {{victim.victim_age}}        
-      {% endif %}{% endif %}
-      </p>
-
-
-          
+      {% if victim.victim_sex != None %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex != None %},{% endif %}        
+      age {{victim.victim_age|default:"unknown"}}        
+      {% endif %}
+      </p>          
                     
                 
       <p><br></p>  
