@@ -228,7 +228,7 @@ def hyear(var):
 
 @register.simple_tag()
 def heducation(value):
-  if value:
+  if value != None:
     education  = ['No education','Primary school','Middle school','High school','High school','High school','Some college','College degree','Graduate diploma','Vocational degree','Vocational degree','Don’t know']
     return education[value]
   else:
@@ -243,7 +243,7 @@ def hphoto(value):
   s = "";
   photos = []
   path = 'https://data.ensaaf.org/static/photos'
-  if value:
+  if value != None:
     for n in names:
       thisName = n.strip()
       first_dir = re.findall('([A-Z]+)', thisName)
