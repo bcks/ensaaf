@@ -301,8 +301,7 @@
 
 
 
-
-    {% if victim.victim_arrest_status != None %}
+    {% if victim.victim_arrest_status != None and victim.victim_arrest_status != 3 %}
     <div class="col-sm-6">
       <p class="kicker dots">Abduction preceding
       {% if victim.victim_disappeared_killed == 2 %}
