@@ -386,6 +386,7 @@
 
 
 
+  {% if victim.judge_or_magistrate_status != 9 %}
   {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
     <div class="col-sm-6">
       <p class="kicker dots">Victim presented before judge/magistrate</p>
@@ -394,7 +395,7 @@
       <p>{% hyes_no_unknown victim.judge_or_magistrate_status %}</p>
     </div>
    {% endif %}
-
+   {% endif %}
 
 
 
