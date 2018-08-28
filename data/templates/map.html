@@ -162,7 +162,7 @@
 
 <div id="map-over">
   <div class="container">
-    <h4>At least <span id="count">{{all|length|intcomma}}</span> Extrajudicial Executions/Enforced Disappearance<span id="count-plural">s</span></h4>
+    <h4>At least <span id="count">{{all|length|intcomma}}</span> Extrajudicial Execution<span class="count-plural">s</span>/Enforced Disappearance<span class="count-plural">s</span></h4>
   </div><!-- end container -->
 </div>
 <div id="mapid">
@@ -255,9 +255,9 @@ function updateMapData() {
 
       $("#count").html( numberWithCommas(timeCapsule.length) );
       if (timeCapsule.length == 1) {
-        $("#count-plural").html("");
+        $(".count-plural").html("");
       } else {     
-        $("#count-plural").html("s");
+        $(".count-plural").html("s");
       }
       
       for (var i=0;i<timeCapsule.length;i++) {
