@@ -28,7 +28,7 @@
       </p>
 
       <p>
-      {% if victim.victim_sex != '' %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age != '' %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex != '' %},{% endif %}        
+      {% if victim.victim_sex != None %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age != None %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex != None %},{% endif %}        
       age {{victim.victim_age}}        
       {% endif %}{% endif %}
       </p>
@@ -42,7 +42,7 @@
       <h4>Demographics</h4>
 
       {% if victim.victim_address_int_loc == 1 %}
-        {% if victim.village_name != '' %}
+        {% if victim.village_name != None %}
           <div class="row">  
             <div class="col-sm-2">
               <p class="kicker dots">Residence</p>
@@ -78,7 +78,7 @@
 
 
   
-      {% if victim.victim_education != '' %}
+      {% if victim.victim_education != None %}
       {% if victim.victim_education != 11 %}
       <div class="row">  
         <div class="col-sm-2">
@@ -134,7 +134,7 @@
       </div>
     
       {% if victim.victim_marital_status == 1 %}
-      {% if victim.victim_children != '' %}
+      {% if victim.victim_children != None %}
       <div class="row">  
         <div class="col-sm-2">
           <p class="kicker dots">Children</p>
@@ -305,7 +305,7 @@
 
 
 
-    {% if victim.victim_arrest_status != '' %}
+    {% if victim.victim_arrest_status != None %}
     <div class="col-sm-6">
       <p class="kicker dots">Abduction preceding
       {% if victim.victim_disappeared_killed == 2 %}
@@ -317,7 +317,7 @@
     </p>
     </div>
     <div class="col-sm-6">
-      <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date != '' %}, {% autoescape off %}{% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% endautoescape %}{% endif %}</p>  
+      <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date %}, {% autoescape off %}{% hvictim_arrest_date victim.victim_arrest_exact_date victim.victim_arrest_date %}{% endautoescape %}{% endif %}</p>  
     </div>
     {% endif %}
 
@@ -331,7 +331,7 @@
         <p class="kicker dots">Place of abduction</p>
       </div>
       <div class="col-sm-6">
-        <p>{% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.victim_arrest_loc_vill != '' %}{{victim.victim_arrest_loc_vill}}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
+        <p>{% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.victim_arrest_loc_vill != None %}{{victim.victim_arrest_loc_vill}}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
 {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %}, 
 {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %}, 
 {{victim.victim_arrest_loc_st}}{% endif %}</p>
@@ -366,7 +366,7 @@
 
 
   {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-  {% if victim.security_forces_uniformed != '' and victim.security_forces_uniformed != 9 %}
+  {% if victim.security_forces_uniformed != None and victim.security_forces_uniformed != 9 %}
     <div class="col-sm-6">
       <p class="kicker dots">Security officials uniformed</p>
     </div>
@@ -442,7 +442,7 @@
     
     {% for this in victim.where_victim_detained.all %}
 
-      <p>{% if this.detention_facility_type != '' %}{% autoescape off %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endautoescape %}{% endif %}{% if this.facility_name != '' %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_district != '' %}, {{this.facility_district|title}}{% endif %}{% if this.duration_of_detention != '' %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
+      <p>{% if this.detention_facility_type != None %}{% autoescape off %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endautoescape %}{% endif %}{% if this.facility_name != None %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_district != None %}, {{this.facility_district|title}}{% endif %}{% if this.duration_of_detention != None %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
 
     {% if this.witness_detention_3 or this.witness_detention_4 or this.witness_detention_5 or this.witness_detention_6 or this.witness_detention_7 or this.witness_detention_8 or this.witness_detention_9 or this.witness_detention_10 or this.witness_detention_12 or this.witness_detention_13 or this.witness_detention_14 or this.witness_detention_other or this.witness_detention_status %}
         <br>{% autoescape off %}{% hwitness_detention this.witness_detention_3 this.witness_detention_4 this.witness_detention_5 this.witness_detention_6 this.witness_detention_7 this.witness_detention_8 this.witness_detention_9 this.witness_detention_10 this.witness_detention_12 this.witness_detention_13 this.witness_detention_14 this.witness_detention_other  this.witness_detention_status %}{% endautoescape %}</p>
@@ -507,7 +507,7 @@
 
 
 
-  {% if victim.so_return_body != '' and victim.so_return_body != 0 %}
+  {% if victim.so_return_body != None and victim.so_return_body != 0 %}
     <div class="col-sm-6">
       <p class="kicker dots">Body returned</p>
     </div>
@@ -613,10 +613,10 @@
 
     {% for this in victim.security_arrest.all %}
 
-      <p>{% if this.soa_code %}<a href="{% url 'official' this.soa_code %}">{% endif %}{{this.arrest_so_first_name|title}} {{this.arrest_so_last_name|title}}{% if this.soa_code %}</a>{% endif %}<!-- rank -->{% if this.arrest_so_rank != '' %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}{% if this.soa_code or this.arrest_so_last_name %},{%endif%} 
+      <p>{% if this.soa_code %}<a href="{% url 'official' this.soa_code %}">{% endif %}{{this.arrest_so_first_name|title}} {{this.arrest_so_last_name|title}}{% if this.soa_code %}</a>{% endif %}<!-- rank -->{% if this.arrest_so_rank != None %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}{% if this.soa_code or this.arrest_so_last_name %},{%endif%} 
 {% harrest_so_rank this.arrest_so_rank %}{% endif %}{% endif %}{% if this.arrest_so_rank == 13 %}{% if this.arrest_so_rank_other %}, 
-{{this.arrest_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliaton -->{% if this.arrest_so_affiliation != '' %}{% if this.arrest_so_affiliation != 8 %}{% if this.arrest_so_affiliation != 7 %}, 
-{% autoescape off %}{% haffiliation this.arrest_so_affiliation %}{% endautoescape %}{% endif %}{% endif %}{% endif %}<!-- arrest_so_affiliation_oth -->{% if this.arrest_so_affiliation_oth != '' %}, 
+{{this.arrest_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliaton -->{% if this.arrest_so_affiliation != None %}{% if this.arrest_so_affiliation != 8 %}{% if this.arrest_so_affiliation != 7 %}, 
+{% autoescape off %}{% haffiliation this.arrest_so_affiliation %}{% endautoescape %}{% endif %}{% endif %}{% endif %}<!-- arrest_so_affiliation_oth -->{% if this.arrest_so_affiliation_oth != None %}, 
 {{this.arrest_so_affiliation_oth}}{% endif %}{% if this.arrest_so_affiliation_loc != None %}, {% autoescape off %}{{this.arrest_so_affiliation_loc|censuslink}}{% endautoescape %}{% endif %}</p>
 
     {% endfor %}
@@ -656,7 +656,7 @@
     {% if victim.security_killed.all|length > 0 %}
     {%for this in victim.security_killed.all %}
 
-      <p>{% if this.sok_code %}<a href="{% url 'official' this.sok_code %}">{% endif %}{% if this.killing_so_first_name != 'Don\'t know' %}{{this.killing_so_first_name|title}}{% endif %} {%if this.killing_so_last_name != 'Don\'t Know' %}{{this.killing_so_last_name|title}}{% endif %}{% if this.sok_code %}</a>{% endif %}<!-- rank -->{% if this.killing_so_rank != '' %}{% if this.killing_so_rank != 13 %}{% if this.killing_so_rank != 14 %}, {% harrest_so_rank this.killing_so_rank %}{% endif %}{% endif %}{% if this.killing_so_rank == 13 %}{% if this.killing_so_rank_other %}, {{this.killing_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliation -->{% if this.killing_so_affiliation != '' %}{% if this.killing_so_affiliation != 8 %}{% if this.killing_so_affiliation != 7 %}, {% autoescape off %}{% haffiliation this.killing_so_affiliation %}{% endautoescape %}{% endif %}{% endif %}{% endif %}<!-- killing_so_affiliation_oth -->{% if this.killing_so_affiliation == 8 %}{% if this.killing_so_affiliation_oth != '' %}, {{this.killing_so_affiliation_oth}}{% endif %}{% endif %}{% if this.killing_so_affiliation_loc != '' %}, {{this.killing_so_affiliation_loc}}{% endif %}</p>
+      <p>{% if this.sok_code %}<a href="{% url 'official' this.sok_code %}">{% endif %}{% if this.killing_so_first_name != 'Don\'t know' %}{{this.killing_so_first_name|title}}{% endif %} {%if this.killing_so_last_name != 'Don\'t Know' %}{{this.killing_so_last_name|title}}{% endif %}{% if this.sok_code %}</a>{% endif %}<!-- rank -->{% if this.killing_so_rank != None %}{% if this.killing_so_rank != 13 %}{% if this.killing_so_rank != 14 %}, {% harrest_so_rank this.killing_so_rank %}{% endif %}{% endif %}{% if this.killing_so_rank == 13 %}{% if this.killing_so_rank_other %}, {{this.killing_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliation -->{% if this.killing_so_affiliation != None %}{% if this.killing_so_affiliation != 8 %}{% if this.killing_so_affiliation != 7 %}, {% autoescape off %}{% haffiliation this.killing_so_affiliation %}{% endautoescape %}{% endif %}{% endif %}{% endif %}<!-- killing_so_affiliation_oth -->{% if this.killing_so_affiliation == 8 %}{% if this.killing_so_affiliation_oth != None %}, {{this.killing_so_affiliation_oth}}{% endif %}{% endif %}{% if this.killing_so_affiliation_loc != None %}, {{this.killing_so_affiliation_loc}}{% endif %}</p>
 
     {% endfor %}
     {% endif %}
@@ -773,7 +773,7 @@
   <div class="row">
 
   {% if victim.security_officials_apprchd != 9 %}
-  {% if victim.security_officials_apprchd != '' %}
+  {% if victim.security_officials_apprchd != None %}
     <div class="col-sm-6">
       <p class="kicker dots">Security officials approached</p>
     </div>
@@ -801,7 +801,7 @@
 
 
 
-  {% if victim.court_or_commission != '' %}
+  {% if victim.court_or_commission != None %}
   {% if victim.court_or_commission != 9 %}
     <div class="col-sm-6">
       <p class="kicker dots">Legal remedies pursued</p>
@@ -845,7 +845,7 @@
 
 {# hide of no connected victims or members of family #}
 
-{% if victim.number_of_victims > 1 and victim.genuine_encounters != '' and victim.genuine_encounters != 9 or victim.others_arrested == 1 or victim.others_arrested == 2 and victim.others_killed_9 != 1 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 %}
+{% if victim.number_of_victims > 1 and victim.genuine_encounters != None and victim.genuine_encounters != 9 or victim.others_arrested == 1 or victim.others_arrested == 2 and victim.others_killed_9 != 1 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 %}
 
 
   <p><br></p>  
@@ -869,7 +869,7 @@
   {% endif %}
 
 
-  {% if victim.genuine_encounters != '' %}
+  {% if victim.genuine_encounters != None %}
   {% if victim.genuine_encounters != 9 %}
   <div class="row">
     <div class="col-sm-6">
@@ -883,7 +883,7 @@
   {% endif %}
 
 
-  {% if victim.others_arrested != '' %}
+  {% if victim.others_arrested != None %}
   <div class="row">
     <div class="col-sm-6">
       <p class="kicker dots">Co-victims of abduction</p>

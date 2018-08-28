@@ -381,10 +381,7 @@ def hvictim_arrest_status(value):
 @register.simple_tag()
 def hvictim_arrest_date(victim_arrest_exact_date, victim_arrest_date):
 
-  if victim_arrest_date == None or victim_arrest_date == '':
-    return ', date unknown'
-
-  if victim_arrest_exact_date == None or victim_arrest_exact_date == '':
+  if victim_arrest_date == None:
     return ', date unknown'
 
   if (victim_arrest_date == 'Don\'t know'):
