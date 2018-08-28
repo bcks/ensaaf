@@ -13,11 +13,11 @@ monthNames = ["", "January", "February", "March", "April", "May", "June", "July"
 
 @register.simple_tag()
 def sex(var):
-    if var == 1:
-      return 'Male'
-    if var == 2:
-      return 'Female'
-    return
+  if var == 1:
+    return 'Male'
+  if var == 2:
+    return 'Female'
+  return
 
 
 
@@ -26,21 +26,18 @@ def uncensus(value):
     return re.sub(r'([0123456789.]+)-','', value)
 
 
+
 # moved to views
 #@register.simple_tag()
 #def hvictim_address_other(value):
-#  str = value.split('_')
-#  str = str[0]
-#  str = re.sub(r'([0123456789.]+)-','', str)
-#  # TODO get VILLAGE FROM CENSUS CODE
-#  village = Villages.objects.filter(id=village_id).get()
-#  print (village)  
-#  return str
 
 
 
 @register.filter(name='censuslink')
 def censuslink(value):
+    
+    if value == None:
+      return None
     
     # split on comma
     parts = value.split(',')
@@ -62,6 +59,8 @@ def censuslink(value):
 
 @register.simple_tag()
 def hyes_no(var):
+    if var == None:
+      return var
     opt = ["No", "Yes", "", "", "", "", "", "", "", "Don’t know"]
     return opt[var]
 
@@ -69,6 +68,8 @@ def hyes_no(var):
 
 @register.simple_tag()
 def hyes_no_unknown(var):
+    if var == None:
+      return var
     opt = ["No", "Yes", "", "", "", "", "", "", "", "Unknown"]
     return opt[var]
 
@@ -76,6 +77,8 @@ def hyes_no_unknown(var):
 
 @register.simple_tag()
 def hyes_no_na(var):
+    if var == None:
+      return var
     opt = ["", "Yes", "No", "Don’t know", "", "", "", "", "", "N/A"]
     return opt[var]
 
@@ -84,9 +87,7 @@ def hyes_no_na(var):
 
 @register.simple_tag()
 def hdate_link(var):
-  if (var == 'Don\'t know'):
-    return ', date unknown'
-  if (var == ''):
+  if var == 'Don\'t know' or var == '' or var == None:
     return ', date unknown'
 
   # 09/20/1988-10/05/1988
@@ -227,8 +228,11 @@ def hyear(var):
 
 @register.simple_tag()
 def heducation(value):
-  education  = ['No education','Primary school','Middle school','High school','High school','High school','Some college','College degree','Graduate diploma','Vocational degree','Vocational degree','Don’t know']
-  return education[value]
+  if value:
+    education  = ['No education','Primary school','Middle school','High school','High school','High school','Some college','College degree','Graduate diploma','Vocational degree','Vocational degree','Don’t know']
+    return education[value]
+  else:
+    return value
 
 
 
@@ -367,6 +371,8 @@ def hforced(value):
 
 @register.simple_tag()
 def hvictim_arrest_status(value):
+  if value == None:
+    return value
   status = ['','Yes','Yes, the victim turned himself/herself in','No','Unknown']
   return status[value]
 
@@ -375,14 +381,19 @@ def hvictim_arrest_status(value):
 @register.simple_tag()
 def hvictim_arrest_date(victim_arrest_exact_date, victim_arrest_date):
 
-  if (victim_arrest_date == 'Don\'t know'):
+  if victim_arrest_date == None or victim_arrest_date == '':
     return ', date unknown'
-  if (victim_arrest_date == ''):
+
+  if victim_arrest_exact_date == None or victim_arrest_exact_date == '':
+    return ', date unknown'
+
+  if (victim_arrest_date == 'Don\'t know'):
     return ', date unknown'
 
   # 09/20/1988-10/05/1988
   #      pattern => '%m/%d/%Y',
   if '/' in victim_arrest_date and '-' in victim_arrest_date:
+    victim_arrest_date = victim_arrest_date.replace('//','/')
     victim_arrest_date = victim_arrest_date.replace('/','-')
     parts = victim_arrest_date.split('-')
     return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
@@ -491,14 +502,18 @@ def hso_approached_type(v1, v2, v3, v4, v5, v6, v7, other):
 
 @register.simple_tag()
 def hadd_spaces(value):
-    terms = value.split(',')
-    s = ', '
-    return s.join(terms)
+  if value == None:
+    return value
+  terms = value.split(',')
+  s = ', '
+  return s.join(terms)
 
 
 
 @register.simple_tag()
 def hvictim_arrest_location(value):
+  if value == None:
+    return value
   location = ['', '', 'Victim\'s residence', 'Friend/relative\'s residence', 'Checkpoint (naka)', 'Roadside', 'Village fields', 'Shop/market', 'Bus station/stand', 'Police station', 'Village drain']
   return location[value]
 
@@ -506,6 +521,8 @@ def hvictim_arrest_location(value):
 
 @register.simple_tag()
 def hso_return_body(value):
+  if value == None:
+    return value
   so_return_body = ['','Yes','Yes, but forced immediate cremation','No','Don’t know']
   return so_return_body[value]
 
@@ -513,6 +530,8 @@ def hso_return_body(value):
 
 @register.simple_tag()
 def hso_body_disposal(value):
+  if value == None:
+    return value
   so_body_disposal = ['','Cremated the body','Dumped body in canal/river','Dumped body in well/drain','Buried the body','Don’t know','Other']
   return so_body_disposal[value]
 
@@ -520,6 +539,8 @@ def hso_body_disposal(value):
 
 @register.simple_tag()
 def hcremation_location_type(value):
+  if value == None:
+    return value
   cremation_location_type = ['','Municipal cremation ground','Village cremation ground','Gurdwara cremation ground','Don’t know','Other']
   return cremation_location_type[value]
 
@@ -684,6 +705,8 @@ def hgovnt_response_desired(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, other)
 
 @register.simple_tag()
 def hothers_arrested(value):
+  if value == None:
+    return value
   others_arrested = ['No','Yes','Yes','','','','','','','Unknown']
   return others_arrested[value]
 
@@ -797,6 +820,8 @@ def hdetention_facility_type(var, other):
 
 @register.simple_tag()
 def hduration_of_detention(v1):
+  if v1 == None:
+    return v1
   try:
      val = int(v1)
      if val > 1:
@@ -810,6 +835,8 @@ def hduration_of_detention(v1):
 
 @register.simple_tag()
 def harrest_so_rank(var):
+  if var == None:
+    return var
   opt = ['','Inspector','Sub Inspector','Assistant Sub Inspector','Senior Superintendent of Police','Deputy Superintendent of Police','Station House Officer','Constable','Head Constable','Sepoy','DIG (Deputy Inspector General)','IG (Inspector General)','DGP (Director General of Police)','Other','Don’t know','Superintendent of Police']
   return opt[var]
 
@@ -817,6 +844,8 @@ def harrest_so_rank(var):
 
 @register.simple_tag()
 def haffiliation(var):
+  if var == None:
+    return var
   affilation = ['','Punjab Police','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span>','Army','Criminal Investigation Agency','<span define="Irregular undercover security force, often consisting of criminals">Black Cat</span>','Don’t Know','Other']
   return affilation[var];
 
@@ -830,7 +859,6 @@ def percent(item1, total):
         return "%.1f" % ((float(item1) / float(total)) * 100)
     except ValueError:
         return ''
-
 
 
 @register.simple_tag()

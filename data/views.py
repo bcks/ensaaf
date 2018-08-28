@@ -65,7 +65,7 @@ def profiles(request):
       victim_list = Data.objects.all().values(\
         'victim_name','victim_disappeared_killed','timeline_start','timeline_end','village_name','photo_vic_fn','record_id')\
         .annotate(year=Trunc('timeline', 'year', output_field=DateField() ))\
-        .extra(select={'timeline_is_null': "timeline = '0000-00-00'"}, order_by=['timeline_is_null', 'timeline'])
+        .extra(select={'timeline_is_null': "timeline = '0000-00-00'"}, order_by=['-timeline_is_null', 'timeline'])
       years = list(range(1981,2008))
       years.append(2012)
 
@@ -529,6 +529,8 @@ def page(request, directory=None, slug=None):
 
 @register.simple_tag()
 def hvictim_address_other(value):
+  if value == None:
+    return value
   str = value.split('_')
   str = str[0]
   p = re.compile(r'([0123456789.]+)-')

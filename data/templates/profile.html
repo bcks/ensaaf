@@ -207,7 +207,7 @@
       {% endif %}
 
     </div>
-    {% if victim.photo_vic_fn != '' %}
+    {% if victim.photo_vic_fn %}
       <div class="col-sm-4 photos" >
         <br>
         <img src="{% hphoto victim.photo_vic_fn %}" alt="photo" onerror="this.src='/static/images/error.jpg';">
