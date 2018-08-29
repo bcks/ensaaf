@@ -267,7 +267,6 @@ function updateMapData() {
             timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
           }
       } 
-     // todo 
      
       history.pushState(params,'Mapping Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions', "/?" + params);
 
@@ -439,7 +438,16 @@ function updateMap(start, end) {
         if ( $( "#district" ).val() !== '' ) {
           // zoom to district
           var group = new L.featureGroup(markers_array);
-          mymap.flyToBounds(group.getBounds());
+          var bounds = group.getBounds();
+          var buffer = {
+            "lat": (bounds._northEast.lat - bounds._southWest.lat) * .15,
+            "lng": (bounds._northEast.lng - bounds._southWest.lng) * .15
+            };
+          bounds._northEast.lat = bounds._northEast.lat + buffer.lat;
+          bounds._northEast.lng = bounds._northEast.lng + buffer.lng;
+          bounds._southWest.lat = bounds._southWest.lat - buffer.lat;
+          bounds._southWest.lng = bounds._southWest.lng - buffer.lng;
+          mymap.flyToBounds(bounds);
           previousDistrict = $( "#district" ).val();
         } else if (previousDistrict) {
           // reset map zoom
