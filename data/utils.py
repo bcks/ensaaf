@@ -99,8 +99,6 @@ def calculate_stats(all):
     }
     children = sorted(children.items(), key=operator.itemgetter(1), reverse=True)
 
-    prior_torture_no = all.filter(victim_prior_detention_trt='0').count()
-    prior_torture_yes = all.filter(victim_prior_detention_trt='1').count()
 
     total_children = all.filter(victim_children__gte='1').aggregate(Sum('victim_children'))
     if total_children['victim_children__sum'] != None:
@@ -116,6 +114,10 @@ def calculate_stats(all):
     no_militant_support = all.filter(victim_militant_support='0',victim_militant_status='0').count()
     prior_detentions = all.filter(victim_prior_detention_st='1').count()
     no_prior_detentions = all.filter(victim_prior_detention_st='0').count()
+
+    prior_torture_yes = all.filter(victim_prior_detention_trt='1').count()
+    prior_torture_no = prior_detentions - prior_torture_yes
+
     security_officials_apprchd = all.filter(security_officials_apprchd='1').count()
     no_security_officials_apprchd = all.filter(security_officials_apprchd='0').count()
     court_or_commission = all.filter(court_or_commission='1').count()
