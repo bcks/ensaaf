@@ -43,11 +43,11 @@ def calculate_stats(all):
     education = sorted(education.items(), key=operator.itemgetter(0), reverse=True)
 
     age_range = { # Dataset.objects.filter(i_end_int__gte=x,i_begin_int__lte=x)
-      "0-17": all.filter(victim_age_averaged__gte=0,victim_age_averaged__lte=17).exclude(victim_age__exact='').count(),
-      "18-33": all.filter(victim_age_averaged__gte=18,victim_age_averaged__lte=33).count(),
-      "34-49": all.filter(victim_age_averaged__gte=34,victim_age_averaged__lte=49).count(),
-      "50-64": all.filter(victim_age_averaged__gte=50,victim_age_averaged__lte=64).count(),
-      "65+": all.filter(victim_age_averaged__gte=65,victim_age_averaged__lte=99).count(),
+      "0-17": all.filter(victim_age__gte=0,victim_age__lte=17).exclude(victim_age__exact='').count(),
+      "18-33": all.filter(victim_age__gte=18,victim_age__lte=33).count(),
+      "34-49": all.filter(victim_age__gte=34,victim_age__lte=49).count(),
+      "50-64": all.filter(victim_age__gte=50,victim_age__lte=64).count(),
+      "65+": all.filter(victim_age__gte=65,victim_age__lte=99).count(),
       "Age unknown": all.filter(victim_age__in=["Don't know",""]).count(),
     }
     age_range = sorted(age_range.items(), key=operator.itemgetter(0))
