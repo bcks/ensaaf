@@ -141,8 +141,8 @@ def calculate_stats(all):
       victim_militant_sprt_vol='2'
       ).count()
 
-    victim_arrest_status = all.filter(victim_arrest_status__in=['0','1']).count()
-    no_victim_arrest_status = all.filter(victim_arrest_status='2').count()
+    victim_arrest_status = all.filter(victim_arrest_status__in=['1','2']).count()
+    no_victim_arrest_status = all.filter(victim_arrest_status='3').count()
     so_inform_witnesses = all.filter(so_inform_witnesses='1').count()
     no_so_inform_witnesses = all.filter(so_inform_witnesses='2').count()
     security_forces_uniformed = all.filter(security_forces_uniformed='1').count()
