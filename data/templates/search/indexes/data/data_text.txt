@@ -1,4 +1,3 @@
 {{ object.record_id }}
 {{ object.victim_name }}
 {{ object.village_name }}
-
