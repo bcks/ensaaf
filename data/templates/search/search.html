@@ -30,15 +30,22 @@
 
       <ul>
       {% for o in page.object_list %}   
+          {% if o.record_id %}
           <li><a href="/profile/{{ o.record_id }}">{{o.victim_name}}</a>,           
               {% if o.village_id|add:"0" > 0 and village.tehsil%}
                 <span define="Village/town/city"><a href="{% url 'village' victim.village_id %}">{{o.village_name}},</a></span>
                 <span define="Subdistrict"><a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}},</a></span>
-                <span define="District"><a href="/district/{{village.district_id}}">{{village.district}}</a></span></p>
+                <span define="District"><a href="/district/{{village.district_id}}">{{village.district}}</a></span>
               {% else %}
                 {{o.village_name}}
               {% endif %}
           </li>
+              {% else %}
+          <li><span define="Village/town/city"><a href="{% url 'village' o.id %}">{{o.village_name}},</a></span>
+                <span define="Subdistrict"><a href="/tehsil/{{o.tehsil_id}}">{{o.tehsil}},</a></span>
+                <span define="District"><a href="/district/{{o.district_id}}">{{o.district}}</a></span>
+          </li>
+              {% endif %}
 
       {% empty %}
           <p>No results found.</p>
