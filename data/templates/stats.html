@@ -149,6 +149,27 @@
     <div class="row">
       <div class="col-12">
 
+        <p><strong>Age</strong></p>
+
+           {% for o in stats.age_range %}
+           {%if o.1 %}
+       
+            <div>
+            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+            </div>
+       
+           {% endif %}
+           {% endfor %}
+
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-12">
+
           <p><strong>Education</strong></p>
 
            {% for o in stats.education %}
@@ -186,29 +207,6 @@
 
       </div>
     </div>
-
-
-    <hr>
-
-    <div class="row">
-      <div class="col-12">
-
-        <p><strong>Age</strong></p>
-
-           {% for o in stats.age_range %}
-           {%if o.1 %}
-       
-            <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
-            <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-            </div>
-       
-           {% endif %}
-           {% endfor %}
-
-      </div>
-    </div>
-
 
   </div>
 </div>
