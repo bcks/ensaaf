@@ -52,13 +52,8 @@ def calculate_stats(all):
     }
     age_range = sorted(age_range.items(), key=operator.itemgetter(0))
 
-
-    urban_rural = {
-      "Urban": all.filter(urban_rural=1).count(),
-      "Rural": all.filter(urban_rural=0).count(),
-    }
-    urban_rural = sorted(urban_rural.items(), key=operator.itemgetter(0))
-
+    urban= all.filter(urban_rural=1).count()
+    rural= all.filter(urban_rural=0).count()
 
     employment = {
       "Farmer/agriculture": all.filter(victim_employment_1='1').count(),
@@ -356,7 +351,8 @@ def calculate_stats(all):
       "total_disappeared": total_disappeared,
       "total_killed": total_killed,
       "total": total,
-      "urban_rural": urban_rural,
+      "urban": urban,
+      "rural": rural,
       "victim_arrest_location": victim_arrest_location,
       "victim_arrest_status": victim_arrest_status,
       "victim_detention_loc_known": victim_detention_loc_known,

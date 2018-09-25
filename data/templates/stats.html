@@ -186,7 +186,6 @@
       </div>
     </div>
 
-
     <hr>
 
     <div class="row">
@@ -207,6 +206,30 @@
 
       </div>
     </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-12">
+
+        <p><strong>Urban / Rural</strong></p>
+
+        <div>
+          <span class="percent">{% percent stats.rural stats.total%}%</span>
+          Rural
+          <span class="number-of-cases">{{stats.rural|intcomma}}</span>
+          <div class="percent-bar" style="width:{% percent stats.rural stats.total%}%">&nbsp;</div>
+        </div> 
+        <div>
+          <div class="percent-bar bar-2" style="width:{% percent stats.urban stats.total%}%">&nbsp;</div>
+          <span class="percent">{% percent stats.urban stats.total%}%</span>
+          Urban
+          <span class="number-of-cases">{{stats.urban|intcomma}}</span>
+        </div> 
+
+      </div>
+    </div>
+
 
   </div>
 </div>
