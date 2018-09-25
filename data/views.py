@@ -27,6 +27,7 @@ def profiles(request):
     selected_classification = request.GET.get('classification','')
     selected_first_name = request.GET.get('first_name','')
     selected_gender = request.GET.get('gender','')
+    selected_urban_rural = request.GET.get('urban_rural','')
     selected_combatant = request.GET.get('combatant','')
     selected_religion = request.GET.get('religion','')
     selected_district = request.GET.get('district','')
@@ -46,6 +47,8 @@ def profiles(request):
       selected.append(selected_first_name)
     if selected_gender:
       selected.append(selected_gender)
+    if selected_urban_rural:
+      selected.append(selected_urban_rural)
     if selected_combatant:
       selected.append(selected_combatant)
     if selected_religion:
@@ -85,6 +88,7 @@ def profiles(request):
       'selected_district': selected_district,
       'selected_first_name': selected_first_name,
       'selected_gender': selected_gender,
+      'selected_urban_rural': selected_urban_rural,
       'selected_religion': selected_religion,
       'selected_combatant': selected_combatant,
       'selected_year': selected_year,
@@ -108,6 +112,7 @@ def map(request):
     selected_caste = request.GET.get('caste','')
     selected_classification = request.GET.get('classification','')
     selected_gender = request.GET.get('gender','')
+    selected_urban_rural = request.GET.get('urban_rural','')
     selected_combatant = request.GET.get('combatant','')
     selected_religion = request.GET.get('religion','')
     selected_district = request.GET.get('district','')
@@ -125,6 +130,8 @@ def map(request):
       selected.append(selected_classification)
     if selected_gender:
       selected.append(selected_gender)
+    if selected_urban_rural:
+      selected.append(selected_urban_rural)
     if selected_combatant:
       selected.append(selected_combatant)
     if selected_religion:
@@ -151,6 +158,7 @@ def map(request):
       'selected_classification': selected_classification,
       'selected_district': selected_district,
       'selected_gender': selected_gender,
+      'selected_urban_rural': selected_urban_rural,
       'selected_religion': selected_religion,
       'selected_combatant': selected_combatant,
       'selected_year': selected_year,

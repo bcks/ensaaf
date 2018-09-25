@@ -72,6 +72,14 @@
       </select>
     </div>
 
+    <div class="form-group filter{% if selected_urban_rural %} selected{% endif %} col-6 col-md-4 col-lg-3">
+      <select class="form-control" id="urban_rural" name="urban_rural" onchange="this.form.submit()">
+        <option value="">Urban / Rural</option>
+        <option {% if selected_urban_rural == 'Urban' %} selected=selected{% endif %} value="Urban">Urban</option>
+        <option {% if selected_urban_rural == 'Rural' %} selected=selected{% endif %} value="Rural">Rural</option>
+      </select>
+    </div>
+
     <div class="form-group filter{% if selected_combatant %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="combatant" name="combatant" onchange="this.form.submit()">
         <option value="">Combatant Status</option>

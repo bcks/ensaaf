@@ -57,7 +57,7 @@
 
 <div class="row">
 
-    <div class="form-group filter{% if selected_age %} selected{% endif %} col-6 col-md-4 col-lg-3">
+    <div class="form-group filter{% if selected_age %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="age" name="age" onchange="updateMapData()">
         <option value="">Age</option>
         <option{% if selected_age == '0-17' %} selected=selected{% endif %}>0-17</option>
@@ -69,7 +69,7 @@
     </div>
 
 
-    <div class="form-group filter{% if selected_caste %} selected{% endif %} col-6 col-md-4 col-lg-3">
+    <div class="form-group filter{% if selected_caste %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="caste" name="caste" onchange="updateMapData()">
         <option value="">Caste</option>
         <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %}>Chamar</option>
@@ -83,7 +83,7 @@
       </select>
     </div>
         
-    <div class="form-group filter{% if selected_classification %} selected{% endif %} col-6 col-md-4 col-lg-3">
+    <div class="form-group filter{% if selected_classification %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="classification" name="classification" onchange="updateMapData()">
         <option value="">Classification</option>
         <option {% if selected_classification == 'Enforced Disappearance' %} selected=selected{% endif %} value="Enforced Disappearance">Enforced Disappearance</option>
@@ -91,7 +91,7 @@
       </select>
     </div>
     
-    <div class="form-group filter{% if selected_gender %} selected{% endif %} col-6 col-md-4 col-lg-3">
+    <div class="form-group filter{% if selected_gender %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="gender" name="gender" onchange="updateMapData()">
         <option value="">Gender</option>
         <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">Female</option>
@@ -99,7 +99,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_combatant %} selected{% endif %} col-6 col-md-4 col-lg-3">
+    <div class="form-group filter{% if selected_combatant %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="combatant" name="combatant" onchange="updateMapData()">
         <option value="">Combatant Status</option>
         <option {% if selected_combatant == 'Combatant' %} selected=selected{% endif %} value="Combatant">Combatant</option>
@@ -108,7 +108,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_religion %} selected{% endif %} col-6 col-md-4 col-lg-3">
+    <div class="form-group filter{% if selected_religion %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="religion" name="religion" onchange="updateMapData()">
         <option value="">Religion</option>
         <option{% if selected_religion == 'Christian' %} selected=selected{% endif %}>Christian</option>
@@ -120,7 +120,7 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_district %} selected{% endif %} col-6 col-md-4 col-lg-3">
+    <div class="form-group filter{% if selected_district %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="district" name="district" onchange="updateMapData()">
         <option value="">District</option>
         {% for o in districts %}
@@ -132,7 +132,15 @@
       </select>
     </div>
 
-    <div class="form-group filter{% if selected_year %} selected{% endif %} col-6 col-md-4 col-lg-3">
+    <div class="form-group filter{% if selected_urban_rural %} selected{% endif %} col-6 col-md-3 col-lg-2">
+      <select class="form-control" id="urban_rural" name="urban_rural" onchange="updateMapData()">
+        <option value="">Urban / Rural</option>
+        <option {% if selected_urban_rural == 'Urban' %} selected=selected{% endif %} value="Urban">Urban</option>
+        <option {% if selected_urban_rural == 'Rural' %} selected=selected{% endif %} value="Rural">Rural</option>
+      </select>
+    </div>
+
+    <div class="form-group filter{% if selected_year %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="year" name="year" onchange="updateMapData()">
         <option value="">Year</option>
         {% for o in years %}
@@ -140,16 +148,6 @@
         {% endfor %}
       </select>
     </div>
-
-<!--
-    <div class="form-group filter{% if selected_urban_rural %} selected{% endif %} col-6 col-md-4 col-lg-3">
-      <select class="form-control" id="urban_rural" name="urban_rural" onchange="updateMapData()">
-        <option value="">Urban/Rural</option>
-        <option{% if selected_urban_rural == "Urban" %} selected=selected{% endif %}>Urban</option>
-        <option{% if selected_urban_rural == "Rural" %} selected=selected{% endif %}>Rural</option>
-      </select>
-    </div>
--->
 
 </div>
     
