@@ -2,3 +2,6 @@
 {{ object.victim_name }}
 {{ object.village_name }}
 {{ object.photo_vic_fn }}
+{{ object.victim_disappeared_killed }}
+{{ object.timeline_start }}
+{{ object.timeline_end }}
