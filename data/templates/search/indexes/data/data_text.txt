@@ -1,3 +1,4 @@
 {{ object.record_id }}
 {{ object.victim_name }}
 {{ object.village_name }}
+{{ object.photo_vic_fn }}

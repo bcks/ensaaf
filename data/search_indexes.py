@@ -7,6 +7,7 @@ class DataIndex(indexes.SearchIndex, indexes.Indexable):
     record_id = indexes.CharField(model_attr='record_id', null=True)
     victim_name = indexes.CharField(model_attr='victim_name', null=True)
     village_name = indexes.CharField(model_attr='village_name', null=True)
+    photo_vic_fn = indexes.CharField(model_attr='photo_vic_fn', null=True)
 
     def get_model(self):
         return Data
@@ -22,6 +23,8 @@ class VillageIndex(indexes.SearchIndex, indexes.Indexable):
     district = indexes.CharField(model_attr='district', null=True)
     district_id = indexes.CharField(model_attr='id', null=True)
     tehsil_id = indexes.CharField(model_attr='tehsil_id', null=True)
+    lon = indexes.CharField(model_attr='lon', null=True)
+    lat = indexes.CharField(model_attr='lat', null=True)
 
     def get_model(self):
         return Villages

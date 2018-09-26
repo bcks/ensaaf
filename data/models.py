@@ -239,6 +239,8 @@ class Villages(models.Model):
     district_id = models.IntegerField()
     tehsil_id = models.IntegerField()
     id = models.CharField(max_length=16, primary_key=True)
+    lon = models.CharField(max_length=16)
+    lat = models.CharField(max_length=16)
     #id = models.ForeignKey(Data, db_column='id', to_field='village_id', related_name='villages', on_delete=models.CASCADE, primary_key=True)
 
     class Meta:

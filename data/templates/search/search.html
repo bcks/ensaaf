@@ -1,6 +1,19 @@
 {% extends 'base.html' %}
 
 {% load humanize %}
+{% load profiletags %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/leaflet.css" />
+  <script type="text/javascript" src="/static/js/leaflet.js"></script>
+  <style>
+    .leaflet-interactive { cursor: pointer; }
+    .leaflet-popup-content-wrapper { border-radius: 2px; }
+    .leaflet-control-attribution { display: none; }
+  </style>
+{% endblock %}
+
+
 
 {% block content %}
 
@@ -28,35 +41,83 @@
 
       <p>{{ page.paginator.count|intcomma }} results, page {{ page.number }} of {{ page.paginator.num_pages }}</p>
 
-      <ul>
-      {% for o in page.object_list %}   
-          {% if o.record_id %}
-          <li><a href="/profile/{{ o.record_id }}">{{o.victim_name}}</a>,           
-              {% if o.village_id|add:"0" > 0 and village.tehsil%}
-                <span define="Village/town/city"><a href="{% url 'village' victim.village_id %}">{{o.village_name}},</a></span>
-                <span define="Subdistrict"><a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}},</a></span>
-                <span define="District"><a href="/district/{{village.district_id}}">{{village.district}}</a></span>
+      <div class="row">
+      {% for victim in page.object_list %}   
+          {% if victim.record_id %}
+          
+          <div class="col-6 col-sm-4 col-md-3 victim">
+
+            <div class="home-box" style="background-image:url('{% if victim.photo_vic_fn %}{% hphoto victim.photo_vic_fn %}{% else %}{% if victim.victim_sex == 2 %}/static/images/woman.jpg{% else %}/static/images/gray.jpg{% endif %}{% endif %}')" onclick="window.location.href='/profile/{{victim.record_id}}';" id="p{{victim.record_id}}">     
+            </div>
+
+              <div class="names">
+                <h5 style="margin: 0;"><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></h5>
+
+                {% if o.village_id|add:"0" > 0 and village.tehsil%}
+                  <span define="Village/town/city"><a href="{% url 'village' victim.village_id %}">{{o.village_name}},</a></span>
+                  <span define="Subdistrict"><a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}},</a></span>
+                  <span define="District"><a href="/district/{{village.district_id}}">{{village.district}}</a></span><br>
+                {% else %}
+                  {{victim.village_name}}<br>
+                {% endif %}
+                
+                {% if victim.victim_disappeared_killed == 2 %}
+                  Extrajudicial execution,
+                {% endif %}
+                {% if victim.victim_disappeared_killed == 1 %}
+                  Disappeared,
+                {% endif %}
+                {% hdateslash victim.timeline_start victim.timeline_end %}
+                <p><br></p>
+              </div>
+
+          </div>
+
               {% else %}
-                {{o.village_name}}
-              {% endif %}
-          </li>
-              {% else %}
-          <li><span define="Village/town/city"><a href="{% url 'village' o.id %}">{{o.village_name}},</a></span>
-                <span define="Subdistrict"><a href="/tehsil/{{o.tehsil_id}}">{{o.tehsil}},</a></span>
-                <span define="District"><a href="/district/{{o.district_id}}">{{o.district}}</a></span>
-          </li>
+
+          <div class="col-6 col-sm-4 col-md-3 victim">
+            <div class="home-box" style="background-color:#000;" id="map{{victim.id}}">
+            </div>
+              <div class="names">
+                <h6 style="margin: 0;"><span define="Village/town/city"><a href="{% url 'village' victim.id %}">{{victim.village_name}},</a></span>
+                <span define="Subdistrict"><a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}},</a></span>
+                <span define="District"><a href="/district/{{victim.district_id}}">{{victim.district}}</a></span></h6>
+                <p><br></p>
+              </div>
+          </div>
+
+          <script>
+          var options = { minZoom: 4, maxZoom: 12, zoomControl: false };
+          var mymap = L.map('map{{victim.id}}', options).setView([{{victim.lat}},{{victim.lon}}], 12);
+          L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
+            subdomains: 'abcd',
+            attribution: '',
+          }).addTo(mymap);
+          var circle = L.circle([{{victim.lat}},{{victim.lon}}], {
+                stroke: false,
+                fillColor: '#fc0',
+                fillOpacity: 0.5,
+                radius: 400,
+                url: '{% url 'village' victim.id %}',
+          }).addTo(mymap);
+          circle.on('click', function (e) { document.location.href = this.options.url; });
+          mymap.scrollWheelZoom.disable();
+          </script>
+
               {% endif %}
 
       {% empty %}
           <p>No results found.</p>
       {% endfor %}
-      </ul>
+      </div>
 
+      <p><br></p>
+    
       {% if page.has_previous or page.has_next %}
           <div>
-              {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
-              |
-              {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+              {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}" class="btn btn-light">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+              
+              {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}" class="btn btn-light">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
           </div>
       {% endif %}
   {% else %}
