@@ -458,7 +458,7 @@ def hwitness_arrest(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v12, other):
 
 
 @register.simple_tag()
-def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
+def harrest_security_type_link(v1, v2, v3, v4, v5, v6, v7, other):
   groups = []
   groups.append('<a href="/securityforce/police/">Punjab Police</a>') if v1 == 1 else 0
   groups.append('<a href="/securityforce/bsf/"><span define="Border Security Force">BSF</span></a>') if v2 == 1 else 0
@@ -467,6 +467,25 @@ def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
   groups.append('<a href="/securityforce/cia/">Criminal Investigation Agency</a>') if v5 == 1 else 0
   groups.append('<a href="/securityforce/black-cat/"><span define="Irregular undercover security force, often consisting of criminals">Black cat</span></a>') if v6 == 1 else 0
   groups.append('Don’t know') if v7 == 1 else 0
+  if (other):
+    groups.append(other)
+  if len(groups):
+      s = '; '
+      return s.join(groups)
+  else:
+      return ''
+
+
+
+@register.simple_tag()
+def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
+  groups = []
+  groups.append('Punjab Police') if v1 == 1 else 0
+  groups.append('Border Security Force') if v2 == 1 else 0
+  groups.append('Central Reserve Police Force') if v3 == 1 else 0
+  groups.append('Army') if v4 == 1 else 0
+  groups.append('Criminal Investigation Agency') if v5 == 1 else 0
+  groups.append('Black cat') if v6 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
