@@ -4,21 +4,73 @@
 
 {% block title %}{{village.village_name}}, {{village.tehsil}}, {{village.district}}{% endblock %}
 
+{% block head %}
+  <link rel="stylesheet" href="/static/css/leaflet.css" />
+  <script type="text/javascript" src="/static/js/leaflet.js"></script>
+  <style>
+    .leaflet-interactive { cursor: pointer; }
+    .leaflet-popup-content-wrapper { border-radius: 2px; }
+    .leaflet-control-attribution { display: none; }
+  </style>
+{% endblock %}
+
+
 {% block content %}
 
 <div class="row">
   <div class="col-sm-8">
-    <h1>{%autoescape off%}{{village.village_name|smallparen}}{%endautoescape%}</h1>
+    <h1 style="margin-bottom: 1rem;">{%autoescape off%}{{village.village_name|smallparen}}{%endautoescape%}</h1>
     <p><span class="kicker">Subdistrict:</span> <a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}}</a> &nbsp; <span class="kicker">District:</span> <a href="/district/{{village.district_id}}">{{village.district}}</a></p>
     <p class="kicker">Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.</p>
   </div>
+
+  <div class="col-12">
+    <p><br></p>
+    <div style="background-color:#000;height: 200px;" id="village-map"><div>
+  </div>
+
 </div>
+
+
+<script>
+  var options = { minZoom: 4, maxZoom: 12, zoomControl: false };
+  var mymap = L.map('village-map', options).setView([{{village.lat}},{{village.lon}}], 10);
+  L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
+    subdomains: 'abcd',
+    attribution: '',
+  }).addTo(mymap);
+  var circle = L.circle([{{village.lat}},{{village.lon}}], {
+        stroke: false,
+        fillColor: '#fc0',
+        fillOpacity: 1,
+        radius: 500,
+        url: '{% url 'village' village.id %}',
+  }).addTo(mymap);
+  circle.on('click', function (e) { document.location.href = this.options.url; });
+  mymap.scrollWheelZoom.disable();
+  
+  var punjabStyle = { "color": "#999", "weight": 1, "opacity": 0.65, "fillOpacity": 0 };
+  var punjab = new L.geoJson();
+  punjab.addTo(mymap);
+  $.ajax({
+    dataType: "json",
+    url: "/static/js/punjab.geojson",
+    success: function(data) {
+        $(data.features).each(function(key, data) {
+            punjab.addData(data);
+        });
+        punjab.setStyle(punjabStyle);
+        punjab.bringToBack()
+    }
+  });
+
+</script>
 
 
 
 {% if victims.qs|length > 0 %}
 
-    {% if victims.qs|length == total_victims  %}
+    {% if victims.qs|length == total_victims  %}<!-- link from map may be filtered -->
 
       <div class="row">
         <div class="col-12"><br>
@@ -38,6 +90,10 @@
       </div>
 
     {% endif %}
+
+
+
+
 
 
     <div class="row">
