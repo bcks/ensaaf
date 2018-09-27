@@ -37,6 +37,7 @@ a { color: #008eaf; }
   margin-left: 1rem;
   margin-top: -5px;
 }
+.share img,
 #site-title .social-media img { height: 25px; width: 25px; }
 
 .navbar-light button,
@@ -373,6 +374,11 @@ article h3 {
 article li { margin-bottom: 1rem; }
 article ul.toc li { margin-bottom: 0; }
 
+
+.share p {
+  padding-top: 2rem;
+  border-top: 1px solid #ddd;
+}
 
 
 /* footer! */

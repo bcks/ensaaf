@@ -2,7 +2,8 @@
 
 {% load profiletags %}
 
-{% block title %}{{victim.victim_name}}{% endblock %}
+{% block title %}Profile of {{victim.victim_name}},{% if victim.victim_disappeared_killed == 2 %} victim of extrajudicial execution{% autoescape off %}{% hdate victim.victim_death_date %}{% endautoescape %} {% endif %}{% if victim.victim_disappeared_killed == 1 %} Disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% autoescape off %}{% hdate victim.victim_arrest_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% autoescape off %}{% hdate victim.victim_death_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% autoescape off %}{% hdate dt_last_heard_victim_alive %}{% endautoescape %}{% endif %}{% endif %}{% endblock %}
+
 
 {% block content %}
 
@@ -207,7 +208,7 @@
     {% if victim.photo_vic_fn %}
       <div class="col-sm-4 photos" >
         <br>
-        <img src="{% hphoto victim.photo_vic_fn %}" alt="photo" onerror="this.src='/static/images/error.jpg';">
+        <img src="{% hphoto victim.photo_vic_fn %}" alt="Photo of {{victim.victim_name}}, {% if victim.victim_disappeared_killed == 2 %}victim of extrajudicial execution{% autoescape off %}{% hdate victim.victim_death_date %}{% endautoescape %} {% endif %}{% if victim.victim_disappeared_killed == 1 %} disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% autoescape off %}{% hdate victim.victim_arrest_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% autoescape off %}{% hdate victim.victim_death_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% autoescape off %}{% hdate dt_last_heard_victim_alive %}{% endautoescape %}{% endif %}{% endif %}" onerror="this.src='/static/images/error.jpg';">
       </div>
     {% endif %}
   </div>
@@ -940,6 +941,15 @@
     <div class="footnotes">
       <p>Note: Subdistrict and district boundaries are based on the 2001 census. Read more about <a href="/about">our methodology</a>.</p>
     </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-12 share">
+    <p>Share on <a href="https://twitter.com/intent/tweet?url=https://data.ensaaf.org/profile/{{victim.record_id}}&amp;text={{victim.victim_name}},{% if victim.victim_disappeared_killed == 2 %} victim of extrajudicial execution{% autoescape off %}{% hdate victim.victim_death_date %}{% endautoescape %} {% endif %}{% if victim.victim_disappeared_killed == 1 %} disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% autoescape off %}{% hdate victim.victim_arrest_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% autoescape off %}{% hdate victim.victim_death_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% autoescape off %}{% hdate dt_last_heard_victim_alive %}{% endautoescape %}{% endif %}{% endif %}&amp;via=ensaaf"><img class="twitter" title="Twitter" alt="Twitter" src="/static/images/twitter.svg"></a>
+    <a href="https://www.facebook.com/sharer.php?u=https://data.ensaaf.org/profile/{{victim.record_id}}"><img class="facebook" title="Facebook" alt="Facebook" src="/static/images/facebook.svg"></a></p>
   </div>
 </div>
 
