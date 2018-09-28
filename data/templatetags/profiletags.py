@@ -58,7 +58,7 @@ def censuslink(value):
 
 
 @register.filter(name='cremationlink')
-def censuslink(value):
+def cremationlink(value):
     
     if value == None:
       return None
@@ -263,21 +263,24 @@ def heducation(value):
 
 @register.simple_tag()
 def hphoto(value):
-  value = value.replace('\n', '').replace('\r', '')
-  names = value.split(',')
-  s = "";
-  photos = []
-  path = 'https://data.ensaaf.org/static/photos'
-  if value != None:
-    for n in names:
-      thisName = n.strip()
-      first_dir = re.findall('([A-Z]+)', thisName)
-      second_dir = re.findall("([^-]+)", thisName)
-      if not second_dir:
-        second_dir = first_dir
-      photopath = path + '/' + first_dir[0] + '/' + second_dir[0] + '/' + thisName + '.jpg'
-      photos.append(photopath)
-    return s.join(photos)
+  if value:
+    value = value.replace('\n', '').replace('\r', '')
+    names = value.split(',')
+    s = "";
+    photos = []
+    path = 'https://data.ensaaf.org/static/photos'
+    if value != None:
+      for n in names:
+        thisName = n.strip()
+        first_dir = re.findall('([A-Z]+)', thisName)
+        second_dir = re.findall("([^-]+)", thisName)
+        if not second_dir:
+          second_dir = first_dir
+        photopath = path + '/' + first_dir[0] + '/' + second_dir[0] + '/' + thisName + '.jpg'
+        photos.append(photopath)
+      return s.join(photos)
+    else:
+      return ''
   else:
     return ''
 
