@@ -13,6 +13,7 @@ urlpatterns = [
     path('district/<slug:slug>/', district, name="district"),
     path('year/<year>/', year, name="year"),
     path('locality/<slug:slug>/', locality, name="locality"),
+    path('cremation/<slug:slug>/', cremation, name="cremation"),
     path('securityforce/<slug:slug>/', securityforce, name="securityforce"),
     url(r'^detention/(?P<type>[0-9]+)/(?P<name>[A-Za-z0-9 \/+_\-]+)/$', detention, name="detention"),
     path('official/<slug:slug>/', official, name="official"),

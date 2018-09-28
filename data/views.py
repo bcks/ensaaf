@@ -344,6 +344,28 @@ def locality(request, slug=None):
 
 
 
+@cache_page(60 * 60)
+def cremation(request, slug=None):
+    id = slug
+
+    name = get_village_name(id)
+
+    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+
+    victims = Data.objects.filter( cremation_location_name__contains=id )\
+      .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
+      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
+
+    stats = calculate_stats(victims)
+    if id is not None and id is None:
+        return messages.warning(request,"Cremation Location %s was not found"%id)
+    return render(request, "cremation.html", { "victims": victims, "name": name, "stats": stats } )
+
+
+
 
 @cache_page(60 * 60)
 def securityforce(request, slug=None):
