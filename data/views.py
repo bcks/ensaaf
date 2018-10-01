@@ -106,6 +106,11 @@ def overview(request):
       })
 
 
+#@cache_page(60 * 60)
+def detail(request):    
+    return render(request, "detail.html")
+
+
 @cache_page(60 * 60)
 def map(request):
     selected_age = request.GET.get('age','')

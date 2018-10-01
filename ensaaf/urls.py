@@ -11,6 +11,7 @@ urlpatterns = [
     path('village/<slug:slug>/', village, name="village"),
     path('tehsil/<slug:slug>/', tehsil, name="tehsil"),
     path('district/<slug:slug>/', district, name="district"),
+    path('detail/', detail, name="detail"),
     path('year/<year>/', year, name="year"),
     path('locality/<slug:slug>/', locality, name="locality"),
     path('cremation/<slug:slug>/', cremation, name="cremation"),
