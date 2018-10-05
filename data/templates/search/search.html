@@ -9,7 +9,8 @@
   <style>
     .leaflet-interactive { cursor: pointer; }
     .leaflet-popup-content-wrapper { border-radius: 2px; }
-    .leaflet-control-attribution { display: none; }
+    #list-view, #gallery-view, .leaflet-control-attribution { display: none; }
+    
   </style>
 {% endblock %}
 
@@ -39,9 +40,53 @@
 
       <h3>Results</h3>
 
-      <p>{{ page.paginator.count|intcomma }} results, page {{ page.number }} of {{ page.paginator.num_pages }}</p>
+      <p>{{ page.paginator.count|intcomma }} results, page {{ page.number }} of {{ page.paginator.num_pages }}  
+      &nbsp;&nbsp;  <a href="#" id="list-view-toggle">Switch to list view</a><a href="#" style="display:none;" id="gallery-view-toggle">Switch to gallery view</a></p>
 
-      <div class="row">
+
+
+
+      <div class="row" id="list-view">
+          <div class="col-12">
+            <ul>
+      {% for victim in page.object_list %}   
+          {% if victim.record_id %}
+          
+                <li><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a>, 
+                {% if o.village_id|add:"0" > 0 and village.tehsil%}
+                  <span define="Village/town/city"><a href="{% url 'village' victim.village_id %}">{{o.village_name}},</a></span>
+                  <span define="Subdistrict"><a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}},</a></span>
+                  <span define="District"><a href="/district/{{village.district_id}}">{{village.district}}</a></span>,
+                {% else %}
+                  {{victim.village_name}},
+                {% endif %}
+                {% if victim.victim_disappeared_killed == 2 %}
+                  extrajudicial execution,
+                {% endif %}
+                {% if victim.victim_disappeared_killed == 1 %}
+                  disappeared,
+                {% endif %}
+                {% hdateslash victim.timeline_start victim.timeline_end %}
+                  </li>
+    
+              {% else %}
+
+                <li><span define="Village/town/city"><a href="{% url 'village' victim.id %}">{{victim.village_name}},</a></span>
+                <span define="Subdistrict"><a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}},</a></span>
+                <span define="District"><a href="/district/{{victim.district_id}}">{{victim.district}}</a></span></li>
+
+              {% endif %}
+
+      {% empty %}   
+          <li>No results found.</li>
+      {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+
+
+      <div class="row" id="gallery-view">
       {% for victim in page.object_list %}   
           {% if victim.record_id %}
           
@@ -127,5 +172,48 @@
 
   </div>
 </div>
+<script>
 
+  function setCookie(cname, cvalue, exdays) {
+      var d = new Date();
+      d.setTime(d.getTime() + (exdays*24*60*60*1000));
+      var expires = "expires="+ d.toUTCString();
+      document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+  function getCookie(cname) {
+      var name = cname + "=";
+      var decodedCookie = decodeURIComponent(document.cookie);
+      var ca = decodedCookie.split(';');
+      for(var i = 0; i <ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') { c = c.substring(1); }
+          if (c.indexOf(name) == 0) { return c.substring(name.length, c.length); }
+      }
+      return "";
+  }
+  window.onload = function(e){ 
+    var view = getCookie('view');
+    $('#'+view+'-view-toggle').trigger('click');
+  }
+
+  $('#list-view-toggle').on('click', function(e) {
+    $(this).hide();
+    $('#list-view').show();
+    $('#gallery-view').hide();
+    $('#gallery-view-toggle').show();
+    setCookie("view", 'list', 7);
+    return false;
+  });
+  $('#gallery-view-toggle').on('click', function(e) {
+    $(this).hide();
+    $('#gallery-view').css('display', 'flex');
+    $('#list-view').hide();
+    $('#list-view-toggle').show();
+    setCookie("view", 'gallery', 7);
+    return false;
+  });
+
+  
+  
+</script>
 {% endblock %}
