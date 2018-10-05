@@ -23,7 +23,7 @@
   {% for district in district_list %}
   <div class="stats-block">
     <hr>
-    <p><strong><a href="#">{{district.grouper}} District&nbsp;<span class="arrow"></span></a></strong></p>
+    <p><strong><a href="#">{{district.grouper}} District&nbsp;<span class="arrow"></span></a></strong> &nbsp;&nbsp; {{district.list|length|intcomma}} cases</p>
 
     <div class="toggle">
 
