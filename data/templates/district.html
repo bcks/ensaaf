@@ -2,11 +2,34 @@
 
 {% load humanize %}
 
-{% block title %}{{district.0.district}} District{% endblock %}
+{% block title %}Enforced disappearances &amp; extrajudicial executions in {{district.0.district}} District{% endblock %}
+
+
+{% block head %}
+  <meta name="description" content="Enforced disappearances &amp; extrajudicial executions in {{district.0.district}} District, based on data collected through primary source interviews." />
+
+  <meta itemprop="name" content="Enforced Disappearances &amp; Extrajudicial Executions in {{district.0.district}} District" />
+  <meta itemprop="description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{district.0.district}} District, based on data collected through primary source interviews." />
+  <meta itemprop="image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@ensaaf" />
+  <meta name="twitter:title" content="Enforced disappearances &amp; extrajudicial executions in {{district.0.district}} District" />
+  <meta name="twitter:description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{district.0.district}} District, based on data collected through primary source interviews." />
+  <meta name="twitter:creator" content="@ensaaf" />
+  <meta name="twitter:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+
+  <meta property="og:title" content="Enforced disappearances &amp; extrajudicial executions in {{district.0.district}} District" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://data.ensaaf.org" />
+  <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+  <meta property="og:description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{district.0.district}} District, based on data collected through primary source interviews." />
+  <meta property="og:site_name" content="Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" />
+{% endblock %}
+
+
 
 {% block content %}
-
-
 
 <div class="row">
   <div class="col-sm-12">
