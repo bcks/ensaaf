@@ -192,7 +192,11 @@
   }
   window.onload = function(e){ 
     var view = getCookie('view');
-    $('#'+view+'-view-toggle').trigger('click');
+    if (view) {
+      $('#'+view+'-view-toggle').trigger('click');
+    } else {
+      $('#gallery-view-toggle').trigger('click');    
+    }
   }
 
   $('#list-view-toggle').on('click', function(e) {
