@@ -965,3 +965,36 @@
 </div>
 
     
+
+<hr>
+    
+
+<div id="stats-location" class="stats-block">
+  <p><strong><a href="#">Time &amp; Place &nbsp;<span class="arrow"></span></a></strong></p>
+  <div class="toggle">
+
+
+      <div class="row">
+        <div class="col-12">
+
+          <p><strong>District</strong></p>
+          
+             {% for o in stats.districts %}
+             {%if o.1 %}
+       
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+       
+             {% endif %}
+             {% endfor %}
+
+        </div> 
+      </div> 
+
+
+
+  </div>
+</div>
+

@@ -9,6 +9,7 @@ class Data(models.Model):
     victim_name = models.CharField(max_length=256)
     village_name = models.CharField(max_length=256, blank=True, null=True)
     village_id = models.CharField(max_length=64, blank=True, null=True, unique=True)
+    district_id =models.CharField(max_length=8, blank=True, null=True)
     record_id = models.IntegerField(db_column='record_id', primary_key=True)
     urban_rural = models.IntegerField(db_column='urban_rural', blank=True, null=True)
     timeline = models.DateField(db_column='timeline', blank=True, null=True)

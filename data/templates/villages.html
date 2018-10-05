@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load profiletags %}
 {% load humanize %}
 
 {% block title %}Villages{% endblock %}
@@ -23,7 +24,7 @@
   {% for district in district_list %}
   <div class="stats-block">
     <hr>
-    <p><strong><a href="#">{{district.grouper}} District&nbsp;<span class="arrow"></span></a></strong> &nbsp;&nbsp; {{district.list|length|intcomma}} cases</p>
+    <p><strong><a href="#">{{district.grouper}} District&nbsp;<span class="arrow"></span></a></strong> &nbsp;&nbsp; {% district_count district.list %}  cases</p>
 
     <div class="toggle">
 

@@ -29,6 +29,29 @@ def calculate_stats(all):
     }
     caste = sorted(caste.items(), key=operator.itemgetter(1), reverse=True)
 
+
+    districts = {
+      "Amritsar": all.filter(district_id='0302').count(),
+      "Bathinda": all.filter(district_id='0314').count(),
+      "Faridkot": all.filter(district_id='0313').count(),
+      "Fatehgarh Sahib": all.filter(district_id='0308').count(),
+      "Firozpur": all.filter(district_id='0311').count(),
+      "Gurdaspur": all.filter(district_id='0301').count(),
+      "Hoshiarpur": all.filter(district_id='0305').count(),
+      "Jalandhar": all.filter(district_id='0304').count(),
+      "Kapurthala": all.filter(district_id='0303').count(),
+      "Ludhiana": all.filter(district_id='0309').count(),
+      "Mansa": all.filter(district_id='0315').count(),
+      "Moga": all.filter(district_id='0310').count(),
+      "Muktsar": all.filter(district_id='0312').count(),
+      "Nawanshahr": all.filter(district_id='0306').count(),
+      "Patiala": all.filter(district_id='0317').count(),
+      "Rupnagar": all.filter(district_id='0307').count(),
+      "Sangrur": all.filter(district_id='0316').count(),
+    }
+    districts = sorted(districts.items(), key=operator.itemgetter(0), reverse=False)
+    
+    
     education = {
       "No education": all.filter(victim_education='0').count(),
       " Primary school": all.filter(victim_education='1').count(),
@@ -308,6 +331,7 @@ def calculate_stats(all):
       "condition_of_remains": condition_of_remains,
       "court_or_commission": court_or_commission,
       "detention_facility_type": detention_facility_type,
+      "districts": districts,
       "education": education,
       "employment": employment,
       "female": female,

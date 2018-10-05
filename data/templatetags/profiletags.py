@@ -262,6 +262,16 @@ def heducation(value):
 
 
 @register.simple_tag()
+def district_count(value):
+  count = 0
+  for n in value:
+    if n['data_count']:
+      count = count + n['data_count']
+  return "{:,}".format(count)
+
+
+
+@register.simple_tag()
 def hphoto(value):
   if value:
     value = value.replace('\n', '').replace('\r', '')
