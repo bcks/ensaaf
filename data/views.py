@@ -106,7 +106,7 @@ def overview(request):
       })
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def detail(request):    
     return render(request, "detail.html")
 
@@ -232,6 +232,21 @@ def year(request, year=None):
     if id is not None and id is None:
         return messages.warning(request,"Year %s was not found"%id)
     return render(request, "year.html", { "victims": victims, "year":year, "stats": stats } )
+
+
+
+@cache_page(60 * 60)
+def villages(request):
+    datas = Data.objects.filter(village_id=OuterRef('pk'))\
+                            .values('village_id')\
+                            .annotate(Count('village_id'))\
+                            .values('village_id__count')    
+    
+    villages = Villages.objects.all().values('village_name','id','district','district_id')\
+      .annotate(data_count=Subquery(datas))\
+      .order_by('district','village_name')
+    return render(request, "villages.html", { "villages": villages } )
+
 
 
 @cache_page(60 * 60)

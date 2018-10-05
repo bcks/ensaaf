@@ -7,11 +7,16 @@ from django.conf.urls import include, url
 from graphene_django.views import GraphQLView
 
 urlpatterns = [
+    path('villages/', villages, name="villages"),
+    path('overview/', overview, name="overview"),
+    path('map_ajax/', map_ajax, name="map_ajax"),
+    path('change/', change, name="change"),
+    path('profiles/', profiles, name="profiles"),
+    path('detail/', detail, name="detail"),
     path('profile/<int:id>/', profile, name="profile"),
     path('village/<slug:slug>/', village, name="village"),
     path('tehsil/<slug:slug>/', tehsil, name="tehsil"),
     path('district/<slug:slug>/', district, name="district"),
-    path('detail/', detail, name="detail"),
     path('year/<year>/', year, name="year"),
     path('locality/<slug:slug>/', locality, name="locality"),
     path('cremation/<slug:slug>/', cremation, name="cremation"),
@@ -19,10 +24,6 @@ urlpatterns = [
     url(r'^detention/(?P<type>[0-9]+)/(?P<name>[A-Za-z0-9 \/+_\-]+)/$', detention, name="detention"),
     path('official/<slug:slug>/', official, name="official"),
     path('search/', include('haystack.urls')),
-    path('overview/', overview, name="overview"),
-    path('map_ajax/', map_ajax, name="map_ajax"),
-    path('change/', change, name="change"),
-    path('profiles/', profiles, name="profiles"),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('secret-admin-login/', admin.site.urls),
     path('perpetrators/', perpetrators, name="perpetrators"),

@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+
+{% block title %}Villages{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+  <div class="col-sm-12">
+    <h1 style="margin-bottom:1rem;">Villages</h1>
+    <p class="kicker" style="margin-bottom:1rem;">Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.</p>
+    <br>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+
+  {% regroup villages.all by district as district_list %}
+    
+  {% for district in district_list %}
+  <div class="stats-block">
+    <hr>
+    <p><strong><a href="#">{{district.grouper}} District&nbsp;<span class="arrow"></span></a></strong></p>
+
+    <div class="toggle">
+
+    {% regroup district.list by village_name as villages_list %}
+    
+    {% for village in district.list %}
+
+    <div class="row">
+      <div class="col-sm-12 col-md m-2">
+        {% if village.data_count %}
+          <a href="/village/{{village.id}}">{{village.village_name}}</a>, {{village.data_count}} case{{village.data_count|pluralize }}
+        {% else %}
+          <a href="/village/{{village.id}}" class="gray">{{village.village_name}}</a>, <em class="gray">no documented cases</em>
+        {% endif %}
+      </div>
+    </div>
+      
+    {% endfor %}
+
+    </div>
+  </div>
+  {% endfor %}
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}

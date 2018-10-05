@@ -167,6 +167,7 @@ tr { vertical-align: top; }
   filter: grayscale(100%);
 }
 
+.gray { color: #bbb; }
 
 
 /* hide default selectbox style */
