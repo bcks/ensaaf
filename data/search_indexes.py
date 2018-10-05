@@ -24,7 +24,7 @@ class VillageIndex(indexes.SearchIndex, indexes.Indexable):
     id = indexes.CharField(model_attr='id', null=True)
     tehsil = indexes.CharField(model_attr='tehsil', null=True)
     district = indexes.CharField(model_attr='district', null=True)
-    district_id = indexes.IntegerField(model_attr='id', null=True)
+    district_id = indexes.IntegerField(model_attr='district_id', null=True)
     tehsil_id = indexes.IntegerField(model_attr='tehsil_id', null=True)
     lon = indexes.DecimalField(model_attr='lon', null=True)
     lat = indexes.DecimalField(model_attr='lat', null=True)
