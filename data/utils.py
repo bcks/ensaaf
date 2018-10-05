@@ -1,4 +1,5 @@
-from django.db.models import Q, Count, Sum
+from django.db.models import Q, Count, Sum, DateField
+from django.db.models.functions import Trunc
 import operator
 
 
@@ -50,6 +51,15 @@ def calculate_stats(all):
       "Sangrur": all.filter(district_id='0316').count(),
     }
     districts = sorted(districts.items(), key=operator.itemgetter(0), reverse=False)
+
+
+    years = {}
+    yearlist = list(reversed(range(1981,2008)))
+    yearlist.insert(0, 2012)
+    for y in yearlist:
+      years[y] = all.filter(timeline__year=y).count()
+    years = sorted(years.items(), key=operator.itemgetter(0))
+    
     
     
     education = {
@@ -386,5 +396,6 @@ def calculate_stats(all):
       "witness_arrest": witness_arrest,
       "witness_detention": witness_detention,
       "witness_arrest_yes": witness_arrest_yes,
+      "years": years,
       }
 

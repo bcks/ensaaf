@@ -993,6 +993,25 @@
         </div> 
       </div> 
 
+      <hr>
+
+      <div class="row">
+        <div class="col-12">
+
+          <p><strong>Year</strong></p>
+          
+             {% for o in stats.years %}
+     
+              <div>
+              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|intcomma}}</span>
+              <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
+              </div>
+       
+             {% endfor %}
+
+        </div> 
+      </div> 
+
 
 
   </div>
