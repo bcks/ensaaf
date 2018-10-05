@@ -529,6 +529,7 @@ def get_tehsils(slug):
     try:
       tehsils = Villages.objects.filter(district_id=slug)\
                         .values('tehsil', 'tehsil_id')\
+                        .order_by('tehsil')\
                         .distinct()
       for tehsil in tehsils:
           datas = Data.objects.filter(village_id=OuterRef('pk'))\
