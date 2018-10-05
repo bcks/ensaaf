@@ -436,7 +436,7 @@ def tehsil(request, slug=None):
 
     villages_with_count = Villages.objects.filter(tehsil_id=slug)\
                                   .annotate(data_count=Subquery(datas))\
-                                  .exclude(data_count=None).order_by('-data_count','village_name')
+                                  .exclude(data_count=None).order_by('village_name')
 
     villages = Villages.objects.filter(tehsil_id=slug).values('id','district','district_id','tehsil')
 
