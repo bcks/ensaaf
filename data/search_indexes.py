@@ -20,7 +20,7 @@ class DataIndex(indexes.SearchIndex, indexes.Indexable):
 
 class VillageIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(document=True, use_template=True)
-    village_name = indexes.CharField(model_attr='village_name', null=True)
+    village_name = indexes.EdgeNgramField(model_attr='village_name', null=True)
     id = indexes.CharField(model_attr='id', null=True)
     tehsil = indexes.CharField(model_attr='tehsil', null=True)
     district = indexes.CharField(model_attr='district', null=True)

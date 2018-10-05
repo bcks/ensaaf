@@ -9,8 +9,7 @@
   <style>
     .leaflet-interactive { cursor: pointer; }
     .leaflet-popup-content-wrapper { border-radius: 2px; }
-    #list-view, #gallery-view, .leaflet-control-attribution { display: none; }
-    
+    #list-view, #gallery-view, .leaflet-control-attribution { display: none; }    
   </style>
 {% endblock %}
 
@@ -132,20 +131,20 @@
 
           <script>
           var options = { minZoom: 4, maxZoom: 12, zoomControl: false };
-          var mymap = L.map('map{{victim.id}}', options).setView([{{victim.lat}},{{victim.lon}}], 12);
+          var mymap{{victim.id}} = L.map('map{{victim.id}}', options).setView([{{victim.lat}},{{victim.lon}}], 12);
           L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
             subdomains: 'abcd',
             attribution: '',
-          }).addTo(mymap);
-          var circle = L.circle([{{victim.lat}},{{victim.lon}}], {
+          }).addTo(mymap{{victim.id}});
+          var circle{{victim.id}} = L.circle([{{victim.lat}},{{victim.lon}}], {
                 stroke: false,
                 fillColor: '#fc0',
                 fillOpacity: 0.5,
                 radius: 400,
                 url: '{% url 'village' victim.id %}',
-          }).addTo(mymap);
-          circle.on('click', function (e) { document.location.href = this.options.url; });
-          mymap.scrollWheelZoom.disable();
+          }).addTo(mymap{{victim.id}});
+          circle{{victim.id}}.on('click', function (e) { document.location.href = this.options.url; });
+          mymap{{victim.id}}.scrollWheelZoom.disable();
           </script>
 
               {% endif %}
