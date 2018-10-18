@@ -23,6 +23,7 @@ urlpatterns = [
     path('securityforce/<slug:slug>/', securityforce, name="securityforce"),
     url(r'^detention/(?P<type>[0-9]+)/(?P<name>[A-Za-z0-9 \/+_\-]+)/$', detention, name="detention"),
     path('official/<slug:slug>/', official, name="official"),
+    #url(r'^search/?$', MySearchView.as_view(), name='search_view'),
     path('search/', include('haystack.urls')),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('secret-admin-login/', admin.site.urls),

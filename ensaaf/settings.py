@@ -96,6 +96,7 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
         'HAYSTACK_LIMIT_TO_REGISTERED_MODELS': False,
+        'INCLUDE_SPELLING': True
     },
 }
 
