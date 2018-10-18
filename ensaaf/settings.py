@@ -39,9 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'whoosh',
-    'haystack',
     'debug_toolbar',
+    'django_elasticsearch_dsl',
     'graphene_django',
     'admin_honeypot',
 ]
@@ -78,6 +77,17 @@ TEMPLATES = [
 WSGI_APPLICATION = 'ensaaf.wsgi.application'
 
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+
+
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
@@ -91,14 +101,12 @@ DATABASES = {
 }
 
 
-HAYSTACK_CONNECTIONS = {
+ELASTICSEARCH_DSL={
     'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
-        'HAYSTACK_LIMIT_TO_REGISTERED_MODELS': False,
-        'INCLUDE_SPELLING': True
+        'hosts': 'localhost:9200'
     },
 }
+
 
 GRAPHENE = {
     'SCHEMA': 'data.schema.schema'

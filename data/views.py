@@ -11,9 +11,21 @@ from django.template.defaulttags import register
 from django.views.decorators.cache import cache_page
 
 from .models import *
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .utils import calculate_stats
 from .filters import DataFilter
+
+# contact form
+from django.conf import settings
+from .forms import ContactForm
+from django.core.mail import EmailMessage
+
+# search engine things
+from elasticsearch_dsl.query import MultiMatch, Match
+from .documents import DataDocument, VillagesDocument
+from django.core import paginator as django_paginator
+from itertools import chain
+
 
 
 
@@ -578,6 +590,61 @@ def page(request, directory=None, slug=None):
 
 
 
+
+
+from django.utils.functional import LazyObject
+
+class SearchResults(LazyObject):
+    def __init__(self, search_object):
+        self._wrapped = search_object
+
+    def __len__(self):
+        return self._wrapped.count()
+
+    def __getitem__(self, index):
+        search_results = self._wrapped[index]
+        if isinstance(index, slice):
+            search_results = list(search_results)
+        return search_results
+
+
+def search(request):
+    q = request.GET.get('q')
+    page = int(request.GET.get('page', '1'))
+    start = (page-1) * 10
+    end = start + 10
+    paginate_by = 20
+
+    if q:
+
+  #    results_1 = DataDocument.search().query("match", victim_name=q)
+  #    results_2 = VillagesDocument.search().query("match", village_name=q)
+  #    results = sorted( chain(results_1, results_2), key=lambda instance: -instance.meta.score)
+
+      # search_villages = VillagesDocument.search().query("match", village_name=q)
+      # search_results_villages = SearchResults(search_villages)
+
+      search_data = DataDocument.search().query("match", victim_name=q)
+      search_results_data = SearchResults(search_data)
+
+      paginator = Paginator(search_results_data, paginate_by)
+      page_number = request.GET.get("page")
+      try:
+        page = paginator.page(page_number)
+      except PageNotAnInteger:
+        # If page parameter is not an integer, show first page.
+        page = paginator.page(1)
+      except EmptyPage:
+        # If page parameter is out of range, show last existing page.
+        page = paginator.page(paginator.num_pages)
+    
+      return render(request, "search.html", {"results": page, "query": q })
+
+    else:
+      return render(request, "search.html")
+
+
+
 @register.simple_tag()
 def hvictim_address_other(value):
   if value == None:
@@ -601,4 +668,35 @@ def hvictim_address_other(value):
     str = re.sub(r'([0123456789.]+)-','', str)
     return str
 
+
+
+
+
+
+# email forms
+
+def emailView(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = 'Case Update'
+            from_email = form.cleaned_data['from_email']
+            referer = form.cleaned_data['referer']
+
+            message = "-------\n\nFrom: " + from_email + "\n\n-------\n\nVia: " + referer + "\n\n-------\n\n" + form.cleaned_data['message']
+
+            msg = EmailMessage(
+                subject,
+                message,
+                settings.EMAIL_HOST_USER,
+                ['john@backspace.com','jkaur@ensaaf.org','sdhami@ensaaf.org'],
+                reply_to=[from_email],
+            )
+            msg.send()
+            return render(request, "success.html", {"referer":referer})
+    else:
+      return render(request, "email.html")
+
+def successView(request):
+    return render(request, "success.html")
 

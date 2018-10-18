@@ -982,6 +982,17 @@
     <p>Share on <a href="https://twitter.com/intent/tweet?url=https://data.ensaaf.org/profile/{{victim.record_id}}&amp;text={{victim.victim_name}},{% if victim.victim_disappeared_killed == 2 %} victim of extrajudicial execution{% autoescape off %}{% hdate victim.victim_death_date %}{% endautoescape %} {% endif %}{% if victim.victim_disappeared_killed == 1 %} disappeared{% if victim.victim_last_heard_alive == 4 %}, date unknown{% endif %}{% if victim.victim_last_heard_alive == 1 %}{% autoescape off %}{% hdate victim.victim_arrest_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 2 %}{% autoescape off %}{% hdate victim.victim_death_date %}{% endautoescape %}{% endif %}{% if victim.victim_last_heard_alive == 3 %}{% autoescape off %}{% hdate dt_last_heard_victim_alive %}{% endautoescape %}{% endif %}{% endif %}&amp;via=ensaaf"><img class="twitter" title="Twitter" alt="Twitter" src="/static/images/twitter.svg"></a>
     <a href="https://www.facebook.com/sharer.php?u=https://data.ensaaf.org/profile/{{victim.record_id}}"><img class="facebook" title="Facebook" alt="Facebook" src="/static/images/facebook.svg"></a></p>
   </div>
+
+  <div class="col-12">
+    <br>
+    <p><a href="/email" class="btn btn-light">Report additional information on this case</a>&nbsp;
+    <a href="http://reportpunjabpolice.org" class="btn btn-light">Report a new case</a></p>
+  </div>
+
 </div>
+
+
+
+
 
 {% endblock %}
