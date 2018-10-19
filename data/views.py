@@ -586,23 +586,6 @@ def page(request, directory=None, slug=None):
 
 
 
-from django.utils.functional import LazyObject
-
-class SearchResults(LazyObject):
-    def __init__(self, search_object):
-        self._wrapped = search_object
-
-    def __len__(self):
-        return self._wrapped.count()
-
-    def __getitem__(self, index):
-        search_results = self._wrapped[index]
-        if isinstance(index, slice):
-            search_results = list(search_results)
-        return search_results
-
-
-
 
 @register.simple_tag()
 def hvictim_address_other(value):
@@ -659,3 +642,27 @@ def emailView(request):
 def successView(request):
     return render(request, "success.html")
 
+
+
+
+
+import simplejson as json
+from django.http import HttpResponse
+from haystack.query import SearchQuerySet
+
+
+from pprint import pprint
+
+
+def autocomplete(request):
+    
+    # query = request.GET.get('q', '')
+    # sqs = SearchQuerySet().auto_query(query)
+    # suggestion = sqs.spelling_suggestion()
+    # pprint( suggestion )
+
+    sqs1 = SearchQuerySet().autocomplete(village_name=request.GET.get('q', ''))[:10]
+    sqs2 = SearchQuerySet().autocomplete(victim_name=request.GET.get('q', ''))[:10]
+    suggestions = [result.village_name for result in sqs1] + [result.victim_name for result in sqs2]
+    the_data = json.dumps({ 'results': suggestions })
+    return HttpResponse(the_data, content_type='application/json')
