@@ -221,10 +221,10 @@ function numberWithCommas(x) {
 
 
 
-var timeCapsule = [{% for o in all %}{"v":{"vid":"{{o.village_id|default:"0"}}","t":{{o.timeline|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}];
+var timeCapsule = [{% for o in all %}{"v":{"id":"{{o.village_id|default:"0"}}","t":{{o.timeline|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}];
 
 for (var i=0;i<timeCapsule.length;i++) {
-    if ( timeCapsule[i]['v']['vid'] ) {
+    if ( timeCapsule[i]['v']['id'] ) {
       timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
       var d = new Date(0);
       timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
@@ -401,8 +401,8 @@ function makeVillageNames(start, end) {
 
     // update size per village
     for (var i=0;i<timeCapsule.length;i++) {
-        if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start) && ( timeCapsule[i]['v']['vid'] ))  {
-          var id = timeCapsule[i]['v']['vid'];
+        if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start) && ( timeCapsule[i]['v']['id'] ))  {
+          var id = timeCapsule[i]['v']['id'];
           villages[id] = (villages[id] || 0) + 1;
         }
     }

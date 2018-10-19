@@ -38,11 +38,14 @@
   <div class="col-sm-12">
 
 
-  {% if results %}
+  <!-- <p>suggestion: {{suggestion}}</p> -->
+
+
+  {% if query %}
 
       <h3>Results</h3>
 
-      <p>{{ results.paginator.count|intcomma }} results, page {{ results.number }} of {{ results.paginator.num_pages }}  
+      <p>{{ page.paginator.count|intcomma }} results, page {{ page.number }} of {{ page.paginator.num_pages }}  
       &nbsp;&nbsp;  <a href="#" id="list-view-toggle">Switch to list view</a><a href="#" style="display:none;" id="gallery-view-toggle">Switch to gallery view</a></p>
 
 
@@ -51,9 +54,8 @@
       <div class="row" id="list-view">
           <div class="col-12">
             <ul>
-      {% for victim in results %}  
-      
-              {% if victim.record_id %}
+      {% for victim in page.object_list %}   
+          {% if victim.record_id %}
           
                 <li><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a>, 
                 {% if o.village_id|add:"0" > 0 and village.tehsil%}
@@ -80,7 +82,9 @@
 
               {% endif %}
 
-      {% endfor %}  
+      {% empty %}   
+          <li>No results found.</li>
+      {% endfor %}
           </ul>
         </div>
       </div>
@@ -92,8 +96,8 @@
       
 
       <div class="row" id="gallery-view">
-      {% for victim in results %}   
-              {% if victim.record_id %}
+      {% for victim in page.object_list %}   
+          {% if victim.record_id %}
           
           <div class="col-6 col-sm-4 col-md-3 victim">
 
@@ -152,24 +156,25 @@
 
               {% endif %}
 
+      {% empty %}   
+        <div class="col-12">
+          <p>No results found.</p>
+        </div>
       {% endfor %}
       </div>
 
       <p><br></p>
     
-      {% if results.has_previous or results.has_next %}
+      {% if page.has_previous or page.has_next %}
           <div>
-              {% if results.has_previous %}<a href="?q={{ query }}&amp;page={{ results.previous_page_number }}" class="btn btn-light">&laquo; Previous</a>{% endif %}
+              {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}" class="btn btn-light">&laquo; Previous</a>{% endif %}
               
-              {% if results.has_next %}<a href="?q={{ query }}&amp;page={{ results.next_page_number }}" class="btn btn-light">{% endif %}Next &raquo;{% if results.has_next %}</a>{% endif %}
+              {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}" class="btn btn-light">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
           </div>
       {% endif %}
-
   {% else %}
-    {% if query %}
-      <h5>No matching results found.</h5>
-    {% endif %}
- {% endif %}
+      {# Show some example queries to run, maybe query syntax, something else? #}
+  {% endif %}
 
   </div>
 </div>

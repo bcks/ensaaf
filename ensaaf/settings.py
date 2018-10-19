@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'debug_toolbar',
-    'django_elasticsearch_dsl',
+    'haystack',
     'graphene_django',
     'admin_honeypot',
 ]
@@ -101,11 +101,17 @@ DATABASES = {
 }
 
 
-ELASTICSEARCH_DSL={
+HAYSTACK_CONNECTIONS = {
     'default': {
-        'hosts': 'localhost:9200'
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/tester',
+        'ADMIN_URL': 'http://127.0.0.1:8983/solr/admin/cores',
+        'TIMEOUT': 60 * 5,
+        'INCLUDE_SPELLING': True,
+        'BATCH_SIZE': 100,
     },
 }
+
 
 
 GRAPHENE = {

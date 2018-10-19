@@ -20,12 +20,6 @@ from django.conf import settings
 from .forms import ContactForm
 from django.core.mail import EmailMessage
 
-# search engine things
-from elasticsearch_dsl.query import MultiMatch, Match
-from .documents import DataDocument, VillagesDocument
-from django.core import paginator as django_paginator
-from itertools import chain
-
 
 
 
@@ -198,19 +192,19 @@ def change(request):
 
 
 @cache_page(60 * 60)
-def profile(request, id=None):
-    queryset = Data.objects.filter(record_id=id)
+def profile(request, record_id=None):
+    queryset = Data.objects.filter(record_id=record_id)
     victim = queryset[:1].get()
     if victim.village_id:
       try:
-        village = Villages.objects.filter(id=victim.village_id)[:1].get()
+        village = Villages.objects.filter(vid=victim.village_id)[:1].get()
       except Villages.DoesNotExist:
         village = None
     else:
       village = None
-    if id is not None and victim is None:
-        return messages.warning(request,"Profile %s was not found"%id)
-    return render(request, "profile.html", { "victim": victim, "village":village } )
+    if record_id is not None and victim is None:
+        return messages.warning(request,"Profile %s was not found"%record_id)
+    return render(request, "profile.html", { "victim": victim, "village": village } )
 
 
 @cache_page(60 * 60)
@@ -220,19 +214,19 @@ def village(request, slug=None):
     victim_filter = DataFilter(request.GET, queryset=victim_list)
     total_victims = victim_list.count()
     
-    village = Villages.objects.filter(id=slug)[:1].get()
+    village = Villages.objects.filter(vid=slug)[:1].get()
 
-    if id is not None and id is None:
-        return messages.warning(request,"Village %s was not found"%id)
-    return render(request, "village.html", { "id": slug, "total_victims": total_victims, "victims": victim_filter, "village":village } )
+    if slug is not None and slug is None:
+        return messages.warning(request,"Village %s was not found"%slug)
+    return render(request, "village.html", { "vid": slug, "total_victims": total_victims, "victims": victim_filter, "village":village } )
 
 
 @cache_page(60 * 60)
 def year(request, year=None):
-    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
-    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
-    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
-    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+    district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(vid=OuterRef('village_id')).values('village_name')
     start = year + '-01-01'
     end = year + '-12-31'
 
@@ -241,8 +235,8 @@ def year(request, year=None):
       .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
       .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
     stats = calculate_stats(victims)
-    if id is not None and id is None:
-        return messages.warning(request,"Year %s was not found"%id)
+    if year is not None and year is None:
+        return messages.warning(request,"Year %s was not found"%year)
     return render(request, "year.html", { "victims": victims, "year":year, "stats": stats } )
 
 
@@ -254,7 +248,7 @@ def villages(request):
                             .annotate(Count('village_id'))\
                             .values('village_id__count')    
     
-    villages = Villages.objects.all().values('village_name','id','district','district_id')\
+    villages = Villages.objects.all().values('village_name','vid','district','district_id')\
       .annotate(data_count=Subquery(datas))\
       .order_by('district','village_name')
     return render(request, "villages.html", { "villages": villages } )
@@ -263,10 +257,10 @@ def villages(request):
 
 @cache_page(60 * 60)
 def detention(request, type=None, name=None):
-    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
-    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
-    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
-    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+    district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(vid=OuterRef('village_id')).values('village_name')
 
     victims = Data.objects.filter(where_victim_detained__detention_facility_type=type, where_victim_detained__facility_name=name)\
       .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
@@ -274,7 +268,7 @@ def detention(request, type=None, name=None):
 
     stats = calculate_stats(victims)
     if name is not None and name is None:
-        return messages.warning(request,"Detention %s was not found"%id)
+        return messages.warning(request,"Detention %s was not found"%name)
     return render(request, "detention.html", { "victims": victims, "facilityname": name, "stats": stats } )
 
 
@@ -330,10 +324,10 @@ def perpetrators(request):
 def official(request, slug=None):
     name =  officials.get(slug)
 
-    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
-    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
-    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
-    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+    district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(vid=OuterRef('village_id')).values('village_name')
 
     soas = SecurityArrest.objects.filter(soa_code=slug).values_list('record_id', flat=True)
     soks = SecurityKilled.objects.filter(sok_code=slug).values_list('record_id', flat=True)
@@ -345,7 +339,7 @@ def official(request, slug=None):
 
     stats = calculate_stats(victims)
     if id is not None and id is None:
-        return messages.warning(request,"Year %s was not found"%id)
+        return messages.warning(request,"Official %s was not found"%id)
     return render(request, "securityforce.html", { "victims": victims, "name": name, "stats": stats } )
 
 
@@ -353,47 +347,47 @@ def official(request, slug=None):
 
 @cache_page(60 * 60)
 def locality(request, slug=None):
-    id = slug
+    vid = slug
 
-    _arrest_so_affiliation_loc = SecurityArrest.objects.filter(arrest_so_affiliation_loc__contains=id).values_list('record_id', flat=True)
-    _query = Q(arrest_security_locality__contains=id) | Q(killing_securityforces_lcl__contains=id) | Q( record_id__in= _arrest_so_affiliation_loc )
+    _arrest_so_affiliation_loc = SecurityArrest.objects.filter(arrest_so_affiliation_loc__contains=vid).values_list('record_id', flat=True)
+    _query = Q(arrest_security_locality__contains=vid) | Q(killing_securityforces_lcl__contains=vid) | Q( record_id__in= _arrest_so_affiliation_loc )
 
-    name = get_village_name(id)
+    name = get_village_name(vid)
 
-    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
-    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
-    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
-    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+    district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(vid=OuterRef('village_id')).values('village_name')
 
     victims = Data.objects.filter( _query )\
       .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
       .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
 
     stats = calculate_stats(victims)
-    if id is not None and id is None:
-        return messages.warning(request,"Security Force %s was not found"%id)
+    if vid is not None and vid is None:
+        return messages.warning(request,"Locality %s was not found"%vid)
     return render(request, "locality.html", { "victims": victims, "name": name, "stats": stats } )
 
 
 
 @cache_page(60 * 60)
 def cremation(request, slug=None):
-    id = slug
+    vid = slug
 
-    name = get_village_name(id)
+    name = get_village_name(vid)
 
-    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
-    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
-    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
-    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+    district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(vid=OuterRef('village_id')).values('village_name')
 
-    victims = Data.objects.filter( cremation_location_name__contains=id )\
+    victims = Data.objects.filter( cremation_location_name__contains=vid )\
       .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
       .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
 
     stats = calculate_stats(victims)
-    if id is not None and id is None:
-        return messages.warning(request,"Cremation Location %s was not found"%id)
+    if vid is not None and vid is None:
+        return messages.warning(request,"Cremation Location %s was not found"%vid)
     return render(request, "cremation.html", { "victims": victims, "name": name, "stats": stats } )
 
 
@@ -423,18 +417,18 @@ def securityforce(request, slug=None):
     _query =  forcemap.get(slug)
     name =  unslug.get(slug)
     
-    district = Villages.objects.filter(id=OuterRef('village_id')).values('district')
-    tehsil = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil')
-    tehsil_id = Villages.objects.filter(id=OuterRef('village_id')).values('tehsil_id')
-    village = Villages.objects.filter(id=OuterRef('village_id')).values('village_name')
+    district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(vid=OuterRef('village_id')).values('village_name')
 
     victims = Data.objects.filter( _query )\
       .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
       .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
 
     stats = calculate_stats(victims)
-    if id is not None and id is None:
-        return messages.warning(request,"Security Force %s was not found"%id)
+    if slug is not None and slug is None:
+        return messages.warning(request,"Security Force %s was not found"%slug)
     return render(request, "securityforce.html", { "victims": victims, "name": name, "stats": stats } )
 
 
@@ -450,9 +444,9 @@ def tehsil(request, slug=None):
                                   .annotate(data_count=Subquery(datas))\
                                   .exclude(data_count=None).order_by('village_name')
 
-    villages = Villages.objects.filter(tehsil_id=slug).values('id','district','district_id','tehsil')
+    villages = Villages.objects.filter(tehsil_id=slug).values('vid','district','district_id','tehsil')
 
-    all = Data.objects.filter(village_id__in=Subquery(villages.values('id'))).order_by('victim_name')
+    all = Data.objects.filter(village_id__in=Subquery(villages.values('vid'))).order_by('victim_name')
     stats = calculate_stats(all)
     return render(request, "tehsil.html", {
       'villages_with_count': villages_with_count,
@@ -508,13 +502,13 @@ def get_district_list():
 def get_village_name(value):
     if value:
       try:
-        village_name = Villages.objects.filter(id=value).values('village_name')[:1].get()
+        village_name = Villages.objects.filter(vid=value).values('village_name')[:1].get()
         return village_name['village_name']
       except Exception as e:
         return None        
     else:
       return None
-      
+
 def get_tehsil_name(value):
     if value:
       tehsil_name = Villages.objects.filter(tehsil_id=value).values('tehsil')[:1].get()
@@ -549,7 +543,7 @@ def get_tehsils(slug):
                               .annotate(Count('village_id'))\
                               .values('village_id__count')
           villages_data_count = Villages.objects.filter(tehsil_id=tehsil.get('tehsil_id'))\
-                                        .values('id')\
+                                        .values('vid')\
                                         .annotate(data_count=Subquery(datas))\
                                         .order_by('-data_count')\
                                         .values('data_count')
@@ -570,7 +564,7 @@ def district(request, slug=None):
     tehsils = get_tehsils(slug)
     villages = Villages.objects.filter(district_id=slug).order_by('village_name')
     district = Villages.objects.filter(district_id=slug)[:1].values('district')
-    all = Data.objects.filter(village_id__in=Subquery(villages.values('id'))).order_by('victim_name')
+    all = Data.objects.filter(village_id__in=Subquery(villages.values('vid'))).order_by('victim_name')
     stats = calculate_stats(all)
     
     return render(request, "district.html", {
@@ -583,8 +577,8 @@ def district(request, slug=None):
 @cache_page(60 * 60)
 def page(request, directory=None, slug=None):
     page = Page.objects.get(slug=slug)
-    if id is not None and page is None:
-        return messages.warning(request,"page %s was not found"%id)
+    if slug is not None and page is None:
+        return messages.warning(request,"page %s was not found"%slug)
     return render(request, "page.html", { "page":page } )
 
 
@@ -608,41 +602,6 @@ class SearchResults(LazyObject):
         return search_results
 
 
-def search(request):
-    q = request.GET.get('q')
-    page = int(request.GET.get('page', '1'))
-    start = (page-1) * 10
-    end = start + 10
-    paginate_by = 20
-
-    if q:
-
-  #    results_1 = DataDocument.search().query("match", victim_name=q)
-  #    results_2 = VillagesDocument.search().query("match", village_name=q)
-  #    results = sorted( chain(results_1, results_2), key=lambda instance: -instance.meta.score)
-
-      # search_villages = VillagesDocument.search().query("match", village_name=q)
-      # search_results_villages = SearchResults(search_villages)
-
-      search_data = DataDocument.search().query("match", victim_name=q)
-      search_results_data = SearchResults(search_data)
-
-      paginator = Paginator(search_results_data, paginate_by)
-      page_number = request.GET.get("page")
-      try:
-        page = paginator.page(page_number)
-      except PageNotAnInteger:
-        # If page parameter is not an integer, show first page.
-        page = paginator.page(1)
-      except EmptyPage:
-        # If page parameter is out of range, show last existing page.
-        page = paginator.page(paginator.num_pages)
-    
-      return render(request, "search.html", {"results": page, "query": q })
-
-    else:
-      return render(request, "search.html")
-
 
 
 @register.simple_tag()
@@ -657,7 +616,7 @@ def hvictim_address_other(value):
   if m:
     census_id = m.group(1)
     try:
-      village = Villages.objects.filter( id=census_id )[:1].get()
+      village = Villages.objects.filter(vid=census_id)[:1].get()
       return '<span define="Village/town/city"><a href="/village/' + census_id + '">' + vname + '</a></span>, '\
         '<span define="Subdistrict"><a href="/tehsil/' + village.tehsil_id + '">' + village.tehsil + '</a></span>, '\
         '<span define="District"><a href="/district/' + village.district_id + '">' + village.district + '</a></span>'

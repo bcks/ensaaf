@@ -1,0 +1,8 @@
+{{ object.vid }}
+{{ object.village_name }}
+{{ object.tehsil }}
+{{ object.district }}
+{{ object.district_id }}
+{{ object.tehsil_id }}
+{{ object.lon }}
+{{ object.lat }}
