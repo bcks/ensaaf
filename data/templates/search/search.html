@@ -42,14 +42,6 @@
 <div class="row">
   <div class="col-sm-12">
 
-<!-- http://localhost:8983/solr/tester/select?indent=on&q=jagdih&spellcheck=on&wt=json
-
-http://localhost:8983/solr/tester/select?q=tes&spellcheck=true&spellcheck.collate=true&spellcheck.build=true
-
- -->
-
-
-
   {% if query %}
 
       <h3>Results</h3>
@@ -272,12 +264,15 @@ http://localhost:8983/solr/tester/select?q=tes&spellcheck=true&spellcheck.collat
 
     Autocomplete.prototype.fetch = function(query) {
       var self = this
-
-      $.ajax({ url: this.url, data: { 'q': query },
+      this.url = 'http://' + window.location.hostname + ':8983/solr/tester/select'
+      $.ajax({ url: this.url, data: { 'q': query, 'wt':'json' },
         success: function(data) {
-          console.log(data);
-          data.results = data.results.filter( onlyUnique )
-          self.show_results( data )
+          data = JSON.parse( data )
+          if (typeof data.spellcheck.suggestions[query] !== "undefined") {
+              var results = data.spellcheck.suggestions[query];
+              console.log( results );
+          }
+          self.show_results( results )
         }
       })
     }
@@ -286,7 +281,7 @@ http://localhost:8983/solr/tester/select?q=tes&spellcheck=true&spellcheck.collat
       // Remove any existing results.
       $('.ac-results').remove()
 
-      var results = data.results || []
+      var results = data.suggestion || []
       var results_wrapper = $('<div class="ac-results"></div>')
       var base_elem = $('<div class="result-wrapper"><a href="#" class="ac-result"></a></div>')
 
@@ -295,14 +290,14 @@ http://localhost:8983/solr/tester/select?q=tes&spellcheck=true&spellcheck.collat
           var elem = base_elem.clone();
           // Don't use .html(...) here, as you open yourself to XSS.
           // Really, you should use some form of templating.
-          elem.find('.ac-result').text(results[res_offset]);
-          elem.find('.ac-result').attr('href', '/search/?q=' + results[res_offset]);
+          elem.find('.ac-result').text(results[res_offset].word);
+          elem.find('.ac-result').attr('href', '/search/?q=' + results[res_offset].word);
           if (res_offset < results.length - 1) {
             elem.append(', ');
           }
           results_wrapper.append(elem);
         }
-        $('#suggestions').html('Suggested searches: ').append(results_wrapper);
+        $('#suggestions').html('Suggested spelling: ').append(results_wrapper);
       } else {
         var elem = base_elem.clone()
         elem.text("")

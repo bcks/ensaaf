@@ -649,18 +649,13 @@ def successView(request):
 import simplejson as json
 from django.http import HttpResponse
 from haystack.query import SearchQuerySet
+from haystack.inputs import AutoQuery, Exact, Clean
 
 
 from pprint import pprint
 
 
 def autocomplete(request):
-    
-    # query = request.GET.get('q', '')
-    # sqs = SearchQuerySet().auto_query(query)
-    # suggestion = sqs.spelling_suggestion()
-    # pprint( suggestion )
-
     sqs1 = SearchQuerySet().autocomplete(village_name=request.GET.get('q', ''))[:10]
     sqs2 = SearchQuerySet().autocomplete(victim_name=request.GET.get('q', ''))[:10]
     suggestions = [result.village_name for result in sqs1] + [result.victim_name for result in sqs2]

@@ -11,7 +11,7 @@ class DataIndex(indexes.SearchIndex, indexes.Indexable):
     victim_disappeared_killed = indexes.IntegerField(model_attr='victim_disappeared_killed', null=True)
     timeline_start = indexes.CharField(model_attr='timeline_start', null=True)
     timeline_end = indexes.CharField(model_attr='timeline_end', null=True)
-    suggestions = indexes.CharField()
+    suggestions = indexes.FacetCharField()
 
     def get_model(self):
         return Data
@@ -35,7 +35,7 @@ class VillageIndex(indexes.SearchIndex, indexes.Indexable):
     tehsil_id = indexes.IntegerField(model_attr='tehsil_id', null=True)
     lon = indexes.DecimalField(model_attr='lon', null=True)
     lat = indexes.DecimalField(model_attr='lat', null=True)
-    suggestions = indexes.CharField()
+    suggestions = indexes.FacetCharField()
 
     def get_model(self):
         return Villages
