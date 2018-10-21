@@ -20,6 +20,14 @@ from django.conf import settings
 from .forms import ContactForm
 from django.core.mail import EmailMessage
 
+# autocomplete
+import simplejson as json
+from django.http import HttpResponse
+from haystack.query import SearchQuerySet
+
+# spelling suggestions
+import pysolr
+solr = pysolr.Solr('http://localhost:8983/solr/tester/', timeout=10)
 
 
 
@@ -646,14 +654,14 @@ def successView(request):
 
 
 
-import simplejson as json
-from django.http import HttpResponse
-from haystack.query import SearchQuerySet
-from haystack.inputs import AutoQuery, Exact, Clean
 
+# from pprint import pprint
 
-from pprint import pprint
-
+def spelling(request):
+    query = request.GET.get('q', '')
+    results = vars( solr.search(query) )
+    the_data = json.dumps({ 'results': results })
+    return HttpResponse(the_data, content_type='application/json')
 
 def autocomplete(request):
     sqs1 = SearchQuerySet().autocomplete(village_name=request.GET.get('q', ''))[:10]

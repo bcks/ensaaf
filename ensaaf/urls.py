@@ -26,6 +26,7 @@ urlpatterns = [
     path('email/', emailView, name='email'),
     path('success/', successView, name='success'),
     url(r'^search/', include('haystack.urls')),
+    path('search/spelling/', spelling, name='spelling'),
     path('search/autocomplete/', autocomplete, name='autocomplete'),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
     path('secret-admin-login/', admin.site.urls),

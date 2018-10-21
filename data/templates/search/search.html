@@ -241,7 +241,7 @@
 
     var Autocomplete = function(options) {
       this.form_selector = options.form_selector
-      this.url = options.url || '/search/autocomplete/'
+      this.url = options.url || '/search/spelling/'
       this.delay = parseInt(options.delay || 300)
       this.minimum_length = parseInt(options.minimum_length || 2)
       this.form_elem = null
@@ -264,13 +264,11 @@
 
     Autocomplete.prototype.fetch = function(query) {
       var self = this
-      this.url = 'http://' + window.location.hostname + ':8983/solr/tester/select'
-      $.ajax({ url: this.url, data: { 'q': query, 'wt':'json' },
+      $.ajax({ url: this.url, data: { 'q': query },
         success: function(data) {
-          data = JSON.parse( data )
+          data = data.results;
           if (typeof data.spellcheck.suggestions[query] !== "undefined") {
               var results = data.spellcheck.suggestions[query];
-              console.log( results );
           }
           self.show_results( results )
         }
@@ -281,30 +279,37 @@
       // Remove any existing results.
       $('.ac-results').remove()
 
-      var results = data.suggestion || []
-      var results_wrapper = $('<div class="ac-results"></div>')
-      var base_elem = $('<div class="result-wrapper"><a href="#" class="ac-result"></a></div>')
-
-      if(results.length > 0) {
-        for(var res_offset in results) {
-          var elem = base_elem.clone();
-          // Don't use .html(...) here, as you open yourself to XSS.
-          // Really, you should use some form of templating.
-          elem.find('.ac-result').text(results[res_offset].word);
-          elem.find('.ac-result').attr('href', '/search/?q=' + results[res_offset].word);
-          if (res_offset < results.length - 1) {
-            elem.append(', ');
-          }
-          results_wrapper.append(elem);
-        }
-        $('#suggestions').html('Suggested spelling: ').append(results_wrapper);
+      if (data == undefined) {
+        $('#suggestions').html('');        
+      } else if (typeof data.suggestion == "undefined") {
+        $('#suggestions').html('');        
       } else {
-        var elem = base_elem.clone()
-        elem.text("")
-        results_wrapper.append(elem)
-        $('#suggestions').html('');
-      }
+            
+        var results = data.suggestion || []
+        var results_wrapper = $('<div class="ac-results"></div>')
+        var base_elem = $('<div class="result-wrapper"><a href="#" class="ac-result"></a></div>')
 
+        if(results.length > 0) {
+          for(var res_offset in results) {
+            var elem = base_elem.clone();
+            // Don't use .html(...) here, as you open yourself to XSS.
+            // Really, you should use some form of templating.
+            elem.find('.ac-result').text(results[res_offset].word);
+            elem.find('.ac-result').attr('href', '/search/?q=' + results[res_offset].word);
+            if (res_offset < results.length - 1) {
+              elem.append(', ');
+            }
+            results_wrapper.append(elem);
+          }
+          $('#suggestions').html('Suggested spelling: ').append(results_wrapper);
+        } else {
+          var elem = base_elem.clone()
+          elem.text("")
+          results_wrapper.append(elem)
+          $('#suggestions').html('');
+        }
+
+      }
     }
 
     $(document).ready(function() {
