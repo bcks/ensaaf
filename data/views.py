@@ -27,7 +27,7 @@ from haystack.query import SearchQuerySet
 
 # spelling suggestions
 import pysolr
-solr = pysolr.Solr(settings.HAYSTACK_CONNECTIONS.default.URL, timeout=10)
+solr = pysolr.Solr(settings.HAYSTACK_CONNECTIONS['default']['URL'], timeout=10)
 
 
 
