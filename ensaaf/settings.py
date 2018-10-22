@@ -104,7 +104,7 @@ DATABASES = {
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://127.0.0.1:8983/solr/tester',
+        'URL': 'http://127.0.0.1:8983/solr/ensaaf',
         'ADMIN_URL': 'http://127.0.0.1:8983/solr/admin/cores',
         'TIMEOUT': 60 * 5,
         'INCLUDE_SPELLING': True,
