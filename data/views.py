@@ -654,12 +654,48 @@ def successView(request):
 
 
 
+def vikusdata(request):
+    victim_list = Data.objects.all().values(\
+      'victim_name',
+			'victim_disappeared_killed',
+			'victim_death_date',
+			'victim_arrest_date',
+			'victim_last_heard_alive',
+			'timeline_start',
+			'timeline_end',
+			'village_name',
+			'photo_vic_fn',
+			'record_id',
+			'village_name',
+			'victim_sex')\
+      .annotate(year=Trunc('timeline', 'year', output_field=DateField() ))\
+      .order_by('-timeline')
+    return render(request, "vikus/data.html", { "victims":victim_list } )
+
+
 
 # from pprint import pprint
 
+spellings = [ ['gurjit','gurjeet'] ]
+
 def spelling(request):
     query = request.GET.get('q', '')
+    manualmatch = ''
+    for sublist in spellings:
+        if sublist[1] == query:
+            manualmatch = sublist[0]
+            break
+        elif sublist[0] == query:
+            manualmatch = sublist[1]
+            break
+    print (manualmatch)
     results = vars( solr.search(query) )
+    if manualmatch:
+      try:
+        results['spellcheck']['suggestions'][query]['suggestion'].insert(0, {'word': manualmatch,'freq': 25})
+      except Exception: 
+        results['spellcheck']['suggestions'][query] = {'suggestion': [ {'word': manualmatch,'freq': 25} ]}
+        pass
     the_data = json.dumps({ 'results': results })
     return HttpResponse(the_data, content_type='application/json')
 

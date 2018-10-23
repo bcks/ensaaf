@@ -156,6 +156,9 @@ def hdate(var):
     return ', date unknown'
   if (var == ''):
     return ', date unknown'
+  if (var == None):
+    return ', date unknown'
+
 
   # 09/20/1988-10/05/1988
   #      pattern => '%m/%d/%Y',

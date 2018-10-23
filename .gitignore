@@ -64,6 +64,7 @@ target/
 # local static files
 staticfiles
 static/photos
+static/timeline
 
 postactivate
 predeactivate

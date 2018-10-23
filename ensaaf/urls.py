@@ -33,6 +33,7 @@ urlpatterns = [
     path('perpetrators/', perpetrators, name="perpetrators"),
     url(r'^graphql', GraphQLView.as_view(graphiql=True)),
     path('<slug:slug>/', page),
+    path('vikus/data/', vikusdata, name="vikusdata"),
     path('', map, name="map"),
 ]
 
