@@ -688,7 +688,6 @@ def spelling(request):
         elif sublist[0] == query:
             manualmatch = sublist[1]
             break
-    print (manualmatch)
     results = vars( solr.search(query) )
     if manualmatch:
       try:
