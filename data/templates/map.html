@@ -412,7 +412,7 @@ function makeVillageNames(start, end) {
           villages[id] = (villages[id] || 0) + 1;
         }
     }
-    
+        
     updateMap(start, end);
 }
 
@@ -437,9 +437,7 @@ function updateMap(start, end) {
     }
 
 
-
     // test Object.keys(markers).length to see less than total? see if need to recreate map or just update
-
 
     if (Object.keys(markers).length > 0) {
 
@@ -606,11 +604,10 @@ function makeTimeline() {
   // https://bl.ocks.org/mbostock/4349545
   
   function brushed() {
-    var xs = d3.event.selection;
-    var s = xScale.range();
+    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
+    var s = d3.event.selection || xScale.range();
     if (handle) {
-      var sx = xs.map(xScale.invert);  // date range
-      handle.attr("cx", function(d, i) { return xs[i] ; });
+      handle.attr("cx", function(d, i) { return s[i] ; });
     }
     makeVillageNames( xScale.invert(s[0]), xScale.invert(s[1]) );
   }
