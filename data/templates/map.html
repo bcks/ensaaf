@@ -188,7 +188,10 @@
 </div>
 <div id="year_buttons"></div>
 
+
 <div id="timeline"></div>
+
+
   
 <div class="container">
 
@@ -203,12 +206,15 @@
 <script type="text/javascript">
 
 
+/*
 // make year buttons
 for (i = 1984; i<=2000; i++) {
   $('#year_buttons').append('<button type="button" class="btn btn-dark">'+i+'</button>');
 }
+*/
+
 $('#year_buttons button').on('click', function(e) {
-  console.log(e);
+  //console.log(e);
   $("#year").val(e.target.innerText);
   updateMapData();
 });
@@ -523,28 +529,95 @@ function updateMap(start, end) {
 
 
 function makeTimeline() {
-    
-  var start = d3.min(d3.entries(timeCapsule), function(d) { return d.value.date; });
-  var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
 
-  // Some victims have t=0. will have to account for this when we put the brushable timline back in
-  if ( $( "#year" ).val() == '' ) {  start = new Date(0); }
+  var timeline_margin = {top: 10, right: 10, bottom: 35, left: 10};
 
-  var xScale = d3.scaleTime().domain([start, end]).rangeRound([0, 100]);
+  var width = $(window).width() - timeline_margin.left - timeline_margin.right,
+      height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
 
-  var brush = d3.brushX().on("brush end", brushed);
+  var start = new Date('January 1, 1981');
+  var end = new Date('December 31, 2008');
 
-  var svg = d3.select("#timeline").append("svg");
+  var xScale = d3.scaleTime()
+      .domain([start, end])
+      .rangeRound([0, width]);
 
+  //console.log(start);
+
+  var y = d3.scaleLinear()
+      .range([height, 0]);
+
+  var brush = d3.brushX().on("start brush end", brushed);
+
+  var histogram = d3.histogram()
+      .value(function(d) { return d.date; })
+      .domain(xScale.domain())
+      .thresholds(xScale.ticks(d3.timeMonth));
+
+  var svg = d3.select("#timeline").append("svg")
+      .attr("width", width + timeline_margin.left + timeline_margin.right)
+      .attr("height", height + timeline_margin.top + timeline_margin.bottom)
+    .append("g")
+      .attr("transform", 
+            "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
+
+
+  var bins = histogram(timeCapsule);
+
+  y.domain([-3, d3.max(bins, function(d) { return d.length; })]);
+
+  // timeline bars
+  svg.selectAll("rect")
+      .data(bins)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", 1)
+      .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + y(d.length) + ")"; })
+      .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0); })
+      .style("opacity", function(d) { 
+          if (d.length < 1) { 
+            return 0;
+          } else {
+            return 1;
+          }
+        })
+      .attr("height", function(d) { return height - y(d.length); });
+
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .attr('class','axis')
+      .call(d3.axisBottom(xScale));
+
+  // brush
+  var gBrush = svg.append("g")
+      .attr("class", "brush")
+      .call(brush);
+
+  var handle = gBrush.selectAll(".handle--custom")
+    .data([{type: "0"}, {type: "1"}])
+    .enter().append("circle")
+      .attr("class", "handle--custom")
+        .attr("cx", function(d) { return width * d.type; })
+        .attr("r", 5)
+        .attr("cy", 70);
+
+  gBrush.call(brush.move, xScale.range());
+
+  // https://bl.ocks.org/mbostock/4349545
+  
   function brushed() {
+    var xs = d3.event.selection;
     var s = xScale.range();
+    if (handle) {
+      var sx = xs.map(xScale.invert);  // date range
+      handle.attr("cx", function(d, i) { return xs[i] ; });
+    }
     makeVillageNames( xScale.invert(s[0]), xScale.invert(s[1]) );
   }
 
-  svg.append("g")
-      .attr("class", "brush")
-      .call(brush)
-      .call(brush.move, xScale.range());
+
+    svg.selectAll(".x.axis .text").on("click", function(d) {  console.log(d); });
+
 
 } // end makeTimeline
 

@@ -676,7 +676,7 @@ def hsecurity_official_response(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11
   groups.append('Admitted extrajudicial execution with no explanation') if v3 == 1 else 0
   groups.append('Admitted custody only') if v4 == 1 else 0
   groups.append('Victim had escaped') if v5 == 1 else 0
-  groups.append('Victim extrajudicial execution will trying to escape') if v6 == 1 else 0
+  groups.append('Victim extrajudicial execution while trying to escape') if v6 == 1 else 0
   groups.append('Victim extrajudicial execution by militants') if v7 == 1 else 0
   groups.append('Told family to go to another police station') if v8 == 1 else 0
   groups.append('Victim extrajudicial execution in crossfire with militants') if v9 == 1 else 0
@@ -791,7 +791,7 @@ def hwitness_detention(v3, v4, v5, v6, v7, v8, v9, v10, v12, v13, v14, other, st
 
   if (v3 == 1):
     if (status):
-      groups.append('SeenSeen by respondent')
+      groups.append('Seen by respondent')
     else:
       groups.append('Relative')
 
