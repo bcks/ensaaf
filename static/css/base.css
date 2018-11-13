@@ -235,7 +235,7 @@ tr { vertical-align: top; }
   border-bottom: 10px solid #000;
   margin-bottom: 2rem;
 }
-.bar { fill: #fc0; }
+.bar { fill: #333; }
 .axis line, .axis path { stroke: #666; }
 .tick { 
   fill: #fff;
@@ -254,6 +254,7 @@ circle.handle--custom {
   pointer-events: none;
 }
 .handle { width: 10px; }
+rect.active { fill: #fc0; }
 
 
 @media only screen and (min-width: 640px) {

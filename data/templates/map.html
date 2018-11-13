@@ -565,7 +565,7 @@ function makeTimeline() {
   y.domain([-3, d3.max(bins, function(d) { return d.length; })]);
 
   // timeline bars
-  svg.selectAll("rect")
+  var bars = svg.selectAll("rect")
       .data(bins)
     .enter().append("rect")
       .attr("class", "bar")
@@ -606,6 +606,21 @@ function makeTimeline() {
   function brushed() {
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
     var s = d3.event.selection || xScale.range();
+        
+    if (s == null) {
+      bars.classed("active", false);
+    } else {
+      var start = new Date(0).setUTCSeconds( xScale.invert( s[0] ) ) / 1000;
+      var end = new Date(0).setUTCSeconds( xScale.invert( s[1] ) ) / 1000;
+      bars.classed("active", function(d) {
+        if (d.length) { 
+          return start <= d[0]['date'] && d[0]['date'] <= end;
+        } else {
+          return 0;
+        }
+      });
+    }
+    
     if (handle) {
       handle.attr("cx", function(d, i) { return s[i] ; });
     }
