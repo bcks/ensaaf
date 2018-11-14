@@ -300,7 +300,6 @@ function updateMapData() {
       // history.pushState(params,'Mapping Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions', "/?" + params);
       
 
-      d3.select("#timeline").html("")
       makeTimeline();
       makeVillageNames(start, end);
   })
@@ -527,10 +526,20 @@ function updateMap(start, end) {
 
 
 
+
+d3.select(window).on('resize', function() {
+  makeTimeline();
+});
+
 var maxHeight = 0;
+
+
+
 
 function makeTimeline() {
 
+  d3.select("#timeline").html("")
+ 
   var timeline_margin = {top: 10, right: 10, bottom: 35, left: 10};
 
   var width = $(window).width() - timeline_margin.left - timeline_margin.right,
