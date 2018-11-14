@@ -207,18 +207,16 @@
 
 
 /*
-// make year buttons
+// old, HTML year buttons
 for (i = 1984; i<=2000; i++) {
   $('#year_buttons').append('<button type="button" class="btn btn-dark">'+i+'</button>');
 }
-*/
-
 $('#year_buttons button').on('click', function(e) {
   //console.log(e);
   $("#year").val(e.target.innerText);
   updateMapData();
 });
-
+*/
 
 
 function numberWithCommas(x) {
@@ -603,10 +601,25 @@ function makeTimeline() {
       .attr('class','axis')
       .call(d3.axisBottom(xScale));
 
+  // make years clickcable
+  d3.selectAll('.tick')
+    .on('click',clickMe)
+
+  function clickMe(d){
+    var endDate = new Date(d);
+    endDate.setDate(endDate.getDate()+365);
+    gBrush.call(brush.move, [d, endDate].map(xScale));
+  }
+
+
   // brush
   var gBrush = svg.append("g")
       .attr("class", "brush")
       .call(brush);
+
+  d3.select('.overlay').style('height', '145px');
+  d3.select('.selection').style('height', '145px');
+  d3.select('.handle').style('height', '145px');
 
   var handle = gBrush.selectAll(".handle--custom")
     .data([{type: "0"}, {type: "1"}])
@@ -623,7 +636,10 @@ function makeTimeline() {
   function brushed() {
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
     var s = d3.event.selection || xScale.range();
-        
+    
+    var total = 0;
+    var unfilteredTotal = 0;
+    
     if (s == null) {
       bars.classed("active", false);
     } else {
@@ -631,6 +647,10 @@ function makeTimeline() {
       var end = new Date(0).setUTCSeconds( xScale.invert( s[1] ) ) / 1000;
       bars.classed("active", function(d) {
         if (d.length) { 
+          if (start <= d[0]['date'] && d[0]['date'] <= end) {
+            total += d.length;
+          }
+          unfilteredTotal += d.length;
           return start <= d[0]['date'] && d[0]['date'] <= end;
         } else {
           return 0;
@@ -641,12 +661,14 @@ function makeTimeline() {
     if (handle) {
       handle.attr("cx", function(d, i) { return s[i] ; });
     }
+    
+    if (total == unfilteredTotal) { 
+      d3.select('#count').html( '{{all|length|intcomma}}' );
+    } else {
+      d3.select('#count').html( numberWithCommas(total) );    
+    }
     makeVillageNames( xScale.invert(s[0]), xScale.invert(s[1]) );
   }
-
-
-    svg.selectAll(".x.axis .text").on("click", function(d) {  console.log(d); });
-
 
 } // end makeTimeline
 
