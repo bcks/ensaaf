@@ -282,6 +282,7 @@ function updateMapData() {
       timeCapsule = json.timeline;
 
       $("#count").html( numberWithCommas(timeCapsule.length) );
+
       if (timeCapsule.length == 1) {
         $(".count-plural").html("");
       } else {     
@@ -664,7 +665,7 @@ function makeTimeline() {
     }
     
     if (total == unfilteredTotal) { 
-      d3.select('#count').html( '{{all|length|intcomma}}' );
+      //d3.select('#count').html( '{{all|length|intcomma}}' );
     } else {
       d3.select('#count').html( numberWithCommas(total) );    
     }
