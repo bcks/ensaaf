@@ -687,8 +687,6 @@ def hsecurity_official_response(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11
   if v3 == 1:
     if (other):
       groups.append(other)
-    else:
-      groups.append('Other')
   if len(groups):
       s = ', '
       return s.join(groups)
