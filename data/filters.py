@@ -57,7 +57,7 @@ class DataFilter(django_filters.FilterSet):
       villages = Villages.objects.filter(district_id=value).order_by('village_name')
     else:
       villages = Villages.objects.filter(tehsil_id=value).order_by('village_name')
-    return queryset.filter(**{'village_id__in': villages.values('id') })
+    return queryset.filter(**{'village_id__in': villages.values('vid') })
 
   combatant = django_filters.CharFilter(method='combatant_filter')
   def combatant_filter(self, queryset, name, value):
