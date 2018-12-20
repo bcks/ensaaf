@@ -959,6 +959,15 @@
     </div>
   </div>
 
+ <div class="row">
+    <div class="col-sm-6">
+      <p class="dots"><span class="kicker"><em><strong>Forthcoming</strong></em></span></p>
+    </div>
+  </div>
+
+
+
+{% comment %}
 
 {% if victim.fullprofile.all|length > 0 %}
   {% for this in victim.fullprofile.all %}
@@ -972,11 +981,12 @@
     <div class="row">
       <div class="col-12">
 
+        {% if this.video_url %}
         <hr>
-
         <div class="aspect-ratio">
           <iframe width="560" height="315" src="{{this.video_url}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
+        {% endif %}
     
         <hr>
 
@@ -999,6 +1009,9 @@
   </div>
 
 {% endif %}
+
+{% endcomment %}
+
 
 
 
