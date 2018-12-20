@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib import admin
+from django import forms
 
 
 
@@ -95,7 +96,7 @@ class Data(models.Model):
     arrest_security_type_6 = models.IntegerField(db_column='arrest_security_type___6')
     arrest_security_type_7 = models.IntegerField(db_column='arrest_security_type___7')
     arrest_security_type_8 = models.IntegerField(db_column='arrest_security_type___8')
-    arrest_security_locality = models.IntegerField(db_column='arrest_security_locality')
+    arrest_security_locality = models.IntegerField(db_column='arrest_security_locality', blank=True, null=True)
     securityoff_id_known = models.IntegerField(blank=True, null=True)
     security_forces_uniformed = models.IntegerField(blank=True, null=True)
     witness_arrest_0 = models.IntegerField(db_column='witness_arrest___0')
@@ -342,9 +343,6 @@ class Page(models.Model):
     class Meta:
         db_table = 'Page'
 
-
-
-
 class PageAdmin(admin.ModelAdmin):
     # define which columns displayed in changelist
     list_display = ('title', 'slug', 'body')
@@ -352,5 +350,34 @@ class PageAdmin(admin.ModelAdmin):
     search_fields = ['title', 'body']
 
 admin.site.register(Page, PageAdmin)
+
+
+
+
+
+
+class FullProfile(models.Model):
+    record_id = models.ForeignKey(Data, db_column='record_id', to_field='record_id', related_name='fullprofile', on_delete=models.CASCADE, blank=True, null=True, default='NULL')
+    family_reflections = models.TextField(db_column='family_reflections', blank=True, null=True)
+    video_url = models.CharField(db_column='video_url', max_length=256, blank=True, null=True)
+    summary = models.TextField(db_column='summary', blank=True, null=True)
+    class Meta:
+        db_table = 'fullprofile'
+
+class RecordIdField(forms.ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.record_id
+
+class FullProfileAdmin(admin.ModelAdmin):
+    list_display = ('record_id', 'family_reflections', 'summary')
+    search_fields = ['family_reflections', 'summary']
+
+    def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
+        if db_field.name == 'record_id':
+            kwargs['form_class'] = RecordIdField
+        return super(FullProfileAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+admin.site.register(FullProfile, FullProfileAdmin)
+
 
 
