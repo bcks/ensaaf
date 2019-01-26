@@ -53,8 +53,8 @@
 
 
 <script>
-  var options = { minZoom: 4, maxZoom: 12, zoomControl: false };
-  var mymap = L.map('village-map', options).setView([{{village.lat}},{{village.lon}}], 10);
+  var options = { minZoom: 4, maxZoom: 12, zoomControl: true };
+  var mymap = L.map('village-map', options).setView([{{village.lat}},{{village.lon}}], 8);
   L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
     subdomains: 'abcd',
     attribution: '',
@@ -63,7 +63,7 @@
         stroke: false,
         fillColor: '#fc0',
         fillOpacity: 1,
-        radius: 500,
+        radius: 2500,
         url: '{% url 'village' village.vid %}',
   }).addTo(mymap);
   circle.on('click', function (e) { document.location.href = this.options.url; });
@@ -154,5 +154,10 @@
 
 {% endif %}
     
-    
+
+
+  <br>
+  <p><a href="http://reportpunjabpolice.org" class="btn btn-light">Report a new case</a></p>
+
+  
 {% endblock %}
