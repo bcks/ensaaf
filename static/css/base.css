@@ -210,18 +210,19 @@ tr { vertical-align: top; }
 #clear-filters {  display: none; }
 
 
+
 #map-over {
 	padding: 1rem 0 .5rem 0;
-	background-color: #000;
 }
 #map-over h4 {
-	color: #b28f00;
+	color: #666;
 	font-weight: normal;
 }
 #count {
 	font-weight: bold;
-	color: #fc0;
+	color: #000;
 }
+
 
 #year_buttons {
   text-align: center;
@@ -235,30 +236,34 @@ tr { vertical-align: top; }
 
 #timeline {
   height: 200px;
-  background-color: #000;
-  border-bottom: 10px solid #000;
   margin-bottom: 2rem;
 }
 .bar { fill: #333; }
 .axis line, .axis path { stroke: #666; }
 .tick { 
-  fill: #fff;
+  fill: #999;
   font-family: 'Fira Sans', sans-serif;
   cursor: pointer;
 }
 .tick text { 
   font-size: 16px;
-  fill: #fff;
+  fill: #333;
   cursor: pointer;
 }
-.tick text:hover { fill: #fc9; }
+.tick text:hover { fill: #079; }
 circle.handle--custom {
-  fill: #fff;
+  fill: #333;
   cursor: ew-resize;
   pointer-events: none;
 }
 .handle { width: 10px; }
-rect.active { fill: #fc0; }
+rect.active {
+  fill: #079; 
+  fill-opacity: .77;
+}
+.brush .selection { fill: none; stroke: none; }
+
+
 
 
 @media only screen and (min-width: 640px) {
