@@ -31,7 +31,6 @@
     .leaflet-interactive { cursor: pointer; }
     .leaflet-popup-content-wrapper { border-radius: 2px; }
     .leaflet-control-attribution { display: none; }
-    @media (max-width: 768px) { .order-2 { order: 1; } }    
   </style>
 {% endblock %}
 
@@ -45,8 +44,47 @@
     <p class="kicker">Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.</p>
   </div>
 
+  <div class="col-12">
+    <p><br></p>
+    <!-- div style="background-color:#000;height: 200px;" id="village-map"></div -->
+  </div>
+
 </div>
 
+
+<script>
+  var options = { minZoom: 4, maxZoom: 12, zoomControl: true };
+  var mymap = L.map('village-map', options).setView([{{village.lat}},{{village.lon}}], 8);
+  L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
+    subdomains: 'abcd',
+    attribution: '',
+  }).addTo(mymap);
+  var circle = L.circle([{{village.lat}},{{village.lon}}], {
+        stroke: false,
+        fillColor: '#fc0',
+        fillOpacity: 1,
+        radius: 2500,
+        url: '{% url 'village' village.vid %}',
+  }).addTo(mymap);
+  circle.on('click', function (e) { document.location.href = this.options.url; });
+  mymap.scrollWheelZoom.disable();
+  
+  var punjabStyle = { "color": "#999", "weight": 1, "opacity": 0.65, "fillOpacity": 0 };
+  var punjab = new L.geoJson();
+  punjab.addTo(mymap);
+  $.ajax({
+    dataType: "json",
+    url: "/static/js/punjab.geojson",
+    success: function(data) {
+        $(data.features).each(function(key, data) {
+            punjab.addData(data);
+        });
+        punjab.setStyle(punjabStyle);
+        punjab.bringToBack()
+    }
+  });
+
+</script>
 
 
 
@@ -80,11 +118,9 @@
 
     <div class="row">
 
-    <div class="col-12 col-sm-12 col-md-6 order-2" style="background-color:#000;height:300px;margin-bottom:1rem;" id="village-map"></div>
-
     {% for victim in victims.qs %}
 
-    <div class="col-6 col-sm-4 col-md-3 victim {%if forloop.counter < 3 %}order-1{%else%}order-3{%endif%}">
+    <div class="col-6 col-sm-4 col-md-3 victim">
 
       <div class="home-box" style="background-image:url('{% if victim.photo_vic_fn %}{% hphoto victim.photo_vic_fn %}{% else %}{% if victim.victim_sex == 2 %}/static/images/woman.jpg{% else %}/static/images/gray.jpg{% endif %}{% endif %}')" onclick="window.location.href='/profile/{{victim.record_id}}';" id="p{{victim.record_id}}">     
       </div>
@@ -122,44 +158,6 @@
 
   <br>
   <p><a href="http://reportpunjabpolice.org" class="btn btn-primary">Report a case</a></p>
-
-
-
-
-
-<script>
-  var options = { minZoom: 4, maxZoom: 12, zoomControl: true };
-  var mymap = L.map('village-map', options).setView([{{village.lat}},{{village.lon}}], 8);
-  L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
-    subdomains: 'abcd',
-    attribution: '',
-  }).addTo(mymap);
-  var circle = L.circle([{{village.lat}},{{village.lon}}], {
-        stroke: false,
-        fillColor: '#fc0',
-        fillOpacity: 1,
-        radius: 2500,
-        url: '{% url 'village' village.vid %}',
-  }).addTo(mymap);
-  circle.on('click', function (e) { document.location.href = this.options.url; });
-  mymap.scrollWheelZoom.disable();
-  
-  var punjabStyle = { "color": "#999", "weight": 1, "opacity": 0.65, "fillOpacity": 0 };
-  var punjab = new L.geoJson();
-  punjab.addTo(mymap);
-  $.ajax({
-    dataType: "json",
-    url: "/static/js/punjab.geojson",
-    success: function(data) {
-        $(data.features).each(function(key, data) {
-            punjab.addData(data);
-        });
-        punjab.setStyle(punjabStyle);
-        punjab.bringToBack()
-    }
-  });
-
-</script>
 
   
 {% endblock %}
