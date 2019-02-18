@@ -415,7 +415,15 @@ function updateMap(start, end) {
                 if (d.size > 1) { tultipText += 's'; }
                 tultipText += '</div>';
 
-              markers[key].bindPopup(tultipText);
+              markers[key].bindPopup(tultipText, {offset:[0,-5]});
+              markers[key].on('mouseover', function (e) { this.openPopup(); });
+              markers[key].on('mouseout', function (e) { this.closePopup(); });
+              markers[key].on('click', function (e) {
+                var params = $('#form').serialize();
+                document.location.href = this.options.url + '/?' + params;
+              });
+
+
               markers_array.push( markers[key] );
           } else {
             markers[key].setStyle({fillOpacity: 0});            
@@ -444,9 +452,8 @@ function updateMap(start, end) {
     
     } else {
         
-        // create map
+        // add points to map
         _.forEach(points, function(d) {
-
           if (d.id !== '0') {
             var customCircleMarker = L.CircleMarker.extend({
                options: { 
@@ -459,24 +466,7 @@ function updateMap(start, end) {
                 fillOpacity: 0.5,
                 url: '/village/' + d.id,
             }).addTo(mymap);
-
-            var tultipText = '<div class="name">' + d.name + ', ';
-              if (d.subdist !== d.dist) { tultipText += d.subdist + ', '; }
-              tultipText += d.dist + '</div><div class="position">' + d.size + ' Victim';
-              if (d.size > 1) { tultipText += 's'; }
-              tultipText += '</div>';
-
-            var url = '/village/' + d.id;
-
-            markers[String(d.id)].bindPopup(tultipText);
-            markers[String(d.id)].on('mouseover', function (e) { this.openPopup(); });
-            markers[String(d.id)].on('mouseout', function (e) { this.closePopup(); });
-            markers[String(d.id)].on('click', function (e) {
-              var params = $('#form').serialize();
-              document.location.href = this.options.url + '/?' + params;
-            });
           }
-          
         }); // end for points
 
     } // end if markers
