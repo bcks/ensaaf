@@ -27,8 +27,8 @@
   <meta property="og:description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions, based on data collected through primary source interviews." />
   <meta property="og:site_name" content="Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" />
 
-  <link rel="stylesheet" href="/static/css/carto.css" />
   <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="/static/css/carto.css" />
   <script type="text/javascript" src="/static/js/carto.js"></script>
   <script type="text/javascript" src="/static/js/leaflet.zoomhome.min.js"></script>
 
@@ -38,19 +38,6 @@
       width: calc(100% - 2rem);
       background-color: #fff;
       margin: 0 1rem;
-    }
-    .leaflet-control-attribution,
-        .leaflet-control-zoom { display: none; }
-    .leaflet-zoom-animated g, .leaflet-clickable { cursor: pointer; }
-    .leaflet-popup-content-wrapper { border-radius: 2px; }
-
-    .leaflet-control-zoomhome a {
-        font: bold 18px "Lucida Console",Monaco,monospace;
-    }
-    a.leaflet-control-zoomhome-in,
-    a.leaflet-control-zoomhome-out {
-      font-size: 1.5em;
-      line-height: 26px;
     }
   </style>
   <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
@@ -321,20 +308,8 @@ function updateMapData() {
 var previousDistrict = '';
 
 
-/*
-window.onload = function() {
-  cartodb.createVis('mapid', 'http://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9865-4151-a4e7-3456ef906d7d/viz.json')
-  .done(function(vis, layers) {
-    var mymap = vis.getNativeMap();  
-
-    mymap.setZoom(8);
-    mymap.panTo([31.0157601,75.45]);
-  });
-}
-*/
 
 // load basemap
-
 var options = { minZoom: 4, maxZoom: 12, zoomControl: false };
 var mymap = new L.Map('mapid', {
   center: [31.0157601,75.45],
