@@ -25,7 +25,7 @@
   <meta property="og:description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{village.village_name}}, {{village.tehsil}}, {{village.district}} District, based on data collected through primary source interviews." />
   <meta property="og:site_name" content="Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" />
 
-  <link rel="stylesheet" href="/static/css/leaflet.css" />
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
   <link rel="stylesheet" href="/static/css/carto.css" />
   <script type="text/javascript" src="/static/js/carto.js"></script>
   <script type="text/javascript" src="/static/js/leaflet.zoomhome.min.js"></script>
@@ -131,7 +131,8 @@
   var options = { minZoom: 4, maxZoom: 12, zoomControl: true };
   var mymap = new L.Map('village-map', {
     center: [{{village.lat}},{{village.lon}}],
-    zoom: 8
+    zoom: 8,
+    zoomControl: true
   });
   cartodb.createLayer(mymap, 'https://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9865-4151-a4e7-3456ef906d7d/viz.json', {https: true}).addTo(mymap);
   var circle = L.circle( [{{village.lat}}, {{village.lon}}], 2500, {
@@ -141,6 +142,8 @@
         url: '{% url 'village' village.vid %}',
   }).addTo(mymap);
   circle.on('click', function (e) { document.location.href = this.options.url; });
+  var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
+  zoomHome.addTo(mymap);
   mymap.scrollWheelZoom.disable();
 </script>
 
