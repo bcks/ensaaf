@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="/static/css/carto.css" />
   <script type="text/javascript" src="/static/js/carto.js"></script>
   <script type="text/javascript" src="/static/js/leaflet.zoomhome.min.js"></script>
+  <script type="text/javascript" src="/static/js/leaflet.minimap.min.js"></script>
 
   <style>
     #mapid {
@@ -309,6 +310,8 @@ var previousDistrict = '';
 
 
 
+
+
 // load basemap
 var options = { minZoom: 4, maxZoom: 12, zoomControl: false };
 var mymap = new L.Map('mapid', {
@@ -319,6 +322,9 @@ cartodb.createLayer(mymap, 'https://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9
 var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
 zoomHome.addTo(mymap);
 mymap.scrollWheelZoom.disable();
+
+var osm2 = new L.TileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {minZoom: 0, maxZoom: 13, attribution: null});
+var miniMap = new L.Control.MiniMap(osm2).addTo(mymap);
 
 
 // load village centroids
