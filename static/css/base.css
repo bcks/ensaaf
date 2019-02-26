@@ -211,16 +211,20 @@ tr { vertical-align: top; }
 
 #map-over {
 	padding: 1rem 0 .5rem 0;
+	margin: 0 1rem;
+	background-color: #000;
 }
 #map-over h4 {
-	color: #666;
+	color: #b28f00;
 	font-weight: normal;
 }
 #count {
 	font-weight: bold;
-	color: #000;
+	color: #fc0;
 }
+.cartodb-logo { display: none !important; }
 
+.leaflet-container { background-color: #000; }
 .leaflet-control-attribution, .leaflet-control-zoom { display: none; }
 .leaflet-zoom-animated g, .leaflet-clickable { cursor: pointer; }
 .leaflet-popup-content-wrapper { border-radius: 2px; }
@@ -246,7 +250,8 @@ a.leaflet-control-zoomhome-out {
 
 #timeline {
   height: 200px;
-  margin-bottom: 2rem;
+  margin: 0 1rem 2rem 1rem;
+  background-color: #000; 
 }
 .bar { fill: #333; }
 .axis line, .axis path { stroke: #666; }
@@ -257,18 +262,18 @@ a.leaflet-control-zoomhome-out {
 }
 .tick text { 
   font-size: 16px;
-  fill: #333;
+  fill: #ccc;
   cursor: pointer;
 }
 .tick text:hover { fill: #079; }
 circle.handle--custom {
-  fill: #333;
+  fill: #ccc;
   cursor: ew-resize;
   pointer-events: none;
 }
 .handle { width: 10px; }
 rect.active {
-  fill: #079; 
+  fill: #fc0; 
   fill-opacity: .77;
 }
 .brush .selection { fill: none; stroke: none; }

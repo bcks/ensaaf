@@ -36,7 +36,7 @@
     #mapid {
       height:650px;
       width: calc(100% - 2rem);
-      background-color: #fff;
+      background-color: #000;
       margin: 0 1rem;
     }
   </style>
@@ -431,7 +431,7 @@ function updateMap(start, end) {
             });
             markers[String(d.id)] = new customCircleMarker([d.coord[1] + .015,d.coord[0] - .025], {
                 stroke: false,
-                fillColor: '#079',
+                fillColor: '#fc0',
                 fillOpacity: 0.5,
                 url: '/village/' + d.id,
             }).addTo(mymap);
@@ -460,7 +460,7 @@ function makeTimeline() {
  
   var timeline_margin = {top: 10, right: 10, bottom: 35, left: 10};
 
-  var width = $(window).width() - timeline_margin.left - timeline_margin.right,
+  var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
       height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
 
   var start = new Date('January 1, 1981');

@@ -80,7 +80,7 @@
 
     <div class="row">
 
-    <div class="col-12 col-sm-12 col-md-6 order-2" style="background-color:#fff;height:300px;margin-bottom:1rem;" id="village-map"></div>
+    <div class="col-12 col-sm-12 col-md-6 order-2" style="background-color:#000;height:300px;margin-bottom:1rem;" id="village-map"></div>
 
     {% for victim in victims.qs %}
 
@@ -137,7 +137,7 @@
   cartodb.createLayer(mymap, 'https://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9865-4151-a4e7-3456ef906d7d/viz.json', {https: true}).addTo(mymap);
   var circle = L.circle( [{{village.lat}}, {{village.lon}}], 2500, {
         stroke: false,
-        fillColor: '#079',
+        fillColor: '#fc0',
         fillOpacity: .75,
         url: '{% url 'village' village.vid %}',
   }).addTo(mymap);
