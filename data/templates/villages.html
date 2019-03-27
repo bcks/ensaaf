@@ -62,7 +62,7 @@
         {% if village.data_count %}
           <a href="/village/{{village.vid}}">{{village.village_name}}</a>, {{village.data_count}} case{{village.data_count|pluralize }}
         {% else %}
-          <a href="/village/{{village.vid}}" class="gray">{{village.village_name}}</a>, <em class="gray">no documented cases</em>
+          <a href="/village/{{village.vid}}" class="gray">{{village.village_name}}</a>, <a href="http://reportpunjabpolice.org" class="gray">report a case</a>
         {% endif %}
       </div>
     </div>
