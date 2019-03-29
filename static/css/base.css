@@ -243,7 +243,7 @@ a.leaflet-control-zoomhome-out {
 .leaflet-control-minimap{
   border: 1px #999 solid;
 	box-shadow:0 1px 5px rgba(0,0,0,.65);
-	background:#000;
+	background-color: #000 !important;
 	transition:all .6s;
 }
 .leaflet-control-minimap a{
