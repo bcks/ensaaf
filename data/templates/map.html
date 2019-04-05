@@ -174,8 +174,7 @@
     <h4>At least <span id="count">{{all|length|intcomma}}</span> Enforced Disappearance<span class="count-plural">s</span>/Extrajudicial Execution<span class="count-plural">s</span></h4>
   </div><!-- end container -->
 </div>
-<div id="mapid">
-</div>
+<div id="mapid"></div>
 <div id="year_buttons"></div>
 
 
@@ -192,6 +191,8 @@
     </div>
   </div>
 
+
+  <div id="maptemp"></div>
 
 
 <script type="text/javascript">
@@ -320,11 +321,15 @@ var mymap = new L.Map('mapid', {
 cartodb.createLayer(mymap, 'https://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9865-4151-a4e7-3456ef906d7d/viz.json', {https: true}).addTo(mymap);
 var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
 zoomHome.addTo(mymap);
-mymap.scrollWheelZoom.disable();
 
-var osm2 = new L.TileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {minZoom: 0, maxZoom: 13, attribution: null});
-var miniMap = new L.Control.MiniMap(osm2, { width: 250, height: 200, zoomLevelFixed: 3, position: 'topright', centerFixed: [21.28,77] }).addTo(mymap);
+// https://sukhmandhami.carto.com/builder/350efab7-443d-419e-930c-b50ab8e394cd/embed
+var osm2 = new L.TileLayer('https://cartocdn-gusc.global.ssl.fastly.net/sukhmandhami/api/v1/map/sukhmandhami@8cf94c4f@7394194616a5b4936fb73a4555534a43:1554421032266/1,2/{z}/{x}/{y}.png');
+var pubs2 = new L.TileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png');
+var layers = new L.LayerGroup([pubs2, osm2]);
+var miniMap = new L.Control.MiniMap(layers, { width: 250, height: 200, zoomLevelFixed: 3, position: 'topright', centerFixed: [21.28,77] }).addTo(mymap);
+
 mymap.setView(new L.LatLng(31.0157601,75.45),8);
+mymap.scrollWheelZoom.disable();
 
 
 // load village centroids
