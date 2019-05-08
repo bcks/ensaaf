@@ -76,8 +76,8 @@ class DataFilter(django_filters.FilterSet):
       startvalue = value + '-01-01'
       endvalue = value + '-12-31'
       return queryset.filter(**{
-        'timeline_start__gte': startvalue,
-        'timeline_end__lte': endvalue,
+        'timeline__gte': startvalue,
+        'timeline__lte': endvalue,
       })
 
   class Meta:
