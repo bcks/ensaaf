@@ -109,11 +109,17 @@ a { color: #008eaf; }
 
 
 
-#search-toggle { 
-  width: 40px;
-  height: 40px;
-  border: 0px;
+#search-form { 
+  box-shadow: 0px 5px 5px #ccc;
+  background-color: #fff;
+  padding: 15px 0;
+  width: calc(100% + 30px);
 }
+#search-form .btn { 
+  background-color: #008EAF; 
+}
+.suggestions div { display: inline; }
+
 .st0{fill:none;stroke:#000000;stroke-width:6;stroke-miterlimit:10;}
 
 

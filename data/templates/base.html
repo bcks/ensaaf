@@ -9,7 +9,6 @@
     <style>@import url( {% static "css/base.css" %}?2 );</style>
     <script src='{% static "js/jquery.js" %}'></script>
     <script src='{% static "js/bootstrap.min.js" %}'></script>
-    <script src='{% static "js/main.js" %}'></script>
     <link rel="icon" href="{% static "images/favicon.ico" %}" sizes="48x48" />
 
     {% block head %}{% endblock %}
@@ -49,24 +48,26 @@
         <li class="nav-item"><a class="nav-link" href="/about" title="About">About</a></li>
         <li class="nav-item"><a class="nav-link" href="/forthcoming" title="Forthcoming">Forthcoming</a></li>
         <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/crimesagainsthumanity" title="Support This Project">Donate</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="collapse" id="search-toggle" href="#search-form">Search</a>
       </ul>
 
-      <div class="my-2 my-lg-0 nav-item">
-        <a class="my-2 my-sm-0 nav-link" id="search-toggle" href="/search"><img src="{% static "images/search.svg" %}" title="Search" alt="Search" style="height:25px;width:25px;" height="25" width="25"></a>
+    </div>
+
+
+    <div class="collapse row" id="search-form">
+      <div class="col-12">
+        <form class="form-inline autocomplete-me" method="get" action="/search/">
+          <input class="form-control mr-2 col-9" name="q" id="id_q" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn col-2 my-2" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="Search" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
+        </form>
+        <div class="row">
+          <div class="col-12 suggestions"></div>
+        </div>
       </div>
-
     </div>
-
-    {% comment %}
-    <div class="hidden">
-      <form class="form-inline my-2 my-lg-0" method="get" action="/search/">
-        <input class="form-control mr-sm-2" name="q" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-    {% endcomment %}
-
+  
   </nav>
+
 
 
 
@@ -125,6 +126,8 @@
 
 </div>
 
+
+<script src='{% static "js/main.js" %}'></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124579006-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
