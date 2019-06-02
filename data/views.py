@@ -35,6 +35,15 @@ districts = [{"district":"Amritsar","district_id":302,"subdistricts":[{"tehsil":
 
 
 @cache_page(60 * 60)
+def kids(request):
+    victim_list = Data.objects.filter(victim_age__lt=18).exclude(victim_age='').values(\
+      'victim_name','victim_disappeared_killed','timeline_start','timeline_end','village_name','photo_vic_fn','record_id','victim_sex','victim_age')\
+      .order_by('-victim_age')
+    return render(request, "kids.html", {"victims": victim_list})
+
+
+
+@cache_page(60 * 60)
 def profiles(request):
     selected_age = request.GET.get('age','')
     selected_caste = request.GET.get('caste','')
@@ -660,7 +669,6 @@ def vikusdata(request):
 			'victim_disappeared_killed',
 			'victim_death_date',
 			'victim_arrest_date',
-			'victim_last_heard_alive',
 			'timeline_start',
 			'timeline_end',
 			'village_name',
