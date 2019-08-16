@@ -58,36 +58,102 @@
   <div class="col-sm-6">
 
 
+  <script>
+    function makeList(data, selector) {
+      var html = '<ul>';
+      for (var i in data) {
+        html += '<li><a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
+      }
+      html += '</ul>';
+      // photo_vic_fn
+      console.log(data);
+      $( selector ).html(html);
+    }
+  </script>
+
+
       <h5>Command History</h5>
 
       <p><em><small style="line-height:1.3;">Unless otherwise noted, the command history draws from the following sources: (1) the annual Civil List of the Indian Police Service (IPS) for the Punjab cadre, prepared by the Ministry of Home Affairs, naming the position and date of posting of the senior police official as of January 1 of that year (copies for 1983 to 1996 obtained by Ensaaf at the U.S. Library of Congress), and (2) individual websites of the police districts, listing the names of Senior Superintendents of Police (SSP) and their dates of tenure. This information draws from what is available publicly; the exact account and information rests with the government of India.</small></em></p>
 
       <p><strong>SSP Ferozepur</strong>, June 28, 1987 —  April 18, 1988:<br>
-      <img src="https://via.placeholder.com/600x200" width="100%" height="auto" vspace="10"></p>
+      <div id="d1"></div></p>
+
+      {% autoescape off %}
+      <script>
+      makeList( {% official_bar_data 'district' 311 '1987-06-28' '1988-04-18' %}, '#d1' );
+      </script>
+      {% endautoescape %}    
+      
+
 
       <p>Awarded President's Police Medal of Gallantry in 1987</p>
 
-      <p><strong>SSP Batala</strong>, April 19, 1988 – July 31, 1988:<br><img src="https://via.placeholder.com/600x200" width="100%" height="auto" vspace="10"></p>
+
+      <p><strong>SSP Batala</strong>, April 19, 1988 – July 31, 1988:<br>
+      <div id="d2"></div></p>
+
+      {% autoescape off %}
+      <script>
+      makeList( {% official_bar_data 'tehsil' 3010004 '1988-04-19' '1988-07-31' %}, '#d2' );
+      </script>
+      {% endautoescape %}    
+
 
       <p><strong>SSP Ludhiana</strong>, August 1, 1988 – February 4, 1990:<br>
-      <img src="https://via.placeholder.com/600x200" width="100%" height="auto" vspace="10"></p>
+      <div id="d3"></div></p>
+
+      {% autoescape off %}
+      <script>
+      makeList( {% official_bar_data 'district' 309 '1988-08-01' '1990-02-04' %}, '#d3' );
+      </script>
+      {% endautoescape %}    
+
+
 
       <p><strong>SSP Bathinda</strong>, February 5, 1990 – April 28, 1990:<br>
-      <img src="https://via.placeholder.com/600x200" width="100%" height="auto" vspace="10"></p>
+      <div id="d4"></div></p>
 
-      <p>Most likely <strong>SSP Kapurthala</strong>, April 29, 1990 – July 17, 1990 (Because this posting falls in the middle of the year, it is not reported in the IPS Civil List. Further, Kapurthala has not provided any information online regarding its historical postings. The daily newspaper <em>Tribune</em> also did not name the SSP Kapurthala during the above time period. We have inferred that Saini was posted in Kapurthala using the process of elimination to determine the SSPs of all other districts during that time frame.)<p>
+      {% autoescape off %}
+      <script>
+      makeList( {% official_bar_data 'district' 314 '1990-02-05' '1990-04-28' %}, '#d4' );
+      </script>
+      {% endautoescape %}    
+
+
+
+      <p>Most likely <strong>SSP Kapurthala</strong>, April 29, 1990 – July 17, 1990 (Because this posting falls in the middle of the year, it is not reported in the IPS Civil List. Further, Kapurthala has not provided any information online regarding its historical postings. The daily newspaper <em>Tribune</em> also did not name the SSP Kapurthala during the above time period. We have inferred that Saini was posted in Kapurthala using the process of elimination to determine the SSPs of all other districts during that time frame.)<br>
+      <div id="d5"></div><p>
+
+      {% autoescape off %}
+      <script>
+      makeList( {% official_bar_data 'district' 303 '1990-04-29' '1990-07-17', '#d5' );
+      </script>
+      {% endautoescape %}
+
 
       <p><strong>SSP Hoshiarpur</strong>, July 17, 1990 – December 11, 1990:<br>
-      <img src="https://via.placeholder.com/600x200" width="100%" height="auto" vspace="10"></p>
+      <div id="d6"></div></p>
+      
+      {% autoescape off %}
+      <script>
+      makeList( {% official_bar_data 'district' 305 '1990-07-17' '1990-12-11' %}, '#d6' );
+      </script>
+      {% endautoescape %}
+
 
       <p><strong>SSP Chandigarh</strong>  (technically on Deputation to Government of India, as SSP Chandigarh, because Chandigarh is a Union Territory) December 12, 1990 – January 3, 1993. The Punjab Governor and others decided to remove Saini from this position due to police abuse of an Army official. Ensaaf has not yet incorporated/included data from Chandigarh on its data visualization site; it is forthcoming.</p>
 
-      <p>Assistant to the Inspector General, January 15, 1993 to September 28, 1993: According to articles in the <em>Tribune</em> on <a href="https://data.ensaaf.org/static/files/sumedh_saini_aig_personnel_19930117.pdf">January 17</a> and <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf">September 29</a>,  Sumedh Saini held, at least, the posts of AIG (Personnel) and AIG (Administration) during this time period.</p>
+      <p><strong>Assistant to the Inspector General</strong>, January 15, 1993 to September 28, 1993: According to articles in the <em>Tribune</em> on <a href="https://data.ensaaf.org/static/files/sumedh_saini_aig_personnel_19930117.pdf">January 17</a> and <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf">September 29</a>,  Sumedh Saini held, at least, the posts of AIG (Personnel) and AIG (Administration) during this time period.</p>
 
       <p><strong>SSP/Police Commissioner Ludhiana</strong>, September 30, 1993  – June 19, 1994 (The IPS Civil List describes this posting as SSP, whereas the <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf"><em>Tribune</em> reported</a> this position as the newly created Commissioner of Police of Ludhiana. The Ludhiana police website list a non-cadre Punjab Police Service official as SSP.)<br>
-      <img src="https://via.placeholder.com/600x200" width="100%" height="auto" vspace="10"></p>
+      <div id="d7"></div></p>
 
-      <p><strong>DIG Admn. (CPO), Punjab, Chandigarh (ORP)</strong>, June 20, 1994</p>
+      {% autoescape off %}
+      <script>
+      makeList( {% official_bar_data 'district' 309 '1993-09-30' '1994-06-19' %}, '#d7');
+      </script>
+      {% endautoescape %}
 
 
 

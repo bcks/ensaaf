@@ -2,6 +2,7 @@ import re
 import operator
 
 from django.shortcuts import render
+from django.core import serializers
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.cache import cache
 from django.contrib import messages
@@ -684,6 +685,21 @@ def vikusdata(request):
       .annotate(year=Trunc('timeline', 'year', output_field=DateField() ))\
       .order_by('-timeline')
     return render(request, "vikus/data.html", { "victims":victim_list } )
+
+
+
+
+@register.simple_tag()
+def official_bar_data(geo, slug, start, end):
+
+  geo_id = geo + '_id'
+
+  villages = Villages.objects.filter( **{geo_id: slug} ).values('vid','district','district_id','tehsil')
+  all = Data.objects.filter( Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
+    village_id__in=Subquery(villages.values('vid'))).order_by('victim_name')
+  return serializers.serialize("json", all, fields=('victim_name','timeline','timeline','photo_vic_fn'))
+
+
 
 
 
