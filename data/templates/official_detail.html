@@ -62,7 +62,7 @@
     function makeList(data, selector) {
       var html = '<ul>';
       for (var i in data) {
-        html += '<li><a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
+        html += '<li>'+ data[i].pk +' <a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
       }
       html += '</ul>';
       // photo_vic_fn

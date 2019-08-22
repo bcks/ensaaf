@@ -16,6 +16,8 @@ class Data(models.Model):
     timeline = models.DateField(db_column='timeline', blank=True, null=True)
     timeline_start = models.DateField(db_column='timeline_start', blank=True, null=True)
     timeline_end = models.DateField(db_column='timeline_end', blank=True, null=True)
+    arrest_start = models.DateField(db_column='arrest_start', blank=True, null=True)
+    arrest_end = models.DateField(db_column='arrest_end', blank=True, null=True)
     othervill_interview = models.CharField(max_length=256, blank=True, null=True)
     publish_information = models.IntegerField(blank=True, null=True)
     publish_restriction = models.IntegerField(blank=True, null=True)

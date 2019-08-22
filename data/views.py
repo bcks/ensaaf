@@ -362,7 +362,7 @@ def official(request, slug=None):
 
 
 def official_detail(request, slug=None):
-    return render(request, "official_detail.html", { } )
+    return render(request, "official_detail.html" )
 
 
 
@@ -695,8 +695,11 @@ def official_bar_data(geo, slug, start, end):
   geo_id = geo + '_id'
 
   villages = Villages.objects.filter( **{geo_id: slug} ).values('vid','district','district_id','tehsil')
+
   all = Data.objects.filter( Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
-    village_id__in=Subquery(villages.values('vid'))).order_by('victim_name')
+    village_id__in=Subquery(villages.values('vid'))).order_by('record_id') \
+    | Data.objects.filter( Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
+    village_id__in=Subquery(villages.values('vid'))).order_by('record_id')    
   return serializers.serialize("json", all, fields=('victim_name','timeline','timeline','photo_vic_fn'))
 
 
