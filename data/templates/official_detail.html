@@ -41,7 +41,10 @@
       margin: 0 1rem;
     }
     h1 { margin-bottom: 0; }
-    #timeline circle { fill: #ca0; }
+    #timeline { height: 120px; }
+    #timeline circle { fill: #ca0; cursor: pointer; }
+    .tick text:hover { fill: #ccc; }
+    .brush { display: none; }
   </style>
   <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
   <script type="text/javascript" src="/static/js/lodash.min.js"></script>
@@ -92,6 +95,7 @@
   <script>
   
     var timeCapsule = [];
+    var profiles = [];
     
     function makeList(data, selector) {
       var html = '<ul>';
@@ -99,6 +103,9 @@
         html += '<li>'+ data[i].pk +' <a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
 
         timeCapsule.push( {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000  }} );
+
+      console.log(data[i]);
+        profiles.push( { "id": data[i].pk, "date": new Date(data[i].fields['timeline']).valueOf()  } );
 
       }
       html += '</ul>';
@@ -330,79 +337,12 @@ var villageCentroids = [];
 var markers = {};
 
 
-function clearFilters() {
-  $("#form option[selected]").removeAttr("selected");    
-  $("#form .filter").removeClass('selected');
-  $("#form .filter select").val($("#form option:first").val());
-  updateMapData();
-  mymap.setView([31.0157601,75.45], 8);
-}
-
-
-function updateMapData() {
-
-  var hasFilters = 0;
-  
-  $('.filter select').each(function(i, obj) {
-    $o = $(obj);
-    if ($o.val() !== '') {
-      $o.parent().addClass('selected'); 
-      hasFilters = 1;
-    } else {
-      $o.parent().removeClass('selected');
-    }
-  });
-
-  if (hasFilters) {
-    $('#clear-filters').fadeIn(); 
-  } else {
-    $('#clear-filters').hide(); 
-  }
-
-  var params = $('#form').serialize();
-
-  $.getJSON("/map_ajax/?" + params, function(json) {
-      timeCapsule = [];
-      timeCapsule = json.timeline;
-
-      $("#count").html( numberWithCommas(timeCapsule.length) );
-
-      if (timeCapsule.length == 1) {
-        $(".count-plural").html("");
-      } else {     
-        $(".count-plural").html("s");
-      }
-      
-      for (var i=0;i<timeCapsule.length;i++) {
-          if ( timeCapsule[i]['v']['t']  < 1514764800 ) {
-            timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
-            var d = new Date(0);
-            timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
-          }
-      } 
-     
-      // history.pushState(params,'Mapping Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions', "/?" + params);
-      
-
-      makeTimeline();
-      makeVillageNames(start, end);
-  })
-  .fail(function(error) {
-    console.log("error");
-    console.log(error);
-  })
-
-}
-
-
 
 
 
 // init
 
 var previousDistrict = '';
-
-
 
 
 
@@ -496,32 +436,11 @@ function updateMap(start, end) {
                 document.location.href = this.options.url + '/?' + params;
               });
 
-
               markers_array.push( markers[key] );
-          } else {
-            markers[key].setStyle({fillOpacity: 0});            
-            markers[key].unbindPopup();
           }
         });
 
-        if ( $( "#district" ).val() !== '' ) {
-          // zoom to district
-          var group = new L.featureGroup(markers_array);
-          var bounds = group.getBounds();
-          var buffer = {
-            "lat": (bounds._northEast.lat - bounds._southWest.lat) * .15,
-            "lng": (bounds._northEast.lng - bounds._southWest.lng) * .15
-            };
-          bounds._northEast.lat = bounds._northEast.lat + buffer.lat;
-          bounds._northEast.lng = bounds._northEast.lng + buffer.lng;
-          bounds._southWest.lat = bounds._southWest.lat - buffer.lat;
-          bounds._southWest.lng = bounds._southWest.lng - buffer.lng;
-          mymap.flyToBounds(bounds);
-          previousDistrict = $( "#district" ).val();
-        } else if (previousDistrict) {
-          // reset map zoom
           mymap.setView([31.0157601,75.45], 8);            
-        }
     
     } else {
         
@@ -582,8 +501,6 @@ function makeTimeline() {
   var y = d3.scaleLinear()
       .range([height, 0]);
 
-  var brush = d3.brushX().on("start brush end", brushed);
-
   var histogram = d3.histogram()
       .value(function(d) { return d.date; })
       .domain(x.domain())
@@ -597,7 +514,7 @@ function makeTimeline() {
             "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
 
 
-  var bins = histogram(timeCapsule).filter(d => d.length>0);
+  var bins = histogram(profiles).filter(d => d.length>0);
 
   if (maxHeight == 0) {
     maxHeight = d3.max(bins, function(d) { return d.length; });
@@ -621,7 +538,7 @@ function makeTimeline() {
   binContainerEnter.selectAll("circle")
       .data(d => d.map((p, i) => {
         return {idx: i,
-                //name: p.Name,
+                  profile: p.id,
                 //value: p.Value,
                 radius: (x(d.x1)-x(d.x0))/2
               }
@@ -633,6 +550,7 @@ function makeTimeline() {
         .attr("cy", function(d) {
             return - d.idx * 2 * d.radius - d.radius; })
         .attr("r", 0)
+        .on("click", function(d) {window.location = "/profile/" + d.profile})
         //.on("mouseover", tooltipOn)
         //.on("mouseout", tooltipOff)
         .transition()
@@ -647,8 +565,7 @@ function makeTimeline() {
     let dots = binContainer.selectAll("circle")
         .data(d => d.map((p, i) => {
           return {idx: i,
-                  name: p.Name,
-                  value: p.Value,
+                  profile: p.id,
                   radius: (x(d.x1)-x(d.x0))/2
                 }
         }))
@@ -672,6 +589,7 @@ function makeTimeline() {
           return - d.idx * 2 * d.radius - d.radius; })
         .attr("r", 0)
       .merge(dots)
+        .on("click", function(d) {window.location = "/profile/" + d.profile})
 //        .on("mouseover", tooltipOn)
 //        .on("mouseout", tooltipOff)
         .transition()
@@ -685,31 +603,23 @@ function makeTimeline() {
       .attr('class','axis')
       .call(d3.axisBottom(x));
 
-  // make years clickcable
-  d3.selectAll('.tick')
-    .on('click',clickMe)
 
-  function clickMe(d){
-    var endDate = new Date(d);
-    endDate.setDate(endDate.getDate()+365);
-    gBrush.call(brush.move, [d, endDate].map(x));
-  }
 
+
+
+  var brush = d3.brushX().on("start brush end", brushed);
 
   // brush
   var gBrush = svg.append("g")
       .attr("class", "brush")
       .call(brush);
 
-  d3.select('.overlay').style('height', '145px');
-  d3.select('.selection').style('height', '145px');
-
   gBrush.call(brush.move, x.range());
 
   // https://bl.ocks.org/mbostock/4349545
   
   function brushed() {
-    var s = d3.event.selection || x.range();    
+    var s = x.range();    
     makeVillageNames( x.invert(s[0]), x.invert(s[1]) );
   }
 
