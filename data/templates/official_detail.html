@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load humanize %}
 {% load profiletags %}
 
 {% block title %}Sumedh Singh [Saini] and enforced disappearances &amp; extrajudicial executions in Punjab, India{% endblock %}
@@ -24,6 +25,25 @@
   <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
   <meta property="og:description" content="Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews." />
   <meta property="og:site_name" content="Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" />
+
+
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="/static/css/carto.css" />
+  <script type="text/javascript" src="/static/js/carto.js"></script>
+  <script type="text/javascript" src="/static/js/leaflet.zoomhome.min.js"></script>
+  <script type="text/javascript" src="/static/js/leaflet.minimap.min.js"></script>
+
+  <style>
+    #mapid {
+      height:500px;
+      width: calc(100% - 2rem);
+      background-color: #000;
+      margin: 0 1rem;
+    }
+  </style>
+  <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
+  <script type="text/javascript" src="/static/js/lodash.min.js"></script>
+
 {% endblock %}
 
 
@@ -34,8 +54,410 @@
       <h1>Sumedh Singh [Saini]</h1>
       <hr>
   </div>
-</div>
  
+</div>
+
+
+<script type="text/javascript">
+
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
+var timeCapsule = [{% for o in all %}{"v":{"id":"{{o.village_id|default:"0"}}","t":{{o.timeline|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}];
+
+for (var i=0;i<timeCapsule.length;i++) {
+    if ( timeCapsule[i]['v']['id'] ) {
+      timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
+      var d = new Date(0);
+      timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
+    }
+}  
+
+var start = d3.min(d3.entries(timeCapsule), function(d) { return d.value.date; });
+var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
+
+var villages = {};
+var villageCentroids = [];
+var markers = {};
+
+
+function clearFilters() {
+  $("#form option[selected]").removeAttr("selected");    
+  $("#form .filter").removeClass('selected');
+  $("#form .filter select").val($("#form option:first").val());
+  updateMapData();
+  mymap.setView([31.0157601,75.45], 8);
+}
+
+
+function updateMapData() {
+
+  var hasFilters = 0;
+  
+  $('.filter select').each(function(i, obj) {
+    $o = $(obj);
+    if ($o.val() !== '') {
+      $o.parent().addClass('selected'); 
+      hasFilters = 1;
+    } else {
+      $o.parent().removeClass('selected');
+    }
+  });
+
+  if (hasFilters) {
+    $('#clear-filters').fadeIn(); 
+  } else {
+    $('#clear-filters').hide(); 
+  }
+
+  var params = $('#form').serialize();
+
+  $.getJSON("/map_ajax/?" + params, function(json) {
+      timeCapsule = [];
+      timeCapsule = json.timeline;
+
+      $("#count").html( numberWithCommas(timeCapsule.length) );
+
+      if (timeCapsule.length == 1) {
+        $(".count-plural").html("");
+      } else {     
+        $(".count-plural").html("s");
+      }
+      
+      for (var i=0;i<timeCapsule.length;i++) {
+          if ( timeCapsule[i]['v']['t']  < 1514764800 ) {
+            timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
+            var d = new Date(0);
+            timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
+          }
+      } 
+     
+      // history.pushState(params,'Mapping Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions', "/?" + params);
+      
+
+      makeTimeline();
+      makeVillageNames(start, end);
+  })
+  .fail(function(error) {
+    console.log("error");
+    console.log(error);
+  })
+
+}
+
+
+
+
+
+// init
+
+var previousDistrict = '';
+
+
+
+
+
+// load basemap
+var mymap = new L.Map('mapid', {
+  center: [31.0157601,75.45],
+  zoom: 8
+});
+cartodb.createLayer(mymap, 'https://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9865-4151-a4e7-3456ef906d7d/viz.json', {https: true}).addTo(mymap);
+var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
+zoomHome.addTo(mymap);
+
+// https://sukhmandhami.carto.com/builder/350efab7-443d-419e-930c-b50ab8e394cd/embed
+var osm2 = new L.TileLayer('https://cartocdn-gusc.global.ssl.fastly.net/sukhmandhami/api/v1/map/sukhmandhami@8cf94c4f@7394194616a5b4936fb73a4555534a43:1554421032266/1,2/{z}/{x}/{y}.png');
+var pubs2 = new L.TileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png');
+var layers = new L.LayerGroup([pubs2, osm2]);
+var miniMap = new L.Control.MiniMap(layers, { width: 250, height: 200, zoomLevelFixed: 3, position: 'topright', centerFixed: [21.28,77] }).addTo(mymap);
+
+mymap.setView(new L.LatLng(31.0157601,75.45),8);
+mymap.scrollWheelZoom.disable();
+
+
+// load village centroids
+
+$.getJSON("/static/js/village_loc.json", function(json) {
+    villageCentroids = json
+    makeTimeline();
+});
+
+
+
+
+function makeVillageNames(start, end) {
+
+    villages = {};
+
+    // update size per village
+    for (var i=0;i<timeCapsule.length;i++) {
+        if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start) && ( timeCapsule[i]['v']['id'] ))  {
+          var id = timeCapsule[i]['v']['id'];
+          villages[id] = (villages[id] || 0) + 1;
+        }
+    }
+        
+    updateMap(start, end);
+}
+
+
+
+var area = d3.scalePow().exponent(0.5).domain([0, 100]).range([1, 15]);
+
+
+
+function updateMap(start, end) {
+
+    // make map
+    var points = [];
+    var keys = Object.keys(villages);
+    for (var i in keys) {
+      var thisVillage = _.find(villageCentroids, function(o) {
+        return o.CODE.endsWith(keys[i]);        
+      });
+      if (keys[i] && thisVillage) {
+        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':thisVillage.NAME});
+      }
+    }
+
+
+    // test Object.keys(markers).length to see less than total? see if need to recreate map or just update
+
+    if (Object.keys(markers).length > 0) {
+
+        var params = $('#form').serialize();
+        var markers_array = [];
+
+        // update markers
+        _.forEach(markers, function(value, key) {
+          if ( d = _.find(points, { 'id': key }) ) {
+              markers[key].setStyle({fillOpacity: .5});
+              markers[key].setRadius(area(d.size));
+
+              var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + d.size + ' Victim';
+                if (d.size > 1) { tultipText += 's'; }
+                tultipText += '</div>';
+
+              markers[key].bindPopup(tultipText, {offset:[0,-5]});
+              markers[key].on('mouseover', function (e) { this.openPopup(); });
+              markers[key].on('mouseout', function (e) { this.closePopup(); });
+              markers[key].on('click', function (e) {
+                var params = $('#form').serialize();
+                document.location.href = this.options.url + '/?' + params;
+              });
+
+
+              markers_array.push( markers[key] );
+          } else {
+            markers[key].setStyle({fillOpacity: 0});            
+            markers[key].unbindPopup();
+          }
+        });
+
+        if ( $( "#district" ).val() !== '' ) {
+          // zoom to district
+          var group = new L.featureGroup(markers_array);
+          var bounds = group.getBounds();
+          var buffer = {
+            "lat": (bounds._northEast.lat - bounds._southWest.lat) * .15,
+            "lng": (bounds._northEast.lng - bounds._southWest.lng) * .15
+            };
+          bounds._northEast.lat = bounds._northEast.lat + buffer.lat;
+          bounds._northEast.lng = bounds._northEast.lng + buffer.lng;
+          bounds._southWest.lat = bounds._southWest.lat - buffer.lat;
+          bounds._southWest.lng = bounds._southWest.lng - buffer.lng;
+          mymap.flyToBounds(bounds);
+          previousDistrict = $( "#district" ).val();
+        } else if (previousDistrict) {
+          // reset map zoom
+          mymap.setView([31.0157601,75.45], 8);            
+        }
+    
+    } else {
+        
+        // add points to map
+        _.forEach(points, function(d) {
+          if (d.id !== '0') {
+            var customCircleMarker = L.CircleMarker.extend({
+               options: { 
+                  url: '/village/' + d.id,
+               }
+            });
+            markers[String(d.id)] = new customCircleMarker([d.coord[1] + .015,d.coord[0] - .025], {
+                stroke: false,
+                fillColor: '#fc0',
+                fillOpacity: 0.5,
+                url: '/village/' + d.id,
+            }).addTo(mymap);
+          }
+        }); // end for points
+
+    } // end if markers
+
+}
+
+
+
+
+d3.select(window).on('resize', function() {
+  makeTimeline();
+});
+
+var maxHeight = 0;
+
+
+
+
+function makeTimeline() {
+
+  d3.select("#timeline").html("")
+ 
+  var timeline_margin = {top: 10, right: 10, bottom: 35, left: 10};
+
+  var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
+      height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
+
+  var start = new Date('January 1, 1981');
+  var end = new Date('December 31, 2008');
+
+  var xScale = d3.scaleTime()
+      .domain([start, end])
+      .rangeRound([0, width]);
+
+  //console.log(start);
+
+  var y = d3.scaleLinear()
+      .range([height, 0]);
+
+  var brush = d3.brushX().on("start brush end", brushed);
+
+  var histogram = d3.histogram()
+      .value(function(d) { return d.date; })
+      .domain(xScale.domain())
+      .thresholds(xScale.ticks(d3.timeMonth));
+
+  var svg = d3.select("#timeline").append("svg")
+      .attr("width", width + timeline_margin.left + timeline_margin.right)
+      .attr("height", height + timeline_margin.top + timeline_margin.bottom)
+    .append("g")
+      .attr("transform", 
+            "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
+
+
+  var bins = histogram(timeCapsule);
+
+
+  if (maxHeight == 0) {
+    maxHeight = d3.max(bins, function(d) { return d.length; });
+  }
+  
+  y.domain([-3, maxHeight ]);
+
+  // timeline bars
+  var bars = svg.selectAll("rect")
+      .data(bins)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", 1)
+      .attr("transform", function(d) { return "translate(" + xScale(d.x0) + "," + y(d.length) + ")"; })
+      .attr("width", function(d) { return xScale(d.x1) - xScale(d.x0); })
+      .style("opacity", function(d) { 
+          if (d.length < 1) { 
+            return 0;
+          } else {
+            return 1;
+          }
+        })
+      .attr("height", function(d) { return height - y(d.length); });
+
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .attr('class','axis')
+      .call(d3.axisBottom(xScale));
+
+  // make years clickcable
+  d3.selectAll('.tick')
+    .on('click',clickMe)
+
+  function clickMe(d){
+    var endDate = new Date(d);
+    endDate.setDate(endDate.getDate()+365);
+    gBrush.call(brush.move, [d, endDate].map(xScale));
+  }
+
+
+  // brush
+  var gBrush = svg.append("g")
+      .attr("class", "brush")
+      .call(brush);
+
+  d3.select('.overlay').style('height', '145px');
+  d3.select('.selection').style('height', '145px');
+  d3.select('.handle').style('height', '145px');
+
+  var handle = gBrush.selectAll(".handle--custom")
+    .data([{type: "0"}, {type: "1"}])
+    .enter().append("circle")
+      .attr("class", "handle--custom")
+        .attr("cx", function(d) { return width * d.type; })
+        .attr("r", 5)
+        .attr("cy", 70);
+
+  gBrush.call(brush.move, xScale.range());
+
+  // https://bl.ocks.org/mbostock/4349545
+  
+  function brushed() {
+    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
+    var s = d3.event.selection || xScale.range();
+    
+    var total = 0;
+    var unfilteredTotal = 0;
+    
+    if (s == null) {
+      bars.classed("active", false);
+    } else {
+      var start = new Date(0).setUTCSeconds( xScale.invert( s[0] ) ) / 1000;
+      var end = new Date(0).setUTCSeconds( xScale.invert( s[1] ) ) / 1000;
+      bars.classed("active", function(d) {
+        if (d.length) { 
+          if (start <= d[0]['date'] && d[0]['date'] <= end) {
+            total += d.length;
+          }
+          unfilteredTotal += d.length;
+          return start <= d[0]['date'] && d[0]['date'] <= end;
+        } else {
+          return 0;
+        }
+      });
+    }
+    
+    if (handle) {
+      handle.attr("cx", function(d, i) { return s[i] ; });
+    }
+    
+    if (total == unfilteredTotal) { 
+      //d3.select('#count').html( '{{all|length|intcomma}}' );
+    } else {
+      d3.select('#count').html( numberWithCommas(total) );    
+    }
+    makeVillageNames( xScale.invert(s[0]), xScale.invert(s[1]) );
+  }
+
+} // end makeTimeline
+
+</script>
+
+
+
+
+
+
+
+
 
 <div class="row">
     <div class="col-sm-10">
@@ -127,7 +549,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% official_bar_data 'district' 303 '1990-04-29' '1990-07-17', '#d5' );
+      makeList( {% official_bar_data 'district' 303 '1990-04-29' '1990-07-17' %}, '#d5' );
       </script>
       {% endautoescape %}
 
