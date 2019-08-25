@@ -714,7 +714,14 @@ def official_bar_data(geo, slug, start, end, locality):
     all = all | also
 
   # exclude non-police
-  all = all.filter( Q(arrest_security_type_1=1) | Q(killing_securityforcestype_1=1) )
+  all = all.exclude( \
+    Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_2=1) | \
+    Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_3=1) | \
+    Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_4=1) | \
+    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_2=1) | \
+    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_3=1) | \
+    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_4=1) \
+    )
 
   return serializers.serialize("json", all, fields=('victim_name','village_id','village_name','timeline','photo_vic_fn'))
 
