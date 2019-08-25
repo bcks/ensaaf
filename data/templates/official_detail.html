@@ -43,7 +43,7 @@
       margin: 0 1rem;
     }
     h1 { margin-bottom: 0; }
-    #timeline { height: 170px; width: 100%; }
+    #timeline { height: 170px; }
     #timeline circle { fill: #ca0; cursor: pointer; }
     .tick text:hover { fill: #ccc; }
     .brush { display: none; }
@@ -66,67 +66,69 @@
 
 {% block content %}
 
-<div class="row">
-  <div class="col-12">  
-      <h1>Sumedh Singh [Saini]</h1>
+  <div class="row">
+    <div class="col-12">  
+        <h1>Sumedh Singh [Saini]</h1>
+    </div>
   </div>
+</div><!-- end container -->
+
  
 <div id="mapid"></div>
 
 <div id="timeline"></div>
 
-</div>
 
 
 
+<div class="container">
 
-
-
-
-<div class="row">
-    <div class="col-sm-10">
-      <p>This is some intro text. Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-      <p>This is some intro text. Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
-    </div>
-    <div class="col-sm-2">
-      <p><img src="https://via.placeholder.com/500x500" width="100%" height="auto" vspace="5"><br>Photo here</p>
-    </div>
-</div>
-
-<div class="row">
-  <div class="col-12">  
-      <hr>
+  <div class="row">
+      <div class="col-sm-10">
+        <p>This is some intro text. Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+        <p>This is some intro text. Etiam porta sem malesuada magna mollis euismod. Maecenas sed diam eget risus varius blandit sit amet non magna. Vestibulum id ligula porta felis euismod semper. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+      </div>
+      <div class="col-sm-2">
+        <p><img src="https://via.placeholder.com/500x500" width="100%" height="auto" vspace="5"><br>Photo here</p>
+      </div>
   </div>
-</div>
+
+  <div class="row">
+    <div class="col-12">  
+        <hr>
+    </div>
+  </div>
 
 
-<div class="row">
-  <div class="col-sm-6">
+  <div class="row">
+    <div class="col-sm-6">
 
 
-  <script>
+      <script>
   
-    var timeCapsule = [];
-    var profiles = [];
+        var timeCapsule = [];
+        var profiles = [];
     
-    function makeList(data, selector) {
-      var html = '<ul>';
-      for (var i in data) {
-        html += '<li>'+ data[i].pk +' <a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
+        function makeList(data, selector) {
+          var html = '<ul>';
+          for (var i in data) {
+            html += '<li>'+ data[i].pk +' <a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
 
-        timeCapsule.push( {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000  }} );
+            timeCapsule.push( {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000  }} );
 
-        profiles.push( { "id": data[i].pk, "name": data[i].fields['victim_name'], "village": data[i].fields['village_name'], "date": new Date(data[i].fields['timeline']).valueOf()  } );
+            profiles.push( { "id": data[i].pk, "name": data[i].fields['victim_name'], "village": data[i].fields['village_name'], "date": new Date(data[i].fields['timeline']).valueOf()  } );
 
-      }
-      html += '</ul>';
+          }
+          html += '</ul>';
 
-      // photo_vic_fn
-      $( selector ).html(html);
+          // photo_vic_fn
+          $( selector ).html(html);
       
-    }
+        }
     
-  </script>
+      </script>
+
+
 
  
       <h5>Command History</h5>
@@ -486,7 +488,7 @@ function makeTimeline() {
 
   d3.select("#timeline").html("")
  
-  var timeline_margin = {top: 10, right: 10, bottom: 35, left: 10};
+  var timeline_margin = {top: 10, right: 25, bottom: 35, left: 25};
 
   var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
       height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
