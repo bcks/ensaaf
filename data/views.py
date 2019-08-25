@@ -1,5 +1,6 @@
 import re
 import operator
+from functools import reduce
 
 from django.shortcuts import render
 from django.core import serializers
@@ -690,7 +691,7 @@ def vikusdata(request):
 
 
 @register.simple_tag()
-def official_bar_data(geo, slug, start, end):
+def official_bar_data(geo, slug, start, end, locality):
 
   geo_id = geo + '_id'
 
@@ -701,7 +702,17 @@ def official_bar_data(geo, slug, start, end):
     village_id__in=Subquery(villages.values('vid'))).order_by('record_id') \
     | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
     village_id__in=Subquery(villages.values('vid'))).order_by('record_id')
-  
+
+  if locality:
+    vid = locality
+
+    also = Data.objects.filter(  Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
+      Q(arrest_security_locality__contains=vid) | Q(killing_securityforces_lcl__contains=vid) ) \
+      | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
+      Q(arrest_security_locality__contains=vid) | Q(killing_securityforces_lcl__contains=vid) ) 
+
+    all = all | also
+
   # exclude non-police
   all = all.filter( Q(arrest_security_type_1=1) | Q(killing_securityforcestype_1=1) )
 
