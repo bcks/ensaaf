@@ -693,21 +693,29 @@ def vikusdata(request):
 @register.simple_tag()
 def official_bar_data(geo, slug, start, end):
 
-  geo_id = geo + '_id'
+  if geo == 'vid':
+    all = Data.objects.filter( Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
+      village_id=slug).order_by('record_id') \
+      | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
+      village_id=slug).order_by('record_id')
 
-  villages = Villages.objects.filter( **{geo_id: slug} ).values('vid','district','district_id','tehsil')
+    vids_for_mysql_regex = slug
+    
+  else:
+    geo_id = geo + '_id'
+
+    villages = Villages.objects.filter( **{geo_id: slug} ).values('vid','district','district_id','tehsil')
+
+    all = Data.objects.filter( Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
+      village_id__in=Subquery(villages.values('vid'))).order_by('record_id') \
+      | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
+      village_id__in=Subquery(villages.values('vid'))).order_by('record_id')
+
+    vids = Villages.objects.filter( **{geo_id: slug} ).values_list('vid', flat=True)
+    seperator = '|'
+    vids_for_mysql_regex = seperator.join(vids)
 
 
-  all = Data.objects.filter( Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
-    village_id__in=Subquery(villages.values('vid'))).order_by('record_id') \
-    | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
-    village_id__in=Subquery(villages.values('vid'))).order_by('record_id')
-
-
-  vids = Villages.objects.filter( **{geo_id: slug} ).values_list('vid', flat=True)
-  seperator = '|'
-  vids_for_mysql_regex = seperator.join(vids)
-  
   if vids_for_mysql_regex:
 
     also = Data.objects.filter(  Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
