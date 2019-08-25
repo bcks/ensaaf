@@ -629,7 +629,7 @@ def hvictim_address_other(value):
         '<span define="District"><a href="/district/' + village.district_id + '">' + village.district + '</a></span>'
     except Villages.DoesNotExist:
       str = re.sub(r'([0123456789.]+)-','', str)
-      return str + ' hi'
+      return str
   else:
     str = re.sub(r'([0123456789.]+)-','', str)
     return str
