@@ -691,7 +691,7 @@ def vikusdata(request):
 
 
 @register.simple_tag()
-def official_bar_data(geo, slug, start, end, locality):
+def official_bar_data(geo, slug, start, end):
 
   geo_id = geo + '_id'
 
@@ -703,25 +703,29 @@ def official_bar_data(geo, slug, start, end, locality):
     | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
     village_id__in=Subquery(villages.values('vid'))).order_by('record_id')
 
-  if locality:
-    vid = locality
+
+  vids = Villages.objects.filter( **{geo_id: slug} ).values_list('vid', flat=True)
+  seperator = '|'
+  vids_for_mysql_regex = seperator.join(vids)
+  
+  if vids_for_mysql_regex:
 
     also = Data.objects.filter(  Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
-      Q(arrest_security_locality__contains=vid) | Q(killing_securityforces_lcl__contains=vid) ) \
+      Q(arrest_security_locality__iregex=vids_for_mysql_regex) | Q(killing_securityforces_lcl__iregex=vids_for_mysql_regex) ) \
       | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
-      Q(arrest_security_locality__contains=vid) | Q(killing_securityforces_lcl__contains=vid) ) 
+      Q(arrest_security_locality__iregex=vids_for_mysql_regex) | Q(killing_securityforces_lcl__iregex=vids_for_mysql_regex) ) 
 
     all = all | also
 
-    # exclude non-police
-    all = all.exclude( \
-      Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_2=1) | \
-      Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_3=1) | \
-      Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_4=1) | \
-      Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_2=1) | \
-      Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_3=1) | \
-      Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_4=1) \
-      )
+  # exclude non-police
+  all = all.exclude( \
+    Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_2=1) | \
+    Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_3=1) | \
+    Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_4=1) | \
+    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_2=1) | \
+    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_3=1) | \
+    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_4=1) \
+    )
 
   return serializers.serialize("json", all, fields=('victim_name','village_id','village_name','timeline','photo_vic_fn'))
 
