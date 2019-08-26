@@ -42,7 +42,7 @@
       background-color: #000;
       margin: 0 1rem;
     }
-    h1 { margin-bottom: 0; }
+    h1 { margin-bottom: 1rem; }
     #timeline { height: 170px; }
     #timeline circle { fill: #ca0; cursor: pointer; }
     .tick text:hover { fill: #ccc; }
@@ -140,7 +140,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% official_bar_data 'district' 311 '1987-06-28' '1988-04-18' %}, '#d1' );
+      makeList( {% dossier_command 'district' 311 '1987-06-28' '1988-04-18' %}, '#d1' );
       </script>
       {% endautoescape %}    
       
@@ -154,7 +154,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% official_bar_data 'tehsil' 3010004 '1988-04-19' '1988-07-31' %}, '#d2' );
+      makeList( {% dossier_command 'tehsil' 3010004 '1988-04-19' '1988-07-31' %}, '#d2' );
       </script>
       {% endautoescape %}    
 
@@ -164,7 +164,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% official_bar_data 'district' 309 '1988-08-01' '1990-02-04' %}, '#d3' );
+      makeList( {% dossier_command 'district' 309 '1988-08-01' '1990-02-04' %}, '#d3' );
       </script>
       {% endautoescape %}    
 
@@ -175,7 +175,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% official_bar_data 'district' 314 '1990-02-05' '1990-04-28' %}, '#d4' );
+      makeList( {% dossier_command 'district' 314 '1990-02-05' '1990-04-28' %}, '#d4' );
       </script>
       {% endautoescape %}    
 
@@ -186,7 +186,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% official_bar_data 'district' 303 '1990-04-29' '1990-07-17' %}, '#d5' );
+      makeList( {% dossier_command 'district' 303 '1990-04-29' '1990-07-17' %}, '#d5' );
       </script>
       {% endautoescape %}
 
@@ -196,7 +196,7 @@
       
       {% autoescape off %}
       <script>
-      makeList( {% official_bar_data 'district' 305 '1990-07-17' '1990-12-11' %}, '#d6' );
+      makeList( {% dossier_command 'district' 305 '1990-07-17' '1990-12-11' %}, '#d6' );
       </script>
       {% endautoescape %}
 
@@ -206,7 +206,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% official_bar_data 'vid' '800286' '1990-12-12' '1993-01-03' %}, '#d8');
+      makeList( {% dossier_command 'vid' '800286' '1990-12-12' '1993-01-03' %}, '#d8');
       </script>
       {% endautoescape %}
 
@@ -217,7 +217,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% official_bar_data 'district' 309 '1993-09-30' '1994-06-19' %}, '#d7');
+      makeList( {% dossier_command 'district' 309 '1993-09-30' '1994-06-19' %}, '#d7');
       </script>
       {% endautoescape %}
 
@@ -229,7 +229,21 @@
 
       <h5>Command Responsibility</h5>
 
-      <p><a href="/official/S0001/">11 documented cases directly implicating Sumedh Singh »</a></p>
+      
+      
+      <p><strong><span id="abduction_count"></span> cases directly implicating Sumedh Singh in abduction</strong></p>
+
+      <div id="d10"></div>
+      
+      {% autoescape off %}
+      <script>
+      var abductions = {% dossier_abduction 'S0001' %};
+      makeList( abductions, '#d10');
+      $('#abduction_count').html( abductions.length );
+      </script>
+      {% endautoescape %}
+
+      
   
       <hr>
 

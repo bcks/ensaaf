@@ -691,7 +691,7 @@ def vikusdata(request):
 
 
 @register.simple_tag()
-def official_bar_data(geo, slug, start, end):
+def dossier_command(geo, slug, start, end):
 
   if geo == 'vid':
     all = Data.objects.filter( Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
@@ -737,6 +737,26 @@ def official_bar_data(geo, slug, start, end):
 
   return serializers.serialize("json", all, fields=('victim_name','village_id','village_name','timeline','photo_vic_fn'))
 
+
+
+@register.simple_tag()
+def dossier_abduction(slug=None):
+    name =  officials.get(slug)
+
+    district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(vid=OuterRef('village_id')).values('village_name')
+
+    soas = SecurityArrest.objects.filter(soa_code=slug).values_list('record_id', flat=True)
+    soks = SecurityKilled.objects.filter(sok_code=slug).values_list('record_id', flat=True)
+    records = list(soas) + list(soks)
+        
+    victims = Data.objects.filter( record_id__in=records )\
+      .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
+      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
+
+    return serializers.serialize("json", victims, fields=('victim_name','village_id','village_name','timeline'))
 
 
 
