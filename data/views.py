@@ -740,6 +740,22 @@ def dossier_command(geo, slug, start, end):
 
 
 @register.simple_tag()
+def dossier_by_id(slug=None):
+    ids =  slug.split(',')
+
+    district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(vid=OuterRef('village_id')).values('village_name')
+        
+    victims = Data.objects.filter( record_id__in=ids )\
+      .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
+      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
+
+    return serializers.serialize("json", victims, fields=('victim_name','village_id','village_name','timeline'))
+
+
+@register.simple_tag()
 def dossier_abduction(slug=None):
     name =  officials.get(slug)
 

@@ -238,10 +238,21 @@
     <div class="col-sm-6">
 
 
-      <h5>Command Responsibility</h5>
+      <h5>[New Heading Here]</h5>
+      
+      <p><strong><span id="killing_count"></span> cases directly implicating Sumedh Singh in killing</strong></p>
 
-      
-      
+      <div id="d11"></div>
+
+      {% autoescape off %}
+      <script>
+      var killing = {% dossier_by_id "1565,290,1401,2724,2291,2559,16,1068" %};
+      makeList( killing, '#d11');
+      $('#killing_count').html( '8' );
+      </script>
+      {% endautoescape %}
+
+            
       <p><strong><span id="abduction_count"></span> cases directly implicating Sumedh Singh in abduction</strong></p>
 
       <div id="d10"></div>
