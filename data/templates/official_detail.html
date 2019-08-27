@@ -271,20 +271,6 @@
       <ul>
 
       <li class="stats-block">
-        <p><a class="toggle-switch" href="#"><strong><span id="killing_count"></span> cases directly implicating Sumedh Singh in killing</strong>&nbsp;<span class="arrow"></span></a></p>
-       <div id="d11" class="toggle"></div>
-      </li>
-
-      {% autoescape off %}
-      <script>
-      var killing = {% dossier_by_id "1565,290,1401,2724,2291,2559,16,1068" %};
-      makeList( killing, '#d11');
-      $('#killing_count').html( '8' );
-      </script>
-      {% endautoescape %}
-
-
-      <li class="stats-block">
         <p><a class="toggle-switch" href="#"><strong><span id="abduction_count"></span> cases directly implicating Sumedh Singh in abduction</strong>&nbsp;<span class="arrow"></span></a></p>
        <div id="d10" class="toggle"></div>
       </li>
@@ -292,8 +278,11 @@
       {% autoescape off %}
       <script>
       var abductions = {% dossier_abduction 'S0001' %};
-      makeList( abductions, '#d10');
-      $('#abduction_count').html( abductions.length );
+      var killing = {% dossier_by_id "1068" %};
+      var oversight = abductions.concat(killing);
+      
+      makeList( oversight, '#d10');
+      $('#abduction_count').html( oversight.length );
       </script>
       {% endautoescape %}
 
