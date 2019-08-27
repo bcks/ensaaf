@@ -114,11 +114,19 @@
           for (var i in data) {
             html += '<li>'+ data[i].pk +' <a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
 
-            timeCapsule.push( {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000  }} );
+            var thisTime = {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000  }};
 
-            profiles.push( { "id": data[i].pk, "name": data[i].fields['victim_name'], "village": data[i].fields['village_name'], "date": new Date(data[i].fields['timeline']).valueOf()  } );
+            if (  _.some(timeCapsule, thisTime) ) {
+              // console.log('exists in time capsule ',thisTime);
+            } else {
 
-          }
+              timeCapsule.push(thisTime);
+             
+              profiles.push( { "id": data[i].pk, "name": data[i].fields['victim_name'], "village": data[i].fields['village_name'], "date": new Date(data[i].fields['timeline']).valueOf()  } );
+
+            }
+
+          } // end for i in data
           html += '</ul>';
 
           // photo_vic_fn
