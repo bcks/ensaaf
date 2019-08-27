@@ -121,15 +121,13 @@
             html += '<li>'+ data[i].pk +' <a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
 
             var thisTime = {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000  }};
+            var thisProfile =  { "id": data[i].pk, "name": data[i].fields['victim_name'], "village": data[i].fields['village_name'], "date": new Date(data[i].fields['timeline']).valueOf() };
 
-            if (  _.some(timeCapsule, thisTime) ) {
-              // console.log('exists in time capsule ',thisTime);
+            if (  _.some(profiles, thisProfile) ) {
+               //console.log('exists in time capsule ',thisTime);
             } else {
-
-              timeCapsule.push(thisTime);
-             
-              profiles.push( { "id": data[i].pk, "name": data[i].fields['victim_name'], "village": data[i].fields['village_name'], "date": new Date(data[i].fields['timeline']).valueOf()  } );
-
+              timeCapsule.push(thisTime);             
+              profiles.push( thisProfile );
             }
 
           } // end for i in data
@@ -593,7 +591,6 @@ function makeTimeline() {
 
   $('#count').html( profiles.length );
 
-
   var bins = histogram(profiles).filter(d => d.length>0);
 
   if (maxHeight == 0) {
@@ -707,6 +704,15 @@ function makeTimeline() {
     var s = x.range();    
     makeVillageNames( x.invert(s[0]), x.invert(s[1]) );
   }
+
+
+    var templist = '';
+    var data = profiles
+    for (var i in profiles) {
+      templist += data[i].pk +' ' + data[i].fields['victim_name'] + '<br>';
+    }
+    $('h1').html( templist );
+
 
 } // end makeTimeline
 
