@@ -80,9 +80,9 @@ Autocomplete.prototype.show_results = function(data) {
 
 $( document ).ready(function() {
 
-  $('.stats-block strong a').click(function(e){
+  $('.toggle-switch').click(function(e){
       e.preventDefault();
-      var $this = $(this).parent().parent().parent().find('.toggle');
+      var $this = $(this).parent().parent().find('.toggle');
       $this.slideToggle();
   });
   

@@ -49,7 +49,7 @@
   {% for district in district_list %}
   <div class="stats-block">
     <hr>
-    <p><strong><a href="#">{{district.grouper}} District&nbsp;<span class="arrow"></span></a></strong> &nbsp;&nbsp; {% district_count district.list %}  cases</p>
+    <p><a class="toggle-switch" href="#"><strong>{{district.grouper}} District&nbsp;<span class="arrow"></span></strong></a> &nbsp;&nbsp; {% district_count district.list %}  cases</p>
 
     <div class="toggle">
 
