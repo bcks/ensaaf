@@ -74,8 +74,12 @@
 </div><!-- end container -->
 
  
+<div id="map-over">
+  <div class="container">
+    <h4>At least <span id="count">136</span> Enforced Disappearances/Extrajudicial Executions [overseen or directly attributed some text here]</h4>
+  </div>
+</div>
 <div id="mapid"></div>
-
 <div id="timeline"></div>
 
 
@@ -129,7 +133,6 @@
           } // end for i in data
           html += '</ul>';
 
-          // photo_vic_fn
           $( selector ).html(html);
       
         }
@@ -554,6 +557,7 @@ function makeTimeline() {
   svg.call(tip);
 
 
+  $('#count').html( profiles.length );
 
 
   var bins = histogram(profiles).filter(d => d.length>0);
