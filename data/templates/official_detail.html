@@ -119,7 +119,8 @@
         function makeList(data, selector) {
           var html = '<ul>';
           for (var i in data) {
-            html += '<li>'+ data[i].pk +' <a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
+//            html += '<li>'+ data[i].pk +' <a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
+            html += '<li><a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
 
             var thisTime = {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000  }};
             var thisProfile =  { "id": data[i].pk, "name": data[i].fields['victim_name'], "village": data[i].fields['village_name'], "date": new Date(data[i].fields['timeline']).valueOf() };
@@ -150,8 +151,8 @@
       <ul>
 
       <li class="stats-block">
-        <p><a class="toggle-switch" href="#"><strong>SSP Firozpur</strong>, June 28, 1987 —  April 18, 1988&nbsp;<span class="arrow"></span></a></p>
-        <div id="d1" class="toggle"></div>
+        <p><strong>SSP Firozpur</strong>, June 28, 1987 —  April 18, 1988</p>
+        <div id="d1"></div>
       </li>
       
       {% autoescape off %}
@@ -167,8 +168,8 @@
       
 
       <li class="stats-block">
-        <p><a class="toggle-switch" href="#"><strong>SSP Batala</strong>, April 19, 1988 – July 31, 1988&nbsp;<span class="arrow"></span></a></p>
-        <div id="d2" class="toggle"></div>
+        <p><strong>SSP Batala</strong>, April 19, 1988 – July 31, 1988</p>
+        <div id="d2"></div>
       </li>
 
       {% autoescape off %}
@@ -179,8 +180,8 @@
 
 
       <li class="stats-block">
-        <p><a class="toggle-switch" href="#"><strong>SSP Ludhiana</strong>, August 1, 1988 – February 4, 1990&nbsp;<span class="arrow"></span></a></p>
-        <div id="d3" class="toggle"></div>
+        <p><strong>SSP Ludhiana</strong>, August 1, 1988 – February 4, 1990</p>
+        <div id="d3"></div>
       </li>
 
       {% autoescape off %}
@@ -192,8 +193,8 @@
 
 
       <li class="stats-block">
-        <p><a class="toggle-switch" href="#"><strong>SSP Bathinda</strong>, February 5, 1990 – April 28, 1990&nbsp;<span class="arrow"></span></a></p>
-        <div id="d4" class="toggle"></div>
+        <p><strong>SSP Bathinda</strong>, February 5, 1990 – April 28, 1990</p>
+        <div id="d4"></div>
       </li>
 
       {% autoescape off %}
@@ -205,9 +206,9 @@
 
 
       <li class="stats-block">
-        <p><a class="toggle-switch" href="#">Most likely <strong>SSP Kapurthala</strong>, April 29, 1990 – July 17, 1990&nbsp;<span class="arrow"></span></a><br>
+        <p>Most likely <strong>SSP Kapurthala</strong>, April 29, 1990 – July 17, 1990<br>
         (Because this posting falls in the middle of the year, it is not reported in the IPS Civil List. Further, Kapurthala has not provided any information online regarding its historical postings. The daily newspaper <em>Tribune</em> also did not name the SSP Kapurthala during the above time period. We have inferred that Saini was posted in Kapurthala using the process of elimination to determine the SSPs of all other districts during that time frame.)</p>
-        <div id="d5" class="toggle"></div>
+        <div id="d5"></div>
       </li>
 
       {% autoescape off %}
@@ -219,8 +220,8 @@
 
 
       <li class="stats-block">
-        <p><a class="toggle-switch" href="#"><strong>SSP Hoshiarpur</strong>, July 17, 1990 – December 11, 1990&nbsp;<span class="arrow"></span></a></p>
-        <div id="d6" class="toggle"></div>
+        <p><strong>SSP Hoshiarpur</strong>, July 17, 1990 – December 11, 1990</p>
+        <div id="d6"></div>
       </li>
       
       {% autoescape off %}
@@ -231,8 +232,8 @@
 
 
       <li class="stats-block">
-        <p><a class="toggle-switch" href="#"><strong>SSP Chandigarh</strong>  December 12, 1990 – January 3, 1993&nbsp;<span class="arrow"></span></a><br> (Technically on Deputation to Government of India, as SSP Chandigarh, because Chandigarh is a Union Territory.) The Punjab Governor and others decided to remove Saini from this position due to police abuse of an Army official. Ensaaf has not yet incorporated/included data from Chandigarh on its data visualization site; it is forthcoming.</p>
-        <div id="d8" class="toggle"></div>
+        <p><strong>SSP Chandigarh</strong>  December 12, 1990 – January 3, 1993<br> (Technically on Deputation to Government of India, as SSP Chandigarh, because Chandigarh is a Union Territory.) The Punjab Governor and others decided to remove Saini from this position due to police abuse of an Army official. Ensaaf has not yet incorporated/included data from Chandigarh on its data visualization site; it is forthcoming.</p>
+        <div id="d8"></div>
       </li>
 
       {% autoescape off %}
@@ -247,8 +248,8 @@
 
 
       <li class="stats-block">
-        <p><a class="toggle-switch" href="#"><strong>SSP/Police Commissioner Ludhiana</strong>, September 30, 1993  – June 19, 1994&nbsp;<span class="arrow"></span></a><br>(The IPS Civil List describes this posting as SSP, whereas the <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf"><em>Tribune</em> reported</a> this position as the newly created Commissioner of Police of Ludhiana. The Ludhiana police website lists a non-cadre Punjab Police Service official as SSP.)</p>
-        <div id="d7" class="toggle"></div>
+        <p><strong>SSP/Police Commissioner Ludhiana</strong>, September 30, 1993  – June 19, 1994<br>(The IPS Civil List describes this posting as SSP, whereas the <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf"><em>Tribune</em> reported</a> this position as the newly created Commissioner of Police of Ludhiana. The Ludhiana police website lists a non-cadre Punjab Police Service official as SSP.)</p>
+        <div id="d7"></div>
       </li>
 
       {% autoescape off %}
@@ -270,8 +271,8 @@
       <ul>
 
       <li class="stats-block">
-        <p><a class="toggle-switch" href="#"><strong><span id="abduction_count"></span> cases directly implicating Sumedh Singh in abduction, disappearance, and/or killing</strong>&nbsp;<span class="arrow"></span></a></p>
-       <div id="d10" class="toggle"></div>
+        <p><strong><span id="abduction_count"></span> cases directly implicating Sumedh Singh in abduction, disappearance, and/or killing</strong></p>
+       <div id="d10"></div>
       </li>
 
       {% autoescape off %}
