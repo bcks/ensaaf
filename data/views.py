@@ -362,10 +362,10 @@ def official(request, slug=None):
     return render(request, "securityforce.html", { "victims": victims, "name": name, "stats": stats, "slug": slug } )
 
 
+
+@cache_page(60 * 60)
 def official_detail(request, slug=None):
     return render(request, "official_detail.html" )
-
-
 
 
 
