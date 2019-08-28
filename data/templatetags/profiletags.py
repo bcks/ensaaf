@@ -695,7 +695,7 @@ def hsecurity_official_response(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11
   groups.append('Victim extrajudicial execution in crossfire with militants') if v9 == 1 else 0
   groups.append('Victim accidentally killed in custody') if v10 == 1 else 0
   groups.append('Victim extrajudicial execution while resisting arrest/search') if v11 == 1 else 0
-  groups.append('Victim extrajudicial execution by <span define="Irregular undercover security force, often consisting of criminals">black cat</span>s') if v12 == 1 else 0
+  groups.append('Victim extrajudicial execution by <span define="Irregular undercover security force, often consisting of criminals">Black cat</span>s') if v12 == 1 else 0
   groups.append('Don’t know') if v14 == 1 else 0
   if v3 == 1:
     if (other):
@@ -919,7 +919,7 @@ def harrest_so_rank(var):
 def haffiliation(var):
   if var == None:
     return var
-  affilation = ['','Punjab Police','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span>','Army','Criminal Investigation Agency','<span define="Irregular undercover security force, often consisting of criminals">Black Cat</span>','Don’t Know','Other']
+  affilation = ['','Punjab Police','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span>','Army','Criminal Investigation Agency','<span define="Irregular undercover security force, often consisting of criminals">Black cat</span>','Don’t Know','Other']
   return affilation[var];
 
 
