@@ -43,6 +43,13 @@
 <div class="row keyword">
   <div class="col-sm-6">
       
+   
+  {% if slug == 'S0001' %}
+    <p class="m-2">View the <strong><a href="/official/S0001/detail">complete perpetrator profile on Sumedh Saini</a></strong>, incorporating command history, promotions, awards, and legal cases.</p>
+    <hr>
+  {% endif %}
+
+      
   <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} directly implicating {{name}}:</p>
 
   {% regroup victims.all by district as district_list %}

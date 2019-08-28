@@ -359,7 +359,7 @@ def official(request, slug=None):
     stats = calculate_stats(victims)
     if id is not None and id is None:
         return messages.warning(request,"Official %s was not found"%id)
-    return render(request, "securityforce.html", { "victims": victims, "name": name, "stats": stats } )
+    return render(request, "securityforce.html", { "victims": victims, "name": name, "stats": stats, "slug": slug } )
 
 
 def official_detail(request, slug=None):
