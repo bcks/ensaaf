@@ -52,6 +52,8 @@ def censuslink(value):
             '<a href="/locality/' + regexp.search(part).group(1)  + '">' + \
              re.sub(r'([0123456789.]+)-','', part) + \
              '</a>')
+        else:
+          newparts.append(part)
 
       s = ", ";
       return s.join(newparts)
