@@ -633,7 +633,7 @@
     <div class="col-sm-6">
                 
       <p>{% autoescape off %}      
-      {% if victim.arrest_security_locality  %}{{victim.arrest_security_locality|censuslink}}{% endif %}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%}, {% endif %}{% harrest_security_type_link victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}</p>
+      {% if victim.arrest_security_locality  %}{{victim.arrest_security_locality|censuslink}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%}, {% endif %}{% endif %}{% harrest_security_type_link victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}</p>
     </div>
   {% endif %}
 
