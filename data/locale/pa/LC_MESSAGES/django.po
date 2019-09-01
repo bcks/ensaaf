@@ -1,0 +1,139 @@
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-08-31 12:55-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/templates/map.html:76
+msgid "Age"
+msgstr "ਉਮਰ"
+
+#: data/templates/map.html:88
+msgid "Caste"
+msgstr "ਜਾਤ"
+
+#: data/templates/map.html:89
+msgid "Chamar"
+msgstr "ਚਮਾਰ"
+
+#: data/templates/map.html:90
+msgid "Dalit/SC/BC"
+msgstr "ਦਲਿੱਤ"
+
+#: data/templates/map.html:91
+msgid "Jat"
+msgstr "ਜੱਟ"
+
+#: data/templates/map.html:92
+msgid "Khatri"
+msgstr "ਖਤਰੀ"
+
+#: data/templates/map.html:93
+msgid "Mazbi"
+msgstr "ਮੱਜ਼ਬੀ"
+
+#: data/templates/map.html:94
+msgid "Naee"
+msgstr "ਨਾਈ"
+
+#: data/templates/map.html:95
+msgid "Ramgarhia"
+msgstr "ਰਾਮਗੜ੍ਹੀਆ"
+
+#: data/templates/map.html:96 data/templates/map.html:133
+msgid "Other"
+msgstr "ਹੋਰ"
+
+#: data/templates/map.html:102
+msgid "Classification"
+msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ/ਲਾਪਤਾ"
+
+#: data/templates/map.html:103
+msgid "Enforced Disappearance"
+msgstr "ਲਾਪਤਾ"
+
+#: data/templates/map.html:104
+msgid "Extrajudicial Execution"
+msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
+
+#: data/templates/map.html:110
+msgid "Gender"
+msgstr "ਲਿੰਗ"
+
+#: data/templates/map.html:111
+msgid "Female"
+msgstr "ਇਸਤਰੀ"
+
+#: data/templates/map.html:112
+msgid "Male"
+msgstr "ਮਰਦ"
+
+#: data/templates/map.html:118
+msgid "Combatant Status"
+msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਸੰਬੱਧ"
+
+#: data/templates/map.html:119
+msgid "Combatant"
+msgstr "ਹਾਂ ਜੀ"
+
+#: data/templates/map.html:120
+msgid "Non-Combatant"
+msgstr "ਨਹੀਂ ਜੀ"
+
+#: data/templates/map.html:121
+msgid "Unknown"
+msgstr "ਪਤਾ ਨਹੀਂ"
+
+#: data/templates/map.html:127
+msgid "Religion"
+msgstr "ਧਰਮ"
+
+#: data/templates/map.html:128
+msgid "Christian"
+msgstr "ਇਸਾਈ"
+
+#: data/templates/map.html:129
+msgid "Hindu"
+msgstr "ਹਿੰਦੂ"
+
+#: data/templates/map.html:130
+msgid "Muslim"
+msgstr "ਮੁਸਲਮਾਨ"
+
+#: data/templates/map.html:131
+msgid "Sikh"
+msgstr "ਸਿੱਖ"
+
+#: data/templates/map.html:132
+msgid "No religion"
+msgstr "ਕੋਈ ਧਰਮ ਨਹੀਂ"
+
+#: data/templates/map.html:139
+msgid "District"
+msgstr "ਜ਼ਿਲ੍ਹਾ"
+
+#: data/templates/map.html:164
+msgid "Urban / Rural"
+msgstr "ਸ਼ਹਿਰ/ਪਿੰਡ"
+
+#: data/templates/map.html:165
+msgid "Urban"
+msgstr "ਸ਼ਹਿਰ"
+
+#: data/templates/map.html:166
+msgid "Rural"
+msgstr "ਪਿੰਡ"
+
+#: data/templates/map.html:172
+msgid "Year"
+msgstr "ਸੰਨ"
+
+msgid "Date Unknown"
+msgstr "ਪਤਾ ਨਹੀਂ"
+

@@ -72,6 +72,8 @@ class DataFilter(django_filters.FilterSet):
   def year_filter(self, queryset, name, value):
     if value == 'Date Unknown':
       return queryset.filter(**{'timeline': None})
+    if value == "ਪਤਾ ਨਹੀਂ":
+      return queryset.filter(**{'timeline': None})
     else:
       startvalue = value + '-01-01'
       endvalue = value + '-12-31'

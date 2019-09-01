@@ -4,6 +4,7 @@ from data.views import *
 
 from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.i18n import i18n_patterns
 from graphene_django.views import GraphQLView
 
 urlpatterns = [
@@ -38,6 +39,11 @@ urlpatterns = [
     path('vikus/data/', vikusdata, name="vikusdata"),
     path('', map, name="map"),
 ]
+
+urlpatterns += i18n_patterns(
+    url('^/$', map, name='map'), prefix_default_language=False 
+)
+
 
 
 if settings.DEBUG:

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load humanize %}
 {% load profiletags %}
 
@@ -48,10 +49,15 @@
 
 {% block content %}
 
+
 <div class="row">
     <div class="col-12">
+    {% if request.LANGUAGE_CODE == 'pa' %}
+      <h1>ਪੰਜਾਬ ਵਿੱਚ ਹੋਏ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਉਲੰਘਣਾ ਦਾ ਨਕਸ਼ਾ</h1>
+    {% else %}
       <h2 style="margin-bottom:0;">Mapping Crimes Against Humanity</h2>
       <h4 style="margin-top:0;">Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India</h4>
+    {% endif %}
     </div>
 </div>
 
@@ -70,7 +76,7 @@
 
     <div class="form-group filter{% if selected_age %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="age" name="age" onchange="updateMapData()">
-        <option value="">Age</option>
+        <option value="">{% trans "Age" %}</option>
         <option{% if selected_age == '0-17' %} selected=selected{% endif %}>0-17</option>
         <option{% if selected_age == '18-33' %} selected=selected{% endif %}>18-33</option>
         <option{% if selected_age == '34-49' %} selected=selected{% endif %}>34-49</option>
@@ -82,78 +88,89 @@
 
     <div class="form-group filter{% if selected_caste %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="caste" name="caste" onchange="updateMapData()">
-        <option value="">Caste</option>
-        <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %}>Chamar</option>
-        <option{% if selected_caste == 'Dalit/SC/BC' %} selected=selected{% endif %}>Dalit/SC/BC</option>
-        <option{% if selected_caste == 'Jat' %} selected=selected{% endif %}>Jat</option>
-        <option{% if selected_caste == 'Khatri' %} selected=selected{% endif %}>Khatri</option>
-        <option{% if selected_caste == 'Mazbi' %} selected=selected{% endif %}>Mazbi</option>
-        <option{% if selected_caste == 'Naee' %} selected=selected{% endif %}>Naee</option>
-        <option{% if selected_caste == 'Ramgarhia' %} selected=selected{% endif %}>Ramgarhia</option>
-        <option{% if selected_caste == 'Other' %} selected=selected{% endif %}>Other</option>
+        <option value="">{% trans "Caste" %}</option>
+        <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %} value="Chamar">{% trans "Chamar" %}</option>
+        <option{% if selected_caste == 'Dalit/SC/BC' %} selected=selected{% endif %} value="Dalit/SC/BC">{% trans "Dalit/SC/BC" %}</option>
+        <option{% if selected_caste == 'Jat' %} selected=selected{% endif %} value="Jat">{% trans "Jat" %}</option>
+        <option{% if selected_caste == 'Khatri' %} selected=selected{% endif %} value="Khatri">{% trans "Khatri" %}</option>
+        <option{% if selected_caste == 'Mazbi' %} selected=selected{% endif %} value="Mazbi">{% trans "Mazbi" %}</option>
+        <option{% if selected_caste == 'Naee' %} selected=selected{% endif %} value="Naee">{% trans "Naee" %}</option>
+        <option{% if selected_caste == 'Ramgarhia' %} selected=selected{% endif %} value="Ramgarhia">{% trans "Ramgarhia" %}</option>
+        <option{% if selected_caste == 'Other' %} selected=selected{% endif %} value="Other">{% trans "Other" %}</option>
       </select>
     </div>
         
     <div class="form-group filter{% if selected_classification %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="classification" name="classification" onchange="updateMapData()">
-        <option value="">Classification</option>
-        <option {% if selected_classification == 'Enforced Disappearance' %} selected=selected{% endif %} value="Enforced Disappearance">Enforced Disappearance</option>
-        <option {% if selected_classification == 'Extrajudicial Execution' %} selected=selected{% endif %} value="Extrajudicial Execution">Extrajudicial Execution</option>
+        <option value="">{% trans "Classification" %}</option>
+        <option {% if selected_classification == 'Enforced Disappearance' %} selected=selected{% endif %} value="Enforced Disappearance">{% trans "Enforced Disappearance" %}</option>
+        <option {% if selected_classification == 'Extrajudicial Execution' %} selected=selected{% endif %} value="Extrajudicial Execution">{% trans "Extrajudicial Execution" %}</option>
       </select>
     </div>
     
     <div class="form-group filter{% if selected_gender %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="gender" name="gender" onchange="updateMapData()">
-        <option value="">Gender</option>
-        <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">Female</option>
-        <option {% if selected_gender == 'Male' %} selected=selected{% endif %} value="Male">Male</option>
+        <option value="">{% trans "Gender" %}</option>
+        <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">{% trans "Female" %}</option>
+        <option {% if selected_gender == 'Male' %} selected=selected{% endif %} value="Male">{% trans "Male" %}</option>
       </select>
     </div>
 
     <div class="form-group filter{% if selected_combatant %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="combatant" name="combatant" onchange="updateMapData()">
-        <option value="">Combatant Status</option>
-        <option {% if selected_combatant == 'Combatant' %} selected=selected{% endif %} value="Combatant">Combatant</option>
-        <option {% if selected_combatant == 'Non-Combatant' %} selected=selected{% endif %} value="Non-Combatant">Non-Combatant</option>
-        <option {% if selected_combatant == 'Unknown' %} selected=selected{% endif %} value="Unknown">Unknown</option>
+        <option value="">{% trans "Combatant Status" %}</option>
+        <option {% if selected_combatant == 'Combatant' %} selected=selected{% endif %} value="Combatant">{% trans "Combatant" %}</option>
+        <option {% if selected_combatant == 'Non-Combatant' %} selected=selected{% endif %} value="Non-Combatant">{% trans "Non-Combatant" %}</option>
+        <option {% if selected_combatant == 'Unknown' %} selected=selected{% endif %} value="Unknown">{% trans "Unknown" %}</option>
       </select>
     </div>
 
     <div class="form-group filter{% if selected_religion %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="religion" name="religion" onchange="updateMapData()">
-        <option value="">Religion</option>
-        <option{% if selected_religion == 'Christian' %} selected=selected{% endif %}>Christian</option>
-        <option{% if selected_religion == 'Hindu' %} selected=selected{% endif %}>Hindu</option>
-        <option{% if selected_religion == 'Muslim' %} selected=selected{% endif %}>Muslim</option>
-        <option{% if selected_religion == 'Sikh' %} selected=selected{% endif %}>Sikh</option>
-        <option{% if selected_religion == 'No religion' %} selected=selected{% endif %}>No religion</option>
-        <option{% if selected_religion == 'Other' %} selected=selected{% endif %}>Other</option>
+        <option value="">{% trans "Religion" %}</option>
+        <option{% if selected_religion == 'Christian' %} selected=selected{% endif %} value="Christian">{% trans "Christian" %}</option>
+        <option{% if selected_religion == 'Hindu' %} selected=selected{% endif %} value="Hindu">{% trans "Hindu" %}</option>
+        <option{% if selected_religion == 'Muslim' %} selected=selected{% endif %} value="Muslim">{% trans "Muslim" %}</option>
+        <option{% if selected_religion == 'Sikh' %} selected=selected{% endif %} value="Sikh">{% trans "Sikh" %}</option>
+        <option{% if selected_religion == 'No religion' %} selected=selected{% endif %} value="No religion">{% trans "No religion" %}</option>
+        <option{% if selected_religion == 'Other' %} selected=selected{% endif %} value="Other">{% trans "Other" %}</option>
       </select>
     </div>
 
     <div class="form-group filter{% if selected_district %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="district" name="district" onchange="updateMapData()">
-        <option value="">District</option>
+        <option value="">{% trans "District" %}</option>
+
+    {% if request.LANGUAGE_CODE == 'pa' %}
+        {% for o in districts %}
+        <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{{o.district_pa}}</option>
+        {% for t in o.subdistricts %}
+        <option value="{{t.tehsil_id}}" {% if selected_district|add:"0" == t.tehsil_id %} selected=selected{% endif %}>&nbsp;&nbsp;- {{t.tehsil_pa}}</option>
+        {% endfor %}
+        {% endfor %}
+    {% else %}
         {% for o in districts %}
         <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{{o.district}}</option>
         {% for t in o.subdistricts %}
         <option value="{{t.tehsil_id}}" {% if selected_district|add:"0" == t.tehsil_id %} selected=selected{% endif %}>&nbsp;&nbsp;- {{t.tehsil}}</option>
         {% endfor %}
         {% endfor %}
+    {% endif %}
+
       </select>
     </div>
 
     <div class="form-group filter{% if selected_urban_rural %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="urban_rural" name="urban_rural" onchange="updateMapData()">
-        <option value="">Urban / Rural</option>
-        <option {% if selected_urban_rural == 'Urban' %} selected=selected{% endif %} value="Urban">Urban</option>
-        <option {% if selected_urban_rural == 'Rural' %} selected=selected{% endif %} value="Rural">Rural</option>
+        <option value="">{% trans "Urban / Rural" %}</option>
+        <option {% if selected_urban_rural == 'Urban' %} selected=selected{% endif %} value="Urban">{% trans "Urban" %}</option>
+        <option {% if selected_urban_rural == 'Rural' %} selected=selected{% endif %} value="Rural">{% trans "Rural" %}</option>
       </select>
     </div>
 
     <div class="form-group filter{% if selected_year %} selected{% endif %} col-6 col-md-3 col-lg-2">
       <select class="form-control" id="year" name="year" onchange="updateMapData()">
-        <option value="">Year</option>
+        <option value="">{% trans "Year" %}</option>
         {% for o in years %}
         <option{% if selected_year|add:"0" == o %} selected=selected{% endif %}>{{o}}</option>
         {% endfor %}
@@ -166,7 +183,6 @@
 
 
 </div><!-- end container -->
-
 
 
 <div id="map-over">
@@ -187,7 +203,13 @@
 
   <div class="row">
     <div class="col-12">
+
+    {% if request.LANGUAGE_CODE == 'pa' %}
+      <p>ਇਹ ਸਾਰੀ ਜਾਣਕਾਰੀ ਜੋ ਕੀ ਇਸ ਪ੍ਰਾਜੈਕਟ ਦੇ ਰਾਹੀਂ ਆਪ ਜੀ ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ। ਇਹ ਜਾਣਕਾਰੀ ਪੀੜਿਤ ਪਰਿਵਾਰਾਂ ਤੋਂ ਇਕੱਠੀ ਕੀਤੀ ਗਈ ਹੈ। ਜਿਹਨਾਂ ਦੇ ਪਰਵਾਰਿਕ ਮੈਂਬਰ ਲਾਪਤਾ ਜਾਂ ਫਿਰ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਤਰੀਕੇ ਦੇ ਨਾਲ ਮਾਰੇ ਗਏ ਸਨ। ਇਸ ਸਾਈਟ ਨੂੰ ਤਿਆਰ ਕਰਨ ਦਾ ਮਕਸਦ ਇਹ ਹੈ ਕਿ ਜੋ ਅੱਤਿਆਚਾਰ ਅਤੇ ਅਪਰਾਧ ਭਾਰਤੀ ਸੁਰੱਖਿਆ ਬੱਲਾ ਨੇ ਪੰਜਾਬ ਿਵੱਚ ਕੀਤੇ ਹਨ ਉਹਨਾਂ ਦੀ ਸਚਾਈ ਨੂੰ ਦੁਨਿਆਵੀ ਪੱਧਰ ਤੇ ਪੇਸ਼ ਕੀਤਾ ਜਾਵੇ। ਹੋਰ ਵਧੇਰੀ ਜਾਣਕਾਰੀ ਵਾਸਤੇ ਅਗੇ ਪੜ੍ਹੋ।</p>
+    {% else %}
       <p>The Crimes Against Humanity Data Project is a portrait of widespread and systematic enforced disappearances and extrajudicial executions, based on data collected through primary source interviews. Ensaaf created this site to build informed consensus on the nature of the crimes perpetrated by India’s security forces in Punjab. <a href="/about/">Read more about our goals »</a></p>
+    {% endif %}
+
     </div>
   </div>
 
