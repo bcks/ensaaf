@@ -114,6 +114,8 @@ HAYSTACK_CONNECTIONS = {
 }
 
 
+LOCALE_PATHS = [ 'data/locale' ]
+
 
 GRAPHENE = {
     'SCHEMA': 'data.schema.schema'
