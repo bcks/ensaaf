@@ -4,7 +4,8 @@
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India{% endblock %}
+
+{% block title %}{% if request.LANGUAGE_CODE == 'pa' %}ਪੰਜਾਬ ਵਿੱਚ ਹੋਏ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਉਲੰਘਣਾ ਦਾ ਨਕਸ਼ਾ{% else %}Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India{% endif %}{% endblock %}
 
 {% block head %}
 
