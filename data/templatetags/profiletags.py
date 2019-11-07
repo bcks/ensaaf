@@ -699,7 +699,7 @@ def hsecurity_official_response(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11
   groups.append('Victim extrajudicial execution while resisting arrest/search') if v11 == 1 else 0
   groups.append('Victim extrajudicial execution by <span define="Irregular undercover security force, often consisting of criminals">Black cat</span>s') if v12 == 1 else 0
   groups.append('Don’t know') if v14 == 1 else 0
-  if v3 == 1:
+  if v13 == 1:
     if (other):
       groups.append(other)
   if len(groups):

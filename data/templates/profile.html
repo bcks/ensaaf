@@ -848,16 +848,14 @@
   {% endif %}
 
 
-
-  {% if victim.security_official_response_14 != 1 %}
-  {% if victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.security_official_response_13 or victim.security_official_response_14 or victim.other_so_response %}
+  {# Don't show this if victim.security_official_response_13 or victim.security_official_response_13 #}
+  {% if victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.other_so_response %}
     <div class="col-sm-6">
       <p class="kicker dots">Response by officials</p>
     </div>
     <div class="col-sm-6">
       <p>{% autoescape off %}{% hsecurity_official_response victim.security_official_response_0 victim.security_official_response_1 victim.security_official_response_2 victim.security_official_response_3 victim.security_official_response_4 victim.security_official_response_5 victim.security_official_response_6 victim.security_official_response_7 victim.security_official_response_8 victim.security_official_response_9 victim.security_official_response_10 victim.security_official_response_11 victim.security_official_response_12 victim.security_official_response_13 victim.security_official_response_14 victim.other_so_response %}{% endautoescape %}</p>
     </div>
-  {% endif %}
   {% endif %}
 
 
