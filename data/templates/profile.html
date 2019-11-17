@@ -658,9 +658,9 @@
 
     {% for this in victim.security_arrest.all %}
 
-      <p>{% if this.soa_code %}<a href="{% url 'official' this.soa_code %}">{% endif %}{{this.arrest_so_first_name|default:""|title}}<!-- firsname --> {{this.arrest_so_last_name|default:""|title}}<!-- lastname -->{% if this.soa_code %}</a>{% endif %}<!-- rank -->{% if this.arrest_so_rank != None %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}{% if this.soa_code or this.arrest_so_last_name %},{%endif%} 
-{% harrest_so_rank this.arrest_so_rank %}{% endif %}{% endif %}{% if this.arrest_so_rank == 13 %}{% if this.arrest_so_rank_other %}, 
-{{this.arrest_so_rank_other}}{% endif %}{% endif %}{% endif %}<!-- affiliaton -->{% if this.arrest_so_affiliation != None %}{% if this.arrest_so_affiliation != 8 %}{% if this.arrest_so_affiliation != 7 %}, 
+      <p>{% if this.soa_code %}<a href="{% url 'official' this.soa_code %}">{% endif %}{{this.arrest_so_first_name|default:""|title}}<!-- firsname --> {{this.arrest_so_last_name|default:""|title}}<!-- lastname -->{% if this.soa_code %}</a>{% endif %}<!-- rank -->{% if this.arrest_so_rank != None %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}{% if this.soa_code or this.arrest_so_last_name %},{%endif%}       
+{% harrest_so_rank this.arrest_so_rank %}{% endif %}{% endif %}{% if this.arrest_so_rank == 13 and this.arrest_so_rank_other %}{% if this.soa_code or this.arrest_so_first_name or this.arrest_so_last_name or this.arrest_so_rank != 13 %},{% endif %}
+{{this.arrest_so_rank_other}}{% endif %}{% endif %}<!-- affiliaton -->{% if this.arrest_so_affiliation != None %}{% if this.arrest_so_affiliation != 8 %}{% if this.arrest_so_affiliation != 7 %}, 
 {% autoescape off %}{% haffiliation this.arrest_so_affiliation %}{% endautoescape %}{% endif %}{% endif %}{% endif %}<!-- arrest_so_affiliation_oth -->{% if this.arrest_so_affiliation_oth != None %}, 
 {{this.arrest_so_affiliation_oth}}{% endif %}{% if this.arrest_so_affiliation_loc != None %}, {{this.arrest_so_affiliation_loc|censuslink|safe}}{% endif %}</p>
 
