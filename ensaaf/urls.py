@@ -7,7 +7,12 @@ from django.conf.urls import include, url
 from django.conf.urls.i18n import i18n_patterns
 from graphene_django.views import GraphQLView
 
-urlpatterns = [
+
+urlpatterns = i18n_patterns(
+    path('', map, name='map'), prefix_default_language=False 
+)
+
+urlpatterns += [
     path('villages/', villages, name="villages"),
     path('overview/', overview, name="overview"),
     path('map_ajax/', map_ajax, name="map_ajax"),
@@ -37,12 +42,7 @@ urlpatterns = [
     url(r'^graphql', GraphQLView.as_view(graphiql=True)),
     path('<slug:slug>/', page),
     path('vikus/data/', vikusdata, name="vikusdata"),
-    path('', map, name="map"),
 ]
-
-urlpatterns += i18n_patterns(
-    url('^/$', map, name='map'), prefix_default_language=False 
-)
 
 
 
