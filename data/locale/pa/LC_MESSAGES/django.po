@@ -524,8 +524,7 @@ msgid ""
 "Note: Subdistrict and district boundaries are based on the 2001 census. Read "
 "more about <a href=\"/about\">our methodology</a>"
 msgstr ""
-"ਧਿਆਨ ਦਿਓ: ਜ਼ਿਲ੍ਹੇ ਅਤੇ ਤਸੀਲ ਦੀਆਂ ਸੀਮਾਂ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/pa/"
-"about\">ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
+"ਧਿਆਨ ਦਿਓ: ਜ਼ਿਲ੍ਹੇ ਅਤੇ ਤਸੀਲ ਦੀਆਂ ਸੀਮਾਂ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/about\">ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
 
 #: data/templates/profile.html:1068
 msgid "Report additional information on this case"
@@ -727,7 +726,7 @@ msgid ""
 "Boundaries based on the 2001 census. Read about <a href=\"/about\">our "
 "methodology</a>."
 msgstr ""
-"ਇਹ ਨਕਸ਼ਾ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/pa/about/\"> ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ "
+"ਇਹ ਨਕਸ਼ਾ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/about/\"> ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ "
 "ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
 
 #: data/templatetags/profiletags.py:9
