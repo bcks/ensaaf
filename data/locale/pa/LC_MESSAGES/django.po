@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:40-0500\n"
+"POT-Creation-Date: 2020-02-06 13:56-0500\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -291,6 +291,7 @@ msgid "No religion"
 msgstr "ਕੋਈ ਧਰਮ ਨਹੀਂ"
 
 #: data/templates/map.html:143 data/templates/stats.html:983
+#: data/templates/tehsil.html:36 data/templates/village.html:41
 msgid "District"
 msgstr "ਜ਼ਿਲ੍ਹਾ"
 
@@ -371,12 +372,12 @@ msgstr ""
 "ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਛਾਣ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕੀਤਾ ਜਾਵੇਗਾ ਜੋ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਿੱਚ "
 "ਸ਼ਾਮਲ ਹਨ ਅਤੇ ਜੋ ਆਪਣੀ ਕਮਾਂਡ/ਆਦੇਸ਼ ਅਧੀਨ ਕੀਤੇ ਗਏ ਦੁਰਵਿਵਹਾਰਾਂ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਹਨ।"
 
-#: data/templates/profile.html:45 data/templates/village.html:92
+#: data/templates/profile.html:45 data/templates/village.html:93
 msgid "Extrajudicial execution"
 msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
 
 #: data/templates/profile.html:49 data/templates/profile.html:522
-#: data/templates/village.html:95
+#: data/templates/village.html:96
 msgid "Disappeared"
 msgstr "ਲਾਪਤਾ"
 
@@ -769,6 +770,10 @@ msgstr "ਕੀ ਵਜ੍ਹਾ/ਕਾਰਨ ਸੀ ਕਿ ਪਰਿਵਾਰ ਨ
 msgid "Year &amp; District"
 msgstr "ਸਮਾਂ ਅਤੇ ਸਥਾਨ"
 
+#: data/templates/village.html:41
+msgid "Subdistrict"
+msgstr "ਤਹਿਸੀਲ"
+
 #: data/templates/village.html:42
 msgid ""
 "Boundaries based on the 2001 census. Read about <a href=\"/about\">our "
@@ -776,6 +781,22 @@ msgid ""
 msgstr ""
 "ਇਹ ਨਕਸ਼ਾ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/about/\"> ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ "
 "ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
+
+#: data/templates/village.html:57
+msgid "documented cases"
+msgstr "ਦਰਜ ਕੀਤੇ ਕੇਸ"
+
+#: data/templates/village.html:57
+msgid "documented case"
+msgstr "ਦਰਜ ਕੀਤਾ ਕੇਸ"
+
+#: data/templates/village.html:136
+msgid "No documented cases."
+msgstr "ਸੰਬੰਧਿਤ ਕੋਈ ਕੇਸ ਦਰਜ ਨਹੀਂ ਕੀਤਾ ਗਇਆ"
+
+#: data/templates/village.html:145
+msgid "Report a case"
+msgstr "ਨਵਾਂ ਕੇਸ ਦਰਜ ਕਰੋ"
 
 #: data/templatetags/profiletags.py:9
 msgid "January"
