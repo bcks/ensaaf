@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load i18n %}
 {% load humanize %}
 {% load profiletags %}
 
@@ -22,9 +23,9 @@
 
 <div class="row">
   <div class="col-12">
-    <h2>Search</h2>
+    <h2>{% trans 'Search' %}</h2>
     
-    <p>Search by victim name or victim residence</p>
+    <p>{% trans 'Search by victim name or victim residence' %}</p>
     
     <form method="get" class="form-inline my-2 my-lg autocomplete-me2" action=".">
           <input type="search" class="form-control mr-sm-2" name="q" value="{{query}}" id="id_qq">
@@ -44,10 +45,10 @@
 
   {% if query %}
 
-      <h3>Results</h3>
+      <h3>{% trans 'Results' %}</h3>
 
-      <p>{{ page.paginator.count|intcomma }} results, page {{ page.number }} of {{ page.paginator.num_pages }}  
-      &nbsp;&nbsp;  <a href="#" id="list-view-toggle">Switch to list view</a><a href="#" style="display:none;" id="gallery-view-toggle">Switch to gallery view</a></p>
+      <p>{{ page.paginator.count|intcomma }} {% trans 'results, page' %} {{ page.number }} {% trans 'of' %} {{ page.paginator.num_pages }}  
+      &nbsp;&nbsp;  <a href="#" id="list-view-toggle">{% trans 'Switch to list view' %}</a><a href="#" style="display:none;" id="gallery-view-toggle">{% trans 'Switch to gallery view' %}</a></p>
 
 
 
@@ -61,16 +62,16 @@
                 <li><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a>, 
                 {% if o.village_id|add:"0" > 0 and village.tehsil%}
                   <span define="Village/town/city"><a href="{% url 'village' victim.village_id %}">{{o.village_name}},</a></span>
-                  <span define="Subdistrict"><a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}},</a></span>
-                  <span define="District"><a href="/district/{{village.district_id}}">{{village.district}}</a></span>,
+                  <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
+                  <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></span>,
                 {% else %}
                   {{victim.village_name}},
                 {% endif %}
                 {% if victim.victim_disappeared_killed == 2 %}
-                  extrajudicial execution,
+                  {% trans 'extrajudicial execution' %},
                 {% endif %}
                 {% if victim.victim_disappeared_killed == 1 %}
-                  disappeared,
+                  {% trans 'disappeared'},
                 {% endif %}
                 {% hdateslash victim.timeline_start victim.timeline_end %}
                   </li>
@@ -78,13 +79,13 @@
               {% else %}
 
                 <li><span define="Village/town/city"><a href="{% url 'village' victim.vid %}">{{victim.village_name}},</a></span>
-                <span define="Subdistrict"><a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}},</a></span>
-                <span define="District"><a href="/district/{{victim.district_id}}">{{victim.district}}</a></span></li>
+                <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' victim.tehsil %}">{% trans victim.tehsil %},</a></span>
+                <span define="{% trans 'District' %}"><a href="{% url 'district' victim.district %}">{% trans victim.district %}</a></span></li>
 
               {% endif %}
 
       {% empty %}   
-          <li>No results found.</li>
+          <li>{% trans 'No results found.' %}</li>
       {% endfor %}
           </ul>
         </div>
@@ -106,20 +107,20 @@
             </div>
 
               <div class="names">
-                <h5 style="margin: 0;"><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></h5>
+                <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{{victim.victim_name}}</a></h5>
 
                 {% if o.village_id|add:"0" > 0 and village.tehsil%}
                   <span define="Village/town/city"><a href="{% url 'village' victim.village_id %}">{{o.village_name}},</a></span>
-                  <span define="Subdistrict"><a href="/tehsil/{{village.tehsil_id}}">{{village.tehsil}},</a></span>
-                  <span define="District"><a href="/district/{{village.district_id}}">{{village.district}}</a></span><br>
+                  <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
+                  <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></span>,
                 {% else %}
                   {{victim.village_name}}<br>
                 {% endif %}
                 {% if victim.victim_disappeared_killed == 2 %}
-                  Extrajudicial execution,
+                  {% trans 'Extrajudicial execution' %},
                 {% endif %}
                 {% if victim.victim_disappeared_killed == 1 %}
-                  Disappeared,
+                  {% trans 'Disappeared' %},
                 {% endif %}
                 {% hdateslash victim.timeline_start victim.timeline_end %}
                 <p><br></p>
@@ -134,8 +135,8 @@
             </div>
               <div class="names">
                 <h6 style="margin: 0;"><span define="Village/town/city"><a href="{% url 'village' victim.vid %}">{{victim.village_name}},</a></span>
-                <span define="Subdistrict"><a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}},</a></span>
-                <span define="District"><a href="/district/{{victim.district_id}}">{{victim.district}}</a></span></h6>
+                <span define="Subdistrict"><a href="{% url 'tehsil' victim.tehsil_id %}">{% trans victim.tehsil %},</a></span>
+                <span define="District"><a href="{% url 'district' victim.district_id %}">{% trans victim.district %}</a></span></h6>
                 <p><br></p>
               </div>
           </div>
@@ -159,7 +160,7 @@
 
       {% empty %}   
         <div class="col-12">
-          <p>No results found.</p>
+          <p>{% trans 'No results found.' %}</p>
         </div>
       {% endfor %}
       </div>
@@ -168,9 +169,9 @@
     
       {% if page.has_previous or page.has_next %}
           <div>
-              {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}" class="btn btn-light">&laquo; Previous</a>{% endif %}
+              {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}" class="btn btn-light">&laquo; {% trans 'Previous' %}</a>{% endif %}
               
-              {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}" class="btn btn-light">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+              {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}" class="btn btn-light">{% endif %}{% trans 'Next' %} &raquo;{% if page.has_next %}</a>{% endif %}
           </div>
       {% endif %}
   {% else %}

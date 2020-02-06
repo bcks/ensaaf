@@ -1,8 +1,7 @@
 {% load staticfiles %}
 {% load i18n %}
-
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="{{request.LANGUAGE_CODE}}">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -58,7 +57,7 @@
 
     <div class="collapse row" id="search-form">
       <div class="col-12">
-        <form class="form-inline autocomplete-me" method="get" action="/search/">
+        <form class="form-inline autocomplete-me" method="get" action="{% if request.LANGUAGE_CODE == 'pa' %}/pa{%endif%}/search/">
           <input class="form-control mr-2 col-9" name="q" id="id_q" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
           <button class="btn col-2 my-2" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
         </form>

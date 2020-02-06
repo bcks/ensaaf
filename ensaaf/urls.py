@@ -26,15 +26,15 @@ urlpatterns = i18n_patterns(
     path('official/S0001/detail', official_detail, name="official_detail"),
     path('official/S0001/detail/', official_detail, name="official_detail"),
     path('official/<slug:slug>/', official, name="official"),
-    prefix_default_language=False 
-)
-
-urlpatterns += [
+    url(r'^search/', include('haystack.urls')),
     path('cremation/<slug:slug>/', cremation, name="cremation"),
     path('securityforce/<slug:slug>/', securityforce, name="securityforce"),
     url(r'^detention/(?P<type>[0-9]+)/(?P<name>[A-Za-z0-9 \/+_\-]+)/$', detention, name="detention"),
     path('success/', successView, name='success'),
-    url(r'^search/', include('haystack.urls')),
+    prefix_default_language=False 
+)
+
+urlpatterns += [
     path('search/spelling/', spelling, name='spelling'),
     path('search/autocomplete/', autocomplete, name='autocomplete'),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
