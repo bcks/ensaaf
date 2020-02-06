@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-06 13:05-0500\n"
+"POT-Creation-Date: 2020-02-06 13:40-0500\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -13,6 +13,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: data/templates/400.html:3
+msgid "Server Error (400)"
+msgstr "ਸਰਵਰ ਗਲਤੀ (੪੦੦)"
+
+#: data/templates/400.html:7
+msgid "Bad Request (400)"
+msgstr "ਗਲਤ ਬੇਨਤੀ (੪੦੦)"
+
+#: data/templates/400.html:8
+msgid ""
+"There was a problem with the request you sent. Please try again in a moment."
+msgstr ""
+"ਤੁਹਾਡੇ ਦੁਆਰਾ ਕੀਤੀ ਗਈ ਬੇਨਤੀ ਵਿੱਚ ਸਮੱਸਿਆ ਹੈ। ਕਿਰਪਾ ਕਰ ਕੇ ਥੋੜ੍ਹੇ ਸਮੇਂ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
+
+#: data/templates/403.html:3
+msgid "Not Authorized (403)"
+msgstr "ਅਧਿਕਾਰਤ ਨਹੀਂ ਹੈ (੪੦੩)"
+
+#: data/templates/403.html:7 data/templates/500.html:3
+#: data/templates/500.html:7
+msgid "Server Error (500)"
+msgstr "ਸਰਵਰ ਗਲਤੀ (੫੦੦)"
+
+#: data/templates/403.html:8
+msgid ""
+"This request was not authorized. This probably happened as a result of re-"
+"submission of a form with a stale CSRF token."
+msgstr ""
+"ਇਹ ਬੇਨਤੀ ਅਧਿਕਾਰਤ ਨਹੀਂ ਸੀ। ਇਹ ਸ਼ਾਇਦ ਇੱਕ ਪੁਰਾਨੇ ਸੀ.ਐਸ.ਆਰ.ਐਫ਼ ਟੋਕਨ ਨੂੰ ਦੁਬਾਰਾ ਵਰਤਨ ਦੇ ਨਤੀਜੇ "
+"ਵਜੋਂ ਹੋਇਆ ਸੀ।"
+
+#: data/templates/404.html:3
+msgid "File Not Found"
+msgstr "ਫਾਈਲ ਨਹੀਂ ਮਿਲੀ"
+
+#: data/templates/404.html:7
+msgid "Not Found (404)"
+msgstr "ਨਹੀਂ ਮਿਲੀ (੪੦੪)"
+
+#: data/templates/404.html:8
+msgid "Sorry, this page was not found."
+msgstr "ਮਾਫ਼ ਕਰੋ ਪਰ ਇਹ ਪੇਜ ਨਹੀਂ ਲੱਭਿਆ।"
+
+#: data/templates/500.html:8
+msgid "Please try again in a moment."
+msgstr "ਕਿਰਪਾ ਕਰ ਕੇ ਥੋੜ੍ਹੇ ਚਿਰ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 #: data/templates/base.html:18 data/templates/base.html:28
 msgid "Ensaaf"
@@ -324,12 +371,12 @@ msgstr ""
 "ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਛਾਣ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕੀਤਾ ਜਾਵੇਗਾ ਜੋ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਿੱਚ "
 "ਸ਼ਾਮਲ ਹਨ ਅਤੇ ਜੋ ਆਪਣੀ ਕਮਾਂਡ/ਆਦੇਸ਼ ਅਧੀਨ ਕੀਤੇ ਗਏ ਦੁਰਵਿਵਹਾਰਾਂ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਹਨ।"
 
-#: data/templates/profile.html:45 data/templates/village.html:91
+#: data/templates/profile.html:45 data/templates/village.html:92
 msgid "Extrajudicial execution"
 msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
 
 #: data/templates/profile.html:49 data/templates/profile.html:522
-#: data/templates/village.html:94
+#: data/templates/village.html:95
 msgid "Disappeared"
 msgstr "ਲਾਪਤਾ"
 
@@ -524,7 +571,8 @@ msgid ""
 "Note: Subdistrict and district boundaries are based on the 2001 census. Read "
 "more about <a href=\"/about\">our methodology</a>"
 msgstr ""
-"ਧਿਆਨ ਦਿਓ: ਜ਼ਿਲ੍ਹੇ ਅਤੇ ਤਸੀਲ ਦੀਆਂ ਸੀਮਾਂ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/about\">ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
+"ਧਿਆਨ ਦਿਓ: ਜ਼ਿਲ੍ਹੇ ਅਤੇ ਤਸੀਲ ਦੀਆਂ ਸੀਮਾਂ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/about"
+"\">ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
 
 #: data/templates/profile.html:1068
 msgid "Report additional information on this case"
@@ -721,13 +769,13 @@ msgstr "ਕੀ ਵਜ੍ਹਾ/ਕਾਰਨ ਸੀ ਕਿ ਪਰਿਵਾਰ ਨ
 msgid "Year &amp; District"
 msgstr "ਸਮਾਂ ਅਤੇ ਸਥਾਨ"
 
-#: data/templates/village.html:41
+#: data/templates/village.html:42
 msgid ""
 "Boundaries based on the 2001 census. Read about <a href=\"/about\">our "
 "methodology</a>."
 msgstr ""
-"ਇਹ ਨਕਸ਼ਾ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/about/\"> ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ "
-"ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
+"ਇਹ ਨਕਸ਼ਾ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/about/\"> ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ "
+"ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
 
 #: data/templatetags/profiletags.py:9
 msgid "January"
