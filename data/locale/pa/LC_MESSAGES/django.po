@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-24 13:46+0200\n"
+"POT-Creation-Date: 2020-02-06 12:56-0500\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -14,130 +14,1905 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: data/templates/map.html:76
+#: data/templates/base.html:18 data/templates/base.html:28
+msgid "Ensaaf"
+msgstr "ਇਨਸਾਫ਼"
+
+#: data/templates/base.html:29
+msgid "Crimes Against Humanity in Punjab, India"
+msgstr "ਪੰਜਾਬ ਵਿੱਚ ਹੋਏ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਉਲੰਘਣਾ"
+
+#: data/templates/base.html:45
+msgid ""
+"Crimes Against Humanity in Punjab, India: Enforced Disappearances and "
+"Extrajudicial Executions"
+msgstr ""
+"ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਈ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਉਲੰਘਣਾ: ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ"
+
+#: data/templates/base.html:45
+msgid "Map"
+msgstr "ਨਕਸ਼ਾ"
+
+#: data/templates/base.html:46
+msgid "Victim Profiles"
+msgstr "ਪੀੜਤਾਂ ਦੀ ਸੂਚੀ"
+
+#: data/templates/base.html:47 data/templates/perpetrators.html:36
+msgid "Key Perpetrators"
+msgstr "ਮੁੱਖ ਦੋਸ਼ੀ"
+
+#: data/templates/base.html:48 data/templates/overview.html:40
+msgid "Key Statistics"
+msgstr "ਖਾਸ ਅੰਕੜੇ"
+
+#: data/templates/base.html:49
+msgid "Villages"
+msgstr "ਪਿੰਡ"
+
+#: data/templates/base.html:50
+msgid "About"
+msgstr "ਬਾਰੇ"
+
+#: data/templates/base.html:51 data/templates/profile.html:814
+#: data/templates/profile.html:1000
+msgid "Forthcoming"
+msgstr "ਆੳਣ ਵਾਲੀ ਜਾਣਕਾਰੀ"
+
+#: data/templates/base.html:52
+msgid "Support This Project"
+msgstr "ਇਸ ਮਨਸੁਬੇ/ਪਰਯੋਜਨ ਦਾ ਸਾਥ ਦੇਵੋ"
+
+#: data/templates/base.html:52
+msgid "Donate"
+msgstr "ਦਾਨ/ਦਸਵੰਧ"
+
+#: data/templates/base.html:53 data/templates/base.html:62
+#: data/templates/base.html:63
+msgid "Search"
+msgstr "ਖੋਜ ਕਰੋ"
+
+#: data/templates/base.html:101
+msgid "ENSAAF INC."
+msgstr "ਇਨਸਾਫ਼"
+
+#: data/templates/base.html:108
+msgid "Back to top"
+msgstr "ਵਾਪਸ ਉੱਪਰ ਜਾਉ"
+
+#: data/templates/base.html:109
+msgid "Contact"
+msgstr "ਸੰਪਰਕ"
+
+#: data/templates/detail.html:46 data/templates/profile.html:62
+msgid "Demographics"
+msgstr "ਜਨ ਅੰਕੜਾ ਅਧਿਐਨ"
+
+#: data/templates/email.html:4
+msgid "Profile Feedback"
+msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੀਡਬੈਕ"
+
+#: data/templates/email.html:8
+msgid "Contact Us"
+msgstr "ਸਾਨੂੰ ਸੰਪਰਕ ਕਰੋ"
+
+#: data/templates/email.html:10
+msgid "Questions? Comments? Inaccuracies? Please let us know below:"
+msgstr "ਸਵਾਲ? ਕੁਝ ਕਹਿਣਾ? ਕੁਝ ਗਲਤ? ਕਿਰਪਾ ਕਰਕੇ ਸਾਨੂੰ ਹੇਠਾਂ ਦੱਸੋ:"
+
+#: data/templates/email.html:17
+msgid "Your email address:"
+msgstr "ਤੁਹਾਡਾ ਈਮੇਲ:"
+
+#: data/templates/email.html:22
+msgid "Your message:"
+msgstr "ਤੁਹਾਡਾ ਸੰਦੇਸ਼:"
+
+#: data/templates/email.html:26
+msgid "Send"
+msgstr "ਭੇਜੋ"
+
+#: data/templates/map.html:8 data/templates/map.html:20
+#: data/templates/map.html:25
+msgid ""
+"Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial "
+"Executions in Punjab, India"
+msgstr ""
+"ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਈ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਉਲੰਘਣਾ: ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ"
+
+#: data/templates/map.html:72
+msgid "Clear filters"
+msgstr "ਫਿਲਟਰ ਸਾਫ ਕਰੋ"
+
+#: data/templates/map.html:80 data/templates/stats.html:153
 msgid "Age"
 msgstr "ਉਮਰ"
 
-#: data/templates/map.html:88
+#: data/templates/map.html:92 data/templates/profile.html:202
+#: data/templates/stats.html:123
 msgid "Caste"
 msgstr "ਜਾਤ"
 
-#: data/templates/map.html:89
+#: data/templates/map.html:93 data/templatetags/profiletags.py:422
 msgid "Chamar"
 msgstr "ਚਮਾਰ"
 
-#: data/templates/map.html:90
+#: data/templates/map.html:94 data/templatetags/profiletags.py:422
 msgid "Dalit/SC/BC"
 msgstr "ਦਲਿੱਤ"
 
-#: data/templates/map.html:91
+#: data/templates/map.html:95 data/templatetags/profiletags.py:422
+#: data/utils.py:23
 msgid "Jat"
 msgstr "ਜੱਟ"
 
-#: data/templates/map.html:92
+#: data/templates/map.html:96 data/templatetags/profiletags.py:422
 msgid "Khatri"
 msgstr "ਖਤਰੀ"
 
-#: data/templates/map.html:93
+#: data/templates/map.html:97 data/templatetags/profiletags.py:422
 msgid "Mazbi"
 msgstr "ਮੱਜ਼ਬੀ"
 
-#: data/templates/map.html:94
+#: data/templates/map.html:98 data/templatetags/profiletags.py:422
 msgid "Naee"
 msgstr "ਨਾਈ"
 
-#: data/templates/map.html:95
+#: data/templates/map.html:99 data/templatetags/profiletags.py:422
 msgid "Ramgarhia"
 msgstr "ਰਾਮਗੜ੍ਹੀਆ"
 
-#: data/templates/map.html:96 data/templates/map.html:133
+#: data/templates/map.html:100 data/templates/map.html:137
+#: data/templatetags/profiletags.py:411 data/templatetags/profiletags.py:422
+#: data/templatetags/profiletags.py:627 data/templatetags/profiletags.py:636
+#: data/templatetags/profiletags.py:677 data/templatetags/profiletags.py:908
+#: data/templatetags/profiletags.py:935 data/templatetags/profiletags.py:944
+#: data/utils.py:113 data/utils.py:128 data/utils.py:203 data/utils.py:243
+#: data/utils.py:270 data/utils.py:282 data/utils.py:296 data/utils.py:309
+#: data/utils.py:328
 msgid "Other"
 msgstr "ਹੋਰ"
 
-#: data/templates/map.html:102
+#: data/templates/map.html:106 data/templates/stats.html:522
 msgid "Classification"
 msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ/ਲਾਪਤਾ"
 
-#: data/templates/map.html:103
+#: data/templates/map.html:107
 msgid "Enforced Disappearance"
 msgstr "ਲਾਪਤਾ"
 
-#: data/templates/map.html:104
+#: data/templates/map.html:108 data/templates/profile.html:518
 msgid "Extrajudicial Execution"
-msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
 
-#: data/templates/map.html:110
+#: data/templates/map.html:114 data/templates/stats.html:14
 msgid "Gender"
 msgstr "ਲਿੰਗ"
 
-#: data/templates/map.html:111
+#: data/templates/map.html:115 data/templates/stats.html:25
+#: data/templatetags/profiletags.py:21
 msgid "Female"
 msgstr "ਇਸਤਰੀ"
 
-#: data/templates/map.html:112
+#: data/templates/map.html:116 data/templates/stats.html:18
+#: data/templatetags/profiletags.py:19
 msgid "Male"
 msgstr "ਮਰਦ"
 
-#: data/templates/map.html:118
+#: data/templates/map.html:122
 msgid "Combatant Status"
 msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਸੰਬੱਧ"
 
-#: data/templates/map.html:119
+#: data/templates/map.html:123 data/templates/profile.html:753
+#: data/templates/stats.html:801
 msgid "Combatant"
 msgstr "ਹਾਂ ਜੀ"
 
-#: data/templates/map.html:120
+#: data/templates/map.html:124
 msgid "Non-Combatant"
 msgstr "ਨਹੀਂ ਜੀ"
 
-#: data/templates/map.html:121
+#: data/templates/map.html:125 data/templatetags/profiletags.py:123
+#: data/templatetags/profiletags.py:445 data/templatetags/profiletags.py:508
+#: data/templatetags/profiletags.py:805
 msgid "Unknown"
 msgstr "ਪਤਾ ਨਹੀਂ"
 
-#: data/templates/map.html:127
+#: data/templates/map.html:131 data/templates/profile.html:175
+#: data/templates/profile.html:187 data/templates/stats.html:93
 msgid "Religion"
 msgstr "ਧਰਮ"
 
-#: data/templates/map.html:128
+#: data/templates/map.html:132
 msgid "Christian"
 msgstr "ਇਸਾਈ"
 
-#: data/templates/map.html:129
+#: data/templates/map.html:133
 msgid "Hindu"
 msgstr "ਹਿੰਦੂ"
 
-#: data/templates/map.html:130
+#: data/templates/map.html:134
 msgid "Muslim"
 msgstr "ਮੁਸਲਮਾਨ"
 
-#: data/templates/map.html:131
+#: data/templates/map.html:135 data/templatetags/profiletags.py:429
+#: data/utils.py:17
 msgid "Sikh"
 msgstr "ਸਿੱਖ"
 
-#: data/templates/map.html:132
+#: data/templates/map.html:136 data/templatetags/profiletags.py:429
 msgid "No religion"
 msgstr "ਕੋਈ ਧਰਮ ਨਹੀਂ"
 
-#: data/templates/map.html:139
+#: data/templates/map.html:143 data/templates/stats.html:983
 msgid "District"
 msgstr "ਜ਼ਿਲ੍ਹਾ"
 
-#: data/templates/map.html:164
+#: data/templates/map.html:166 data/templates/stats.html:216
 msgid "Urban / Rural"
 msgstr "ਸ਼ਹਿਰ/ਪਿੰਡ"
 
-#: data/templates/map.html:165
+#: data/templates/map.html:167 data/templates/stats.html:227
 msgid "Urban"
 msgstr "ਸ਼ਹਿਰ"
 
-#: data/templates/map.html:166
+#: data/templates/map.html:168 data/templates/stats.html:220
 msgid "Rural"
 msgstr "ਪਿੰਡ"
 
-#: data/templates/map.html:172
+#: data/templates/map.html:174 data/templates/stats.html:1004
 msgid "Year"
 msgstr "ਸੰਨ"
 
-msgid "Date Unknown"
+#: data/templates/map.html:191
+msgid "At least"
+msgstr "ਘੱਟ ਤੋਂ ਘੱਟ"
+
+#: data/templates/map.html:191
+msgid ""
+"Enforced Disappearance<span class=\"count-plural\">s</span>/Extrajudicial "
+"Execution<span class=\"count-plural\">s</span>"
+msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ ਜਾਂ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
+
+#: data/templates/map.html:207
+msgid ""
+"The Crimes Against Humanity Data Project is a portrait of widespread and "
+"systematic enforced disappearances and extrajudicial executions, based on "
+"data collected through primary source interviews. Ensaaf created this site "
+"to build informed consensus on the nature of the crimes perpetrated by "
+"India’s security forces in Punjab."
+msgstr ""
+"ਇਹ ਸਾਰੀ ਜਾਣਕਾਰੀ ਜੋ ਕੀ ਇਸ ਪ੍ਰਾਜੈਕਟ ਦੇ ਰਾਹੀਂ ਆਪ ਜੀ ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ। ਇਹ "
+"ਜਾਣਕਾਰੀ ਪੀੜਿਤ ਪਰਿਵਾਰਾਂ ਤੋਂ ਇਕੱਠੀ ਕੀਤੀ ਗਈ ਹੈ। ਜਿਹਨਾਂ ਦੇ ਪਰਵਾਰਿਕ ਮੈਂਬਰ ਲਾਪਤਾ ਜਾਂ ਫਿਰ ਗ਼ੈਰ "
+"ਕਾਨੂੰਨੀ ਤਰੀਕੇ ਦੇ ਨਾਲ ਮਾਰੇ ਗਏ ਸਨ। ਇਸ ਸਾਈਟ ਨੂੰ ਤਿਆਰ ਕਰਨ ਦਾ ਮਕਸਦ ਇਹ ਹੈ ਕਿ ਜੋ ਅੱਤਿਆਚਾਰ ਅਤੇ "
+"ਅਪਰਾਧ ਭਾਰਤੀ ਸੁਰੱਖਿਆ ਬੱਲਾ ਨੇ ਪੰਜਾਬ ਿਵੱਚ ਕੀਤੇ ਹਨ ਉਹਨਾਂ ਦੀ ਸਚਾਈ ਨੂੰ ਦੁਨਿਆਵੀ ਪੱਧਰ ਤੇ ਪੇਸ਼ ਕੀਤਾ "
+"ਜਾਵੇ। ਹੋਰ ਵਧੇਰੀ ਜਾਣਕਾਰੀ ਵਾਸਤੇ ਅਗੇ ਪੜ੍ਹੋ।"
+
+#: data/templates/map.html:207
+msgid "Read more about our goals"
+msgstr "ਹੋਰ ਵਧੇਰੀ ਜਾਣਕਾਰੀ ਵਾਸਤੇ ਅਗੇ ਪੜ੍ਹੋ।"
+
+#: data/templates/overview.html:41
+msgid "Percentage of"
+msgstr "ਪ੍ਰਤੀਸ਼ਤ"
+
+#: data/templates/overview.html:41
+#, python-format
+msgid ""
+"documented cases. Percentages may not equal 100%% because some respondents "
+"did not answer every survey question."
+msgstr ""
+"ਕਈ ਪਰਿਵਾਰਾਂ ਨੇ ਸਾਰੇ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਨਹੀਂ ਸੀ ਦਿੱਤੇ। ਇਸ ਕਾਰਨ ਕਈ ਅੰਕੜੇ ੧੦੦ ਪ੍ਰਤੀਸ਼ਤ ਤਕ ਨਹੀਂ "
+"ਹਨ।"
+
+#: data/templates/perpetrators.html:45
+msgid "Police structure chart"
+msgstr "ਪੁਲਿਸ ਆਹੁਦੇਦਾਰਾਂ ਦੀ ਸੂਚੀ"
+
+#: data/templates/perpetrators.html:49
+msgid ""
+"This page identifies many of the senior officials who reportedly perpetrated "
+"gross human rights violations in Punjab, India. Victim profiles "
+"that directly implicate these officials in abductions and/or enforced "
+"disappearances are linked to each perpetrator. This page will be updated to "
+"also identify officials who are directly implicated in extrajudicial "
+"executions, and who bear command responsibility for abuses committed under "
+"their command."
+msgstr ""
+"ਇਹ ਪੰਨਾ ਬਹੁਤ ਸਾਰੇ ਸੀਨੀਅਰ ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਛਾਨ ਕਰਦਾ ਹੈ ਜਿਨ੍ਹਾਂ ਨੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਮਨੁੱਕੀ "
+"ਅਧਿਕਾਰਾਂ ਦੀ ਘੋਰ ਉਲੰਘਣਾ ਕੀਤੀ। ਪੀੜਤਾਂ ਦੀ ਸੂਚੀ ਜੋ ਇਨ੍ਹਾਂ ਅਧਿਕਾਰੀਆਂ ਨੂੰ ਸਿੱਧੇ ਤੌਰ ਤੇ ਅਗਵਾ ਅਤੇ/ਜਾਂ "
+"ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹਨ ਨੂੰ ਅਪਰਾਧ ਨਾਲ ਜੋੜਦੀ ਹੈ। ਇਸ ਪੰਨੇ ਨੂੰ ਓਹਨਾ "
+"ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਛਾਣ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕੀਤਾ ਜਾਵੇਗਾ ਜੋ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਿੱਚ "
+"ਸ਼ਾਮਲ ਹਨ ਅਤੇ ਜੋ ਆਪਣੀ ਕਮਾਂਡ/ਆਦੇਸ਼ ਅਧੀਨ ਕੀਤੇ ਗਏ ਦੁਰਵਿਵਹਾਰਾਂ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਹਨ।"
+
+#: data/templates/profile.html:45 data/templates/village.html:91
+msgid "Extrajudicial execution"
+msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
+
+#: data/templates/profile.html:49 data/templates/profile.html:522
+#: data/templates/village.html:94
+msgid "Disappeared"
+msgstr "ਲਾਪਤਾ"
+
+#: data/templates/profile.html:49 data/templatetags/profiletags.py:141
+#: data/templatetags/profiletags.py:231 data/templatetags/profiletags.py:244
+#: data/templatetags/profiletags.py:246 data/templatetags/profiletags.py:454
+#: data/templatetags/profiletags.py:457
+msgid "date unknown"
+msgstr "ਤਾਰੀਖ਼ ਪਤਾ ਨਹੀਂ"
+
+#: data/templates/profile.html:55
+msgid "age"
+msgstr "ਉਮਰ"
+
+#: data/templates/profile.html:68 data/templates/profile.html:87
+msgid "Residence"
+msgstr "ਰਿਹਾਇਸ਼"
+
+#: data/templates/profile.html:105 data/templates/stats.html:174
+msgid "Education"
+msgstr "ਪੜ੍ਹਾਈ"
+
+#: data/templates/profile.html:120 data/templates/profile.html:135
+#: data/templates/stats.html:195 data/templatetags/profiletags.py:785
+#: data/utils.py:123
+msgid "Employment"
+msgstr "ਨੌਕਰੀ"
+
+#: data/templates/profile.html:147 data/templates/stats.html:49
+msgid "Married"
+msgstr "ਵਿਆਹਿਆ/ਵਿਆਹੀ"
+
+#: data/templates/profile.html:158 data/templatetags/profiletags.py:512
+msgid "Children"
+msgstr "ਬੱਚੇ"
+
+#: data/templates/profile.html:178
+msgid "An initiated Sikh, belonging to the Khalsa"
+msgstr "ਅੰਮ੍ਰਿਤਧਾਰੀ"
+
+#: data/templates/profile.html:178
+msgid "Amritdhari"
+msgstr "ਅੰਮ੍ਰਿਤਧਾਰੀ"
+
+#: data/templates/profile.html:178
+msgid "A Sikh with uncut hair"
+msgstr "ਕੇਸਧਾਰੀ"
+
+#: data/templates/profile.html:178
+msgid "Kesdhari"
+msgstr "ਕੇਸਧਾਰੀ"
+
+#: data/templates/profile.html:219
+msgid "Date of birth"
+msgstr "ਜਨਮ ਤਾਰੀਖ"
+
+#: data/templates/profile.html:238
+msgid "Share this profile"
+msgstr "ਟਵਿਟਰ ਉੱਪਰ ਸਾਂਝਾ ਕਰੋ; ਫੇਸਬੁਕ ਉੱਪਰ ਸਾਂਝਾ ਕਰੋ"
+
+#: data/templates/profile.html:300 data/templates/stats.html:249
+msgid "Prior detentions"
+msgstr "ਪੁਰਾਣੀਆਂ ਗ੍ਰਿਫ਼ਤਾਰੀਆਂ"
+
+#: data/templates/profile.html:310 data/templates/stats.html:273
+msgid "Prior torture"
+msgstr "ਪੁਰਾਣੇ ਤਸ਼ੱਦਦ"
+
+#: data/templates/profile.html:345
+msgid "extrajudicial execution"
+msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
+
+#: data/templates/profile.html:348
+msgid "disappearance"
+msgstr "ਲਾਪਤਾ"
+
+#: data/templates/profile.html:364
+msgid "Place of abduction"
+msgstr "ਗ੍ਰਿਫ਼ਤਾਰੀ ਦੀ ਜਗ੍ਹਾ"
+
+#: data/templates/profile.html:466
+msgid "Detention Locations"
+msgstr "ਹਿਰਾਸਤ ਵਾਲੀਆਂ ਥਾਵਾਂ"
+
+#: data/templates/profile.html:499 data/templates/profile.html:529
+#: data/templates/profile.html:730
+msgid "Additional data forthcoming"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਅੱਗੇ ਸਾਂਝੀ ਕੀਤੀ ਜਾਵੇਗੀੀ"
+
+#: data/templates/profile.html:542 data/templates/stats.html:599
+msgid "Body Disposal"
+msgstr "ਸਰੀਰ ਨਾਲ ਕੀ ਕੀਤਾ"
+
+#: data/templates/profile.html:552
+msgid "Body returned"
+msgstr "ਸਰੀਰ ਵਾਪਸ ਮੋੜ ਦਿੱਤਾ"
+
+#: data/templates/profile.html:565 data/templates/stats.html:606
+msgid "Body disposal by security forces"
+msgstr "ਸੁਰੱਖਿਆ ਬਲਾਂ ਨੇ ਸਰੀਰ ਵਾਪਸ ਮੋੜ ਦਿੱਤਾ"
+
+#: data/templates/profile.html:579
+msgid "Cremation location"
+msgstr "ਸਸਕਾਰ ਵਾਲੀ ਜਗ੍ਹਾ"
+
+#: data/templates/profile.html:621 data/templates/stats.html:685
+msgid "Security Forces Implicated"
+msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਕਾਰਵਾਈ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
+
+#: data/templates/profile.html:633 data/templates/profile.html:643
+msgid "Forces involved in abduction"
+msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
+
+#: data/templates/profile.html:658
+msgid "Officials involved in abduction"
+msgstr "ਅਫਸਰ ਜੋ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
+
+#: data/templates/profile.html:682
+msgid "Forces involved in extrajudicial execution"
+msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
+
+#: data/templates/profile.html:697
+msgid "Officials involved in extrajudicial execution"
+msgstr "ਅਫਸਰ ਜੋ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
+
+#: data/templates/profile.html:746 data/templates/stats.html:792
+msgid "Militancy Involvement"
+msgstr "ਖਾੜਕੂ ਲਹਿਰ ਨਾਲ ਸੰਬੰਧਿਤ"
+
+#: data/templates/profile.html:767 data/templates/profile.html:780
+msgid "Reason(s) for joining militancy"
+msgstr "ਖਾੜਕੂ ਲਹਿਰ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੀ ਵਜਾ"
+
+#: data/templates/profile.html:792
+msgid "Militant support provided"
+msgstr "ਖਾੜਕੂਆਂ ਦੀ ਸਹਾਇਤਾ ਕੀਤੀ"
+
+#: data/templates/profile.html:810
+msgid "Related Incidents"
+msgstr "ਸੰਬੰਧਿਤ ਹਾਦਸੇ"
+
+#: data/templates/profile.html:845
+msgid "Security officials approached"
+msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜਿਨ੍ਹਾਂ ਤਕ ਪਹੁੰਚ ਕੀਤੀ"
+
+#: data/templates/profile.html:857
+msgid "Response by officials"
+msgstr "ਅਫਸਰਾਂ ਦਾ ਜਵਾਬ"
+
+#: data/templates/profile.html:872
+msgid "Legal remedies pursued"
+msgstr "ਕਿਹੜੀ ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਕੀਤੀ"
+
+#: data/templates/profile.html:886
+msgid "Impact on family"
+msgstr "ਪਰਿਵਾਰ ਉੱਪਰ ਅਸਰ"
+
+#: data/templates/profile.html:898 data/templates/stats.html:950
+msgid "Remedies desired from government"
+msgstr "ਸਰਕਾਰ ਤੋਂ ਕੀ ਮੰਗ"
+
+#: data/templates/profile.html:920
+msgid "Connected Victims"
+msgstr "ਸੰਬੰਧਿਤ ਪੀੜਤ"
+
+#: data/templates/profile.html:928
+msgid "Extrajudicial executions/disappearances in family"
+msgstr "ਪਰਿਵਾਰ ਵਿੱਚ ਲਾਪਤਾ ਜਾਂ ਫਿਰ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਨਾਲ ਸੰਬੰਧਿਤ ਹਾਦਸੇ"
+
+#: data/templates/profile.html:941 data/templates/stats.html:573
+msgid "Genuine encounters in family"
+msgstr "ਪਰਿਵਾਰ ਵਿੱਚ ਅਸਲ ਮੁਕਾਬਲੇ"
+
+#: data/templates/profile.html:954
+msgid "Co-victims of abduction"
+msgstr "ਹੋਰਾਂ ਨੂੰ ਨਾਲ ਗ੍ਰਿਫ਼ਤਾਰ ਕੀਤਾ"
+
+#: data/templates/profile.html:967
+msgid "Co-victims of extrajudicial execution"
+msgstr "ਹੋਰਾਂ ਦੀ ਨਾਲ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਕੀਤੀ"
+
+#: data/templates/profile.html:979
+msgid "Links to co-victim profiles forthcoming"
+msgstr "ਸਹਿ-ਪੀੜਤ ਦੀ ਸੂਚੀ ਭਵਿੱਖ ਵਿੱਚ ਨਾਲ ਜੋੜੀ ਜਾਵੇਗੀ।"
+
+#: data/templates/profile.html:994
+msgid "Family Reflections"
+msgstr "ਪਰਿਵਾਰ ਦੇ ਵਿਚਾਰ"
+
+#: data/templates/profile.html:1057
+msgid ""
+"Note: Subdistrict and district boundaries are based on the 2001 census. Read "
+"more about <a href=\"/about\">our methodology</a>"
+msgstr ""
+"ਧਿਆਨ ਦਿਓ: ਜ਼ਿਲ੍ਹੇ ਅਤੇ ਤਸੀਲ ਦੀਆਂ ਸੀਮਾਂ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/pa/"
+"about\">ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
+
+#: data/templates/profile.html:1068
+msgid "Report additional information on this case"
+msgstr "ਇਹ ਕੇਸ ਨਾਲ ਸੰਬੰਧਿਤ ਹੋਰ ਜਾਣਕਾਰੀ ਸਾਂਝੀ ਕਰੋ"
+
+#: data/templates/profile.html:1069
+msgid "Report a new case"
+msgstr "ਨਵਾਂ ਕੇਸ ਦਰਜ ਕਰੋ"
+
+#: data/templates/profiles.html:219
+msgid "Return to the top of the page"
+msgstr "ਵਾਪਸ ਉੱਪਰ ਜਾਉ"
+
+#: data/templates/stats.html:8
+msgid "Victim Demographics"
+msgstr "ਪੀੜਤਾਂ ਦੇ ਜਨ ਅੰਕੜੇ"
+
+#: data/templates/stats.html:37
+msgid "Marital status"
+msgstr "ਵਿਆਹਿਆ/ਵਿਆਹੀ"
+
+#: data/templates/stats.html:41
+msgid "Not married"
+msgstr "ਕੁਆਰਾ/ਕੁਆਰੀ"
+
+#: data/templates/stats.html:62
+msgid "If married, did the victim have children?"
+msgstr "ਜੇ ਪੀੜਤ ਵਿਆਹਿਆ/ਵਿਆਹੀ ਸੀ ਕੀ ਉਹਨਾਂ ਦੇ ਬੱਚੇ ਸਨ? "
+
+#: data/templates/stats.html:84
+msgid "Total children surviving victims:"
+msgstr "ਪੀੜਤਾਂ ਦੇ ਕੁਲ ਬੱਚੇ ਜਿਹੜੇ ਜਿਊਂਦੇ ਹਨ:"
+
+#: data/templates/stats.html:242
+msgid "Abduction, Detention, & Torture"
+msgstr "ਗ੍ਰਿਫ਼ਤਾਰੀ, ਹਿਰਾਸਤ, ਅਤੇ ਤਸ਼ਦਦ"
+
+#: data/templates/stats.html:253 data/templates/stats.html:277
+#: data/templates/stats.html:301 data/templates/stats.html:323
+#: data/templates/stats.html:422 data/templates/stats.html:494
+#: data/templates/stats.html:631 data/templates/stats.html:696
+#: data/templates/stats.html:722 data/templates/stats.html:824
+#: data/templates/stats.html:847 data/templates/stats.html:881
+#: data/templates/stats.html:909 data/templatetags/profiletags.py:114
+#: data/templatetags/profiletags.py:123 data/templatetags/profiletags.py:132
+#: data/templatetags/profiletags.py:445 data/templatetags/profiletags.py:618
+#: data/templatetags/profiletags.py:805 data/templatetags/profiletags.py:815
+#: data/templatetags/profiletags.py:817 data/templatetags/profiletags.py:819
+#: data/utils.py:134 data/utils.py:224
+msgid "Yes"
+msgstr "ਹਾਂ ਜੀ"
+
+#: data/templates/stats.html:261 data/templates/stats.html:284
+#: data/templates/stats.html:308 data/templates/stats.html:331
+#: data/templates/stats.html:429 data/templates/stats.html:502
+#: data/templates/stats.html:645 data/templates/stats.html:704
+#: data/templates/stats.html:730 data/templates/stats.html:832
+#: data/templates/stats.html:854 data/templates/stats.html:889
+#: data/templates/stats.html:917 data/templatetags/profiletags.py:114
+#: data/templatetags/profiletags.py:123 data/templatetags/profiletags.py:132
+#: data/templatetags/profiletags.py:445 data/templatetags/profiletags.py:618
+#: data/templatetags/profiletags.py:805 data/templatetags/profiletags.py:813
+#: data/utils.py:133 data/utils.py:223
+msgid "No"
+msgstr "ਨਹੀਂ ਜੀ"
+
+#: data/templates/stats.html:297
+msgid "Abduction preceding enforced disappearance/extrajudicial execution"
+msgstr "ਲਾਪਤਾ ਜਾਂ ਫਿਰ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਤੋਂ ਪਹਿਲਾਂ ਗ੍ਰਿਫਤਾਰੀ"
+
+#: data/templates/stats.html:319
+msgid "Security officials informed witnesses where they were taking the victim"
+msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤਿਆਂ ਨੇ ਗਵਾਹਾਂ ਨੂੰ ਦੱਸਿਆ ਕਿ ੳਹ ਪੀੜਤ ਨੂੰ ਕਿੱਥੇ ਲੈ ਕੇ ਜਾ ਰਹੇ ਹਨ"
+
+#: data/templates/stats.html:343
+msgid "Witnesses to abduction"
+msgstr "ਗ੍ਰਿਫਤਾਰੀ ਦੇ ਗਵਾਹ"
+
+#: data/templates/stats.html:372
+msgid "Victim abduction location"
+msgstr "ਪੀੜਤ ਦੇ ਚੁੱਕੇ ਜਾਣ ਵਾਲੀ ਜਗ੍ਹਾ"
+
+#: data/templates/stats.html:393
+msgid "Detention facility type"
+msgstr "ਹਿਰਾਸਤ ਦੀ ਜਗ੍ਹਾ"
+
+#: data/templates/stats.html:395 data/templates/stats.html:443
+msgid "Data forthcoming"
+msgstr "ਅੱਗੇ ਜਾ ਕੇ/ਨਿਕਟ ਭਵਿੱਖ ਵਿੱਚ ਜਾਣਕਾਰੀ ਸਾਂਝੀ ਕੀਤੀ ਜਾਵੇ ਗੀ"
+
+#: data/templates/stats.html:418
+msgid "Preceding detention location known"
+msgstr "ਹਿਰਾਸਤ ਵਾਲੀ ਜਗ੍ਹਾ ਦੀ ਜਾਣਕਾਰੀ ਪਤਾ ਹੈ"
+
+#: data/templates/stats.html:441
+msgid ""
+"Witnesses to detention preceding enforced disappearance/extrajudicial "
+"execution"
+msgstr "ਲਾਪਤਾ/ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਹੋਣ ਤੋਂ ਪਹਿਲਾਂ ਹਿਰਾਸਤ ਦਾ ਗਵਾਹ"
+
+#: data/templates/stats.html:469
+msgid "Security official response to victim status"
+msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤਿਆਂ ਦਾ ਪੀੜਤ ਬਾਰੇ ਜਵਾਬ"
+
+#: data/templates/stats.html:490
+msgid "Victim presented before judge/magistrate"
+msgstr "ਪੀੜਤ ਨੂੰ ਜੱਜ ਜਾਂ ਮਜਿਸਟਰੇਟ ਸਾਮ੍ਹਣੇ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ"
+
+#: data/templates/stats.html:517
+msgid "Enforced Disappearances vs. Extrajudicial Executions"
+msgstr "ਲਾਪਤਾ ਜਾਂ ਫਿਰ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
+
+#: data/templates/stats.html:526
+msgid "Extrajudicial executions"
+msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
+
+#: data/templates/stats.html:534
+msgid "Enforced disappearances"
+msgstr "ਲਾਪਤਾ"
+
+#: data/templates/stats.html:547
+msgid "Number of victims per family"
+msgstr "ਪਰਿਵਾਰਾਂ ਵਿੱਚ ਪੀੜਤਾਂ ਦੀ ਸੰਖਿਆ"
+
+#: data/templates/stats.html:552
+msgid "victim"
+msgstr "ਪੀੜਤ"
+
+#: data/templates/stats.html:569
+msgid "Related incidents"
+msgstr "ਸੰਬੰਧਿਤ ਹਾਦਸੇ"
+
+#: data/templates/stats.html:581
+msgid "No genuine encounters in family"
+msgstr "ਪਰਿਵਾਰ ਵਿੱਚ ਕੋਈ ਅਸਲ ਮੁਕਾਬਲਾ ਨਹੀਂ"
+
+#: data/templates/stats.html:627
+msgid "Security forces returned body"
+msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤਿਆਂ ਨੇ ਸਰੀਰ ਵਾਪਸ ਕੀਤਾ"
+
+#: data/templates/stats.html:659
+msgid "Condition of corpse, if known"
+msgstr "ਸਰੀਰ ਦੀ ਹਾਲਤ (ਜੇ ਪਤਾ ਹੋਵੇ)"
+
+#: data/templates/stats.html:692
+msgid "Names of involved security officials known"
+msgstr "ਕੀ ਸੁਰੱਖਿਅਕ ਅਫਸਰਾਂ ਦੇ ਨਾਮ ਪਤਾ ਹੈ ਜਿਹੜੇ ਹਾਦਸੇ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
+
+#: data/templates/stats.html:718
+msgid "Security forces uniformed"
+msgstr "ਕੀ ਸੁਰੱਖਿਆਬਲਾ ਨੇ ਵਰਦੀ ਪਈ ਸੀ"
+
+#: data/templates/stats.html:744
+msgid "Type(s) of security forces involved in abduction"
+msgstr "ਕਿਸ ਤਰਾਂ ਦੀਆਂ ਸੁਰੱਖਿਆ ਬਲਾਂ/ਅਫਸਰ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
+
+#: data/templates/stats.html:767
+msgid "Type(s) of security forces involved in extrajudicial execution"
+msgstr "ਕਿਸ ਤਰਾਂ ਦੇ ਸੁਰੱਖਿਆ ਬਲ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
+
+#: data/templates/stats.html:797
+msgid "Combatant status"
+msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਸੰਬੱਧ"
+
+#: data/templates/stats.html:809
+msgid "Non-combatant"
+msgstr "ਨਹੀਂ ਜੀੀ"
+
+#: data/templates/stats.html:820
+msgid "Non-combatant, provided support to militants"
+msgstr "ਧਾੜਕੂ ਨਹੀਂ ਸੀ ਪਰ ਖਾੜਕੂਆਂ ਦੀ ਸਹਾਇਤਾ ਕਰਦਾ/ਕਰਦੀ ਸੀ"
+
+#: data/templates/stats.html:843
+msgid "If provided support, support was voluntary"
+msgstr "ਜੇ ਸਹਾਇਤਾ ਕੀਤੀ ਸੀ ਕੀ ਉਹ ਆਪਣੀ ਮਰਜ਼ੀ ਨਾਲ ਸੀ?"
+
+#: data/templates/stats.html:870
+msgid "Remedies & Impact"
+msgstr "ਹੀਲਾ ਅਤੇ ਅਸਰ"
+
+#: data/templates/stats.html:877
+msgid "Approached court or commission"
+msgstr "ਕਚਹਿਰੀ/ਅਦਾਲਤ ਜਾਂ ਕਮਿਸ਼ਨ ਤਕ ਪਹੁੰਚ ਕੀਤੀ"
+
+#: data/templates/stats.html:905
+msgid "Approached security officials"
+msgstr "ਸੁਰੱਖਿਆ ਬਲਾ ਤਕ ਪਹੁੰਚ ਕੀਤੀ"
+
+#: data/templates/stats.html:929
+msgid "Reason the family did not pursue any kind of action"
+msgstr "ਕੀ ਵਜ੍ਹਾ/ਕਾਰਨ ਸੀ ਕਿ ਪਰਿਵਾਰ ਨੇ ਪੁੱਛ ਪੜਤਾਲ ਨਹੀਂ ਕੀਤੀ?"
+
+#: data/templates/stats.html:976
+msgid "Year &amp; District"
+msgstr "ਸਮਾਂ ਅਤੇ ਸਥਾਨ"
+
+#: data/templates/village.html:41
+msgid ""
+"Boundaries based on the 2001 census. Read about <a href=\"/about\">our "
+"methodology</a>."
+msgstr "ਇਹ ਨਕਸ਼ਾ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href="/pa/about/"> ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
+
+#: data/templatetags/profiletags.py:9
+msgid "January"
+msgstr "ਜਨਵਰੀ"
+
+#: data/templatetags/profiletags.py:9
+msgid "February"
+msgstr "ਫ਼ਰਵਰੀ"
+
+#: data/templatetags/profiletags.py:9
+msgid "March"
+msgstr "ਮਾਰਚ"
+
+#: data/templatetags/profiletags.py:9
+msgid "April"
+msgstr "ਐਪ੍ਰਲ"
+
+#: data/templatetags/profiletags.py:9
+msgid "May"
+msgstr "ਮਈ"
+
+#: data/templatetags/profiletags.py:9
+msgid "June"
+msgstr "ਜੂਨ"
+
+#: data/templatetags/profiletags.py:9
+msgid "July"
+msgstr "ਜੁਲਾਈ"
+
+#: data/templatetags/profiletags.py:9
+msgid "August"
+msgstr "ਅਗਸਤ"
+
+#: data/templatetags/profiletags.py:9
+msgid "September"
+msgstr "ਸਤੰਬਰ"
+
+#: data/templatetags/profiletags.py:9
+msgid "October"
+msgstr "ਅਕਤੂਬਰ"
+
+#: data/templatetags/profiletags.py:10
+msgid "November"
+msgstr "ਨਵੰਬਰ"
+
+#: data/templatetags/profiletags.py:10
+msgid "December"
+msgstr "ਦਸੰਬਰ"
+
+#: data/templatetags/profiletags.py:114 data/templatetags/profiletags.py:132
+#: data/templatetags/profiletags.py:288 data/templatetags/profiletags.py:357
+#: data/templatetags/profiletags.py:382 data/templatetags/profiletags.py:406
+#: data/templatetags/profiletags.py:422 data/templatetags/profiletags.py:429
+#: data/templatetags/profiletags.py:436 data/templatetags/profiletags.py:618
+#: data/templatetags/profiletags.py:627 data/templatetags/profiletags.py:636
+#: data/templatetags/profiletags.py:691 data/templatetags/profiletags.py:721
+#: data/templatetags/profiletags.py:790 data/templatetags/profiletags.py:908
+#: data/templatetags/profiletags.py:935 data/templatetags/profiletags.py:944
+msgid "Don’t know"
 msgstr "ਪਤਾ ਨਹੀਂ"
 
+#: data/templatetags/profiletags.py:132 data/templatetags/profiletags.py:436
+msgid "N/A"
+msgstr "ਲਾਗੂ ਨਹੀਂ"
+
+#: data/templatetags/profiletags.py:288 data/utils.py:67
+msgid "No education"
+msgstr "ਅਨਪੜ੍ਹ"
+
+#: data/templatetags/profiletags.py:288 data/utils.py:68
+msgid "Primary school"
+msgstr "ਪ੍ਰਾਇਮਰੀ ਸਕੂਲ"
+
+#: data/templatetags/profiletags.py:288 data/utils.py:69
+msgid "Middle school"
+msgstr "ਮਿਡਲ ਸਕੂਲ"
+
+#: data/templatetags/profiletags.py:288 data/utils.py:70
+msgid "High school"
+msgstr "ਹਾਈ ਸਕੂਲ"
+
+#: data/templatetags/profiletags.py:288 data/utils.py:71
+msgid "Some college"
+msgstr "ਥੋੜ੍ਹਾ ਬਹੁਤਾ ਕਾਲਜ"
+
+#: data/templatetags/profiletags.py:288 data/utils.py:72
+msgid "College degree"
+msgstr "ਕਾਲਜ ਡਿਗਰੀ"
+
+#: data/templatetags/profiletags.py:288
+msgid "Graduate diploma"
+msgstr "ਗ੍ਰੈਜੂਏਟ ਡਿਪਲੋਮਾ"
+
+#: data/templatetags/profiletags.py:288 data/utils.py:74
+msgid "Vocational degree"
+msgstr "ਵਿਅਵਸਾਇਕ ਡਿਗਰੀ"
+
+#: data/templatetags/profiletags.py:342
+msgid "location withheld"
+msgstr "ਪਤਾ ਜਨਤਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ"
+
+#: data/templatetags/profiletags.py:351
+msgid "1984 Indian Army attack on the Harmandir Sahib"
+msgstr ""
+"੧੯੮੪ ਵਿੱਚ ਭਾਰਤੀ ਫੌਜ ਦਾ ਸ੍ਰੀ ਹਰਿਮੰਦਰ ਸਾਹਿਬ ਉੱਤੇ ਹਮਲਾ; ਅੱਤਿਆਚਾਰ (ਗੈਰ ਕਾਨੂੰਨੀ ਗ੍ਰਿਫ਼ਤਾਰੀ, "
+"ਤਸ਼ੱਦਦ, ਆਤਮ ਰੱਖਿਆ)"
+
+#: data/templatetags/profiletags.py:352
+msgid "Persecution (i.e. arbitrary arrest, torture, self-defense)"
+msgstr "ਅੱਤਿਆਚਾਰ (ਗੈਰ ਕਾਨੂੰਨੀ ਗ੍ਰਿਫ਼ਤਾਰੀ, ਤਸ਼ੱਦਦ, ਆਤਮ ਰੱਖਿਆ)"
+
+#: data/templatetags/profiletags.py:353
+msgid "Persecution of a family member or a friend"
+msgstr "ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ/ਮੈਂਬਰ ਜਾਂ ਦੋਸਤ ਖਿਲਾਫ ਅੱਤਿਆਚਾਰ"
+
+#: data/templatetags/profiletags.py:354
+msgid "General persecution of Sikhs"
+msgstr "ਸਿੱਖਾਂ ਖਿਲਾਫ ਅੱਤਿਆਚਾਰ"
+
+#: data/templatetags/profiletags.py:355
+msgid "Supported the goals of the militancy movement"
+msgstr "ਖਾੜਕੂਆਂ ਦੀ ਲਹਿਰ ਨਾਲ ਹਿਮਾਇਤ ਕਰਨੀ"
+
+#: data/templatetags/profiletags.py:356
+msgid "Was forced to join"
+msgstr "ਜਬਰਦਸਤੀ ਨਾਲ ਸ਼ਾਮਿਲ ਕੀਤਾ ਗਿਆ"
+
+#: data/templatetags/profiletags.py:373 data/utils.py:93
+msgid "Farmer/agriculture"
+msgstr "ਕਿਸਾਨ"
+
+#: data/templatetags/profiletags.py:374 data/utils.py:94
+msgid "Shopkeeper"
+msgstr "ਦੁਕਾਨਦਾਰ"
+
+#: data/templatetags/profiletags.py:375
+msgid "Day laborer"
+msgstr "ਮਜ਼ਦੂਰ"
+
+#: data/templatetags/profiletags.py:376 data/utils.py:96
+msgid "Driver (bus/truck/car)"
+msgstr "ਡਰਾਈਵਰ (ਬੱਸ/ਟਰੱਕ/ਗੱਡੀ)"
+
+#: data/templatetags/profiletags.py:377 data/utils.py:97
+msgid "Mechanic"
+msgstr "ਮਕੈਨਿਕ"
+
+#: data/templatetags/profiletags.py:378 data/utils.py:98
+msgid "Student"
+msgstr "ਵਿਦਿਆਰਥੀ"
+
+#: data/templatetags/profiletags.py:379 data/utils.py:99
+msgid "Housewife"
+msgstr "ਘਰੇਲੂ ਔਰਤ"
+
+#: data/templatetags/profiletags.py:380 data/utils.py:100
+msgid "Carpenter"
+msgstr "ਮਿਸਤਰੀ"
+
+#: data/templatetags/profiletags.py:381 data/utils.py:101
+msgid "Unemployed"
+msgstr "ਬੇਰੁਜ਼ਗਾਰ"
+
+#: data/templatetags/profiletags.py:399
+msgid "Victim was a militant"
+msgstr "ਪੀੜਤ ਖਾੜਕੂ ਸੀ"
+
+#: data/templatetags/profiletags.py:400
+msgid "Victim was related to a militant"
+msgstr "ਪੀੜਤ ਦਾ ਰਿਸ਼ਤੇਦਾਰ ਖਾੜਕੂ ਸੀ"
+
+#: data/templatetags/profiletags.py:401
+msgid "Victim gave support to militants"
+msgstr "ਪੀੜਤ ਖਾੜਕੂਆਂ ਦੀ ਸਹਾਇਤਾ ਕਰਦਾ ਸੀ"
+
+#: data/templatetags/profiletags.py:402
+msgid "Victim was involved in criminal activities"
+msgstr "ਪੀੜਤ ਗੈਰ ਕਾਨੂੰਨੀ ਕੰਮ ਕਰਦਾ/ਕਰਦੀ ਸੀ"
+
+#: data/templatetags/profiletags.py:403
+msgid "Victim was identifiably Sikh"
+msgstr "ਪੀੜਤ ਦੀ ਪਛਾਣ ਸਿੱਖ ਸੀ"
+
+#: data/templatetags/profiletags.py:404
+msgid "Security forces thought victim was a militant"
+msgstr "ਸੁਰੱਖਿਆ ਬਲਾਂ ਨੂੰ ਲੱਗਾ ਕਿ ਪੀੜਤ ਖਾੜਕੂ ਸੀ"
+
+#: data/templatetags/profiletags.py:405
+msgid "Mistaken for a wanted individual"
+msgstr "ਪੀੜਤ ਦਾ ਲੋੜੀਂਦੇ ਵਿਅਕਤੀ ਨਾਲ ਭੁਲੇਖਾ"
+
+#: data/templatetags/profiletags.py:422
+msgid "A caste associated with agriculture"
+msgstr "ਖੇਤੀ ਬਾੜੀ ਨਾਲ ਸੰਬੰਧਿਤ ਜਾਤ"
+
+#: data/templatetags/profiletags.py:429
+msgid "Hinduism"
+msgstr "ਹਿੰਦੂ"
+
+#: data/templatetags/profiletags.py:429
+msgid "Islam"
+msgstr "ਮੁਸਲਮਾਨ"
+
+#: data/templatetags/profiletags.py:429
+msgid "Christianity"
+msgstr "ਇਸਾਈ"
+
+#: data/templatetags/profiletags.py:436
+msgid "Voluntary"
+msgstr "ਆਪਣੀ ਮਰਜ਼ੀ ਨਾਲ"
+
+#: data/templatetags/profiletags.py:436
+msgid "Forced"
+msgstr "ਮਜ਼ਬੂਰ"
+
+#: data/templatetags/profiletags.py:445
+msgid "Yes, the victim turned himself/herself in"
+msgstr "ਹਾਂ - ਪੀੜਤ ਨੇ ਆਪਣੇ ਆਪ ਨੂੰ ਪੁਲਿਸ ਹਵਾਲੇ ਕੀਤਾ"
+
+#: data/templatetags/profiletags.py:510
+msgid "Spouse"
+msgstr "ਪਤੀ ਪਤਨੀ"
+
+#: data/templatetags/profiletags.py:511
+msgid "Parents"
+msgstr "ਮਾਂ ਪਿਓ"
+
+#: data/templatetags/profiletags.py:513
+msgid "Sibling"
+msgstr "ਭੈਣ ਭਰਾ"
+
+#: data/templatetags/profiletags.py:514
+msgid "Grandparent"
+msgstr "ਨਾਨਾ/ਨਾਨੀ ਜਾਂ ਦਾਦਾ/ਦਾਦੀ"
+
+#: data/templatetags/profiletags.py:515
+msgid "Cousin"
+msgstr "ਰਿਸ਼ਤੇਦਾਰੀ ਵਿੱਚੋਂ ਭੈਣ/ਭਰਾ"
+
+#: data/templatetags/profiletags.py:516
+msgid "Aunt/uncle"
+msgstr "ਹੋਰ ਰਿਸ਼ਤੇਦਾਰ"
+
+#: data/templatetags/profiletags.py:517 data/templatetags/profiletags.py:870
+#: data/utils.py:238
+msgid "Friend"
+msgstr "ਦੋਸਤ"
+
+#: data/templatetags/profiletags.py:518
+msgid "Co-villager"
+msgstr "ਪਿੰਡ ਦਾ ਵਸਨੀਕ"
+
+#: data/templatetags/profiletags.py:519
+msgid "Respondent"
+msgstr "ਜਵਾਬਦੇਹ"
+
+#: data/templatetags/profiletags.py:536 data/templatetags/profiletags.py:556
+#: data/templatetags/profiletags.py:944 data/utils.py:276
+msgid "Punjab Police"
+msgstr "ਪੰਜਾਬ ਪੁਲਿਸ"
+
+#: data/templatetags/profiletags.py:537 data/templatetags/profiletags.py:557
+msgid "Border Security Force"
+msgstr "ਬਾਡਰ ਸਿਕਿਓਰਟੀ ਫੋਰਸ"
+
+#: data/templatetags/profiletags.py:537
+msgid "BSF"
+msgstr "ਬੀ.ਐਸ.ਐਫ"
+
+#: data/templatetags/profiletags.py:538 data/templatetags/profiletags.py:558
+msgid "Central Reserve Police Force"
+msgstr "ਕੇਂਦਰੀ ਰਿਜਰਵ ਪੁਲਿਸ ਫੋਰਸ"
+
+#: data/templatetags/profiletags.py:538
+msgid "CRPF"
+msgstr "ਸੀ.ਆਰ.ਪੀ.ਐਫ਼"
+
+#: data/templatetags/profiletags.py:539 data/templatetags/profiletags.py:559
+#: data/templatetags/profiletags.py:944 data/utils.py:279 data/utils.py:306
+msgid "Army"
+msgstr "ਆਰਮੀ"
+
+#: data/templatetags/profiletags.py:540 data/templatetags/profiletags.py:560
+#: data/templatetags/profiletags.py:944 data/utils.py:280 data/utils.py:307
+msgid "Criminal Investigation Agency"
+msgstr "ਅਪਰਾਧਿਕ ਜਾਂਚ ਏਜੰਸੀ"
+
+#: data/templatetags/profiletags.py:541
+msgid "Irregular undercover security force, often consisting of criminals"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਸੁਰੱਖਿਆ ਬਲ ਜਿਸ ਵਿੱਚ ਅਕਸਰ ਅਪਰਾਧੀ ਹੁੰਦੇ ਹਨ"
+
+#: data/templatetags/profiletags.py:541 data/templatetags/profiletags.py:561
+msgid "Black cat"
+msgstr "ਬਲੈਕ ਕੈਟ"
+
+#: data/templatetags/profiletags.py:578
+msgid "Same as officials involved in abduction/extrajudicial execution"
+msgstr "ਓਹੀ ਅਫਸਰ ਜਿਹੜੇ ਪੀੜਤ ਦੀ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਅਤੇ ਉਸ ਨੂੰ ਲਾਪਤਾ ਕਰਨ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
+
+#: data/templatetags/profiletags.py:609
+msgid "Victim's residence"
+msgstr "ਪੀੜਤ ਦਾ ਘਰ"
+
+#: data/templatetags/profiletags.py:609 data/utils.py:250
+msgid "Friend/relative's residence"
+msgstr "ਦੋਸਤ ਜਾਂ ਰਿਸ਼ਤੇਦਾਰ ਦਾ ਘਰ"
+
+#: data/templatetags/profiletags.py:609 data/utils.py:251
+msgid "Checkpoint (naka)"
+msgstr "ਨਾਕਾ"
+
+#: data/templatetags/profiletags.py:609 data/utils.py:252
+msgid "Roadside"
+msgstr "ਸੜਕ ਕਿਨਾਰੇ"
+
+#: data/templatetags/profiletags.py:609 data/utils.py:253
+msgid "Village fields"
+msgstr "ਪਿੰਡ ਦੇ ਖੇਤ"
+
+#: data/templatetags/profiletags.py:609 data/utils.py:254
+msgid "Shop/market"
+msgstr "ਦੁਕਾਨ/ਬਜ਼ਾਰ"
+
+#: data/templatetags/profiletags.py:609 data/utils.py:255
+msgid "Bus station/stand"
+msgstr "ਬੱਸ ਅੱਡਾ"
+
+#: data/templatetags/profiletags.py:609 data/utils.py:256
+msgid "Police station"
+msgstr "ਪੁਲਿਸ ਥਾਨਾ"
+
+#: data/templatetags/profiletags.py:609 data/utils.py:257
+msgid "Village drain"
+msgstr "ਪਿੰਡ ਦਾ ਨਾਲਾ"
+
+#: data/templatetags/profiletags.py:618
+msgid "Yes, but forced immediate cremation"
+msgstr "ਹਾਂਜੀ/ਹਾਂ ਪਰ ਤੁਰੰਤ ਹੀ ਸਸਕਾਰ ਕਰਵਾ ਦਿੱਤਾ"
+
+#: data/templatetags/profiletags.py:627 data/utils.py:199
+msgid "Cremated the body"
+msgstr "ਸਰੀਰ ਦਾ ਸਸਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ"
+
+#: data/templatetags/profiletags.py:627
+msgid "Dumped body in canal/river"
+msgstr "ਸਰੀਰ ਨੂੰ ਨਹਿਰ/ਦਰਿਆ (ਨਦੀ) ਵਿੱਚ ਸੁੱਟ ਦਿੱਤਾ ਗਿਆ"
+
+#: data/templatetags/profiletags.py:627
+msgid "Dumped body in well/drain"
+msgstr "ਸਰੀਰ ਨੂੰ ਖ਼ੂਹ ਜਾਂ ਨਾਲੇ ਵਿੱਚ ਸੁੱਟ ਦਿੱਤਾ"
+
+#: data/templatetags/profiletags.py:627 data/utils.py:202
+msgid "Buried the body"
+msgstr "ਸਰੀਰ ਨੂੰ ਦਫ਼ਨਾ ਦਿੱਤਾ ਗਿਆ"
+
+#: data/templatetags/profiletags.py:636
+msgid "Municipal cremation ground"
+msgstr "ਨਗਰ ਨਿਗਮ ਸ਼ਮਸ਼ਾਨ ਘਾਟ"
+
+#: data/templatetags/profiletags.py:636
+msgid "Village cremation ground"
+msgstr "ਪਿੰਡ ਦਾ ਸ਼ਮਸ਼ਾਨ ਘਾਟ"
+
+#: data/templatetags/profiletags.py:636
+msgid "Gurdwara cremation ground"
+msgstr "ਗੁਰਦੁਆਰੇ ਦਾ ਸ਼ਮਸ਼ਾਨ ਘਾਟ"
+
+#: data/templatetags/profiletags.py:644 data/utils.py:289
+msgid "Bruises"
+msgstr "ਨੀਲ"
+
+#: data/templatetags/profiletags.py:645 data/utils.py:290
+msgid "Bullet wounds"
+msgstr "ਗੋਲੀਆਂ ਦੇ ਨਿਸ਼ਾਨ"
+
+#: data/templatetags/profiletags.py:646 data/utils.py:291
+msgid "Cuts/wounds"
+msgstr "ਚੀਰਾ/ਜ਼ਖਮ"
+
+#: data/templatetags/profiletags.py:647 data/utils.py:292
+msgid "Broken bones"
+msgstr "ਟੁੱਟੀਆਂ ਹੱਡੀਆਂ"
+
+#: data/templatetags/profiletags.py:648 data/utils.py:293
+msgid "Missing hair from head or face"
+msgstr "ਮੂੰਹ ਜਾਂ ਸਿਰ ਦੇ ਕੇਸ ਪੁੱਟੇ ਗਏ"
+
+#: data/templatetags/profiletags.py:649 data/utils.py:294
+msgid "Missing fingernails"
+msgstr "ਨਹੁੰ ਪੁੱਟੇ ਗਏ"
+
+#: data/templatetags/profiletags.py:650 data/utils.py:295
+msgid "Burn marks"
+msgstr "ਜਲਣ ਦੇ ਘਾਵ/ਨਿਸ਼ਾਨ"
+
+#: data/templatetags/profiletags.py:665
+msgid "Money"
+msgstr "ਪੈਸੇ"
+
+#: data/templatetags/profiletags.py:666
+msgid "Information about another person"
+msgstr "ਕਿਸੇ ਹੋਰ ਵਿਅਕਤੀ ਬਾਰੇ ਜਾਣਕਾਰੀ"
+
+#: data/templatetags/profiletags.py:667
+msgid "Forced identification of another person"
+msgstr "ਧੱਕੇ ਨਾਲ ਕਿਸੇ ਹੋਰ ਵਿਅਕਤੀ ਦੀ ਪਹਿਚਾਣ ਕਰਵਾਈ"
+
+#: data/templatetags/profiletags.py:668
+msgid "Another person must turn himself in"
+msgstr "ਕੋਈ ਹੋਰ ਵਿਅਕਤੀ ਆਪਣੇ ਆਪ ਨੂੰ ਪੇਸ਼ ਕਰੇ"
+
+#: data/templatetags/profiletags.py:669
+msgid "Signature on blank papers"
+msgstr "ਕੋਰੇ ਕਾਗਜ਼ ਉੱਪਰ ਦਸਤਖ਼ਤ"
+
+#: data/templatetags/profiletags.py:670
+msgid "Valuables (jewelry/electronics/land/etc.)"
+msgstr "ਕੀਮਤੀ ਸਮਾਨ (ਗਹਿਣੇ, ਬਿਜਲੀ ਵਾਲਾ ਸਮਾਨ, ਜਮੀਨ, ਹੋਰ ਕੁਝ)"
+
+#: data/templatetags/profiletags.py:671
+msgid "Land"
+msgstr "ਜ਼ਮੀਨ"
+
+#: data/templatetags/profiletags.py:689
+msgid "Jail"
+msgstr "ਕੈਦਖਾਨਾ"
+
+#: data/templatetags/profiletags.py:690
+msgid "Police custody/remand"
+msgstr "ਪੁਲਿਸ ਹਿਰਾਸਤ/ਰਿਮਾਂਡ"
+
+#: data/templatetags/profiletags.py:708
+msgid "No Response"
+msgstr "ਕੋਈ ਜਵਾਬ ਨਹੀਂ"
+
+#: data/templatetags/profiletags.py:709
+msgid "Extrajudicial execution [of victim] in an \"encounter\""
+msgstr "ਪੀੜਤ ਦੀ ਝੂਠੇ ਮੁਕਾਬਲੇ ਵਿੱਚ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਕੀਤੀ ਗਈ"
+
+#: data/templatetags/profiletags.py:710 data/utils.py:317
+msgid "Denied involvement"
+msgstr "ਹਾਦਸੇ ਵਿੱਚ ਹੱਥ ਹੋਣ ਤੋਂ ਇਨਕਾਰ ਕਰ ਦਿੱਤਾ"
+
+#: data/templatetags/profiletags.py:711 data/utils.py:318
+msgid "Admitted extrajudicial execution with no explanation"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਨੂੰ ਮੰਨ ਲਿਆ ਪਰ ਕੋਈ ਵਜਾ ਨਹੀਂ ਦਿੱਤੀ"
+
+#: data/templatetags/profiletags.py:712 data/utils.py:319
+msgid "Admitted custody only"
+msgstr "ਸਿਰਫ਼ ਹਿਰਾਸਤ ਮੰਨੀ"
+
+#: data/templatetags/profiletags.py:713 data/utils.py:320
+msgid "Victim had escaped"
+msgstr "ਪੀੜਤ ਫਰਾਰ ਹੋ ਗਿਆ"
+
+#: data/templatetags/profiletags.py:714
+msgid "Victim extrajudicial execution while trying to escape"
+msgstr "ਪੀੜਤ ਦੀ ਫਰਾਰ ਹੁੰਦੇ ਵਕਤ ਹੱਤਿਆ ਕਰ ਦਿੱਤੀ ਗਈ"
+
+#: data/templatetags/profiletags.py:715
+msgid "Victim extrajudicial execution by militants"
+msgstr "ਪੀੜਤ ਦੀ ਖਾੜਕੂਆਂ ਵੱਲੋਂ ਹੱਤਿਆ ਕੀਤੀ ਗਈ"
+
+#: data/templatetags/profiletags.py:716 data/utils.py:323
+msgid "Told family to go to another police station"
+msgstr "ਪਰਿਵਾਰ ਨੂੰ ਕਿਸੇ ਹੋਰ ਪੁਲਿਸ ਥਾਣੇ ਜਾਣ ਨੂੰ ਕਹਿਆ"
+
+#: data/templatetags/profiletags.py:717
+msgid "Victim extrajudicial execution in crossfire with militants"
+msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਮੁਕਾਬਲੇ ਦੌਰਾਨ ਪੀੜਤ ਮਾਰਿਆ ਗਿਆ"
+
+#: data/templatetags/profiletags.py:718 data/utils.py:325
+msgid "Victim accidentally killed in custody"
+msgstr "ਹਿਰਾਸਤ ਵਿੱਚ ਪੀੜਤ ਗਲਤੀ ਨਾਲ ਮਾਰਿਆ ਗਿਆ"
+
+#: data/templatetags/profiletags.py:719
+msgid "Victim extrajudicial execution while resisting arrest/search"
+msgstr "ਗ੍ਰਿਫਤਾਰੀ ਜਾਂ ਤਲਾਸ਼ੀ ਦੇ ਵਿਰੋਧ ਦੌਰਾਨ ਪੀੜਤ ਮਾਰਿਆ ਗਿਆ"
+
+#: data/templatetags/profiletags.py:720
+msgid ""
+"Victim extrajudicial execution by <span define=\"Irregular undercover "
+"security force, often consisting of criminals\">Black cat</span>s"
+msgstr "ਬਲੈਕ ਕੈਟ ਨੇ ਪੀੜਤ ਨੂੰ ਮਾਰ ਦਿੱਤਾ"
+
+#: data/templatetags/profiletags.py:741 data/utils.py:109
+msgid "Afraid of retaliation"
+msgstr "ਬਦਲੇ ਤੋਂ ਡਰ (ਜਿਵੇਂ ਕਿ: ਝੂਠੇ ਕੇਸ, ਤਸ਼ੱਦਦ, ਹਿਰਾਸਤ ਆਦਿ)"
+
+#: data/templatetags/profiletags.py:742 data/utils.py:110
+msgid "Believed it would have been ineffective"
+msgstr "ਪਰਿਵਾਰ ਨੂੰ ਇਹ ਲੱਗਦਾ ਸੀ ਕਿ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਨਿਕਲਨਾ"
+
+#: data/templatetags/profiletags.py:743
+msgid "Did not know what to do"
+msgstr "ਪਤਾ ਨਹੀਂ ਸੀ ਕਿ ਕੀ ਕਰਨਾ"
+
+#: data/templatetags/profiletags.py:744
+msgid "Insufficient funds"
+msgstr "ਖ਼ਰਚਾ ਚੁੱਕਣ ਤੋਂ ਅਸਮਰਥ"
+
+#: data/templatetags/profiletags.py:758
+msgid "No drastic action"
+msgstr "ਕੋਈ ਸਖਤ ਕਾਰਵਾਈ ਨਹੀਂ"
+
+#: data/templatetags/profiletags.py:759
+msgid "Family members ran away"
+msgstr "ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਭੱਜ ਗਏ"
+
+#: data/templatetags/profiletags.py:760
+msgid "Family member(s) engaged in militant activity"
+msgstr "ਪਰਿਵਾਰ ਦੇ/ਦਾ ਸਦੱਸ ਖਾੜਕੂਆਂ ਨਾਲ ਸੰਬੰਧਿਤ ਹੋ ਗਏ/ਗਿਆ"
+
+#: data/templatetags/profiletags.py:761
+msgid "Family member(s) dropped out of school"
+msgstr "ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਦੀ ਪੜ੍ਹਾਈ ਛੁੱਟ ਗਈ"
+
+#: data/templatetags/profiletags.py:762
+msgid "Family member(s) abused alcohol/drugs"
+msgstr "ਪਰਿਵਾਰ ਦੇ/ਦਾ ਸਦੱਸ ਨਸ਼ਾ ਪੱਤਾ ਕਰਨ ਲੱਗ ਪਏ/ਪਿਆ"
+
+#: data/templatetags/profiletags.py:763
+msgid "Family member(s) committed suicide"
+msgstr "ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਨੇ ਆਤਮ ਹੱਤਿਆ ਕਰ ਲਈ"
+
+#: data/templatetags/profiletags.py:764
+msgid "Family abandoned home"
+msgstr "ਪਰਿਵਾਰ ਨੇ ਘਰ ਛੱਡ ਦਿੱਤਾ"
+
+#: data/templatetags/profiletags.py:765
+msgid "Family member(s) died due to depression/shock"
+msgstr "ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਦੀ ਉਦਾਸ ਮਨੋਦਸ਼ਾ/ਸਦਮੇ ਕਾਰਨ ਮੌਤ ਹੋ ਗਈ"
+
+#: data/templatetags/profiletags.py:766
+msgid "Family member(s) was mentally disturbed"
+msgstr "ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਦੀ ਮਾਨਸਿਕ ਦਸ਼ਾ ਖਰਾਬ ਹੋ ਗਈ"
+
+#: data/templatetags/profiletags.py:767
+msgid "Family became impoverished"
+msgstr "ਪਰਿਵਾਰ ਗਰੀਬ ਹੋ ਗਿਆ"
+
+#: data/templatetags/profiletags.py:781 data/utils.py:119
+msgid "Monetary compensation to family"
+msgstr "ਪਰਿਵਾਰ ਨੂੰ/ਲਈ ਮੁਆਵਜ਼ਾ"
+
+#: data/templatetags/profiletags.py:782
+msgid "Rehabilitation services to family"
+msgstr "ਪਰਿਵਾਰਕ ਮੈਂਬਰਾਂ ਲਈ ਪੁਨਰਵਾਸ ਸੇਵਾਵਾਂ/ਪਰਿਵਾਰਕ ਮੈਂਬਰਾਂ ਦੇ ਮੁੜਵਸੇਬੇ ਲਈ ਸਹਾਇਤਾ"
+
+#: data/templatetags/profiletags.py:783 data/utils.py:121
+msgid "Public acknowledgement of wrongful deaths"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਨੂੰ ਜਨਤਕ ਕੀਤਾ ਜਾਵੇ"
+
+#: data/templatetags/profiletags.py:784
+msgid "Criminal prosecution of those responsible"
+msgstr "ਦੋਸ਼ੀਆਂ ਦੇ ਖਿਲਾਫ ਕਾਨੂੰਨੀ ਕਾਰਵਾਈ ਕੀਤੀ ਜਾਵੇ"
+
+#: data/templatetags/profiletags.py:786 data/utils.py:124
+msgid "Truth commission"
+msgstr "ਸੱਚ ਸਾਮ੍ਹਣੇ ਲਿਆਉਣ ਲਈ ਕਮਿਸ਼ਨ ਬਣਾਇਆ ਜਾਵੇੇ"
+
+#: data/templatetags/profiletags.py:787 data/utils.py:125
+msgid "Investigations into abuses"
+msgstr "ਸਰਕਾਰੀ ਧੱਕੇਸ਼ਾਹੀ ਦੀ ਪੁੱਛ ਪੜਤਾਲ ਕੀਤੀ ਜਾਵੇ"
+
+#: data/templatetags/profiletags.py:788 data/utils.py:126
+msgid "Memorial for victims"
+msgstr "ਪੀੜਤਾਂ ਲਈ ਯਾਦਗਾਰ"
+
+#: data/templatetags/profiletags.py:789 data/utils.py:127
+msgid "Desire nothing from government"
+msgstr "ਸਰਕਾਰ ਤੋਂ ਕੋਈ ਉਮੀਦ ਨਹੀਂ"
+
+#: data/templatetags/profiletags.py:832
+msgid "Seen by respondent"
+msgstr "ਜਵਾਬਦੇਹ/ਜਵਾਬ ਦੇਣ ਵਾਲੇ ਨੇ ਦੇਖਿਆ"
+
+#: data/templatetags/profiletags.py:834 data/templatetags/profiletags.py:840
+msgid "Relative"
+msgstr "ਰਿਸ਼ਤੇਦਾਰ"
+
+#: data/templatetags/profiletags.py:838
+msgid "Seen by relative"
+msgstr "ਰਿਸ਼ਤੇਦਾਰ ਨੇ ਦੇਖਿਆ"
+
+#: data/templatetags/profiletags.py:844
+msgid "Seen by other detainee"
+msgstr "ਹੋਰ ਕੈਦੀ ਨੇ ਦੇਖਿਆ"
+
+#: data/templatetags/profiletags.py:846 data/utils.py:234
+msgid "Other detainee"
+msgstr "ਹੋਰ ਕੈਦੀ"
+
+#: data/templatetags/profiletags.py:850
+msgid "Seen by sarpanch/politician"
+msgstr "ਸਰਪੰਚ/ਸਿਆਸਤਦਾਨ ਨੇ ਦੇਖਿਆ"
+
+#: data/templatetags/profiletags.py:852
+msgid "<span define=\"Head of the village council\">Sarpanch</span>/politician"
+msgstr "ਸਰਪੰਚ/ਸਿਆਸਤਦਾਨ"
+
+#: data/templatetags/profiletags.py:856
+msgid "Seen by newspaper"
+msgstr "ਅਖ਼ਬਾਰ ਵਿੱਚ ਪੜ੍ਹਿਆ"
+
+#: data/templatetags/profiletags.py:858 data/utils.py:236
+msgid "Newspaper"
+msgstr "ਅਖ਼ਬਾਰ"
+
+#: data/templatetags/profiletags.py:862
+msgid "Seen by security official"
+msgstr "ਸੁਰੱਖਿਆ ਅਫ਼ਸਰ ਨੇ ਦੇਖਿਆ"
+
+#: data/templatetags/profiletags.py:864 data/utils.py:237
+msgid "Security official"
+msgstr "ਸੁਰੱਖਿਆ ਅਫ਼ਸਰ"
+
+#: data/templatetags/profiletags.py:868
+msgid "Seen by friend"
+msgstr "ਦੋਸਤ ਨੇ ਦੇਖਿਆ"
+
+#: data/templatetags/profiletags.py:874
+msgid "Seen by other witness (non-relative)"
+msgstr "ਕਿਸੇ ਹੋਰ ਨੇ ਦੇਖਿਆ ਜੋ ਕਿ ਰਿਸ਼ਤੇਦਾਰ ਨਹੀਂ ਸੀ"
+
+#: data/templatetags/profiletags.py:876
+msgid "Other witness (non-relative)"
+msgstr "ਹੋਰ ਗਵਾਹ (ਜੋ ਕਿ ਰਿਸ਼ਤੇਦਾਰ ਨਹੀਂ ਹੈ)"
+
+#: data/templatetags/profiletags.py:882
+msgid "Seen by doctor"
+msgstr "ਡਾਕਟਰ ਨੇ ਦੇਖਿਆ"
+
+#: data/templatetags/profiletags.py:884 data/utils.py:241
+msgid "Doctor"
+msgstr "ਡਾਕਟਰ"
+
+#: data/templatetags/profiletags.py:888
+msgid "Seen by other victim family"
+msgstr "ਦੂਜੇ ਪੀੜਤ ਦੇ ਪਰਿਵਾਰ ਨੇ ਦੇਖਿਆ"
+
+#: data/templatetags/profiletags.py:890 data/utils.py:242
+msgid "Other victim family"
+msgstr "ਦੂਜੇ ਪੀੜਤ ਦੇ ਪਰਿਵਾਰ"
+
+#: data/templatetags/profiletags.py:894
+msgid "Seen by"
+msgstr "ਕਿਸ ਨੇ ਦੇਖਿਆ"
+
+#: data/templatetags/profiletags.py:908
+msgid "Police station/post"
+msgstr "ਪੁਲਿਸ ਥਾਨਾ/ਚੌਂਕੀ"
+
+#: data/templatetags/profiletags.py:908
+msgid "Criminal Investigation Agency staff"
+msgstr "ਅਪਰਾਧਿਕ ਜਾਂਚ ਏਜੰਸੀ ਸਟਾਫ਼"
+
+#: data/templatetags/profiletags.py:908 data/templatetags/profiletags.py:944
+#: data/utils.py:266 data/utils.py:277 data/utils.py:304
+msgid "<span define=\"Border Security Force\">BSF</span>"
+msgstr "ਬਾਡਰ ਸਿਕਿਓਰਟੀ ਫੋਰਸ"
+
+#: data/templatetags/profiletags.py:908
+msgid "<span define=\"Central Reserve Police Force\">CRPF</span> camp"
+msgstr "ਸੀ.ਆਰ.ਪੀ.ਐਫ਼ ਕੈਂਪ"
+
+#: data/templatetags/profiletags.py:908
+msgid "Army camp"
+msgstr "ਆਰਮੀ ਕੈਂਪ"
+
+#: data/templatetags/profiletags.py:908
+msgid ""
+"<span define=\"Unofficial interrogation location\">Interrogation center</"
+"span>"
+msgstr "<span define=\"ਗੈਰ ਸਰਕਾਰੀ ਇਨਟੈਰੋਗੇਸ਼ਨ ਸੈਂਟਰ\">ਇਨਟੈਰੋਗੇਸ਼ਨ ਸੈਂਟਰ</span>"
+
+#: data/templatetags/profiletags.py:923
+msgid "days"
+msgstr "ਦਿਨਾਂ"
+
+#: data/templatetags/profiletags.py:925
+msgid "day"
+msgstr "ਦਿਨ"
+
+#: data/templatetags/profiletags.py:935
+msgid "Inspector"
+msgstr "ਇੰਸਪੈਕਟਰ"
+
+#: data/templatetags/profiletags.py:935
+msgid "Sub Inspector"
+msgstr "ਸਬ ਇੰਸਪੈਕਟਰ"
+
+#: data/templatetags/profiletags.py:935
+msgid "Assistant Sub Inspector"
+msgstr "ਸਹਾਇਕ ਸਬ ਇੰਸਪੈਕਟਰ"
+
+#: data/templatetags/profiletags.py:935
+msgid "Senior Superintendent of Police"
+msgstr "ਐਸ.ਐਸ.ਪੀ. (ਸੀਨੀਅਰ ਸੁਪਰਡੈਂਟ ਆਫ ਪੁਲਿਸ)"
+
+#: data/templatetags/profiletags.py:935
+msgid "Deputy Superintendent of Police"
+msgstr "ਡੀ.ਐਸ.ਪੀ. (ਡਿਪਟੀ ਸੁਪਰਡੈਂਟ ਆਫ ਪੁਲਿਸ)"
+
+#: data/templatetags/profiletags.py:935
+msgid "Station House Officer"
+msgstr "ਸਟੇਸ਼ਨ ਹਾਉਸ ਅਫ਼ਸਰ"
+
+#: data/templatetags/profiletags.py:935
+msgid "Constable"
+msgstr "ਕਾਂਸਟੇਬਲ"
+
+#: data/templatetags/profiletags.py:935
+msgid "Head Constable"
+msgstr "ਹੈਡ ਕਾਂਸਟੇਬਲ"
+
+#: data/templatetags/profiletags.py:935
+msgid "Sepoy"
+msgstr "ਸਿਪਾਹੀ"
+
+#: data/templatetags/profiletags.py:935
+msgid "DIG (Deputy Inspector General)"
+msgstr "ਡੀ.ਆਈ.ਜੀ. (ਡਿਪਟੀ ਇੰਸਪੈਕਟਰ ਜਨਰਲ)"
+
+#: data/templatetags/profiletags.py:935
+msgid "IG (Inspector General)"
+msgstr "ਆਈ.ਜੀ. (ਇੰਸਪੈਕਟਰ ਜਨਰਲ)"
+
+#: data/templatetags/profiletags.py:935
+msgid "DGP (Director General of Police)"
+msgstr "ਡੀ.ਜੀ.ਪੀ. (ਡਾਇਰੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ)"
+
+#: data/templatetags/profiletags.py:935
+msgid "Superintendent of Police"
+msgstr "ਐਸ.ਐਸ.ਪੀ. (ਸੀਨੀਅਰ ਸੁਪਰਡੈਂਟ ਆਫ ਪੁਲਿਸ)"
+
+#: data/templatetags/profiletags.py:944 data/utils.py:278 data/utils.py:305
+msgid "<span define=\"Central Reserve Police Force\">CRPF</span>"
+msgstr "<span define=\"ਕੇਂਦਰੀ ਰਿਜਰਵ ਪੁਲਿਸ ਫੋਰਸ\">ਸੀ.ਆਰ.ਪੀ.ਐਫ਼</span>"
+
+#: data/templatetags/profiletags.py:944 data/utils.py:281 data/utils.py:308
+msgid ""
+"<span define=\"Irregular undercover security force, often consisting of "
+"criminals\">Black cat</span>"
+msgstr ""
+"<span define=\"ਗੈਰ ਕਾਨੂੰਨੀ ਸੁਰੱਖਿਆ ਬਲ ਜਿਸ ਵਿੱਚ ਅਕਸਰ ਅਪਰਾਧੀ ਹੁੰਦੇ ਹਨ\">ਬਲੈਕ ਕੈਟ</span>"
+
+#: data/utils.py:18
+msgid "Non-Sikh"
+msgstr "ਹੋਰ"
+
+#: data/utils.py:24
+msgid "Non-Jat"
+msgstr "ਹੋਰ"
+
+#: data/utils.py:36
+msgid "Amritsar"
+msgstr "ਅੰਮ੍ਰਿਤਸਰ"
+
+#: data/utils.py:37
+msgid "Bathinda"
+msgstr "ਬਠਿੰਡਾ"
+
+#: data/utils.py:38
+msgid "Faridkot"
+msgstr "ਫ਼ਰੀਦਕੋਟ"
+
+#: data/utils.py:39
+msgid "Fatehgarh Sahib"
+msgstr "ਫ਼ਤਿਹਗੜ੍ਹ ਸਾਹਿਬ"
+
+#: data/utils.py:40
+msgid "Firozpur"
+msgstr "ਫ਼ਿਰੋਜ਼ਪੁਰ"
+
+#: data/utils.py:41
+msgid "Gurdaspur"
+msgstr "ਗੁਰਦਾਸਪੁਰ"
+
+#: data/utils.py:42
+msgid "Hoshiarpur"
+msgstr "ਹੁਸ਼ਿਆਰਪੁਰ"
+
+#: data/utils.py:43
+msgid "Jalandhar"
+msgstr "ਜਲੰਧਰ"
+
+#: data/utils.py:44
+msgid "Kapurthala"
+msgstr "ਕਪੂਰਥਲਾ"
+
+#: data/utils.py:45
+msgid "Ludhiana"
+msgstr "ਲੁਧਿਆਣਾ"
+
+#: data/utils.py:46
+msgid "Mansa"
+msgstr "ਮਾਨਸਾ"
+
+#: data/utils.py:47
+msgid "Moga"
+msgstr "ਮੋਗਾ"
+
+#: data/utils.py:48
+msgid "Muktsar"
+msgstr "ਮੁਕਤਸਰ"
+
+#: data/utils.py:49
+msgid "Nawanshahr"
+msgstr "ਨਵਾਂਸ਼ਹਿਰ"
+
+#: data/utils.py:50
+msgid "Patiala"
+msgstr "ਪਟਿਆਲਾ"
+
+#: data/utils.py:51
+msgid "Rupnagar"
+msgstr "ਰੂਪਨਗਰ"
+
+#: data/utils.py:52
+msgid "Sangrur"
+msgstr "ਸੰਗਰੂਰ"
+
+#: data/utils.py:73
+msgid "Graduate degree"
+msgstr "ਗਰੈਜੂਏਟ ਡਿਗਰੀ"
+
+#: data/utils.py:85
+msgid "Age unknown"
+msgstr "ਉਮਰ ਪਤਾ ਨਹੀਂ"
+
+#: data/utils.py:95
+msgid "Day labourer"
+msgstr "ਮਜ਼ਦੂਰ"
+
+#: data/utils.py:108
+msgid "Not applicable"
+msgstr "ਲਾਜਮੀ ਨਹੀਂ"
+
+#: data/utils.py:111
+msgid "Didn’t know what to do"
+msgstr "ਪਤਾ ਨਹੀਂ ਸੀ ਕਿ ਕੀ ਕਰਨਾ"
+
+#: data/utils.py:112
+msgid "Couldn’t afford"
+msgstr "ਖ਼ਰਚਾ ਚੁੱਕਣ ਤੋਂ ਅਸਮਰਥ"
+
+#: data/utils.py:120
+msgid "Rehabilitation services to family members"
+msgstr "ਪਰਿਵਾਰਕ ਮੈਂਬਰਾਂ ਲਈ ਪੁਨਰਵਾਸ ਸੇਵਾਵਾਂ/ਪਰਿਵਾਰਕ ਮੈਂਬਰਾਂ ਦੇ ਮੁੜਵਸੇਬੇ ਲਈ ਸਹਾਇਤਾ"
+
+#: data/utils.py:122
+msgid "Criminal sanctions against those responsible"
+msgstr "ਗੁਨਾਹਗਾਰਾਂ ਉੱਤੇ ਫ਼ੌਜਦਾਰੀ ਮੁਕੱਦਮਾ ਚਲਾਇਆ ਜਾਵੇ (ਗੁਨਾਹਗਾਰਾਂ ਨੂੰ ਸਜ਼ਾ ਦਿੱਤੀ ਜਾਵੇ)"
+
+#: data/utils.py:200
+msgid "Dumped body in canal or river"
+msgstr "ਸਰੀਰ ਨੂੰ ਨਹਿਰ/ਦਰਿਆ (ਨਦੀ) ਵਿੱਚ ਸੁੱਟ ਦਿੱਤਾ ਗਿਆ"
+
+#: data/utils.py:201
+msgid "Dumped body in well or drain"
+msgstr "ਸਰੀਰ ਨੂੰ ਖ਼ੂਹ ਜਾਂ ਨਾਲੇ ਵਿੱਚ ਸੁੱਟ ਦਿੱਤਾ"
+
+#: data/utils.py:232
+msgid "Interviewee"
+msgstr "ਜਵਾਬਦੇਹੀ"
+
+#: data/utils.py:233
+msgid "Other relative"
+msgstr "ਹੋਰ ਰਿਸ਼ਤੇਦਾਰ"
+
+#: data/utils.py:235
+msgid "Sarpanch/politician"
+msgstr "ਸਰਪੰਚ/ਸਿਆਸਤਦਾਨ"
+
+#: data/utils.py:239
+msgid "Other witness"
+msgstr "ਹੋਰ ਗਵਾਹ"
+
+#: data/utils.py:240
+msgid "Interview belief (no source)"
+msgstr "ਜਵਾਬਦੇਹੀ ਦਾ ਮਨਣਾ (ਕੋਈ ਸਰੋਤ ਨਹੀਂ)"
+
+#: data/utils.py:249
+msgid "Victim’s residence"
+msgstr "ਪੀੜਤ ਦਾ ਘਰ"
+
+#: data/utils.py:264
+msgid "Police Station/Post"
+msgstr "ਪੁਲਿਸ ਥਾਨਾ/ਚੌਂਕੀ"
+
+#: data/utils.py:265
+msgid "Criminal Investigation Agency Staff"
+msgstr "ਅਪਰਾਧਿਕ ਜਾਂਚ ਏਜੰਸੀ ਸਟਾਫ਼"
+
+#: data/utils.py:267
+msgid "<span define=\"Central Reserve Police Force\">CRPF</span> Camp"
+msgstr "ਸੀ.ਆਰ.ਪੀ.ਐਫ਼ ਕੈਂਪ"
+
+#: data/utils.py:268
+msgid "Army Camp"
+msgstr "ਆਰਮੀ ਕੈਂਪ"
+
+#: data/utils.py:269
+msgid ""
+"<span define=\"Unofficial interrogation location\">Interrogation Center</"
+"span>"
+msgstr "<span define=\"ਗੈਰ ਸਰਕਾਰੀ ਇਨਟੈਰੋਗੇਸ਼ਨ ਸੈਂਟਰ\">ਇਨਟੈਰੋਗੇਸ਼ਨ ਸੈਂਟਰ</span>"
+
+#: data/utils.py:303
+msgid "Punjab police"
+msgstr "ਪੰਜਾਬ ਪੁਲਿਸ"
+
+#: data/utils.py:315
+msgid "Gave no response"
+msgstr "ਕੋਈ ਜਵਾਬ ਨਹੀਂ ਦਿੱਤਾ"
+
+#: data/utils.py:316
+msgid "Killed victim in an “encounter”"
+msgstr "ਪੀੜਤ ਨੂੰ ਮੁਕਾਬਲੇ ਵਿੱਚ ਮਾਰ ਦਿੱਤਾ ਗਿਆ"
+
+#: data/utils.py:321
+msgid "Victim killed while trying to escape"
+msgstr "ਪੀੜਤ ਫਰਾਰ ਹੁੰਦੇ ਵਕਤ ਮਾਰਿਆ ਗਿਆ"
+
+#: data/utils.py:322
+msgid "Victim killed by militants"
+msgstr "ਖਾੜਕੂਆਂ ਨੇ ਪੀੜਤ ਨੂੰ ਮਾਰ ਦਿੱਤਾ"
+
+#: data/utils.py:324
+msgid "Victim killed in crossfire with militants"
+msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਮੁਕਾਬਲੇ ਦੌਰਾਨ ਪੀੜਤ ਮਾਰਿਆ ਗਿਆ"
+
+#: data/utils.py:326
+msgid "Victim killed while resisting arrest/search"
+msgstr "ਗ੍ਰਿਫਤਾਰੀ ਜਾਂ ਤਲਾਸ਼ੀ ਦੇ ਵਿਰੋਧ ਦੌਰਾਨ ਪੀੜਤ ਮਾਰਿਆ ਗਿਆ"
+
+#: data/utils.py:327
+msgid ""
+"Victim killed by <span define=\"Irregular undercover security force, often "
+"consisting of criminals\">black cat</span>s"
+msgstr ""
+"<span define=\"ਗੈਰ ਕਾਨੂੰਨੀ ਸੁਰੱਖਿਆ ਬਲ ਜਿਸ ਵਿੱਚ ਅਕਸਰ ਅਪਰਾਧੀ ਹੁੰਦੇ ਹਨ\">ਬਲੈਕ ਕੈਟ</span>"
+
+#: data/views.py:37
+msgid "Ajnala"
+msgstr "ਅਜਨਾਲਾ"
+
+#: data/views.py:37
+msgid "Amritsar I"
+msgstr "ਅੰਮ੍ਰਿਤਸਰ - I"
+
+#: data/views.py:37
+msgid "Amritsar II"
+msgstr "ਅੰਮ੍ਰਿਤਸਰ - II"
+
+#: data/views.py:37
+msgid "Baba Bakala"
+msgstr "ਬਾਬਾ ਬਕਾਲਾ"
+
+#: data/views.py:37
+msgid "Khadoor Sahib"
+msgstr "ਖਡੂਰ ਸਾਹਿਬ"
+
+#: data/views.py:37
+msgid "Patti"
+msgstr "ਪੱਟੀ"
+
+#: data/views.py:37
+msgid "Tarn Taran"
+msgstr "ਤਰਨ ਤਾਰਨ"
+
+#: data/views.py:37
+msgid "Rampura Phul"
+msgstr "ਰਾਮਪੁਰਾ ਫੂਲ"
+
+#: data/views.py:37
+msgid "Talwandi Sabo"
+msgstr "ਤਲਵੰਡੀ ਸਾਬੋ"
+
+#: data/views.py:37
+msgid "Jaitu"
+msgstr "ਜੈਤੋ"
+
+#: data/views.py:37
+msgid "Amloh"
+msgstr "ਅਮਲੋਹ"
+
+#: data/views.py:37
+msgid "Bassi Pathana"
+msgstr "ਬੱਸੀ ਪਠਾਣਾਂ"
+
+#: data/views.py:37
+msgid "Khamanon"
+msgstr "ਖਮਾਣੋ"
+
+#: data/views.py:37
+msgid "Abohar"
+msgstr "ਅਬੋਹਰ"
+
+#: data/views.py:37
+msgid "Fazilka"
+msgstr "ਫਾਜ਼ਿਲਕਾ"
+
+#: data/views.py:37
+msgid "Jalalabad"
+msgstr "ਜਲਾਲਾਬਾਦ"
+
+#: data/views.py:37
+msgid "Zira"
+msgstr "ਜ਼ੀਰਾ"
+
+#: data/views.py:37
+msgid "Batala"
+msgstr "ਬਟਾਲਾ"
+
+#: data/views.py:37
+msgid "Dera Baba Nanak"
+msgstr "ਡੇਰਾ ਬਾਬਾ ਨਾਨਕ"
+
+#: data/views.py:37
+msgid "Dhar Kalan"
+msgstr "ਧਾਰ ਕਲਾਂ"
+
+#: data/views.py:37
+msgid "Pathankot"
+msgstr "ਪਠਾਨਕੋਟ"
+
+#: data/views.py:37
+msgid "Dasuya"
+msgstr "ਦਸੂਹਾ"
+
+#: data/views.py:37
+msgid "Garhshankar"
+msgstr "ਗੜਸ਼ੰਕਰ"
+
+#: data/views.py:37
+msgid "Mukerian"
+msgstr "ਮੁਕੇਰੀਆਂ"
+
+#: data/views.py:37
+msgid "Jalandhar I"
+msgstr "ਜਲੰਧਰ - I"
+
+#: data/views.py:37
+msgid "Jalandhar II"
+msgstr "ਜਲੰਧਰ - II"
+
+#: data/views.py:37
+msgid "Nakodar"
+msgstr "ਨਕੋਦਰ"
+
+#: data/views.py:37
+msgid "Phillaur"
+msgstr "ਫਿਲੌਰ"
+
+#: data/views.py:37
+msgid "Shahkot"
+msgstr "ਸ਼ਾਹਕੋਟ"
+
+#: data/views.py:37
+msgid "Bhulath"
+msgstr "ਭੁਲੱਥ"
+
+#: data/views.py:37
+msgid "Phagwara"
+msgstr "ਫੱਗਵਾੜਾ"
+
+#: data/views.py:37
+msgid "Sultanpur Lodhi"
+msgstr "ਸੁਲਤਾਨਪੁਰ ਲੋਧੀ"
+
+#: data/views.py:37
+msgid "Jagraon"
+msgstr "ਜਗਰਾਓ"
+
+#: data/views.py:37
+msgid "Khanna"
+msgstr "ਖੰਨਾ"
+
+#: data/views.py:37
+msgid "Ludhiana East"
+msgstr "ਲੁਧਿਆਣਾ ਈਸਟ"
+
+#: data/views.py:37
+msgid "Ludhiana West"
+msgstr "ਲੁਧਿਆਣਾ ਵੈਸਟ"
+
+#: data/views.py:37
+msgid "Payal"
+msgstr "ਪਾਇਲ"
+
+#: data/views.py:37
+msgid "Raikot"
+msgstr "ਰਾਏਕੋਟ"
+
+#: data/views.py:37
+msgid "Samrala"
+msgstr "ਸਮਰਾਲਾ"
+
+#: data/views.py:37
+msgid "Budhlada"
+msgstr "ਬੁੱਡਲਾਡਾ"
+
+#: data/views.py:37
+msgid "Sardulgarh"
+msgstr "ਸਰਦੂਲਗੱੜ"
+
+#: data/views.py:37
+msgid "Bhagha Purana"
+msgstr "ਬਾਘਾ ਪੁਰਾਣਾ"
+
+#: data/views.py:37
+msgid "Nihal Singhwala"
+msgstr "ਨਿਹਾਲ ਸਿੰਘਵਾਲਾ"
+
+#: data/views.py:37
+msgid "Giddarbaha"
+msgstr "ਗਿੱਦੜਬਾਹਾ"
+
+#: data/views.py:37
+msgid "Malout"
+msgstr "ਮਲੋਟ"
+
+#: data/views.py:37
+msgid "Balachaur"
+msgstr "ਬਲਾਚੌਰ"
+
+#: data/views.py:37
+msgid "Dera Bassi"
+msgstr "ਡੇਰਾ ਬੱਸੀ"
+
+#: data/views.py:37
+msgid "Nabha"
+msgstr "ਨਾਭਾ"
+
+#: data/views.py:37
+msgid "Rajpura"
+msgstr "ਰਾਜਪੁਰਾ"
+
+#: data/views.py:37
+msgid "Samana"
+msgstr "ਸਮਾਣਾ"
+
+#: data/views.py:37
+msgid "Anandpur Sahib"
+msgstr "ਅਨੰਦਪੁਰ ਸਾਹਿਬ"
+
+#: data/views.py:37
+msgid "Kharar"
+msgstr "ਖਰੜ"
+
+#: data/views.py:37
+msgid "S.A.S.Nagar (Mohali)"
+msgstr "ਸਾਹਿਬਜ਼ਾਦਾ ਅਜੀਤ ਸਿੰਘ ਨਗਰ (ਮੋਹਾਲੀ)"
+
+#: data/views.py:37
+msgid "Barnala"
+msgstr "ਬਰਨਾਲਾ"
+
+#: data/views.py:37
+msgid "Dhuri"
+msgstr "ਧੂਰੀ"
+
+#: data/views.py:37
+msgid "Malerkotla"
+msgstr "ਮਲੇਰਕੋਟਲਾ"
+
+#: data/views.py:37
+msgid "Moonak"
+msgstr "ਮੂਨਕ"
+
+#: data/views.py:37
+msgid "Sunam"
+msgstr "ਸੁਨਾਮ"
+
+#: data/views.py:105 data/views.py:183
+msgid "Date Unknown"
+msgstr "ਤਾਰੀਖ਼ ਪਤਾ ਨਹੀਂ"
+
+#~ msgid ""
+#~ "https://assets.classy.org/7009202/04492490-488f-11e8-b708-06ca153bb396.png"
+#~ msgstr "/static/images/ensaaf-logo-pa.png"
+
+#~ msgid "Summary"
+#~ msgstr "ਸੰਖੇਪ ਵਰਨਣ/ਸਾਰੰਸ਼"
+
+#~ msgid "Detention locations known"
+#~ msgstr "ਜਿੱਥੇ ਹਿਰਾਸਤ ਵਿੱਚ ਰੱਖਿਆ ਸੀ ਕੀ ਉਸ ਜਗ੍ਹਾ ਦਾ ਪਤਾ ਹੈ?"

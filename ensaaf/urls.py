@@ -9,15 +9,13 @@ from graphene_django.views import GraphQLView
 
 
 urlpatterns = i18n_patterns(
-    path('', map, name='map'), prefix_default_language=False 
-)
-
-urlpatterns += [
+    path('', map, name='map'),
+    path('email/', emailView, name='email'),
+    path('profiles/', profiles, name="profiles"),
+    path('perpetrators/', perpetrators, name="perpetrators"),
     path('villages/', villages, name="villages"),
     path('overview/', overview, name="overview"),
-    path('map_ajax/', map_ajax, name="map_ajax"),
     path('change/', change, name="change"),
-    path('profiles/', profiles, name="profiles"),
     path('detail/', detail, name="detail"),
     path('profile/<int:record_id>/', profile, name="profile"),
     path('village/<slug:slug>/', village, name="village"),
@@ -25,20 +23,24 @@ urlpatterns += [
     path('district/<slug:slug>/', district, name="district"),
     path('year/<year>/', year, name="year"),
     path('locality/<slug:slug>/', locality, name="locality"),
-    path('cremation/<slug:slug>/', cremation, name="cremation"),
-    path('securityforce/<slug:slug>/', securityforce, name="securityforce"),
-    url(r'^detention/(?P<type>[0-9]+)/(?P<name>[A-Za-z0-9 \/+_\-]+)/$', detention, name="detention"),
     path('official/S0001/detail', official_detail, name="official_detail"),
     path('official/S0001/detail/', official_detail, name="official_detail"),
     path('official/<slug:slug>/', official, name="official"),
-    path('email/', emailView, name='email'),
+    prefix_default_language=False 
+)
+
+urlpatterns += [
+    path('cremation/<slug:slug>/', cremation, name="cremation"),
+    path('securityforce/<slug:slug>/', securityforce, name="securityforce"),
+    url(r'^detention/(?P<type>[0-9]+)/(?P<name>[A-Za-z0-9 \/+_\-]+)/$', detention, name="detention"),
     path('success/', successView, name='success'),
     url(r'^search/', include('haystack.urls')),
     path('search/spelling/', spelling, name='spelling'),
     path('search/autocomplete/', autocomplete, name='autocomplete'),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+
+    path('map_ajax/', map_ajax, name="map_ajax"),
     path('secret-admin-login/', admin.site.urls),
-    path('perpetrators/', perpetrators, name="perpetrators"),
     url(r'^graphql', GraphQLView.as_view(graphiql=True)),
     path('<slug:slug>/', page),
     path('vikus/data/', vikusdata, name="vikusdata"),

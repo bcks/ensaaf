@@ -1,4 +1,6 @@
 {% load staticfiles %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -13,7 +15,7 @@
 
     {% block head %}{% endblock %}
 
-    <title>{% block title %}{% endblock %} — Ensaaf</title>
+    <title>{% block title %}{% endblock %} — {% trans "Ensaaf" %}</title>
 </head>
 <body>
 <div id="app-wrapper">
@@ -23,8 +25,8 @@
 
     <div id="site-title">
       <div>
-        <a class="navbar-brand" href="https://ensaaf.org/" title="Ensaaf">Ensaaf</a>  
-        <span><a href="/" title="Home" class="home">Crimes Against Humanity in Punjab, India</a></span>
+        <a class="navbar-brand" href="https://ensaaf.org/" title="{% trans "Ensaaf" %}">{% trans "Ensaaf" %}</a>  
+        <span><a href="{% url "map" %}" title="Home" class="home">{% trans "Crimes Against Humanity in Punjab, India" %}</a></span>
       </div>
       <div class="social-media">
           <a href="https://twitter.com/ensaaf"><img class="twitter" title="Twitter" alt="Twitter" src="/static/images/twitter.svg"></a>
@@ -40,15 +42,15 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="/" title="Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions">Map</a></li>
-        <li class="nav-item"><a class="nav-link" href="/profiles" title="Victim Profiles">Victim Profiles</a></li>
-        <li class="nav-item"><a class="nav-link" href="/perpetrators" title="Key Perpetrators">Key Perpetrators</a></li>
-        <li class="nav-item"><a class="nav-link" href="/overview" title="Key Statistics">Key Statistics</a></li>
-        <li class="nav-item"><a class="nav-link" href="/villages" title="Villages">Villages</a></li>
-        <li class="nav-item"><a class="nav-link" href="/about" title="About">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="/forthcoming" title="Forthcoming">Forthcoming</a></li>
-        <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/crimesagainsthumanity" title="Support This Project">Donate</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="collapse" id="search-toggle" href="#search-form">Search</a>
+        <li class="nav-item"><a class="nav-link" href="{% url "map" %}" title="{% trans "Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions" %}">{% trans "Map" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "profiles" %}" title="{% trans "Victim Profiles" %}">{% trans "Victim Profiles" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "perpetrators" %}" title="{% trans "Key Perpetrators" %}">{% trans "Key Perpetrators" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "overview" %}" title="{% trans "Key Statistics" %}">{% trans "Key Statistics" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "villages" %}" title="{% trans "Villages" %}">{% trans "Villages" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about" title="{% trans "About" %}">{% trans "About" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="/forthcoming" title="{% trans "Forthcoming" %}">{% trans "Forthcoming" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/crimesagainsthumanity" title="{% trans "Support This Project" %}">{% trans "Donate" %}</a></li>
+        <li class="nav-item"><a class="nav-link" data-toggle="collapse" id="search-toggle" href="#search-form" title="{% trans "Search" %}">{% trans "Search" %}</a>
       </ul>
 
     </div>
@@ -57,8 +59,8 @@
     <div class="collapse row" id="search-form">
       <div class="col-12">
         <form class="form-inline autocomplete-me" method="get" action="/search/">
-          <input class="form-control mr-2 col-9" name="q" id="id_q" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn col-2 my-2" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="Search" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
+          <input class="form-control mr-2 col-9" name="q" id="id_q" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
+          <button class="btn col-2 my-2" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
         </form>
         <div class="row">
           <div class="col-12 suggestions"></div>
@@ -96,15 +98,15 @@
 
         <div class="col-6 col-sm-2">
           <a href="https://ensaaf.org/"><img class="footer_logo" src="https://assets.classy.org/7009202/04492490-488f-11e8-b708-06ca153bb396.png" style="max-width:100px;"></a>
-          <h5 class="footer_charity-name">ENSAAF INC.</h5>
+          <h5 class="footer_charity-name">{% trans "ENSAAF INC." %}</h5>
           <p class="footer_info">P.O. Box 11682</p>
           <p class="footer_info">Pleasanton, CA 94588</p>
           <p class="footer_info">800-668-1516</p>
         </div>
 
         <div class="col-6 col-sm-2 offset-sm-8">
-            <p class="footer_scroll-to-top"><a href="#">▲ Back to top</a></p>
-            <div class="footer_info support">Contact</div>
+            <p class="footer_scroll-to-top"><a href="#">▲ {% trans "Back to top" %}</a></p>
+            <div class="footer_info support">{% trans "Contact" %}</div>
             <a href="mailto:info@ensaaf.org" class="footer_link">info@ensaaf.org</a>
         </div>
 
@@ -114,7 +116,7 @@
     <div class="footer_bottom row">
         <div class="col-12">
           <p class="footer_bottom-left" data-sc-copyright="">
-            Copyright ©2018  • 
+            Copyright ©2020  • 
             All rights reserved • 
             <a href="https://www.classy.org/terms/privacy" target="_blank" class="footer_bottom-link">Privacy Policy</a> • 
             <a href="https://www.classy.org/terms" target="_blank" class="footer_bottom-link">Terms of Use</a>

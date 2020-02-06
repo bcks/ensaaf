@@ -1,11 +1,13 @@
 import re
 from django import template
+from django.utils.translation import ugettext as _
+from django.utils.translation import get_language
 
 register = template.Library()
 
 
-monthNames = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October",\
-  "November", "December","13####","14####","15####","16####","17####","18####","19####",\
+monthNames = ["", _('January'), _('February'), _('March'), _('April'), _('May'), _('June'), _('July'), _('August'), _('September'), _('October'),\
+  _('November'), _('December'),"13####","14####","15####","16####","17####","18####","19####",\
   "20####","21####","22####","23####","24####","25####","26####","27####","28####","29####",
   "30####","31####","32####","33####","34####","35####","36####","37####","38####","39####",
   "40####","41####","42####","43####","44####","45####","46####","47####","48####","49####",]
@@ -14,9 +16,9 @@ monthNames = ["", "January", "February", "March", "April", "May", "June", "July"
 @register.simple_tag()
 def sex(var):
   if var == 1:
-    return 'Male'
+    return _('Male')
   if var == 2:
-    return 'Female'
+    return _('Female')
   return
 
 
@@ -35,9 +37,12 @@ def uncensus(value):
 
 @register.filter(name='censuslink')
 def censuslink(value):
-    
+          
     if value == None:
       return None
+
+    lang = '/' + str(get_language())
+    lang = lang.replace('/en-us','')
     
     if "," in value:
       # split on comma
@@ -49,7 +54,7 @@ def censuslink(value):
       for part in parts:
         if regexp.search(part):
           newparts.append(
-            '<a href="/locality/' + regexp.search(part).group(1)  + '">' + \
+            '<a href="'+lang+'/locality/' + regexp.search(part).group(1)  + '">' + \
              re.sub(r'([0123456789.]+)-','', part) + \
              '</a>')
         else:
@@ -66,7 +71,7 @@ def censuslink(value):
       regexp = re.compile(r'([0123456789]+)')
       newparts = ''
       if regexp.search(parts[0]):
-        newparts = '<a href="/locality/' + parts[0]  + '">' + \
+        newparts = '<a href="'+lang+'/locality/' + parts[0]  + '">' + \
            parts[1] + '</a>'
       return newparts
 
@@ -79,6 +84,9 @@ def cremationlink(value):
     
     if value == None:
       return None
+
+    lang = '/' + str(get_language())
+    lang = lang.replace('/en-us','')
     
     # split on comma
     parts = value.split(',')
@@ -89,7 +97,7 @@ def cremationlink(value):
     for part in parts:
       if regexp.search(part):
         newparts.append(
-          '<a href="/cremation/' + regexp.search(part).group(1)  + '">' + \
+          '<a href="'+lang+'/cremation/' + regexp.search(part).group(1)  + '">' + \
            re.sub(r'([0123456789.]+)-','', part) + \
            '</a>')
 
@@ -103,7 +111,7 @@ def cremationlink(value):
 def hyes_no(var):
     if var == None:
       return var
-    opt = ["No", "Yes", "", "", "", "", "", "", "", "Don’t know"]
+    opt = [_("No"), _("Yes"), "", "", "", "", "", "", "", _('Don’t know')]
     return opt[var]
 
 
@@ -112,7 +120,7 @@ def hyes_no(var):
 def hyes_no_unknown(var):
     if var == None:
       return var
-    opt = ["No", "Yes", "", "", "", "", "", "", "", "Unknown"]
+    opt = [_("No"), _("Yes"), "", "", "", "", "", "", "", _('Unknown')]
     return opt[var]
 
 
@@ -121,7 +129,7 @@ def hyes_no_unknown(var):
 def hyes_no_na(var):
     if var == None:
       return var
-    opt = ["", "Yes", "No", "Don’t know", "", "", "", "", "", "N/A"]
+    opt = ["", _("Yes"), _("No"), _('Don’t know'), "", "", "", "", "", _('N/A')]
     return opt[var]
 
 
@@ -130,21 +138,24 @@ def hyes_no_na(var):
 @register.simple_tag()
 def hdate_link(var):
   if var == 'Don\'t know' or var == '' or var == None:
-    return ', date unknown'
+    return ', ' + _('date unknown')
+
+  lang = '/' + str(get_language())
+  lang = lang.replace('/en-us','')
 
   # 09/20/1988-10/05/1988
   #      pattern => '%m/%d/%Y',
   if '/' in var and '-' in var:
     var = var.replace('/','-')
     parts = var.split('-')
-    return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+    return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in var:
     var = var.replace(' ','')
     parts = var.split('-')
-    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
 
   # 23-07-1991
   #    pattern => '%d-%m-%Y',
@@ -154,7 +165,7 @@ def hdate_link(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+    return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
@@ -164,7 +175,7 @@ def hdate_link(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+    return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
 
 @register.simple_tag()
@@ -217,7 +228,7 @@ def hdate(var):
 @register.simple_tag()
 def hdateslash(start, end):
   if (start == None):
-    return 'date unknown'
+    return _('date unknown')
   start = str(start).split('-')[0]
   end = str(end).split('-')[0]
   if start == end:
@@ -230,9 +241,9 @@ def hdateslash(start, end):
 @register.simple_tag()
 def hyear(var):
   if (var == 'Don\'t know'):
-    return ', date unknown'
+    return ', ' + _('date unknown')
   if (var == ''):
-    return ', date unknown'
+    return ', ' + _('date unknown')
 
   # 09/20/1988-10/05/1988
   #      pattern => '%m/%d/%Y',
@@ -274,7 +285,7 @@ def hyear(var):
 @register.simple_tag()
 def heducation(value):
   if value != None:
-    education  = ['No education','Primary school','Middle school','High school','High school','High school','Some college','College degree','Graduate diploma','Vocational degree','Vocational degree','Don’t know']
+    education  = [_('No education'),_('Primary school'),_('Middle school'),_('High school'),_('High school'),_('High school'),_('Some college'),_('College degree'),_('Graduate diploma'),_('Vocational degree'),_('Vocational degree'),_('Don’t know')]
     return education[value]
   else:
     return value
@@ -328,7 +339,7 @@ def unparen(value):
 @register.filter(name='lowercaselocationwithheld')
 def lowercaselocationwithheld(value):
     if value == 'Location withheld':
-      return 'location withheld'
+      return _('location withheld')
     else:
       return value
 
@@ -337,13 +348,13 @@ def lowercaselocationwithheld(value):
 @register.simple_tag()
 def hvictim_militant_reason(v1, v2, v3, v4, v5, v6, v7, v8, other):
   groups = []
-  groups.append('1984 Indian Army attack on the Harmandir Sahib') if v1 == 1 else 0
-  groups.append('Persecution (i.e. arbitrary arrest, torture, self-defense)') if v2 == 1 else 0
-  groups.append('Persecution of a family member or a friend') if v3 == 1 else 0
-  groups.append('General persecution of Sikhs') if v4 == 1 else 0
-  groups.append('Supported the goals of the militancy movement') if v5 == 1 else 0
-  groups.append('Was forced to join') if v6 == 1 else 0
-  groups.append('Don’t know') if v7 == 1 else 0
+  groups.append(_('1984 Indian Army attack on the Harmandir Sahib')) if v1 == 1 else 0
+  groups.append(_('Persecution (i.e. arbitrary arrest, torture, self-defense)')) if v2 == 1 else 0
+  groups.append(_('Persecution of a family member or a friend')) if v3 == 1 else 0
+  groups.append(_('General persecution of Sikhs')) if v4 == 1 else 0
+  groups.append(_('Supported the goals of the militancy movement')) if v5 == 1 else 0
+  groups.append(_('Was forced to join')) if v6 == 1 else 0
+  groups.append(_('Don’t know')) if v7 == 1 else 0
   if v8 == 1:
     if (other):
       groups.append(other)
@@ -359,16 +370,16 @@ def hvictim_militant_reason(v1, v2, v3, v4, v5, v6, v7, v8, other):
 @register.simple_tag()
 def hvictim_employment(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, other):
   groups = []
-  groups.append('Farmer/agriculture') if v1 == 1 else 0
-  groups.append('Shopkeeper') if v2 == 1 else 0
-  groups.append('Day laborer') if v3 == 1 else 0
-  groups.append('Driver (bus/truck/car)') if v4 == 1 else 0
-  groups.append('Mechanic') if v5 == 1 else 0
-  groups.append('Student') if v6 == 1 else 0
-  groups.append('Housewife') if v7 == 1 else 0
-  groups.append('Carpenter') if v8 == 1 else 0
-  groups.append('Unemployed') if v9 == 1 else 0
-  groups.append('Don’t know') if v10 == 1 else 0
+  groups.append(_('Farmer/agriculture')) if v1 == 1 else 0
+  groups.append(_('Shopkeeper')) if v2 == 1 else 0
+  groups.append(_('Day laborer')) if v3 == 1 else 0
+  groups.append(_('Driver (bus/truck/car)')) if v4 == 1 else 0
+  groups.append(_('Mechanic')) if v5 == 1 else 0
+  groups.append(_('Student')) if v6 == 1 else 0
+  groups.append(_('Housewife')) if v7 == 1 else 0
+  groups.append(_('Carpenter')) if v8 == 1 else 0
+  groups.append(_('Unemployed')) if v9 == 1 else 0
+  groups.append(_('Don’t know')) if v10 == 1 else 0
   if v11 == 1:
     if (other):
       groups.append(other)
@@ -385,19 +396,19 @@ def hvictim_employment(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, other):
 @register.simple_tag()
 def htarget_reason(v1, v2, v3, v4, v5, v6, v7, v8, v9, other):
   groups = []
-  groups.append('Victim was a militant') if v1 == 1 else 0
-  groups.append('Victim was related to a militant') if v2 == 1 else 0
-  groups.append('Victim gave support to militants') if v3 == 1 else 0
-  groups.append('Victim was involved in criminal activities') if v4 == 1 else 0
-  groups.append('Victim was identifiably Sikh') if v5 == 1 else 0
-  groups.append('Security forces thought victim was a militant') if v6 == 1 else 0
-  groups.append('Mistaken for a wanted individual') if v7 == 1 else 0
-  groups.append('Don’t know') if v8 == 1 else 0
+  groups.append(_('Victim was a militant')) if v1 == 1 else 0
+  groups.append(_('Victim was related to a militant')) if v2 == 1 else 0
+  groups.append(_('Victim gave support to militants')) if v3 == 1 else 0
+  groups.append(_('Victim was involved in criminal activities')) if v4 == 1 else 0
+  groups.append(_('Victim was identifiably Sikh')) if v5 == 1 else 0
+  groups.append(_('Security forces thought victim was a militant')) if v6 == 1 else 0
+  groups.append(_('Mistaken for a wanted individual')) if v7 == 1 else 0
+  groups.append(_('Don’t know')) if v8 == 1 else 0
   if v9 == 1:
     if (other):
       groups.append(other)
     else:
-      groups.append('Other')
+      groups.append(_('Other'))
   if len(groups):
       s = '; '
       return s.join(groups)
@@ -408,21 +419,21 @@ def htarget_reason(v1, v2, v3, v4, v5, v6, v7, v8, v9, other):
 
 @register.simple_tag()
 def hcaste(value):
-  caste = ['', '<span define="A caste associated with agriculture">Jat</span>','Ramgarhia','Dalit/SC/BC','Mazbi','Chamar','Khatri','Naee','Don’t know','Other']
+  caste = ['', '<span define="'+_('A caste associated with agriculture')+'">'+_('Jat')+'</span>',_('Ramgarhia'),_('Dalit/SC/BC'),_('Mazbi'),_('Chamar'),_('Khatri'),_('Naee'),_('Don’t know'),_('Other')]
   return caste[value]
 
 
 
 @register.simple_tag()
 def hreligion(value):
-  religion = ['','Sikh','Hinduism','Islam','Christianity','No religion','Don’t know','Other']
+  religion = ['',_('Sikh'),_('Hinduism'),_('Islam'),_('Christianity'),_('No religion'),_('Don’t know'),'Other']
   return religion[value]
 
 
 
 @register.simple_tag()
 def hforced(value):
-  forced = ['','Voluntary','Forced','Don’t know','','','','','','N/A']
+  forced = ['',_('Voluntary'),_('Forced'),_('Don’t know'),'','','','','',_('N/A')]
   return forced[value]
 
 
@@ -431,7 +442,7 @@ def hforced(value):
 def hvictim_arrest_status(value):
   if value == None:
     return value
-  status = ['','Yes','Yes, the victim turned himself/herself in','No','Unknown']
+  status = ['',_('Yes'),_('Yes, the victim turned himself/herself in'),_('No'),_('Unknown'),]
   return status[value]
 
 
@@ -440,10 +451,13 @@ def hvictim_arrest_status(value):
 def hvictim_arrest_date(victim_arrest_date):
 
   if victim_arrest_date == None:
-    return ', date unknown'
+    return ', ' + _('date unknown')
 
   if (victim_arrest_date == 'Don\'t know'):
-    return ', date unknown'
+    return ', ' + _('date unknown')
+
+  lang = '/' + str(get_language())
+  lang = lang.replace('/en-us','')
 
   # 09/20/1988-10/05/1988
   #      pattern => '%m/%d/%Y',
@@ -451,14 +465,14 @@ def hvictim_arrest_date(victim_arrest_date):
     victim_arrest_date = victim_arrest_date.replace('//','/')
     victim_arrest_date = victim_arrest_date.replace('/','-')
     parts = victim_arrest_date.split('-')
-    return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+    return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in victim_arrest_date:
     victim_arrest_date = victim_arrest_date.replace(' ','')
     parts = victim_arrest_date.split('-')
-    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
 
   around = ''
 
@@ -470,7 +484,7 @@ def hvictim_arrest_date(victim_arrest_date):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return around + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+    return around + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
@@ -480,7 +494,7 @@ def hvictim_arrest_date(victim_arrest_date):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return around + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+    return around + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
   return ''
 
@@ -491,18 +505,18 @@ def hwitness_arrest(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v12, other):
   groups = []
   
   if v0 == 1 or v12 == 1:
-    groups.append('Unknown')
+    groups.append(_('Unknown'),)
     
-  groups.append('Spouse') if v1 == 1 else 0
-  groups.append('Parents') if v2 == 1 else 0
-  groups.append('Children') if v3 == 1 else 0
-  groups.append('Sibling') if v4 == 1 else 0
-  groups.append('Grandparent') if v5 == 1 else 0
-  groups.append('Cousin') if v6 == 1 else 0
-  groups.append('Aunt/uncle') if v7 == 1 else 0
-  groups.append('Friend') if v8 == 1 else 0
-  groups.append('Co-villager') if v9 == 1 else 0
-  groups.append('Respondent') if v10 == 1 else 0
+  groups.append(_('Spouse')) if v1 == 1 else 0
+  groups.append(_('Parents')) if v2 == 1 else 0
+  groups.append(_('Children')) if v3 == 1 else 0
+  groups.append(_('Sibling')) if v4 == 1 else 0
+  groups.append(_('Grandparent')) if v5 == 1 else 0
+  groups.append(_('Cousin')) if v6 == 1 else 0
+  groups.append(_('Aunt/uncle')) if v7 == 1 else 0
+  groups.append(_('Friend')) if v8 == 1 else 0
+  groups.append(_('Co-villager')) if v9 == 1 else 0
+  groups.append(_('Respondent')) if v10 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -515,13 +529,16 @@ def hwitness_arrest(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v12, other):
 
 @register.simple_tag()
 def harrest_security_type_link(v1, v2, v3, v4, v5, v6, v7, other):
+  lang = '/' + str(get_language())
+  lang = lang.replace('/en-us','')
+
   groups = []
-  groups.append('<a href="/securityforce/police/">Punjab Police</a>') if v1 == 1 else 0
-  groups.append('<a href="/securityforce/bsf/"><span define="Border Security Force">BSF</span></a>') if v2 == 1 else 0
-  groups.append('<a href="/securityforce/crpf/"><span define="Central Reserve Police Force">CRPF</span></a>') if v3 == 1 else 0
-  groups.append('<a href="/securityforce/army/">Army</a>') if v4 == 1 else 0
-  groups.append('<a href="/securityforce/cia/">Criminal Investigation Agency</a>') if v5 == 1 else 0
-  groups.append('<a href="/securityforce/black-cat/"><span define="Irregular undercover security force, often consisting of criminals">Black cat</span></a>') if v6 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/police/">'+_('Punjab Police')+'</a>') if v1 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/bsf/"><span define="'+_('Border Security Force')+'">'+_('BSF')+'</span></a>') if v2 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/crpf/"><span define="'+_('Central Reserve Police Force')+'">'+_('CRPF')+'</span></a>') if v3 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/army/">'+_('Army')+'</a>') if v4 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/cia/">'+_('Criminal Investigation Agency')+'</a>') if v5 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/black-cat/"><span define="'+_('Irregular undercover security force, often consisting of criminals')+'">'+_('Black cat')+'</span></a>') if v6 == 1 else 0
 #  groups.append('Don’t know') if v7 == 1 else 0
   if (other):
     groups.append(other)
@@ -536,12 +553,12 @@ def harrest_security_type_link(v1, v2, v3, v4, v5, v6, v7, other):
 @register.simple_tag()
 def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
   groups = []
-  groups.append('Punjab Police') if v1 == 1 else 0
-  groups.append('Border Security Force') if v2 == 1 else 0
-  groups.append('Central Reserve Police Force') if v3 == 1 else 0
-  groups.append('Army') if v4 == 1 else 0
-  groups.append('Criminal Investigation Agency') if v5 == 1 else 0
-  groups.append('Black cat') if v6 == 1 else 0
+  groups.append(_('Punjab Police')) if v1 == 1 else 0
+  groups.append(_('Border Security Force')) if v2 == 1 else 0
+  groups.append(_('Central Reserve Police Force')) if v3 == 1 else 0
+  groups.append(_('Army')) if v4 == 1 else 0
+  groups.append(_('Criminal Investigation Agency')) if v5 == 1 else 0
+  groups.append(_('Black cat')) if v6 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -554,14 +571,17 @@ def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
 
 @register.simple_tag()
 def hso_approached_type(v1, v2, v3, v4, v5, v6, v7, other):
+  lang = '/' + str(get_language())
+  lang = lang.replace('/en-us','')
+
   groups = []
-  groups.append('Same as officials involved in abduction/extrajudicial execution') if v1 == 1 else 0
-  groups.append('<a href="/securityforce/police/">Punjab Police</a>') if v2 == 1 else 0
-  groups.append('<a href="/securityforce/bsf/"><span define="Border Security Force">BSF</span></a>') if v3 == 1 else 0
-  groups.append('<a href="/securityforce/crpf/"><span define="Central Reserve Police Force">CRPF</span></a>') if v4 == 1 else 0
-  groups.append('<a href="/securityforce/army/">Army</a>') if v5 == 1 else 0
-  groups.append('<a href="/securityforce/cia/">Criminal Investigation Agency</a>') if v6 == 1 else 0
-  groups.append('<a href="/securityforce/black-cat/"><span define="Irregular undercover security force, often consisting of criminals">Black cat</span></a>') if v7 == 1 else 0
+  groups.append(_('Same as officials involved in abduction/extrajudicial execution')) if v1 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/police/">Punjab Police</a>') if v2 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/bsf/"><span define="Border Security Force">BSF</span></a>') if v3 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/crpf/"><span define="Central Reserve Police Force">CRPF</span></a>') if v4 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/army/">Army</a>') if v5 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/cia/">Criminal Investigation Agency</a>') if v6 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/black-cat/"><span define="Irregular undercover security force, often consisting of criminals">Black cat</span></a>') if v7 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -586,7 +606,7 @@ def hadd_spaces(value):
 def hvictim_arrest_location(value):
   if value == None:
     return value
-  location = ['', '', 'Victim\'s residence', 'Friend/relative\'s residence', 'Checkpoint (naka)', 'Roadside', 'Village fields', 'Shop/market', 'Bus station/stand', 'Police station', 'Village drain']
+  location = ['', '', _('Victim\'s residence'), _('Friend/relative\'s residence'), _('Checkpoint (naka)'), _('Roadside'), _('Village fields'), _('Shop/market'), _('Bus station/stand'), _('Police station'), _('Village drain')]
   return location[value]
 
 
@@ -595,7 +615,7 @@ def hvictim_arrest_location(value):
 def hso_return_body(value):
   if value == None:
     return value
-  so_return_body = ['','Yes','Yes, but forced immediate cremation','No','Don’t know']
+  so_return_body = ['',_('Yes'),_('Yes, but forced immediate cremation'),_('No'),_('Don’t know')]
   return so_return_body[value]
 
 
@@ -604,7 +624,7 @@ def hso_return_body(value):
 def hso_body_disposal(value):
   if value == None:
     return value
-  so_body_disposal = ['','Cremated the body','Dumped body in canal/river','Dumped body in well/drain','Buried the body','Don’t know','Other']
+  so_body_disposal = ['',_('Cremated the body'),_('Dumped body in canal/river'),_('Dumped body in well/drain'),_('Buried the body'),_('Don’t know'),_('Other')]
   return so_body_disposal[value]
 
 
@@ -613,7 +633,7 @@ def hso_body_disposal(value):
 def hcremation_location_type(value):
   if value == None:
     return value
-  cremation_location_type = ['','Municipal cremation ground','Village cremation ground','Gurdwara cremation ground','Don’t know','Other']
+  cremation_location_type = ['',_('Municipal cremation ground'),_('Village cremation ground'),_('Gurdwara cremation ground'),_('Don’t know'),_('Other')]
   return cremation_location_type[value]
 
 
@@ -621,13 +641,13 @@ def hcremation_location_type(value):
 @register.simple_tag()
 def hcondition_of_remains(v1, v2, v3, v4, v5, v6, v7, other):
   groups = []
-  groups.append('Bruises') if v1 == 1 else 0
-  groups.append('Bullet wounds') if v2 == 1 else 0
-  groups.append('Cuts/wounds') if v3 == 1 else 0
-  groups.append('Broken bones') if v4 == 1 else 0
-  groups.append('Missing hair from head or face') if v5 == 1 else 0
-  groups.append('Missing fingernails') if v6 == 1 else 0
-  groups.append('Burn marks') if v7 == 1 else 0
+  groups.append(_('Bruises')) if v1 == 1 else 0
+  groups.append(_('Bullet wounds')) if v2 == 1 else 0
+  groups.append(_('Cuts/wounds')) if v3 == 1 else 0
+  groups.append(_('Broken bones')) if v4 == 1 else 0
+  groups.append(_('Missing hair from head or face')) if v5 == 1 else 0
+  groups.append(_('Missing fingernails')) if v6 == 1 else 0
+  groups.append(_('Burn marks')) if v7 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -642,19 +662,19 @@ def hcondition_of_remains(v1, v2, v3, v4, v5, v6, v7, other):
 def hdemands(v2, v3, v4, v5, v6, v7, v8, v10, other):
   groups = []
   # groups.append('None') if v1 == 1 else 0
-  groups.append('Money') if v2 == 1 else 0
-  groups.append('Information about another person') if v3 == 1 else 0
-  groups.append('Forced identification of another person') if v4 == 1 else 0
-  groups.append('Another person must turn himself in') if v5 == 1 else 0
-  groups.append('Signature on blank papers') if v6 == 1 else 0
-  groups.append('Valuables (jewelry/electronics/land/etc.)') if v7 == 1 else 0
-  groups.append('Land') if v8 == 1 else 0
-  # groups.append('Don’t know') if v9 == 1 else 0
+  groups.append(_('Money')) if v2 == 1 else 0
+  groups.append(_('Information about another person')) if v3 == 1 else 0
+  groups.append(_('Forced identification of another person')) if v4 == 1 else 0
+  groups.append(_('Another person must turn himself in')) if v5 == 1 else 0
+  groups.append(_('Signature on blank papers')) if v6 == 1 else 0
+  groups.append(_('Valuables (jewelry/electronics/land/etc.)')) if v7 == 1 else 0
+  groups.append(_('Land')) if v8 == 1 else 0
+  # groups.append('Don’t know')) if v9 == 1 else 0
   if v10 == 1:
     if (other):
       groups.append(other)
     else:
-      groups.append('Other')
+      groups.append(_('Other'))
   if len(groups):
       s = '; '
       return s.join(groups)
@@ -666,9 +686,9 @@ def hdemands(v2, v3, v4, v5, v6, v7, v8, v10, other):
 @register.simple_tag()
 def hjudge_or_magistrate_result(v1, v2, v3, v4, other):
   groups = []
-  groups.append('Jail') if v1 == 1 else 0
-  groups.append('Police custody/remand') if v2 == 1 else 0
-  groups.append('Don’t know') if v3 == 1 else 0
+  groups.append(_('Jail')) if v1 == 1 else 0
+  groups.append(_('Police custody/remand')) if v2 == 1 else 0
+  groups.append(_('Don’t know')) if v3 == 1 else 0
   if v4 == 1:
     if (other):
       groups.append(other)
@@ -685,20 +705,20 @@ def hjudge_or_magistrate_result(v1, v2, v3, v4, other):
 @register.simple_tag()
 def hsecurity_official_response(v0, v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13, v14, other):
   groups = []
-  groups.append('No Response') if v0 == 1 else 0
-  groups.append('Extrajudicial execution [of victim] in an "encounter"') if v1 == 1 else 0
-  groups.append('Denied involvement') if v2 == 1 else 0
-  groups.append('Admitted extrajudicial execution with no explanation') if v3 == 1 else 0
-  groups.append('Admitted custody only') if v4 == 1 else 0
-  groups.append('Victim had escaped') if v5 == 1 else 0
-  groups.append('Victim extrajudicial execution while trying to escape') if v6 == 1 else 0
-  groups.append('Victim extrajudicial execution by militants') if v7 == 1 else 0
-  groups.append('Told family to go to another police station') if v8 == 1 else 0
-  groups.append('Victim extrajudicial execution in crossfire with militants') if v9 == 1 else 0
-  groups.append('Victim accidentally killed in custody') if v10 == 1 else 0
-  groups.append('Victim extrajudicial execution while resisting arrest/search') if v11 == 1 else 0
-  groups.append('Victim extrajudicial execution by <span define="Irregular undercover security force, often consisting of criminals">Black cat</span>s') if v12 == 1 else 0
-  groups.append('Don’t know') if v14 == 1 else 0
+  groups.append(_('No Response')) if v0 == 1 else 0
+  groups.append(_('Extrajudicial execution [of victim] in an "encounter"')) if v1 == 1 else 0
+  groups.append(_('Denied involvement')) if v2 == 1 else 0
+  groups.append(_('Admitted extrajudicial execution with no explanation')) if v3 == 1 else 0
+  groups.append(_('Admitted custody only')) if v4 == 1 else 0
+  groups.append(_('Victim had escaped')) if v5 == 1 else 0
+  groups.append(_('Victim extrajudicial execution while trying to escape')) if v6 == 1 else 0
+  groups.append(_('Victim extrajudicial execution by militants')) if v7 == 1 else 0
+  groups.append(_('Told family to go to another police station')) if v8 == 1 else 0
+  groups.append(_('Victim extrajudicial execution in crossfire with militants')) if v9 == 1 else 0
+  groups.append(_('Victim accidentally killed in custody')) if v10 == 1 else 0
+  groups.append(_('Victim extrajudicial execution while resisting arrest/search')) if v11 == 1 else 0
+  groups.append(_('Victim extrajudicial execution by <span define="Irregular undercover security force, often consisting of criminals">Black cat</span>s')) if v12 == 1 else 0
+  groups.append(_('Don’t know')) if v14 == 1 else 0
   if v13 == 1:
     if (other):
       groups.append(other)
@@ -718,10 +738,10 @@ def is_numeric(value):
 @register.simple_tag()
 def hno_action_pursued_reason(v1, v2, v3, v4, other):
   groups = []
-  groups.append('Afraid of retaliation') if v1 == 1 else 0
-  groups.append('Believed it would have been ineffective') if v2 == 1 else 0
-  groups.append('Did not know what to do') if v3 == 1 else 0
-  groups.append('Insufficient funds') if v4 == 1 else 0
+  groups.append(_('Afraid of retaliation')) if v1 == 1 else 0
+  groups.append(_('Believed it would have been ineffective')) if v2 == 1 else 0
+  groups.append(_('Did not know what to do')) if v3 == 1 else 0
+  groups.append(_('Insufficient funds')) if v4 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -735,16 +755,16 @@ def hno_action_pursued_reason(v1, v2, v3, v4, other):
 @register.simple_tag()
 def hfamily_effects(v1, v2, v3, v4, v5, v6, v7, v8, v9, v12, other):
   groups = []
-  groups.append('No drastic action') if v1 == 1 else 0
-  groups.append('Family members ran away') if v2 == 1 else 0
-  groups.append('Family member(s) engaged in militant activity') if v3 == 1 else 0
-  groups.append('Family member(s) dropped out of school') if v4 == 1 else 0
-  groups.append('Family member(s) abused alcohol/drugs') if v5 == 1 else 0
-  groups.append('Family member(s) committed suicide') if v6 == 1 else 0
-  groups.append('Family abandoned home') if v7 == 1 else 0
-  groups.append('Family member(s) died due to depression/shock') if v8 == 1 else 0
-  groups.append('Family member(s) was mentally disturbed') if v9 == 1 else 0
-  groups.append('Family became impoverished') if v12 == 1 else 0
+  groups.append(_('No drastic action')) if v1 == 1 else 0
+  groups.append(_('Family members ran away')) if v2 == 1 else 0
+  groups.append(_('Family member(s) engaged in militant activity')) if v3 == 1 else 0
+  groups.append(_('Family member(s) dropped out of school')) if v4 == 1 else 0
+  groups.append(_('Family member(s) abused alcohol/drugs')) if v5 == 1 else 0
+  groups.append(_('Family member(s) committed suicide')) if v6 == 1 else 0
+  groups.append(_('Family abandoned home')) if v7 == 1 else 0
+  groups.append(_('Family member(s) died due to depression/shock')) if v8 == 1 else 0
+  groups.append(_('Family member(s) was mentally disturbed')) if v9 == 1 else 0
+  groups.append(_('Family became impoverished')) if v12 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -758,16 +778,16 @@ def hfamily_effects(v1, v2, v3, v4, v5, v6, v7, v8, v9, v12, other):
 @register.simple_tag()
 def hgovnt_response_desired(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, other):
   groups = []
-  groups.append('Monetary compensation to family') if v1 == 1 else 0
-  groups.append('Rehabilitation services to family') if v2 == 1 else 0
-  groups.append('Public acknowledgement of wrongful deaths') if v3 == 1 else 0
-  groups.append('Criminal prosecution of those responsible') if v4 == 1 else 0
-  groups.append('Employment') if v5 == 1 else 0
-  groups.append('Truth commission') if v6 == 1 else 0
-  groups.append('Investigations into abuses') if v7 == 1 else 0
-  groups.append('Memorial for victims') if v8 == 1 else 0
-  groups.append('Desire nothing from government') if v9 == 1 else 0
-  groups.append('Don’t know') if v11 == 1 else 0
+  groups.append(_('Monetary compensation to family')) if v1 == 1 else 0
+  groups.append(_('Rehabilitation services to family')) if v2 == 1 else 0
+  groups.append(_('Public acknowledgement of wrongful deaths')) if v3 == 1 else 0
+  groups.append(_('Criminal prosecution of those responsible')) if v4 == 1 else 0
+  groups.append(_('Employment')) if v5 == 1 else 0
+  groups.append(_('Truth commission')) if v6 == 1 else 0
+  groups.append(_('Investigations into abuses')) if v7 == 1 else 0
+  groups.append(_('Memorial for victims')) if v8 == 1 else 0
+  groups.append(_('Desire nothing from government')) if v9 == 1 else 0
+  groups.append(_('Don’t know')) if v11 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -782,7 +802,7 @@ def hgovnt_response_desired(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, other)
 def hothers_arrested(value):
   if value == None:
     return value
-  others_arrested = ['No','Yes','Yes','','','','','','','Unknown']
+  others_arrested = [_('No'),_('Yes'),_('Yes'),'','','','','','',_('Unknown'),]
   return others_arrested[value]
 
 
@@ -790,15 +810,15 @@ def hothers_arrested(value):
 @register.simple_tag()
 def hothers_killed(v0, v1, v2, v3):
   if v0 == 1:
-    return('No')
+    return( _('No') )
   if v1 == 1:
-    return('Yes')
+    return(_('Yes'))
   if v2 == 1:
-    return('Yes')
+    return(_('Yes'))
   if v3 == 1:
-    return('Yes')
+    return(_('Yes'))
 #  if v9 == 1:
-#    return('Unknown')
+#    return(_('Unknown'),)
   return ''
 
 
@@ -809,69 +829,69 @@ def hwitness_detention(v3, v4, v5, v6, v7, v8, v9, v10, v12, v13, v14, other, st
 
   if (v3 == 1):
     if (status):
-      groups.append('Seen by respondent')
+      groups.append(_('Seen by respondent'))
     else:
-      groups.append('Relative')
+      groups.append(_('Relative'))
 
   if (v4 == 1):
     if (status):
-      groups.append('Seen by relative')
+      groups.append(_('Seen by relative'))
     else:
-      groups.append('Relative')
+      groups.append(_('Relative'))
 
   if (v5 == 1):
     if (status):
-      groups.append('Seen by other detainee')
+      groups.append(_('Seen by other detainee'))
     else:
-      groups.append('Other detainee')
+      groups.append(_('Other detainee'))
 
   if (v6 == 1):
     if (status):
-      groups.append('Seen by sarpanch/politician')
+      groups.append(_('Seen by sarpanch/politician'))
     else:
-      groups.append('<span define="Head of the village council">Sarpanch</span>/politician')
+      groups.append(_('<span define="Head of the village council">Sarpanch</span>/politician'))
 
   if (v7 == 1):
     if (status):
-      groups.append('Seen by newspaper')
+      groups.append(_('Seen by newspaper'))
     else:
-      groups.append('Newspaper')
+      groups.append(_('Newspaper'))
 
   if (v8 == 1):
     if (status):
-      groups.append('Seen by security official')
+      groups.append(_('Seen by security official'))
     else:
-      groups.append('Security official')
+      groups.append(_('Security official'))
 
   if (v9 == 1):
     if (status):
-      groups.append('Seen by friend')
+      groups.append(_('Seen by friend'))
     else:
-      groups.append('Friend')
+      groups.append(_('Friend'))
 
   if (v10 == 1):
     if (status):
-      groups.append('Seen by other witness (non-relative)')
+      groups.append(_('Seen by other witness (non-relative)'))
     else:
-      groups.append('Other witness (non-relative)')
+      groups.append(_('Other witness (non-relative)'))
 
-  # if (v11 == 1): groups.append('Respondent belief (no source)')
+  # if (v11 == 1): groups.append(_('Respondent belief (no source)'))
 
   if (v12 == 1):
     if (status):
-      groups.append('Seen by doctor')
+      groups.append(_('Seen by doctor'))
     else:
-      groups.append('Doctor')
+      groups.append(_('Doctor'))
 
   if (v13 == 1):
     if (status):
-      groups.append('Seen by other victim family')
+      groups.append(_('Seen by other victim family'))
     else:
-      groups.append('Other victim family')
+      groups.append(_('Other victim family'))
 
   if (other):
     if (status):
-      groups.append('Seen by '+other)
+      groups.append(_('Seen by')+' '+other)
     else:
       groups.append(other)
 
@@ -885,7 +905,7 @@ def hwitness_detention(v3, v4, v5, v6, v7, v8, v9, v10, v12, v13, v14, other, st
 
 @register.simple_tag()
 def hdetention_facility_type(var, other):
-  opt = ['','Police station/post','Criminal Investigation Agency staff','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span> camp','Army camp','<span define="Unofficial interrogation location">Interrogation center</span>','Don’t know','Other']
+  opt = ['',_('Police station/post'),_('Criminal Investigation Agency staff'),_('<span define="Border Security Force">BSF</span>'),_('<span define="Central Reserve Police Force">CRPF</span> camp'),_('Army camp'),_('<span define="Unofficial interrogation location">Interrogation center</span>'),_('Don’t know'),_('Other')]
   if var == 8:
     if (other):
       return other
@@ -900,9 +920,9 @@ def hduration_of_detention(v1):
   try:
      val = int(v1)
      if val > 1:
-      return v1 + ' days'
+      return v1 + ' ' + _('days')
      else:
-      return v1 + ' day'
+      return v1 + ' ' + _('day')
   except ValueError:
      return v1.lower()
 
@@ -912,7 +932,7 @@ def hduration_of_detention(v1):
 def harrest_so_rank(var):
   if var == None:
     return var
-  opt = ['','Inspector','Sub Inspector','Assistant Sub Inspector','Senior Superintendent of Police','Deputy Superintendent of Police','Station House Officer','Constable','Head Constable','Sepoy','DIG (Deputy Inspector General)','IG (Inspector General)','DGP (Director General of Police)','Other','Don’t know','Superintendent of Police']
+  opt = ['',_('Inspector'),_('Sub Inspector'),_('Assistant Sub Inspector'),_('Senior Superintendent of Police'),_('Deputy Superintendent of Police'),_('Station House Officer'),_('Constable'),_('Head Constable'),_('Sepoy'),_('DIG (Deputy Inspector General)'),_('IG (Inspector General)'),_('DGP (Director General of Police)'),_('Other'),_('Don’t know'),_('Superintendent of Police')]
   return opt[var]
 
 
@@ -921,7 +941,7 @@ def harrest_so_rank(var):
 def haffiliation(var):
   if var == None:
     return var
-  affilation = ['','Punjab Police','<span define="Border Security Force">BSF</span>','<span define="Central Reserve Police Force">CRPF</span>','Army','Criminal Investigation Agency','<span define="Irregular undercover security force, often consisting of criminals">Black cat</span>','Don’t Know','Other']
+  affilation = ['',_('Punjab Police'),_('<span define="Border Security Force">BSF</span>'),_('<span define="Central Reserve Police Force">CRPF</span>'),_('Army'),_('Criminal Investigation Agency'),_('<span define="Irregular undercover security force, often consisting of criminals">Black cat</span>'),_('Don’t know'),_('Other')]
   return affilation[var];
 
 

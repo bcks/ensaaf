@@ -1,32 +1,30 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}Profile Feedback{% endblock %}
+{% block title %}{% trans "Profile Feedback" %}{% endblock %}
 
 {% block content %}
 
-<h1>Contact Us</h1>
-
-<p>Questions? Comments? Inaccuracies? Please let us know below:</p>
-
-<hr />
-<form method="post" id="feedback">
-    {% csrf_token %}
-
-    <p>
-    <div><label for="id_from_email">Your email address:</label></div>
-    <input type="email" name="from_email" required id="id_from_email" />
-    </p>
-
-    <input type="hidden" name="referer" value="{{ request.META.HTTP_REFERER }}" />
-
-    <p>
-    <div><label for="id_message">Your message:</label></div>
-    <textarea name="message" cols="40" required rows="5" id="id_message"></textarea>
-    </p>
-
-    <div class="form-actions">
-      <button type="submit" class="btn btn-primary">Send</button>
-    </div>
-</form>
+  <h1>{% trans "Contact Us" %}</h1>
+  
+  <p>{% trans "Questions? Comments? Inaccuracies? Please let us know below:" %}</p>
+  
+  <hr />
+  
+  <form method="post" id="feedback">
+      {% csrf_token %}
+      <p>
+        <div><label for="id_from_email">{% trans "Your email address:" %}</label></div>
+        <input type="email" name="from_email" required id="id_from_email" />
+      </p>
+      <input type="hidden" name="referer" value="{{ request.META.HTTP_REFERER }}" />
+      <p>
+        <div><label for="id_message">{% trans "Your message:" %}</label></div>
+        <textarea name="message" cols="40" required rows="5" id="id_message"></textarea>
+      </p>
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">{% trans "Send" %}</button>
+      </div>
+  </form>
 
 {% endblock %}

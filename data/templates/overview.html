@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load humanize %}
 {% load profiletags %}
 
@@ -36,8 +37,8 @@
 
 <div class="row">
   <div class="col-12">
-    <h1>Key Statistics</h1>
-    Percentage of {{stats.total|intcomma}} documented cases. Percentages may not equal 100% because some respondents did not answer every survey question.</p>
+    <h1>{% trans 'Key Statistics' %}</h1>
+    {% trans 'Percentage of' %} {{stats.total|intcomma}} {% trans 'documented cases. Percentages may not equal 100% because some respondents did not answer every survey question.' %}</p>
   </div>    
 </div>    
 

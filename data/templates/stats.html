@@ -1,27 +1,28 @@
 {% load humanize %}
+{% load i18n %}
 {% load profiletags %}
 
 
 
 <div id="stats-profile" class="stats-block">
-  <p><a class="toggle-switch" href="#"><strong>Victim Demographics&nbsp;<span class="arrow"></span></strong></a></p>
+  <p><a class="toggle-switch" href="#"><strong>{% trans "Victim Demographics" %}&nbsp;<span class="arrow"></span></strong></a></p>
   <div class="toggle">
  
     <div class="row">
       <div class="col-12">
 
-        <p><strong>Gender</strong></p>
+        <p><strong>{% trans "Gender" %}</strong></p>
 
         <div>
           <span class="percent">{% percent stats.male stats.total%}%</span>
-          Male
+          {% trans "Male" %}
           <span class="number-of-cases">{{stats.male|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.male stats.total%}%">&nbsp;</div>
         </div> 
         <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.female stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.female stats.total%}%</span>
-          <a href="/profiles/?gender=Female">Female</a>
+          <a href="/profiles/?gender=Female">{% trans "Female" %}</a>
           <span class="number-of-cases">{{stats.female|intcomma}}</span>
         </div> 
 
@@ -33,11 +34,11 @@
     <div class="row">
       <div class="col-12">
 
-        <p><strong>Marital status</strong></p>
+        <p><strong>{% trans "Marital status" %}</strong></p>
 
         <div>
           <span class="percent">{% percent stats.not_married stats.total%}%</span>
-          Not married
+          {% trans "Not married" %}
           <span class="number-of-cases">{{stats.not_married|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.not_married stats.total%}%">&nbsp;</div>
         </div> 
@@ -45,7 +46,7 @@
         <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.married stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.married stats.total%}%</span>
-          Married
+          {% trans "Married" %}
           <span class="number-of-cases">{{stats.married|intcomma}}</span>
         </div> 
 
@@ -58,7 +59,7 @@
     <div class="row">
       <div class="col-12">
 
-        <p><strong>If married, did the victim have children?</strong></p>
+        <p><strong>{% trans "If married, did the victim have children?" %}</strong></p>
            {% for o in stats.children %}
            {%if o.1 %}
        
@@ -80,7 +81,7 @@
            {% endfor %}
 
 
-        <p><br>Total children surviving victims: {{stats.total_children|intcomma}}</p>
+        <p><br>{% trans "Total children surviving victims:" %} {{stats.total_children|intcomma}}</p>
       </div>
     </div>
     
@@ -89,7 +90,7 @@
     <div class="row">
       <div class="col-12">
 
-          <p><strong>Religion</strong></p>
+          <p><strong>{% trans "Religion" %}</strong></p>
 
            {% for o in stats.religion %}
            {%if o.1 %}
@@ -119,7 +120,7 @@
     <div class="row">
       <div class="col-12">
 
-          <p><strong>Caste</strong></p>
+          <p><strong>{% trans "Caste" %}</strong></p>
 
            {% for o in stats.caste %}
            {%if o.1 %}
@@ -149,7 +150,7 @@
     <div class="row">
       <div class="col-12">
 
-        <p><strong>Age</strong></p>
+        <p><strong>{% trans "Age" %}</strong></p>
 
            {% for o in stats.age_range %}
            {%if o.1 %}
@@ -170,7 +171,7 @@
     <div class="row">
       <div class="col-12">
 
-          <p><strong>Education</strong></p>
+          <p><strong>{% trans "Education" %}</strong></p>
 
            {% for o in stats.education %}
            {%if o.1 %}
@@ -191,7 +192,7 @@
     <div class="row">
       <div class="col-12">
 
-            <p><strong>Employment</strong></p>
+            <p><strong>{% trans "Employment" %}</strong></p>
 
            {% for o in stats.employment %}
            {%if o.1 %}
@@ -212,18 +213,18 @@
     <div class="row">
       <div class="col-12">
 
-        <p><strong>Urban / Rural</strong></p>
+        <p><strong>{% trans "Urban / Rural" %}</strong></p>
 
         <div>
           <span class="percent">{% percent stats.rural stats.total%}%</span>
-          Rural
+          {% trans 'Rural' %}
           <span class="number-of-cases">{{stats.rural|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.rural stats.total%}%">&nbsp;</div>
         </div> 
         <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.urban stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.urban stats.total%}%</span>
-          Urban
+          {% trans 'Urban' %}
           <span class="number-of-cases">{{stats.urban|intcomma}}</span>
         </div> 
 
@@ -238,18 +239,18 @@
 <hr>
 
 <div id="stats-detention" class="stats-block">
-  <p><a class="toggle-switch" href="#"><strong>Abduction, Detention, & Torture&nbsp;<span class="arrow"></span></strong></a></p>
+  <p><a class="toggle-switch" href="#"><strong>{% trans "Abduction, Detention, & Torture" %}&nbsp;<span class="arrow"></span></strong></a></p>
   <div class="toggle">
 
 
       <div class="row">
         <div class="col-12">
         
-          <p><strong>Prior detentions</strong></p>
+          <p><strong>{% trans "Prior detentions" %}</strong></p>
 
           <div>
           <span class="percent">{% percent stats.prior_detentions stats.total%}%</span>
-          Yes
+          {% trans "Yes" %}
           <span class="number-of-cases">{{stats.prior_detentions|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.prior_detentions stats.total%}%">&nbsp;</div>
           </div> 
@@ -257,7 +258,7 @@
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_prior_detentions stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.no_prior_detentions stats.total%}%</span>
-          No
+          {% trans "No" %}
           <span class="number-of-cases">{{stats.no_prior_detentions|intcomma}}</span>
           </div> 
 
@@ -269,18 +270,18 @@
 
       <div class="row">
         <div class="col-12">
-          <p><strong>Prior torture</strong></p>
+          <p><strong>{% trans "Prior torture" %}</strong></p>
 
           <div>          
           <span class="percent">{% percent stats.prior_torture_yes stats.total%}%</span>
-          Yes
+          {% trans "Yes" %}
           <span class="number-of-cases">{{stats.prior_torture_yes|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.prior_torture_yes stats.total%}%">&nbsp;</div>
           </div> 
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.prior_torture_no stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.prior_torture_no stats.total%}%</span>
-          No
+          {% trans "No" %}
           <span class="number-of-cases">{{stats.prior_torture_no|intcomma}}</span>
         </div> 
 
@@ -293,18 +294,18 @@
       <div class="row">
 
         <div class="col-12">
-          <p><strong>Abduction preceding enforced disappearance/extrajudicial execution</strong></p>
+          <p><strong>{% trans "Abduction preceding enforced disappearance/extrajudicial execution" %}</strong></p>
 
           <div>
           <span class="percent">{% percent stats.victim_arrest_status stats.total%}%</span>
-          Yes
+          {% trans "Yes" %}
           <span class="number-of-cases">{{stats.victim_arrest_status|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.victim_arrest_status stats.total%}%">&nbsp;</div>
           </div>
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_arrest_status stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.no_victim_arrest_status stats.total%}%</span>
-          No
+          {% trans "No" %}
           <span class="number-of-cases">{{stats.no_victim_arrest_status|intcomma}}</span>
           </div> 
 
@@ -315,11 +316,11 @@
 
       <div class="row">
         <div class="col-12">
-          <p><strong>Security officials informed witnesses where they were taking the victim</strong></p>
+          <p><strong>{% trans "Security officials informed witnesses where they were taking the victim" %}</strong></p>
 
           <div>
           <span class="percent">{% percent stats.so_inform_witnesses stats.witness_arrest_yes%}%</span>
-          Yes
+          {% trans "Yes" %}
           <span class="number-of-cases">{{stats.so_inform_witnesses|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.so_inform_witnesses stats.witness_arrest_yes%}%">&nbsp;</div>
           </div> 
@@ -327,7 +328,7 @@
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_so_inform_witnesses stats.witness_arrest_yes%}%">&nbsp;</div>
           <span class="percent">{% percent stats.no_so_inform_witnesses stats.witness_arrest_yes%}%</span>
-          No
+          {% trans "No" %}
           <span class="number-of-cases">{{stats.no_so_inform_witnesses|intcomma}}</span>
           </div> 
 
@@ -339,7 +340,7 @@
       <div class="row">
         <div class="col-12">
 
-          <p><strong>Witnesses to abduction</strong></p>
+          <p><strong>{% trans "Witnesses to abduction" %}</strong></p>
 
              {% for o in stats.witness_arrest %}
              {%if o.1 %}
@@ -368,7 +369,7 @@
       <div class="row">
         <div class="col-12">
 
-          <p><strong>Victim abduction location</strong></p>
+          <p><strong>{% trans "Victim abduction location" %}</strong></p>
 
              {% for o in stats.victim_arrest_location %}
              {%if o.1 %}
@@ -389,9 +390,9 @@
       <div class="row">
         <div class="col-12">
 
-          <p><strong>Detention facility type</strong></p>
+          <p><strong>{% trans "Detention facility type" %}</strong></p>
 
-          <p><em>Data forthcoming</em></p>
+          <p><em>{% trans "Data forthcoming" %}</em></p>
 
           {% comment %}
              {% for o in stats.detention_facility_type %}
@@ -413,18 +414,18 @@
 
       <div class="row">
         <div class="col-12">
-          <p><strong>Preceding detention location known</strong></p>
+          <p><strong>{% trans "Preceding detention location known" %}</strong></p>
 
           <div>
             <span class="percent">{% percent stats.victim_detention_loc_known stats.total%}%</span>
-            Yes
+            {% trans "Yes" %}
             <span class="number-of-cases">{{stats.victim_detention_loc_known|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent stats.victim_detention_loc_known stats.total%}%">&nbsp;</div>
           </div>
           <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_detention_loc_known stats.total%}%">&nbsp;</div>
             <span class="percent">{% percent stats.no_victim_detention_loc_known stats.total%}%</span>
-            No
+            {% trans "No" %}
             <span class="number-of-cases">{{stats.no_victim_detention_loc_known|intcomma}}</span>
           </div> 
 
@@ -436,9 +437,9 @@
       <div class="row">
         <div class="col-12">
 
-            <p><strong>Witnesses to detention preceding enforced disappearance/extrajudicial execution</strong></p>
+            <p><strong>{% trans "Witnesses to detention preceding enforced disappearance/extrajudicial execution" %}</strong></p>
             
-            <p><em>Data forthcoming</em></p>
+            <p><em>{% trans "Data forthcoming" %}</em></p>
 
              {% comment %}
               
@@ -463,7 +464,7 @@
       <div class="row">
         <div class="col-12">
 
-              <p><strong>Security official response to victim status</strong></p>
+              <p><strong>{% trans "Security official response to victim status" %}</strong></p>
 
              {% for o in stats.security_official_response %}
              {%if o.1 %}
@@ -484,11 +485,11 @@
       <div class="row">
         <div class="col-12">
         
-          <p><strong>Victim presented before judge/magistrate</strong></p>
+          <p><strong>{% trans "Victim presented before judge/magistrate" %}</strong></p>
         
           <div>
           <span class="percent">{% percent stats.judge_or_magistrate_status stats.total%}%</span>
-          Yes
+          {% trans "Yes" %}
           <span class="number-of-cases">{{stats.judge_or_magistrate_status|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.judge_or_magistrate_status stats.total%}%">&nbsp;</div>
           </div> 
@@ -496,7 +497,7 @@
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_judge_or_magistrate_status stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.no_judge_or_magistrate_status stats.total%}%</span>
-          No
+          {% trans "No" %}
           <span class="number-of-cases">{{stats.no_judge_or_magistrate_status|intcomma}}</span>
           </div> 
 
@@ -511,16 +512,16 @@
 <hr>
 
 <div id="stats-execution" class="stats-block">
-  <p><a class="toggle-switch" href="#"><strong>Enforced Disappearances vs. Extrajudicial Executions&nbsp;<span class="arrow"></span></strong></a></p>
+  <p><a class="toggle-switch" href="#"><strong>{% trans "Enforced Disappearances vs. Extrajudicial Executions" %}&nbsp;<span class="arrow"></span></strong></a></p>
   <div class="toggle">
 
     <div class="row">
       <div class="col-12">
-        <p><strong>Classification</strong></p>
+        <p><strong>{% trans "Classification" %}</strong></p>
               
         <div>
           <span class="percent">{% percent stats.total_killed stats.total%}%</span>
-          Extrajudicial executions
+          {% trans "Extrajudicial executions" %}
           <span class="number-of-cases">{{stats.total_killed|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.total_killed stats.total%}%">&nbsp;</div>
         </div> 
@@ -528,7 +529,7 @@
         <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.total_disappeared stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.total_disappeared stats.total%}%</span>
-          Enforced disappearances
+          {% trans "Enforced disappearances" %}
           <span class="number-of-cases">{{stats.total_disappeared|intcomma}}</<span>
         </div> 
 
@@ -541,12 +542,12 @@
     <div class="row">
       <div class="col-12">
 
-        <p><strong>Number of victims per family</strong></p>
+        <p><strong>{% trans "Number of victims per family" %}</strong></p>
            {% for o in stats.number_of_victims %}
            {% if o.number_of_victims %}
      
             <div>
-            <span class="percent">{% percent o.number_of_victims__count stats.total %}%</span> {{o.number_of_victims}} victim{{ o.number_of_victims|pluralize }} <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
+            <span class="percent">{% percent o.number_of_victims__count stats.total %}%</span> {{o.number_of_victims}} {% trans 'victim' %}{% if request.LANGUAGE_CODE == 'en-US' %}{{ o.number_of_victims|pluralize }}{%endif%} <span class="number-of-cases">{{o.number_of_victims__count|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent o.number_of_victims__count stats.total %}%">&nbsp;</div>        
             </div>
      
@@ -563,11 +564,11 @@
     <div class="row">
       <div class="col-12">
 
-        <p><strong>Related incidents</strong></p>
+        <p><strong>{% trans "Related incidents" %}</strong></p>
 
         <div>
           <span class="percent">{% percent stats.genuine_encounter stats.total%}%</span>
-          Genuine encounters in family
+          {% trans "Genuine encounters in family" %}
           <span class="number-of-cases">{{stats.genuine_encounter|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.genuine_encounter stats.total%}%">&nbsp;</div>
         </div> 
@@ -575,7 +576,7 @@
         <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.not_genuine_encounter stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.not_genuine_encounter stats.total%}%</span>
-          No genuine encounters in family
+          {% trans "No genuine encounters in family" %}
           <span class="number-of-cases">{{stats.not_genuine_encounter|intcomma}}</span>
         </div> 
 
@@ -593,14 +594,14 @@
 
 
 <div id="stats-disposal" class="stats-block">
-  <p><a class="toggle-switch" href="#"><strong>Body Disposal&nbsp;<span class="arrow"></span></strong></a></p>
+  <p><a class="toggle-switch" href="#"><strong>{% trans "Body Disposal" %}&nbsp;<span class="arrow"></span></strong></a></p>
   <div class="toggle">
 
 
       <div class="row">
         <div class="col-12">
 
-            <p><strong>Body disposal by security forces</strong><p>
+            <p><strong>{% trans "Body disposal by security forces" %}</strong><p>
 
            {% for o in stats.so_body_disposal %}
            {%if o.1 %}
@@ -621,11 +622,11 @@
       <div class="row">
         <div class="col-12">
 
-        <p><strong>Security forces returned body</strong></p>
+        <p><strong>{% trans "Security forces returned body" %}</strong></p>
 
         <div>
           <span class="percent">{% percent stats.so_return_body_1 stats.total%}%</span>
-          Yes
+          {% trans "Yes" %}
           <span class="number-of-cases">{{stats.so_return_body_1|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.so_return_body_1 stats.total%}%">&nbsp;</div>
         </div> 
@@ -639,7 +640,7 @@
 
         <div>
           <span class="percent">{% percent stats.no_so_return_body stats.total%}%</span>
-          No
+          {% trans "No" %}
           <span class="number-of-cases">{{stats.no_so_return_body|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.no_so_return_body stats.total%}%">&nbsp;</div>
         </div> 
@@ -653,7 +654,7 @@
       <div class="row">
         <div class="col-12">
 
-          <p><strong>Condition of corpse, if known</strong></p>
+          <p><strong>{% trans "Condition of corpse, if known" %}</strong></p>
 
              {% for o in stats.condition_of_remains %}
              {%if o.1 %}
@@ -679,18 +680,18 @@
 <hr>
 
 <div id="stats-security" class="stats-block">
-  <p><a class="toggle-switch" href="#"><strong>Security Forces Implicated&nbsp;<span class="arrow"></span></strong></a></p>
+  <p><a class="toggle-switch" href="#"><strong>{% trans "Security Forces Implicated" %}&nbsp;<span class="arrow"></span></strong></a></p>
   <div class="toggle">
 
 
       <div class="row">
 
         <div class="col-12">
-          <p><strong>Names of involved security officials known</strong></p>
+          <p><strong>{% trans "Names of involved security officials known" %}</strong></p>
         
           <div>
           <span class="percent">{% percent stats.securityoff_id_known stats.total%}%</span>
-          Yes
+          {% trans "Yes" %}
           <span class="number-of-cases">{{stats.securityoff_id_known|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.securityoff_id_known stats.total%}%">&nbsp;</div>
          </div> 
@@ -698,7 +699,7 @@
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_securityoff_id_known stats.total%}%">&nbsp;</div>
           <span class="percent">{% percent stats.no_securityoff_id_known stats.total%}%</span>
-          No
+          {% trans "No" %}
           <span class="number-of-cases">{{stats.no_securityoff_id_known|intcomma}}</span>
           </div> 
 
@@ -712,11 +713,11 @@
       <div class="row">
         <div class="col-12">
         
-          <p><strong>Security forces uniformed</strong></p>
+          <p><strong>{% trans "Security forces uniformed" %}</strong></p>
 
           <div>
           <span class="percent">{% percent stats.security_forces_uniformed stats.witness_arrest_yes%}%</span>
-          Yes
+          {% trans "Yes" %}
           <span class="number-of-cases">{{stats.security_forces_uniformed|intcomma}}</span>
           <div class="percent-bar" style="width:{% percent stats.security_forces_uniformed stats.witness_arrest_yes%}%">&nbsp;</div>
           </div> 
@@ -724,7 +725,7 @@
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_security_forces_uniformed stats.witness_arrest_yes%}%">&nbsp;</div>
           <span class="percent">{% percent stats.no_security_forces_uniformed stats.witness_arrest_yes%}%</span>
-          No
+          {% trans "No" %}
           <span class="number-of-cases">{{stats.no_security_forces_uniformed|intcomma}}</span>
           </div> 
 
@@ -738,7 +739,7 @@
       <div class="row">
         <div class="col-12">
 
-            <p><strong>Type(s) of security forces involved in abduction</strong></p>
+            <p><strong>{% trans "Type(s) of security forces involved in abduction" %}</strong></p>
 
              {% for o in stats.arrest_security_type %}
              {%if o.1 %}
@@ -761,7 +762,7 @@
       <div class="row">
         <div class="col-12">
 
-            <p><strong>Type(s) of security forces involved in extrajudicial execution</strong></p>
+            <p><strong>{% trans "Type(s) of security forces involved in extrajudicial execution" %}</strong></p>
 
              {% for o in stats.killing_securityforcestype %}
              {%if o.1 %}
@@ -786,16 +787,16 @@
 <hr>
 
 <div id="stats-militancy" class="stats-block">
-  <p><a class="toggle-switch" href="#"><strong>Militancy Involvement&nbsp;<span class="arrow"></span></strong></a></p>
+  <p><a class="toggle-switch" href="#"><strong>{% trans "Militancy Involvement" %}&nbsp;<span class="arrow"></span></strong></a></p>
   <div class="toggle">
 
         <div class="row">
           <div class="col-12">
-            <p><strong>Combatant status</strong></p>
+            <p><strong>{% trans "Combatant status" %}</strong></p>
 
           <div>
             <span class="percent">{% percent stats.militant stats.total%}%</span>
-            Combatant
+            {% trans "Combatant" %}
             <span class="number-of-cases">{{stats.militant|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent stats.militant stats.total%}%">&nbsp;</div>
           </div> 
@@ -803,7 +804,7 @@
           <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.not_militant stats.total%}%">&nbsp;</div>
             <span class="percent">{% percent stats.not_militant stats.total%}%</span>
-            Non-combatant
+            {% trans "Non-combatant" %}
             <span class="number-of-cases">{{stats.not_militant|intcomma}}</span>
           </div> 
 
@@ -814,11 +815,11 @@
 
         <div class="row">
           <div class="col-12">
-            <p><strong>Non-combatant, provided support to militants</strong></p>
+            <p><strong>{% trans "Non-combatant, provided support to militants" %}</strong></p>
 
             <div>          
             <span class="percent">{% percent stats.militant_support stats.total%}%</span>
-            Yes
+            {% trans "Yes" %}
             <span class="number-of-cases">{{stats.militant_support|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent stats.militant_support stats.total%}%">&nbsp;</div>
             </div> 
@@ -826,7 +827,7 @@
             <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.no_militant_support stats.total%}%">&nbsp;</div>
             <span class="percent">{% percent stats.no_militant_support stats.total%}%</span>
-            No
+            {% trans "No" %}
             <span class="number-of-cases">{{stats.no_militant_support|intcomma}}</span>
             </div> 
 
@@ -837,18 +838,18 @@
 
         <div class="row">
           <div class="col-12">
-            <p><strong>If provided support, support was voluntary</strong></p>
+            <p><strong>{% trans "If provided support, support was voluntary" %}</strong></p>
 
             <div>          
             <span class="percent">{% percent stats.victim_militant_support_voluntary stats.total%}%</span>
-            Yes
+            {% trans "Yes" %}
             <span class="number-of-cases">{{stats.victim_militant_support_voluntary|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent stats.victim_militant_support_voluntary stats.total%}%">&nbsp;</div>
             </div> 
             <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.victim_militant_support_forced stats.total%}%">&nbsp;</div>
             <span class="percent">{% percent stats.victim_militant_support_forced stats.total%}%</span>
-            No
+            {% trans "No" %}
             <span class="number-of-cases">{{stats.victim_militant_support_forced|intcomma}}</span>
           </div> 
 
@@ -864,18 +865,18 @@
 
 
 <div id="stats-advocacy" class="stats-block">
-  <p><a class="toggle-switch" href="#"><strong>Remedies & Impact&nbsp;<span class="arrow"></span></strong></a></p>
+  <p><a class="toggle-switch" href="#"><strong>{% trans "Remedies & Impact" %}&nbsp;<span class="arrow"></span></strong></a></p>
   <div class="toggle">
 
 
       <div class="row">
         <div class="col-12">
 
-          <p><strong>Approached court or commission</strong></p>
+          <p><strong>{% trans "Approached court or commission" %}</strong></p>
           
           <div>
             <span class="percent">{% percent stats.court_or_commission stats.total%}%</span>
-            Yes
+            {% trans "Yes" %}
             <span class="number-of-cases">{{stats.court_or_commission|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent stats.court_or_commission stats.total%}%">&nbsp;</div>
           </div> 
@@ -883,7 +884,7 @@
           <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.no_court_or_commission stats.total%}%">&nbsp;</div>
             <span class="percent">{% percent stats.no_court_or_commission stats.total%}%</span>
-            No
+            {% trans "No" %}
             <span class="number-of-cases">{{stats.no_court_or_commission|intcomma}}</span>
           </div> 
 
@@ -899,11 +900,11 @@
 
         <div class="col-12">
 
-          <p><strong>Approached security officials</strong></p>
+          <p><strong>{% trans "Approached security officials" %}</strong></p>
 
           <div>
             <span class="percent">{% percent stats.security_officials_apprchd stats.total%}%</span>
-            Yes
+            {% trans "Yes" %}
             <span class="number-of-cases">{{stats.security_officials_apprchd|intcomma}}</span>
             <div class="percent-bar" style="width:{% percent stats.security_officials_apprchd stats.total%}%">&nbsp;</div>
           </div> 
@@ -911,7 +912,7 @@
           <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.no_security_officials_apprchd stats.total%}%">&nbsp;</div>
             <span class="percent">{% percent stats.no_security_officials_apprchd stats.total%}%</span>
-            No
+            {% trans "No" %}
             <span class="number-of-cases">{{stats.no_security_officials_apprchd|intcomma}}</span>
           </div> 
 
@@ -923,7 +924,7 @@
       <div class="row">
         <div class="col-12">
 
-              <p><strong>Reason the family did not pursue any kind of action</strong></p>
+              <p><strong>{% trans "Reason the family did not pursue any kind of action" %}</strong></p>
 
              {% for o in stats.no_action_pursued_reason %}
              {%if o.1 %}
@@ -944,7 +945,7 @@
       <div class="row">
         <div class="col-12">
 
-              <p><strong>Remedies desired from government</strong></p>
+              <p><strong>{% trans "Remedies desired from government" %}</strong></p>
 
              {% for o in stats.govnt_response_desired %}
              {%if o.1 %}
@@ -970,14 +971,14 @@
     
 
 <div id="stats-location" class="stats-block">
-  <p><a class="toggle-switch" href="#"><strong>Year &amp; District &nbsp;<span class="arrow"></span></strong></a></p>
+  <p><a class="toggle-switch" href="#"><strong>{% trans "Year &amp; District" %}&nbsp;<span class="arrow"></span></strong></a></p>
   <div class="toggle">
 
 
       <div class="row">
         <div class="col-12">
 
-          <p><strong>District</strong></p>
+          <p><strong>{% trans "District" %}</strong></p>
           
              {% for o in stats.districts %}
              {%if o.1 %}
@@ -998,7 +999,7 @@
       <div class="row">
         <div class="col-12">
 
-          <p><strong>Year</strong></p>
+          <p><strong>{% trans "Year" %}</strong></p>
           
              {% for o in stats.years %}
      

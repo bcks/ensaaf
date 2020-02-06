@@ -5,7 +5,7 @@
 {% load profiletags %}
 
 
-{% block title %}{% if request.LANGUAGE_CODE == 'pa' %}ਪੰਜਾਬ ਵਿੱਚ ਹੋਏ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਉਲੰਘਣਾ ਦਾ ਨਕਸ਼ਾ{% else %}Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India{% endif %}{% endblock %}
+{% block title %}{% trans "Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" %}{% endblock %}
 
 {% block head %}
 
@@ -17,12 +17,12 @@
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@ensaaf" />
-  <meta name="twitter:title" content="Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" />
+  <meta name="twitter:title" content="{% trans "Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" %}" />
   <meta name="twitter:description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions, based on data collected through primary source interviews." />
   <meta name="twitter:creator" content="@ensaaf" />
   <meta name="twitter:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
-  <meta property="og:title" content="Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" />
+  <meta property="og:title" content="{% trans "Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" %}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://data.ensaaf.org" />
   <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
@@ -69,7 +69,7 @@
 
 <div class="row" id="clear-filters"{%if selected %} style="display:block;"{%endif%}>
   <div class="col-12">
-      <p class="float-right"><a href="#" onclick="clearFilters();return false;">Clear filters</a></p>
+      <p class="float-right"><a href="#" onclick="clearFilters();return false;">{% trans 'Clear filters' %}</a></p>
   </div>
 </div>
 
@@ -188,7 +188,7 @@
 
 <div id="map-over">
   <div class="container">
-    <h4>At least <span id="count">{{all|length|intcomma}}</span> Enforced Disappearance<span class="count-plural">s</span>/Extrajudicial Execution<span class="count-plural">s</span></h4>
+    <h4>{% trans "At least" %} <span id="count">{{all|length|intcomma}}</span> {% trans 'Enforced Disappearance<span class="count-plural">s</span>/Extrajudicial Execution<span class="count-plural">s</span>' %}</h4>
   </div><!-- end container -->
 </div>
 <div id="mapid"></div>
@@ -204,13 +204,7 @@
 
   <div class="row">
     <div class="col-12">
-
-    {% if request.LANGUAGE_CODE == 'pa' %}
-      <p>ਇਹ ਸਾਰੀ ਜਾਣਕਾਰੀ ਜੋ ਕੀ ਇਸ ਪ੍ਰਾਜੈਕਟ ਦੇ ਰਾਹੀਂ ਆਪ ਜੀ ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ। ਇਹ ਜਾਣਕਾਰੀ ਪੀੜਿਤ ਪਰਿਵਾਰਾਂ ਤੋਂ ਇਕੱਠੀ ਕੀਤੀ ਗਈ ਹੈ। ਜਿਹਨਾਂ ਦੇ ਪਰਵਾਰਿਕ ਮੈਂਬਰ ਲਾਪਤਾ ਜਾਂ ਫਿਰ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਤਰੀਕੇ ਦੇ ਨਾਲ ਮਾਰੇ ਗਏ ਸਨ। ਇਸ ਸਾਈਟ ਨੂੰ ਤਿਆਰ ਕਰਨ ਦਾ ਮਕਸਦ ਇਹ ਹੈ ਕਿ ਜੋ ਅੱਤਿਆਚਾਰ ਅਤੇ ਅਪਰਾਧ ਭਾਰਤੀ ਸੁਰੱਖਿਆ ਬੱਲਾ ਨੇ ਪੰਜਾਬ ਿਵੱਚ ਕੀਤੇ ਹਨ ਉਹਨਾਂ ਦੀ ਸਚਾਈ ਨੂੰ ਦੁਨਿਆਵੀ ਪੱਧਰ ਤੇ ਪੇਸ਼ ਕੀਤਾ ਜਾਵੇ। ਹੋਰ ਵਧੇਰੀ ਜਾਣਕਾਰੀ ਵਾਸਤੇ ਅਗੇ ਪੜ੍ਹੋ।</p>
-    {% else %}
-      <p>The Crimes Against Humanity Data Project is a portrait of widespread and systematic enforced disappearances and extrajudicial executions, based on data collected through primary source interviews. Ensaaf created this site to build informed consensus on the nature of the crimes perpetrated by India’s security forces in Punjab. <a href="/about/">Read more about our goals »</a></p>
-    {% endif %}
-
+     <p>{% trans "The Crimes Against Humanity Data Project is a portrait of widespread and systematic enforced disappearances and extrajudicial executions, based on data collected through primary source interviews. Ensaaf created this site to build informed consensus on the nature of the crimes perpetrated by India’s security forces in Punjab." %} <a href="/about/">{% trans "Read more about our goals" %} »</a></p>
     </div>
   </div>
 
@@ -423,7 +417,7 @@ function updateMap(start, end) {
               markers[key].on('mouseout', function (e) { this.closePopup(); });
               markers[key].on('click', function (e) {
                 var params = $('#form').serialize();
-                document.location.href = this.options.url + '/?' + params;
+                document.location.href = {% if request.LANGUAGE_CODE == 'pa' %}'/pa' + {% endif %} this.options.url + '/?' + params;
               });
 
 
