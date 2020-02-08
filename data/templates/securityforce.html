@@ -49,7 +49,7 @@
     <hr>
   {% endif %}
 
-  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} directly implicating {{name}} in abduction/disappearance:</p>
+  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} directly implicating {{name}} in abduction/disappearance:</p>
 
   {% regroup victims.all by district as district_list %}
 

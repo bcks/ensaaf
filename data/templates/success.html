@@ -4,10 +4,10 @@
 
 {% block content %}
 
-<h1>Thank You</h1>
+<h1>{% trans 'Thank You' %}</h1>
 
-<p>Your message has been sent</p>
+<p>{% trans 'Your message has been sent' %}</p>
 
-<p>Return to the {% if referer %}<a href="{{referer}}">previous profile page</a> or visit the{% endif %} <a href="/">home page</a>.</p>
+<p>{% trans 'Return to the' %} {% if referer %}<a href="{{referer}}">{% trans 'previous profile page' %}</a> {% trans 'or visit the' %} {% endif %} <a href="/">{% trans 'home page' %}</a>.</p>
 
 {% endblock %}

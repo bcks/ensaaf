@@ -188,7 +188,7 @@
 
 <div id="map-over">
   <div class="container">
-    <h4>{% trans "At least" %} <span id="count">{{all|length|intcomma}}</span> {% trans 'Enforced Disappearance<span class="count-plural">s</span>/Extrajudicial Execution<span class="count-plural">s</span>' %}</h4>
+    <h4>{% trans "At least" %} <span id="count">{{all|length|numpa}}</span> {% trans 'Enforced Disappearance<span class="count-plural">s</span>/Extrajudicial Execution<span class="count-plural">s</span>' %}</h4>
   </div><!-- end container -->
 </div>
 <div id="mapid"></div>
@@ -227,9 +227,22 @@ $('#year_buttons button').on('click', function(e) {
 });
 */
 
+function numpa(num) {
+    var num = num.toString();
+    var dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫','6':'੬','7':'੭','8':'੮','9':'੯'};
+    var output = [];
+    for (let i = 0; i < num.length; i++) {
+      output.push( dic[ num[i] ] );
+    }
+    return output.join('');
+}
 
 function numberWithCommas(x) {
+  {% if request.LANGUAGE_CODE == 'pa' %}
+  return numpa( x.toString() );
+  {% else %}
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  {% endif %}
 }
 
 

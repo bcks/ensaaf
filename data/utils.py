@@ -4,6 +4,8 @@ from django.utils.translation import ugettext as _
 import operator
 
 
+
+
 def calculate_stats(all):
     total_disappeared = all.filter(victim_disappeared_killed='1').count()
     total_killed = all.filter(victim_disappeared_killed='2').count()

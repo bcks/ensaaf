@@ -1,4 +1,5 @@
 import re
+import numbers
 from django import template
 from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
@@ -21,6 +22,16 @@ def sex(var):
     return _('Female')
   return
 
+
+
+@register.filter()
+def numpa(number_string):
+    if (get_language() == 'pa') and ( isinstance(number_string, numbers.Number) ):
+      number_string = str(number_string)
+      dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫','6':'੬','7':'੭','8':'੮','9':'੯'}
+      return "".join([dic[c] for c in number_string])
+    else:
+      return format(number_string, ",")
 
 
 @register.filter(name='uncensus')

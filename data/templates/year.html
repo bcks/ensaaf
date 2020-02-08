@@ -45,7 +45,7 @@
 <div class="row keyword">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|intcomma}} documented case{{stats.total|pluralize}} in {{year}}:</p>
+  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} in {{year}}:</p>
 
   {% regroup victims.all by district as district_list %}
 
