@@ -35,7 +35,7 @@
   <div class="col-sm-12">
     <h1 style="margin-bottom:1rem;">{% trans villages.all.0.tehsil %}</h1>
     <p><span class="kicker">{% trans 'District' %}:</span> <a href="{% url 'district' villages.all.0.district_id %}">{% trans villages.all.0.district %}</a></p>
-    <p class="kicker" style="margin-bottom:1rem;">Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.</p>
+    <p class="kicker" style="margin-bottom:1rem;">{% trans 'Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.' %}</p>
     <br>
   </div>
 </div>
@@ -45,13 +45,24 @@
 <div class="row">
   <div class="col-sm-6">
 
-    <p>{{stats.total|numpa}} documented cases in {{villages.all.0.tehsil}} Subdistrict</p>
-    
-    {% for village in villages_with_count %}
+    {% if request.LANGUAGE_CODE == 'pa' %}
+      <p>{% trans villages.all.0.tehsil %}, {{stats.total|numpa}} ਤਹਿਸੀਲ ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਕੇਸ</p>
+    {% else %}
+      <p>{{stats.total|numpa}} documented cases in {{villages.all.0.tehsil}} Subdistrict</p>
+    {% endif %}
+
+      {% for village in villages_with_count %}
 
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        <a href="{% url 'village' village.vid %}">{{village.village_name}}</a>, {{village.data_count}}{% if forloop.first %} case{{village.data_count|pluralize }}{% endif %}
+        <a href="{% url 'village' village.vid %}">{{village.village_name}}</a>, {{village.data_count|numpa}}
+        {% if forloop.first %} 
+          {% if request.LANGUAGE_CODE == 'pa' %}
+            ਦਰਜ ਕੀਤੇ ਕੇਸ
+          {% else %}
+            case{{village.data_count|pluralize}}
+          {% endif %}  
+        {% endif %}  
       </div>
     </div>
       
@@ -60,7 +71,11 @@
   </div>
   <div class="col-sm-6 border-left">
 
-    <p>Key statistics for documented cases in {{villages.all.0.tehsil}} Subdistrict</p>
+    {% if request.LANGUAGE_CODE == 'pa' %}
+      <p>{% trans villages.all.0.tehsil %} ਤਹਿਸੀਲ ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਕੇਸਾਂ ਦੇ ਮੁੱਖ ਅੰਕੜੇ</p>
+    {% else %}
+      <p>Key statistics for documented cases in {{villages.all.0.tehsil}} Subdistrict</p>
+    {% endif %}
 
     {% include 'stats.html' %}
 

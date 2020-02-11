@@ -28,9 +28,10 @@ def sex(var):
 def numpa(number_string):
     if (get_language() == 'pa') and ( isinstance(number_string, numbers.Number) ):
       number_string = str(number_string)
-      dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫','6':'੬','7':'੭','8':'੮','9':'੯'}
+      dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫',\
+      '6':'੬','7':'੭','8':'੮','9':'੯','.':'.',',':','}
       return "".join([dic[c] for c in number_string])
-    else:
+    else:            
       return format(number_string, ",")
 
 
@@ -962,9 +963,18 @@ def percent(item1, total):
     if total == 0:
       return 0
     try:
-        return "%.1f" % ((float(item1) / float(total)) * 100)
-    except ValueError:
-        return ''
+        return "%.1f" % ((float(item1) / float(total)) * 100) 
+    except ValueError as e:
+      return ''
+
+@register.simple_tag()
+def percentpa(item1, total):
+    if total == 0:
+      return numpa( 0 )
+    try:
+        return numpa(float( "%.1f" % ((float(item1) / float(total)) * 100) ))
+    except ValueError as e:
+      return ''
 
 
 @register.simple_tag()

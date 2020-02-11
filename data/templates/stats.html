@@ -14,14 +14,14 @@
         <p><strong>{% trans "Gender" %}</strong></p>
 
         <div>
-          <span class="percent">{% percent stats.male stats.total%}%</span>
+          <span class="percent">{% percentpa stats.male stats.total%}%</span>
           {% trans "Male" %}
           <span class="number-of-cases">{{stats.male|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.male stats.total%}%">&nbsp;</div>
         </div> 
         <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.female stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.female stats.total%}%</span>
+          <span class="percent">{% percentpa stats.female stats.total%}%</span>
           <a href="/profiles/?gender=Female">{% trans "Female" %}</a>
           <span class="number-of-cases">{{stats.female|numpa}}</span>
         </div> 
@@ -37,7 +37,7 @@
         <p><strong>{% trans "Marital status" %}</strong></p>
 
         <div>
-          <span class="percent">{% percent stats.not_married stats.total%}%</span>
+          <span class="percent">{% percentpa stats.not_married stats.total%}%</span>
           {% trans "Not married" %}
           <span class="number-of-cases">{{stats.not_married|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.not_married stats.total%}%">&nbsp;</div>
@@ -45,7 +45,7 @@
 
         <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.married stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.married stats.total%}%</span>
+          <span class="percent">{% percentpa stats.married stats.total%}%</span>
           {% trans "Married" %}
           <span class="number-of-cases">{{stats.married|numpa}}</span>
         </div> 
@@ -65,7 +65,7 @@
        
             {% if forloop.first %}
             <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+            <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
             {% endif %}
@@ -73,7 +73,7 @@
             {% if forloop.last %}
             <div>
             <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+            <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
             </div>
             {% endif %}
        
@@ -97,7 +97,7 @@
        
             {% if forloop.first %}
             <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+            <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
            {% endif %}
@@ -105,7 +105,7 @@
             {% if forloop.last %}
             <div>
             <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+            <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
             </div>
            {% endif %}
    
@@ -127,7 +127,7 @@
        
             {% if forloop.first %}
             <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+            <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
            {% endif %}
@@ -135,7 +135,7 @@
             {% if forloop.last %}
             <div>
             <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+            <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
             </div>
            {% endif %}
        
@@ -156,7 +156,7 @@
            {%if o.1 %}
        
             <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+            <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
@@ -177,7 +177,7 @@
            {%if o.1 %}
        
             <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+            <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
@@ -198,7 +198,7 @@
            {%if o.1 %}
        
             <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+            <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
@@ -216,14 +216,14 @@
         <p><strong>{% trans "Urban / Rural" %}</strong></p>
 
         <div>
-          <span class="percent">{% percent stats.rural stats.total%}%</span>
+          <span class="percent">{% percentpa stats.rural stats.total%}%</span>
           {% trans 'Rural' %}
           <span class="number-of-cases">{{stats.rural|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.rural stats.total%}%">&nbsp;</div>
         </div> 
         <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.urban stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.urban stats.total%}%</span>
+          <span class="percent">{% percentpa stats.urban stats.total%}%</span>
           {% trans 'Urban' %}
           <span class="number-of-cases">{{stats.urban|numpa}}</span>
         </div> 
@@ -249,7 +249,7 @@
           <p><strong>{% trans "Prior detentions" %}</strong></p>
 
           <div>
-          <span class="percent">{% percent stats.prior_detentions stats.total%}%</span>
+          <span class="percent">{% percentpa stats.prior_detentions stats.total%}%</span>
           {% trans "Yes" %}
           <span class="number-of-cases">{{stats.prior_detentions|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.prior_detentions stats.total%}%">&nbsp;</div>
@@ -257,7 +257,7 @@
 
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_prior_detentions stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_prior_detentions stats.total%}%</span>
+          <span class="percent">{% percentpa stats.no_prior_detentions stats.total%}%</span>
           {% trans "No" %}
           <span class="number-of-cases">{{stats.no_prior_detentions|numpa}}</span>
           </div> 
@@ -273,14 +273,14 @@
           <p><strong>{% trans "Prior torture" %}</strong></p>
 
           <div>          
-          <span class="percent">{% percent stats.prior_torture_yes stats.total%}%</span>
+          <span class="percent">{% percentpa stats.prior_torture_yes stats.total%}%</span>
           {% trans "Yes" %}
           <span class="number-of-cases">{{stats.prior_torture_yes|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.prior_torture_yes stats.total%}%">&nbsp;</div>
           </div> 
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.prior_torture_no stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.prior_torture_no stats.total%}%</span>
+          <span class="percent">{% percentpa stats.prior_torture_no stats.total%}%</span>
           {% trans "No" %}
           <span class="number-of-cases">{{stats.prior_torture_no|numpa}}</span>
         </div> 
@@ -297,14 +297,14 @@
           <p><strong>{% trans "Abduction preceding enforced disappearance/extrajudicial execution" %}</strong></p>
 
           <div>
-          <span class="percent">{% percent stats.victim_arrest_status stats.total%}%</span>
+          <span class="percent">{% percentpa stats.victim_arrest_status stats.total%}%</span>
           {% trans "Yes" %}
           <span class="number-of-cases">{{stats.victim_arrest_status|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.victim_arrest_status stats.total%}%">&nbsp;</div>
           </div>
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_arrest_status stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_victim_arrest_status stats.total%}%</span>
+          <span class="percent">{% percentpa stats.no_victim_arrest_status stats.total%}%</span>
           {% trans "No" %}
           <span class="number-of-cases">{{stats.no_victim_arrest_status|numpa}}</span>
           </div> 
@@ -319,7 +319,7 @@
           <p><strong>{% trans "Security officials informed witnesses where they were taking the victim" %}</strong></p>
 
           <div>
-          <span class="percent">{% percent stats.so_inform_witnesses stats.witness_arrest_yes%}%</span>
+          <span class="percent">{% percentpa stats.so_inform_witnesses stats.witness_arrest_yes%}%</span>
           {% trans "Yes" %}
           <span class="number-of-cases">{{stats.so_inform_witnesses|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.so_inform_witnesses stats.witness_arrest_yes%}%">&nbsp;</div>
@@ -327,7 +327,7 @@
 
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_so_inform_witnesses stats.witness_arrest_yes%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_so_inform_witnesses stats.witness_arrest_yes%}%</span>
+          <span class="percent">{% percentpa stats.no_so_inform_witnesses stats.witness_arrest_yes%}%</span>
           {% trans "No" %}
           <span class="number-of-cases">{{stats.no_so_inform_witnesses|numpa}}</span>
           </div> 
@@ -347,14 +347,14 @@
 
             {% if forloop.first %}
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
             {% endif %}
             {% if forloop.last %}
               <div>
               <div class="percent-bar bar-2" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|numpa}}</span>
               </div>
             {% endif %}
 
@@ -375,7 +375,7 @@
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
 
@@ -399,7 +399,7 @@
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0|safe}} <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}% </span> {{o.0|safe}} <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
 
@@ -417,14 +417,14 @@
           <p><strong>{% trans "Preceding detention location known" %}</strong></p>
 
           <div>
-            <span class="percent">{% percent stats.victim_detention_loc_known stats.total%}%</span>
+            <span class="percent">{% percentpa stats.victim_detention_loc_known stats.total%}%</span>
             {% trans "Yes" %}
             <span class="number-of-cases">{{stats.victim_detention_loc_known|numpa}}</span>
             <div class="percent-bar" style="width:{% percent stats.victim_detention_loc_known stats.total%}%">&nbsp;</div>
           </div>
           <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.no_victim_detention_loc_known stats.total%}%">&nbsp;</div>
-            <span class="percent">{% percent stats.no_victim_detention_loc_known stats.total%}%</span>
+            <span class="percent">{% percentpa stats.no_victim_detention_loc_known stats.total%}%</span>
             {% trans "No" %}
             <span class="number-of-cases">{{stats.no_victim_detention_loc_known|numpa}}</span>
           </div> 
@@ -447,7 +447,7 @@
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
 
@@ -470,7 +470,7 @@
              {%if o.1 %}
        
               <div>
-              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0|safe}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0|safe}}  <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
        
@@ -488,7 +488,7 @@
           <p><strong>{% trans "Victim presented before judge/magistrate" %}</strong></p>
         
           <div>
-          <span class="percent">{% percent stats.judge_or_magistrate_status stats.total%}%</span>
+          <span class="percent">{% percentpa stats.judge_or_magistrate_status stats.total%}%</span>
           {% trans "Yes" %}
           <span class="number-of-cases">{{stats.judge_or_magistrate_status|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.judge_or_magistrate_status stats.total%}%">&nbsp;</div>
@@ -496,7 +496,7 @@
 
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_judge_or_magistrate_status stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_judge_or_magistrate_status stats.total%}%</span>
+          <span class="percent">{% percentpa stats.no_judge_or_magistrate_status stats.total%}%</span>
           {% trans "No" %}
           <span class="number-of-cases">{{stats.no_judge_or_magistrate_status|numpa}}</span>
           </div> 
@@ -520,7 +520,7 @@
         <p><strong>{% trans "Classification" %}</strong></p>
               
         <div>
-          <span class="percent">{% percent stats.total_killed stats.total%}%</span>
+          <span class="percent">{% percentpa stats.total_killed stats.total%}%</span>
           {% trans "Extrajudicial executions" %}
           <span class="number-of-cases">{{stats.total_killed|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.total_killed stats.total%}%">&nbsp;</div>
@@ -528,7 +528,7 @@
 
         <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.total_disappeared stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.total_disappeared stats.total%}%</span>
+          <span class="percent">{% percentpa stats.total_disappeared stats.total%}%</span>
           {% trans "Enforced disappearances" %}
           <span class="number-of-cases">{{stats.total_disappeared|numpa}}</<span>
         </div> 
@@ -547,7 +547,7 @@
            {% if o.number_of_victims %}
      
             <div>
-            <span class="percent">{% percent o.number_of_victims__count stats.total %}%</span> {{o.number_of_victims}} {% trans 'victim' %}{% if request.LANGUAGE_CODE == 'en-US' %}{{ o.number_of_victims|pluralize }}{%endif%} <span class="number-of-cases">{{o.number_of_victims__count|numpa}}</span>
+            <span class="percent">{% percentpa o.number_of_victims__count stats.total %}%</span> {{o.number_of_victims}} {% trans 'victim' %}{% if request.LANGUAGE_CODE == 'en-US' %}{{ o.number_of_victims|pluralize }}{%endif%} <span class="number-of-cases">{{o.number_of_victims__count|numpa}}</span>
             <div class="percent-bar" style="width:{% percent o.number_of_victims__count stats.total %}%">&nbsp;</div>        
             </div>
      
@@ -567,7 +567,7 @@
         <p><strong>{% trans "Related incidents" %}</strong></p>
 
         <div>
-          <span class="percent">{% percent stats.genuine_encounter stats.total%}%</span>
+          <span class="percent">{% percentpa stats.genuine_encounter stats.total%}%</span>
           {% trans "Genuine encounters in family" %}
           <span class="number-of-cases">{{stats.genuine_encounter|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.genuine_encounter stats.total%}%">&nbsp;</div>
@@ -575,7 +575,7 @@
 
         <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.not_genuine_encounter stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.not_genuine_encounter stats.total%}%</span>
+          <span class="percent">{% percentpa stats.not_genuine_encounter stats.total%}%</span>
           {% trans "No genuine encounters in family" %}
           <span class="number-of-cases">{{stats.not_genuine_encounter|numpa}}</span>
         </div> 
@@ -607,7 +607,7 @@
            {%if o.1 %}
        
             <div>
-            <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+            <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
             <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
             </div>
        
@@ -625,21 +625,21 @@
         <p><strong>{% trans "Security forces returned body" %}</strong></p>
 
         <div>
-          <span class="percent">{% percent stats.so_return_body_1 stats.total%}%</span>
+          <span class="percent">{% percentpa stats.so_return_body_1 stats.total%}%</span>
           {% trans "Yes" %}
           <span class="number-of-cases">{{stats.so_return_body_1|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.so_return_body_1 stats.total%}%">&nbsp;</div>
         </div> 
 
         <div>
-          <span class="percent">{% percent stats.so_return_body_2 stats.total%}%</span>
-          Yes, but forced immediate cremation
+          <span class="percent">{% percentpa stats.so_return_body_2 stats.total%}%</span>
+          {% trans 'Yes, but forced immediate cremation' %}
           <span class="number-of-cases">{{stats.so_return_body_2|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.so_return_body_2 stats.total%}%">&nbsp;</div>
         </div> 
 
         <div>
-          <span class="percent">{% percent stats.no_so_return_body stats.total%}%</span>
+          <span class="percent">{% percentpa stats.no_so_return_body stats.total%}%</span>
           {% trans "No" %}
           <span class="number-of-cases">{{stats.no_so_return_body|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.no_so_return_body stats.total%}%">&nbsp;</div>
@@ -660,7 +660,7 @@
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}% </span> {{o.0}} <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
 
@@ -690,7 +690,7 @@
           <p><strong>{% trans "Names of involved security officials known" %}</strong></p>
         
           <div>
-          <span class="percent">{% percent stats.securityoff_id_known stats.total%}%</span>
+          <span class="percent">{% percentpa stats.securityoff_id_known stats.total%}%</span>
           {% trans "Yes" %}
           <span class="number-of-cases">{{stats.securityoff_id_known|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.securityoff_id_known stats.total%}%">&nbsp;</div>
@@ -698,7 +698,7 @@
 
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_securityoff_id_known stats.total%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_securityoff_id_known stats.total%}%</span>
+          <span class="percent">{% percentpa stats.no_securityoff_id_known stats.total%}%</span>
           {% trans "No" %}
           <span class="number-of-cases">{{stats.no_securityoff_id_known|numpa}}</span>
           </div> 
@@ -716,7 +716,7 @@
           <p><strong>{% trans "Security forces uniformed" %}</strong></p>
 
           <div>
-          <span class="percent">{% percent stats.security_forces_uniformed stats.witness_arrest_yes%}%</span>
+          <span class="percent">{% percentpa stats.security_forces_uniformed stats.witness_arrest_yes%}%</span>
           {% trans "Yes" %}
           <span class="number-of-cases">{{stats.security_forces_uniformed|numpa}}</span>
           <div class="percent-bar" style="width:{% percent stats.security_forces_uniformed stats.witness_arrest_yes%}%">&nbsp;</div>
@@ -724,7 +724,7 @@
 
           <div>
           <div class="percent-bar bar-2" style="width:{% percent stats.no_security_forces_uniformed stats.witness_arrest_yes%}%">&nbsp;</div>
-          <span class="percent">{% percent stats.no_security_forces_uniformed stats.witness_arrest_yes%}%</span>
+          <span class="percent">{% percentpa stats.no_security_forces_uniformed stats.witness_arrest_yes%}%</span>
           {% trans "No" %}
           <span class="number-of-cases">{{stats.no_security_forces_uniformed|numpa}}</span>
           </div> 
@@ -745,7 +745,7 @@
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0|safe}} <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}% </span> {{o.0|safe}} <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
 
@@ -768,7 +768,7 @@
              {%if o.1 %}
 
               <div>
-              <span class="percent">{% percent o.1 stats.total %}% </span> {{o.0|safe}} <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}% </span> {{o.0|safe}} <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
 
@@ -795,7 +795,7 @@
             <p><strong>{% trans "Combatant status" %}</strong></p>
 
           <div>
-            <span class="percent">{% percent stats.militant stats.total%}%</span>
+            <span class="percent">{% percentpa stats.militant stats.total%}%</span>
             {% trans "Combatant" %}
             <span class="number-of-cases">{{stats.militant|numpa}}</span>
             <div class="percent-bar" style="width:{% percent stats.militant stats.total%}%">&nbsp;</div>
@@ -803,7 +803,7 @@
 
           <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.not_militant stats.total%}%">&nbsp;</div>
-            <span class="percent">{% percent stats.not_militant stats.total%}%</span>
+            <span class="percent">{% percentpa stats.not_militant stats.total%}%</span>
             {% trans "Non-combatant" %}
             <span class="number-of-cases">{{stats.not_militant|numpa}}</span>
           </div> 
@@ -818,7 +818,7 @@
             <p><strong>{% trans "Non-combatant, provided support to militants" %}</strong></p>
 
             <div>          
-            <span class="percent">{% percent stats.militant_support stats.total%}%</span>
+            <span class="percent">{% percentpa stats.militant_support stats.total%}%</span>
             {% trans "Yes" %}
             <span class="number-of-cases">{{stats.militant_support|numpa}}</span>
             <div class="percent-bar" style="width:{% percent stats.militant_support stats.total%}%">&nbsp;</div>
@@ -826,7 +826,7 @@
 
             <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.no_militant_support stats.total%}%">&nbsp;</div>
-            <span class="percent">{% percent stats.no_militant_support stats.total%}%</span>
+            <span class="percent">{% percentpa stats.no_militant_support stats.total%}%</span>
             {% trans "No" %}
             <span class="number-of-cases">{{stats.no_militant_support|numpa}}</span>
             </div> 
@@ -841,14 +841,14 @@
             <p><strong>{% trans "If provided support, support was voluntary" %}</strong></p>
 
             <div>          
-            <span class="percent">{% percent stats.victim_militant_support_voluntary stats.total%}%</span>
+            <span class="percent">{% percentpa stats.victim_militant_support_voluntary stats.total%}%</span>
             {% trans "Yes" %}
             <span class="number-of-cases">{{stats.victim_militant_support_voluntary|numpa}}</span>
             <div class="percent-bar" style="width:{% percent stats.victim_militant_support_voluntary stats.total%}%">&nbsp;</div>
             </div> 
             <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.victim_militant_support_forced stats.total%}%">&nbsp;</div>
-            <span class="percent">{% percent stats.victim_militant_support_forced stats.total%}%</span>
+            <span class="percent">{% percentpa stats.victim_militant_support_forced stats.total%}%</span>
             {% trans "No" %}
             <span class="number-of-cases">{{stats.victim_militant_support_forced|numpa}}</span>
           </div> 
@@ -875,7 +875,7 @@
           <p><strong>{% trans "Approached court or commission" %}</strong></p>
           
           <div>
-            <span class="percent">{% percent stats.court_or_commission stats.total%}%</span>
+            <span class="percent">{% percentpa stats.court_or_commission stats.total%}%</span>
             {% trans "Yes" %}
             <span class="number-of-cases">{{stats.court_or_commission|numpa}}</span>
             <div class="percent-bar" style="width:{% percent stats.court_or_commission stats.total%}%">&nbsp;</div>
@@ -883,7 +883,7 @@
 
           <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.no_court_or_commission stats.total%}%">&nbsp;</div>
-            <span class="percent">{% percent stats.no_court_or_commission stats.total%}%</span>
+            <span class="percent">{% percentpa stats.no_court_or_commission stats.total%}%</span>
             {% trans "No" %}
             <span class="number-of-cases">{{stats.no_court_or_commission|numpa}}</span>
           </div> 
@@ -903,7 +903,7 @@
           <p><strong>{% trans "Approached security officials" %}</strong></p>
 
           <div>
-            <span class="percent">{% percent stats.security_officials_apprchd stats.total%}%</span>
+            <span class="percent">{% percentpa stats.security_officials_apprchd stats.total%}%</span>
             {% trans "Yes" %}
             <span class="number-of-cases">{{stats.security_officials_apprchd|numpa}}</span>
             <div class="percent-bar" style="width:{% percent stats.security_officials_apprchd stats.total%}%">&nbsp;</div>
@@ -911,7 +911,7 @@
 
           <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.no_security_officials_apprchd stats.total%}%">&nbsp;</div>
-            <span class="percent">{% percent stats.no_security_officials_apprchd stats.total%}%</span>
+            <span class="percent">{% percentpa stats.no_security_officials_apprchd stats.total%}%</span>
             {% trans "No" %}
             <span class="number-of-cases">{{stats.no_security_officials_apprchd|numpa}}</span>
           </div> 
@@ -930,7 +930,7 @@
              {%if o.1 %}
        
               <div>
-              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
        
@@ -951,7 +951,7 @@
              {%if o.1 %}
        
               <div>
-              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
        
@@ -984,7 +984,7 @@
              {%if o.1 %}
        
               <div>
-              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
        
@@ -1004,7 +1004,7 @@
              {% for o in stats.years %}
      
               <div>
-              <span class="percent">{% percent o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0}}  <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
        
