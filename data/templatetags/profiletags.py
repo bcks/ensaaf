@@ -319,7 +319,7 @@ def district_count(value):
   for n in value:
     if n['data_count']:
       count = count + n['data_count']
-  return "{:,}".format(count)
+  return numpa(count)
 
 
 
