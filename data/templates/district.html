@@ -2,6 +2,7 @@
 
 {% load i18n %}
 {% load humanize %}
+{% load profiletags %}
 
 {% block title %}Enforced disappearances &amp; extrajudicial executions in {{district.0.district}} District{% endblock %}
 
@@ -34,8 +35,8 @@
 
 <div class="row">
   <div class="col-sm-12">
-    <h1 style="margin-bottom:1rem;">{{district.0.district}}</h1>
-    <p class="kicker" style="margin-bottom:1rem;">Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.</p>
+    <h1 style="margin-bottom:1rem;">{% trans district.0.district %}</h1>
+    <p class="kicker" style="margin-bottom:1rem;">{% trans 'Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.' %}</p>
     <br>
   </div>
 </div>
@@ -45,14 +46,26 @@
 <div class="row">
   <div class="col-sm-6">
     
-    <p>{{stats.total|numpa}} documented cases in {{district.0.district}} District</p>
+    {% if request.LANGUAGE_CODE == 'pa' %}
+      <p>{% trans district.0.district %}, {{stats.total|numpa}} ਜ਼ਿਲ੍ਹਾ ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਕੇਸ</p>
+    {% else %}
+      <p>{{stats.total|numpa}} documented cases in {{district.0.district}} District</p>
+    {% endif %}
+
 
     {% for village in villages %}
       {% if village.data_count != None %}
 
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-      <a href="{% url 'tehsil' village.tehsil_id %}">{{village.tehsil}} Subdistrict,</a> {{village.data_count}} {% if forloop.first %} case{{village.data_count|pluralize}} {% endif %}  
+      <a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %} {% trans 'Subdistrict' %},</a> {{village.data_count|numpa}}
+      {% if forloop.first %} 
+        {% if request.LANGUAGE_CODE == 'pa' %}
+          ਦਰਜ ਕੀਤੇ ਕੇਸ
+        {% else %}
+          case{{village.data_count|pluralize}}
+        {% endif %}  
+      {% endif %}  
       </div>
     </div>
       
@@ -65,7 +78,12 @@
   <div class="col-sm-6 border-left">
 
 
-    <p>Key statistics for documented cases in {{district.0.district}} District</p>
+    {% if request.LANGUAGE_CODE == 'pa' %}
+      <p>{% trans district.0.district %} ਜ਼ਿਲ੍ਹਾ ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਕੇਸਾਂ ਦੇ ਮੁੱਖ ਅੰਕੜੇ</p>
+    {% else %}
+      <p>Key statistics for documented cases in {{district.0.district}} District</p>
+    {% endif %}
+
 
     {% include 'stats.html' %}
 
