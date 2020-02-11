@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load humanize %}
 {% load profiletags %}
 
@@ -61,7 +62,7 @@
     <div class="row">
       <div class="col-sm-12 col-md m-2">
           <hr>
-        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{{ district.grouper|default_if_none:"Location Withheld"  }} {% if district.grouper != None %}District{% endif %}</h2>
+        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{{ district.grouper|default_if_none:"Location Withheld"  }} {% if district.grouper != None %}{% trans 'District' %}{% endif %}</h2>
       </div>
     </div>
     
@@ -72,7 +73,7 @@
     {%if tehsil.grouper %}
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        <h5>{{ tehsil.grouper|default_if_none:""  }} Subdistrict</h5>
+        <h5>{% trans tehsil.grouper|default_if_none:""  %} {% trans 'Subdistrict' %}</h5>
       </div>
     </div>
     {% endif %}
@@ -88,8 +89,8 @@
         {% if victim.victim_disappeared_killed  %}
          at time of 
           {% if victim.victim_disappeared_killed == 1 %}
-          disappearance{% endif %}{% if victim.victim_disappeared_killed == 2 %}
-          extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
+          {% trans 'disappearance' %}{% endif %}{% if victim.victim_disappeared_killed == 2 %}
+          {% trans 'extrajudicial execution' %}{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
 
 
       </div>
@@ -107,7 +108,13 @@
   
   <div class="col-sm-6 border-left">
     
-    <p class="m-2-top">Key statistics of cases in {{year}}:</p>
+    <p class="m-2-top">
+    {% if request.LANGUAGE_CODE == 'pa' %}
+      ਸਾਲ {{year}} ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਕੇਸਾਂ ਦੇ ਮੁੱਖ ਅੰਕੜੇ
+    {% else %}
+      Key statistics of cases in {{year}}:
+    {% endif %}
+    </p>
 
     {% include 'stats.html' %}
 
@@ -121,7 +128,12 @@
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
-      <p>No documented cases for {{year}}.</p>
+    {% if request.LANGUAGE_CODE == 'pa' %}
+       ਸਾਲ {{year}} ਵਿੱਚ ਕੋਈ ਕੇਸ ਦਰਜ ਨਹੀਂ ਕੀਤਾ ਗਿਆ
+    {% else %}
+       No documented cases for {{year}}.
+    {% endif %}
+      </p>
     </div>
   </div>
 
@@ -132,7 +144,7 @@
 <div class="row">
   <div class="col-12">
     <div class="border-top footnotes">
-      <p>Note: Where a victim’s date of extrajudicial execution or disappearance falls within a date range that crosses two years (e.g. “between October 1989 and February 1990”), the case appears on both years’ pages. Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.</p>
+      <p>{% trans 'Note: Where a victim’s date of extrajudicial execution or disappearance falls within a date range that crosses two years (e.g. “between October 1989 and February 1990”), the case appears on both years’ pages. Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.' %}</p>
     </div>
   </div>
 </div>

@@ -36,9 +36,9 @@ iframe {
 
       <h1 style="margin-bottom:1rem;">Manohar Singh</h1>
 
-      <p>Extrajudicial execution on April 17, <a href="/year/1993">1993</a></p>
+      <p>{% trans 'Extrajudicial execution' %} on April 17, <a href="/year/1993">1993</a></p>
 
-      <p>Male, age 26</p>     
+      <p>{% trans 'Male' %}, {% trans 'age' %} 26</p>     
                     
                 
       <p><br></p>  
@@ -49,13 +49,13 @@ iframe {
         
           <div class="row">  
             <div class="col-sm-2">
-              <p class="kicker dots">Residence</p>
+              <p class="kicker dots">{% trans 'Residence' %}</p>
             </div>
             <div class="col-sm-10">
               
-                <p><span define="Village/town/city"><a href="/village/00100800/">Kahnuwan,</a></span>
-                <span define="Subdistrict"><a href="/tehsil/03010003">Gurdaspur,</a></span>
-                <span define="District"><a href="/district/0301">Gurdaspur</a></span></p>
+                <p><span define="Village/town/city"><a href="{% url 'village' '00100800' %}">{% trans 'Kahnuwan' %},</a></span>
+                <span define="Subdistrict"><a href="{% url 'tehsil' '03010003' %}">{% trans 'Gurdaspur' %},</a></span>
+                <span define="District"><a href="{% url 'district' '0301' %}">{% trans 'Gurdaspur' %}</a></span></p>
               
             </div>
           </div>
@@ -69,10 +69,10 @@ iframe {
       
       <div class="row">  
         <div class="col-sm-2">
-          <p class="kicker dots">Education</p>
+          <p class="kicker dots">{% trans 'Education' %}</p>
         </div>
         <div class="col-sm-10">
-          <p>High school</p>
+          <p>{% trans 'High school' %}</p>
         </div>
       </div>
       
@@ -84,10 +84,10 @@ iframe {
       
       <div class="row">  
       <div class="col-sm-2">
-        <p class="kicker dots">Married</p>
+        <p class="kicker dots">{% trans 'Married' %}</p>
       </div>
       <div class="col-sm-10">
-        <p>No</p>
+        <p>{% trans 'No' %}</p>
       </div>
       </div>
     
@@ -96,10 +96,10 @@ iframe {
             
       <div class="row">  
       <div class="col-sm-2">
-        <p class="kicker dots">Employment</p>
+        <p class="kicker dots">{% trans 'Employment' %}</p>
       </div>
       <div class="col-sm-10">
-        <p>Rice mill</p>
+        <p>{% trans 'Rice mill' %}</p>
       </div>
       </div>
     
@@ -113,10 +113,10 @@ iframe {
       
       <div class="row">  
       <div class="col-sm-2">
-        <p class="kicker dots">Religion</p>
+        <p class="kicker dots">{% trans 'Religion' %}</p>
       </div>
       <div class="col-sm-10">
-        <p>Sikh, <span define="An initiated Sikh, belonging to the Khalsa">Amritdhari</span></p>
+        <p>{% trans 'Sikh' %}, <span define="An initiated Sikh, belonging to the Khalsa">{% trans 'Amritdhari' %}</span></p>
       </div>
       </div>
       
@@ -175,48 +175,43 @@ iframe {
 
   
     <div class="col-sm-6">
-      <p class="kicker dots">Prior detentions</p>
+      <p class="kicker dots">{% trans 'Prior detentions' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Yes, 6-7</p>
-    </div>
-  
-
-  
-    <div class="col-sm-6">
-      <p class="kicker dots">Prior torture</p>
-    </div>
-    <div class="col-sm-6">
-      <p>Yes</p>
+      <p>{% trans 'Yes' %}, 6-7</p>
     </div>
   
 
-    
-    
-
-    
+  
     <div class="col-sm-6">
-      <p class="kicker dots">Perceived reason for targeting victim</p>
+      <p class="kicker dots">{% trans 'Prior torture' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Victim was a militant</p>
+      <p>{% trans 'Yes' %}</p>
     </div>
-    
+  
 
     
     
 
     
     <div class="col-sm-6">
-      <p class="kicker dots">Abduction preceding
-      
-        extrajudicial execution
-      
-      
-    </p>
+      <p class="kicker dots">{% trans 'Perceived reason for targeting victim' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Yes, between March 29, <a href="/year/1993">1993</a> and April 1,  <a href="/year/1993">1993</a></p>  
+      <p>{% trans 'Victim was a militant' %}</p>
+    </div>
+    
+
+    
+    
+
+    
+    <div class="col-sm-6">
+      <p class="kicker dots">{% trans 'Abduction preceding extrajudicial execution' %}</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% trans 'Yes' %}, between March 29, <a href="/year/1993">1993</a> and April 1,  <a href="/year/1993">1993</a></p>  
     </div>
     
 
@@ -224,10 +219,10 @@ iframe {
     
     
       <div class="col-sm-6">
-        <p class="kicker dots">Place of abduction</p>
+        <p class="kicker dots">{% trans 'Place of abduction' %}</p>
       </div>
       <div class="col-sm-6">
-        <p>Friend/relative’s residence, in Kolkata, West Bengal</p>
+        <p>{% trans 'Friend/relative’s residence, in Kolkata, West Bengal' %}</p>
       </div>
     
     
@@ -237,10 +232,10 @@ iframe {
 
   
     <div class="col-sm-6">
-      <p class="kicker dots">Witness(es) to abduction</p>
+      <p class="kicker dots">{% trans 'Witness(es) to abduction' %}</p>
     </div>
     <div class="col-sm-6">      
-        <p>Parents; Sibling; Cousin; Aunt/uncle</p>
+        <p>{% trans 'Parents; Sibling; Cousin; Aunt/uncle' %}</p>
     </div>
   
 
@@ -250,10 +245,10 @@ iframe {
             
             
     <div class="col-sm-6">
-      <p class="kicker dots">Security officials informed witnesses about destination</p>
+      <p class="kicker dots">{% trans 'Security officials informed witnesses about destination' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Yes</p>
+      <p>{% trans 'Yes' %}</p>
     </div>
   
   
@@ -262,10 +257,10 @@ iframe {
   
   
     <div class="col-sm-6">
-      <p class="kicker dots">Security officials uniformed</p>
+      <p class="kicker dots">{% trans 'Security officials uniformed' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>No</p>
+      <p>{% trans 'No' %}</p>
     </div>
   
   
@@ -273,10 +268,10 @@ iframe {
   
 
     <div class="col-sm-6">
-      <p class="kicker dots">Demands by security forces</p>
+      <p class="kicker dots">{% trans 'Demands by security forces' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Money</p>
+      <p>{% trans 'Money' %}</p>
     </div>
 
   
@@ -284,10 +279,10 @@ iframe {
   
   
     <div class="col-sm-6">
-      <p class="kicker dots">Victim presented before judge/magistrate</p>
+      <p class="kicker dots">{% trans 'Victim presented before judge/magistrate' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>No</p>
+      <p>{% trans 'No' %}</p>
     </div>
    
    
@@ -304,7 +299,7 @@ iframe {
   
   <div class="row">
     <div class="col-sm-12">
-      <h4>Detention Locations</h4>
+      <h4>{% trans 'Detention Locations' %}</h4>
     </div>
   </div>
 
@@ -312,19 +307,18 @@ iframe {
   
 
     <div class="col-sm-6">
-      <p class="kicker dots">Location</p>
+      <p class="kicker dots">{% trans 'Location' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Police station, <a href="/locality/40106000">Dinanagar</a>, 15+ days, witnessed by relative</p>
+      <p>{% trans 'Police station' %}, <a href="/locality/40106000">Dinanagar</a>, 15+ days, witnessed by relative</p>
     </div>
 
 
     <div class="col-sm-6">
-      <p class="kicker dots">Witness report</p>
+      <p class="kicker dots">{% trans 'Witness report' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Victim reported torture, including insertion of hot peppers in wounds 
-in thighs, and could not stand</p>
+      <p>{% trans 'Victim reported torture, including insertion of hot peppers in wounds in thighs, and could not stand' %}</p>
     </div>
         
   
@@ -340,7 +334,7 @@ in thighs, and could not stand</p>
   
   <div class="row">
     <div class="col-sm-12">
-      <h4>Extrajudicial Execution on April 17, <a href="/year/1993">1993</a></h4>
+      <h4>{% trans 'Extrajudicial Execution' %} on April 17, <a href="/year/1993">1993</a></h4>
     </div>
 
   </div>
@@ -348,7 +342,7 @@ in thighs, and could not stand</p>
   <div class="row">
     <div class="col-sm-12">
       <p><br></p>
-      <h4>Body Disposal</h5>
+      <h4>{% trans 'Body Disposal' %}</h5>
     </div>
   </div>
 
@@ -356,10 +350,10 @@ in thighs, and could not stand</p>
 
   
     <div class="col-sm-6">
-      <p class="kicker dots">Body returned</p>
+      <p class="kicker dots">{% trans 'Body returned' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>No</p>
+      <p>{% trans 'No' %}</p>
     </div>
   
 
@@ -367,10 +361,10 @@ in thighs, and could not stand</p>
   
   
     <div class="col-sm-6">
-      <p class="kicker dots">Body disposal by security forces</p>
+      <p class="kicker dots">{% trans 'Body disposal by security forces' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Cremated the body</p>
+      <p>{% trans 'Cremated the body' %}</p>
     </div>
   
   
@@ -379,12 +373,10 @@ in thighs, and could not stand</p>
   
   
     <div class="col-sm-6">
-      <p class="kicker dots">Cremation location</p>    
+      <p class="kicker dots">{% trans 'Cremation location' %}</p>    
     </div>
     <div class="col-sm-6">
-      <p>
-      Municipal cremation ground, Gurdaspur
-      </p>
+      <p>{% trans 'Municipal cremation ground' %}, {% trans 'Gurdaspur' %}</p>
     </div>
   
   
@@ -400,7 +392,7 @@ in thighs, and could not stand</p>
   <p><br></p>
   <div class="row">
     <div class="col-sm-12">
-      <h4>Security Forces Implicated</h4>
+      <h4>{% trans 'Security Forces Implicated' %}</h4>
     </div>
   </div>  
 
@@ -410,54 +402,53 @@ in thighs, and could not stand</p>
 
   
     <div class="col-sm-6">
-      <p class="kicker dots">Forces involved in abduction</p>
+      <p class="kicker dots">{% trans 'Forces involved in abduction' %}</p>
     </div>
     <div class="col-sm-6">
     
       <p>      
-      <a href="/locality/40106000">Dinanagar</a>,       
-      <a href="/securityforce/police/">Punjab Police</a></p>
+      <a href="/locality/40106000">{% trans 'Dinanagar' %}</a>,       
+      <a href="/securityforce/police/">{% trans 'Punjab Police' %}</a></p>
     </div>
   
 
   
 
     <div class="col-sm-6">
-      <p class="kicker dots">Officials involved in abduction</p>
+      <p class="kicker dots">{% trans 'Officials involved in abduction' %}</p>
     </div>
     <div class="col-sm-6">
 
       <p>Jaswinder Singh<!-- rank -->, 
-Station House Officer<!-- affiliaton -->, 
-Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40106000">Dinanagar</a></p>
+{% trans 'Station House Officer' %}<!-- affiliaton -->, 
+{% trans 'Punjab Police' %}<!-- arrest_so_affiliation_oth -->, <a href="/locality/40106000">{% trans 'Dinanagar' %}</a></p>
 
       <p>Jarnail Singh<!-- rank -->, 
-Sub Inspector<!-- affiliaton -->, 
-Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40106000">Dinanagar</a></p>
+{% trans 'Sub Inspector' %}<!-- affiliaton -->, 
+{% trans 'Punjab Police' %}<!-- arrest_so_affiliation_oth -->, <a href="/locality/40106000">{% trans 'Dinanagar' %}</a></p>
 
     </div>
 
   
 
     <div class="col-sm-6">
-      <p class="kicker dots">Forces involved in extrajudicial execution</p>
+      <p class="kicker dots">{% trans 'Forces involved in extrajudicial execution' %}</p>
     </div>
     <div class="col-sm-6">
           
       <p>
-      <a href="/locality/40107000">Gurdaspur</a>, <a href="/securityforce/police/">Punjab Police</a></p>
+      <a href="/locality/40107000">{% trans 'Gurdaspur' %}</a>, <a href="/securityforce/police/">{% trans 'Punjab Police' %}</a></p>
 
     </div>
 
  <!-- was here -->
 
     <div class="col-sm-6">
-      <p class="kicker dots">Officials involved in extrajudicial execution</p>
+      <p class="kicker dots">{% trans 'Officials involved in extrajudicial execution' %}</p>
     </div>
     <div class="col-sm-6">
 
-      <p>Prem Kumar, Station House Officer, 
-Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gurdaspur</a></p>
+      <p>Prem Kumar, {% trans 'Station House Officer' %}, {% trans 'Punjab Police' %}, <a href="/locality/40107000">{% trans 'Gurdaspur' %}</a></p>
 
     </div>
 
@@ -467,7 +458,7 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>Militancy Involvement</h4>
+      <h4>{% trans 'Militancy Involvement' %}</h4>
     </div>
   </div>
   
@@ -475,26 +466,26 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
 
 
     <div class="col-sm-6">
-      <p class="kicker dots">Militant alias</p>
+      <p class="kicker dots">{% trans 'Militant alias' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Haneri</p>
+      <p>{% trans 'Haneri' %}</p>
     </div>
 
     <div class="col-sm-6">
-      <p class="kicker dots">Combatant</p>
+      <p class="kicker dots">{% trans 'Combatant' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Yes</p>
+      <p>{% trans 'Yes' %}</p>
     </div>
 
   
     
     <div class="col-sm-6">
-      <p class="kicker dots">Reason(s) for joining militancy</p>
+      <p class="kicker dots">{% trans 'Reason(s) for joining militancy' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>1984 Indian Army attack on the Harmandir Sahib; Persecution (i.e. arbitrary arrest, torture, self-defense)</p>
+      <p>{% trans '1984 Indian Army attack on the Harmandir Sahib' %}; {% trans 'Persecution (i.e. arbitrary arrest, torture, self-defense)' %}</p>
     </div>
     
 
@@ -515,7 +506,7 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>Remedies & Impact</h4>
+      <h4>{% trans 'Remedies & Impact' %}</h4>
     </div>
   </div>
 
@@ -524,46 +515,46 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
   
   
     <div class="col-sm-6">
-      <p class="kicker dots">Security officials approached</p>
+      <p class="kicker dots">{% trans 'Security officials approached' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>No</p>
-    </div>
-  
-  
-
-  
-  
-  
-
-  
-  
-    <div class="col-sm-6">
-      <p class="kicker dots">Legal remedies pursued</p>
-    </div>
-    <div class="col-sm-6">
-      <p>No, Afraid of retaliation, Believed it would have been ineffective</p>
+      <p>{% trans 'No' %}</p>
     </div>
   
   
 
   
-
   
-    <div class="col-sm-6">
-      <p class="kicker dots">Impact on family</p>      
-    </div>
-    <div class="col-sm-6">
-      <p>Family member(s) dropped out of school, Family abandoned home, Family member(s) died due to depression/shock, Family became impoverished</p>
-    </div>
   
 
   
+  
     <div class="col-sm-6">
-      <p class="kicker dots">Remedies desired from government</p>
+      <p class="kicker dots">{% trans 'Legal remedies pursued' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Memorial for victims</p>
+      <p>{% trans 'No, Afraid of retaliation, Believed it would have been ineffective' %}</p>
+    </div>
+  
+  
+
+  
+
+  
+    <div class="col-sm-6">
+      <p class="kicker dots">{% trans 'Impact on family' %}</p>      
+    </div>
+    <div class="col-sm-6">
+      <p>{% trans 'Family member(s) dropped out of school, Family abandoned home, Family member(s) died due to depression/shock, Family became impoverished' %}</p>
+    </div>
+  
+
+  
+    <div class="col-sm-6">
+      <p class="kicker dots">{% trans 'Remedies desired from government' %}</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% trans 'Memorial for victims' %}</p>
     </div>
   
 
@@ -573,7 +564,7 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>Connected Victims</h4>
+      <h4>{% trans 'Connected Victims' %}</h4>
     </div>
   </div>
 
@@ -583,10 +574,10 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
   
   <div class="row">
     <div class="col-sm-6">
-      <p class="kicker dots">Genuine encounters in family</p>
+      <p class="kicker dots">{% trans 'Genuine encounters in family' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>No</p>
+      <p>{% trans 'No' %}</p>
     </div>
   </div>
   
@@ -595,10 +586,10 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
   
   <div class="row">
     <div class="col-sm-6">
-      <p class="kicker dots">Co-victims of abduction</p>
+      <p class="kicker dots">{% trans 'Co-victims of abduction' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>No</p>
+      <p>{% trans 'No' %}</p>
     </div>
   </div>
   
@@ -607,10 +598,10 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
   
   <div class="row">
     <div class="col-sm-6">
-      <p class="kicker dots">Co-victims of extrajudicial execution</p>
+      <p class="kicker dots">{% trans 'Co-victims of extrajudicial execution' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>Yes, 2; <a href="/profile/2271/">Baldev Singh</a>, <a href="/locality/00057000">Dorangla</a></p>
+      <p>{% trans 'Yes' %}, 2; <a href="/profile/2271/">Baldev Singh</a>, <a href="/locality/00057000">Dorangla</a></p>
     </div>
   </div>
   
@@ -619,7 +610,7 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>Family Reflections</h4>
+      <h4>{% trans 'Family Reflections' %}</h4>
     </div>
   </div>
 
@@ -644,7 +635,7 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
     
     <hr>
 
-    <h4>Summary</h4>
+    <h4>{% trans 'Summary' %}</h4>
 
     <p>Manohar Singh, also known as Haneri, was a Saini, Amritdhari Sikh, and a resident of village Kahnuwan. He was 26 years old at the time of his killing. Manohar Singh had graduated from 10th grade, and worked at a family-owned rice mill. Narinder Singh describes his brother as a “very good natured” individual whom people “still remember.”</p>
 
@@ -676,7 +667,7 @@ Punjab Police<!-- arrest_so_affiliation_oth -->, <a href="/locality/40107000">Gu
     
         <hr>
 
-      <p>Note: Subdistrict and district boundaries are based on the 2001 census. Read more about <a href="/about">our methodology</a>.</p>
+      <p>{% trans 'Note: Subdistrict and district boundaries are based on the 2001 census. Read more about <a href="/about">our methodology</a>.' %}</p>
     </div>
   </div>
 </div>
