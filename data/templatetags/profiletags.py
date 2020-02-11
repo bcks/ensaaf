@@ -24,6 +24,15 @@ def sex(var):
 
 
 
+
+@register.simple_tag(takes_context=True)
+def change_lang(context, lang=None, *args, **kwargs):
+    if lang == 'en':
+      return context['request'].path.replace('/pa/','/')    
+    else:
+      return '/' + lang + context['request'].path
+
+
 @register.filter()
 def numpa(number_string):
     if (get_language() == 'pa') and ( isinstance(number_string, numbers.Number) ):
@@ -972,7 +981,7 @@ def percentpa(item1, total):
     if total == 0:
       return numpa( 0 )
     try:
-        return numpa(float( "%.1f" % ((float(item1) / float(total)) * 100) ))
+      return numpa( float( "%.1f" % ( ( float(item1) / float(total) ) * 100 ) ) )
     except ValueError as e:
       return ''
 

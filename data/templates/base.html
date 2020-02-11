@@ -1,6 +1,4 @@
-{% load staticfiles %}
-{% load i18n %}
-<!DOCTYPE html>
+{% load staticfiles %}{% load i18n %}{% load profiletags %}<!DOCTYPE html>
 <html lang="{{request.LANGUAGE_CODE}}">
 <head>
     <meta charset="utf-8" />
@@ -49,7 +47,12 @@
         <li class="nav-item"><a class="nav-link" href="/about" title="{% trans "About" %}">{% trans "About" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="/forthcoming" title="{% trans "Forthcoming" %}">{% trans "Forthcoming" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/crimesagainsthumanity" title="{% trans "Support This Project" %}">{% trans "Donate" %}</a></li>
-        <li class="nav-item"><a class="nav-link" data-toggle="collapse" id="search-toggle" href="#search-form" title="{% trans "Search" %}">{% trans "Search" %}</a>
+        <li class="nav-item"><a class="nav-link" data-toggle="collapse" id="search-toggle" href="#search-form" title="{% trans "Search" %}">{% trans "Search" %}</a></li>
+        {% if request.LANGUAGE_CODE == 'pa' %}
+          <li class="nav-item"><a class="nav-link" href="{% change_lang 'en' %}">English</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{% change_lang 'pa' %}">ਪੰਜਾਬੀ</a></li>
+        {% endif %}
       </ul>
 
     </div>
