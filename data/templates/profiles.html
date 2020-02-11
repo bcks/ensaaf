@@ -38,16 +38,16 @@
 
   <div class="row">
     <div class="col-md-8">
-      <h1 style="margin-bottom:.5rem;">Victim Profiles</h1>
+      <h1 style="margin-bottom:.5rem;">{% trans 'Victim Profiles' %}</h1>
     </div>
     <div class="col-md-4">
-      {% if selected or selected_sort %}<p><br><a href="?">Clear filters</a></p>{% endif %}
+      {% if selected or selected_sort %}<p><br><a href="?">{% trans 'Clear filters' %}</a></p>{% endif %}
     </div>
 
 
     <div class="form-group filter{% if selected_age %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="age" name="age" onchange="this.form.submit()">
-        <option value="">Age</option>
+        <option value="">{% trans 'Age' %}</option>
         <option{% if selected_age == '0-17' %} selected=selected{% endif %}>0-17</option>
         <option{% if selected_age == '18-33' %} selected=selected{% endif %}>18-33</option>
         <option{% if selected_age == '34-49' %} selected=selected{% endif %}>34-49</option>
@@ -59,29 +59,29 @@
 
     <div class="form-group filter{% if selected_caste %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="caste" name="caste" onchange="this.form.submit()">
-        <option value="">Caste</option>
-        <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %}>Chamar</option>
-        <option{% if selected_caste == 'Dalit/SC/BC' %} selected=selected{% endif %}>Dalit/SC/BC</option>
-        <option{% if selected_caste == 'Jat' %} selected=selected{% endif %}>Jat</option>
-        <option{% if selected_caste == 'Khatri' %} selected=selected{% endif %}>Khatri</option>
-        <option{% if selected_caste == 'Mazbi' %} selected=selected{% endif %}>Mazbi</option>
-        <option{% if selected_caste == 'Naee' %} selected=selected{% endif %}>Naee</option>
-        <option{% if selected_caste == 'Ramgarhia' %} selected=selected{% endif %}>Ramgarhia</option>
-        <option{% if selected_caste == 'Other' %} selected=selected{% endif %}>Other</option>
+        <option value="">{% trans 'Caste' %}</option>
+        <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %}>{% trans 'Chamar' %}</option>
+        <option{% if selected_caste == 'Dalit/SC/BC' %} selected=selected{% endif %}>{% trans 'Dalit/SC/BC' %}</option>
+        <option{% if selected_caste == 'Jat' %} selected=selected{% endif %}>{% trans 'Jat' %}</option>
+        <option{% if selected_caste == 'Khatri' %} selected=selected{% endif %}>{% trans 'Khatri' %}</option>
+        <option{% if selected_caste == 'Mazbi' %} selected=selected{% endif %}>{% trans 'Mazbi' %}</option>
+        <option{% if selected_caste == 'Naee' %} selected=selected{% endif %}>{% trans 'Naee' %}</option>
+        <option{% if selected_caste == 'Ramgarhia' %} selected=selected{% endif %}>{% trans 'Ramgarhia' %}</option>
+        <option{% if selected_caste == 'Other' %} selected=selected{% endif %}>{% trans 'Other' %}</option>
       </select>
     </div>
         
     <div class="form-group filter{% if selected_classification %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="classification" name="classification" onchange="this.form.submit()">
-        <option value="">Classification</option>
-        <option {% if selected_classification == 'Enforced Disappearance' %} selected=selected{% endif %} value="Enforced Disappearance">Enforced Disappearance</option>
-        <option {% if selected_classification == 'Extrajudicial Execution' %} selected=selected{% endif %} value="Extrajudicial Execution">Extrajudicial Execution</option>
+        <option value="">{% trans 'Classification' %}</option>
+        <option {% if selected_classification == 'Enforced Disappearance' %} selected=selected{% endif %} value="Enforced Disappearance">{% trans 'Enforced Disappearance' %}</option>
+        <option {% if selected_classification == 'Extrajudicial Execution' %} selected=selected{% endif %} value="Extrajudicial Execution">{% trans 'Extrajudicial Execution' %}</option>
       </select>
     </div>
     
     <div class="form-group filter{% if selected_first_name %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="first_name" name="first_name" onchange="this.form.submit()">
-        <option value="">First Name</option>
+        <option value="">{% trans 'First Name' %}</option>
         {% for o in first_names %}
         <option{% if selected_first_name == o.victim_first_name %} selected=selected{% endif %}>{{o.victim_first_name}}</option>
         {% endfor %}
@@ -90,48 +90,48 @@
     
     <div class="form-group filter{% if selected_gender %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="gender" name="gender" onchange="this.form.submit()">
-        <option value="">Gender</option>
-        <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">Female</option>
-        <option {% if selected_gender == 'Male' %} selected=selected{% endif %} value="Male">Male</option>
+        <option value="">{% trans 'Gender' %}</option>
+        <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">{% trans 'Female' %}</option>
+        <option {% if selected_gender == 'Male' %} selected=selected{% endif %} value="Male">{% trans 'Male' %}</option>
       </select>
     </div>
 
     <div class="form-group filter{% if selected_urban_rural %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="urban_rural" name="urban_rural" onchange="this.form.submit()">
-        <option value="">Urban / Rural</option>
-        <option {% if selected_urban_rural == 'Urban' %} selected=selected{% endif %} value="Urban">Urban</option>
-        <option {% if selected_urban_rural == 'Rural' %} selected=selected{% endif %} value="Rural">Rural</option>
+        <option value="">{% trans 'Urban / Rural' %}</option>
+        <option {% if selected_urban_rural == 'Urban' %} selected=selected{% endif %} value="Urban">{% trans 'Urban' %}</option>
+        <option {% if selected_urban_rural == 'Rural' %} selected=selected{% endif %} value="Rural">{% trans 'Rural' %}</option>
       </select>
     </div>
 
     <div class="form-group filter{% if selected_combatant %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="combatant" name="combatant" onchange="this.form.submit()">
-        <option value="">Combatant Status</option>
-        <option {% if selected_combatant == 'Combatant' %} selected=selected{% endif %} value="Combatant">Combatant</option>
-        <option {% if selected_combatant == 'Non-Combatant' %} selected=selected{% endif %} value="Non-Combatant">Non-Combatant</option>
-        <option {% if selected_combatant == 'Unknown' %} selected=selected{% endif %} value="Unknown">Unknown</option>
+        <option value="">{% trans 'Combatant Status' %}</option>
+        <option {% if selected_combatant == 'Combatant' %} selected=selected{% endif %} value="Combatant">{% trans 'Combatant' %}</option>
+        <option {% if selected_combatant == 'Non-Combatant' %} selected=selected{% endif %} value="Non-Combatant">{% trans 'Non-Combatant' %}</option>
+        <option {% if selected_combatant == 'Unknown' %} selected=selected{% endif %} value="Unknown">{% trans 'Unknown' %}</option>
       </select>
     </div>
 
     <div class="form-group filter{% if selected_religion %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="religion" name="religion" onchange="this.form.submit()">
-        <option value="">Religion</option>
-        <option{% if selected_religion == 'Christian' %} selected=selected{% endif %}>Christian</option>
-        <option{% if selected_religion == 'Hindu' %} selected=selected{% endif %}>Hindu</option>
-        <option{% if selected_religion == 'Muslim' %} selected=selected{% endif %}>Muslim</option>
-        <option{% if selected_religion == 'Sikh' %} selected=selected{% endif %}>Sikh</option>
-        <option{% if selected_religion == 'No religion' %} selected=selected{% endif %}>No religion</option>
-        <option{% if selected_religion == 'Other' %} selected=selected{% endif %}>Other</option>
+        <option value="">{% trans 'Religion' %}</option>
+        <option{% if selected_religion == 'Christian' %} selected=selected{% endif %}>{% trans 'Christian' %}</option>
+        <option{% if selected_religion == 'Hindu' %} selected=selected{% endif %}>{% trans 'Hindu' %}</option>
+        <option{% if selected_religion == 'Muslim' %} selected=selected{% endif %}>{% trans 'Muslim' %}</option>
+        <option{% if selected_religion == 'Sikh' %} selected=selected{% endif %}>{% trans 'Sikh' %}</option>
+        <option{% if selected_religion == 'No religion' %} selected=selected{% endif %}>{% trans 'No religion' %}</option>
+        <option{% if selected_religion == 'Other' %} selected=selected{% endif %}>{% trans 'Other' %}</option>
       </select>
     </div>
 
     <div class="form-group filter{% if selected_district %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="district" name="district" onchange="this.form.submit()">
-        <option value="">District / Subdistrict</option>
+        <option value="">{% trans 'District / Subdistrict' %}</option>
         {% for o in districts %}
-        <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{{o.district}}</option>
+        <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{% trans o.district %}</option>
         {% for t in o.subdistricts %}
-        <option value="{{t.tehsil_id}}" {% if selected_district|add:"0" == t.tehsil_id %} selected=selected{% endif %}>&nbsp;&nbsp;- {{t.tehsil}}</option>
+        <option value="{{t.tehsil_id}}" {% if selected_district|add:"0" == t.tehsil_id %} selected=selected{% endif %}>&nbsp;&nbsp;- {% trans t.tehsil %}</option>
         {% endfor %}
         {% endfor %}
       </select>
@@ -139,7 +139,7 @@
 
     <div class="form-group filter{% if selected_year %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="year" name="year" onchange="this.form.submit()">
-        <option value="">Year</option>
+        <option value="">{% trans 'Year' %}</option>
         {% for o in years %}
         <option{% if selected_year|add:"0" == o %} selected=selected{% endif %}>{{o}}</option>
         {% endfor %}
@@ -148,15 +148,15 @@
 
     <div class="form-group filter{% if selected_sort %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="sort" name="sort" onchange="this.form.submit()">
-        <option value="">Sort Order</option>
-        <option{% if selected_sort == "Oldest to Newest" %} selected=selected{% endif %}>Oldest to Newest</option>
-        <option{% if selected_sort == "Newest to Oldest" %} selected=selected{% endif %}>Newest to Oldest</option>
+        <option value="">{% trans 'Sort Order' %}</option>
+        <option{% if selected_sort == "Oldest to Newest" %} selected=selected{% endif %}>{% trans 'Oldest to Newest' %}</option>
+        <option{% if selected_sort == "Newest to Oldest" %} selected=selected{% endif %}>{% trans 'Newest to Oldest' %}</option>
       </select>
     </div>
 
 
     <div class="form-group col-6 col-md-4 col-lg-3">
-      <a href="https://data.ensaaf.org/detail/" class="btn btn-primary">Sample Full Profile</a>
+      <a href="../detail" class="btn btn-primary">{% trans 'Sample Full Profile' %}</a>
     </div>
 
     

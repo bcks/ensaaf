@@ -31,6 +31,7 @@ urlpatterns = i18n_patterns(
     path('securityforce/<slug:slug>/', securityforce, name="securityforce"),
     url(r'^detention/(?P<type>[0-9]+)/(?P<name>[A-Za-z0-9 \/+_\-]+)/$', detention, name="detention"),
     path('success/', successView, name='success'),
+    path('<slug:slug>/', page),
     prefix_default_language=False 
 )
 
@@ -42,7 +43,6 @@ urlpatterns += [
     path('map_ajax/', map_ajax, name="map_ajax"),
     path('secret-admin-login/', admin.site.urls),
     url(r'^graphql', GraphQLView.as_view(graphiql=True)),
-    path('<slug:slug>/', page),
     path('vikus/data/', vikusdata, name="vikusdata"),
 ]
 

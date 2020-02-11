@@ -44,8 +44,8 @@
         <li class="nav-item"><a class="nav-link" href="{% url "perpetrators" %}" title="{% trans "Key Perpetrators" %}">{% trans "Key Perpetrators" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "overview" %}" title="{% trans "Key Statistics" %}">{% trans "Key Statistics" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "villages" %}" title="{% trans "Villages" %}">{% trans "Villages" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/about" title="{% trans "About" %}">{% trans "About" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="/forthcoming" title="{% trans "Forthcoming" %}">{% trans "Forthcoming" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{%endif%}/about" title="{% trans "About" %}">{% trans "About" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{%endif%}/forthcoming" title="{% trans "Forthcoming" %}">{% trans "Forthcoming" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/crimesagainsthumanity" title="{% trans "Support This Project" %}">{% trans "Donate" %}</a></li>
         <li class="nav-item"><a class="nav-link" data-toggle="collapse" id="search-toggle" href="#search-form" title="{% trans "Search" %}">{% trans "Search" %}</a></li>
         {% if request.LANGUAGE_CODE == 'pa' %}
