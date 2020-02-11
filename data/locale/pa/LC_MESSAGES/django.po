@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-10 19:22-0500\n"
+"POT-Creation-Date: 2020-02-11 06:33-0500\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -134,7 +134,7 @@ msgstr "ਸੰਪਰਕ"
 msgid "Demographics"
 msgstr "ਜਨ ਅੰਕੜਾ ਅਧਿਐਨ"
 
-#: data/templates/district.html:38 data/templates/village.html:42
+#: data/templates/district.html:39 data/templates/village.html:42
 #: data/templates/villages.html:40
 msgid ""
 "Boundaries based on the 2001 census. Read about <a href=\"/about\">our "
@@ -143,16 +143,11 @@ msgstr ""
 "ਇਹ ਨਕਸ਼ਾ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/about/\"> ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ "
 "ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
 
-#: data/templates/district.html:48 data/templates/map.html:143
-#: data/templates/search/search.html:66 data/templates/search/search.html:83
-#: data/templates/search/search.html:115 data/templates/stats.html:983
-#: data/templates/tehsil.html:36 data/templates/village.html:41
-msgid "District"
-msgstr "ਜ਼ਿਲ੍ਹਾ"
-
-#: data/templates/district.html:70
-msgid "Key statistics for documented cases in {{district.0.district}} District"
-msgstr ""
+#: data/templates/district.html:61 data/templates/search/search.html:65
+#: data/templates/search/search.html:82 data/templates/search/search.html:114
+#: data/templates/village.html:41
+msgid "Subdistrict"
+msgstr "ਤਹਿਸੀਲ"
 
 #: data/templates/email.html:4
 msgid "Profile Feedback"
@@ -309,6 +304,13 @@ msgstr "ਸਿੱਖ"
 #: data/templates/map.html:136 data/templatetags/profiletags.py:440
 msgid "No religion"
 msgstr "ਕੋਈ ਧਰਮ ਨਹੀਂ"
+
+#: data/templates/map.html:143 data/templates/search/search.html:66
+#: data/templates/search/search.html:83 data/templates/search/search.html:115
+#: data/templates/stats.html:983 data/templates/tehsil.html:37
+#: data/templates/village.html:41
+msgid "District"
+msgstr "ਜ਼ਿਲ੍ਹਾ"
 
 #: data/templates/map.html:166 data/templates/stats.html:216
 msgid "Urban / Rural"
@@ -631,11 +633,6 @@ msgstr "ਤਸਵੀਰਾਂ ਨੂੰ ਸੂਚੀ ਵਿੱਚ ਦਿਖਾ�
 #: data/templates/search/search.html:51
 msgid "Switch to gallery view"
 msgstr "ਸੂਚੀ ਨੂੰ ਤਸਵੀਰਾਂ ਵਿੱਚ ਦਿਖਾਓ"
-
-#: data/templates/search/search.html:65 data/templates/search/search.html:82
-#: data/templates/search/search.html:114 data/templates/village.html:41
-msgid "Subdistrict"
-msgstr "ਤਹਿਸੀਲ"
 
 #: data/templates/search/search.html:88 data/templates/search/search.html:163
 msgid "No results found."
@@ -2051,10 +2048,6 @@ msgstr "ਸੁਨਾਮ"
 #~| msgid "Return to the top of the page"
 #~ msgid "Return to the <a href=\"{%% url "
 #~ msgstr "ਵਾਪਸ ਉੱਪਰ ਜਾਉ"
-
-#~ msgid ""
-#~ "https://assets.classy.org/7009202/04492490-488f-11e8-b708-06ca153bb396.png"
-#~ msgstr "/static/images/ensaaf-logo-pa.png"
 
 #~ msgid "Summary"
 #~ msgstr "ਸੰਖੇਪ ਵਰਨਣ/ਸਾਰੰਸ਼"
