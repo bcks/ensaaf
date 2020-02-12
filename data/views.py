@@ -11,6 +11,7 @@ from django.db.models import OuterRef, Subquery, Count, Sum, F, Q, DateField
 from django.db.models.functions import Trunc
 from django.template.defaulttags import register
 from django.views.decorators.cache import cache_page
+from django.urls import reverse
 from django.utils.translation import gettext as _
 
 from .models import *
@@ -628,9 +629,12 @@ def hvictim_address_other(value):
     census_id = m.group(1)
     try:
       village = Villages.objects.filter(vid=census_id)[:1].get()
-      return '<span define="Village/town/city"><a href="/village/' + census_id + '">' + vname + '</a></span>, '\
-        '<span define="Subdistrict"><a href="/tehsil/' + village.tehsil_id + '">' + village.tehsil + '</a></span>, '\
-        '<span define="District"><a href="/district/' + village.district_id + '">' + village.district + '</a></span>'
+      return '<span define="' + _('Village/town/city') + '"><a href="' + \
+        reverse('village', args=(census_id,)) + '">' + _(vname) + '</a></span>, '\
+        '<span define="' + _('Subdistrict') + '"><a href="' + \
+        reverse('tehsil', args=(village.tehsil_id,)) + '">' + \
+        _(village.tehsil) + '</a></span>, '\
+        '<span define="' + _('District') + '"><a href="'  + reverse('district', args=(village.district_id,)) + '">' + _(village.district) + '</a></span>'
     except Villages.DoesNotExist:
       str = re.sub(r'([0123456789.]+)-','', str)
       return str
@@ -639,6 +643,7 @@ def hvictim_address_other(value):
     return str
 
 
+  
 
 
 

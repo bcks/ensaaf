@@ -69,9 +69,9 @@
             </div>
             <div class="col-sm-10">
               {% if victim.village_id|add:"0" > 0 and village.tehsil%}
-                <p><span define="Village/town/city"><a href="{% url 'village' victim.village_id %}">{% trans victim.village_name %},</a></span>
-                <span define="Subdistrict"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
-                <span define="District"><a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></span></p>
+                <p><span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% trans victim.village_name %},</a></span>
+                <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
+                <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></span></p> 
               {% else %}
                 <p>{{victim.village_name}}</p>
               {% endif %}
@@ -323,7 +323,7 @@
 
     {% if victim.target_reason_1 or victim.target_reason_2 or victim.target_reason_3 or victim.target_reason_4 or victim.target_reason_5 or victim.target_reason_6 or victim.target_reason_7 or victim.target_reason_8 or victim.target_reason_9 or victim.target_reason_other%}
     <div class="col-sm-6">
-      <p class="kicker dots">Perceived reason for targeting victim</p>
+      <p class="kicker dots">{% trans 'Perceived reason for targeting victim' %}</p>
     </div>
     <div class="col-sm-6">
       <p>{% htarget_reason victim.target_reason_1 victim.target_reason_2 victim.target_reason_3 victim.target_reason_4 victim.target_reason_5 victim.target_reason_6 victim.target_reason_7 victim.target_reason_8 victim.target_reason_9 victim.target_reason_other %}</p>
@@ -377,7 +377,7 @@
 
   {%if victim.witness_arrest_0 or victim.witness_arrest_1 or victim.witness_arrest_2 or victim.witness_arrest_3 or victim.witness_arrest_4 or victim.witness_arrest_5 or victim.witness_arrest_6 or victim.witness_arrest_7 or victim.witness_arrest_8 or victim.witness_arrest_9 or victim.witness_arrest_10 or victim.witness_arrest_12 or victim.witness_arrest_oth %}
     <div class="col-sm-6">
-      <p class="kicker dots">Witness(es) to abduction</p>
+      <p class="kicker dots">{% trans 'Witness(es) to abduction' %}</p>
     </div>
     <div class="col-sm-6">      
         <p>{% hwitness_arrest victim.witness_arrest_0 victim.witness_arrest_1 victim.witness_arrest_2 victim.witness_arrest_3 victim.witness_arrest_4 victim.witness_arrest_5 victim.witness_arrest_6 victim.witness_arrest_7 victim.witness_arrest_8 victim.witness_arrest_9 victim.witness_arrest_10 victim.witness_arrest_12 victim.witness_arrest_oth %}</p>
@@ -391,7 +391,7 @@
   {% if victim.so_inform_witnesses != 3 %}          
   {% if victim.so_inform_witnesses %}          
     <div class="col-sm-6">
-      <p class="kicker dots">Security officials informed witnesses about destination</p>
+      <p class="kicker dots">{% trans 'Security officials informed witnesses about destination' %}</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no_na victim.so_inform_witnesses %}</p>
@@ -405,7 +405,7 @@
   {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
   {% if victim.security_forces_uniformed != None and victim.security_forces_uniformed != 9 %}
     <div class="col-sm-6">
-      <p class="kicker dots">Security officials uniformed</p>
+      <p class="kicker dots">{% trans 'Security officials uniformed' %}</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no victim.security_forces_uniformed %}</p>
@@ -417,7 +417,7 @@
   {% if victim.demands_2 or victim.demands_3 or victim.demands_4 or victim.demands_5 or victim.demands_6 or victim.demands_7 or victim.demands_8 or victim.demands_10 or victim.other_demands %}
 
     <div class="col-sm-6">
-      <p class="kicker dots">Demands by security forces</p>
+      <p class="kicker dots">{% trans 'Demands by security forces' %}</p>
     </div>
     <div class="col-sm-6">
       <p>{% hdemands victim.demands_2 victim.demands_3 victim.demands_4 victim.demands_5 victim.demands_6 victim.demands_7 victim.demands_8 victim.demands_10 victim.other_demands %}</p>
@@ -430,7 +430,7 @@
   {% if victim.judge_or_magistrate_status != 9 %}
   {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
     <div class="col-sm-6">
-      <p class="kicker dots">Victim presented before judge/magistrate</p>
+      <p class="kicker dots">{% trans 'Victim presented before judge/magistrate' %}</p>
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no_unknown victim.judge_or_magistrate_status %}</p>
@@ -443,7 +443,7 @@
   {% if victim.judge_or_magistrate_result_3 != 1  %}
   {% if victim.judge_or_magistrate_result_1 or victim.judge_or_magistrate_result_2 or victim.judge_or_magistrate_result_3 or victim.judge_or_magistrate_result_4 or victim.judge_or_magistrate_resoth %}
     <div class="col-sm-6">
-      <p class="kicker dots">Judge/magistrate result</p>
+      <p class="kicker dots">{% trans 'Judge/magistrate result' %}</p>
     </div>
     <div class="col-sm-6">
       <p>{% hjudge_or_magistrate_result victim.judge_or_magistrate_result_1 victim.judge_or_magistrate_result_2 victim.judge_or_magistrate_result_3 victim.judge_or_magistrate_result_4 victim.judge_or_magistrate_resoth %}</p>

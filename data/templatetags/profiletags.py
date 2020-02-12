@@ -7,11 +7,15 @@ from django.utils.translation import get_language
 register = template.Library()
 
 
-monthNames = ["", _('January'), _('February'), _('March'), _('April'), _('May'), _('June'), _('July'), _('August'), _('September'), _('October'),\
-  _('November'), _('December'),"13####","14####","15####","16####","17####","18####","19####",\
-  "20####","21####","22####","23####","24####","25####","26####","27####","28####","29####",
-  "30####","31####","32####","33####","34####","35####","36####","37####","38####","39####",
-  "40####","41####","42####","43####","44####","45####","46####","47####","48####","49####",]
+monthNames = ["", 'January', 'February', 'March', 'April', 'May',\
+  'June', 'July', 'August', 'September', 'October', 'November',\
+  'December',"13####","14####","15####","16####","17####","18####","19####",\
+  "20####","21####","22####","23####","24####","25####","26####","27####","28####",\
+  "29####", "30####","31####","32####","33####","34####","35####","36####","37####",\
+  "38####","39####", "40####","41####","42####","43####","44####","45####","46####",\
+  "47####", "48####","49####",]
+
+monthNamesForPO = [_("January"), _("February"), _("March"), _("April"), _("May"), _("June"), _("July"), _("August"), _("September"), _("October"), _("November"), _("December")]
 
 
 @register.simple_tag()
@@ -169,14 +173,14 @@ def hdate_link(var):
   if '/' in var and '-' in var:
     var = var.replace('/','-')
     parts = var.split('-')
-    return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + str(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in var:
     var = var.replace(' ','')
     parts = var.split('-')
-    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + str(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
 
   # 23-07-1991
   #    pattern => '%d-%m-%Y',
@@ -186,7 +190,7 @@ def hdate_link(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+    return _(' on ') + _(monthNames[int(parts[1])]) + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
@@ -196,7 +200,7 @@ def hdate_link(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+    return _(' on ') + _(monthNames[int(parts[0])]) + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
 
 @register.simple_tag()
@@ -214,14 +218,14 @@ def hdate(var):
   if '/' in var and '-' in var:
     var = var.replace('/','-')
     parts = var.split('-')
-    return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  ' +  str(parts[5])
+    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + str(int(parts[1])) + ', ' +  str(parts[2]) + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + str(int(parts[4])) + ',  ' +  str(parts[5])
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in var:
     var = var.replace(' ','')
     parts = var.split('-')
-    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + ' and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  ' +  str(parts[5])
+    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + str(int(parts[3])) + ',  ' +  str(parts[5])
 
   # 23-07-1991
   #    pattern => '%d-%m-%Y',
@@ -231,7 +235,7 @@ def hdate(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return ' on ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', ' +  str(parts[2])
+    return _(' on ') + _(monthNames[int(parts[1])]) + ' ' + str(int(parts[0])) + ', ' +  str(parts[2])
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
@@ -241,7 +245,7 @@ def hdate(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return ' on ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', ' +  str(parts[2])
+    return _(' on ') + _(monthNames[int(parts[0])]) + ' ' + str(int(parts[1])) + ', ' +  str(parts[2])
 
 
 
@@ -486,14 +490,14 @@ def hvictim_arrest_date(victim_arrest_date):
     victim_arrest_date = victim_arrest_date.replace('//','/')
     victim_arrest_date = victim_arrest_date.replace('/','-')
     parts = victim_arrest_date.split('-')
-    return ' between ' + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[3])] + ' ' + str(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + str(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in victim_arrest_date:
     victim_arrest_date = victim_arrest_date.replace(' ','')
     parts = victim_arrest_date.split('-')
-    return ' between ' + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a> and ' + monthNames[int(parts[4])] + ' ' + str(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
+    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + str(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  str(parts[5]) + '</a>'
 
   around = ''
 
@@ -505,7 +509,7 @@ def hvictim_arrest_date(victim_arrest_date):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return around + monthNames[int(parts[1])] + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+    return around + _(monthNames[int(parts[1])]) + ' ' + str(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
@@ -515,7 +519,7 @@ def hvictim_arrest_date(victim_arrest_date):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return around + monthNames[int(parts[0])] + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
+    return around + _(monthNames[int(parts[0])]) + ' ' + str(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  str(parts[2]) + '</a>';
 
   return ''
 
