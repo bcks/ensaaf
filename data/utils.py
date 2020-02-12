@@ -32,6 +32,8 @@ def calculate_stats(all):
     }
     caste = sorted(caste.items(), key=operator.itemgetter(1), reverse=True)
 
+     # don't show in dropdown list, but we still want it translated
+    Chandigarh = _('Chandigarh')
 
     districts = {
       _('Amritsar'): all.filter(district_id='0302').count(),

@@ -189,11 +189,11 @@
 
     <div class="col-6 col-sm-4 col-md-3 victim">
 
-      <div class="home-box" style="background-image:url('{% if victim.photo_vic_fn %}{% hphoto victim.photo_vic_fn %}{% else %}{% if victim.victim_sex == 2 %}/static/images/woman.jpg{% else %}/static/images/gray.jpg{% endif %}{% endif %}')" onclick="window.location.href='/profile/{{victim.record_id}}';" id="p{{victim.record_id}}">     
+      <div class="home-box" style="background-image:url('{% if victim.photo_vic_fn %}{% hphoto victim.photo_vic_fn %}{% else %}{% if victim.victim_sex == 2 %}/static/images/woman.jpg{% else %}/static/images/gray.jpg{% endif %}{% endif %}')" onclick="window.location.href='{% url 'profile' victim.record_id %}';" id="p{{victim.record_id}}">     
       </div>
 
         <div class="names">
-          <h5 style="margin: 0;"><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></h5>
+          <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{{victim.victim_name}}</a></h5>
           {{victim.village_name}}<br>
           {% if victim.victim_disappeared_killed == 2 %}
             {% trans 'Extrajudicial execution' %},
