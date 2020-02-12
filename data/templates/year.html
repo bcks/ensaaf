@@ -46,23 +46,33 @@
 <div class="row keyword">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} in {{year}}:</p>
+  {% if request.LANGUAGE_CODE == 'pa' %}
+    <p class="m-2">{{stats.total|numpa}} ਸਾਲ {{year}} ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਕੇਸ</p>
+  {% else %}
+    <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} in {{year}}:</p>
+  {% endif %}
+
 
   {% regroup victims.all by district as district_list %}
 
   {% for district in district_list %}
     {% if forloop.first %}
       <ul>{% endif %}
-        <li><a href="#{{district.grouper|default_if_none:"Location Withheld"|slugify}}">{{ district.grouper|default_if_none:"Location Withheld"  }}</a></li>
-    {% if forloop.last %}</ul>{% endif %}        
+        {% with name=district.grouper|default_if_none:"Location Withheld" %}     
+        <li><a href="#{{district.grouper|default_if_none:"Location Withheld"|slugify}}">{% trans name %}</a></li>
+        {% endwith %}
+    {% if forloop.last %}</ul>{% endif %}
   {% endfor %}
   
+  <!-- {% trans 'Location Withheld' %} -->
 
   {% for district in district_list %}
     <div class="row">
       <div class="col-sm-12 col-md m-2">
           <hr>
-        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{{ district.grouper|default_if_none:"Location Withheld"  }} {% if district.grouper != None %}{% trans 'District' %}{% endif %}</h2>
+        {% with name=district.grouper|default_if_none:"Location Withheld" %}     
+        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{% trans name %} {% if district.grouper != None %}{% trans 'District' %}{% endif %}</h2>
+        {% endwith %}
       </div>
     </div>
     

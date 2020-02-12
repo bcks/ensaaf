@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-12 08:49-0500\n"
+"POT-Creation-Date: 2020-02-12 09:08-0500\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -513,9 +513,10 @@ msgstr ""
 "ਇਹ ਨਕਸ਼ਾ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/pa/about/\"> ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ "
 "ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
 
-#: data/templates/district.html:61 data/templates/search/search.html:65
-#: data/templates/search/search.html:82 data/templates/search/search.html:114
-#: data/templates/village.html:41 data/templates/year.html:76 data/views.py:634
+#: data/templates/district.html:61 data/templates/profile.html:73
+#: data/templates/search/search.html:65 data/templates/search/search.html:82
+#: data/templates/search/search.html:114 data/templates/village.html:41
+#: data/templates/year.html:77 data/views.py:634
 msgid "Subdistrict"
 msgstr "ਤਹਿਸੀਲ"
 
@@ -662,11 +663,12 @@ msgstr "ਮੁਸਲਮਾਨ"
 msgid "No religion"
 msgstr "ਕੋਈ ਧਰਮ ਨਹੀਂ"
 
-#: data/templates/map.html:143 data/templates/search/search.html:66
-#: data/templates/search/search.html:83 data/templates/search/search.html:115
-#: data/templates/stats.html:983 data/templates/tehsil.html:37
-#: data/templates/village.html:41 data/templates/villages.html:53
-#: data/templates/year.html:65 data/views.py:637
+#: data/templates/map.html:143 data/templates/profile.html:74
+#: data/templates/search/search.html:66 data/templates/search/search.html:83
+#: data/templates/search/search.html:115 data/templates/stats.html:983
+#: data/templates/tehsil.html:37 data/templates/village.html:41
+#: data/templates/villages.html:53 data/templates/year.html:66
+#: data/views.py:637
 msgid "District"
 msgstr "ਜ਼ਿਲ੍ਹਾ"
 
@@ -764,6 +766,10 @@ msgstr "ਲਾਪਤਾ"
 msgid "date unknown"
 msgstr "ਤਾਰੀਖ਼ ਪਤਾ ਨਹੀਂ"
 
+#: data/templates/profile.html:72 data/views.py:632
+msgid "Village/town/city"
+msgstr "ਪਿੰਡ/ਕਸਬਾ/ਸ਼ਹਿਰ"
+
 #: data/templates/profile.html:158 data/templatetags/profiletags.py:537
 msgid "Children"
 msgstr "ਬੱਚੇ"
@@ -789,17 +795,17 @@ msgid "Share this profile"
 msgstr "ਟਵਿਟਰ ਉੱਪਰ ਸਾਂਝਾ ਕਰੋ; ਫੇਸਬੁਕ ਉੱਪਰ ਸਾਂਝਾ ਕਰੋ"
 
 #: data/templates/profile.html:345 data/templates/search/search.html:71
-#: data/templates/year.html:93
+#: data/templates/year.html:94
 msgid "extrajudicial execution"
 msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
 
-#: data/templates/profile.html:348 data/templates/year.html:92
+#: data/templates/profile.html:348 data/templates/year.html:93
 msgid "disappearance"
 msgstr "ਲਾਪਤਾ"
 
 #: data/templates/profile.html:447
 msgid "Judge/magistrate result"
-msgstr ""
+msgstr "ਜੱਜ/ਮੈਜਿਸਟਰੇਟ ਦਾ ਨਤੀਜਾ"
 
 #: data/templates/profile.html:499 data/templates/profile.html:529
 #: data/templates/profile.html:730
@@ -1108,7 +1114,11 @@ msgstr "ਕੇਸ"
 msgid "report a case"
 msgstr "ਨਵਾਂ ਕੇਸ ਦਰਜ ਕਰੋ"
 
-#: data/templates/year.html:147
+#: data/templates/year.html:60
+msgid "Location Withheld"
+msgstr "ਪਤਾ ਜਨਤਕ ਨਹੀਂ ਕੀਤਾ ਜਾ ਰਿਹਾ"
+
+#: data/templates/year.html:148
 msgid ""
 "Note: Where a victim’s date of extrajudicial execution or disappearance "
 "falls within a date range that crosses two years (e.g. “between October 1989 "
@@ -2252,10 +2262,6 @@ msgstr "ਮੂਨਕ"
 #: data/views.py:38
 msgid "Sunam"
 msgstr "ਸੁਨਾਮ"
-
-#: data/views.py:632
-msgid "Village/town/city"
-msgstr "ਪਿੰਡ/ਕਸਬਾ/ਸ਼ਹਿਰ"
 
 #~ msgid "case"
 #~ msgstr "ਕੇਸ"
