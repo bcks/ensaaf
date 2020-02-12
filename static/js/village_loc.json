@@ -2689,7 +2689,7 @@
 { "NAME": "Patiari", "BLOCK": "Bhunga", "SUBDIST": "Hoshiarpur", "DIST": "Hoshiarpur", "CODE": "0305000300520800","coord": [ 75.927487554438798, 31.666977373765455 ] },
 { "NAME": "Khiala Balanda", "BLOCK": "Bhunga", "SUBDIST": "Dasuya", "DIST": "Hoshiarpur", "CODE": "0305000100473500","coord": [ 75.784521126225499, 31.678520766564159 ] },
 { "NAME": "Mohan", "BLOCK": "Tanda", "SUBDIST": "Dasuya", "DIST": "Hoshiarpur", "CODE": "0305000100471200","coord": [ 75.721592855066191, 31.680368663415187 ] },
-{ "NAME": "Amritsar", "BLOCK": "Verka", "SUBDIST": "Amritsar II", "DIST": "Amritsar", "CODE": "0302000340205000","coord": [ 74.896608820156658, 31.63100768988361 ] },
+{ "NAME": "Amritsar", "BLOCK": "Verka", "SUBDIST": "Amritsar II", "DIST": "Amritsar", "CODE": "0302000340205000","coord": [ 74.8630979, 31.6338127 ] },
 { "NAME": "Darapur", "BLOCK": "Bhunga", "SUBDIST": "Dasuya", "DIST": "Hoshiarpur", "CODE": "0305000100473100","coord": [ 75.75965323477125, 31.677291711573211 ] },
 { "NAME": "Saidoke", "BLOCK": "Rayya", "SUBDIST": "Baba Bakala", "DIST": "Amritsar", "CODE": "0302000700281600","coord": [ 75.299019201725898, 31.677822515508904 ] },
 { "NAME": "Bachiwind", "BLOCK": "Chogawan", "SUBDIST": "Ajnala", "DIST": "Amritsar", "CODE": "0302000100174200","coord": [ 74.61118175145576, 31.661492886813907 ] },
@@ -12838,5 +12838,6 @@
 { "NAME": "Karandi", "BLOCK": "Sardulgarh", "SUBDIST": "Sardulgarh", "DIST": "Mansa", "CODE": "0315000101068500","coord": [ 75.290591049153278, 29.579909687056347 ] },
 { "NAME": "Rajrana", "BLOCK": "Sardulgarh", "SUBDIST": "Sardulgarh", "DIST": "Mansa", "CODE": "0315000101068400","coord": [ 75.312668443954763, 29.56604677196319 ] },
 { "NAME": "Mankhera", "BLOCK": "Sardulgarh", "SUBDIST": "Sardulgarh", "DIST": "Mansa", "CODE": "0315000101068200","coord": [ 75.253135395593972, 29.555258258521853 ] },
-{ "NAME": "Sangha", "BLOCK": "Sardulgarh", "SUBDIST": "Sardulgarh", "DIST": "Mansa", "CODE": "0315000101068300","coord": [ 75.282774077221092, 29.542055352134913 ] }
+{ "NAME": "Sangha", "BLOCK": "Sardulgarh", "SUBDIST": "Sardulgarh", "DIST": "Mansa", "CODE": "0315000101068300","coord": [ 75.282774077221092, 29.542055352134913 ] },
+{ "NAME": "Chandigarh", "BLOCK": "Chandigarh", "SUBDIST": "Chandigarh", "DIST": "Chandigarh", "CODE": "04010000800286", "coord": [ 76.768066, 30.741482 ] }
 ]
