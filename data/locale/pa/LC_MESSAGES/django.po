@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-03-09 22:14-0400\n"
+"POT-Creation-Date: 2020-03-09 22:35-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -603,11 +603,13 @@ msgstr "ਰਾਮਗੜ੍ਹੀਆ"
 
 #: data/templates/map.html:100 data/templates/map.html:137
 #: data/templates/profiles.html:70 data/templates/profiles.html:124
+#: data/templatetags/profiletags.py:391 data/templatetags/profiletags.py:416
 #: data/templatetags/profiletags.py:440 data/templatetags/profiletags.py:451
 #: data/templatetags/profiletags.py:656 data/templatetags/profiletags.py:665
-#: data/templatetags/profiletags.py:706 data/templatetags/profiletags.py:937
-#: data/templatetags/profiletags.py:964 data/templatetags/profiletags.py:973
-#: data/utils.py:116 data/utils.py:131 data/utils.py:206 data/utils.py:246
+#: data/templatetags/profiletags.py:706 data/templatetags/profiletags.py:725
+#: data/templatetags/profiletags.py:937 data/templatetags/profiletags.py:964
+#: data/templatetags/profiletags.py:973 data/utils.py:107 data/utils.py:116
+#: data/utils.py:131 data/utils.py:206 data/utils.py:246 data/utils.py:263
 #: data/utils.py:273 data/utils.py:285 data/utils.py:299 data/utils.py:312
 #: data/utils.py:331
 msgid "Other"
@@ -1929,6 +1931,26 @@ msgstr "ਸੰਗਰੂਰ"
 #: data/utils.py:76
 msgid "Graduate degree"
 msgstr "ਗਰੈਜੂਏਟ ਡਿਗਰੀ"
+
+#: data/utils.py:83
+msgid "0-17"
+msgstr "੦-੧੭"
+
+#: data/utils.py:84
+msgid "18-33"
+msgstr "੧੮-੩੩"
+
+#: data/utils.py:85
+msgid "34-49"
+msgstr "੩੪-੪੯"
+
+#: data/utils.py:86
+msgid "50-64"
+msgstr "੫੦-੬੪"
+
+#: data/utils.py:87
+msgid "65+"
+msgstr "੬੫+"
 
 #: data/utils.py:88
 msgid "Age unknown"

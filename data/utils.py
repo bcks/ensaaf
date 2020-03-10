@@ -80,11 +80,11 @@ def calculate_stats(all):
     education = sorted(education.items(), key=operator.itemgetter(0), reverse=True)
 
     age_range = { # Dataset.objects.filter(i_end_int__gte=x,i_begin_int__lte=x)
-      "0-17": all.filter(victim_age__gte=0,victim_age__lte=17).exclude(victim_age__exact='').count(),
-      "18-33": all.filter(victim_age__gte=18,victim_age__lte=33).count(),
-      "34-49": all.filter(victim_age__gte=34,victim_age__lte=49).count(),
-      "50-64": all.filter(victim_age__gte=50,victim_age__lte=64).count(),
-      "65+": all.filter(victim_age__gte=65,victim_age__lte=99).count(),
+      _("0-17"): all.filter(victim_age__gte=0,victim_age__lte=17).exclude(victim_age__exact='').count(),
+      _("18-33"): all.filter(victim_age__gte=18,victim_age__lte=33).count(),
+      _("34-49"): all.filter(victim_age__gte=34,victim_age__lte=49).count(),
+      _("50-64"): all.filter(victim_age__gte=50,victim_age__lte=64).count(),
+      _("65+"): all.filter(victim_age__gte=65,victim_age__lte=99).count(),
       _("Age unknown"): all.filter(victim_age__in=["Don't know",""]).count(),
     }
     age_range = sorted(age_range.items(), key=operator.itemgetter(0))
@@ -104,7 +104,7 @@ def calculate_stats(all):
       _("Unemployed"): all.filter(victim_employment_9='1').count(),
     }
     employment = sorted(employment.items(), key=operator.itemgetter(1), reverse=True)
-    employment.append(('Other', all.filter(victim_employment_11='1').count()))
+    employment.append(( _('Other') , all.filter(victim_employment_11='1').count()))
     
 
     no_action_pursued_reason = {
@@ -260,7 +260,7 @@ def calculate_stats(all):
       _("Village drain"): all.filter(victim_arrest_location='10').count(),
     }
     victim_arrest_location = sorted(victim_arrest_location.items(), key=operator.itemgetter(1), reverse=True)
-    victim_arrest_location.append(( "Other", all.filter(victim_arrest_location='11').count() ))
+    victim_arrest_location.append(( _("Other") , all.filter(victim_arrest_location='11').count() ))
 
 
     detention_facility_type = {

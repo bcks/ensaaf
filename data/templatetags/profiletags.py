@@ -38,8 +38,7 @@ def change_lang(context, lang=None, *args, **kwargs):
 
 
 @register.filter()
-def numpa(number_string, *args, **kwargs):
-    nocomma = kwargs.get('nocomma', None)    
+def numpa(number_string):
 #    if (get_language() == 'pa') and ( isinstance(number_string, numbers.Number) ):
     if (get_language() == 'pa'):
       number_string = str(number_string)
@@ -47,10 +46,17 @@ def numpa(number_string, *args, **kwargs):
       '6':'੬','7':'੭','8':'੮','9':'੯','.':'.',',':','}
       return "".join([dic[c] for c in number_string])
     else:
-      if nocomma:
-        return number_string
-      else:
-        return format(number_string, ",")
+      return format(number_string, ",")
+
+@register.filter()
+def yearpa(number_string):
+    if (get_language() == 'pa'):
+      number_string = str(number_string)
+      dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫',\
+      '6':'੬','7':'੭','8':'੮','9':'੯','.':'.',',':','}
+      return "".join([dic[c] for c in number_string])
+    else:
+      return number_string
 
 
 @register.filter(name='uncensus')
@@ -178,14 +184,14 @@ def hdate_link(var):
   if '/' in var and '-' in var:
     var = var.replace('/','-')
     parts = var.split('-')
-    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  numpa(parts[2], nocomma='1') + '</a>' + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + numpa(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  numpa(parts[5], nocomma='1') + '</a>'
+    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + numpa(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  yearpa(parts[5]) + '</a>'
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in var:
     var = var.replace(' ','')
     parts = var.split('-')
-    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  numpa(parts[2], nocomma='1') + '</a>' + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + numpa(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  numpa(parts[5], nocomma='1') + '</a>'
+    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + numpa(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  yearpa(parts[5]) + '</a>'
 
   # 23-07-1991
   #    pattern => '%d-%m-%Y',
@@ -195,7 +201,7 @@ def hdate_link(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return _(' on ') + _(monthNames[int(parts[1])]) + ' ' + numpa( int(parts[0]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  numpa(parts[2], nocomma='1') + '</a>';
+    return _(' on ') + _(monthNames[int(parts[1])]) + ' ' + numpa( int(parts[0]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
@@ -205,7 +211,7 @@ def hdate_link(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return _(' on ') + _(monthNames[int(parts[0])]) + ' ' + numpa( int(parts[1]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  numpa(parts[2], nocomma='1') + '</a>';
+    return _(' on ') + _(monthNames[int(parts[0])]) + ' ' + numpa( int(parts[1]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
 
 
 @register.simple_tag()
@@ -223,14 +229,14 @@ def hdate(var):
   if '/' in var and '-' in var:
     var = var.replace('/','-')
     parts = var.split('-')
-    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', ' +  str(parts[2]) + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + str(int(parts[4])) + ',  ' +  numpa(parts[5], nocomma='1')
+    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', ' +  str(parts[2]) + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + str(int(parts[4])) + ',  ' +  yearpa(parts[5])
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in var:
     var = var.replace(' ','')
     parts = var.split('-')
-    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + str(int(parts[3])) + ',  ' +  numpa(parts[5], nocomma='1')
+    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + str(int(parts[3])) + ',  ' +  yearpa(parts[5])
 
   # 23-07-1991
   #    pattern => '%d-%m-%Y',
@@ -240,7 +246,7 @@ def hdate(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return _(' on ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', ' + numpa(parts[2], nocomma='1')
+    return _(' on ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', ' + yearpa(parts[2])
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
@@ -250,7 +256,7 @@ def hdate(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return _(' on ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', ' +  numpa(parts[2], nocomma='1')
+    return _(' on ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', ' +  yearpa(parts[2])
 
 
 
@@ -264,7 +270,7 @@ def hdateslash(start, end):
   if start == end:
     return start
   else:
-    return numpa(start, nocomma='1') + '-' + numpa(end, nocomma='1')
+    return yearpa(start) + '-' + yearpa(end)
 
 
 @register.simple_tag()
@@ -279,14 +285,14 @@ def hyear(var):
   if '/' in var and '-' in var:
     var = var.replace('/','-')
     parts = var.split('-')
-    return ', ' + numpa(parts[5], nocomma='1')
+    return ', ' + yearpa(parts[5])
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in var:
     var = var.replace(' ','')
     parts = var.split('-')
-    return ', ' + numpa(parts[5], nocomma='1')
+    return ', ' + yearpa(parts[5])
 
   # 23-07-1991
   #    pattern => '%d-%m-%Y',
@@ -296,7 +302,7 @@ def hyear(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return ', ' + numpa(parts[2], nocomma='1')
+    return ', ' + yearpa(parts[2])
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
@@ -306,7 +312,7 @@ def hyear(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return ', ' + numpa(parts[2], nocomma='1')
+    return ', ' + yearpa(parts[2])
 
 
 
@@ -388,7 +394,7 @@ def hvictim_militant_reason(v1, v2, v3, v4, v5, v6, v7, v8, other):
     if (other):
       groups.append(other)
     else:
-      groups.append('Other')
+      groups.append( _('Other') )
   if len(groups):
       s = '; '
       return s.join(groups)
@@ -413,7 +419,7 @@ def hvictim_employment(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, other):
     if (other):
       groups.append(other)
     else:
-      groups.append('Other')
+      groups.append( _('Other') )
   if len(groups):
       s = ', '
       return s.join(groups)
@@ -494,14 +500,14 @@ def hvictim_arrest_date(victim_arrest_date):
     victim_arrest_date = victim_arrest_date.replace('//','/')
     victim_arrest_date = victim_arrest_date.replace('/','-')
     parts = victim_arrest_date.split('-')
-    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  numpa(parts[2], nocomma='1') + '</a>' + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + numpa(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  numpa(parts[5], nocomma='1') + '</a>'
+    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + numpa(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  yearpa(parts[5]) + '</a>'
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in victim_arrest_date:
     victim_arrest_date = victim_arrest_date.replace(' ','')
     parts = victim_arrest_date.split('-')
-    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  numpa(parts[2], nocomma='1') + '</a>' + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + numpa(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  numpa(parts[5], nocomma='1') + '</a>'
+    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + numpa(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  yearpa(parts[5]) + '</a>'
 
   around = ''
 
@@ -513,7 +519,7 @@ def hvictim_arrest_date(victim_arrest_date):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return around + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  numpa(parts[2], nocomma='1') + '</a>';
+    return around + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
@@ -523,7 +529,7 @@ def hvictim_arrest_date(victim_arrest_date):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return around + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  numpa(parts[2], nocomma='1') + '</a>';
+    return around + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
 
   return ''
 
@@ -722,7 +728,7 @@ def hjudge_or_magistrate_result(v1, v2, v3, v4, other):
     if (other):
       groups.append(other)
     else:
-      groups.append('Other')
+      groups.append( _('Other') )
   if len(groups):
       s = ', '
       return s.join(groups)
