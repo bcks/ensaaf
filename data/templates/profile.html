@@ -339,12 +339,12 @@
 
     {% if victim.victim_arrest_status != None and victim.victim_arrest_status != 3 %}
     <div class="col-sm-6">
-      <p class="kicker dots">Abduction preceding
+      <p class="kicker dots">
       {% if victim.victim_disappeared_killed == 2 %}
-        {% trans 'extrajudicial execution' %}
+        {% trans 'Abduction preceding extrajudicial execution' %}
       {% endif %}
       {% if victim.victim_disappeared_killed == 1 %}
-        {% trans 'disappearance' %}
+        {% trans 'Abduction preceding disappearance' %}
       {% endif %}
     </p>
     </div>
@@ -825,7 +825,7 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>Remedies {% if victim.family_effects_1 == 1 %}{% else %}& Impact{% endif %}</h4>
+      <h4>{% trans 'Remedies' %} {% if victim.family_effects_1 == 1 %}{% else %}{% trans '& Impact' %}{% endif %}</h4>
     </div>
   </div>
 
