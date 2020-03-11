@@ -48,7 +48,8 @@ def not_int(s):
 @register.filter()
 def numpa(number_string):
 #    if (get_language() == 'pa') and ( isinstance(number_string, numbers.Number) ):
-    number_string = number_string.lstrip('0')
+    if not_int(number_string):
+      number_string = number_string.lstrip('0')
     if (get_language() == 'pa'):
       number_string = str(number_string)
       dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫',\
