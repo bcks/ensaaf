@@ -56,15 +56,19 @@ def numpa(number_string):
       '6':'੬','7':'੭','8':'੮','9':'੯','.':'.',',':',','-':'-'}
       return "".join([dic[c] for c in number_string])
     else:
-      if not_int(number_string) and "-" not in number_string: 
-        number_string =  format(number_string, ",")
-      return number_string
+      try:
+        number_string = format(number_string, ",")
+        return number_string
+      except ValueError:       
+        return number_string
         
 
 @register.filter()
 def yearpa(number_string):
-    if (get_language() == 'pa'):
-      number_string = str(number_string)
+    number_string = str(number_string)
+    if (get_language() == 'pa') and (number_string == 'Date Unknown'):
+        return _('Date Unknown')    
+    if (get_language() == 'pa') and number_string.isdigit():      
       dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫',\
       '6':'੬','7':'੭','8':'੮','9':'੯','.':'.',',':','}
       return "".join([dic[c] for c in number_string])

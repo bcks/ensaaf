@@ -103,7 +103,7 @@ def profiles(request):
 
     victim_filter = DataFilter(request.GET, queryset=victim_list)
 
-    years.append( _('Date Unknown') )
+    years.append( 'Date Unknown' )
 
     first_names = get_first_names()
 
@@ -181,7 +181,7 @@ def map(request):
 
     years = list(range(1981,2008))
     years.append(2012)
-    years.append( _('Date Unknown') )
+    years.append('Date Unknown')
 
     return render(request, "map.html", { 
       "total": total,

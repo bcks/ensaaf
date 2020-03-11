@@ -10,6 +10,7 @@ from graphene_django.views import GraphQLView
 
 urlpatterns = i18n_patterns(
     path('', map, name='map'),
+    path('map_ajax/', map_ajax, name="map_ajax"),
     path('email/', emailView, name='email'),
     path('profiles/', profiles, name="profiles"),
     path('perpetrators/', perpetrators, name="perpetrators"),
@@ -39,8 +40,6 @@ urlpatterns += [
     path('search/spelling/', spelling, name='spelling'),
     path('search/autocomplete/', autocomplete, name='autocomplete'),
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-
-    path('map_ajax/', map_ajax, name="map_ajax"),
     path('secret-admin-login/', admin.site.urls),
     url(r'^graphql', GraphQLView.as_view(graphiql=True)),
     path('vikus/data/', vikusdata, name="vikusdata"),
