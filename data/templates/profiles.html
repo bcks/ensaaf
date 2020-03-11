@@ -48,11 +48,11 @@
     <div class="form-group filter{% if selected_age %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="age" name="age" onchange="this.form.submit()">
         <option value="">{% trans 'Age' %}</option>
-        <option{% if selected_age == '0-17' %} selected=selected{% endif %}>0-17</option>
-        <option{% if selected_age == '18-33' %} selected=selected{% endif %}>18-33</option>
-        <option{% if selected_age == '34-49' %} selected=selected{% endif %}>34-49</option>
-        <option{% if selected_age == '50-64' %} selected=selected{% endif %}>50-64</option>
-        <option{% if selected_age == '65+' %} selected=selected{% endif %}>65+</option>
+        <option{% if selected_age == '0-17' %} selected=selected{% endif %} value="0-17">{% trans '0-17' %}</option>
+        <option{% if selected_age == '18-33' %} selected=selected{% endif %} value="18-33">{% trans '18-33' %}</option>
+        <option{% if selected_age == '34-49' %} selected=selected{% endif %} value="34-49">{% trans '34-49' %}</option>
+        <option{% if selected_age == '50-64' %} selected=selected{% endif %} value="50-64">{% trans '50-64' %}</option>
+        <option{% if selected_age == '65+' %} selected=selected{% endif %} value="65+">{% trans '65+' %}</option>
       </select>
     </div>
 
@@ -141,7 +141,7 @@
       <select class="form-control" id="year" name="year" onchange="this.form.submit()">
         <option value="">{% trans 'Year' %}</option>
         {% for o in years %}
-        <option{% if selected_year|add:"0" == o %} selected=selected{% endif %}>{{o}}</option>
+        <option{% if selected_year|add:"0" == o %} selected=selected{% endif %} value="{{o}}">{{o|yearpa}}</option>
         {% endfor %}
       </select>
     </div>
@@ -180,7 +180,7 @@
       {% if year.grouper == None %}
         <h3>{% trans 'Date Unknown' %}</h3>
       {% else %}
-        <h3>{{year.grouper|date:"Y"}}</h3>
+        <h3>{{year.grouper|date:"Y"|yearpa}}</h3>
       {% endif %}
       </div>
     </div>

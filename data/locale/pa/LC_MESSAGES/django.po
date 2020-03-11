@@ -2211,7 +2211,7 @@ msgid "Sultanpur Lodhi"
 msgstr "ਸੁਲਤਾਨਪੁਰ ਲੋਧੀ"
 
 #: data/views.py:38
-msgid "Jagraon"
+msgid "Jagroan"
 msgstr "ਜਗਰਾਓ"
 
 #: data/views.py:38
