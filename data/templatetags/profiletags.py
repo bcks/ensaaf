@@ -287,7 +287,7 @@ def hdateslash(start, end):
   start = str(start).split('-')[0]
   end = str(end).split('-')[0]
   if start == end:
-    return start
+    return yearpa(start)
   else:
     return yearpa(start) + '-' + yearpa(end)
 
