@@ -800,15 +800,15 @@ msgstr "ਪੀੜਤ ਦੀ ਪ੍ਰੋਫ਼ਾਈਲ ਸਾਂਝੀ ਕਰ�
 
 #: data/templates/profile.html:265
 msgid "Abduction"
-msgstr "ਚੁੱਕ ਲੈਣਾ"
+msgstr "ਹਿਰਾਸਤ"
 
 #: data/templates/profile.html:271 data/templates/profile.html:278
 msgid "&"
-msgstr "ਅਤੇ"
+msgstr "ਦੀ"
 
 #: data/templates/profile.html:272
 msgid "Detention"
-msgstr "ਹਿਰਾਸਤ ਵਿੱਚ ਰੱਖਣਾ"
+msgstr "ਜਾਣਕਾਰੀ"
 
 #: data/templates/profile.html:280
 msgid "Torture"
@@ -961,7 +961,7 @@ msgstr "ਪੀੜਤਾਂ ਦੇ ਕੁਲ ਬੱਚੇ ਜਿਹੜੇ ਜਿ�
 
 #: data/templates/stats.html:242
 msgid "Abduction, Detention, & Torture"
-msgstr "ਗ੍ਰਿਫ਼ਤਾਰੀ, ਹਿਰਾਸਤ, ਅਤੇ ਤਸ਼ਦਦ"
+msgstr "ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ਦਦ ਦੀ ਜਾਣਕਾਰੀ"
 
 #: data/templates/stats.html:297
 msgid "Abduction preceding enforced disappearance/extrajudicial execution"
@@ -1039,7 +1039,7 @@ msgstr "ਹਾਂਜੀ/ਹਾਂ ਪਰ ਤੁਰੰਤ ਹੀ ਸਸਕਾਰ 
 
 #: data/templates/stats.html:659
 msgid "Condition of corpse, if known"
-msgstr "ਸਰੀਰ ਦੀ ਹਾਲਤ (ਜੇ ਪਤਾ ਹੋਵੇ)"
+msgstr "ਸਰੀਰ ਦੀ ਹਾਲਤ"
 
 #: data/templates/stats.html:692
 msgid "Names of involved security officials known"
@@ -1236,7 +1236,7 @@ msgstr " ਅਤੇ "
 #: data/templatetags/profiletags.py:216 data/templatetags/profiletags.py:227
 #: data/templatetags/profiletags.py:262 data/templatetags/profiletags.py:273
 msgid " on "
-msgstr " ਤਾਰੀਖ਼ "
+msgstr " ਦੀ ਤਾਰੀਖ਼ "
 
 #: data/templatetags/profiletags.py:337 data/utils.py:70
 msgid "No education"
