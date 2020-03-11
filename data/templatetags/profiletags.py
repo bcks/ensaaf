@@ -36,17 +36,29 @@ def change_lang(context, lang=None, *args, **kwargs):
     else:
       return '/' + lang + context['request'].path
 
+def not_int(s):
+    try: 
+        int(s)
+        return False
+    except ValueError:
+        return True
+
+
 
 @register.filter()
 def numpa(number_string):
 #    if (get_language() == 'pa') and ( isinstance(number_string, numbers.Number) ):
+    number_string = number_string.lstrip('0')
     if (get_language() == 'pa'):
       number_string = str(number_string)
       dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫',\
-      '6':'੬','7':'੭','8':'੮','9':'੯','.':'.',',':','}
+      '6':'੬','7':'੭','8':'੮','9':'੯','.':'.',',':',','-':'-'}
       return "".join([dic[c] for c in number_string])
     else:
-      return format(number_string, ",")
+      if not_int(number_string) and "-" not in number_string: 
+        number_string =  format(number_string, ",")
+      return number_string
+        
 
 @register.filter()
 def yearpa(number_string):
@@ -211,7 +223,8 @@ def hdate_link(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return _(' on ') + _(monthNames[int(parts[0])]) + ' ' + numpa( int(parts[1]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
+    parts[0] = int(parts[0])
+    return _(' on ') + _(monthNames[ parts[0] ]) + ' ' + numpa( parts[1] ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
 
 
 @register.simple_tag()
@@ -256,7 +269,8 @@ def hdate(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return _(' on ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', ' +  yearpa(parts[2])
+    parts[0] = int(parts[0])
+    return _(' on ') + _(monthNames[ parts[0] ]) + ' ' + numpa(parts[1]) + ', ' +  yearpa(parts[2])
 
 
 
@@ -529,7 +543,8 @@ def hvictim_arrest_date(victim_arrest_date):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return around + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
+    parts[0] = int(parts[0])
+    return around + _(monthNames[ parts[0] ]) + ' ' + numpa( parts[1] ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
 
   return ''
 

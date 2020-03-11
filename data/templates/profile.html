@@ -52,7 +52,7 @@
 
       <p>
       {% if victim.victim_sex != None %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex != None %},{% endif %}        
-      {% trans "age" %} {{victim.victim_age|default:"unknown"}}        
+      {% trans "age" %} {{victim.victim_age|default:"unknown"|numpa}}        
       {% endif %}
       </p>          
                     
@@ -262,22 +262,22 @@
       <h4>
       
       {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-        Abduction{% if victim.victim_prior_detention_trt == 1 %},{% endif %}
+        {% trans 'Abduction' %}{% if victim.victim_prior_detention_trt == 1 %},{% endif %}
       {% endif %}
 
       {% if victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}      
 
 
-      {% if victim.victim_prior_detention_trt != 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}&{% endif %}
-          Detention{% if victim.victim_prior_detention_trt == 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %},{% endif %}
+      {% if victim.victim_prior_detention_trt != 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}{% trans '&' %}{% endif %}
+          {% trans 'Detention' %}{% if victim.victim_prior_detention_trt == 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %},{% endif %}
       {% endif %}
 
 
       {% if victim.victim_prior_detention_trt == 1 %}
 
-        {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 or victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}&{% endif %}      
+        {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 or victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}{% trans '&' %}{% endif %}      
 
-        Torture
+        {% trans 'Torture' %}
 
       {% endif %}
 
@@ -300,7 +300,7 @@
       <p class="kicker dots">{% trans 'Prior detentions' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>{% hyes_no victim.victim_prior_detention_st %}{% if victim.victim_prior_detentions != "Don't know" %}{% if victim.victim_prior_detention_st == 1 %}, {{victim.victim_prior_detentions}}{% endif %}{% endif %}</p>
+      <p>{% hyes_no victim.victim_prior_detention_st %}{% if victim.victim_prior_detentions != "Don't know" %}{% if victim.victim_prior_detention_st == 1 %}, {{victim.victim_prior_detentions|numpa}}{% endif %}{% endif %}</p>
     </div>
   {% endif %}
 
@@ -825,7 +825,11 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>{% trans 'Remedies' %} {% if victim.family_effects_1 == 1 %}{% else %}{% trans '& Impact' %}{% endif %}</h4>
+      <h4>{% if victim.family_effects_1 == 1 %}
+            {% trans 'Remedies' %}
+          {% else %}
+            {% trans 'Remedies & Impact' %}
+          {% endif %}</h4>
     </div>
   </div>
 
