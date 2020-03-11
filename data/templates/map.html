@@ -561,10 +561,22 @@ function makeTimeline() {
         })
       .attr("height", function(d) { return height - y(d.length); });
 
+
+
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .attr('class','axis')
-      .call(d3.axisBottom(xScale));
+      .call( d3.axisBottom(xScale).tickFormat(
+        function(d) {
+          var formatDate = d3.timeFormat("%Y");
+          var year = formatDate(Date.parse(d));
+          {% if request.LANGUAGE_CODE == 'pa' %}
+          return numpa(year);
+          {% else %}
+          return year;
+          {% endif %}
+        })
+      );
 
   // make years clickcable
   d3.selectAll('.tick')
