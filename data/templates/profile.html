@@ -261,13 +261,17 @@
     <div class="col-sm-12">
       <h4>
 
+
       {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
         {% trans 'Abduction' %}{% if victim.victim_prior_detention_trt == 1 %},{% endif %}
       {% endif %}
 
-      {% if victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}
-      {% if victim.victim_prior_detention_trt != 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}{% trans '&' %}{% endif %}
-          {% trans 'Detention' %}{% if victim.victim_prior_detention_trt == 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %},{% endif %}
+      {% if victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}      
+        {% if victim.victim_prior_detention_trt != 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
+          {% trans '&' %}
+        {% endif %}
+        {% trans 'Detention' %}
+        {% if victim.victim_prior_detention_trt == 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %},{% endif %}
       {% endif %}
 
 
@@ -280,7 +284,7 @@
       {% endif %}
 
 
-      {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}Prior Abuse{% endif %}
+      {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}{% trans 'Prior Abuse' %}{% endif %}
 
 
       </h4>
@@ -585,7 +589,7 @@
   {% if victim.condition_of_remains_1 or victim.condition_of_remains_2 or victim.condition_of_remains_3 or victim.condition_of_remains_4 or victim.condition_of_remains_5 or victim.condition_of_remains_6 or victim.condition_of_remains_7 or victim.other_condition_of_remains %}
 
     <div class="col-sm-6">
-      <p class="kicker dots">Condition of corpse</p>
+      <p class="kicker dots">{% trans 'Condition of corpse' %}</p>
     </div>
     <div class="col-sm-6">
       <p>{% hcondition_of_remains victim.condition_of_remains_1 victim.condition_of_remains_2 victim.condition_of_remains_3 victim.condition_of_remains_4 victim.condition_of_remains_5 victim.condition_of_remains_6 victim.condition_of_remains_7 victim.other_condition_of_remains %}</p>
