@@ -367,8 +367,18 @@ def seniorofficial(value):
 
 @cache_page(60 * 60)
 def perpetrators(request):
-    s_officials = sorted(officials.items(), key=operator.itemgetter(1))
-    return render(request, "perpetrators.html", { "officials": s_officials })
+    
+    s_officials = sorted(officials.items(), key=operator.itemgetter(1))    
+    p_officials = []
+    
+    for o in s_officials:
+      soas = SecurityArrest.objects.filter(soa_code=o[0]).count()
+      soks = SecurityKilled.objects.filter(sok_code=o[0]).count()
+      p = o + (soas + soks,)
+      p_officials.append(p)
+
+    return render(request, "perpetrators.html", { "officials": p_officials })
+
 
 
 @cache_page(60 * 60)
