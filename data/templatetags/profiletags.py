@@ -594,7 +594,7 @@ def harrest_security_type_link(v1, v2, v3, v4, v5, v6, v7, other):
   groups.append('<a href="'+lang+'/securityforce/army/">'+_('Army')+'</a>') if v4 == 1 else 0
   groups.append('<a href="'+lang+'/securityforce/cia/">'+_('Criminal Investigation Agency')+'</a>') if v5 == 1 else 0
   groups.append('<a href="'+lang+'/securityforce/black-cat/"><span define="'+_('Irregular undercover security force, often consisting of criminals')+'">'+_('Black cat')+'</span></a>') if v6 == 1 else 0
-#  groups.append('Don’t know') if v7 == 1 else 0
+  groups.append( _('Unknown type of security forces') ) if v7 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -614,6 +614,7 @@ def harrest_security_type(v1, v2, v3, v4, v5, v6, v7, other):
   groups.append(_('Army')) if v4 == 1 else 0
   groups.append(_('Criminal Investigation Agency')) if v5 == 1 else 0
   groups.append(_('Black cat')) if v6 == 1 else 0
+  groups.append(_('Unknown type of security forces')) if v7 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
