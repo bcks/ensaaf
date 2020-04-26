@@ -32,18 +32,15 @@ urlpatterns = i18n_patterns(
     path('securityforce/<slug:slug>/', securityforce, name="securityforce"),
     url(r'^detention/(?P<type>[0-9]+)/(?P<name>[A-Za-z0-9 \/+_\-]+)/$', detention, name="detention"),
     path('success/', successView, name='success'),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('secret-admin-login/', admin.site.urls),
+    path('search/spelling/', spelling, name='spelling'),
+    path('search/autocomplete/', autocomplete, name='autocomplete'),
+    url(r'^graphql', GraphQLView.as_view(graphiql=True)),
+    path('vikus/data/', vikusdata, name="vikusdata"),
     path('<slug:slug>/', page),
     prefix_default_language=False 
 )
-
-urlpatterns += [
-    path('search/spelling/', spelling, name='spelling'),
-    path('search/autocomplete/', autocomplete, name='autocomplete'),
-    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    path('secret-admin-login/', admin.site.urls),
-    url(r'^graphql', GraphQLView.as_view(graphiql=True)),
-    path('vikus/data/', vikusdata, name="vikusdata"),
-]
 
 
 

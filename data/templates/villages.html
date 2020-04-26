@@ -50,7 +50,13 @@
   {% for district in district_list %}
   <div class="stats-block">
     <hr>
-    <p><a class="toggle-switch" href="#"><strong>{% trans district.grouper %} {% trans 'District' %}&nbsp;<span class="arrow"></span></strong></a> &nbsp;&nbsp; {% district_count district.list %} {% trans 'cases' %}</p>
+    <p><a class="toggle-switch" href="#"><strong>{% trans district.grouper %}     
+    {% if district.grouper == 'Chandigarh' %}
+      {% trans '(Union Territory)' %}
+    {% else %}    
+      {% trans 'District' %}
+    {% endif %}
+    &nbsp;<span class="arrow"></span></strong></a> &nbsp;&nbsp; {% district_count district.list %} {% trans 'cases' %}</p>
 
     <div class="toggle">
 

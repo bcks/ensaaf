@@ -1004,7 +1004,7 @@
              {% for o in stats.years %}
      
               <div>
-              <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0 | numpa}}  <span class="number-of-cases">{{o.1|numpa}}</span>
+              <span class="percent">{% percentpa o.1 stats.total %}%</span>  {{o.0 | yearpa}}  <span class="number-of-cases">{{o.1|numpa}}</span>
               <div class="percent-bar" style="width:{% percent o.1 stats.total %}%">&nbsp;</div>        
               </div>
        
