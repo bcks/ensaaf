@@ -116,13 +116,13 @@
         var timeCapsule = [];
         var profiles = [];
     
-        function makeList(data, selector) {
+        function makeList(data, selector, startDate, endDate) {
           var html = '<ul>';
           for (var i in data) {
 //            html += '<li>'+ data[i].pk +' <a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
             html += '<li><a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
 
-            var thisTime = {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000  }};
+            var thisTime = {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000, "startDate":startDate, "endDate":endDate }};
             var thisProfile =  { "id": data[i].pk, "name": data[i].fields['victim_name'], "village": data[i].fields['village_name'], "date": new Date(data[i].fields['timeline']).valueOf() };
 
             if (  _.some(profiles, thisProfile) ) {
@@ -157,7 +157,7 @@
       
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' 311 '1987-06-28' '1988-04-18' %}, '#d1' );
+      makeList( {% dossier_command 'district' 311 '1987-06-28' '1988-04-18' %}, '#d1', '1987-06-28', '1988-04-18' );
       </script>
       {% endautoescape %}    
       
@@ -174,7 +174,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'tehsil' 3010004 '1988-04-19' '1988-07-31' %}, '#d2' );
+      makeList( {% dossier_command 'tehsil' 3010004 '1988-04-19' '1988-07-31' %}, '#d2', '1988-04-19', '1988-07-31' );
       </script>
       {% endautoescape %}    
 
@@ -186,7 +186,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' 309 '1988-08-01' '1990-02-04' %}, '#d3' );
+      makeList( {% dossier_command 'district' 309 '1988-08-01' '1990-02-04' %}, '#d3', '1988-08-01', '1990-02-04' );
       </script>
       {% endautoescape %}    
 
@@ -199,7 +199,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' 314 '1990-02-05' '1990-04-28' %}, '#d4' );
+      makeList( {% dossier_command 'district' 314 '1990-02-05' '1990-04-28' %}, '#d4', '1990-02-05', '1990-04-28' );
       </script>
       {% endautoescape %}    
 
@@ -213,7 +213,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' 303 '1990-04-29' '1990-07-17' %}, '#d5' );
+      makeList( {% dossier_command 'district' 303 '1990-04-29' '1990-07-17' %}, '#d5', '1990-04-29', '1990-07-17' );
       </script>
       {% endautoescape %}
 
@@ -226,7 +226,7 @@
       
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' 305 '1990-07-17' '1990-12-20' %}, '#d6' );
+      makeList( {% dossier_command 'district' 305 '1990-07-17' '1990-12-20' %}, '#d6', '1990-07-17', '1990-12-20' );
       </script>
       {% endautoescape %}
 
@@ -238,7 +238,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'vid' '800286' '1990-12-21' '1993-01-03' %}, '#d8');
+      makeList( {% dossier_command 'vid' '800286' '1990-12-21' '1993-01-03' %}, '#d8', '1990-12-21', '1993-01-03');
       </script>
       {% endautoescape %}
 
@@ -254,7 +254,7 @@
 
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' 309 '1993-09-30' '1994-06-19' %}, '#d7');
+      makeList( {% dossier_command 'district' 309 '1993-09-30' '1994-06-19' %}, '#d7', '1993-09-30', '1994-06-19');
       </script>
       {% endautoescape %}
 
@@ -542,10 +542,16 @@ function makeVillageNames(start, end) {
     for (var i=0;i<timeCapsule.length;i++) {
         if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start) && ( timeCapsule[i]['v']['id'] ))  {
           var id = timeCapsule[i]['v']['id'];
-          villages[id] = (villages[id] || 0) + 1;
+          if (villages[id] && villages[id].count) {
+            villages[id].count = villages[id].count + 1;
+          } else {
+            villages[id] = {};
+            villages[id].count = 1;
+          }
+          villages[id].startDate = timeCapsule[i]['v']['startDate'];
+          villages[id].endDate = timeCapsule[i]['v']['endDate'];
         }
     }
-        
     updateMap(start, end);
 }
 
@@ -565,7 +571,7 @@ function updateMap(start, end) {
         return o.CODE.endsWith(keys[i]);        
       });
       if (keys[i] && thisVillage) {
-        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':thisVillage.NAME});
+        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]].count,'name':thisVillage.NAME, 'startDate':villages[keys[i]].startDate, 'endDate':villages[keys[i]].endDate });
       }
     }
 
@@ -579,6 +585,7 @@ function updateMap(start, end) {
         // update markers
         _.forEach(markers, function(value, key) {
           if ( d = _.find(points, { 'id': key }) ) {
+          
               markers[key].setStyle({fillOpacity: .5});
               markers[key].setRadius(area(d.size));
 
@@ -590,8 +597,7 @@ function updateMap(start, end) {
               markers[key].on('mouseover', function (e) { this.openPopup(); });
               markers[key].on('mouseout', function (e) { this.closePopup(); });
               markers[key].on('click', function (e) {
-                var params =  '';//'so=S0001';
-                document.location.href = this.options.url + '/?' + params;
+                document.location.href = this.options.url;
               });
 
               markers_array.push( markers[key] );
@@ -607,14 +613,14 @@ function updateMap(start, end) {
           if (d.id !== '0') {
             var customCircleMarker = L.CircleMarker.extend({
                options: { 
-                  url: '/village/' + d.id,
+                  url: '/village/' + d.id + '/?startdate=' + d.startDate + '&enddate=' + d.endDate
                }
             });
             markers[String(d.id)] = new customCircleMarker([d.coord[1] + .015,d.coord[0] - .025], {
                 stroke: false,
                 fillColor: '#fc0',
                 fillOpacity: 0.5,
-                url: '/village/' + d.id,
+                url: '/village/' + d.id + '/?startdate=' + d.startDate + '&enddate=' + d.endDate
             }).addTo(mymap);
           }
         }); // end for points
@@ -651,7 +657,7 @@ function makeTimeline() {
       .domain([start, end])
       .rangeRound([0, width]);
 
-  //console.log(start);
+  //console.log(f);
 
 
 

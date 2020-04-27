@@ -89,6 +89,19 @@ class DataFilter(django_filters.FilterSet):
     records = list(soas) + list(soks)
     return queryset.filter(**{'record_id__in': records })
 
+  startdate = django_filters.CharFilter(method='start_filter')
+  def start_filter(self, queryset, name, value):
+      return queryset.filter(**{
+        'arrest_start__gte': value
+      })
+
+  enddate = django_filters.CharFilter(method='end_filter')
+  def end_filter(self, queryset, name, value):
+      return queryset.filter(**{
+        'arrest_end__lte': value
+      })
+
+
   class Meta:
     model = Data
     fields = [
@@ -103,4 +116,6 @@ class DataFilter(django_filters.FilterSet):
       'religion',
       'year',
       'so',
+      'startdate',
+      'enddate',
     ]
