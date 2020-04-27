@@ -82,25 +82,12 @@ class DataFilter(django_filters.FilterSet):
         'timeline__lte': endvalue,
       })
 
-  so = django_filters.CharFilter(method='so_filter')
-  def so_filter(self, queryset, name, value):
-    soas = SecurityArrest.objects.filter(soa_code=value).values_list('record_id', flat=True)
-    soks = SecurityKilled.objects.filter(sok_code=value).values_list('record_id', flat=True)
-    records = list(soas) + list(soks)
-    return queryset.filter(**{'record_id__in': records })
-
-  startdate = django_filters.CharFilter(method='start_filter')
+  ids = django_filters.CharFilter(method='start_filter')
   def start_filter(self, queryset, name, value):
+      ids = value.split(',')
       return queryset.filter(**{
-        'arrest_start__gte': value
+        'record_id__in': ids
       })
-
-  enddate = django_filters.CharFilter(method='end_filter')
-  def end_filter(self, queryset, name, value):
-      return queryset.filter(**{
-        'arrest_end__lte': value
-      })
-
 
   class Meta:
     model = Data
@@ -115,7 +102,5 @@ class DataFilter(django_filters.FilterSet):
       'combatant',
       'religion',
       'year',
-      'so',
-      'startdate',
-      'enddate',
+      'ids',
     ]
