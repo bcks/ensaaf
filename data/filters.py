@@ -1,4 +1,4 @@
-from .models import Data, Villages
+from .models import Data, Villages, SecurityArrest, SecurityKilled
 import django_filters
 
 
@@ -82,6 +82,13 @@ class DataFilter(django_filters.FilterSet):
         'timeline__lte': endvalue,
       })
 
+  so = django_filters.CharFilter(method='so_filter')
+  def so_filter(self, queryset, name, value):
+    soas = SecurityArrest.objects.filter(soa_code=value).values_list('record_id', flat=True)
+    soks = SecurityKilled.objects.filter(sok_code=value).values_list('record_id', flat=True)
+    records = list(soas) + list(soks)
+    return queryset.filter(**{'record_id__in': records })
+
   class Meta:
     model = Data
     fields = [
@@ -95,4 +102,5 @@ class DataFilter(django_filters.FilterSet):
       'combatant',
       'religion',
       'year',
+      'so',
     ]

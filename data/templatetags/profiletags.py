@@ -229,7 +229,7 @@ def hdate_link(var):
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
     parts[0] = int(parts[0])
-    return _(' on ') + _(monthNames[ parts[0] ]) + ' ' + numpa( parts[1] ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
+    return _(' on ') + _(monthNames[ parts[0] ]) + ' ' + numpa( int(parts[1]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
 
 
 @register.simple_tag()

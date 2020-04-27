@@ -38,7 +38,9 @@
 <div class="row">
   <div class="col-sm-8">
     <h1 style="margin-bottom: 1rem;">{%autoescape off%}{{village.village_name|smallparen}}{%endautoescape%}</h1>
-    <p><span class="kicker">{% trans 'Subdistrict' %}:</span> <a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %}</a> &nbsp; <span class="kicker">{% trans 'District' %}:</span> <a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></p>
+    {% if village.district != 'Chandigarh' %}
+      <p><span class="kicker">{% trans 'Subdistrict' %}:</span> <a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %}</a> &nbsp; <span class="kicker">{% trans 'District' %}:</span> <a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></p>
+    {% endif %}
     <p class="kicker">{% trans 'Boundaries based on the 2001 census. Read about <a href="/about">our methodology</a>.' %}</p>
   </div>
 

@@ -666,12 +666,18 @@ def hvictim_address_other(value):
     census_id = m.group(1)
     try:
       village = Villages.objects.filter(vid=census_id)[:1].get()
-      return '<span define="' + _('Village/town/city') + '"><a href="' + \
-        reverse('village', args=(census_id,)) + '">' + _(vname) + '</a></span>, '\
-        '<span define="' + _('Subdistrict') + '"><a href="' + \
-        reverse('tehsil', args=(village.tehsil_id,)) + '">' + \
-        _(village.tehsil) + '</a></span>, '\
-        '<span define="' + _('District') + '"><a href="'  + reverse('district', args=(village.district_id,)) + '">' + _(village.district) + '</a></span>'
+      
+      if village.district == 'Chandigarh':
+        return '<a href="' + \
+          reverse('village', args=(census_id,)) + '">' + _(vname) + '</a>'
+      else:      
+        return '<span define="' + _('Village/town/city') + '"><a href="' + \
+          reverse('village', args=(census_id,)) + '">' + _(vname) + '</a></span>, '\
+          '<span define="' + _('Subdistrict') + '"><a href="' + \
+          reverse('tehsil', args=(village.tehsil_id,)) + '">' + \
+          _(village.tehsil) + '</a></span>, '\
+          '<span define="' + _('District') + '"><a href="'  + reverse('district', args=(village.district_id,)) + '">' + _(village.district) + '</a></span>'
+
     except Villages.DoesNotExist:
       str = re.sub(r'([0123456789.]+)-','', str)
       return str

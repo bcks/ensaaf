@@ -574,7 +574,6 @@ function updateMap(start, end) {
 
     if (Object.keys(markers).length > 0) {
 
-        var params = $('#form').serialize();
         var markers_array = [];
 
         // update markers
@@ -591,7 +590,7 @@ function updateMap(start, end) {
               markers[key].on('mouseover', function (e) { this.openPopup(); });
               markers[key].on('mouseout', function (e) { this.closePopup(); });
               markers[key].on('click', function (e) {
-                var params = $('#form').serialize();
+                var params =  '';//'so=S0001';
                 document.location.href = this.options.url + '/?' + params;
               });
 
