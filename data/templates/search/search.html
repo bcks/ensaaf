@@ -79,8 +79,8 @@
               {% else %}
 
                 <li><span define="Village/town/city"><a href="{% url 'village' victim.vid %}">{{victim.village_name}},</a></span>
-                <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' victim.tehsil %}">{% trans victim.tehsil %},</a></span>
-                <span define="{% trans 'District' %}"><a href="{% url 'district' victim.district %}">{% trans victim.district %}</a></span></li>
+                <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' victim.tehsil_id %}">{% trans victim.tehsil %},</a></span>
+                <span define="{% trans 'District' %}"><a href="{% url 'district' victim.district_id %}">{% trans victim.district %}</a></span></li>
 
               {% endif %}
 
