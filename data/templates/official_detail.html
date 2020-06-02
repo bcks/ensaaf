@@ -1,30 +1,31 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Sumedh Singh [Saini] and enforced disappearances &amp; extrajudicial executions in Punjab, India{% endblock %}
+{% block title %}{% trans 'Sumedh Singh [Saini] and enforced disappearances &amp; extrajudicial executions in Punjab, India' %}{% endblock %}
 
 {% block head %}
-  <meta name="description" content="Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews." />
+  <meta name="description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
 
-  <meta itemprop="name" content="Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India" />
-  <meta itemprop="description" content="Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews." />
+  <meta itemprop="name" content="{% trans 'Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India' %}" />
+  <meta itemprop="description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
   <meta itemprop="image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@ensaaf" />
-  <meta name="twitter:title" content="Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India" />
-  <meta name="twitter:description" content="Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews." />
+  <meta name="twitter:title" content="{% trans 'Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India' %}" />
+  <meta name="twitter:description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
   <meta name="twitter:creator" content="@ensaaf" />
   <meta name="twitter:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
-  <meta property="og:title" content="Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India" />
+  <meta property="og:title" content="{% trans 'Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India' %}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://data.ensaaf.org" />
   <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
-  <meta property="og:description" content="Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews." />
-  <meta property="og:site_name" content="Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" />
+  <meta property="og:description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
+  <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
 
 
   <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
@@ -69,31 +70,40 @@
 
   <div class="row">
     <div class="col-12">  
-        <h1>Sumedh Singh [Saini]</h1>
+        <h1>{% trans 'Sumedh Singh [Saini]' %}</h1>
     </div>
   </div>
 </div><!-- end container -->
 
  
 <div id="map-over">
-  <div class="container">
-    <h4>At least <span id="count"></span> Enforced Disappearances/Extrajudicial Executions</h4>
+  <div class="container">    
+    {% if request.LANGUAGE_CODE == 'pa' %}
+      <h4>ਘੱਟੋ ਘੱਟ <span id="count"></span> ਜ਼ਬਰਨ ਲਾਪਤਾ/ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੀ ਗਿਣਤੀ</h4>
+    {% else %}
+      <h4>At least <span id="count"></span> Enforced Disappearances/Extrajudicial Executions</h4>
+    {% endif %}  
   </div>
 </div>
 <div id="mapid"></div>
 <div id="timeline"></div>
 
 
-
-
 <div class="container">
 
   <div class="row">
       <div class="col-sm-9">
+    {% if request.LANGUAGE_CODE == 'pa' %}
+        <p>ਸੁਮੇਧ ਸਿੰਘ ਸੈਣੀ ਦੀ ਅਪਰਾਧਕ ਪ੍ਰੋਫਾਈਲ ਪੰਜਾਬ ਦੇ ਵੱਖ ਵੱਖ ਅਧਿਕਾਰਕ ਖੇਤਰਾਂ ਵਿੱਚ ਐਸ.ਐਸ.ਪੀ. ਵਜੋਂ ਆਪਣੇ ਕਾਰਜਕਾਲ ਦੌਰਾਨ ਉਸ ਵੱਲੋ ਅਤੇ ਉਸਦੀ ਕਮਾਨ ਅਧੀਨ ਕਥਿਤ ਤੌਰ ਤੇ ਕੀਤੀਆਂ ਗਈਆਂ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਅਤੇ ਜ਼ਬਰਨ ਲਾਪਤਾ ਦੇ ਮਾਮਲਿਆਂ ਦੀ ਪਛਾਣ ਕਰਨ ਅਤੇ ਕਲਪਨਾ ਕਰਨ ਵਾਲਾ ਆਪਣੀ ਕਿਸਮ ਦਾ ਪਹਿਲਾ ਤਰੀਕਾ ਹੈ। ਖਾਸ ਤੌਰ ਤੇ ਇਹ ਅੰਕੜੇ ਲੋਕਾਂ ਨੂੰ ਮਾਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਘੋਰ ਉਲੰਘਣਾ ਤੋਂ ਬਚਾਉਣ ਵਿੱਚ ਸੈਣੀ ਦੀ ਅਸਫਲਤਾ ਨੂੰ ਉਜਾਗਰ ਕਰਦੇ ਹਨ। ਉਸਨੇ ਆਪਣੇ ਅਧੀਨ ਅਤੇ ਹੋਰ ਸੁਰੱਖਿਆ ਬਲਾਂ ਨੂੰ ਨਾਂ ਸਿਰਫ ਆਪਣੇ ਨਿਰਧਾਰਤ ਅਧਿਕਾਰ ਖੇਤਰਾਂ ਵਿੱਚ ਵਸਨੀਕਾਂ ਵਿਰੁੱਧ ਉਲੰਘਣਾ ਕਰਨ ਦੀ ਇਜਾਜ਼ਤ ਦਿੱਤੀ ਬਲਕਿ ਉਨ੍ਹਾਂ ਨੂੰ ਲੋਕਾਂ ਨੂੰ ਨਿਸ਼ਾਨਾ ਬਣਾਉਣ ਲਈ ਹੋਰ ਖੇਤਰਾਂ ਵਿੱਚ ਜਾਣ ਦੀ ਵੀ ਆਗਿਆ ਦਿੱਤੀ।</p>
+        <p>ਐਸ. ਐਸ. ਸੈਣੀ ਨੇ ਪਿਛਲੇ ਕਈ ਸਾਲਾਂ ਵਿੱਚ ਘੱਟੋ ਘੱਟ ਸੱਤ ਅਧਿਕਾਰ ਖੇਤਰਾਂ ਵਿੱਚ ਐਸ.ਐਸ.ਪੀ. ਜਾਂ ਜ਼ਿਲ੍ਹਾ ਮੁਖੀ ਦੇ ਅਹੁਦੇ ਉਤੇ ਸੇਵਾਵਾਂ ਨਿਭਾਈਆਂ। ਇਥੇ ਦਰਸਾਏ ਕੇਸਾਂ ਦੀ ਸੰਖਿਆ ਉਸਦੀ ਕਮਾਨ ਅਧੀਨ ਹੋਏ ਜੁਲਮਾਂ ਦੇ ਸੰਭਾਵਿਤ ਕੇਸਾਂ ਦੀ ਗਿਣਤੀ ਤੋਂ ਘੱਟ ਹੈ। ਇਹ ਕੇਸ ਪੀੜਤ ਪਰਿਵਾਰਾਂ ਦੇ ਮੈਬਰਾਂ ਅਤੇ ਹੋਰ ਗਵਾਹਾਂ ਨਾਲ ਇਨਸਾਫ ਸੰਸਥਾ ਦੀ ਗੱਲਬਾਤ ਤੋਂ ਸਾਹਮਣੇ ਆਏ ਹਨ ਅਤੇ ਇਹ ਉਨ੍ਹਾਂ ਦੁਆਰਾ ਮੁਹੱਈਆ ਕੀਤੀ ਜਾਣਕਾਰੀ ਨੂੰ ਦਰਸਾਉਂਦੇ ਹਨ। ਇਹ ਗਿਣਤੀ ਉਹਨਾਂ ਸਾਰੇ ਕੇਸਾਂ ਤੋਂ ਅਲੱਗ ਹੈ ਜਿਨ੍ਹਾਂ ਵਿੱਚ ਘਟਨਾ ਦੀ ਪੂਰੀ ਜਾਣਕਾਰੀ, ਤਾਰੀਖਾਂ ਜਾਂ ਸਥਾਨ ਉਪਲਬੱਧ ਨਹੀਂ ਹਨ। ਇਸ ਜਾਣਕਾਰੀ ਤੋਂ ਬਿਨਾਂ ਇਹ ਪਤਾ ਲਗਾਉਣਾ ਮੁਸ਼ਕਲ ਹੈ ਕਿ ਉਹ ਘਟਨਾਵਾਂ ਐਸ. ਐਸ. ਸੈਣੀ ਦੀ ਕਮਾਨ ਹੇਠ ਵਾਪਰੀਆਂ ਸਨ ਜਾਂ ਨਹੀਂ।</p>
+        <p>ਇਹ ਗਿਣਤੀ ਉਨ੍ਹਾਂ ਸਾਰੇ ਕੇਸਾਂ ਨੂੰ ਨਹੀਂ ਦਰਸਾਉਂਦੀ ਹੈ ਜਿੱਥੇ ਅਸੀ ਉਸਦੀ ਪੋਸਟਿੰਗ ਦੇ ਅਧਿਕਾਰ ਖੇਤਰਾਂ ਦੀਆਂ ਸੀਮਾਵਾਂ ਪ੍ਰਮਾਣਿਤ ਨਹੀਂ ਕੀਤੀਆਂ ਹਨ ਕਿaਂਕਿ ਉਸਦੇ ਕਾਰਜ ਕਾਲ ਤੋਂ ਬਾਅਦ ਕੁਝ ਜ਼ਿਲ੍ਹਿਆਂ ਦੀਆਂ ਹੱਦਾਂ ਬਦਲ ਗਈਆਂ ਸਨ। ਅੱਗੇ ਦੱਸ ਦਈਏ ਕਿ ਇਸ ਵਿੱਚ ਉਹ ਕੇਸ ਵੀ ਸ਼ਾਮਲ ਨਹੀਂ ਹਨ ਜੋ ਅਪਰਾਧ ਉਸ ਨੇ ਐਸ.ਐਸ.ਪੀ. ਜਾਂ ਜ਼ਿਲ੍ਹਾ ਪੁਲਿਸ ਮੁੱਖੀ ਦੇ ਅਹੁਦੇ ਤੋਂ ਇਲਾਵਾ ਕਿਸੇ ਹੋਰ ਅਹੁਦੇ ਅਧੀਨ ਕੀਤੇ ਭਾਵੇਂ ਉਹ ਅਹੁਦਾ ਇਸ ਤੋਂ ਵੱਡਾ ਜਾਂ ਛੋਟਾ ਸੀ। ਇਹਨਾਂ ਅੰਕੜਿਆ ਵਿੱਚ ਉਹਨਾਂ ਵਿਅਕਤੀਆਂ ਦੇ ਕੇਸਾਂ ਨੂੰ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ ਜਿਨ੍ਹਾਂ ਨੂੰ ਉਸ ਦੁਆਰਾ ਜਾਂ ਉਸ ਦੀ ਕਮਾਨ ਅਧੀਨ ਅਧਿਕਾਰੀਆਂ ਦੀ ਮਨਮਾਨੀ ਨਾਲ ਹਿਰਾਸਤ ਵਿੱਚ ਰੱਖਿਆ ਗਿਆ ਸੀ ਜਾਂ ਤਸੀਹੇ ਦਿੱਤੇ ਗਏ ਸਨ।</p>
+        <p>ਜਿਵੇਂ ਹੀ ਸਾਨੂੰ ਉਸਦੀ ਕਮਾਨ ਹੇਠ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਾਲੇ ਦਰਜ ਕੇਸਾਂ ਦੀ ਹੋਰ ਵਧੇਰੀ ਜਾਣਕਾਰੀ ਮਿਲਦੀ ਹੈ ਅਸੀਂ ਉਸ ਨੂੰ ਅਪਡੇਟ ਕਰਾਂਗੇ। ਹਾਲਾਂਕਿ ਬਹੁਤ ਹੱਦ ਤੱਕ ਇਹ ਜਾਣਕਾਰੀ ਅਤੇ ਪੂਰਨ ਸੱਚ ਭਾਰਤ ਸਰਕਾਰ ਕੋਲ ਹੈ।</p>
+    {% else %}
         <p>The perpetrator profile of Sumedh S. Saini is the first of its kind to identify and visualize cases of enforced disappearances and extrajudicial executions reportedly committed under his command during his tenure as Senior Superintendent of Police (SSP) in various jurisdictions of Punjab. Notably, the data equally highlights Saini’s failure to protect the populace from gross human rights violations. He not only permitted his subordinates and other security forces to perpetrate violations against residents in his assigned jurisdictions, but he also allowed them to travel extra-territorially to target individuals.</p>
         <p>S. S. Saini served at the rank of SSP, or district chief, in at least seven jurisdictions in as many years. The number of cases presented here is an undercounting of the likely cases perpetrated under his command. These cases draw from Ensaaf’s interviews with family members of the victims and other witnesses, and present the information provided by them. This number excludes all cases where complete incident dates or locations were not available. Without this information, it is difficult to ascertain whether those incidents occurred under S. S. Saini’s command.</p>
         <p>The number further excludes cases where we have not yet established certain jurisdictional boundaries for his postings, as some district borders changed after his tenure. It further excludes cases committed under any other rank he held, higher or lower, other than the rank of SSP, or district police chief. This data also excludes cases of individuals who were arbitrarily detained or tortured by him or officials under his command.</p>
         <p>We will update the number of enforced disappearances and extrajudicial executions reported under his command, as we receive more information. To a large extent, however, this information and the complete truth rests with the government of India.</p>
+    {% endif %}
       </div>
       <div class="col-sm-3">
         <p><img src="https://data.ensaaf.org/static/files/saini/sumedh-saini.jpg" width="100%" height="auto" vspace="5" style="border:1px solid #ddd;"></p>
@@ -144,14 +154,22 @@
 
 
  
-      <h5>Command History</h5>
+      <h5>{% trans 'Command History' %}</h5>
 
-      <p><em><small style="line-height:1.2;">Unless otherwise noted, Sumedh S. Saini’s command history draws from the following sources: (1) the annual Civil List of the Indian Police Service (IPS) for the Punjab cadre, prepared by the Ministry of Home Affairs, naming the position and date of posting of the senior police official as of January 1 of that year for 1983 to 1996, and (2) the individual websites of Punjab’s police districts, listing the names of Senior Superintendents of Police (SSP) and their dates of tenure. This information draws from publicly available records/sources; the complete account of S. S. Saini’s official postings and activities lies with the government of India.</small></em></p>
+    {% if request.LANGUAGE_CODE == 'pa' %}
+      <p><em><small style="line-height:1.2;">ਹੁਣ ਤੱਕ ਦੀ ਪ੍ਰਾਪਤ ਜਾਣਕਾਰੀ ਮੁਤਾਬਕ ਸੁਮੇਧ ਸਿੰਘ ਸੈਣੀ ਦਾ ਕਾਰਜ ਕਾਲ ਅੱਗੇ ਦਿੱਤੇ ਸਰੋਤਾ ਵਿੱਚ ਦਰਸਾਇਆ ਗਿਆ ਹੈ: (੧) ਗ੍ਰਹਿ ਮੰਤਰਾਲੇ ਦੁਆਰਾ ਤਿਆਰ ਕੀਤੀ ਗਈ ਪੰਜਾਬ ਕੇਡਰ ਲਈ ਸਾਲਾਨਾ ਸਿਵਲ ਸੂਚੀ (ਆਈ.ਪੀ.ਐਸ.) ਜਿਸ ਵਿੱਚ ਸੀਨੀਅਰ ਪੁਲੀਸ ਅਧਿਕਾਰੀ ਦੇ ਅਹੁਦੇ ਅਤੇ ਅਹੁਦੇ ਸੰਭਾਲਣ ਦੀ ਤਾਰੀਖ ਜੋ ਕਿ ੧ ਜਨਵਰੀ ੧੯੮੩ ਤੋਂ ੧ ਜਨਵਰੀ ੧੯੯੬ ਤੱਕ ਹੈ, (੨) ਪੰਜਾਬ ਦੇ ਪੁਲੀਸ ਜ਼ਿਲ੍ਹਿਆਂ ਦੀਆਂ ਵਿਅਕਤੀਗਤ ਵੈਬਸਾਈਟਾਂ, ਜਿਨ੍ਹਾਂ ਵਿੱਚ ਸੀਨੀਅਰ ਸੁਪਰੀਡੈਂਟ ਆਫ ਪੁਲੀਸ (ਐਸ.ਐਸ.ਪੀ.) ਦੇ ਨਾਮਾਂ ਅਤੇ ਉਹਨਾਂ ਦੇ ਕਾਰਜਕਾਲ ਦੀਆਂ ਤਾਰੀਖਾਂ ਨੂੰ ਲੜੀਬੱਧ ਕਰਦੀਆਂ ਹਨ। ਇਹ ਜਾਣਕਾਰੀ ਜਨਤਕ ਤੌਰ ਤੇ ਮੌਜੂਦ ਰਿਕਾਰਡਾਂ/ਸਰੋਤਾਂ ਦੁਆਰਾ ਦਰਸਾਈ ਗਈ ਹੈ; ਐਸ. ਐਸ. ਸੈਣੀ ਦੀ ਅਧਿਕਾਰਤ ਅਹੁਦਿਆਂ ਨੂੰ ਸੰਭਾਲਣ ਅਤੇ ਗਤੀਵਿਧੀਆਂ ਦਾ ਪੂਰਾ ਲੇਖਾ ਜੋਖਾ ਭਾਰਤ ਸਰਕਾਰ ਕੋਲ ਹੈ।</small></em></p>
+    {% else %}
+      <p><em><small style="line-height:1.2;">Unless otherwise noted, Sumedh S. Saini’s command history draws from the following sources: (1) the annual Civil List of the Indian Police Service (IPS) for the Punjab cadre, prepared by the Ministry of Home Affairs, naming the position and date of posting of the senior police official as of January 1 of that year for 1983 to 1996, and (2) the individual websites of Punjab’s police districts, listing the names of Senior Superintendents of Police (SSP) and their dates of tenure. This information draws from publicly available records/sources; the complete account of S. S. Saini’s official postings and activities lies with the government of India.</small></em></p>    
+    {% endif %}
 
       <ul>
 
       <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p><strong>ਐਸ.ਐਸ.ਪੀ. ਫਿਰੋਜ਼ਪੁਰ</strong>, ੨੮ ਜੂਨ ੧੯੮੭ ਤੋਂ ੧੮ ਅਪ੍ਰੈਲ ੧੯੮੮</p>
+      {% else %}
         <p><strong>SSP Firozpur</strong>, June 28, 1987 —  April 18, 1988</p>
+      {% endif %}
         <div id="d1"></div>
       </li>
       
@@ -163,12 +181,22 @@
       
       
 
-      <li><p><strong>Awarded President's Police Medal of Gallantry in 1987</strong></p></li>
+      <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p><strong>ਸਾਲ ੧੯੮੭ ਵਿੱਚ ਬਹਾਦਰੀ ਲਈ ਰਾਸ਼ਟਰਪਤੀ ਅਵਾਰਡ ਮਿਲਿਆ।</strong></p>
+      {% else %}
+        <p><strong>Awarded President's Police Medal of Gallantry in 1987</strong></p>
+      {% endif %}
+      </li>
 
       
 
       <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p><strong>ਐਸ.ਐਸ.ਪੀ. ਬਟਾਲਾ</strong>, ੧੯ ਅਪ੍ਰੈਲ ੧੯੮੮ ਤੋਂ ੩੧ ਜੁਲਾਈ ੧੯੮੮</p>
+      {% else %}
         <p><strong>SSP Batala</strong>, April 19, 1988 – July 31, 1988</p>
+      {% endif %}
         <div id="d2"></div>
       </li>
 
@@ -180,7 +208,11 @@
 
 
       <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p><strong>ਐਸ.ਐਸ.ਪੀ. ਲੁਧਿਆਣਾ</strong>, ੧ ਅਗਸਤ ੧੯੮੮ ਤੋਂ ੪ ਫਰਵਰੀ ੧੯੯੦</p>
+      {% else %}
         <p><strong>SSP Ludhiana</strong>, August 1, 1988 – February 4, 1990</p>
+      {% endif %}
         <div id="d3"></div>
       </li>
 
@@ -193,7 +225,11 @@
 
 
       <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p><strong>ਐਸ.ਐਸ.ਪੀ. ਬਠਿੰਡਾ</strong>, ੫ ਫਰਵਰੀ ੧੯੯੦ ਤੋਂ ੨੮ ਅਪ੍ਰੈਲ ੧੯੯੦</p>
+      {% else %}
         <p><strong>SSP Bathinda</strong>, February 5, 1990 – April 28, 1990</p>
+      {% endif %}
         <div id="d4"></div>
       </li>
 
@@ -206,8 +242,13 @@
 
 
       <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p>ਗਾਲਬਨ <strong>ਐਸ.ਐਸ.ਪੀ. ਕਪੂਰਥਲਾ</strong>, ੨੯ ਅਪ੍ਰੈਲ ੧੯੯੦ ਤੋਂ ੧੭ ਜੁਲਾਈ ੧੯੯੦<br>
+        (ਕਿਉਂਕਿ ਇਹ ਬਦਲੀ ਸਾਲ ਦੇ ਵਿਚਕਾਰ ਵਿੱਚ ਹੋਈ ਹੈ ਇਹ ਆਈ.ਪੀ.ਐਸ. ਸਿਵਲ ਲਿਸਟ ਵਿੱਚ ਦਰਜ ਨਹੀਂ ਹੈ। ਨਾਂ ਹੀ ਜ਼ਿਲ੍ਹਾ ਕਪੂਰਥਲਾ ਵਲੋਂ ਇਸ ਇਤਿਹਾਸਕ ਬਦਲੀ ਦੀ ਕੋਈ ਜਾਣਕਾਰੀ ਇੰਟਰਨੈਟ ਤੇ ਦਿੱਤੀ ਗਈ ਹੈ। ਉਪਰ ਦਿੱਤੇ ਗਏ ਸਮੇਂ ਦੌਰਾਨ ਐਸ.ਐਸ.ਪੀ. ਕਪੂਰਥਲਾ ਦਾ ਨਾਮ ਰੋਜ਼ਾਨਾ ਟ੍ਰਿਬਿਊਨ ਅਖ਼ਬਾਰ ਵਿੱਚ ਵੀ ਨਹੀਂ ਦਿੱਤਾ ਜਾਂਦਾ ਸੀ। ਅਸੀਂ ਅੰਦਾਜਾ ਲਗਾਇਆ ਹੈ ਕਿ ਸੈਣੀ ਨੂੰ ਉਸ ਸਮੇਂ ਦੇ ਦੌਰਾਨ ਹੋਰ ਸਾਰੇ ਜ਼ਿਲ੍ਹਿਆਂ ਦੇ ਐਸ.ਐਸ.ਪੀ.ਆਂ ਨੂੰ ਨਿਰਧਾਰਤ ਕਰਨ ਅਤੇ ਹਟਾਉਣ ਦੀ ਪ੍ਰਕਿਰਿਆ ਦੀ ਵਰਤੋ ਕਰਦਿਆਂ, ਕਪੂਰਥਲੇ ਵਿੱਚ ਤਾਇਨਾਤ ਕੀਤਾ ਗਿਆ ਸੀ।)</p>
+      {% else %}
         <p>Most likely <strong>SSP Kapurthala</strong>, April 29, 1990 – July 17, 1990<br>
         (Because this posting falls in the middle of the year, it is not reported in the IPS Civil List. Further, Kapurthala has not provided any information online regarding its historical postings. The daily newspaper <em>Tribune</em> also did not name the SSP Kapurthala during the above time period. We have inferred that Saini was posted in Kapurthala using the process of elimination to determine the SSPs of all other districts during that time frame.)</p>
+      {% endif %}
         <div id="d5"></div>
       </li>
 
@@ -220,7 +261,11 @@
 
 
       <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p><strong>ਐਸ.ਐਸ.ਪੀ. ਹੁਸ਼ਿਆਰਪੁਰ</strong>, ੧੭ ਜੁਲਾਈ ੧੯੯੦ ਤੋਂ ੨੦ ਦਸੰਬਰ ੧੯੯੦</p>
+      {% else %}
         <p><strong>SSP Hoshiarpur</strong>, July 17, 1990 – December 20, 1990</p>
+      {% endif %}
         <div id="d6"></div>
       </li>
       
@@ -232,7 +277,11 @@
 
 
       <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p><strong>ਐਸ.ਐਸ.ਪੀ. ਚੰਡੀਗੜ੍ਹ</strong>, ੨੧ ਦਸੰਬਰ ੧੯੯੦ ਤੋਂ ੩ ਜਨਵਰੀ ੧੯੯੩<br> (ਕਿਉਂਕਿ ਚੰਡੀਗੜ੍ਹ ਇਕ ਕੇਂਦਰ ਸ਼ਾਸਤ ਪ੍ਰਦੇਸ਼ ਹੈ, ਇਸ ਲਈ ਤਕਨੀਕੀ ਤੌਰ ਤੇ ਐਸ.ਐਸ.ਪੀ. ਚੰਡੀਗੜ੍ਹ ਭਾਰਤ ਸਰਕਾਰ ਦਾ ਪ੍ਰਤੀਨੀਧੀ ਹੁੰਦਾ ਹੈ।) ਭਾਰਤੀ ਸੈਨਾ ਦੇ ਇੱਕ ਅਧਿਕਾਰੀ ਨਾਲ ਬੱਦਸਲੂਕੀ ਕਰਣ ਦੇ ਕਾਰਨ ਪੰਜਾਬ ਦੇ ਰਾਜਪਾਲ ਅਤੇ ਹੋਰ ਅਧਿਕਾਰੀਆਂ ਨੇ ਸੈਣੀ ਨੂੰ ਅਹੁਦੇ ਤੋਂ ਹਟਾਉਣ ਦਾ ਫੈਂਸਲਾ ਲਿਆ। ਇਨਸਾਫ ਸੰਸਥਾ ਨੇ ਅਜੇ ਤੱਕ ਆਪਣੀ ਡਾਟਾ ਵਿਜ਼ੂਅਲਾਈਜ਼ੇਸ਼ਨ ਸਾਈਟ ਤੇ ਚੰਡੀਗੜ੍ਹ ਦਾ ਡਾਟਾ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਅਤੇ ਇਹ ਆਉਣ ਵਾਲੇ ਸਮੇਂ ਵਿੱਚ ਪ੍ਰਕਾਸ਼ਿਤ ਕੀਤਾ ਜਾਵੇਗਾ।</p>
+      {% else %}
         <p><strong>SSP Chandigarh</strong>  December 21, 1990 – January 3, 1993<br> (Technically on Deputation to Government of India, as SSP Chandigarh, because Chandigarh is a Union Territory.) The Punjab Governor and others decided to remove Saini from this position due to police abuse of an Army official. Ensaaf has not yet incorporated/included data from Chandigarh on its data visualization site; it is forthcoming.</p>
+      {% endif %}
         <div id="d8"></div>
       </li>
 
@@ -244,11 +293,21 @@
 
 
 
-      <li><p><strong>Assistant to the Inspector General</strong>, January 15, 1993 to September 28, 1993: According to articles in the <em>Tribune</em> on <a href="https://data.ensaaf.org/static/files/sumedh_saini_aig_personnel_19930117.pdf">January 17</a> and <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf">September 29</a>,  Sumedh Saini held, at least, the posts of AIG (Personnel) and AIG (Administration) during this time period.</p></li>
+      <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p><strong>ਇੰਸਪੈਕਟਰ ਸਹਾਇਕ ਜਨਰਲ</strong>, ੧੫ ਜਨਵਰੀ ੧੯੯੩ ਤੋਂ ੨੮ ਸਤੰਬਰ ੧੯੯੩: ਟ੍ਰਿਬਿਊਨ ਵਿੱਚ <a href="https://data.ensaaf.org/static/files/sumedh_saini_aig_personnel_19930117.pdf">੧੭ ਜਨਵਰੀ</a> ਅਤੇ <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf">੨੯ ਸਤੰਬਰ</a> ਦੇ ਦਿੱਤੇ ਲੇਖਾਂ ਅਨੁਸਾਰ ਸੁਮੇਧ ਸੈਣੀ ਘੱਟੋ ਘੱਟ ਇਸ ਸਮੇਂ ਦੇ ਦੌਰਾਨ ਏ.ਆਈ.ਜੀ. (ਅਮਲਾ) ਅਤੇ ਏ.ਆਈ.ਜੀ. (ਪ੍ਰਸ਼ਾਸਨ) ਦੇ ਅਹੁਦੇ ਤੇ ਰਹਿ ਚੁੱਕਾ ਹੈ।</p>
+      {% else %}
+        <p><strong>Assistant to the Inspector General</strong>, January 15, 1993 to September 28, 1993: According to articles in the <em>Tribune</em> on <a href="https://data.ensaaf.org/static/files/sumedh_saini_aig_personnel_19930117.pdf">January 17</a> and <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf">September 29</a>,  Sumedh Saini held, at least, the posts of AIG (Personnel) and AIG (Administration) during this time period.</p>
+      {% endif %}        
+      </li>
 
 
       <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p><strong>ਐਸ.ਐਸ.ਪੀ./ਪੁਲਿਸ ਕਮਿਸ਼ਨਰ ਲੁਧਿਆਣਾ</strong>, ੩੦ ਸਤੰਬਰ ੧੯੯੩ ਤੋਂ ੧੯ ਜੂਨ ੧੯੯੪ (ਆਈ.ਪੀ.ਐਸ. ਸਿਵਲ ਸੂਚੀ ਇਸ ਪੋਸਟਿੰਗ ਨੂੰ ਐਸ.ਐਸ.ਪੀ. ਵਜੋਂ ਦਰਸਾਉਂਦੀ ਹੈ, ਜਦੋਂ ਕਿ <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf">ਟ੍ਰਿਬਿਊਨ ਨੇ ਇਸ</a> ਅਹੁਦੇ ਨੂੰ ਲੁਧਿਆਣੇ ਦੇ ਨਵੇਂ ਬਣੇ ਪੁਲੀਸ ਕਮਿਸ਼ਨਰ ਵਜੋਂ ਦੱਸਿਆ ਹੈ। ਲੁਧਿਆਣਾ ਪੰਜਾਬ ਪੁਲਿਸ ਵੈਬਸਾਇਟ ਇਸ ਨੂੰ ਗੈਰ-ਕੇਡਰ ਪੰਜਾਬ ਪੁਲਿਸ ਸੇਵਾ ਦਾ ਅਧਿਕਾਰੀ ਬਤੌਰ ਐਸ.ਐਸ.ਪੀ. ਦਰਸਾਉਂਦੀ ਹੈ।)</p>
+      {% else %}
         <p><strong>SSP/Police Commissioner Ludhiana</strong>, September 30, 1993  – June 19, 1994 (The IPS Civil List describes this posting as SSP, whereas the <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf"><em>Tribune</em> reported</a> this position as the newly created Commissioner of Police of Ludhiana. The Ludhiana police website lists a non-cadre Punjab Police Service official as SSP.)</p>
+      {% endif %}
         <div id="d7"></div>
       </li>
 
@@ -265,13 +324,16 @@
     <div class="col-sm-6 border-left">
 
 
-      <h5>Personal Participation</h5>
-
+      <h5>{% trans 'Personal Participation' %}</h5>
 
       <ul>
 
       <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p><strong><span id="abduction_count"></span> ਉਹ ਕੇਸ ਜਿਨਾਂ ਵਿੱਚ ਸੁਮੇਧ ਸਿੰਘ ਸੈਣੀ ਦਾ ਸਿੱਧੇ ਤੌਰ ਤੇ ਫੜਣ, ਲਾਪਤਾ ਕਰਣ ਅਤੇ ਮਾਰਣ ਵਿੱਚ ਹੱਥ ਹੈ।</strong></p>
+      {% else %}
         <p><strong><span id="abduction_count"></span> cases directly implicating Sumedh Singh in abduction, disappearance, and/or killing</strong></p>
+      {% endif %}
        <div id="d10"></div>
       </li>
 
@@ -282,10 +344,9 @@
       var oversight = abductions.concat(killing);
       
       makeList( oversight, '#d10');
-      $('#abduction_count').html( oversight.length );
+      $('#abduction_count').html( numpa(oversight.length) );
       </script>
       {% endautoescape %}
-
       
       </ul>
 
@@ -293,55 +354,109 @@
       <hr>
 
 
-      <h5>Known Promotions</h5>
+      <h5>{% trans 'Known Promotions' %}</h5>
 
-      <p>The government of India consistently promoted S. S. Saini throughout his career to the highest ranks of Punjab Police, including the top post of Director General of Police. It also rewarded S.S. Saini in 1987 with the President's Medal of Gallantry. He is now retired from IPS service, and has repeatedly escaped accountability.</p>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p>ਸੁਮੇਧ ਸਿੰਘ ਸੈਣੀ ਨੂੰ ਉਸ ਦੇ ਸਾਰੇ ਕਾਰਜ ਕਾਲ ਦੇ ਦੌਰਾਨ ਸਭ ਤੋਂ ਵੱਡੇ ਅਹੁਦੇ ਭਾਰਤ ਸਰਕਾਰ ਵਲੋਂ ਦਿੱਤੇ ਗਏ ਸਨ, ਜਿਵੇਂ ਕਿ ਡੀ.ਜੀ.ਪੀ.। ਸੁਮੇਧ ਸਿੰਘ ਸੈਣੀ ਨੂੰ ਉਸ ਦੀ ਬਹਾਦਰੀ ਲਈ ੧੯੮੭ ਵਿੱਚ ਰਾਸ਼ਟਰਪਤੀ ਅਵਾਰਡ ਵੀ ਦਿੱਤਾ ਗਿਆ ਸੀ। ਹੁਣ ਉਹ ਆਈ.ਪੀ.ਐਸ. ਦੀ ਸੇਵਾ ਅਤੇ ਘੜੀ ਘੜੀ ਦੀ ਜਵਾਬਦੇਹੀ ਤੋਂ ਸੇਵਾ ਮੁਕਤ ਹੋ ਚੁੱਕਾ ਹੈ।</p>
+      {% else %}
+        <p>The government of India consistently promoted S. S. Saini throughout his career to the highest ranks of Punjab Police, including the top post of Director General of Police. It also rewarded S.S. Saini in 1987 with the President's Medal of Gallantry. He is now retired from IPS service, and has repeatedly escaped accountability.</p>
+      {% endif %}
 
       <ul>
-      <li><strong>DIG Admn. (CPO), Punjab, Chandigarh (ORP)</strong>, June 20, 1994<br><br></li>
+      <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <strong>ਡੀ.ਆਈ.ਜੀ. ਪ੍ਰਸ਼ਾਸਨ (ਐਡਮਨੀਸਟਰੇਸ਼ਨ) (ਸੀ.ਪੀ.ਓ.), ਪੰਜਾਬ, ਚੰਡੀਗੜ੍ਹ (ਓ.ਆਰ.ਪੀ.)</strong>, ੨੦ ਜੂਨ ੧੯੯੪
+      {% else %}
+        <strong>DIG Admn. (CPO), Punjab, Chandigarh (ORP)</strong>, June 20, 1994
+      {% endif %}
+      <br><br></li>
 
-      <li><strong>Inspector General of Police</strong>, on September 5, 2005, reported to currently be IG, Economic Offences <br><br></li>
+      <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <strong>ਇੰਸਪੈਕਟਰ ਜਨਰਲ ਆਫ ਪੁਲਿਸ</strong>, ੫ ਸਤੰਬਰ ੨੦੦੫, ਜਾਣਕਾਰੀ ਮੁਤਾਬਕ ਆਰਥਿਕ ਅਪਰਾਧ ਵਿੰਗ ਦਾ ਆਈ.ਜੀ.
+      {% else %}
+        <strong>Inspector General of Police</strong>, on September 5, 2005, reported to currently be IG, Economic Offences
+      {% endif %}
+      <br><br></li>
 
-      <li><strong>Inspector General of Police</strong>, Vigilance, March 8, 2007<br><br></li>
+      <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <strong>ਇੰਸਪੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ</strong>, ਵਿਜੀਲੈਂਸ, ੮ ਮਾਰਚ ੨੦੦੭ 
+      {% else %}
+        <strong>Inspector General of Police</strong>, Vigilance, March 8, 2007
+      {% endif %}
+      <br><br></li>
 
-      <li><strong>Additional Director General of Police-Cum-Chief Dir., Vigilance Bureau, Pb, Chg.</strong>, February 16, 2009<br><br></li>
+      <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <strong>ਵਧੀਕ ਡਾਇਰੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ ਅਤੇ ਚੀਫ ਡਾਇਰੈਕਟਰ, ਵਿਜੀਲੈਂਸ ਬਿਊਰੋ, ਪੰਜਾਬ, ਚੰਡੀਗੜ੍ਹ</strong>, ੧੬ ਫਰਵਰੀ ੨੦੦੯
+      {% else %}
+        <strong>Additional Director General of Police-Cum-Chief Dir., Vigilance Bureau, Pb, Chg.</strong>, February 16, 2009
+      {% endif %}
+      <br><br></li>
 
-      <li><strong>Director General of Police, Punjab</strong>, March 15, 2012 - October 25, 2015<br><br></li>
+      <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <strong>ਡਾਇਰੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ, ਪੰਜਾਬ</strong>, ੧੫ ਮਾਰਚ ੨੦੧੨ ਤੋਂ ੨੫ ਅਕਤੂਬਰ ੨੦੧੫
+      {% else %}
+        <strong>Director General of Police, Punjab</strong>, March 15, 2012 - October 25, 2015
+      {% endif %}
+      <br><br></li>
 
-      <li><strong>Director General of Police-Cum-Chairman, Police Housing Corporation</strong>, October 26, 2015 (date of retirement June 20, 2018)</li>
+      <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <strong>ਡਾਇਰੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ ਅਤੇ ਪਰਧਾਨ, ਪੁਲਿਸ ਹਾਉਸਿੰਗ ਕਾਰਪੋਰੇਸ਼ਨ</strong>, ੨੬ ਅਕਤੂਬਰ ੨੦੧੫ (ਸੇਵਾਮੁਕਤੀ ਦੀ ਤਾਰੀਖ ੨੦ ਜੂਨ ੨੦੧੮)
+      {% else %}
+        <strong>Director General of Police-Cum-Chairman, Police Housing Corporation</strong>, October 26, 2015 (date of retirement June 20, 2018)
+      {% endif %}
+      </li>
       </ul>
 
       <hr>
 
 
-
-
-      <h5>Disciplinary Proceedings / Legal Cases</h5>
+      <h5>{% trans 'Disciplinary Proceedings / Legal Cases' %}</h5>
 
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p4.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1993-01-03-p4.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1993-01-03-p1.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p16.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1993-01-03-p16.png" class="thumb"></a></div>
-          <div class="col-9">          
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+          ਲੈਫੀਟੀਨੈਟ ਕਰਨਲ ਆਰ. ਵੈਟਸ ਦੀ ਗੈਰ ਕਾਨੂੰਨੀ ਹਿਰਾਸਤ ਅਤੇ ਕੁੱਟਮਾਰ: ਟ੍ਰਿਬਿਊਨ, ੩ ਜਨਵਰੀ ੧੯੯੩, "<a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p1.pdf">ਸੈਣੀ ਦੇ ਖਿਲਾਫ ਦੋਸ਼ ਲਾਏ ਗਏ</a>," "<a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p4.pdf">ਸੈਣੀ ਦੀ ਵਾਪਸੀ</a>," ਅਤੇ "<a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p16.pdf">ਐਸ.ਐਸ.ਪੀ. ਸੈਣੀ ਦੇ ਖਿਲਾਫ ਦੋਸ਼</a>"
+      {% else %}
           Beating and Illegal Detention of Lt. Col. R. Vats: <em>Tribune</em>, January 3, 1993, <a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p1.pdf">“Charges being framed against Saini,”</a> <a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p4.pdf">“Saini to be reverted,”</a> and <a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p16.pdf">“Charges against SSP Saini”</a>
+      {% endif %}
           </div>
       </div>
 
       <div class="row mb-4">
           <div class="col-12">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            <strong>ਲਾਪਤਾ ਅਸ਼ੋਕ ਕੁਮਾਰ (ਵਾਲੀਆ), ਵਿਨੋਦ ਕੁਮਾਰ (ਵਾਲੀਆ), ਅਤੇ ਮੁਖਤਿਆਰ ਸਿੰਘ</strong>: ਵਿਨੋਦ ਕੁਮਾਰ ਅਤੇ ਉਸ ਦੇ ਭਰਾ ਵੱਲੋ ਐਸ.ਐਸ.ਪੀ. ਸੁਮੇਧ ਸੈਣੀ ਦੇ ਖਿਲਾਫ ਤੰਗ ਪਰੇਸ਼ਾਨ ਕਰਨ ਦਾ ਮੁਕੱਦਮਾ ਦਰਜ ਕਰਵਾਊਣ ਦੇ ਇੱਕ ਹਫਤੇ ਬਾਅਦ ਉਹ ਅਤੇ ਉਸ ਦਾ ਸਾਲਾ ਅਤੇ ਉਸ ਦਾ ਡਰਾਇਵਰ ਲਾਪਤਾ ਕੀਤੇ ਗਏ।
+      {% else %}
             <strong>Disappearances of Ashok Kumar (Walia), Vinod Kumar (Walia), and Mukhtiar Singh</strong>: A week after Vinod Kumar and his brother filed a harassment suit against SSP Sumedh Saini, he, his brother-in-law, and their driver disappeared.
+      {% endif %}
           </div>
       </div>
 
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-10-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-10-p1.png" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੦ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-10-p1.pdf">ਐਸ.ਐਸ.ਪੀ. ਵਿਰੁਧ ਵਧੀਕੀ ਲਈ ਵਰੰਟ</a>" 
+      {% else %}
             <em>Tribune</em>, March 10, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-10-p1.pdf">“Warrants against SSP for contempt”</a>
+      {% endif %}
           </div>
       </div>
 
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-16-p5.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-16-p5.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-16-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-16-p1.png" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੬ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-16-p1.pdf">ਜੱਜ ਵੱਲੋਂ ਐਸ.ਐਸ.ਪੀ. ਖਿਲਾਫ ਦੋਸ਼ਾਂ ਦੀ ਜਾਂਚ</a>"
+      {% else %}
             <em>Tribune</em>, March 16, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-16-p1.pdf">“Judge to probe charges against SSP”</a>
+      {% endif %}
           </div>
       </div>
       
@@ -349,63 +464,99 @@
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-17-p13.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-17-p13.png" class="thumb"></a></div>
           <div class="col-9">
-            <em>Tribune</em>, March 17, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-17-p13.pdf">“Brother, 2 others missing in Saini case”</a>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੭ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-17-p13.pdf">ਸੈਣੀ ਕੇਸ ਵਿੱਚ ਭਰਾ ਅਤੇ ਦੋ ਹੋਰ ਲਾਪਤਾ</a>" 
+      {% else %}
+           <em>Tribune</em>, March 17, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-17-p13.pdf">“Brother, 2 others missing in Saini case”</a>
+     {% endif %}
           </div>
       </div>
       
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-18-p16.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-18-p16.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-18-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-18-p1.png" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੮ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-18-p16.pdf">ਹਾਈ ਕੋਰਟ: ਅੱਜ ਹੀ ਲਾਪਤਾ ਆਦਮੀ ਨੂੰ ਪੇਸ਼ ਕਰੋ</a>"
+      {% else %}
             <em>Tribune</em>, March 18, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-18-p16.pdf">“HC: produce missing men today”</a>
+      {% endif %}
           </div>
       </div>
      
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-19-p16.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-19-p16.png" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੯ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-19-p16.pdf">ਆਦਮੀਆਂ ਦਾ ਪਤਾ ਲਗਾਉਣ ਲਈ ਤਾਰੀਖ ਸੋਮਵਾਰ ਤਕ ਵਧਾਈ ਗਈ</a>"
+      {% else %}
             <em>Tribune</em>, March 19, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-19-p16.pdf">“Monday new deadline to trace men”</a>
+      {% endif %}
           </div>
       </div>
      
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-23-p16.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-23-p16.png" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੨੩ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-23-p16.pdf">ਸੈਣੀ ਕੇਸ ਵਿੱਚ ਫੈਂਸਲਾ ਰਾਖਵਾਂ</a>"
+      {% else %}
             <em>Tribune</em>, March 23, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-23-p16.pdf">“Verdict reserved in Saini case”</a>
+      {% endif %}
           </div>
       </div>
      
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p20.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-25-p20.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-25-p1.png" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੨੫ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p1.pdf">ਹਾਈ ਕੋਰਟ ਨੇ ਸੈਣੀ ਦਾ ਕੇਸ ਸੀ.ਬੀ.ਆਈ. ਨੂੰ ਸੌਂਪਿਆ</a>" ਅਤੇ "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p20.pdf">ਪੁਲੀਸ ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਟੀਸ਼ਨ ਰੱਦ ਕਰ ਦਿੱਤੀ ਗਈ</a>"
+      {% else %}
             <em>Tribune</em>, March 25, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p1.pdf">“HC entrusts Saini case to CBI”</a> and <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p20.pdf">“Petition on police officers rejected”</a>
+      {% endif %}
           </div>
       </div>
 
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-05-19-p18.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-05-19-p18.png" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੯ ਮਈ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-05-19-p18.pdf">ਤਿੰਨ ਮਹੀਨਿਆਂ ਵਿੱਚ ਜਾਂਚ ਰਿਪੋਰਟ: ਸੀ.ਬੀ.ਆਈ.</a>" 
+      {% else %}
             <em>Tribune</em>, May 19, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-05-19-p18.pdf">“Probe report in 3 months: CBI”</a>
+      {% endif %}
           </div>
       </div>
 
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-25-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-08-25-p1.png" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੨੫ ਅਗਸਤ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-25-p1.pdf">ਲਾਪਤਾ ਵਪਾਰੀ ਨਹੀਂ ਮਿਲੀਆ</a>"
+      {% else %}
             <em>Tribune</em>, August 25, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-25-p1.pdf">“Missing business man untraced”</a>
+      {% endif %}
           </div>
       </div>
 
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-31-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-08-31-p1.png" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੩੧ ਅਗਸਤ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-31-p1.pdf">ਸੀ.ਬੀ.ਆਈ. ਨੇ ਸੈਣੀ ਅਤੇ ਤਿੰਨ ਹੋਰਾਂ ਨੂੰ ਦੋਸ਼ੀ ਠਹਿਰਾਈਆ</a>"
+      {% else %}
             <em>Tribune</em>, August 31, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-31-p1.pdf">“CBI blames Saini, three others”</a>
+      {% endif %}
           </div>
       </div>
      
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-12-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-09-12-p1.png" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੨ ਸਤੰਬਰ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-12-p1.pdf">ਸੈਣੀ ਕੇਸ ਦਾ ਫੈਂਸਲਾ ੧੪ ਸਤੰਬਰ ਨੂੰ</a>"
+      {% else %}
             <em>Tribune</em>, September 12, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-12-p1.pdf">“Verdict in Saini case on Sept 14”</a>
+      {% endif %}
           </div>
       </div>
       
@@ -413,7 +564,11 @@
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-15-p18.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-09-15-p18.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-15-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-09-15-p1.png" class="thumb"></a></div>
           <div class="col-9">
-            <em>Tribune</em>, September 15, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-15-p1.pdf">“Saini cleared of contempt”</a>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੫ ਸਤੰਬਰ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-15-p1.pdf">ਸੈਣੀ ਨੂੰ ਅਦਾਲਤ ਦੇ ਅਪਮਾਣ ਦੇ ਦੋਸ਼ ਤੋਂ ਮੁਕਤੀ</a>"
+      {% else %}
+             <em>Tribune</em>, September 15, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-15-p1.pdf">“Saini cleared of contempt”</a>
+     {% endif %}
           </div>
       </div>
       
@@ -421,46 +576,88 @@
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-12-20-p4.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-12-20-p4.png" class="thumb"></a></div>
           <div class="col-9">
-            <em>Tribune</em>, December 20, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-12-20-p4.pdf">“Punjab, CBI pulled up for delay in Saini case”</a>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            ਟ੍ਰਿਬਿਊਨ, ੨੦ ਦਸੰਬਰ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-12-20-p4.pdf">ਸੈਣੀ ਮਾਮਲੇ ਵਿੱਚ ਦੇਰੀ ਲਈ ਪੰਜਾਬ (ਸਰਕਾਰ) ਅਤੇ ਸੀ.ਬੀ.ਆਈ. ਨੂੰ ਫਿਟਕਾਰ</a>"
+      {% else %}
+             <em>Tribune</em>, December 20, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-12-20-p4.pdf">“Punjab, CBI pulled up for delay in Saini case”</a>
+     {% endif %}
           </div>
       </div>
 
 
       <div class="row mb-4">
           <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/Vinod_Kumar_S_O_Rattan_Singh_vs_State_Of_Punjab_on_14_September,_1995.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/Vinod_Kumar_S_O_Rattan_Singh_vs_State_Of_Punjab_on_14_September,_1995.png" class="thumb"></a></div>
-          <div class="col-9"><a href="https://data.ensaaf.org/static/files/saini/pdf/Vinod_Kumar_S_O_Rattan_Singh_vs_State_Of_Punjab_on_14_September,_1995.pdf">Order of the High Court of Punjab and Haryana</a>, 1996 CriLJ 1037</div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+          <a href="https://data.ensaaf.org/static/files/saini/pdf/Vinod_Kumar_S_O_Rattan_Singh_vs_State_Of_Punjab_on_14_September,_1995.pdf">ਪੰਜਾਬ ਅਤੇ ਹਰਿਆਣਾ ਹਾਈ ਕੋਰਟ ਦਾ ਹੁਕਮ</a>, ੧੯੯੬ ਸੀ.ਆਰ.ਆਈ.ਅਲੈ.ਜੇ. ੧੦੩੭ 
+      {% else %}
+          <a href="https://data.ensaaf.org/static/files/saini/pdf/Vinod_Kumar_S_O_Rattan_Singh_vs_State_Of_Punjab_on_14_September,_1995.pdf">Order of the High Court of Punjab and Haryana</a>, 1996 CriLJ 1037
+      {% endif %}
+        </div>
       </div>
 
       <div class="row mb-4">
           <div class="col-3"><a href="https://economictimes.indiatimes.com/news/politics-and-nation/1994-triple-murder-cbi-alleges-sumedh-singh-saini-tampered-with-documents/articleshow/34960151.cms"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-triple-murder_-CBI-alleges-Sumedh-Singh-Saini-tampered-with-documents---The-Economic-Times.jpg" class="thumb"></a></div>
           <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+            <a href="https://economictimes.indiatimes.com/news/politics-and-nation/1994-triple-murder-cbi-alleges-sumedh-singh-saini-tampered-with-documents/articleshow/34960151.cms">ਇਕੋਨਾਮੀਕ ਟਾਈਮਜ਼</a>, ੧੧ ਮਈ ੨੦੧੪: "੧੯੯੪ ਦਾ ਤਹਿਰਾ ਕਤਲ ਮਾਮਲਾ: ਸੀ.ਬੀ.ਆਈ. ਨੇ ਲਾਇਆ ਸੁਮੇਧ ਸਿੰਘ ਸੈਣੀ ਉੱਪਰ ਦਸਤਾਵੇਜ਼ਾਂ ਨਾਲ ਛੇੜ ਖਾਨੀ ਦਾ ਦੋਸ਼"
+      {% else %}
             <a href="https://economictimes.indiatimes.com/news/politics-and-nation/1994-triple-murder-cbi-alleges-sumedh-singh-saini-tampered-with-documents/articleshow/34960151.cms"><em>Economic Times</em>, May 11, 2014: “1994 triple murder: CBI alleges Sumedh Singh Saini tampered with documents”</a>
+      {% endif %}
           </div>
       </div>
 
       <div class="row mb-4">
           <div class="col-3"><a href="https://timesofindia.indiatimes.com/city/chandigarh/103-yr-old-woman-dies-awaiting-justice-for-her-son/articleshowprint/62044531.cms"><img src="https://data.ensaaf.org/static/files/saini/thumbs/103-year-old-woman-dies-awaiting-justice-for-her-son---Times-of-India.jpg" class="thumb"></a></div>
-          <div class="col-9"><a href="https://timesofindia.indiatimes.com/city/chandigarh/103-yr-old-woman-dies-awaiting-justice-for-her-son/articleshowprint/62044531.cms"><em>Times of India</em>, Dec. 12, 2017: “103-year-old woman dies awaiting justice for her son”</a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+          <a href="https://timesofindia.indiatimes.com/city/chandigarh/103-yr-old-woman-dies-awaiting-justice-for-her-son/articleshowprint/62044531.cms">ਟਾਈਮਜ਼ ਆਫ ਇੰਡੀਆ, ੧੨ ਦਸੰਬਰ ੨੦੧੭: "੧੦੩ ਸਾਲਾਂ ਦੀ ਬਜ਼ੁਰਗ ਔਰਤ ਆਪਣੇ ਪੁੱਤਰ ਦੇ ਇਨਸਾਫ ਦੀ ਉਡੀਕ ਵਿੱਚ ਪੂਰੀ ਹੋ ਗਈ"</a>
+      {% else %}
+          <a href="https://timesofindia.indiatimes.com/city/chandigarh/103-yr-old-woman-dies-awaiting-justice-for-her-son/articleshowprint/62044531.cms"><em>Times of India</em>, Dec. 12, 2017: “103-year-old woman dies awaiting justice for her son”</a>
+      {% endif %}
+          </div>
       </div>
 
       <div class="row mb-4">
           <div class="col-3"><a href="https://www.tribuneindia.com/news/punjab/cbi-io-turns-hostile-in-kidnapping-case-against-punjab-ex-dgp-saini/809278.html"><img src="https://data.ensaaf.org/static/files/saini/thumbs/CBI-IO-turns-hostile-in-kidnapping-case-against-Punjab-ex-DGP-Saini.jpg" class="thumb"></a></div>
-          <div class="col-9"><a href="https://www.tribuneindia.com/news/punjab/cbi-io-turns-hostile-in-kidnapping-case-against-punjab-ex-dgp-saini/809278.html"><em>The Tribune</em>, July 28, 2019: “CBI IO turns hostile in kidnapping case against Punjab ex-DGP Saini”</a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pa' %}
+          <a href="https://www.tribuneindia.com/news/punjab/cbi-io-turns-hostile-in-kidnapping-case-against-punjab-ex-dgp-saini/809278.html">ਟ੍ਰਿਬਿਊਨ, ੨੮ ਜੁਲਾਈ ੨੦੧੯: "ਸੀ.ਬੀ.ਆਈ. ਦਾ ਆਈ.ਓ. ਪੰਜਾਬ ਦੇ ਸਾਬਕਾ ਡੀ.ਜੀ.ਪੀ. ਸੈਣੀ ਦੇ ਖੀਲਾਫ ਅਗਵਾਹੀ ਦੇ ਕੇਸ ਵਿੱਚ ਪੂਰੀ ਤਰ੍ਹਾਂ ਉਸ ਦਾ ਵਿਰੋਧੀ ਹੋ ਗਇਆ"</a>
+      {% else %}
+          <a href="https://www.tribuneindia.com/news/punjab/cbi-io-turns-hostile-in-kidnapping-case-against-punjab-ex-dgp-saini/809278.html"><em>The Tribune</em>, July 28, 2019: “CBI IO turns hostile in kidnapping case against Punjab ex-DGP Saini”</a>
+      {% endif %}
+          </div>
       </div>
       
 
       <hr>
 
 
-      <h5>Other reports and articles</h5>
-
+      <h5>{% trans 'Other reports and articles' %}</h5>
 
       <ul>
-        <li><a href="https://www.hindustantimes.com/punjab/sumedh-singh-saini-between-rights-and-wrongs-top-cop-who-walked-his-own-line/story-qEiRfiyJ6MRLTI95aeGPuI.html"><em>Hindustan Times</em>, July 1, 2018: “Sumedh Singh Saini, Between rights and wrongs: top cop who walked his own line”</a><br><br></li>
+        <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <a href="https://www.hindustantimes.com/punjab/sumedh-singh-saini-between-rights-and-wrongs-top-cop-who-walked-his-own-line/story-qEiRfiyJ6MRLTI95aeGPuI.html">ਹਿੰਦੂਸਤਾਨ ਟਾਈਮਜ਼, ੧ ਜੁਲਾਈ ੨੦੧੮: "ਸੁਮੇਧ ਸਿੰਘ ਸੈਣੀ, ਸਹੀ ਅਤੇ ਗਲਤ ਦੇ ਵਿਚਕਾਰ: ਚੋਟੀ ਦਾ ਅਫਸਰ ਜੋ ਆਪਣੇ ਰਾਹ ਉੱਤੇ ਚਲਿਆ"</a>
+      {% else %}
+        <a href="https://www.hindustantimes.com/punjab/sumedh-singh-saini-between-rights-and-wrongs-top-cop-who-walked-his-own-line/story-qEiRfiyJ6MRLTI95aeGPuI.html"><em>Hindustan Times</em>, July 1, 2018: “Sumedh Singh Saini, Between rights and wrongs: top cop who walked his own line”</a>
+      {% endif %}
+        <br><br></li>
 
-        <li><a href="https://www.hrw.org/sites/default/files/reports/India0594.pdf">Human Rights Watch, <em>Dead Silence</em>, May 1994, pp.18-19 (killing of 5 family members of militant); See also, other abuses documented on pp.47, 51, 79, 83</a><br><br></li>
+        <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <a href="https://www.hrw.org/sites/default/files/reports/India0594.pdf">ਹਿਊਮਨ ਰਾਈਟਸ ਵਾਚ, ਖਾਮੋਸ਼ ਮੌਤ, ਮਈ ੧੯੯੪, ਸਫਾ ੧੮ ਤੋਂ ੧੯ (ਖਾੜਕੂ ਦੇ ੫ ਪਰੀਵਾਰਕ ਮੈਬਰਾਂ ਦਾ ਕਤਲ); ਇਹ ਵੀ ਦੇਖੋ, ਦੁਰਵਿਵਹਾਰ ਦੇ ਹੋਰ ਦਸਤਾਵੇਜ਼ ਸਫਾ ੪੭, ੫੧, ੭੯, ੮੩</a>
+      {% else %}
+        <a href="https://www.hrw.org/sites/default/files/reports/India0594.pdf">Human Rights Watch, <em>Dead Silence</em>, May 1994, pp.18-19 (killing of 5 family members of militant); See also, other abuses documented on pp.47, 51, 79, 83</a>
+      {% endif %}
+        <br><br></li>
 
-        <li><a href="https://www.hrw.org/sites/default/files/reports/INDIA918.PDF">Human Rights Watch, <em>Punjab in Crisis</em>, August 1991, pp. 63, 68, 97-99, 138-9</a>
+        <li>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <a href="https://www.hrw.org/sites/default/files/reports/INDIA918.PDF">ਹਿਊਮਨ ਰਾਈਟਸ ਵਾਚ, ਸੰਕਟ ਵਿੱਚ ਪੰਜਾਬ, ਅਗਸਤ ੧੯੯੧, ਸਫਾ ੬੩, ੬੮, ੯੭ ਤੋਂ ੯੯, ੧੩੮ ਤੋਂ ੧੩੯</a>
+      {% else %}
+        <a href="https://www.hrw.org/sites/default/files/reports/INDIA918.PDF">Human Rights Watch, <em>Punjab in Crisis</em>, August 1991, pp. 63, 68, 97-99, 138-9</a>
+      {% endif %}
       </ul>
 
 
@@ -475,8 +672,19 @@
 
 <script type="text/javascript">
 
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+function numpa(num) {
+  {% if request.LANGUAGE_CODE == 'pa' %}
+    var num = num.toString();
+    var dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫','6':'੬','7':'੭','8':'੮','9':'੯'};
+    var output = [];
+    for (let i = 0; i < num.length; i++) {
+      output.push( dic[ num[i] ] );
+    }
+    return output.join('');
+  {% else %}
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  {% endif %}
 }
 
 
@@ -488,8 +696,19 @@ for (var i=0;i<timeCapsule.length;i++) {
     }
 }  
 
+
+
+var timeline_margin = {top: 10, right: 10, bottom: 35, left: 10};
+
+var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
+    height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
+
 var start = d3.min(d3.entries(timeCapsule), function(d) { return d.value.date; });
 var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
+
+var xScale = d3.scaleTime()
+    .domain([start, end])
+    .rangeRound([0, width]);
 
 var villages = {};
 var villageCentroids = [];
@@ -589,8 +808,12 @@ function updateMap(start, end) {
               markers[key].setStyle({fillOpacity: .5});
               markers[key].setRadius(area(d.size));
 
-              var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + d.size + ' Victim';
-                if (d.size > 1) { tultipText += 's'; }
+              var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + numpa(d.size);
+              {% if request.LANGUAGE_CODE == 'pa' %}
+                if (d.size == 1) { tultipText += ' ਪੀੜਤ'; } else { tultipText += ' ਪੀੜਤਾਂ'; }
+              {% else %}
+                tultipText += ' Victim'; if (d.size > 1) { tultipText += 's'; }
+              {% endif %}
                 tultipText += '</div>';
 
               markers[key].bindPopup(tultipText, {offset:[0,-5]});
@@ -689,7 +912,8 @@ function makeTimeline() {
   svg.call(tip);
 
 
-  $('#count').html( profiles.length );
+  $('#count').html( numpa(profiles.length) );
+
 
   var bins = histogram(profiles).filter(d => d.length>0);
 
@@ -783,8 +1007,17 @@ function makeTimeline() {
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .attr('class','axis')
-      .call(d3.axisBottom(x));
-
+      .call( d3.axisBottom(xScale).tickFormat(
+        function(d) {
+          var formatDate = d3.timeFormat("%Y");
+          var year = formatDate(Date.parse(d));
+          {% if request.LANGUAGE_CODE == 'pa' %}
+          return numpa(year);
+          {% else %}
+          return year;
+          {% endif %}
+        })
+      );
 
 
 
