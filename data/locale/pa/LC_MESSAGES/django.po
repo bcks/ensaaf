@@ -968,7 +968,7 @@ msgstr "ਨਵੇਂ ਤੋਂ ਪੁਰਾਣੇ"
 
 #: data/templates/profiles.html:159
 msgid "Sample Full Profile"
-msgstr "ਨਮੂਨਾ ਪੂਰਾ ਪ੍ਰੋਫਾਈਲ"
+msgstr "ਪੂਰੀ ਪ੍ਰੋਫਾਈਲ ਦਾ ਨਮੂਨਾ"
 
 #: data/templates/profiles.html:181 data/templatetags/profiletags.py:70
 msgid "Date Unknown"
