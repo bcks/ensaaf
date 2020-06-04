@@ -44,14 +44,14 @@
       
       <p><a href="/static/files/punjab_police_structure.pdf">{% trans 'Police structure chart' %}</a></p>
       
-      <p><a href="/official/S0001/detail">Complete Perpetrator Profile on Sumedh Saini [Example of dossier]</a></p>
+      <p><a href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{% endif %}/official/S0001/detail">Complete Perpetrator Profile on Sumedh Saini [Example of dossier]</a></p>
 
       <p>{% trans "This page identifies many of the senior officials who reportedly perpetrated gross human rights violations in Punjab, India. Victim profiles that directly implicate these officials in abductions and/or enforced disappearances are linked to each perpetrator. This page will be updated to also identify officials who are directly implicated in extrajudicial executions, and who bear command responsibility for abuses committed under their command." %}</p>
 
       <ul>
       {% for o in officials %}
         {% if o.2 > 0 %}
-          <li><a href="/official/{{o.0}}">{{o.1}}</li>
+          <li><a href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{% endif %}/official/{{o.0}}">{{o.1}}</li>
         {% endif %}
       {% endfor %}
       </ul>
