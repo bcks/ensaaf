@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load profiletags %}
 
 {% block title %}Profile of Manohar Singh — Ensaaf{% endblock %}
 
@@ -35,16 +36,14 @@ iframe {
 
       <h1 style="margin-bottom:1rem;">Manohar Singh</h1>
 
-      <p>ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਦੀ ਤਾਰੀਖ਼ ਐਪ੍ਰਲ ੧੭, <a href="/year/1993">੧੯੯੩</a></p>
+      <p>{% trans 'Extrajudicial Execution on April 17, <a href="/year/1993">1993</a>' %}</p>
 
-      <p>{% trans 'Male' %}, {% trans 'age' %} 26</p>     
+      <p>{% trans 'Male' %}, {% trans 'age' %} {{ '26' | numpa }}</p>     
                     
                 
       <p><br></p>  
     
       <h4>{% trans 'Demographics' %}</h4>
-
-      
         
           <div class="row">  
             <div class="col-sm-2">
@@ -141,7 +140,7 @@ iframe {
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ ਦੀ ਜਾਣਕਾਰੀ</h4>
+      <h4>{% trans 'Abduction, Detention, &amp; Torture' %}</h4>
     </div>
   </div>
 
@@ -151,7 +150,7 @@ iframe {
       <p class="kicker dots">{% trans 'Prior detentions' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>{% trans 'Yes' %}, 6-7</p>
+      <p>{% trans 'Yes' %}, {{'6'|numpa}}-{{'7'|numpa}}</p>
     </div>
 
     <div class="col-sm-6">
@@ -174,7 +173,7 @@ iframe {
       <p class="kicker dots">{% trans 'Abduction preceding extrajudicial execution' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>{% trans 'Yes' %},  ਮਾਰਚ ੨੯, <a href="/year/1993">੧੯੯੩</a> ਅਤੇ ਐਪ੍ਰਲ ੧, <a href="/year/1993">੧੯੯੩</a> ਦੇ ਵਿੱਚ</p>  
+      <p>{% trans 'Yes' %},  {% trans 'between March 29, <a href="/year/1993">1993</a> and April 1, <a href="/year/1993">1993</a>' %}</p>
     </div>
     
 
@@ -244,7 +243,7 @@ iframe {
       <p class="kicker dots">{% trans 'Location' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>{% trans 'Police station' %}, <a href="/locality/40106000">Dinanagar</a>, ੧੫+ ਦਿਨ, ਰਿਸ਼ਤੇਦਾਰ ਨੇ ਦੇਖਿਆ</p>
+      <p>{% trans 'Police station' %}, <a href="{% url 'locality' '40106000' %}">{% trans 'Dinanagar' %}</a>, {% trans '15+ days, witnessed by relative' %}</p>
     </div>
 
     <div class="col-sm-6">
@@ -265,7 +264,7 @@ iframe {
 
   <div class="row">
     <div class="col-sm-12">
-      <h4>ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਦੀ ਤਾਰੀਖ਼ ਐਪ੍ਰਲ ੧੭, <a href="/pa/year/1993">੧੯੯੩</a></h4>
+      <h4>{% trans 'Extrajudicial Execution on April 17, <a href="/year/1993">1993</a>' %}</h4>
     </div>
 
   </div>
@@ -319,8 +318,8 @@ iframe {
     <div class="col-sm-6">
     
       <p>      
-      <a href="/locality/40106000">{% trans 'Dinanagar' %}</a>,       
-      <a href="/securityforce/police/">{% trans 'Punjab Police' %}</a></p>
+      <a href="{% url 'locality' '40106000' %}">{% trans 'Dinanagar' %}</a>,       
+      <a href="{% url 'securityforce' 'police' %}">{% trans 'Punjab Police' %}</a></p>
     </div>
 
     <div class="col-sm-6">
@@ -330,11 +329,11 @@ iframe {
 
       <p>Jaswinder Singh<!-- rank -->, 
 {% trans 'Station House Officer' %}<!-- affiliaton -->, 
-{% trans 'Punjab Police' %}<!-- arrest_so_affiliation_oth -->, <a href="/locality/40106000">{% trans 'Dinanagar' %}</a></p>
+{% trans 'Punjab Police' %}<!-- arrest_so_affiliation_oth -->, <a href="{% url 'locality' '40106000' %}">{% trans 'Dinanagar' %}</a></p>
 
       <p>Jarnail Singh<!-- rank -->, 
 {% trans 'Sub Inspector' %}<!-- affiliaton -->, 
-{% trans 'Punjab Police' %}<!-- arrest_so_affiliation_oth -->, <a href="/locality/40106000">{% trans 'Dinanagar' %}</a></p>
+{% trans 'Punjab Police' %}<!-- arrest_so_affiliation_oth -->, <a href="{% url 'locality' '40106000' %}">{% trans 'Dinanagar' %}</a></p>
 
     </div>
 
@@ -344,7 +343,7 @@ iframe {
     <div class="col-sm-6">
           
       <p>
-      <a href="/locality/40107000">{% trans 'Gurdaspur' %}</a>, <a href="/securityforce/police/">{% trans 'Punjab Police' %}</a></p>
+      <a href="{% url 'locality' '40107000' %}">{% trans 'Gurdaspur' %}</a>, <a href="{% url 'securityforce' 'police' %}">{% trans 'Punjab Police' %}</a></p>
 
     </div>
 
@@ -354,9 +353,7 @@ iframe {
       <p class="kicker dots">{% trans 'Officials involved in extrajudicial execution' %}</p>
     </div>
     <div class="col-sm-6">
-
-      <p>Prem Kumar, {% trans 'Station House Officer' %}, {% trans 'Punjab Police' %}, <a href="/locality/40107000">{% trans 'Gurdaspur' %}</a></p>
-
+      <p>Prem Kumar, {% trans 'Station House Officer' %}, {% trans 'Punjab Police' %}, <a href="{% url 'locality' '40107000' %}">{% trans 'Gurdaspur' %}</a></p>
     </div>
 
 </div>
@@ -467,7 +464,7 @@ iframe {
       <p class="kicker dots">{% trans 'Co-victims of extrajudicial execution' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>{% trans 'Yes' %}, 2; <a href="/profile/2271/">Baldev Singh</a>, <a href="/locality/00057000">Dorangla</a></p>
+      <p>{% trans 'Yes' %}, {{'2'|numpa}}; <a href="{% url 'profile' '2271' %}">Baldev Singh</a>, <a href="{% url 'locality' '00057000' %}">Dorangla</a></p>
     </div>
   </div>
 
