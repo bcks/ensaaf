@@ -261,6 +261,52 @@
     <div class="col-sm-12">
       <h4>
 
+      {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}
+
+          {% trans 'Prior Abuse' %}
+
+      {% elif victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}<!-- detention -->
+
+        {% if victim.victim_prior_detention_trt == 1 %}<!-- torture -->
+
+          {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 %}
+            {% trans 'Detention &amp; Torture' %}
+          {% elif victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
+            {% trans 'Abduction, Detention, &amp; Torture' %}
+          {% endif %}
+
+        {% else %}
+
+          {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
+            {% trans 'Abduction &amp; Detention' %}
+          {% else %}
+            {% trans 'Detention' %}
+          {% endif %}
+
+        {% endif %}<!-- /torture -->
+     
+     
+      {% else %}<!-- no detention -->
+
+        {% if victim.victim_prior_detention_trt == 1 %}<!-- toture -->
+          {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 %}
+            {% trans 'Torture' %}
+          {% elif victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
+            {% trans 'Abduction &amp; Torture' %}
+          {% endif %}
+        {% else %}
+
+          {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %}
+            {% trans 'Abduction' %}
+          {% endif %}
+        
+        {% endif %}
+
+
+      {% endif %}
+
+
+   {% comment %} <!-- OLD -->
 
       {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
         {% trans 'Abduction' %}{% if victim.victim_prior_detention_trt == 1 %},{% endif %}
@@ -274,18 +320,16 @@
         {% if victim.victim_prior_detention_trt == 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %},{% endif %}
       {% endif %}
 
-
       {% if victim.victim_prior_detention_trt == 1 %}
-
         {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 or victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}{% trans '&' %}{% endif %}
-
         {% trans 'Torture' %}
-
       {% endif %}
 
+      {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}
+        {% trans 'Prior Abuse' %}
+      {% endif %}
 
-      {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}{% trans 'Prior Abuse' %}{% endif %}
-
+   {% endcomment %}
 
       </h4>
     </div>

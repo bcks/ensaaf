@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-02 11:14-0400\n"
+"POT-Creation-Date: 2020-06-05 10:39-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -100,8 +100,8 @@ msgstr "ਪਿੰਡ"
 msgid "About"
 msgstr "ਬਾਰੇ"
 
-#: data/templates/base.html:48 data/templates/profile.html:815
-#: data/templates/profile.html:1005
+#: data/templates/base.html:48 data/templates/profile.html:860
+#: data/templates/profile.html:1050
 msgid "Forthcoming"
 msgstr "ਆੳਣ ਵਾਲੀ ਜਾਣਕਾਰੀ"
 
@@ -113,28 +113,22 @@ msgstr "ਇਸ ਮਨਸੁਬੇ/ਪਰਯੋਜਨ ਦਾ ਸਾਥ ਦੇਵ�
 msgid "Donate"
 msgstr "ਦਾਨ/ਦਸਵੰਧ"
 
-#: data/templates/base.html:50 data/templates/base.html:67
-#: data/templates/base.html:68 data/templates/search/search.html:26
+#: data/templates/base.html:50 data/templates/base.html:62
+#: data/templates/base.html:63 data/templates/search/search.html:26
 msgid "Search"
 msgstr "ਖੋਜ ਕਰੋ"
 
-#: data/templates/base.html:106
+#: data/templates/base.html:101
 msgid "ENSAAF INC."
 msgstr "ਇਨਸਾਫ਼"
 
-#: data/templates/base.html:113
+#: data/templates/base.html:108
 msgid "Back to top"
 msgstr "ਵਾਪਸ ਉੱਪਰ ਜਾਉ"
 
-#: data/templates/base.html:114
+#: data/templates/base.html:109
 msgid "Contact"
 msgstr "ਸੰਪਰਕ"
-
-#: data/templates/detail.html:38 data/templates/profile.html:45
-#: data/templates/profiles.html:199 data/templates/search/search.html:120
-#: data/templates/village.html:104
-msgid "Extrajudicial execution"
-msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
 
 #: data/templates/detail.html:40 data/templates/map.html:116
 #: data/templates/profiles.html:95 data/templates/stats.html:18
@@ -223,7 +217,7 @@ msgstr "ਸਿੱਖ"
 msgid "Amritdhari"
 msgstr "ਅੰਮ੍ਰਿਤਧਾਰੀ"
 
-#: data/templates/detail.html:151 data/templates/profile.html:301
+#: data/templates/detail.html:151 data/templates/profile.html:346
 #: data/templates/stats.html:249
 msgid "Prior detentions"
 msgstr "ਪੁਰਾਣੀਆਂ ਗ੍ਰਿਫ਼ਤਾਰੀਆਂ"
@@ -246,7 +240,7 @@ msgstr "ਪੁਰਾਣੀਆਂ ਗ੍ਰਿਫ਼ਤਾਰੀਆਂ"
 msgid "Yes"
 msgstr "ਹਾਂ ਜੀ"
 
-#: data/templates/detail.html:158 data/templates/profile.html:311
+#: data/templates/detail.html:158 data/templates/profile.html:356
 #: data/templates/stats.html:273
 msgid "Prior torture"
 msgstr "ਪੁਰਾਣੇ ਤਸ਼ੱਦਦ"
@@ -259,11 +253,11 @@ msgstr "ਪਰਿਵਾਰ ਦੀ ਸਮਝ ਮੁਤਾਬਕ ਪੀੜਤ ਨ�
 msgid "Victim was a militant"
 msgstr "ਪੀੜਤ ਖਾੜਕੂ ਸੀ"
 
-#: data/templates/detail.html:174 data/templates/profile.html:346
+#: data/templates/detail.html:174 data/templates/profile.html:391
 msgid "Abduction preceding extrajudicial execution"
 msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਤੋਂ ਪਹਿਲਾਂ ਗ੍ਰਿਫ਼ਤਾਰ ਕੀਤਾ"
 
-#: data/templates/detail.html:182 data/templates/profile.html:365
+#: data/templates/detail.html:182 data/templates/profile.html:410
 msgid "Place of abduction"
 msgstr "ਗ੍ਰਿਫ਼ਤਾਰੀ ਦੀ ਜਗ੍ਹਾ"
 
@@ -271,7 +265,7 @@ msgstr "ਗ੍ਰਿਫ਼ਤਾਰੀ ਦੀ ਜਗ੍ਹਾ"
 msgid "Friend/relative’s residence, in Kolkata, West Bengal"
 msgstr "ਕਲਕੱਤਾ, ਪੱਛਮੀ ਬੰਗਾਲ ਵਿੱਚ ਦੋਸਤ/ਰਿਸ਼ਤੇਦਾਰ ਦਾ ਘਰ"
 
-#: data/templates/detail.html:192 data/templates/profile.html:382
+#: data/templates/detail.html:192 data/templates/profile.html:427
 msgid "Witness(es) to abduction"
 msgstr "ਗਰਿਫਤਾਰੀ ਦੇ ਗਵਾਹ"
 
@@ -279,15 +273,15 @@ msgstr "ਗਰਿਫਤਾਰੀ ਦੇ ਗਵਾਹ"
 msgid "Parents; Sibling; Cousin; Aunt/uncle"
 msgstr "ਮਾਂ ਪਿਓ; ਭੈਣ ਭਰਾ; ਰਿਸ਼ਤੇਦਾਰ"
 
-#: data/templates/detail.html:200 data/templates/profile.html:396
+#: data/templates/detail.html:200 data/templates/profile.html:441
 msgid "Security officials informed witnesses about destination"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤਿਆਂ ਨੇ ਗਵਾਹਾਂ ਨੂੰ ਦੱਸਿਆ ਕਿ ੳਹ ਪੀੜਤ ਨੂੰ ਕਿੱਥੇ ਲੈ ਕੇ ਜਾ ਰਹੇ ਹਨ"
 
-#: data/templates/detail.html:207 data/templates/profile.html:410
+#: data/templates/detail.html:207 data/templates/profile.html:455
 msgid "Security officials uniformed"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤਿਆਂ ਨੇ ਵਰਦੀ ਪਾਈ ਹੋਈ ਸੀ"
 
-#: data/templates/detail.html:214 data/templates/profile.html:422
+#: data/templates/detail.html:214 data/templates/profile.html:467
 msgid "Demands by security forces"
 msgstr "ਸੁਰੱਖਿਆ ਬਲਾਂ ਦੀਆਂ ਮੰਗਾ"
 
@@ -295,12 +289,12 @@ msgstr "ਸੁਰੱਖਿਆ ਬਲਾਂ ਦੀਆਂ ਮੰਗਾ"
 msgid "Money"
 msgstr "ਪੈਸੇ"
 
-#: data/templates/detail.html:221 data/templates/profile.html:435
+#: data/templates/detail.html:221 data/templates/profile.html:480
 #: data/templates/stats.html:490
 msgid "Victim presented before judge/magistrate"
 msgstr "ਪੀੜਤ ਨੂੰ ਜੱਜ ਜਾਂ ਮਜਿਸਟਰੇਟ ਸਾਮ੍ਹਣੇ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ"
 
-#: data/templates/detail.html:237 data/templates/profile.html:467
+#: data/templates/detail.html:237 data/templates/profile.html:512
 msgid "Detention Locations"
 msgstr "ਹਿਰਾਸਤ ਵਾਲੀਆਂ ਥਾਵਾਂ"
 
@@ -325,21 +319,16 @@ msgstr ""
 "ਪੀੜਤ ਨੇ ਤਸ਼ੱਦਦ ਦੀ ਖਬਰ ਦਿੱਤੀ, ਜਿਸ ਵਿੱਚ ਪੱਟਾਂ ਦੇ ਜ਼ਖਮਾਂ ਉੱਤੇ ਗਰਮ ਮਿਰਚਾਂ ਦਾਖਲ ਹੋਣਾ ਸ਼ਾਮਲ ਹੈ, ਅਤੇ "
 "ਖੜ੍ਹੇ ਨਹੀਂ ਹੋ ਸਕਦੇ"
 
-#: data/templates/detail.html:268 data/templates/map.html:108
-#: data/templates/profile.html:519 data/templates/profiles.html:78
-msgid "Extrajudicial Execution"
-msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
-
-#: data/templates/detail.html:276 data/templates/profile.html:543
+#: data/templates/detail.html:276 data/templates/profile.html:588
 #: data/templates/stats.html:599
 msgid "Body Disposal"
 msgstr "ਸਰੀਰ ਨਾਲ ਕੀ ਕੀਤਾ"
 
-#: data/templates/detail.html:283 data/templates/profile.html:553
+#: data/templates/detail.html:283 data/templates/profile.html:598
 msgid "Body returned"
 msgstr "ਸਰੀਰ ਵਾਪਸ ਮੋੜ ਦਿੱਤਾ"
 
-#: data/templates/detail.html:290 data/templates/profile.html:566
+#: data/templates/detail.html:290 data/templates/profile.html:611
 #: data/templates/stats.html:606
 msgid "Body disposal by security forces"
 msgstr "ਸੁਰੱਖਿਆ ਬਲਾਂ ਨੇ ਸਰੀਰ ਵਾਪਸ ਮੋੜ ਦਿੱਤਾ"
@@ -349,7 +338,7 @@ msgstr "ਸੁਰੱਖਿਆ ਬਲਾਂ ਨੇ ਸਰੀਰ ਵਾਪਸ ਮ�
 msgid "Cremated the body"
 msgstr "ਸਰੀਰ ਦਾ ਸਸਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ"
 
-#: data/templates/detail.html:297 data/templates/profile.html:580
+#: data/templates/detail.html:297 data/templates/profile.html:625
 msgid "Cremation location"
 msgstr "ਸਸਕਾਰ ਵਾਲੀ ਜਗ੍ਹਾ"
 
@@ -357,13 +346,13 @@ msgstr "ਸਸਕਾਰ ਵਾਲੀ ਜਗ੍ਹਾ"
 msgid "Municipal cremation ground"
 msgstr "ਨਗਰ ਨਿਗਮ ਸ਼ਮਸ਼ਾਨ ਘਾਟ"
 
-#: data/templates/detail.html:310 data/templates/profile.html:622
+#: data/templates/detail.html:310 data/templates/profile.html:667
 #: data/templates/stats.html:685
 msgid "Security Forces Implicated"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਕਾਰਵਾਈ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
-#: data/templates/detail.html:317 data/templates/profile.html:634
-#: data/templates/profile.html:644
+#: data/templates/detail.html:317 data/templates/profile.html:679
+#: data/templates/profile.html:689
 msgid "Forces involved in abduction"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
@@ -380,7 +369,7 @@ msgstr "ਦੀਨਾਨਗਰ"
 msgid "Punjab Police"
 msgstr "ਪੰਜਾਬ ਪੁਲਿਸ"
 
-#: data/templates/detail.html:327 data/templates/profile.html:659
+#: data/templates/detail.html:327 data/templates/profile.html:704
 msgid "Officials involved in abduction"
 msgstr "ਅਫਸਰ ਜੋ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
@@ -393,15 +382,15 @@ msgstr "ਸਟੇਸ਼ਨ ਹਾਉਸ ਅਫ਼ਸਰ"
 msgid "Sub Inspector"
 msgstr "ਸਬ ਇੰਸਪੈਕਟਰ"
 
-#: data/templates/detail.html:342 data/templates/profile.html:683
+#: data/templates/detail.html:342 data/templates/profile.html:728
 msgid "Forces involved in extrajudicial execution"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
-#: data/templates/detail.html:354 data/templates/profile.html:698
+#: data/templates/detail.html:354 data/templates/profile.html:743
 msgid "Officials involved in extrajudicial execution"
 msgstr "ਅਫਸਰ ਜੋ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
-#: data/templates/detail.html:368 data/templates/profile.html:747
+#: data/templates/detail.html:368 data/templates/profile.html:792
 #: data/templates/stats.html:792
 msgid "Militancy Involvement"
 msgstr "ਖਾੜਕੂ ਲਹਿਰ ਨਾਲ ਸੰਬੰਧਿਤ"
@@ -415,13 +404,13 @@ msgid "Haneri"
 msgstr "ਹਨੇਰੀ"
 
 #: data/templates/detail.html:382 data/templates/map.html:123
-#: data/templates/profile.html:754 data/templates/profiles.html:110
+#: data/templates/profile.html:799 data/templates/profiles.html:110
 #: data/templates/stats.html:801
 msgid "Combatant"
 msgstr "ਹਾਂ ਜੀ"
 
-#: data/templates/detail.html:390 data/templates/profile.html:768
-#: data/templates/profile.html:781
+#: data/templates/detail.html:390 data/templates/profile.html:813
+#: data/templates/profile.html:826
 msgid "Reason(s) for joining militancy"
 msgstr "ਖਾੜਕੂ ਲਹਿਰ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੀ ਵਜਾ"
 
@@ -435,16 +424,16 @@ msgstr ""
 msgid "Persecution (i.e. arbitrary arrest, torture, self-defense)"
 msgstr "ਅੱਤਿਆਚਾਰ (ਗੈਰ ਕਾਨੂੰਨੀ ਗ੍ਰਿਫ਼ਤਾਰੀ, ਤਸ਼ੱਦਦ, ਆਤਮ ਰੱਖਿਆ)"
 
-#: data/templates/detail.html:403 data/templates/profile.html:834
+#: data/templates/detail.html:403 data/templates/profile.html:879
 #: data/templates/stats.html:870
 msgid "Remedies & Impact"
 msgstr "ਹੀਲਾ ਅਤੇ ਅਸਰ"
 
-#: data/templates/detail.html:410 data/templates/profile.html:850
+#: data/templates/detail.html:410 data/templates/profile.html:895
 msgid "Security officials approached"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜਿਨ੍ਹਾਂ ਤਕ ਪਹੁੰਚ ਕੀਤੀ"
 
-#: data/templates/detail.html:417 data/templates/profile.html:877
+#: data/templates/detail.html:417 data/templates/profile.html:922
 msgid "Legal remedies pursued"
 msgstr "ਕਿਹੜੀ ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਕੀਤੀ"
 
@@ -452,7 +441,7 @@ msgstr "ਕਿਹੜੀ ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਕੀਤੀ"
 msgid "No, Afraid of retaliation, Believed it would have been ineffective"
 msgstr "ਨਹੀਂ, ਡਰ/ਬਦਲੇ ਤੋਂ ਡਰ, ਪਰਿਵਾਰ ਨੂੰ ਇਹ ਲੱਗਦਾ ਸੀ ਕਿ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਨਿਕਲਣਾ"
 
-#: data/templates/detail.html:424 data/templates/profile.html:891
+#: data/templates/detail.html:424 data/templates/profile.html:936
 msgid "Impact on family"
 msgstr "ਪਰਿਵਾਰ ਉੱਪਰ ਅਸਰ"
 
@@ -464,7 +453,7 @@ msgstr ""
 "ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਦੀ ਪੜ੍ਹਈ ਛੁੱਟ ਗਈ, ਪਰਿਵਾਰ ਨੇ ਘਰ ਛੱਡ ਦਿੱਤਾ, ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਉਦਾਸ ਮਨੋਦਸ਼ਾ/ਸਦਮੇ "
 "ਕਾਰਨ ਮੌਤ ਹੋ ਗਈ, ਪਰਿਵਾਰ ਗਰੀਬ ਹੋ ਗਿਆ"
 
-#: data/templates/detail.html:431 data/templates/profile.html:903
+#: data/templates/detail.html:431 data/templates/profile.html:948
 #: data/templates/stats.html:950
 msgid "Remedies desired from government"
 msgstr "ਸਰਕਾਰ ਤੋਂ ਕੀ ਮੰਗ"
@@ -474,24 +463,24 @@ msgstr "ਸਰਕਾਰ ਤੋਂ ਕੀ ਮੰਗ"
 msgid "Memorial for victims"
 msgstr "ਪੀੜਤਾਂ ਲਈ ਯਾਦਗਾਰ"
 
-#: data/templates/detail.html:443 data/templates/profile.html:925
+#: data/templates/detail.html:443 data/templates/profile.html:970
 msgid "Connected Victims"
 msgstr "ਸੰਬੰਧਿਤ ਪੀੜਤ"
 
-#: data/templates/detail.html:449 data/templates/profile.html:946
+#: data/templates/detail.html:449 data/templates/profile.html:991
 #: data/templates/stats.html:573
 msgid "Genuine encounters in family"
 msgstr "ਪਰਿਵਾਰ ਵਿੱਚ ਅਸਲ ਮੁਕਾਬਲੇ"
 
-#: data/templates/detail.html:458 data/templates/profile.html:959
+#: data/templates/detail.html:458 data/templates/profile.html:1004
 msgid "Co-victims of abduction"
 msgstr "ਹੋਰਾਂ ਨੂੰ ਨਾਲ ਗ੍ਰਿਫ਼ਤਾਰ ਕੀਤਾ"
 
-#: data/templates/detail.html:467 data/templates/profile.html:972
+#: data/templates/detail.html:467 data/templates/profile.html:1017
 msgid "Co-victims of extrajudicial execution"
 msgstr "ਹੋਰਾਂ ਦੀ ਨਾਲ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਕੀਤੀ"
 
-#: data/templates/detail.html:478 data/templates/profile.html:999
+#: data/templates/detail.html:478 data/templates/profile.html:1044
 msgid "Family Reflections"
 msgstr "ਪਰਿਵਾਰ ਦੇ ਵਿਚਾਰ"
 
@@ -548,7 +537,7 @@ msgid "Send"
 msgstr "ਭੇਜੋ"
 
 #: data/templates/map.html:8 data/templates/map.html:20
-#: data/templates/map.html:25 data/templates/official_detail.html:27
+#: data/templates/map.html:25 data/templates/official_detail.html:28
 msgid ""
 "Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial "
 "Executions in Punjab, India"
@@ -646,6 +635,11 @@ msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ/ਲਾਪਤਾ"
 #: data/templates/map.html:107 data/templates/profiles.html:77
 msgid "Enforced Disappearance"
 msgstr "ਲਾਪਤਾ"
+
+#: data/templates/map.html:108 data/templates/profile.html:564
+#: data/templates/profiles.html:78
+msgid "Extrajudicial Execution"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
 
 #: data/templates/map.html:114 data/templates/profiles.html:93
 #: data/templates/stats.html:14
@@ -745,15 +739,16 @@ msgstr ""
 msgid "Read more about our goals"
 msgstr "ਹੋਰ ਵਧੇਰੀ ਜਾਣਕਾਰੀ ਵਾਸਤੇ ਅਗੇ ਪੜ੍ਹੋ।"
 
-#: data/templates/official_detail.html:6
+#: data/templates/official_detail.html:7
 msgid ""
 "Sumedh Singh [Saini] and enforced disappearances &amp; extrajudicial "
 "executions in Punjab, India"
 msgstr "ਸੁਮੇਧ ਸਿੰਘ (ਸੈਣੀ) ਅਤੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ"
 
-#: data/templates/official_detail.html:9 data/templates/official_detail.html:12
-#: data/templates/official_detail.html:18
-#: data/templates/official_detail.html:26
+#: data/templates/official_detail.html:10
+#: data/templates/official_detail.html:13
+#: data/templates/official_detail.html:19
+#: data/templates/official_detail.html:27
 msgid ""
 "Senior officials implicated in documented cases of enforced disappearances "
 "&amp; extrajudicial executions in Punjab, India based on data collected "
@@ -762,35 +757,35 @@ msgstr ""
 "ਪੰਜਾਬ ਦੇ ਮੁੱਖ ਅਫਸਰ ਜਿਨ੍ਹਾਂ ਦਾ ਨਾਮ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਾਲੇ ਦਰਜ ਕੇਸਾਂ ਵਿੱਚ "
 "ਆਉਂਦਾ ਹੈ ਸਾਡੇ ਦੁਆਰਾ ਮੁਢਲੇ ਸਰੋਤ ਇੰਟਰਵਿਊ ਦੇ ਰਾਹੀਂ ਇੱਕਠੇ ਕੀਤੇ ਗਏ ਹਨ। "
 
-#: data/templates/official_detail.html:11
-#: data/templates/official_detail.html:17
-#: data/templates/official_detail.html:22
+#: data/templates/official_detail.html:12
+#: data/templates/official_detail.html:18
+#: data/templates/official_detail.html:23
 msgid ""
 "Key perpetrators of enforced disappearances &amp; extrajudicial executions "
 "in Punjab, India"
 msgstr "ਮੁਖ ਦੋਸ਼ੀ ਜੋ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਲਈ ਜੁੰਮੇਵਾਰ ਹਨ।"
 
-#: data/templates/official_detail.html:72
+#: data/templates/official_detail.html:73
 msgid "Sumedh Singh [Saini]"
 msgstr "ਸੁਮੇਧ ਸਿੰਘ (ਸੈਣੀ)"
 
-#: data/templates/official_detail.html:156
+#: data/templates/official_detail.html:157
 msgid "Command History"
 msgstr "ਕਾਰਜ ਕਾਲ ਦਾ ਇਤਹਾਸ"
 
-#: data/templates/official_detail.html:281
+#: data/templates/official_detail.html:327
 msgid "Personal Participation"
 msgstr "ਨਿੱਜੀ ਸ਼ਮੂਲੀਅਤ"
 
-#: data/templates/official_detail.html:309
+#: data/templates/official_detail.html:357
 msgid "Known Promotions"
 msgstr "ਪ੍ਰਸਿੱਧ ਤਰੱਕੀਆਂ"
 
-#: data/templates/official_detail.html:332
+#: data/templates/official_detail.html:418
 msgid "Disciplinary Proceedings / Legal Cases"
 msgstr "ਅਨੁਸ਼ਾਸਨੀ ਪ੍ਰਕਿਰਿਆਵਾਂ/ਕਾਨੂੰਨੀ ਕਾਰਵਾਈਆਂ"
 
-#: data/templates/official_detail.html:468
+#: data/templates/official_detail.html:636
 msgid "Other reports and articles"
 msgstr "ਹੋਰ ਰਿਪੋਰਟਾਂ ਅਤੇ ਲੇਖ"
 
@@ -827,7 +822,12 @@ msgstr ""
 "ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਛਾਣ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕੀਤਾ ਜਾਵੇਗਾ ਜੋ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਿੱਚ "
 "ਸ਼ਾਮਲ ਹਨ ਅਤੇ ਜੋ ਆਪਣੀ ਕਮਾਂਡ/ਆਦੇਸ਼ ਅਧੀਨ ਕੀਤੇ ਗਏ ਦੁਰਵਿਵਹਾਰਾਂ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਹਨ।"
 
-#: data/templates/profile.html:49 data/templates/profile.html:523
+#: data/templates/profile.html:45 data/templates/profiles.html:199
+#: data/templates/search/search.html:120 data/templates/village.html:104
+msgid "Extrajudicial execution"
+msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
+
+#: data/templates/profile.html:49 data/templates/profile.html:568
 #: data/templates/profiles.html:202 data/templates/search/search.html:123
 #: data/templates/village.html:107
 msgid "Disappeared"
@@ -870,67 +870,79 @@ msgid "Share this profile"
 msgstr "ਪੀੜਤ ਦੀ ਪ੍ਰੋਫ਼ਾਈਲ ਸਾਂਝੀ ਕਰੋ"
 
 #: data/templates/profile.html:266
-msgid "Abduction"
-msgstr "ਹਿਰਾਸਤ"
-
-#: data/templates/profile.html:271 data/templates/profile.html:280
-msgid "&"
-msgstr "ਦੀ"
-
-#: data/templates/profile.html:273
-msgid "Detention"
-msgstr "ਜਾਣਕਾਰੀ"
-
-#: data/templates/profile.html:282
-msgid "Torture"
-msgstr "ਤਸ਼ਦਦ ਕਰਨਾ"
-
-#: data/templates/profile.html:287
 msgid "Prior Abuse"
 msgstr "ਪਹਿਲਾਂ ਬਦਸਲੂਕੀ"
 
-#: data/templates/profile.html:349
+#: data/templates/profile.html:273
+msgid "Detention &amp; Torture"
+msgstr "Detention &amp; Torture"
+
+#: data/templates/profile.html:275
+msgid "Abduction, Detention, &amp; Torture"
+msgstr "ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ ਦੀ ਜਾਣਕਾਰੀ"
+
+#: data/templates/profile.html:281
+msgid "Abduction &amp; Detention"
+msgstr "Abduction &amp; Detention"
+
+#: data/templates/profile.html:283
+msgid "Detention"
+msgstr "ਜਾਣਕਾਰੀ"
+
+#: data/templates/profile.html:293
+msgid "Torture"
+msgstr "ਤਸ਼ਦਦ ਕਰਨਾ"
+
+#: data/templates/profile.html:295
+msgid "Abduction &amp; Torture"
+msgstr "Abduction &amp; Torture"
+
+#: data/templates/profile.html:300
+msgid "Abduction"
+msgstr "ਹਿਰਾਸਤ"
+
+#: data/templates/profile.html:394
 msgid "Abduction preceding disappearance"
 msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ ਤੋਂ ਪਹਿਲਾਂ ਗ੍ਰਿਫ਼ਤਾਰ ਕੀਤਾ"
 
-#: data/templates/profile.html:448
+#: data/templates/profile.html:493
 msgid "Judge/magistrate result"
 msgstr "ਜੱਜ/ਮੈਜਿਸਟਰੇਟ ਦਾ ਨਤੀਜਾ"
 
-#: data/templates/profile.html:500 data/templates/profile.html:530
-#: data/templates/profile.html:731
+#: data/templates/profile.html:545 data/templates/profile.html:575
+#: data/templates/profile.html:776
 msgid "Additional data forthcoming"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਅੱਗੇ ਸਾਂਝੀ ਕੀਤੀ ਜਾਵੇਗੀੀ"
 
-#: data/templates/profile.html:594
+#: data/templates/profile.html:639
 msgid "Condition of corpse"
 msgstr "ਸਰੀਰ ਦੀ ਹਾਲਤ"
 
-#: data/templates/profile.html:793
+#: data/templates/profile.html:838
 msgid "Militant support provided"
 msgstr "ਖਾੜਕੂਆਂ ਦੀ ਸਹਾਇਤਾ ਕੀਤੀ"
 
-#: data/templates/profile.html:811
+#: data/templates/profile.html:856
 msgid "Related Incidents"
 msgstr "ਸੰਬੰਧਿਤ ਹਾਦਸੇ"
 
-#: data/templates/profile.html:832
+#: data/templates/profile.html:877
 msgid "Remedies"
 msgstr "ਹੀਲਾ ਅਤੇ ਅਸਰ"
 
-#: data/templates/profile.html:862
+#: data/templates/profile.html:907
 msgid "Response by officials"
 msgstr "ਅਫਸਰਾਂ ਦਾ ਜਵਾਬ"
 
-#: data/templates/profile.html:933
+#: data/templates/profile.html:978
 msgid "Extrajudicial executions/disappearances in family"
 msgstr "ਪਰਿਵਾਰ ਵਿੱਚ ਲਾਪਤਾ ਜਾਂ ਫਿਰ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਨਾਲ ਸੰਬੰਧਿਤ ਹਾਦਸੇ"
 
-#: data/templates/profile.html:984
+#: data/templates/profile.html:1029
 msgid "Links to co-victim profiles forthcoming"
 msgstr "ਸਹਿ-ਪੀੜਤ ਦੀ ਸੂਚੀ ਭਵਿੱਖ ਵਿੱਚ ਨਾਲ ਜੋੜੀ ਜਾਵੇਗੀ।"
 
-#: data/templates/profile.html:1062
+#: data/templates/profile.html:1107
 msgid ""
 "Note: Subdistrict and district boundaries are based on the 2001 census. Read "
 "more about <a href=\"/about\">our methodology</a>"
@@ -938,11 +950,11 @@ msgstr ""
 "ਧਿਆਨ ਦਿਓ: ਜ਼ਿਲ੍ਹੇ ਅਤੇ ਤਸੀਲ ਦੀਆਂ ਸੀਮਾਂ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/pa/"
 "about\">ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
 
-#: data/templates/profile.html:1073
+#: data/templates/profile.html:1118
 msgid "Report additional information on this case"
 msgstr "ਇਹ ਕੇਸ ਨਾਲ ਸੰਬੰਧਿਤ ਹੋਰ ਜਾਣਕਾਰੀ ਸਾਂਝੀ ਕਰੋ"
 
-#: data/templates/profile.html:1074
+#: data/templates/profile.html:1119
 msgid "Report a new case"
 msgstr "ਨਵਾਂ ਕੇਸ ਦਰਜ ਕਰੋ"
 
@@ -2384,6 +2396,9 @@ msgstr "ਮੂਨਕ"
 #: data/views.py:38
 msgid "Sunam"
 msgstr "ਸੁਨਾਮ"
+
+#~ msgid "&"
+#~ msgstr "ਦੀ"
 
 #~ msgid "& Impact"
 #~ msgstr "ਅਤੇ ਅਸਰ"
