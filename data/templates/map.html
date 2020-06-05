@@ -423,7 +423,7 @@ function updateMap(start, end) {
 
               var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + numberWithCommas(d.size);
               {% if request.LANGUAGE_CODE == 'pa' %}
-                if (d.size == 1) { tultipText += ' ਪੀੜਤ'; } else { tultipText += ' ਪੀੜਤਾਂ'; }
+                if (d.size == 1) { tultipText += ' ਪੀੜਤ'; } else { tultipText += ' ਪੀੜਤ'; }
               {% else %}
                 tultipText += ' Victim'; if (d.size > 1) { tultipText += 's'; }
               {% endif %}
