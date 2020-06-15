@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-05 16:10-0400\n"
+"POT-Creation-Date: 2020-06-15 18:55-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -159,7 +159,7 @@ msgstr "ਕਾਹਨੂੰਵਾਨ"
 
 #: data/templates/detail.html:55 data/templates/detail.html:56
 #: data/templates/detail.html:299 data/templates/detail.html:346
-#: data/templates/detail.html:357 data/utils.py:44
+#: data/templates/detail.html:356 data/utils.py:44
 msgid "Gurdaspur"
 msgstr "ਗੁਰਦਾਸਪੁਰ"
 
@@ -180,8 +180,8 @@ msgstr "ਵਿਆਹਿਆ/ਵਿਆਹੀ"
 
 #: data/templates/detail.html:87 data/templates/detail.html:209
 #: data/templates/detail.html:223 data/templates/detail.html:285
-#: data/templates/detail.html:412 data/templates/detail.html:451
-#: data/templates/detail.html:460 data/templates/stats.html:261
+#: data/templates/detail.html:410 data/templates/detail.html:449
+#: data/templates/detail.html:458 data/templates/stats.html:261
 #: data/templates/stats.html:284 data/templates/stats.html:308
 #: data/templates/stats.html:331 data/templates/stats.html:429
 #: data/templates/stats.html:502 data/templates/stats.html:645
@@ -232,7 +232,7 @@ msgstr "ਪੁਰਾਣੀਆਂ ਗ੍ਰਿਫ਼ਤਾਰੀਆਂ"
 
 #: data/templates/detail.html:153 data/templates/detail.html:160
 #: data/templates/detail.html:176 data/templates/detail.html:202
-#: data/templates/detail.html:384 data/templates/detail.html:469
+#: data/templates/detail.html:382 data/templates/detail.html:467
 #: data/templates/stats.html:253 data/templates/stats.html:277
 #: data/templates/stats.html:301 data/templates/stats.html:323
 #: data/templates/stats.html:422 data/templates/stats.html:494
@@ -323,6 +323,11 @@ msgstr "ਜਗ੍ਹਾ"
 msgid "Police station"
 msgstr "ਪੁਲਿਸ ਥਾਨਾ"
 
+#: data/templates/detail.html:246 data/templates/detail.html:321
+#: data/templates/detail.html:332 data/templates/detail.html:336
+msgid "Dinanagar"
+msgstr "ਦੀਨਾਨਗਰ"
+
 #: data/templates/detail.html:246
 msgid "15+ days, witnessed by relative"
 msgstr "੧੫+ ਦਿਨ, ਰਿਸ਼ਤੇਦਾਰ ਨੇ ਦੇਖਿਆ"
@@ -376,14 +381,9 @@ msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਕਾਰਵਾਈ ਵਿ�
 msgid "Forces involved in abduction"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
-#: data/templates/detail.html:321 data/templates/detail.html:332
-#: data/templates/detail.html:336
-msgid "Dinanagar"
-msgstr "ਦੀਨਾਨਗਰ"
-
 #: data/templates/detail.html:322 data/templates/detail.html:332
 #: data/templates/detail.html:336 data/templates/detail.html:346
-#: data/templates/detail.html:357 data/templatetags/profiletags.py:591
+#: data/templates/detail.html:356 data/templatetags/profiletags.py:591
 #: data/templatetags/profiletags.py:611 data/templatetags/profiletags.py:635
 #: data/templatetags/profiletags.py:1000 data/utils.py:279
 msgid "Punjab Police"
@@ -393,7 +393,7 @@ msgstr "ਪੰਜਾਬ ਪੁਲਿਸ"
 msgid "Officials involved in abduction"
 msgstr "ਅਫਸਰ ਜੋ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
-#: data/templates/detail.html:331 data/templates/detail.html:357
+#: data/templates/detail.html:331 data/templates/detail.html:356
 #: data/templatetags/profiletags.py:991
 msgid "Station House Officer"
 msgstr "ਸਟੇਸ਼ਨ ਹਾਉਸ ਅਫ਼ਸਰ"
@@ -410,62 +410,62 @@ msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਗ਼ੈਰ ਕਾਨੂ�
 msgid "Officials involved in extrajudicial execution"
 msgstr "ਅਫਸਰ ਜੋ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
-#: data/templates/detail.html:367 data/templates/profile.html:792
+#: data/templates/detail.html:365 data/templates/profile.html:792
 #: data/templates/stats.html:792
 msgid "Militancy Involvement"
 msgstr "ਖਾੜਕੂ ਲਹਿਰ ਨਾਲ ਸੰਬੰਧਿਤ"
 
-#: data/templates/detail.html:374
+#: data/templates/detail.html:372
 msgid "Militant alias"
 msgstr "ਉਰਫ"
 
-#: data/templates/detail.html:377
+#: data/templates/detail.html:375
 msgid "Haneri"
 msgstr "ਹਨੇਰੀ"
 
-#: data/templates/detail.html:381 data/templates/map.html:123
+#: data/templates/detail.html:379 data/templates/map.html:123
 #: data/templates/profile.html:799 data/templates/profiles.html:110
 #: data/templates/stats.html:801
 msgid "Combatant"
 msgstr "ਹਾਂ ਜੀ"
 
-#: data/templates/detail.html:389 data/templates/profile.html:813
+#: data/templates/detail.html:387 data/templates/profile.html:813
 #: data/templates/profile.html:826
 msgid "Reason(s) for joining militancy"
 msgstr "ਖਾੜਕੂ ਲਹਿਰ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੀ ਵਜਾ"
 
-#: data/templates/detail.html:392 data/templatetags/profiletags.py:405
+#: data/templates/detail.html:390 data/templatetags/profiletags.py:405
 msgid "1984 Indian Army attack on the Harmandir Sahib"
 msgstr ""
 "੧੯੮੪ ਵਿੱਚ ਭਾਰਤੀ ਫੌਜ ਦਾ ਸ੍ਰੀ ਹਰਿਮੰਦਰ ਸਾਹਿਬ ਉੱਤੇ ਹਮਲਾ; ਅੱਤਿਆਚਾਰ (ਗੈਰ ਕਾਨੂੰਨੀ ਗ੍ਰਿਫ਼ਤਾਰੀ, "
 "ਤਸ਼ੱਦਦ, ਆਤਮ ਰੱਖਿਆ)"
 
-#: data/templates/detail.html:392 data/templatetags/profiletags.py:406
+#: data/templates/detail.html:390 data/templatetags/profiletags.py:406
 msgid "Persecution (i.e. arbitrary arrest, torture, self-defense)"
 msgstr "ਅੱਤਿਆਚਾਰ (ਗੈਰ ਕਾਨੂੰਨੀ ਗ੍ਰਿਫ਼ਤਾਰੀ, ਤਸ਼ੱਦਦ, ਆਤਮ ਰੱਖਿਆ)"
 
-#: data/templates/detail.html:402 data/templates/profile.html:879
+#: data/templates/detail.html:400 data/templates/profile.html:879
 #: data/templates/stats.html:870
 msgid "Remedies & Impact"
 msgstr "ਹੀਲਾ ਅਤੇ ਅਸਰ"
 
-#: data/templates/detail.html:409 data/templates/profile.html:895
+#: data/templates/detail.html:407 data/templates/profile.html:895
 msgid "Security officials approached"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜਿਨ੍ਹਾਂ ਤਕ ਪਹੁੰਚ ਕੀਤੀ"
 
-#: data/templates/detail.html:416 data/templates/profile.html:922
+#: data/templates/detail.html:414 data/templates/profile.html:922
 msgid "Legal remedies pursued"
 msgstr "ਕਿਹੜੀ ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਕੀਤੀ"
 
-#: data/templates/detail.html:419
+#: data/templates/detail.html:417
 msgid "No, Afraid of retaliation, Believed it would have been ineffective"
 msgstr "ਨਹੀਂ, ਡਰ/ਬਦਲੇ ਤੋਂ ਡਰ, ਪਰਿਵਾਰ ਨੂੰ ਇਹ ਲੱਗਦਾ ਸੀ ਕਿ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਨਿਕਲਣਾ"
 
-#: data/templates/detail.html:423 data/templates/profile.html:936
+#: data/templates/detail.html:421 data/templates/profile.html:936
 msgid "Impact on family"
 msgstr "ਪਰਿਵਾਰ ਉੱਪਰ ਅਸਰ"
 
-#: data/templates/detail.html:426
+#: data/templates/detail.html:424
 msgid ""
 "Family member(s) dropped out of school, Family abandoned home, Family "
 "member(s) died due to depression/shock, Family became impoverished"
@@ -473,42 +473,42 @@ msgstr ""
 "ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਦੀ ਪੜ੍ਹਈ ਛੁੱਟ ਗਈ, ਪਰਿਵਾਰ ਨੇ ਘਰ ਛੱਡ ਦਿੱਤਾ, ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਉਦਾਸ ਮਨੋਦਸ਼ਾ/ਸਦਮੇ "
 "ਕਾਰਨ ਮੌਤ ਹੋ ਗਈ, ਪਰਿਵਾਰ ਗਰੀਬ ਹੋ ਗਿਆ"
 
-#: data/templates/detail.html:430 data/templates/profile.html:948
+#: data/templates/detail.html:428 data/templates/profile.html:948
 #: data/templates/stats.html:950
 msgid "Remedies desired from government"
 msgstr "ਸਰਕਾਰ ਤੋਂ ਕੀ ਮੰਗ"
 
-#: data/templates/detail.html:433 data/templatetags/profiletags.py:844
+#: data/templates/detail.html:431 data/templatetags/profiletags.py:844
 #: data/utils.py:129
 msgid "Memorial for victims"
 msgstr "ਪੀੜਤਾਂ ਲਈ ਯਾਦਗਾਰ"
 
-#: data/templates/detail.html:442 data/templates/profile.html:970
+#: data/templates/detail.html:440 data/templates/profile.html:970
 msgid "Connected Victims"
 msgstr "ਸੰਬੰਧਿਤ ਪੀੜਤ"
 
-#: data/templates/detail.html:448 data/templates/profile.html:991
+#: data/templates/detail.html:446 data/templates/profile.html:991
 #: data/templates/stats.html:573
 msgid "Genuine encounters in family"
 msgstr "ਪਰਿਵਾਰ ਵਿੱਚ ਅਸਲ ਮੁਕਾਬਲੇ"
 
-#: data/templates/detail.html:457 data/templates/profile.html:1004
+#: data/templates/detail.html:455 data/templates/profile.html:1004
 msgid "Co-victims of abduction"
 msgstr "ਹੋਰਾਂ ਨੂੰ ਨਾਲ ਗ੍ਰਿਫ਼ਤਾਰ ਕੀਤਾ"
 
-#: data/templates/detail.html:466 data/templates/profile.html:1017
+#: data/templates/detail.html:464 data/templates/profile.html:1017
 msgid "Co-victims of extrajudicial execution"
 msgstr "ਹੋਰਾਂ ਦੀ ਨਾਲ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਕੀਤੀ"
 
-#: data/templates/detail.html:477 data/templates/profile.html:1044
+#: data/templates/detail.html:475 data/templates/profile.html:1044
 msgid "Family Reflections"
 msgstr "ਪਰਿਵਾਰ ਦੇ ਵਿਚਾਰ"
 
-#: data/templates/detail.html:498
+#: data/templates/detail.html:496
 msgid "Summary"
 msgstr "ਸੰਖੇਪ ਵਰਨਣ/ਸਾਰੰਸ਼"
 
-#: data/templates/detail.html:527
+#: data/templates/detail.html:525
 msgid ""
 "Note: Subdistrict and district boundaries are based on the 2001 census. Read "
 "more about <a href=\"/about\">our methodology</a>."
@@ -821,6 +821,22 @@ msgid ""
 msgstr ""
 "ਕਈ ਪਰਿਵਾਰਾਂ ਨੇ ਸਾਰੇ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਨਹੀਂ ਸੀ ਦਿੱਤੇ। ਇਸ ਕਾਰਨ ਕਈ ਅੰਕੜੇ ੧੦੦ ਪ੍ਰਤੀਸ਼ਤ ਤਕ ਨਹੀਂ "
 "ਹਨ।"
+
+#: data/templates/perpetrators.html:39
+msgid ""
+"“In order to escape accountability for his crimes, the perpetrator does "
+"everything in his power to promote forgetting. Secrecy and silence are the "
+"perpetrator’s first line of defense. If secrecy fails, the perpetrator "
+"attacks the credibility of his victim. If he cannot silence her absolutely, "
+"he tries to make sure that no one listens... After every atrocity one can "
+"expect to hear the same predictable apologies: it never happened; the victim "
+"lies; the victim exaggerates; the victim brought it upon herself; and in any "
+"case it is time to forget the past and move on.”"
+msgstr "\"ਆਪਣੇ ਕੀਤੇ ਹੋਏ ਅਪਰਾਧਾਂ ਦੀ ਜਵਾਬਦੇਹੀ ਤੋਂ ਬਚਣ ਲਈ ਅਪਰਾਧੀ ਆਪਣੀ ਤਾਕਤ ਦੀ ਵਰਤੋਂ ਕਰ ਕੇ ਸਭ ਕੁਝ ਭੁਲਣ ਨੂੰ ਵਧਾਵਾ ਦਿੰਦਾ ਹੈ। ਗੁਪਤਤਾ ਅਤੇ ਚੁੱਪੀ ਅਪਰਾਧੀ ਦੇ ਬਚਾਵ ਦਾ ਪਹਿਲਾ ਪੜਾਉ ਹੈ। ਜੇ ਗੁਪਤਤਾ ਅਸਫਲ ਹੁੰਦੀ ਹੈ ਤਾਂ ਅਪਰਾਧੀ ਪੀੜਤ ਦੀ ਭਰੋਸੇ ਯੋਗਤਾ ਉੱਤੇ ਹਮਲਾ ਕਰਦਾ ਹੈ। ਜੇ ਉਹ ਉਸ ਨੂੰ ਪੂਰੀ ਤਰ੍ਹਾਂ ਚੁੱਪ ਨਹੀ ਕਰਵਾ ਸਕਦਾ ਤਾਂ ਉਹ ਇਹ ਪੱਕਾ ਕਰਨ ਦੀ ਕੋਸ਼ੀਸ਼ ਕਰਦਾ ਹੈ ਕਿ ਕੋਈ ਉਸ ਦੀ ਨਾਂ ਸੁਣੇ... ਹਰ ਵਾਰੀ ਜ਼ੁਲਮ ਹੋਣ ਤੋਂ ਬਾਅਦ ਇੱਕੋ ਜਹੀ ਅਨੁਮਾਨ ਯੋਗ ਮੁਆਫੀਆਂ ਸੁਨਨ ਨੂੰ ਮਲਿਦੀਆਂ ਹਨ: ਇਹ ਕਦੇ ਨਹੀਂ ਹੋਇਆ; ਪੀੜਤ ਝੂਠ ਬੋਲਦਾ/ਬੋਲਦੀ ਹੈ; ਪੀੜਤ ਵਧਾ ਚੜ੍ਹਾ ਕੇ ਦਸਦਾ/ਦਸਦੀ ਹੈ; ਪੀੜਤ ਨੇ ਆਪਣੇ ਆਪ ਤੇ ਇਸ ਨੂੰ ਲਿਆਂਦਾ; ਅਤੇ ਚਲ ਛੱਡੋ ਇਸ ਗੱਲ ਨੂੰ, ਹੁਣ ਸਮਾਂ ਹੈ ਕਿ ਅਤੀਤ ਨੂੰ ਭੁੱਲ ਜਾਈਏ ਅਤੇ ਅੱਗੇ ਵੱਧੀਏ।\""
+
+#: data/templates/perpetrators.html:40
+msgid "Judith Herman"
+msgstr "ਜੁਡਿਥ ਹਰਮਨ"
 
 #: data/templates/perpetrators.html:45
 msgid "Police structure chart"
