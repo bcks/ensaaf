@@ -223,7 +223,7 @@ msgstr "ਅੰਮ੍ਰਿਤਧਾਰੀ"
 
 #: data/templates/detail.html:143 data/templates/profile.html:275
 msgid "Abduction, Detention, &amp; Torture"
-msgstr "ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ ਦੀ ਜਾਣਕਾਰੀ"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਗਿਰਫਤਾਰੀ, ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ "
 
 #: data/templates/detail.html:150 data/templates/profile.html:346
 #: data/templates/stats.html:249
@@ -907,31 +907,31 @@ msgstr "ਪੀੜਤ ਦੀ ਪ੍ਰੋਫ਼ਾਈਲ ਸਾਂਝੀ ਕਰ�
 
 #: data/templates/profile.html:266
 msgid "Prior Abuse"
-msgstr "ਪਹਿਲਾਂ ਬਦਸਲੂਕੀ"
+msgstr "ਪਹਿਲਾਂ ਕੀਤੀ ਗਈ ਬਦਸਲੂਕੀ"
 
 #: data/templates/profile.html:273
 msgid "Detention &amp; Torture"
-msgstr "Detention &amp; Torture"
+msgstr "ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ"
 
 #: data/templates/profile.html:281
 msgid "Abduction &amp; Detention"
-msgstr "Abduction &amp; Detention"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਗਿਰਫਤਾਰੀ ਅਤੇ ਹਿਰਾਸਤ"
 
 #: data/templates/profile.html:283
 msgid "Detention"
-msgstr "ਜਾਣਕਾਰੀ"
+msgstr "ਹਿਰਾਸਤ"
 
 #: data/templates/profile.html:293
 msgid "Torture"
-msgstr "ਤਸ਼ਦਦ ਕਰਨਾ"
+msgstr "ਤਸ਼ੱਦਦਾ"
 
 #: data/templates/profile.html:295
 msgid "Abduction &amp; Torture"
-msgstr "Abduction &amp; Torture"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਗਿਰਫਤਾਰੀ ਅਤੇ ਤਸ਼ੱਦਦ"
 
 #: data/templates/profile.html:300
 msgid "Abduction"
-msgstr "ਹਿਰਾਸਤ"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਗਿਰਫਤਾਰੀ"
 
 #: data/templates/profile.html:394
 msgid "Abduction preceding disappearance"
@@ -1084,7 +1084,7 @@ msgstr "ਪੀੜਤਾਂ ਦੇ ਕੁਲ ਬੱਚੇ ਜਿਹੜੇ ਜਿ�
 
 #: data/templates/stats.html:242
 msgid "Abduction, Detention, & Torture"
-msgstr "ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ ਦੀ ਜਾਣਕਾਰੀ"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਗਿਰਫਤਾਰੀ, ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ"
 
 #: data/templates/stats.html:297
 msgid "Abduction preceding enforced disappearance/extrajudicial execution"
