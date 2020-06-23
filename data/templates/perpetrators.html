@@ -24,7 +24,7 @@
   <meta property="og:url" content="https://data.ensaaf.org" />
   <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
   <meta property="og:description" content="Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews." />
-  <meta property="og:site_name" content="Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" />
+  <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
 {% endblock %}
 
 
@@ -44,14 +44,14 @@
       
       <p><a href="/static/files/punjab_police_structure.pdf">{% trans 'Police structure chart' %}</a></p>
       
-      <p><a href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{% endif %}/official/S0001/detail">Complete Perpetrator Profile on Sumedh Saini [Example of dossier]</a></p>
+      <p><a href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{% endif %}/official/S0001/detail">{% trans 'Complete Perpetrator Profile on Sumedh Saini [Example of dossier]' %}</a></p>
 
       <p>{% trans "This page identifies many of the senior officials who reportedly perpetrated gross human rights violations in Punjab, India. Victim profiles that directly implicate these officials in abductions and/or enforced disappearances are linked to each perpetrator. This page will be updated to also identify officials who are directly implicated in extrajudicial executions, and who bear command responsibility for abuses committed under their command." %}</p>
 
       <ul>
       {% for o in officials %}
         {% if o.2 > 0 %}
-          <li><a href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{% endif %}/official/{{o.0}}">{{o.1}}</li>
+          <li><a href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{% endif %}/official/{{o.0}}">{% trans o.1 %}</li>
         {% endif %}
       {% endfor %}
       </ul>
