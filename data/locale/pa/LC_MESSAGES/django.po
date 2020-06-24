@@ -771,7 +771,7 @@ msgstr "ਹੋਰ ਵਧੇਰੀ ਜਾਣਕਾਰੀ ਵਾਸਤੇ ਅਗ�
 msgid ""
 "Sumedh Singh [Saini] and enforced disappearances &amp; extrajudicial "
 "executions in Punjab, India"
-msgstr "ਸੁਮੇਧ ਸਿੰਘ (ਸੈਣੀ) ਅਤੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ"
+msgstr "ਸੁਮੇਧ ਸਿੰਘ [ਸੈਣੀ] ਅਤੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ"
 
 #: data/templates/official_detail.html:10
 #: data/templates/official_detail.html:13
@@ -795,7 +795,7 @@ msgstr "ਮੁਖ ਦੋਸ਼ੀ ਜੋ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ
 
 #: data/templates/official_detail.html:73 data/views.py:300
 msgid "Sumedh Singh [Saini]"
-msgstr "ਸੁਮੇਧ ਸਿੰਘ (ਸੈਣੀ)"
+msgstr "ਸੁਮੇਧ ਸਿੰਘ [ਸੈਣੀ]"
 
 #: data/templates/official_detail.html:157
 msgid "Command History"
