@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-23 15:43-0400\n"
+"POT-Creation-Date: 2020-06-26 17:29-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -131,7 +131,7 @@ msgid "Contact"
 msgstr "ਸੰਪਰਕ"
 
 #: data/templates/cremation.html:111 data/templates/district.html:39
-#: data/templates/locality.html:111 data/templates/securityforce.html:138
+#: data/templates/locality.html:111 data/templates/securityforce.html:139
 #: data/templates/tehsil.html:42 data/templates/village.html:44
 #: data/templates/villages.html:40
 msgid ""
@@ -532,7 +532,7 @@ msgstr ""
 #: data/templates/map.html:30 data/templates/official_detail.html:28
 #: data/templates/overview.html:30 data/templates/perpetrators.html:27
 #: data/templates/profile.html:29 data/templates/profiles.html:28
-#: data/templates/securityforce.html:27 data/templates/tehsil.html:28
+#: data/templates/securityforce.html:28 data/templates/tehsil.html:28
 #: data/templates/village.html:27 data/templates/villages.html:29
 #: data/templates/year.html:29
 msgid ""
@@ -1231,27 +1231,27 @@ msgstr "ਕੀ ਵਜ੍ਹਾ/ਕਾਰਨ ਸੀ ਕਿ ਪਰਿਵਾਰ ਨ
 msgid "Year &amp; District"
 msgstr "ਸਮਾਂ ਅਤੇ ਸਥਾਨ"
 
-#: data/templates/success.html:3 data/templates/success.html:9
+#: data/templates/success.html:5 data/templates/success.html:11
 msgid "Your message has been sent"
 msgstr "ਤੁਹਾਡਾ ਸੁਨੇਹਾ ਭੇਜਿਆ ਜਾ ਚੁੱਕਾ ਹੈ"
 
-#: data/templates/success.html:7
+#: data/templates/success.html:9
 msgid "Thank You"
 msgstr "ਤੁਹਾਡਾ ਧੰਨਵਾਦ"
 
-#: data/templates/success.html:11
+#: data/templates/success.html:13
 msgid "Return to the"
 msgstr "ਵਾਪਸ ਫਿਰ ਦੁਬਾਰਾ"
 
-#: data/templates/success.html:11
+#: data/templates/success.html:13
 msgid "previous profile page"
 msgstr " ਪੁਰਾਣੀ ਸੂਚੀ ਤੇ "
 
-#: data/templates/success.html:11
+#: data/templates/success.html:13
 msgid "or visit the"
 msgstr "ਪੇਜ ਤੇ ਜਾਓ"
 
-#: data/templates/success.html:11
+#: data/templates/success.html:13
 msgid "home page"
 msgstr "ਸਾਡੇ ਮੁੱਖ"
 
@@ -1280,8 +1280,8 @@ msgid "(Union Territory)"
 msgstr "(ਕੇਂਦਰੀ ਸ਼ਾਸਤ ਪ੍ਰਦੇਸ਼)"
 
 #: data/templates/villages.html:59
-msgid "cases"
-msgstr "ਕੇਸ"
+msgid "victims"
+msgstr "ਪੀੜਤ"
 
 #: data/templates/villages.html:77
 msgid "report a case"
