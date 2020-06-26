@@ -56,7 +56,7 @@
     {% else %}    
       {% trans 'District' %}
     {% endif %}
-    &nbsp;<span class="arrow"></span></strong></a> &nbsp;&nbsp; {% district_count district.list %} {% trans 'cases' %}</p>
+    &nbsp;<span class="arrow"></span></strong></a> &nbsp;&nbsp; {% district_count district.list %} {% trans 'victims' %}</p>
 
     <div class="toggle">
 
@@ -71,7 +71,7 @@
           {% if request.LANGUAGE_CODE == 'pa' %}
             ਕੇਸ
           {% else %}
-            case{{village.data_count|pluralize }}
+            victim{{village.data_count|pluralize }}
           {% endif %}
         {% else %}
           <a href="{% url 'village' village.vid %}" class="gray">{{village.village_name}}</a>, <a href="http://reportpunjabpolice.org" class="gray">{% trans 'report a case' %}</a>
