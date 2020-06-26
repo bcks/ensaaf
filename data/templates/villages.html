@@ -69,7 +69,7 @@
         {% if village.data_count %}
           <a href="{% url 'village' village.vid %}">{{village.village_name}}</a>, {{village.data_count|numpa}}
           {% if request.LANGUAGE_CODE == 'pa' %}
-            ਕੇਸ
+            ਪੀੜਤ
           {% else %}
             victim{{village.data_count|pluralize }}
           {% endif %}
