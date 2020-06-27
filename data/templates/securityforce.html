@@ -57,7 +57,7 @@
   {% for district in district_list %}
     {% if forloop.first %}
       <ul>{% endif %}
-        <li><a href="#{{district.grouper|default_if_none:"Location Withheld"|slugify}}">{{ district.grouper|default_if_none:"Location Withheld"  }}</a></li>
+        <li><a href="#{{district.grouper|default_if_none:"Location Withheld"|slugify}}">{% trans district.grouper|default_if_none:"Location Withheld"  %}</a></li>
     {% if forloop.last %}</ul>{% endif %}        
   {% endfor %}
   
@@ -66,7 +66,7 @@
     <div class="row">
       <div class="col-sm-12 col-md m-2">
           <hr>
-        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{{ district.grouper|default_if_none:"Location Withheld"  }} {% if district.grouper != None %}District{% endif %}</h2>
+        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{% trans district.grouper|default_if_none:"Location Withheld"  %} {% if district.grouper != None %}{% trans 'District' %}{% endif %}</h2>
       </div>
     </div>
     
@@ -77,7 +77,7 @@
     {%if tehsil.grouper %}
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        <h5>{{ tehsil.grouper|default_if_none:""  }} Subdistrict</h5>
+        <h5>{% trans tehsil.grouper|default_if_none:""  %} {% trans 'Subdistrict' %}</h5>
       </div>
     </div>
     {% endif %}
@@ -91,7 +91,7 @@
 
 
       {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
-      age {{victim.victim_age|default:"unknown"}}        
+      {% trans "age" %} {{victim.victim_age|default:"unknown"|numpa}}        
         {% if victim.victim_disappeared_killed  %}
          at time of 
         {% if victim.victim_disappeared_killed == 1 %}disappearance{% endif %}{% if victim.victim_disappeared_killed == 2 %}extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}

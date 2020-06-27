@@ -68,7 +68,7 @@
 
 
       {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
-      age {{victim.victim_age|default:"unknown"}}        
+      {% trans "age" %} {{victim.victim_age|default:"unknown"|numpa}}        
         {% if victim.victim_disappeared_killed  %}
          at time of 
           {% if victim.victim_disappeared_killed == 1 %}
