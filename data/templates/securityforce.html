@@ -46,7 +46,7 @@
       
    
   {% if slug == 'S0001' %}
-    <p class="m-2">View the <strong><a href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{% endif %}/official/S0001/detail">complete perpetrator profile on Sumedh Saini</a></strong>, incorporating command history, promotions, awards, and legal cases.</p>
+    <p class="m-2">{% trans 'View the <strong><a href="/official/S0001/detail">complete perpetrator profile on Sumedh Saini</a></strong>, incorporating command history, promotions, awards, and legal cases.' %}</p>
     <hr>
   {% endif %}
 
