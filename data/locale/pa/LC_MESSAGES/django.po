@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 13:24-0400\n"
+"POT-Creation-Date: 2020-06-30 15:49-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -103,7 +103,7 @@ msgstr "ਬਾਰੇ"
 #: data/templates/base.html:48 data/templates/profile.html:860
 #: data/templates/profile.html:1050
 msgid "Forthcoming"
-msgstr "ਆੳਣ ਵਾਲੀ ਜਾਣਕਾਰੀ"
+msgstr "ਆਉਣ ਵਾਲੀ ਜਾਣਕਾਰੀ"
 
 #: data/templates/base.html:49
 msgid "Support This Project"
@@ -134,7 +134,7 @@ msgstr "ਸੰਪਰਕ"
 #: data/templates/locality.html:53 data/templates/profile.html:73
 #: data/templates/search/search.html:65 data/templates/search/search.html:82
 #: data/templates/search/search.html:114 data/templates/securityforce.html:80
-#: data/templates/village.html:42 data/templates/year.html:86 data/views.py:693
+#: data/templates/village.html:42 data/templates/year.html:86 data/views.py:698
 msgid "Subdistrict"
 msgstr "ਤਹਿਸੀਲ"
 
@@ -582,7 +582,7 @@ msgstr "ਭੇਜੋ"
 #: data/templates/securityforce.html:69 data/templates/stats.html:983
 #: data/templates/tehsil.html:38 data/templates/village.html:42
 #: data/templates/villages.html:57 data/templates/year.html:74
-#: data/views.py:696
+#: data/views.py:701
 msgid "District"
 msgstr "ਜ਼ਿਲ੍ਹਾ"
 
@@ -695,7 +695,7 @@ msgstr "ਇਸਤਰੀ"
 
 #: data/templates/map.html:122 data/templates/profiles.html:109
 msgid "Combatant Status"
-msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਸੰਬੱਧ"
+msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਸੰਬੰਧ"
 
 #: data/templates/map.html:124 data/templates/profiles.html:111
 msgid "Non-Combatant"
@@ -762,11 +762,7 @@ msgid ""
 "to build informed consensus on the nature of the crimes perpetrated by "
 "India’s security forces in Punjab."
 msgstr ""
-"ਇਹ ਸਾਰੀ ਜਾਣਕਾਰੀ ਜੋ ਕੀ ਇਸ ਪ੍ਰਾਜੈਕਟ ਦੇ ਰਾਹੀਂ ਆਪ ਜੀ ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ। ਇਹ "
-"ਜਾਣਕਾਰੀ ਪੀੜਿਤ ਪਰਿਵਾਰਾਂ ਤੋਂ ਇਕੱਠੀ ਕੀਤੀ ਗਈ ਹੈ। ਜਿਹਨਾਂ ਦੇ ਪਰਵਾਰਿਕ ਮੈਂਬਰ ਲਾਪਤਾ ਜਾਂ ਫਿਰ ਗ਼ੈਰ "
-"ਕਾਨੂੰਨੀ ਤਰੀਕੇ ਦੇ ਨਾਲ ਮਾਰੇ ਗਏ ਸਨ। ਇਸ ਸਾਈਟ ਨੂੰ ਤਿਆਰ ਕਰਨ ਦਾ ਮਕਸਦ ਇਹ ਹੈ ਕਿ ਜੋ ਅੱਤਿਆਚਾਰ ਅਤੇ "
-"ਅਪਰਾਧ ਭਾਰਤੀ ਸੁਰੱਖਿਆ ਬੱਲਾ ਨੇ ਪੰਜਾਬ ਿਵੱਚ ਕੀਤੇ ਹਨ ਉਹਨਾਂ ਦੀ ਸਚਾਈ ਨੂੰ ਦੁਨਿਆਵੀ ਪੱਧਰ ਤੇ ਪੇਸ਼ ਕੀਤਾ "
-"ਜਾਵੇ। ਹੋਰ ਵਧੇਰੀ ਜਾਣਕਾਰੀ ਵਾਸਤੇ ਅਗੇ ਪੜ੍ਹੋ।"
+"ਇਹ ਸਾਰੀ ਜਾਣਕਾਰੀ ਜੋ ਕੀ ਇਸ ਪ੍ਰਾਜੈਕਟ ਦੇ ਰਾਹੀਂ ਆਪ ਜੀ ਨਾਲ ਸਾਂਝੀ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ। ਇਹ ਜਾਣਕਾਰੀ ਪੀੜਤਿ ਪਰਵਿਾਰਾਂ ਤੋਂ ਇਕੱਠੀ ਕੀਤੀ ਗਈ ਹੈ। ਜਹਿਨਾਂ ਦੇ ਪਰਵਾਰਕਿ ਮੈਂਬਰ ਲਾਪਤਾ ਜਾਂ ਫਰਿ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਤਰੀਕੇ ਦੇ ਨਾਲ ਮਾਰੇ ਗਏ ਸਨ। ਇਸ ਸਾਈਟ ਨੂੰ ਤਆਿਰ ਕਰਨ ਦਾ ਮਕਸਦ ਇਹ ਹੈ ਕ ਿਜੋ ਅੱਤਆਿਚਾਰ ਅਤੇ ਅਪਰਾਧ ਭਾਰਤੀ ਸੁਰੱਖਆਿ ਬੱਲਾ ਨੇ ਪੰਜਾਬ ਵੱਿਚ ਕੀਤੇ ਹਨ ਉਹਨਾਂ ਦੀ ਸਚਾਈ ਨੂੰ ਦੁਨਆਿਵੀ ਪੱਧਰ ਤੇ ਪੇਸ਼ ਕੀਤਾ ਜਾਵੇ। ਹੋਰ ਵਧੇਰੀ ਜਾਣਕਾਰੀ ਵਾਸਤੇ ਅਗੇ ਪੜ੍ਹੋ।"
 
 #: data/templates/map.html:207
 msgid "Read more about our goals"
@@ -802,7 +798,7 @@ msgid ""
 "in Punjab, India"
 msgstr "ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਏ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੇ ਮੁੱਖ ਦੋਸ਼ੀ"
 
-#: data/templates/official_detail.html:73 data/views.py:301
+#: data/templates/official_detail.html:73 data/views.py:306
 msgid "Sumedh Singh [Saini]"
 msgstr "ਸੁਮੇਧ ਸਿੰਘ [ਸੈਣੀ]"
 
@@ -923,7 +919,7 @@ msgstr "ਤਾਰੀਖ਼ ਪਤਾ ਨਹੀਂ"
 
 #: data/templates/profile.html:72 data/templates/search/search.html:64
 #: data/templates/search/search.html:81 data/templates/search/search.html:113
-#: data/templates/search/search.html:137 data/views.py:691
+#: data/templates/search/search.html:137 data/views.py:696
 msgid "Village/town/city"
 msgstr "ਪਿੰਡ/ਕਸਬਾ/ਸ਼ਹਿਰ"
 
@@ -1128,6 +1124,27 @@ msgstr "ਪਿੱਛੇ"
 #: data/templates/search/search.html:174
 msgid "Next"
 msgstr "ਅੱਗੇ"
+
+#: data/templates/securityforce.html:7 data/templates/securityforce.html:12
+#: data/templates/securityforce.html:18 data/templates/securityforce.html:23
+#, python-format
+msgid ""
+"Documented cases of enforced disappearances &amp; extrajudicial executions "
+"in Punjab, India directly implicating %(thisname)s"
+msgstr ""
+"ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੇ ਕੇਸ  ਜੋ %(thisname)s ਵੱਲ "
+"ਸਿੱਧਾ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ"
+
+#: data/templates/securityforce.html:10 data/templates/securityforce.html:13
+#: data/templates/securityforce.html:19 data/templates/securityforce.html:27
+#, python-format
+msgid ""
+"Documented cases of enforced disappearances &amp; extrajudicial executions "
+"implicating %(thisname)s in Punjab, India based on data collected through "
+"primary source interviews."
+msgstr ""
+"ਮੁਢਲੇ ਸਰੋਤ ਇੰਟਰਵਿਊ ਦੁਆਰਾ ਇਕੱਠੇ ਕੀਤੇ ਅੰਕੜਿਆਂ ਦੇ ਅਧਾਰ ਤੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਜ਼ਬਰਨ ਲਾਪਤਾ "
+"ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੇ ਕੇਸ ਜੋ %(thisname)s ਵੱਲ ਸਿੱਧਾ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ।"
 
 #: data/templates/securityforce.html:49
 msgid ""
@@ -2539,219 +2556,219 @@ msgstr "ਮੂਨਕ"
 msgid "Sunam"
 msgstr "ਸੁਨਾਮ"
 
-#: data/views.py:302
+#: data/views.py:307
 msgid "Mohd. Izhar Alam"
 msgstr "ਮੁਹੰਮਦ ਇਜ਼ਹਾਰ ਆਲਮ"
 
-#: data/views.py:303
+#: data/views.py:308
 msgid "Suresh Arora"
 msgstr "ਸੁਰੇਸ਼ ਅਰੋੜਾ"
 
-#: data/views.py:304
+#: data/views.py:309
 msgid "Lok Nath Angra"
 msgstr "ਲੋਕ ਨਾਥ ਆਂਗਰਾ"
 
-#: data/views.py:305
+#: data/views.py:310
 msgid "Swaran Singh [Ghotna]"
 msgstr "ਸਵਰਨ ਸਿੰਘ [ਘੋਟਣਾ]"
 
-#: data/views.py:306
+#: data/views.py:311
 msgid "Ajit Singh Sandhu"
 msgstr "ਅਜੀਤ ਸਿੰਘ ਸੰਧੂ"
 
-#: data/views.py:307
+#: data/views.py:312
 msgid "Jasminder [Jaswinder] Singh"
 msgstr "ਜਸਮਿੰਦਰ [ਜਸਵਿੰਦਰ] ਸਿੰਘ"
 
-#: data/views.py:308
+#: data/views.py:313
 msgid "Gur Iqbal Singh Bhullar"
 msgstr "ਗੁਰਇਕਬਾਲ ਸਿੰਘ ਭੁੱਲਰ"
 
-#: data/views.py:309
+#: data/views.py:314
 msgid "Dinkar Gupta"
 msgstr "ਦਿਨਕਰ ਗੁਪਤਾ"
 
-#: data/views.py:310
+#: data/views.py:315
 msgid "Shiv Kumar"
 msgstr "ਸ਼ਿਵ ਕੁਮਾਰ"
 
-#: data/views.py:311
+#: data/views.py:316
 msgid "Sant Kumar"
 msgstr "ਸੰਤ ਕੁਮਾਰ"
 
-#: data/views.py:312
+#: data/views.py:317
 msgid "Raj Kishan Bedi"
 msgstr "ਰਾਜ ਕਿਸ਼ਨ ਬੇਦੀ"
 
-#: data/views.py:313
+#: data/views.py:318
 msgid "Harinder Singh [Chahal]"
 msgstr "ਹਰਿੰਦਰ ਸਿੰਘ [ਚਾਹਲ]"
 
-#: data/views.py:314
+#: data/views.py:319
 msgid "Gurmeet Singh [Pinky]"
 msgstr "ਗੁਰਮੀਤ ਸਿੰਘ [ਪਿੰਕੀ]"
 
-#: data/views.py:315
+#: data/views.py:320
 msgid "D.R. Bhatti"
 msgstr "ਡੀ.ਆਰ. ਭੱਟੀ"
 
-#: data/views.py:316
+#: data/views.py:321
 msgid "Mohd. Mustafa"
 msgstr "ਮੁਹੰਮਦ ਮੁਸਤਫਾ"
 
-#: data/views.py:317
+#: data/views.py:322
 msgid "Satish Kumar Sharma"
 msgstr "ਸਤੀਸ਼ ਕੁਮਾਰ ਸ਼ਰਮਾ"
 
-#: data/views.py:318
+#: data/views.py:323
 msgid "Harkishan Singh Kahlon"
 msgstr "ਹਰਕਿਸ਼ਨ ਸਿੰਘ ਕਾਹਲੋਂ"
 
-#: data/views.py:319
+#: data/views.py:324
 msgid "Gobind Ram"
 msgstr "ਗੋਬਿੰਦ ਰਾਮ"
 
-#: data/views.py:320
+#: data/views.py:325
 msgid "Anil Kumar Sharma"
 msgstr "ਅਨਿਲ ਕੁਮਾਰ ਸ਼ਰਮਾ"
 
-#: data/views.py:321
+#: data/views.py:326
 msgid "M.K. Tiwari"
 msgstr "ਐਮ.ਕੇ. ਤਿਵਾੜੀ"
 
-#: data/views.py:322
+#: data/views.py:327
 msgid "Samant Kumar Goel"
 msgstr "ਸਮੰਤ ਕੁਮਾਰ ਗੋਇਲ"
 
-#: data/views.py:323
+#: data/views.py:328
 msgid "J.P. Birdi"
 msgstr "ਜੇ.ਪੀ. ਬਿਰਦੀ"
 
-#: data/views.py:324
+#: data/views.py:329
 msgid "A.P. Pandey"
 msgstr "ਏ.ਪੀ. ਪਾਂਡੇ"
 
-#: data/views.py:325
+#: data/views.py:330
 msgid "Sita Ram"
 msgstr "ਸੀਤਾ ਰਾਮ"
 
-#: data/views.py:326
+#: data/views.py:331
 msgid "Sanjiv Gupta"
 msgstr "ਸੰਜੀਵ ਗੁਪਤਾ"
 
-#: data/views.py:327
+#: data/views.py:332
 msgid "Khubi Ram"
 msgstr "ਖੂਬੀ ਰਾਮ"
 
-#: data/views.py:328
+#: data/views.py:333
 msgid "Sidharth Chattopadhyaya"
 msgstr "ਸਿਧਾਰਥ ਚਟੋਪਾਧਿਆਯ"
 
-#: data/views.py:329
+#: data/views.py:334
 msgid "Bachan Singh Randhawa"
 msgstr "ਬਚਨ ਸਿੰਘ ਰੰਧਾਵਾ"
 
-#: data/views.py:330
+#: data/views.py:335
 msgid "C.S.R. Reddy"
 msgstr "ਸੀ.ਐਸ.ਆਰ. ਰੈਡੀ"
 
-#: data/views.py:331
+#: data/views.py:336
 msgid "Narinderpal Singh"
 msgstr "ਨਰਿੰਦਰਪਾਲ ਸਿੰਘ"
 
-#: data/views.py:332
+#: data/views.py:337
 msgid "P.S. Bhinder"
 msgstr "ਪੀ.ਐਸ. ਭਿੰਡਰ"
 
-#: data/views.py:333
+#: data/views.py:338
 msgid "Ajaypal Singh Mann"
 msgstr "ਅਜੇਪਾਲ ਸਿੰਘ ਮਾਨ"
 
-#: data/views.py:334
+#: data/views.py:339
 msgid "Rajinder Singh"
 msgstr "ਰਜਿੰਦਰ ਸਿੰਘ"
 
-#: data/views.py:335
+#: data/views.py:340
 msgid "R.S. Chalia"
 msgstr "ਆਰ.ਐਸ. ਚਲੀਆ"
 
-#: data/views.py:336
+#: data/views.py:341
 msgid "Bua Singh"
 msgstr "ਬੂਆ ਸਿੰਘ"
 
-#: data/views.py:337
+#: data/views.py:342
 msgid "D.S. Mangat"
 msgstr "ਡੀ.ਐਸ. ਮਾਂਗਟ"
 
-#: data/views.py:338
+#: data/views.py:343
 msgid "D.S. Mohi"
 msgstr "ਡੀ.ਐਸ. ਮੋਹੀ"
 
-#: data/views.py:339
+#: data/views.py:344
 msgid "Barjinder S. Mann"
 msgstr "Barjinder S. Mann"
 
-#: data/views.py:340
+#: data/views.py:345
 msgid "P.S. Sandhu"
 msgstr "ਪੀ.ਐਸ. ਸੰਧੂ"
 
-#: data/views.py:341
+#: data/views.py:346
 msgid "A.S. Bajwa"
 msgstr "ਏ.ਐਸ. ਬਾਜਵਾ"
 
-#: data/views.py:342
+#: data/views.py:347
 msgid "S.V. Singh"
 msgstr "ਐਸ.ਵੀ. ਸਿੰਘ"
 
-#: data/views.py:343
+#: data/views.py:348
 msgid "Harjit Singh Randhawa"
 msgstr "ਹਰਜੀਤ ਸਿੰਘ ਰੰਧਾਵਾ"
 
-#: data/views.py:344
+#: data/views.py:349
 msgid "Sital Dass"
 msgstr "ਸੀਤਲ ਦਾਸ"
 
-#: data/views.py:345
+#: data/views.py:350
 msgid "P.S. Hura"
 msgstr "ਪੀ.ਐਸ. ਹੁਰਾ"
 
-#: data/views.py:346
+#: data/views.py:351
 msgid "M.S. Bhullar"
 msgstr "ਐਮ.ਐਸ. ਭੁੱਲਰ"
 
-#: data/views.py:347
+#: data/views.py:352
 msgid "K.P.S. Gill"
 msgstr "ਕੇ.ਪੀ.ਐਸ. ਗਿੱਲ"
 
-#: data/views.py:348
+#: data/views.py:353
 msgid "Baldev Singh"
 msgstr "ਬਲਦੇਵ ਸਿੰਘ"
 
-#: data/views.py:349
+#: data/views.py:354
 msgid "H.R. Banga"
 msgstr "ਐਚ.ਆਰ. ਬੰਗਾ"
 
-#: data/views.py:350
+#: data/views.py:355
 msgid "Surjit Singh"
 msgstr "ਸੁਰਜੀਤ ਸਿੰਘ"
 
-#: data/views.py:351
+#: data/views.py:356
 msgid "Hardeep Dhillon"
 msgstr "ਹਰਦੀਪ ਢਿੱਲੋਂ"
 
-#: data/views.py:352
+#: data/views.py:357
 msgid "Arpit Shukla"
 msgstr "ਅਰਪਿਤ ਸ਼ੁਕਲਾ"
 
-#: data/views.py:353
+#: data/views.py:358
 msgid "Paramjit Gill"
 msgstr "ਪਰਮਜੀਤ ਗਿੱਲ"
 
-#: data/views.py:354
+#: data/views.py:359
 msgid "Ashok Kumar"
 msgstr "ਅਸ਼ੋਕ ਕੁਮਾਰ"
 
-#: data/views.py:355
+#: data/views.py:360
 msgid "C. Pal Singh"
 msgstr "ਸੀ. ਪਾਲ ਸਿੰਘ"
 
