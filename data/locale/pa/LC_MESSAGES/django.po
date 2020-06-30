@@ -477,7 +477,7 @@ msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜਿਨ੍ਹਾਂ ਤਕ ਪ�
 
 #: data/templates/detail.html:414 data/templates/profile.html:922
 msgid "Legal remedies pursued"
-msgstr "ਕਿਹੜੀ ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਕੀਤੀ"
+msgstr "ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਕੀਤੀ"
 
 #: data/templates/detail.html:417
 msgid "No, Afraid of retaliation, Believed it would have been ineffective"
@@ -983,7 +983,7 @@ msgstr "ਜੱਜ/ਮੈਜਿਸਟਰੇਟ ਦਾ ਨਤੀਜਾ"
 #: data/templates/profile.html:545 data/templates/profile.html:575
 #: data/templates/profile.html:776
 msgid "Additional data forthcoming"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਅੱਗੇ ਸਾਂਝੀ ਕੀਤੀ ਜਾਵੇਗੀੀ"
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਅੱਗੇ ਸਾਂਝੀ ਕੀਤੀ ਜਾਵੇਗੀ"
 
 #: data/templates/profile.html:639
 msgid "Condition of corpse"
@@ -1052,7 +1052,7 @@ msgstr "ਪਹਿਲਾ ਨਾਮ"
 
 #: data/templates/profiles.html:130
 msgid "District / Subdistrict"
-msgstr "ਜਿਲ੍ਹਾ/ਤਹਿਸੀਲ"
+msgstr "ਜ਼ਿਲ੍ਹਾ/ਤਹਿਸੀਲ"
 
 #: data/templates/profiles.html:151
 msgid "Sort Order"
@@ -1272,7 +1272,7 @@ msgstr "ਕਿਸ ਤਰਾਂ ਦੇ ਸੁਰੱਖਿਆ ਬਲ ਗੈਰ ਕ
 
 #: data/templates/stats.html:797
 msgid "Combatant status"
-msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਸੰਬੱਧ"
+msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਸੰਬੰਧ"
 
 #: data/templates/stats.html:809
 msgid "Non-combatant"
