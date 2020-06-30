@@ -4,28 +4,28 @@
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India in {{year}}{% endblock %}
+{% block title %}{% blocktrans with thisyear=year|yearpa %}Documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India in {{thisyear}}{% endblocktrans %}{% endblock %}
 
 {% block head %}
 
-  <meta name="description" content="A list of enforced disappearances &amp; extrajudicial executions in {{year}}, based on data collected through primary source interviews." />
+  <meta name="description" content="{% blocktrans with thisyear=year|yearpa %}A list of enforced disappearances &amp; extrajudicial executions in {{thisyear}}, based on data collected through primary source interviews.{% endblocktrans %}" />
 
-  <meta itemprop="name" content="Documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India in {{year}}" />
-  <meta itemprop="description" content="A list of enforced disappearances &amp; extrajudicial executions in {{year}}, based on data collected through primary source interviews." />
+  <meta itemprop="name" content="{% blocktrans with thisyear=year|yearpa %}Documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India in {{thisyear}}{% endblocktrans %}" />
+  <meta itemprop="description" content="{% blocktrans with thisyear=year|yearpa %}A list of enforced disappearances &amp; extrajudicial executions in {{thisyear}}, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta itemprop="image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@ensaaf" />
-  <meta name="twitter:title" content="Documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India in {{year}}" />
-  <meta name="twitter:description" content="A list of enforced disappearances &amp; extrajudicial executions in {{year}}, based on data collected through primary source interviews." />
+  <meta name="twitter:title" content="{% blocktrans with thisyear=year|yearpa %}Documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India in {{thisyear}}{% endblocktrans %}" />
+  <meta name="twitter:description" content="{% blocktrans with thisyear=year|yearpa %}A list of enforced disappearances &amp; extrajudicial executions in {{thisyear}}, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta name="twitter:creator" content="@ensaaf" />
   <meta name="twitter:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
-  <meta property="og:title" content="Documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India in {{year}}" />
+  <meta property="og:title" content="{% blocktrans with thisyear=year|yearpa %}Documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India in {{thisyear}}{% endblocktrans %}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://data.ensaaf.org" />
   <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
-  <meta property="og:description" content="A list of enforced disappearances &amp; extrajudicial executions in {{year}}, based on data collected through primary source interviews." />
+  <meta property="og:description" content="{% blocktrans with thisyear=year|yearpa %}A list of enforced disappearances &amp; extrajudicial executions in {{thisyear}}, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
 
 {% endblock %}
@@ -36,7 +36,7 @@
 
 <div class="row">
   <div class="col-sm-12 col-md m-2">
-    <h1>{{year}}</h1>
+    <h1>{{year|yearpa}}</h1>
   </div>
 </div>
 
@@ -100,7 +100,7 @@
          at time of 
           {% if victim.victim_disappeared_killed == 1 %}
           {% trans 'disappearance' %}{% endif %}{% if victim.victim_disappeared_killed == 2 %}
-          {% trans 'extrajudicial execution' %}{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
+          {% trans 'extrajudicial execution' %}{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="{% url 'village' village.vid %}">{% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
 
 
       </div>

@@ -273,9 +273,14 @@ def villages(request):
                             .annotate(Count('village_id'))\
                             .values('village_id__count')    
     
-    villages = Villages.objects.all().values('village_name','vid','district','district_id')\
-      .annotate(data_count=Subquery(datas))\
-      .order_by('district','village_name')
+    if get_language() == 'pa':
+      villages = Villages.objects.all().values('village_name_pa','vid','district','district_id')\
+        .annotate(data_count=Subquery(datas))\
+        .order_by('district','village_name_pa')
+    else:
+      villages = Villages.objects.all().values('village_name','vid','district','district_id')\
+        .annotate(data_count=Subquery(datas))\
+        .order_by('district','village_name')
     return render(request, "villages.html", { "villages": villages } )
 
 

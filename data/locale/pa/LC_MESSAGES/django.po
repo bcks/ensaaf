@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 10:24-0400\n"
+"POT-Creation-Date: 2020-06-30 13:24-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -129,6 +129,14 @@ msgstr "ਵਾਪਸ ਉੱਪਰ ਜਾਉ"
 #: data/templates/base.html:109
 msgid "Contact"
 msgstr "ਸੰਪਰਕ"
+
+#: data/templates/cremation.html:50 data/templates/district.html:61
+#: data/templates/locality.html:53 data/templates/profile.html:73
+#: data/templates/search/search.html:65 data/templates/search/search.html:82
+#: data/templates/search/search.html:114 data/templates/securityforce.html:80
+#: data/templates/village.html:42 data/templates/year.html:86 data/views.py:693
+msgid "Subdistrict"
+msgstr "ਤਹਿਸੀਲ"
 
 #: data/templates/cremation.html:64 data/templates/detail.html:41
 #: data/templates/detention.html:72 data/templates/locality.html:67
@@ -544,14 +552,6 @@ msgid ""
 msgstr ""
 "ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਈ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਉਲੰਘਣਾ: ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ"
 
-#: data/templates/district.html:61 data/templates/locality.html:53
-#: data/templates/profile.html:73 data/templates/search/search.html:65
-#: data/templates/search/search.html:82 data/templates/search/search.html:114
-#: data/templates/securityforce.html:80 data/templates/village.html:42
-#: data/templates/year.html:86 data/views.py:693
-msgid "Subdistrict"
-msgstr "ਤਹਿਸੀਲ"
-
 #: data/templates/email.html:4
 msgid "Profile Feedback"
 msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਫ਼ੀਡਬੈਕ"
@@ -921,7 +921,8 @@ msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ"
 msgid "date unknown"
 msgstr "ਤਾਰੀਖ਼ ਪਤਾ ਨਹੀਂ"
 
-#: data/templates/profile.html:72 data/templates/search/search.html:113
+#: data/templates/profile.html:72 data/templates/search/search.html:64
+#: data/templates/search/search.html:81 data/templates/search/search.html:113
 #: data/templates/search/search.html:137 data/views.py:691
 msgid "Village/town/city"
 msgstr "ਪਿੰਡ/ਕਸਬਾ/ਸ਼ਹਿਰ"
@@ -1048,7 +1049,9 @@ msgid ""
 "Portraits of the victims of widespread &amp; systematic enforced "
 "disappearances &amp; extrajudicial executions, based on data collected "
 "through primary source interviews."
-msgstr "ਮੁਢਲੇ ਸਰੋਤ ਇੰਟਰਵਿਊ ਦੁਆਰਾ ਇਕੱਠੇ ਕੀਤੇ ਅੰਕੜਿਆਂ ਦੇ ਅਧਾਰ ਤੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਏ ਵਿਆਪਕ ਅਤੇ ਯੋਜਨਾਬੱਧ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੀ ਇੱਕ ਤਸਵੀਰ।"
+msgstr ""
+"ਮੁਢਲੇ ਸਰੋਤ ਇੰਟਰਵਿਊ ਦੁਆਰਾ ਇਕੱਠੇ ਕੀਤੇ ਅੰਕੜਿਆਂ ਦੇ ਅਧਾਰ ਤੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਏ ਵਿਆਪਕ ਅਤੇ ਯੋਜਨਾਬੱਧ "
+"ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੀ ਇੱਕ ਤਸਵੀਰ।"
 
 #: data/templates/profiles.html:84
 msgid "First Name"
@@ -1109,6 +1112,10 @@ msgstr "ਸੂਚੀ ਨੂੰ ਤਸਵੀਰਾਂ ਵਿੱਚ ਦਿਖਾ�
 #: data/templates/search/search.html:71 data/templates/year.html:103
 msgid "extrajudicial execution"
 msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
+
+#: data/templates/search/search.html:74
+msgid "disappeared"
+msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ"
 
 #: data/templates/search/search.html:88 data/templates/search/search.html:163
 msgid "No results found."
@@ -1351,6 +1358,25 @@ msgstr "ਪੀੜਤ"
 #: data/templates/villages.html:77
 msgid "report a case"
 msgstr "ਨਵਾਂ ਕੇਸ ਦਰਜ ਕਰੋ"
+
+#: data/templates/year.html:7 data/templates/year.html:13
+#: data/templates/year.html:19 data/templates/year.html:24
+#, python-format
+msgid ""
+"Documented cases of enforced disappearances &amp; extrajudicial executions "
+"in Punjab, India in %(thisyear)s"
+msgstr ""
+"%(thisyear)s ਵਿੱਚ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਏ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੇ ਦਰਜ ਕੀਤੇ ਕੇਸ"
+
+#: data/templates/year.html:11 data/templates/year.html:14
+#: data/templates/year.html:20 data/templates/year.html:28
+#, python-format
+msgid ""
+"A list of enforced disappearances &amp; extrajudicial executions in "
+"%(thisyear)s, based on data collected through primary source interviews."
+msgstr ""
+"ਮੁਢਲੇ ਸਰੋਤ ਇੰਟਰਵਿਊ ਦੁਆਰਾ ਇਕੱਠੇ ਕੀਤੇ ਅੰਕੜਿਆਂ ਦੇ ਅਧਾਰ ਤੇ %(thisyear)s ਵਿੱਚ ਹੋਏ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ "
+"ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੀ ਸੂਚੀ।"
 
 #: data/templates/year.html:67
 msgid "Location Withheld"
