@@ -61,7 +61,7 @@
           
                 <li><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a>, 
                 {% if o.village_id|add:"0" > 0 and village.tehsil%}
-                  <span define="Village/town/city"><a href="{% url 'village' victim.village_id %}">{{o.village_name}},</a></span>
+                  <span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pa' %}{{o.village_name_pa}}{% else %}{{o.village_name}}{% endif %},</a></span>
                   <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
                   <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></span>,
                 {% else %}
