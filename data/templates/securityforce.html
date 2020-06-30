@@ -94,7 +94,7 @@
       {% trans "age" %} {{victim.victim_age|default:"unknown"|numpa}}        
         {% if victim.victim_disappeared_killed  %}
          at time of 
-        {% if victim.victim_disappeared_killed == 1 %}disappearance{% endif %}{% if victim.victim_disappeared_killed == 2 %}extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}
+        {% if victim.victim_disappeared_killed == 1 %}disappearance{% endif %}{% if victim.victim_disappeared_killed == 2 %}extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}
 
       </div>
     </div>

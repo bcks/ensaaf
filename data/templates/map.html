@@ -403,7 +403,7 @@ function updateMap(start, end) {
         return o.CODE.endsWith(keys[i]);        
       });
       if (keys[i] && thisVillage) {
-        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':thisVillage.NAME});
+        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':{% if request.LANGUAGE_CODE == 'pa' %}thisVillage.NAME_PA{% else %}thisVillage.NAME{% endif %}});
       }
     }
 

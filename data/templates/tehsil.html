@@ -63,7 +63,7 @@
 
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        <a href="{% url 'village' village.vid %}">{% trans village.village_name %}</a>, {{village.data_count|numpa}}
+        <a href="{% url 'village' village.vid %}">{% if request.LANGUAGE_CODE == 'pa' %}{{village.village_name_pa}}{% else %}{{village.village_name}}{% endif %}</a>, {{village.data_count|numpa}}
         {% if forloop.first %} 
           {% if request.LANGUAGE_CODE == 'pa' %}
             ਦਰਜ ਕੀਤੇ ਕੇਸ

@@ -13,6 +13,7 @@ from django.template.defaulttags import register
 from django.views.decorators.cache import cache_page
 from django.urls import reverse
 from django.utils.translation import gettext as _
+from django.utils.translation import get_language
 
 from .models import *
 from django.shortcuts import render, redirect
@@ -421,6 +422,7 @@ def locality(request, slug=None):
     _query = Q(arrest_security_locality__contains=vid) | Q(killing_securityforces_lcl__contains=vid) | Q( record_id__in= _arrest_so_affiliation_loc )
 
     name = get_village_name(vid)
+    name_pa = get_village_name_pa(vid)
 
     district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
@@ -434,7 +436,7 @@ def locality(request, slug=None):
     stats = calculate_stats(victims)
     if vid is not None and vid is None:
         return messages.warning(request,"Locality %s was not found"%vid)
-    return render(request, "locality.html", { "victims": victims, "name": name, "stats": stats } )
+    return render(request, "locality.html", { "victims": victims, "name": name, "name_pa": name_pa, "stats": stats } )
 
 
 
@@ -443,6 +445,7 @@ def cremation(request, slug=None):
     vid = slug
 
     name = get_village_name(vid)
+    name_pa = get_village_name_pa(vid)
 
     district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
@@ -456,7 +459,7 @@ def cremation(request, slug=None):
     stats = calculate_stats(victims)
     if vid is not None and vid is None:
         return messages.warning(request,"Cremation Location %s was not found"%vid)
-    return render(request, "cremation.html", { "victims": victims, "name": name, "stats": stats } )
+    return render(request, "cremation.html", { "victims": victims, "name": name, "name_pa": name_pa, "stats": stats } )
 
 
 
@@ -577,6 +580,16 @@ def get_village_name(value):
     else:
       return None
 
+def get_village_name_pa(value):
+    if value:
+      try:
+        village_name = Villages.objects.filter(vid=value).values('village_name_pa')[:1].get()
+        return village_name['village_name_pa']
+      except Exception as e:
+        return None        
+    else:
+      return None
+
 def get_tehsil_name(value):
     if value:
       tehsil_name = Villages.objects.filter(tehsil_id=value).values('tehsil')[:1].get()
@@ -666,15 +679,17 @@ def hvictim_address_other(value):
   vname = re.sub(r'([0123456789.]+)-','', str)
   if m:
     census_id = m.group(1)
+    if get_language() == 'pa':
+      vname = get_village_name_pa(census_id)
     try:
       village = Villages.objects.filter(vid=census_id)[:1].get()
       
       if village.district == 'Chandigarh':
         return '<a href="' + \
-          reverse('village', args=(census_id,)) + '">' + _(vname) + '</a>'
+          reverse('village', args=(census_id,)) + '">' + vname + '</a>'
       else:      
         return '<span define="' + _('Village/town/city') + '"><a href="' + \
-          reverse('village', args=(census_id,)) + '">' + _(vname) + '</a></span>, '\
+          reverse('village', args=(census_id,)) + '">' + vname + '</a></span>, '\
           '<span define="' + _('Subdistrict') + '"><a href="' + \
           reverse('tehsil', args=(village.tehsil_id,)) + '">' + \
           _(village.tehsil) + '</a></span>, '\
@@ -689,6 +704,91 @@ def hvictim_address_other(value):
 
 
   
+
+@register.filter(name='censuslink')
+def censuslink(value):
+          
+    if value == None:
+      return None
+
+    lang = '/' + str(get_language())
+    lang = lang.replace('/en-us','')
+    
+    if "," in value:
+      # split on comma
+      parts = value.split(',')
+    
+      # make href from each census-ed name
+      regexp = re.compile(r'([0123456789]+)-')
+      newparts = []
+      for part in parts:
+        if regexp.search(part):
+          census_id = regexp.search(part).group(1)
+          vname = re.sub(r'([0123456789.]+)-','', part)
+          if lang == '/pa':
+            vname = get_village_name_pa(census_id)
+          newparts.append(
+            '<a href="'+lang+'/locality/' + census_id  + '">' + \
+             vname + \
+             '</a>')
+        else:
+          newparts.append(part)
+
+      s = ", ";
+      return s.join(newparts)
+
+    elif "-" in value:
+      # split on dash
+      parts = value.split('-')
+    
+      # make href from each census-ed name
+      regexp = re.compile(r'([0123456789]+)')
+      newparts = ''
+      
+      if regexp.search(parts[0]):
+        census_id = parts[0]
+        vname = parts[1]
+        if lang == '/pa':
+          vname = get_village_name_pa(census_id)
+        newparts = '<a href="'+lang+'/locality/' + census_id  + '">' + \
+           vname + '</a>'
+      return newparts
+
+    return value
+
+
+
+@register.filter(name='cremationlink')
+def cremationlink(value):
+    
+    if value == None:
+      return None
+
+    lang = '/' + str(get_language())
+    lang = lang.replace('/en-us','')
+    
+    # split on comma
+    parts = value.split(',')
+    
+    # make href from each census-ed name
+    regexp = re.compile(r'([0123456789]+)-')
+    newparts = []
+    for part in parts:
+      if regexp.search(part):
+        census_id = regexp.search(part).group(1)
+        vname = re.sub(r'([0123456789.]+)-','', part)
+        if lang == '/pa':
+          vname = get_village_name_pa(census_id)
+        newparts.append(
+          '<a href="'+lang+'/cremation/' + census_id  + '">' + \
+           vname + \
+           '</a>')
+
+    s = ", ";
+    return s.join(newparts)
+
+
+
 
 
 

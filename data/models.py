@@ -9,6 +9,7 @@ from django import forms
 class Data(models.Model):
     victim_name = models.CharField(max_length=256)
     village_name = models.CharField(max_length=256, blank=True, null=True)
+    village_name_pa = models.CharField(max_length=256, blank=True, null=True)
     village_id = models.CharField(max_length=64, blank=True, null=True, unique=True)
     district_id =models.CharField(max_length=8, blank=True, null=True)
     record_id = models.IntegerField(db_column='record_id', primary_key=True)
@@ -238,6 +239,7 @@ class Data(models.Model):
 
 class Villages(models.Model):
     village_name = models.CharField(max_length=256)
+    village_name_pa = models.CharField(max_length=256)
     tehsil = models.CharField(max_length=64)
     district = models.CharField(max_length=64)
     district_id = models.IntegerField()

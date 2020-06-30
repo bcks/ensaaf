@@ -69,11 +69,11 @@
             </div>
             <div class="col-sm-10">
               {% if victim.village_id|add:"0" > 0 and village.tehsil%}
-                <p><span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% trans victim.village_name %},</a></span>
+                <p><span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %},</a></span>
                 <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
                 <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></span></p>
               {% else %}
-                <p>{{victim.village_name}}</p>
+                <p>{% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</p>
               {% endif %}
             </div>
           </div>

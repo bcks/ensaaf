@@ -82,81 +82,17 @@ def uncensus(value):
 
 
 
-# moved to views
+### moved to views
+
 #@register.simple_tag()
 #def hvictim_address_other(value):
 
+#@register.filter(name='censuslink')
+#def censuslink(value):
 
-
-@register.filter(name='censuslink')
-def censuslink(value):
-          
-    if value == None:
-      return None
-
-    lang = '/' + str(get_language())
-    lang = lang.replace('/en-us','')
+#@register.filter(name='cremationlink')
+#def cremationlink(value):
     
-    if "," in value:
-      # split on comma
-      parts = value.split(',')
-    
-      # make href from each census-ed name
-      regexp = re.compile(r'([0123456789]+)-')
-      newparts = []
-      for part in parts:
-        if regexp.search(part):
-          newparts.append(
-            '<a href="'+lang+'/locality/' + regexp.search(part).group(1)  + '">' + \
-             re.sub(r'([0123456789.]+)-','', part) + \
-             '</a>')
-        else:
-          newparts.append(part)
-
-      s = ", ";
-      return s.join(newparts)
-
-    elif "-" in value:
-      # split on dash
-      parts = value.split('-')
-    
-      # make href from each census-ed name
-      regexp = re.compile(r'([0123456789]+)')
-      newparts = ''
-      if regexp.search(parts[0]):
-        newparts = '<a href="'+lang+'/locality/' + parts[0]  + '">' + \
-           parts[1] + '</a>'
-      return newparts
-
-    return value
-
-
-
-@register.filter(name='cremationlink')
-def cremationlink(value):
-    
-    if value == None:
-      return None
-
-    lang = '/' + str(get_language())
-    lang = lang.replace('/en-us','')
-    
-    # split on comma
-    parts = value.split(',')
-    
-    # make href from each census-ed name
-    regexp = re.compile(r'([0123456789]+)-')
-    newparts = []
-    for part in parts:
-      if regexp.search(part):
-        newparts.append(
-          '<a href="'+lang+'/cremation/' + regexp.search(part).group(1)  + '">' + \
-           re.sub(r'([0123456789.]+)-','', part) + \
-           '</a>')
-
-    s = ", ";
-    return s.join(newparts)
-
 
 
 

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load humanize %}
 {% load profiletags %}
 
@@ -79,7 +80,7 @@
           {% endif %}
         {% endif %}
       {% endif %}{% endif %}
-      <br>{% if victim.village_name_checked %}<a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
+      <br>{% if victim.village_name_checked %}<a href="{% url 'village' victim.village_id %}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
 
 
       </div>

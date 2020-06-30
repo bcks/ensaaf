@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 
+{% load i18n %}
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Documented cases implicating security forces based in {{name}}{% endblock %}
+{% block title %}Documented cases implicating security forces based in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}{% endblock %}
 
 {% block content %}
 
 
 <div class="row">
   <div class="col-sm-12 col-md m-2">
-    <h1>{{name}}</h1>
+    <h1>{% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}</h1>
   </div>
 </div>
 
@@ -20,14 +21,16 @@
 <div class="row keyword">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} implicating security forces based in {{name}}:</p>
+  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} implicating security forces based in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}:</p>
 
   {% regroup victims.all by district as district_list %}
+
+
 
   {% for district in district_list %}
     {% if forloop.first %}
       <ul>{% endif %}
-        <li><a href="#{{district.grouper|default_if_none:"Location Withheld"|slugify}}">{{ district.grouper|default_if_none:"Location Withheld"  }}</a></li>
+        <li><a href="#{{district.grouper|default_if_none:"Location Withheld"|slugify}}">{% with mydistrict=district.grouper|default_if_none:"Location Withheld" %}{% trans mydistrict %}{% endwith %}</a></li>
     {% if forloop.last %}</ul>{% endif %}        
   {% endfor %}
   
@@ -36,7 +39,7 @@
     <div class="row">
       <div class="col-sm-12 col-md m-2">
           <hr>
-        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{{ district.grouper|default_if_none:"Location Withheld"  }} {% if district.grouper != None %}District{% endif %}</h2>
+        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{% with mydistrict=district.grouper|default_if_none:"Location Withheld" %}{% trans mydistrict %}{% endwith %} {% if district.grouper != None %}{% trans 'District' %}{% endif %}</h2>
       </div>
     </div>
     
@@ -47,7 +50,7 @@
     {%if tehsil.grouper %}
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        <h5>{{ tehsil.grouper|default_if_none:""  }} Subdistrict</h5>
+        <h5>{% trans tehsil.grouper|default_if_none:""  %} {% trans 'Subdistrict' %}</h5>
       </div>
     </div>
     {% endif %}
@@ -66,7 +69,7 @@
          at time of 
           {% if victim.victim_disappeared_killed == 1 %}
           disappearance{% endif %}{% if victim.victim_disappeared_killed == 2 %}
-          extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}
+          extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}
 
       </div>
     </div>
@@ -77,13 +80,12 @@
 
   {% endfor %}
 
-  
   </div>
   
   
   <div class="col-sm-6 border-left">
     
-    <p class="m-2-top">Key statistics of cases implicating security forces based in {{name}}:</p>
+    <p class="m-2-top">Key statistics of cases implicating security forces based in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}:</p>
 
     {% include 'stats.html' %}
 
@@ -97,7 +99,7 @@
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
-      <p>No documented cases implicating security forces based in {{name}}.</p>
+      <p>No documented cases implicating security forces based in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}.</p>
     </div>
   </div>
 

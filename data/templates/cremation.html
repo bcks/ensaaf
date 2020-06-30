@@ -3,14 +3,14 @@
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Victims cremated in {{name}}{% endblock %}
+{% block title %}Victims cremated in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}{% endblock %}
 
 {% block content %}
 
 
 <div class="row">
   <div class="col-sm-12 col-md m-2">
-    <h1>{{name}}</h1>
+    <h1>{% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}</h1>
   </div>
 </div>
 
@@ -20,7 +20,7 @@
 <div class="row keyword">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} of victims cremated in {{name}}:</p>
+  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} of victims cremated in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}:</p>
 
   {% regroup victims.all by district as district_list %}
 
@@ -66,7 +66,7 @@
          at time of 
           {% if victim.victim_disappeared_killed == 1 %}
           disappearance{% endif %}{% if victim.victim_disappeared_killed == 2 %}
-          extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="/village/{{victim.village_id}}">{{victim.village_name}}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}
+          extrajudicial execution{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="{% url 'village' victim.village_id %}">{{victim.village_name}}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}
 
       </div>
     </div>
@@ -83,7 +83,7 @@
   
   <div class="col-sm-6 border-left">
     
-    <p class="m-2-top">Key statistics of cremated in {{name}}:</p>
+    <p class="m-2-top">Key statistics of cremated in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}:</p>
 
     {% include 'stats.html' %}
 
@@ -97,7 +97,7 @@
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
-      <p>No documented cases implicating the {{name}}.</p>
+      <p>No documented cases implicating the {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}.</p>
     </div>
   </div>
 
