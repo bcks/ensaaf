@@ -60,7 +60,7 @@
     <div class="row">
       <div class="col-sm-12 col-md m-2">
   
-      <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
+      <strong><a href="{% url 'profile' victim.record_id %}">{{victim.victim_name}}</a></strong>
 
 
       {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
@@ -85,7 +85,11 @@
   
   <div class="col-sm-6 border-left">
     
-    <p class="m-2-top">Key statistics of cases implicating security forces based in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}:</p>
+    {% if request.LANGUAGE_CODE == 'pa' %}
+      <p class="m-2-top">ਉਨ੍ਹਾਂ ਕੇਸਾਂ ਦੇ ਮੁੱਖ ਅੰਕੜੇ ਜਿਨ੍ਹਾਂ ਵਿੱਚ {{name_pa}} ਦੇ ਸੁਰੱਖਿਆ ਬਲਾਂ ਵੱਲ ਇਸ਼ਾਰਾ ਹੰuਦਾ ਹੈ:</p>
+    {% else %}
+      <p class="m-2-top">Key statistics of cases implicating security forces based in {{name}}:</p>
+    {% endif %}
 
     {% include 'stats.html' %}
 
@@ -99,7 +103,11 @@
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
-      <p>No documented cases implicating security forces based in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}.</p>
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        <p>{{name_pa}} ਦੇ ਸੁਰੱਖਿਆ ਬਲਾਂ ਨਾਲ ਸੰਬੰਧਿਤ ਕੋਈ ਕੇਸ ਦਰਜ ਨਹੀਂ ਹੈ।</p>
+      {% else %}
+        <p>No documented cases implicating security forces based in {{name}}.</p>
+      {% endif %}
     </div>
   </div>
 

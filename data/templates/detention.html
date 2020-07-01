@@ -65,7 +65,7 @@
     <div class="row">
       <div class="col-sm-12 col-md m-2">
   
-      <strong><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></strong>
+      <strong><a href="{% url 'profile' victim.record_id %}">{{victim.victim_name}}</a></strong>
 
 
       {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
@@ -112,7 +112,9 @@
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
+
       <p>No documented cases for {{facilityname|uncensus}}.</p>
+
     </div>
   </div>
 

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-30 21:52-0400\n"
+"POT-Creation-Date: 2020-07-01 12:42-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -146,7 +146,7 @@ msgid "age"
 msgstr "ਉਮਰ"
 
 #: data/templates/cremation.html:111 data/templates/district.html:39
-#: data/templates/locality.html:113 data/templates/securityforce.html:149
+#: data/templates/locality.html:121 data/templates/securityforce.html:154
 #: data/templates/tehsil.html:42 data/templates/village.html:44
 #: data/templates/villages.html:40
 msgid ""
@@ -538,6 +538,26 @@ msgstr ""
 "ਧਿਆਨ ਦਿਓ: ਜ਼ਿਲ੍ਹੇ ਅਤੇ ਤਸੀਲ ਦੀਆਂ ਸੀਮਾਂ ੨੦੦੧ ਦੀ ਮਰਦਮਸ਼ੁਮਾਰੀ ਤੇ ਅਧਾਰਤ ਹੈ। <a href=\"/pa/"
 "about\">ਸਾਡੇ ਵਿਧੀ ਗਿਆਨ ਵਾਸਤੇ ਅੱਗੇ ਪੜ੍ਹੋ।</a>"
 
+#: data/templates/district.html:7 data/templates/district.html:11
+#: data/templates/district.html:13 data/templates/district.html:19
+#: data/templates/district.html:24
+#, python-format
+msgid ""
+"Enforced Disappearances &amp; Extrajudicial Executions in %(thisdistrict)s "
+"District"
+msgstr "%(thisdistrict)s ਜ਼ਿਲੇ ਵਿੱਚ  ਹੋਏ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ"
+
+#: data/templates/district.html:14 data/templates/district.html:20
+#: data/templates/district.html:28
+#, python-format
+msgid ""
+"A portrait of widespread &amp; systematic enforced disappearances &amp; "
+"extrajudicial executions in %(thisdistrict)s District, based on data "
+"collected through primary source interviews."
+msgstr ""
+"ਮੁਢਲੇ ਸਰੋਤ ਇੰਟਰਵਿਊ ਦੁਆਰਾ ਇਕੱਠੇ ਕੀਤੇ ਅੰਕੜਿਆਂ ਦੇ ਅਧਾਰ ਤੇ %(thisdistrict)s ਜ਼ਿਲੇ ਵਿੱਚ ਹੋਏ ਵਿਆਪਕ "
+"ਅਤੇ ਯੋਜਨਾਬੱਧ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੀ ਇੱਕ ਤਸਵੀਰ।"
+
 #: data/templates/district.html:29 data/templates/map.html:8
 #: data/templates/map.html:20 data/templates/map.html:25
 #: data/templates/map.html:30 data/templates/official_detail.html:28
@@ -579,7 +599,7 @@ msgstr "ਭੇਜੋ"
 #: data/templates/locality.html:42 data/templates/map.html:138
 #: data/templates/profile.html:74 data/templates/search/search.html:66
 #: data/templates/search/search.html:83 data/templates/search/search.html:115
-#: data/templates/securityforce.html:79 data/templates/stats.html:983
+#: data/templates/securityforce.html:78 data/templates/stats.html:983
 #: data/templates/tehsil.html:38 data/templates/village.html:42
 #: data/templates/villages.html:57 data/templates/year.html:74
 #: data/views.py:701
@@ -894,24 +914,52 @@ msgstr ""
 "ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਛਾਣ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕੀਤਾ ਜਾਵੇਗਾ ਜੋ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਿੱਚ "
 "ਸ਼ਾਮਲ ਹਨ ਅਤੇ ਜੋ ਆਪਣੀ ਕਮਾਂਡ/ਆਦੇਸ਼ ਅਧੀਨ ਕੀਤੇ ਗਏ ਦੁਰਵਿਵਹਾਰਾਂ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਹਨ।"
 
-#: data/templates/profile.html:45 data/templates/profiles.html:199
-#: data/templates/search/search.html:120 data/templates/village.html:104
-msgid "Extrajudicial execution"
-msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
+#: data/templates/profile.html:6
+msgid "Profile of"
+msgstr "ਦੀ ਪ੍ਰੋਫਾਈਲ"
 
+#: data/templates/profile.html:6 data/templates/profile.html:11
+#: data/templates/profile.html:13 data/templates/profile.html:14
+#: data/templates/profile.html:19 data/templates/profile.html:20
+#: data/templates/profile.html:24 data/templates/profile.html:28
+#: data/templates/profile.html:234 data/templates/profile.html:238
+#: data/templates/profile.html:242
+msgid "victim of extrajudicial execution"
+msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਆਿ ਦਾ/ਦੀ ਪੀੜਤ"
+
+#: data/templates/profile.html:6 data/templates/profile.html:13
+#: data/templates/profile.html:19 data/templates/profile.html:24
 #: data/templates/profile.html:49 data/templates/profile.html:568
 #: data/templates/profiles.html:202 data/templates/search/search.html:123
 #: data/templates/village.html:107
 msgid "Disappeared"
 msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ"
 
-#: data/templates/profile.html:49 data/templatetags/profiletags.py:130
+#: data/templates/profile.html:6 data/templates/profile.html:11
+#: data/templates/profile.html:13 data/templates/profile.html:14
+#: data/templates/profile.html:19 data/templates/profile.html:20
+#: data/templates/profile.html:24 data/templates/profile.html:28
+#: data/templates/profile.html:49 data/templates/profile.html:234
+#: data/templates/profile.html:238 data/templates/profile.html:242
+#: data/templates/profile.html:568 data/templatetags/profiletags.py:130
 #: data/templatetags/profiletags.py:174 data/templatetags/profiletags.py:176
 #: data/templatetags/profiletags.py:178 data/templatetags/profiletags.py:222
 #: data/templatetags/profiletags.py:234 data/templatetags/profiletags.py:236
 #: data/templatetags/profiletags.py:444 data/templatetags/profiletags.py:447
 msgid "date unknown"
 msgstr "ਤਾਰੀਖ਼ ਪਤਾ ਨਹੀਂ"
+
+#: data/templates/profile.html:11 data/templates/profile.html:14
+#: data/templates/profile.html:20 data/templates/profile.html:28
+#: data/templates/profile.html:234 data/templates/profile.html:238
+#: data/templates/profile.html:242 data/templates/search/search.html:74
+msgid "disappeared"
+msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ"
+
+#: data/templates/profile.html:45 data/templates/profiles.html:199
+#: data/templates/search/search.html:120 data/templates/village.html:104
+msgid "Extrajudicial execution"
+msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
 
 #: data/templates/profile.html:72 data/templates/search/search.html:64
 #: data/templates/search/search.html:81 data/templates/search/search.html:113
@@ -1105,10 +1153,6 @@ msgstr "ਸੂਚੀ ਨੂੰ ਤਸਵੀਰਾਂ ਵਿੱਚ ਦਿਖਾ�
 msgid "extrajudicial execution"
 msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
 
-#: data/templates/search/search.html:74
-msgid "disappeared"
-msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ"
-
 #: data/templates/search/search.html:88 data/templates/search/search.html:163
 msgid "No results found."
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਨਿਕਲਿਆ"
@@ -1151,7 +1195,7 @@ msgstr ""
 "<a href=\"/pa/official/S0001/detail\">ਸੁਮੇਧ ਸੈਣੀ ਦੀ ਸੰਪੂਰਨ ਅਪਰਾਧਕ ਪ੍ਰੋਫਾਈਲ ਵਿੱਚ ਸ਼ਾਮਲ "
 "ਉਸ ਦੇ ਕਾਰਜ ਕਾਲ ਦਾ ਇਤਿਹਾਸ, ਤਰੱਕੀਆਂ, ਇਨਾਮਾਂ ਕਾਨੂੰਨੀ ਕੇਸਾਂ ਨੂੰ ਦੇਖੋ।</a>"
 
-#: data/templates/securityforce.html:138
+#: data/templates/securityforce.html:143
 #, python-format
 msgid "No documented cases directly implicating %(thisname)s."
 msgstr "%(thisname)s ਨਾਲ ਸੰਬੰਧਿਤ ਕੋਈ ਕੇਸ ਦਰਜ ਨਹੀਂ ਹਨ।"

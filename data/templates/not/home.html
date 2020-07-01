@@ -31,7 +31,7 @@
 
     {% for victim in victims %}
 
-    <div class="col-6 col-sm-4 col-md-3" onclick="window.location.href='/profile/{{victim.record_id}}';">
+    <div class="col-6 col-sm-4 col-md-3" onclick="window.location.href='{% url 'profile' victim.record_id %}';">
 
      {% if victim.photo_vic_fn %}
       <div class="home-box" style="background-image:url('{% hphoto victim.photo_vic_fn %}')">
@@ -41,7 +41,7 @@
       </div>
 
         <div class="names">
-          <h5 style="margin: 0;"><a href="/profile/{{victim.record_id}}">{{victim.victim_name}}</a></h5>
+          <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{{victim.victim_name}}</a></h5>
           {% if victim.victim_disappeared_killed == 2 %}
             Extrajudicial execution,
           {% endif %}
