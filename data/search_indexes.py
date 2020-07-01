@@ -4,9 +4,10 @@ from .models import *
 
 class DataIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(document=True, use_template=True)
-    record_id = indexes.IntegerField(model_attr='record_id', null=True)
+    record_id = indexes.CharField(model_attr='record_id', null=True)
     victim_name = indexes.CharField(model_attr='victim_name', null=True)
     village_name = indexes.CharField(model_attr='village_name', null=True)
+    village_name_pa = indexes.CharField(model_attr='village_name_pa', null=True)
     photo_vic_fn = indexes.CharField(model_attr='photo_vic_fn', null=True)
     victim_disappeared_killed = indexes.IntegerField(model_attr='victim_disappeared_killed', null=True)
     timeline_start = indexes.CharField(model_attr='timeline_start', null=True)
@@ -28,6 +29,7 @@ class DataIndex(indexes.SearchIndex, indexes.Indexable):
 class VillageIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(document=True, use_template=True)
     village_name = indexes.EdgeNgramField(model_attr='village_name', null=True)
+    village_name_pa = indexes.EdgeNgramField(model_attr='village_name_pa', null=True)
     vid = indexes.CharField(model_attr='vid', null=True)
     tehsil = indexes.CharField(model_attr='tehsil', null=True)
     district = indexes.CharField(model_attr='district', null=True)
