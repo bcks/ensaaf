@@ -12829,5 +12829,5 @@
 { "NAME": "Dera Bassi", "NAME_PA": "ਡੇਰਾ ਬਸੀ", "SUBDIST": "Dera Bassi", "DIST": "Patiala", "CODE": "0317000541712000","coord": [ 76.8622081816464, 30.589702495013 ] },
 { "NAME": "Bhankharpur", "NAME_PA": "ਭਾਂਖਰਪੁਰ", "SUBDIST": "Dera Bassi", "DIST": "Patiala", "CODE": "0317000541713000","coord": [ 76.8349139045111, 30.6096702900814 ] },
 { "NAME": "Zirakpur", "NAME_PA": "ਜ਼ੀਰਕਪੁਰ", "SUBDIST": "Dera Bassi", "DIST": "Patiala", "CODE": "0317000541714000","coord": [ 76.8280192069627, 30.6511962393216 ] },
-{ "NAME": "Chandigarh", "NAME_PA": "", "SUBDIST": "Chandigarh", "DIST": "Chandigarh", "CODE": "04010000800286","coord": [ 76.768066, 30.741482 ] }
+{ "NAME": "Chandigarh", "NAME_PA": "ਚੰਡੀਗੜ੍ਹ", "SUBDIST": "Chandigarh", "DIST": "Chandigarh", "CODE": "04010000800286","coord": [ 76.768066, 30.741482 ] }
 ]
