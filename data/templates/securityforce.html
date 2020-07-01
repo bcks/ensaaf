@@ -50,23 +50,33 @@
     <hr>
   {% endif %}
 
-  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} directly implicating {{name}} in abduction/disappearance:</p>
+  {% if request.LANGUAGE_CODE == 'pa' %}
+    <p class="m-2">ਗੈਰ ਕਾਨੂੰਨੀ ਹਿਰਾਸਤ/ਲਾਪਤਾ ਦੇ {{stats.total|numpa}} ਦਰਜ ਕੀਤੇ ਗਏ ਕੇਸ ਜੋ {% trans name %} ਵੱਲ ਸਿੱਧਾ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ:</p>
+  {% else %}
+    <p class="m-2">{{stats.total}} documented cases directly implicating {{name}} in abduction/disappearance:</p>
+  {% endif %}
+
 
   {% regroup victims.all by district as district_list %}
 
   {% for district in district_list %}
     {% if forloop.first %}
       <ul>{% endif %}
-        <li><a href="#{{district.grouper|default_if_none:"Location Withheld"|slugify}}">{% trans district.grouper|default_if_none:"Location Withheld"  %}</a></li>
-    {% if forloop.last %}</ul>{% endif %}        
+        {% with thisname=district.grouper|default_if_none:"Location Withheld" %}     
+        <li><a href="#{{district.grouper|default_if_none:"Location Withheld"|slugify}}">{% trans thisname %}</a></li>
+        {% endwith %}
+      {% if forloop.last %}</ul>{% endif %}        
   {% endfor %}
   
+
 
   {% for district in district_list %}
     <div class="row">
       <div class="col-sm-12 col-md m-2">
           <hr>
-        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{% trans district.grouper|default_if_none:"Location Withheld"  %} {% if district.grouper != None %}{% trans 'District' %}{% endif %}</h2>
+        {% with thisname=district.grouper|default_if_none:"Location Withheld" %}     
+        <h2><a name="{{district.grouper|default_if_none:"Location Withheld"|slugify}}"></a>{% trans thisname %} {% if district.grouper != None %}{% trans 'District' %}{% endif %}</h2>
+        {% endwith %}
       </div>
     </div>
     
@@ -105,13 +115,18 @@
 
   {% endfor %}
 
-  
+
   </div>
   
   
   <div class="col-sm-6 border-left">
     
+  {% if request.LANGUAGE_CODE == 'pa' %}
+    <p class="m-2">ਕੇਸਾਂ ਦੇ ਮੁੱਖ ਅੰਕੜੇ ਜੋ {% trans name %} ਵੱਲ ਸਿੱਧਾ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ:</p>
+  {% else %}
     <p class="m-2-top">Key statistics of cases directly implicating {{name}}:</p>
+  {% endif %}
+    
 
     {% include 'stats.html' %}
 
@@ -125,7 +140,7 @@
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
-      <p>No documented cases directly implicating {{name}}.</p>
+      <p>{% blocktrans with thisname=name %}No documented cases directly implicating {{thisname}}.{% endblocktrans %}</p>
     </div>
   </div>
 
