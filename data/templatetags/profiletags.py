@@ -304,14 +304,14 @@ def hdate(var):
   if '/' in var and '-' in var:
     var = var.replace('/','-')
     parts = var.split('-')
-    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', ' +  str(parts[2]) + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + str(int(parts[4])) + ',  ' +  yearpa(parts[5])
+    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', ' +  yearpa(parts[2]) + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + numpa(int(parts[4])) + ',  ' +  yearpa(parts[5])
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in var:
     var = var.replace(' ','')
     parts = var.split('-')
-    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + str(int(parts[0])) + ', ' +  str(parts[2]) + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + str(int(parts[3])) + ',  ' +  yearpa(parts[5])
+    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', ' +  yearpa(parts[2]) + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + numpa(int(parts[3])) + ',  ' +  yearpa(parts[5])
 
   # 23-07-1991
   #    pattern => '%d-%m-%Y',
@@ -711,9 +711,6 @@ def hso_approached_type(v1, v2, v3, v4, v5, v6, v7, other):
 
 
 
-isascii = lambda s: len(s) == len(s.encode())
-
-
 
 def translate_village_by_name(value):
     if value:
@@ -730,6 +727,10 @@ def translate_village_by_name(value):
 
 
 
+isascii = lambda s: len(s) == len(s.encode())
+
+
+
 @register.simple_tag()
 def hadd_spaces(value):
   if value == None:
@@ -738,9 +739,8 @@ def hadd_spaces(value):
   s = ', '
   for idx, item in enumerate(terms):
     terms[idx] = _( terms[idx].strip() )
-    if isascii( terms[idx] ):
-      terms[idx] = translate_village_by_name( terms[idx] )
-      print( terms[idx] , isascii( terms[idx] ) )
+    if (get_language() == 'pa') and isascii( terms[idx] ):
+        terms[idx] = translate_village_by_name( terms[idx] )
   return s.join(terms)
 
 
