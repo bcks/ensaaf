@@ -9,6 +9,7 @@ from django.core.cache import cache
 from django.contrib import messages
 from django.db.models import OuterRef, Subquery, Count, Sum, F, Q, DateField
 from django.db.models.functions import Trunc
+from django.http import Http404
 from django.template.defaulttags import register
 from django.views.decorators.cache import cache_page
 from django.urls import reverse
@@ -218,8 +219,12 @@ def change(request):
 
 @cache_page(60 * 60)
 def profile(request, record_id=None):
-    queryset = Data.objects.filter(record_id=record_id)
-    victim = queryset[:1].get()
+    try:
+      queryset = Data.objects.filter(record_id=record_id)
+      victim = queryset[:1].get()
+    except Exception as e:
+        raise Http404("Profile was not found")
+
     if victim.village_id:
       try:
         village = Villages.objects.filter(vid=victim.village_id)[:1].get()
