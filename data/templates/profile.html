@@ -892,7 +892,15 @@
       <p class="kicker dots">{% trans 'Security officials approached' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>{% hyes_no victim.security_officials_apprchd %}{% if victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or  victim.so_approached_other %}, {% endif %}{% autoescape off %}{% hso_approached_type  victim.so_approached_type_1  victim.so_approached_type_2 victim.so_approached_type_3 victim.so_approached_type_4  victim.so_approached_type_5 victim.so_approached_type_6 victim.so_approached_type_7  victim.so_approached_other %}{% endautoescape %}{% if  victim.so_approached_loc %}, {% trans 'from' %} {% hadd_spaces victim.so_approached_loc|uncensus %}{% endif %}</p>
+      <p>{% hyes_no victim.security_officials_apprchd %}{% if victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or  victim.so_approached_other %}, {% endif %}{% autoescape off %}{% hso_approached_type  victim.so_approached_type_1  victim.so_approached_type_2 victim.so_approached_type_3 victim.so_approached_type_4  victim.so_approached_type_5 victim.so_approached_type_6 victim.so_approached_type_7  victim.so_approached_other %}{% endautoescape %}{% if  victim.so_approached_loc %}, 
+      {% if request.LANGUAGE_CODE != 'pa' %}
+        from
+      {% endif %}
+      {% hadd_spaces victim.so_approached_loc|uncensus %}
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        {% trans 'from' %}      
+      {% endif %}
+      {% endif %}</p>
     </div>
   {% endif %}
   {% endif %}
