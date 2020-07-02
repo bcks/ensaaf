@@ -560,6 +560,7 @@ def get_tehsil_list():
         return messages.warning("Exception get_tehsil_list:"%e)
         return None
      
+     
 def get_district_list():
     district_list = cache.get("district_list")
     if district_list:
