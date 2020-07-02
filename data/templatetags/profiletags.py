@@ -3,6 +3,7 @@ import numbers
 from django import template
 from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
+from ..models import *
 
 register = template.Library()
 
@@ -61,7 +62,8 @@ def numpa(number_string):
         return number_string
       except ValueError:       
         return number_string
-        
+
+
 
 @register.filter()
 def yearpa(number_string):
@@ -76,24 +78,143 @@ def yearpa(number_string):
       return number_string
 
 
+
 @register.filter(name='uncensus')
 def uncensus(value):
     return re.sub(r'([0123456789.]+)-','', value)
 
 
 
-### moved to views
+def get_village_name_pa(value):
+    if value:
+      try:
+        village_name = Villages.objects.filter(vid=value).values('village_name_pa')[:1].get()
+        return village_name['village_name_pa']
+      except Exception as e:
+        return None        
+    else:
+      return None
 
-#@register.simple_tag()
-#def hvictim_address_other(value):
 
-#@register.filter(name='censuslink')
-#def censuslink(value):
 
-#@register.filter(name='cremationlink')
-#def cremationlink(value):
+@register.simple_tag()
+def hvictim_address_other(value):
+  if value == None:
+    return value
+  str = value.split('_')
+  str = str[0]
+  p = re.compile(r'([0123456789.]+)-')
+  m = p.search(str)
+  vname = re.sub(r'([0123456789.]+)-','', str)
+  if m:
+    census_id = m.group(1)
+    if get_language() == 'pa':
+      vname = get_village_name_pa(census_id)
+    try:
+      village = Villages.objects.filter(vid=census_id)[:1].get()
+      
+      if village.district == 'Chandigarh':
+        return '<a href="' + \
+          reverse('village', args=(census_id,)) + '">' + vname + '</a>'
+      else:      
+        return '<span define="' + _('Village/town/city') + '"><a href="' + \
+          reverse('village', args=(census_id,)) + '">' + vname + '</a></span>, '\
+          '<span define="' + _('Subdistrict') + '"><a href="' + \
+          reverse('tehsil', args=(village.tehsil_id,)) + '">' + \
+          _(village.tehsil) + '</a></span>, '\
+          '<span define="' + _('District') + '"><a href="'  + reverse('district', args=(village.district_id,)) + '">' + _(village.district) + '</a></span>'
+
+    except Villages.DoesNotExist:
+      str = re.sub(r'([0123456789.]+)-','', str)
+      return str
+  else:
+    str = re.sub(r'([0123456789.]+)-','', str)
+    return str
+
+
+  
+@register.filter(name='censuslink')
+def censuslink(value):
+          
+    if value == None:
+      return None
+
+    lang = '/' + str(get_language())
+    lang = lang.replace('/en-us','')
     
+    if "," in value:
+      # split on comma
+      parts = value.split(',')
+    
+      # make href from each census-ed name
+      regexp = re.compile(r'([0123456789]+)-')
+      newparts = []
+      for part in parts:
+        if regexp.search(part):
+          census_id = regexp.search(part).group(1)
+          vname = re.sub(r'([0123456789.]+)-','', part)
+          if lang == '/pa':
+            vname = get_village_name_pa(census_id)
+          newparts.append(
+            '<a href="'+lang+'/locality/' + census_id  + '">' + \
+             vname + \
+             '</a>')
+        else:
+          newparts.append(part)
 
+      s = ", ";
+      return s.join(newparts)
+
+    elif "-" in value:
+      # split on dash
+      parts = value.split('-')
+    
+      # make href from each census-ed name
+      regexp = re.compile(r'([0123456789]+)')
+      newparts = ''
+      
+      if regexp.search(parts[0]):
+        census_id = parts[0]
+        vname = parts[1]
+        if lang == '/pa':
+          vname = get_village_name_pa(census_id)
+        newparts = '<a href="'+lang+'/locality/' + census_id  + '">' + \
+           vname + '</a>'
+      return newparts
+
+    return value
+
+
+
+@register.filter(name='cremationlink')
+def cremationlink(value):
+    
+    if value == None:
+      return None
+
+    lang = '/' + str(get_language())
+    lang = lang.replace('/en-us','')
+    
+    # split on comma
+    parts = value.split(',')
+    
+    # make href from each census-ed name
+    regexp = re.compile(r'([0123456789]+)-')
+    newparts = []
+    for part in parts:
+      if regexp.search(part):
+        census_id = regexp.search(part).group(1)
+        vname = re.sub(r'([0123456789.]+)-','', part)
+        if lang == '/pa':
+          vname = get_village_name_pa(census_id)
+        newparts.append(
+          '<a href="'+lang+'/cremation/' + census_id  + '">' + \
+           vname + \
+           '</a>')
+
+    s = ", ";
+    return s.join(newparts)
+    
 
 
 @register.simple_tag()
@@ -120,7 +241,6 @@ def hyes_no_na(var):
       return var
     opt = ["", _("Yes"), _("No"), _('Don’t know'), "", "", "", "", "", _('N/A')]
     return opt[var]
-
 
 
 
@@ -168,6 +288,7 @@ def hdate_link(var):
     return _(' on ') + _(monthNames[ parts[0] ]) + ' ' + numpa( int(parts[1]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
 
 
+
 @register.simple_tag()
 def hdate(var):
   if (var == 'Don\'t know'):
@@ -176,7 +297,6 @@ def hdate(var):
     return ', ' + _('date unknown')
   if (var == None):
     return ', ' + _('date unknown')
-
 
   # 09/20/1988-10/05/1988
   #      pattern => '%m/%d/%Y',
@@ -226,6 +346,7 @@ def hdateslash(start, end):
     return yearpa(start)
   else:
     return yearpa(start) + '-' + yearpa(end)
+
 
 
 @register.simple_tag()
@@ -322,9 +443,13 @@ def smallparen(value):
     value = re.sub('\)',')</div>', value)
     return value
 
+
+
 @register.filter(name='unparen')
 def unparen(value):
     return re.sub(r' \(.+\)','', value)
+
+
 
 @register.filter(name='lowercaselocationwithheld')
 def lowercaselocationwithheld(value):
@@ -355,6 +480,7 @@ def hvictim_militant_reason(v1, v2, v3, v4, v5, v6, v7, v8, other):
       return s.join(groups)
   else:
       return ''
+
 
 
 @register.simple_tag()
@@ -584,12 +710,36 @@ def hso_approached_type(v1, v2, v3, v4, v5, v6, v7, other):
 
 
 
+isascii = lambda s: len(s) == len(s.encode())
+
+
+
+def translate_village_by_name(value):
+    if value:
+      try:
+        village_name = Villages.objects.filter(village_name=value).values('village_name_pa')[:1].get()
+        if village_name:
+          return village_name['village_name_pa']
+        else:
+          return value
+      except Exception as e:
+        return value        
+    else:
+      return value
+
+
+
 @register.simple_tag()
 def hadd_spaces(value):
   if value == None:
-    return value
+    return _(value)
   terms = value.split(',')
   s = ', '
+  for idx, item in enumerate(terms):
+    terms[idx] = _( terms[idx].strip() )
+    if isascii( terms[idx] ):
+      terms[idx] = translate_village_by_name( terms[idx] )
+      print( terms[idx] , isascii( terms[idx] ) )
   return s.join(terms)
 
 
@@ -947,6 +1097,8 @@ def percent(item1, total):
     except ValueError as e:
       return ''
 
+
+
 @register.simple_tag()
 def percentpa(item1, total):
     if total == 0:
@@ -960,5 +1112,4 @@ def percentpa(item1, total):
 @register.simple_tag()
 def dump(var):
     return vars(var)
-
 

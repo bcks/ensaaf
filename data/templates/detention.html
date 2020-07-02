@@ -4,7 +4,7 @@
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Documented cases affiliated with {{facilityname|uncensus|title}}{% endblock %}
+{% block title %}{% blocktrans with thisfacility=facilityname|uncensus|title %}Documented cases affiliated with {{thisfacility}}{% endblocktrans %}{% endblock %}
 
 {% block content %}
 
@@ -48,7 +48,7 @@
     {%if tehsil.grouper %}
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        <h5>{{ tehsil.grouper|default_if_none:""  }} Subdistrict</h5>
+        <h5>{{ tehsil.grouper|default_if_none:""  }} {% trans 'Subdistrict' %}</h5>
       </div>
     </div>
     {% endif %}
@@ -56,7 +56,7 @@
     {% for victim in tehsil.list %}
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        <h5>{{ tehsil.grouper|default_if_none:""  }} Subdistrict</h5>
+        <h5>{{ tehsil.grouper|default_if_none:""  }} {% trans 'Subdistrict' %}</h5>
       </div>
     </div>
 
@@ -67,7 +67,7 @@
   
       <strong><a href="{% url 'profile' victim.record_id %}">{{victim.victim_name}}</a></strong>
       {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        {% if victim.victim_disappeared_killed  %}{% if victim.victim_disappeared_killed == 1 %}{% blocktrans with thisage=victim.victim_age|default:"unknown"|numpa %}age {{thisage}} at time of disappearance{% endblocktrans %}{% endif %}{% if victim.victim_disappeared_killed == 2 %}{% blocktrans with thisage=victim.victim_age|default:"unknown"|numpa %}age {{thisage}} at time of extrajudicial execution{% endblocktrans %}{% endif %}{% endif %}{% endif %}{% endif %}
-      <br>{% if victim.village_name_checked %}<a href="{% url 'village' victim.village_id %}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="/tehsil/{{victim.tehsil_id}}">{{victim.tehsil}}</a>{% endif %}
+      <br>{% if victim.village_name_checked %}<a href="{% url 'village' victim.village_id %}">{{victim.village_name}}</a>{% else %}{{victim.village_name}}{% endif %}{% if victim.tehsil %}, <a href="{% url 'tehsil' victim.tehsil_id %}">{% trans victim.tehsil %}</a>{% endif %}
 
       </div>
     </div>
@@ -84,7 +84,7 @@
   
   <div class="col-sm-6 border-left">
     
-    <p class="m-2-top">Key statistics for cases for {{facilityname|uncensus|title}}:</p>
+    <p class="m-2-top">{% blocktrans with thisfacility=facilityname|uncensus|title %}Key statistics for cases for {{thisfacility}}.{% endblocktrans %}</p>
 
     {% include 'stats.html' %}
 
@@ -99,7 +99,7 @@
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
 
-      <p>No documented cases for {{facilityname|uncensus}}.</p>
+      <p>{% blocktrans with thisfacility=facilityname|uncensus %}No documented cases for {{thisfacility}}.{% endblocktrans %}</p>
 
     </div>
   </div>
