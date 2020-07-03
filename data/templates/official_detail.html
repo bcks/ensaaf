@@ -129,7 +129,6 @@
         function makeList(data, selector) {
           var html = '<ul>';
           for (var i in data) {
-//            html += '<li>'+ data[i].pk +' <a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
             html += '<li><a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
 
             var thisTime = {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000, "record_id": data[i].pk }};
@@ -339,12 +338,15 @@
 
       {% autoescape off %}
       <script>
-      var abductions = {% dossier_abduction 'S0001' %};
-      var killing = {% dossier_by_id "1068" %};
-      var oversight = abductions.concat(killing);
+      
+      var oversight = {% dossier_abduction 'S0001' %};
       
       makeList( oversight, '#d10');
-      $('#abduction_count').html( numpa(oversight.length) );
+      {% if request.LANGUAGE_CODE == 'pa' %}
+        $('#abduction_count').html( numpa(oversight.length) );
+      {% else %}
+        $('#abduction_count').html( oversight.length );
+      {% endif %}
       </script>
       {% endautoescape %}
       

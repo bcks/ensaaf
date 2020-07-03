@@ -209,7 +209,6 @@
 
 <script type="text/javascript">
 
-
 /*
 // old, HTML year buttons
 for (i = 1984; i<=2000; i++) {
@@ -222,16 +221,6 @@ $('#year_buttons button').on('click', function(e) {
 });
 */
 
-function numpa(num) {
-    var num = num.toString();
-    var dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫','6':'੬','7':'੭','8':'੮','9':'੯'};
-    var output = [];
-    for (let i = 0; i < num.length; i++) {
-      output.push( dic[ num[i] ] );
-    }
-    return output.join('');
-}
-
 function numberWithCommas(x) {
   {% if request.LANGUAGE_CODE == 'pa' %}
   return numpa( x.toString() );
@@ -239,8 +228,6 @@ function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   {% endif %}
 }
-
-
 
 var timeCapsule = [{% for o in all %}{"v":{"id":"{{o.village_id|default:"0"}}","t":{{o.timeline|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}];
 
