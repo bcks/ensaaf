@@ -48,11 +48,13 @@
         <li class="nav-item"><a class="nav-link" href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{%endif%}/forthcoming" title="{% trans "Forthcoming" %}">{% trans "Forthcoming" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/crimesagainsthumanity" title="{% trans "Support This Project" %}">{% trans "Donate" %}</a></li>
         <li class="nav-item"><a class="nav-link" data-toggle="collapse" id="search-toggle" href="#search-form" title="{% trans "Search" %}">{% trans "Search" %}</a></li>
+{% comment %}
         {% if request.LANGUAGE_CODE == 'pa' %}
           <li class="nav-item"><a class="nav-link" href="{% change_lang 'en' %}">English</a></li>
         {% else %}
           <li class="nav-item"><a class="nav-link" href="{% change_lang 'pa' %}">ਪੰਜਾਬੀ</a></li>
         {% endif %}
+{% endcomment %}
       </ul>
     </div>
 
