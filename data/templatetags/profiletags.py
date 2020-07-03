@@ -29,6 +29,24 @@ def sex(var):
   return
 
 
+@register.filter(name='translate')
+def translate(text):
+  try:    
+    return _(text)
+  except ValueError:
+    return text
+
+
+@register.filter(name='vnametranslate')
+def vnametranslate(village):
+  try:    
+    if (get_language() == 'pa'):
+      return village.village_name_pa
+    else:
+      return village.village_name
+  except ValueError:
+    return text
+
 
 
 @register.simple_tag(takes_context=True)

@@ -3,27 +3,28 @@
 {% load i18n %}
 {% load profiletags %}
 
-{% block title %}Enforced disappearances &amp; extrajudicial executions in {{village.village_name}}, {{village.tehsil}}, {{village.district}} District{% endblock %}
+{% block title %}{% blocktrans with thisvillage=village|vnametranslate thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District{% endblocktrans %}{% endblock %}
 
 {% block head %}
-  <meta name="description" content="Enforced disappearances &amp; extrajudicial executions in {{village.village_name}}, {{village.tehsil}}, {{village.district}} District, based on data collected through primary source interviews." />
 
-  <meta itemprop="name" content="Enforced Disappearances &amp; Extrajudicial Executions in {{village.village_name}}, {{village.tehsil}}, {{village.district}} District" />
-  <meta itemprop="description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{village.village_name}}, {{village.tehsil}}, {{village.district}} District, based on data collected through primary source interviews." />
+  <meta name="description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
+
+  <meta itemprop="name" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District{% endblocktrans %}" />
+  <meta itemprop="description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta itemprop="image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@ensaaf" />
-  <meta name="twitter:title" content="Enforced disappearances &amp; extrajudicial executions in {{village.village_name}}, {{village.tehsil}}, {{village.district}} District" />
-  <meta name="twitter:description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{village.village_name}}, {{village.tehsil}}, {{village.district}} District, based on data collected through primary source interviews." />
+  <meta name="twitter:title" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District{% endblocktrans %}" />
+  <meta name="twitter:description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta name="twitter:creator" content="@ensaaf" />
   <meta name="twitter:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
-  <meta property="og:title" content="Enforced disappearances &amp; extrajudicial executions in {{village.village_name}}, {{village.tehsil}}, {{village.district}} District" />
+  <meta property="og:title" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District{% endblocktrans %}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://data.ensaaf.org" />
   <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
-  <meta property="og:description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{village.village_name}}, {{village.tehsil}}, {{village.district}} District, based on data collected through primary source interviews." />
+  <meta property="og:description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
 
   <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
@@ -37,7 +38,7 @@
 
 <div class="row">
   <div class="col-sm-8">
-    <h1 style="margin-bottom: 1rem;">{%autoescape off%}{% if request.LANGUAGE_CODE == 'pa' %}{{village.village_name_pa|smallparen}}{% else %}{{village.village_name|smallparen}}{% endif %}{%endautoescape%}</h1>
+    <h1 style="margin-bottom: 1rem;">{%autoescape off%}{{village|vnametranslate|smallparen}}{%endautoescape%}</h1>
     {% if village.district != 'Chandigarh' %}
       <p><span class="kicker">{% trans 'Subdistrict' %}:</span> <a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %}</a> &nbsp; <span class="kicker">{% trans 'District' %}:</span> <a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></p>
     {% endif %}
@@ -65,17 +66,10 @@
       <div class="row">
         <div class="col-12"><br>
 
-        {% if request.LANGUAGE_CODE == 'pa' %}
-          <h5>{{village.village_name|unparen}} ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਗਏ ਕੇਸਾਂ {{victims.qs|length|numpa}} ਦਾ {{total_victims|numpa}} ਪ੍ਰਦਰਸ਼ਨ</h5>
+          <h5>{% blocktrans with thisdisplaying=victims.qs|length|numpa thistotal=total_victims|numpa thisvillage=village|vnametranslate|unparen %}Displaying {{thisdisplaying}} of {{thistotal}} documented cases in {{thisvillage}}:{% endblocktrans %}</h5>
           <hr>
-          <p><a href="{% url 'village' vid %}">{{village.village_name|unparen}} ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਸਾਰੇ ਕੇਸ ਦਿਖਾਓ।</p>
+          <p><a href="{% url 'village' vid %}">{% blocktrans with thisvillage=village|vnametranslate|unparen %}Show all documented cases in {{thisvillage}}{% endblocktrans %}</a></p>
           <hr>
-        {% else %}          
-          <h5>Displaying {{victims.qs|length}} of {{total_victims}} documented cases in {{village.village_name|unparen}}:</h5>
-          <hr>
-          <p><a href="{% url 'village' vid %}">Show all documented cases in {{village.village_name|unparen}}</a></p>
-          <hr>
-        {% endif %}
 
         </div>
       </div>
@@ -99,7 +93,7 @@
 
             <div class="names">
               <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{{victim.victim_name}}</a></h5>
-              {% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}<br>
+              {{victim|vnametranslate}}<br>
               {% if victim.victim_disappeared_killed == 2 %}
                 {% trans 'Extrajudicial execution' %},
               {% endif %}

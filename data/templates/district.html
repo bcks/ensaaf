@@ -8,24 +8,24 @@
 
 
 {% block head %}
-  <meta name="description" content="{% blocktrans with thisdistrict=district.0.district %}Enforced Disappearances &amp; Extrajudicial Executions in {{thisdistrict}} District{% endblocktrans %}, based on data collected through primary source interviews." />
+  <meta name="description" content="{% blocktrans with thisdistrict=district.0.district|translate %}Enforced Disappearances &amp; Extrajudicial Executions in {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
 
-  <meta itemprop="name" content="{% blocktrans with thisdistrict=district.0.district %}Enforced Disappearances &amp; Extrajudicial Executions in {{thisdistrict}} District{% endblocktrans %}" />
-  <meta itemprop="description" content="{% blocktrans with thisdistrict=district.0.district %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
+  <meta itemprop="name" content="{% blocktrans with thisdistrict=district.0.district|translate %}Enforced Disappearances &amp; Extrajudicial Executions in {{thisdistrict}} District{% endblocktrans %}" />
+  <meta itemprop="description" content="{% blocktrans with thisdistrict=district.0.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta itemprop="image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@ensaaf" />
-  <meta name="twitter:title" content="{% blocktrans with thisdistrict=district.0.district %}Enforced Disappearances &amp; Extrajudicial Executions in {{thisdistrict}} District{% endblocktrans %}" />
-  <meta name="twitter:description" content="{% blocktrans with thisdistrict=district.0.district %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
+  <meta name="twitter:title" content="{% blocktrans with thisdistrict=district.0.district|translate %}Enforced Disappearances &amp; Extrajudicial Executions in {{thisdistrict}} District{% endblocktrans %}" />
+  <meta name="twitter:description" content="{% blocktrans with thisdistrict=district.0.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta name="twitter:creator" content="@ensaaf" />
   <meta name="twitter:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
-  <meta property="og:title" content="{% blocktrans with thisdistrict=district.0.district %}Enforced Disappearances &amp; Extrajudicial Executions in {{thisdistrict}} District{% endblocktrans %}" />
+  <meta property="og:title" content="{% blocktrans with thisdistrict=district.0.district|translate %}Enforced Disappearances &amp; Extrajudicial Executions in {{thisdistrict}} District{% endblocktrans %}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://data.ensaaf.org" />
   <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
-  <meta property="og:description" content="{% blocktrans with thisdistrict=district.0.district %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
+  <meta property="og:description" content="{% blocktrans with thisdistrict=district.0.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
 {% endblock %}
 

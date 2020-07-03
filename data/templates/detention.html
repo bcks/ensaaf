@@ -21,7 +21,7 @@
 <div class="row keyword">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} affiliated with {{facilityname|uncensus|title}}:</p>
+  <p class="m-2">{{stats.total|numpa}} {% blocktrans with thisfacility=facilityname|uncensus|title %}documented cases affiliated with {{thisfacility}}:{% endblocktrans %}</p>
 
   {% regroup victims.all by district as district_list %}
 

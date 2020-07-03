@@ -4,7 +4,7 @@
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Documented cases implicating security forces based in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}{% endblock %}
+{% block title %}{% if request.LANGUAGE_CODE == 'pa' %}{% blocktrans with thisname=name_pa %}Documented cases implicating security forces based in {{thisname}}{% endblocktrans %}{% else %}Documented cases implicating security forces based in {{name}}{% endif %}{% endblock %}
 
 {% block content %}
 
@@ -21,7 +21,7 @@
 <div class="row keyword">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} implicating security forces based in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}:</p>
+  <p class="m-2">{% if request.LANGUAGE_CODE == 'pa' %}{{stats.total|numpa}} ਦਰਜ ਕੀਤੇ ਗਏ ਕੇਸ ਜਿਹੜੇ {{name_pa}} ਦੇ ਸੁਰੱਖਿਆ ਬਲਾਂ ਵੱਲ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ:{% else %}{{stats.total|numpa}} documented case{{stats.total|pluralize}} implicating security forces based in {{name}}:{% endif %}</p>
 
   {% regroup victims.all by district as district_list %}
 
