@@ -63,6 +63,7 @@ def calculate_stats(all):
     for y in yearlist:
       years[y] = all.filter(timeline__year=y).count()
     years = sorted(years.items(), key=operator.itemgetter(0))
+    years.append( ('Date Unknown', all.filter(timeline=None).count() ) )
     
     
     
