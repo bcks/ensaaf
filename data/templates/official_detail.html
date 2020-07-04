@@ -129,7 +129,7 @@
         function makeList(data, selector) {
           var html = '<ul>';
           for (var i in data) {
-            html += '<li><a href="/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
+            html += '<li><a href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{% endif %}/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
 
             var thisTime = {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000, "record_id": data[i].pk }};
             var thisProfile =  { "id": data[i].pk, "name": data[i].fields['victim_name'], "village": data[i].fields['village_name'], "date": new Date(data[i].fields['timeline']).valueOf() };
