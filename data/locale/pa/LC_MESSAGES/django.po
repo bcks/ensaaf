@@ -1106,7 +1106,7 @@ msgstr "ਸਹਿ-ਪੀੜਤ ਦੀ ਸੂਚੀ ਭਵਿੱਖ ਵਿੱਚ 
 
 #: data/templates/profile.html:1126
 msgid "Report additional information on this case"
-msgstr "ਇਸ ਕੇੇਸ ਨਾਲ ਸੰਬੰਧਿਤ ਹੋਰ ਜਾਣਕਾਰੀ ਸਾਂਝੀ ਕਰੋ"
+msgstr "ਇਸ ਕੇਸ ਨਾਲ ਸੰਬੰਧਤਿ ਹੋਰ ਜਾਣਕਾਰੀ ਸਾਂਝੀ ਕਰੋ"
 
 #: data/templates/profile.html:1127
 msgid "Report a new case"
