@@ -29,6 +29,12 @@ def sex(var):
   return
 
 
+@register.simple_tag(name='concatenate')
+def concatenate(v1, v2):
+  concatenated = str(v1) + ' ' + str(v2)
+  return _( concatenated )
+
+
 @register.filter(name='translate')
 def translate(text):
   try:    
