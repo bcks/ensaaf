@@ -69,11 +69,11 @@
             </div>
             <div class="col-sm-10">
               {% if victim.village_id|add:"0" > 0 and village.tehsil%}
-                <p><span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %},</a></span>
+                <p><span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %},</a></span>
                 <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
                 <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></span></p>
               {% else %}
-                <p>{% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</p>
+                <p>{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</p>
               {% endif %}
             </div>
           </div>
@@ -893,11 +893,11 @@
     </div>
     <div class="col-sm-6">
       <p>{% hyes_no victim.security_officials_apprchd %}{% if victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or  victim.so_approached_other %}, {% endif %}{% autoescape off %}{% hso_approached_type  victim.so_approached_type_1  victim.so_approached_type_2 victim.so_approached_type_3 victim.so_approached_type_4  victim.so_approached_type_5 victim.so_approached_type_6 victim.so_approached_type_7  victim.so_approached_other %}{% endautoescape %}{% if  victim.so_approached_loc %}, 
-      {% if request.LANGUAGE_CODE != 'pa' %}
+      {% if request.LANGUAGE_CODE != 'pb' %}
         from
       {% endif %}
       {% hadd_spaces victim.so_approached_loc|uncensus %}
-      {% if request.LANGUAGE_CODE == 'pa' %}
+      {% if request.LANGUAGE_CODE == 'pb' %}
         {% trans 'from' %}      
       {% endif %}
       {% endif %}</p>

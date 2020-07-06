@@ -3,14 +3,14 @@
 {% load humanize %}
 {% load profiletags %}
 
-{% block title %}Victims cremated in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}{% endblock %}
+{% block title %}Victims cremated in {% if request.LANGUAGE_CODE == 'pb' %}{{name_pa}}{% else %}{{name}}{% endif %}{% endblock %}
 
 {% block content %}
 
 
 <div class="row">
   <div class="col-sm-12 col-md m-2">
-    <h1>{% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}</h1>
+    <h1>{% if request.LANGUAGE_CODE == 'pb' %}{{name_pa}}{% else %}{{name}}{% endif %}</h1>
   </div>
 </div>
 
@@ -20,7 +20,7 @@
 <div class="row keyword">
   <div class="col-sm-6">
       
-  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} of victims cremated in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}:</p>
+  <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} of victims cremated in {% if request.LANGUAGE_CODE == 'pb' %}{{name_pa}}{% else %}{{name}}{% endif %}:</p>
 
   {% regroup victims.all by district as district_list %}
 
@@ -77,7 +77,7 @@
   
   <div class="col-sm-6 border-left">
     
-    <p class="m-2-top">Key statistics of cremated in {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}:</p>
+    <p class="m-2-top">Key statistics of cremated in {% if request.LANGUAGE_CODE == 'pb' %}{{name_pa}}{% else %}{{name}}{% endif %}:</p>
 
     {% include 'stats.html' %}
 
@@ -91,7 +91,7 @@
 
   <div class="row">
     <div class="col-sm-12 col-md m-2">   
-      <p>No documented cases implicating the {% if request.LANGUAGE_CODE == 'pa' %}{{name_pa}}{% else %}{{name}}{% endif %}.</p>
+      <p>No documented cases implicating the {% if request.LANGUAGE_CODE == 'pb' %}{{name_pa}}{% else %}{{name}}{% endif %}.</p>
     </div>
   </div>
 

@@ -50,7 +50,7 @@
     <hr>
   {% endif %}
 
-  {% if request.LANGUAGE_CODE == 'pa' %}
+  {% if request.LANGUAGE_CODE == 'pb' %}
     <p class="m-2">ਗੈਰ ਕਾਨੂੰਨੀ ਹਿਰਾਸਤ/ਲਾਪਤਾ ਦੇ {{stats.total|numpa}} ਦਰਜ ਕੀਤੇ ਗਏ ਕੇਸ ਜੋ {% trans name %} ਵੱਲ ਸਿੱਧਾ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ:</p>
   {% else %}
     <p class="m-2">{{stats.total}} documented cases directly implicating {{name}} in abduction/disappearance:</p>
@@ -99,7 +99,7 @@
   
       <strong><a href="{% url 'profile' victim.record_id %}">{{victim.victim_name}}</a></strong>
       {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
-      {% if victim.victim_disappeared_killed  %}{% if victim.victim_disappeared_killed == 1 %}{% blocktrans with thisage=victim.victim_age|default:"unknown"|numpa %}age {{thisage}} at time of disappearance{% endblocktrans %}{% endif %}{% if victim.victim_disappeared_killed == 2 %}{% blocktrans with thisage=victim.victim_age|default:"unknown"|numpa %}age {{thisage}} at time of extrajudicial execution{% endblocktrans %}{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}
+      {% if victim.victim_disappeared_killed  %}{% if victim.victim_disappeared_killed == 1 %}{% blocktrans with thisage=victim.victim_age|default:"unknown"|numpa %}age {{thisage}} at time of disappearance{% endblocktrans %}{% endif %}{% if victim.victim_disappeared_killed == 2 %}{% blocktrans with thisage=victim.victim_age|default:"unknown"|numpa %}age {{thisage}} at time of extrajudicial execution{% endblocktrans %}{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}
       </div>
     </div>
     
@@ -115,7 +115,7 @@
   
   <div class="col-sm-6 border-left">
     
-  {% if request.LANGUAGE_CODE == 'pa' %}
+  {% if request.LANGUAGE_CODE == 'pb' %}
     <p class="m-2">ਕੇਸਾਂ ਦੇ ਮੁੱਖ ਅੰਕੜੇ ਜੋ {% trans name %} ਵੱਲ ਸਿੱਧਾ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ:</p>
   {% else %}
     <p class="m-2-top">Key statistics of cases directly implicating {{name}}:</p>

@@ -46,7 +46,7 @@ def translate(text):
 @register.filter(name='vnametranslate')
 def vnametranslate(village):
   try:    
-    if (get_language() == 'pa'):
+    if (get_language() == 'pb'):
       return village.village_name_pa
     else:
       return village.village_name
@@ -58,7 +58,7 @@ def vnametranslate(village):
 @register.simple_tag(takes_context=True)
 def change_lang(context, lang=None, *args, **kwargs):
     if lang == 'en':
-      return context['request'].path.replace('/pa/','/')    
+      return context['request'].path.replace('/pb/','/')    
     else:
       return '/' + lang + context['request'].path
 
@@ -77,7 +77,7 @@ def numpa(number_string):
     if not_int(number_string):
       number_string = number_string.lstrip('0')
 
-    if (get_language() == 'pa'):
+    if (get_language() == 'pb'):
       if not_int(number_string):
         return _(number_string)
 
@@ -97,9 +97,9 @@ def numpa(number_string):
 @register.filter()
 def yearpa(number_string):
     number_string = str(number_string)
-    if (get_language() == 'pa') and (number_string == 'Date Unknown'):
+    if (get_language() == 'pb') and (number_string == 'Date Unknown'):
         return _('Date Unknown')    
-    if (get_language() == 'pa') and number_string.isdigit():      
+    if (get_language() == 'pb') and number_string.isdigit():      
       dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫',\
       '6':'੬','7':'੭','8':'੮','9':'੯','.':'.',',':','}
       return "".join([dic[c] for c in number_string])
@@ -137,7 +137,7 @@ def hvictim_address_other(value):
   vname = re.sub(r'([0123456789.]+)-','', str)
   if m:
     census_id = m.group(1)
-    if get_language() == 'pa':
+    if get_language() == 'pb':
       vname = get_village_name_pa(census_id)
     try:
       village = Villages.objects.filter(vid=census_id)[:1].get()
@@ -182,7 +182,7 @@ def censuslink(value):
         if regexp.search(part):
           census_id = regexp.search(part).group(1)
           vname = re.sub(r'([0123456789.]+)-','', part)
-          if lang == '/pa':
+          if lang == '/pb':
             vname = get_village_name_pa(census_id)
           newparts.append(
             '<a href="'+lang+'/locality/' + census_id  + '">' + \
@@ -205,7 +205,7 @@ def censuslink(value):
       if regexp.search(parts[0]):
         census_id = parts[0]
         vname = parts[1]
-        if lang == '/pa':
+        if lang == '/pb':
           vname = get_village_name_pa(census_id)
         newparts = '<a href="'+lang+'/locality/' + census_id  + '">' + \
            vname + '</a>'
@@ -234,7 +234,7 @@ def cremationlink(value):
       if regexp.search(part):
         census_id = regexp.search(part).group(1)
         vname = re.sub(r'([0123456789.]+)-','', part)
-        if lang == '/pa':
+        if lang == '/pb':
           vname = get_village_name_pa(census_id)
         newparts.append(
           '<a href="'+lang+'/cremation/' + census_id  + '">' + \
@@ -767,7 +767,7 @@ def hadd_spaces(value):
   s = ', '
   for idx, item in enumerate(terms):
     terms[idx] = _( terms[idx].strip() )
-    if (get_language() == 'pa') and isascii( terms[idx] ):
+    if (get_language() == 'pb') and isascii( terms[idx] ):
         terms[idx] = translate_village_by_name( terms[idx] )
   return s.join(terms)
 

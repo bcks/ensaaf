@@ -46,7 +46,7 @@
 <div class="row keyword">
   <div class="col-sm-6">
       
-  {% if request.LANGUAGE_CODE == 'pa' %}
+  {% if request.LANGUAGE_CODE == 'pb' %}
     <p class="m-2">{{stats.total|numpa}} ਸਾਲ {{year}} ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਕੇਸ</p>
   {% else %}
     <p class="m-2">{{stats.total|numpa}} documented case{{stats.total|pluralize}} in {{year}}:</p>
@@ -95,7 +95,7 @@
       <strong><a href="{% url 'profile' victim.record_id %}">{{victim.victim_name}}</a></strong>
 
       {% if victim.victim_sex %}{% sex victim.victim_sex %}{% endif %}{% if victim.victim_age %}{% if victim.victim_age != "Don't know" %}{% if victim.victim_sex %},{% endif %}        
-        {% if victim.victim_disappeared_killed  %}{% if victim.victim_disappeared_killed == 1 %}{% blocktrans with thisage=victim.victim_age|default:"unknown"|numpa %}age {{thisage}} at time of disappearance{% endblocktrans %}{% endif %}{% if victim.victim_disappeared_killed == 2 %}{% blocktrans with thisage=victim.victim_age|default:"unknown"|numpa %}age {{thisage}} at time of extrajudicial execution{% endblocktrans %}{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pa' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}{% if victim.tehsil %}, <a href="{% url 'tehsil' victim.tehsil_id %}">{% trans victim.tehsil %}</a>{% endif %}
+        {% if victim.victim_disappeared_killed  %}{% if victim.victim_disappeared_killed == 1 %}{% blocktrans with thisage=victim.victim_age|default:"unknown"|numpa %}age {{thisage}} at time of disappearance{% endblocktrans %}{% endif %}{% if victim.victim_disappeared_killed == 2 %}{% blocktrans with thisage=victim.victim_age|default:"unknown"|numpa %}age {{thisage}} at time of extrajudicial execution{% endblocktrans %}{% endif %}{% endif %}{% endif %}{% endif %}{% if victim.village_name_checked %}, <a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}</a>{% else %}{% if victim.village_name %}, {{victim.village_name|lowercaselocationwithheld}} {% endif %}{% endif %}{% if victim.tehsil %}, <a href="{% url 'tehsil' victim.tehsil_id %}">{% trans victim.tehsil %}</a>{% endif %}
 
       </div>
     </div>

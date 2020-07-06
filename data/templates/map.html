@@ -137,7 +137,7 @@
       <select class="form-control" id="district" name="district" onchange="updateMapData()">
         <option value="">{% trans "District" %}</option>
 
-    {% if request.LANGUAGE_CODE == 'pa' %}
+    {% if request.LANGUAGE_CODE == 'pb' %}
         {% for o in districts %}
         <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{{o.district_pa}}</option>
         {% for t in o.subdistricts %}
@@ -232,7 +232,7 @@ function numpa(num) {
 }
 
 function numberWithCommas(x) {
-  {% if request.LANGUAGE_CODE == 'pa' %}
+  {% if request.LANGUAGE_CODE == 'pb' %}
   return numpa( x.toString() );
   {% else %}
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -395,7 +395,7 @@ function updateMap(start, end) {
         return o.CODE.endsWith(keys[i]);        
       });
       if (keys[i] && thisVillage) {
-        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':{% if request.LANGUAGE_CODE == 'pa' %}thisVillage.NAME_PA{% else %}thisVillage.NAME{% endif %}});
+        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':{% if request.LANGUAGE_CODE == 'pb' %}thisVillage.NAME_PA{% else %}thisVillage.NAME{% endif %}});
       }
     }
 
@@ -414,7 +414,7 @@ function updateMap(start, end) {
               markers[key].setRadius(area(d.size));
 
               var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + numberWithCommas(d.size);
-              {% if request.LANGUAGE_CODE == 'pa' %}
+              {% if request.LANGUAGE_CODE == 'pb' %}
                 if (d.size == 1) { tultipText += ' ਪੀੜਤ'; } else { tultipText += ' ਪੀੜਤ'; }
               {% else %}
                 tultipText += ' Victim'; if (d.size > 1) { tultipText += 's'; }
@@ -426,7 +426,7 @@ function updateMap(start, end) {
               markers[key].on('mouseout', function (e) { this.closePopup(); });
               markers[key].on('click', function (e) {
                 var params = $('#form').serialize();
-                document.location.href = {% if request.LANGUAGE_CODE == 'pa' %}'/pa' + {% endif %} this.options.url + '/?' + params;
+                document.location.href = '{% lang %}' + this.options.url + '/?' + params;
               });
 
 
@@ -562,7 +562,7 @@ function makeTimeline() {
         function(d) {
           var formatDate = d3.timeFormat("%Y");
           var year = formatDate(Date.parse(d));
-          {% if request.LANGUAGE_CODE == 'pa' %}
+          {% if request.LANGUAGE_CODE == 'pb' %}
           return numpa(year);
           {% else %}
           return year;

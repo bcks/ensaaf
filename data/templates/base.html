@@ -44,21 +44,21 @@
         <li class="nav-item"><a class="nav-link" href="{% url "perpetrators" %}" title="{% trans "Key Perpetrators" %}">{% trans "Key Perpetrators" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "overview" %}" title="{% trans "Key Statistics" %}">{% trans "Key Statistics" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "villages" %}" title="{% trans "Villages" %}">{% trans "Villages" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{%endif%}/about" title="{% trans "About" %}">{% trans "About" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% if request.LANGUAGE_CODE == 'pa' %}/pa{%endif%}/forthcoming" title="{% trans "Forthcoming" %}">{% trans "Forthcoming" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% lang %}/about" title="{% trans "About" %}">{% trans "About" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% lang %}/forthcoming" title="{% trans "Forthcoming" %}">{% trans "Forthcoming" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/crimesagainsthumanity" title="{% trans "Support This Project" %}">{% trans "Donate" %}</a></li>
         <li class="nav-item"><a class="nav-link" data-toggle="collapse" id="search-toggle" href="#search-form" title="{% trans "Search" %}">{% trans "Search" %}</a></li>
-        {% if request.LANGUAGE_CODE == 'pa' %}
-          <li class="nav-item"><a class="nav-link" href="{% change_lang 'en' %}">English</a></li>
+        {% if request.LANGUAGE_CODE == 'pb' %}
+          <li class="nav-item"><strong><a class="nav-link" href="{% change_lang 'en' %}">English</a></strong></li>
         {% else %}
-          <li class="nav-item"><a class="nav-link" href="{% change_lang 'pa' %}">ਪੰਜਾਬੀ</a></li>
+          <li class="nav-item"><strong><a class="nav-link" href="{% change_lang 'pb' %}">ਪੰਜਾਬੀ</a></strong></li>
         {% endif %}
       </ul>
     </div>
 
     <div class="collapse row" id="search-form">
       <div class="col-12">
-        <form class="form-inline autocomplete-me" method="get" action="{% if request.LANGUAGE_CODE == 'pa' %}/pa{%endif%}/search/">
+        <form class="form-inline autocomplete-me" method="get" action="{% lang %}/search/">
           <input class="form-control mr-2 col-9" name="q" id="id_q" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
           <button class="btn col-2 my-2" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
         </form>

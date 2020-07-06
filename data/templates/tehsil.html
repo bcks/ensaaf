@@ -51,7 +51,7 @@
 
     
 
-    {% if request.LANGUAGE_CODE == 'pa' %}
+    {% if request.LANGUAGE_CODE == 'pb' %}
       <p>{% trans villages.all.0.tehsil %}, {{stats.total|numpa}} {% if villages.all.0.tehsil != 'Chandigarh' %}ਤਹਿਸੀਲ{% endif %} ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਕੇਸ</p>
     {% else %}
       <p>{{stats.total|numpa}} documented cases in {{villages.all.0.tehsil}} {% if villages.all.0.tehsil != 'Chandigarh' %}Subdistrict{% endif %}</p>
@@ -63,9 +63,9 @@
 
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        <a href="{% url 'village' village.vid %}">{% if request.LANGUAGE_CODE == 'pa' %}{{village.village_name_pa}}{% else %}{{village.village_name}}{% endif %}</a>, {{village.data_count|numpa}}
+        <a href="{% url 'village' village.vid %}">{% if request.LANGUAGE_CODE == 'pb' %}{{village.village_name_pa}}{% else %}{{village.village_name}}{% endif %}</a>, {{village.data_count|numpa}}
         {% if forloop.first %} 
-          {% if request.LANGUAGE_CODE == 'pa' %}
+          {% if request.LANGUAGE_CODE == 'pb' %}
             ਦਰਜ ਕੀਤੇ ਕੇਸ
           {% else %}
             case{{village.data_count|pluralize}}
@@ -79,7 +79,7 @@
   </div>
   <div class="col-sm-6 border-left">
 
-    {% if request.LANGUAGE_CODE == 'pa' %}
+    {% if request.LANGUAGE_CODE == 'pb' %}
       <p>{% trans villages.all.0.tehsil %} {% if villages.all.0.tehsil != 'Chandigarh' %}ਤਹਿਸੀਲ{% endif %} ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਕੇਸਾਂ ਦੇ ਮੁੱਖ ਅੰਕੜੇ</p>
     {% else %}
       <p>Key statistics for documented cases in {{villages.all.0.tehsil}} {% if villages.all.0.tehsil != 'Chandigarh' %}Subdistrict{% endif %}</p>
