@@ -66,13 +66,16 @@ def not_int(s):
     try: 
         int(s)
         return False
-    except ValueError:
+    except:
         return True
 
 
 
 @register.filter()
 def numpa(number_string):
+    
+    if number_string == None:
+      return number_string
 
     if not_int(number_string):
       number_string = number_string.lstrip('0')
