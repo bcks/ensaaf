@@ -63,6 +63,7 @@ def change_lang(context, lang=None, *args, **kwargs):
       return '/' + lang + context['request'].path
 
 def not_int(s):
+    s = str(s).replace('-','')
     try: 
         int(s)
         return False
