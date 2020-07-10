@@ -63,7 +63,8 @@ def change_lang(context, lang=None, *args, **kwargs):
       return '/' + lang + context['request'].path
 
 def not_int(s):
-    s = str(s).replace('-','')
+    if "-" in str(s): 
+      s = str(s).replace('-','')    
     try: 
         int(s)
         return False
@@ -79,7 +80,10 @@ def numpa(number_string):
       return number_string
 
     if not_int(number_string):
-      number_string = number_string.lstrip('0')
+      try:
+        number_string = number_string.lstrip('0')
+      except:
+        None
 
     if (get_language() == 'pb'):
       if not_int(number_string):
