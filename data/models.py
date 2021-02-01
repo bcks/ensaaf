@@ -10,6 +10,8 @@ class Data(models.Model):
     victim_name = models.CharField(max_length=256)
     village_name = models.CharField(max_length=256, blank=True, null=True)
     village_name_pa = models.CharField(max_length=256, blank=True, null=True)
+    victim_alias = models.IntegerField(blank=True, null=True)
+    victim_alias_name = models.CharField(max_length=256, blank=True, null=True)
     village_id = models.CharField(max_length=64, blank=True, null=True, unique=True)
     district_id =models.CharField(max_length=8, blank=True, null=True)
     record_id = models.CharField(max_length=8, db_column='record_id', primary_key=True)
@@ -44,6 +46,7 @@ class Data(models.Model):
     victim_employment_9 = models.IntegerField(db_column='victim_employment___9')
     victim_employment_10 = models.IntegerField(db_column='victim_employment___10')
     victim_employment_11 = models.IntegerField(db_column='victim_employment___11')
+    victim_employment_other = models.CharField(max_length=256, blank=True, null=True)
     victim_marital_status = models.IntegerField(blank=True, null=True)
     victim_children = models.CharField(db_column='victim_children', max_length=64, blank=True, null=True)
     victim_religion = models.IntegerField(db_column='victim_religion', blank=True, null=True)
@@ -91,6 +94,8 @@ class Data(models.Model):
     victim_arrest_date = models.CharField(max_length=64, blank=True, null=True)
     #victim_arrest_exact_date = models.IntegerField(blank=True, null=True)
     victim_arrest_location = models.IntegerField(blank=True, null=True)
+    victim_arrest_loc_oth = models.CharField(max_length=256, blank=True, null=True)
+    victim_arrest_loc_vill = models.CharField(max_length=256, blank=True, null=True)
     arrest_security_type_1 = models.IntegerField(db_column='arrest_security_type___1')
     arrest_security_type_2 = models.IntegerField(db_column='arrest_security_type___2')
     arrest_security_type_3 = models.IntegerField(db_column='arrest_security_type___3')
@@ -102,6 +107,7 @@ class Data(models.Model):
     arrest_security_locality = models.IntegerField(db_column='arrest_security_locality', blank=True, null=True)
     securityoff_id_known = models.IntegerField(blank=True, null=True)
     security_forces_uniformed = models.IntegerField(blank=True, null=True)
+    security_forces_civilcloth = models.IntegerField(blank=True, null=True)
     witness_arrest_0 = models.IntegerField(db_column='witness_arrest___0')
     witness_arrest_1 = models.IntegerField(db_column='witness_arrest___1')
     witness_arrest_2 = models.IntegerField(db_column='witness_arrest___2')
@@ -178,6 +184,7 @@ class Data(models.Model):
     security_official_response_12 = models.IntegerField(db_column='security_official_response___12')
     security_official_response_13 = models.IntegerField(db_column='security_official_response___13')
     security_official_response_14 = models.IntegerField(db_column='security_official_response___14')
+    other_so_response = models.CharField(max_length=256, blank=True, null=True)
     court_or_commission = models.IntegerField(blank=True, null=True)
     no_action_pursued_reason_0 = models.IntegerField(db_column='no_action_pursued_reason___0')
     no_action_pursued_reason_1 = models.IntegerField(db_column='no_action_pursued_reason___1')
@@ -186,6 +193,7 @@ class Data(models.Model):
     no_action_pursued_reason_4 = models.IntegerField(db_column='no_action_pursued_reason___4')
     no_action_pursued_reason_5 = models.IntegerField(db_column='no_action_pursued_reason___5')
     no_action_pursued_reason_6 = models.IntegerField(db_column='no_action_pursued_reason___6')
+    other_no_action_reason = models.CharField(max_length=256, blank=True, null=True)
     so_return_body = models.IntegerField(blank=True, null=True)
     so_body_disposal = models.IntegerField(blank=True, null=True)
     cremation_location_type = models.IntegerField(blank=True, null=True)
@@ -225,7 +233,14 @@ class Data(models.Model):
     govnt_response_desired_9 = models.IntegerField(db_column='govnt_response_desired___9')
     govnt_response_desired_10 = models.IntegerField(db_column='govnt_response_desired___10')
     govnt_response_desired_11 = models.IntegerField(db_column='govnt_response_desired___11')
+    oth_govnt_response_desired = models.CharField(max_length=256, blank=True, null=True)
     photo_vic_fn = models.CharField(max_length=256, blank=True, null=True)
+    photo_doc_fn = models.CharField(max_length=256, blank=True, null=True)
+    photo_news_fn = models.CharField(max_length=256, blank=True, null=True)
+    photo_advocacy_fn = models.CharField(max_length=256, blank=True, null=True)
+    photo_personalpapers_fn = models.CharField(max_length=256, blank=True, null=True)
+    photo_family_fn = models.CharField(max_length=256, blank=True, null=True)
+    victim_summary = models.TextField(blank=True, null=True)
 
     class Meta:
         db_table = 'data'
@@ -271,6 +286,33 @@ class Villages(models.Model):
 #     value = models.IntegerField(default = 0)
 #     name = models.CharField(max_length=64)
     
+
+
+class OtherArrest(models.Model):
+    id  = models.IntegerField(primary_key=True)
+    record_id = models.ForeignKey(Data, db_column='record_id', to_field='record_id', related_name='other_arrested', on_delete=models.CASCADE, blank=True, null=True, default='NULL')
+    other_arrested_first_name = models.CharField(max_length=256, blank=True, null=True)
+    other_arrested_last_name = models.CharField(max_length=256, blank=True, null=True)
+    other_arrested_village = models.CharField(max_length=256, blank=True, null=True)
+    covictm_record = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'other_arrested'
+
+
+
+class OthersKilled(models.Model):
+    id  = models.IntegerField(primary_key=True)
+    record_id = models.ForeignKey(Data, db_column='record_id', to_field='record_id', related_name='others_killed', on_delete=models.CASCADE, blank=True, null=True, default='NULL')
+    others_killed_first_name = models.CharField(max_length=256, blank=True, null=True)
+    others_killed_last_name = models.CharField(max_length=256, blank=True, null=True)
+    others_killed_villtown = models.CharField(max_length=256, blank=True, null=True)
+    others_killed_record = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        db_table = 'others_killed'
+
+
 
 class SecurityArrest(models.Model):
     id  = models.IntegerField(primary_key=True)

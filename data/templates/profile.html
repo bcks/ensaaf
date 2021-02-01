@@ -57,9 +57,24 @@
       </p>
 
 
-      <p><br></p>
+      <h4 class="mt-4">{% trans 'Demographics' %}</h4>
 
-      <h4>{% trans 'Demographics' %}</h4>
+
+      {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+      {% if victim.victim_alias == 1 and victim.victim_alias_name  %}
+
+      <div class="row">
+      <div class="col-sm-2">
+        <p class="kicker dots">{% trans 'Also known as' %}</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{victim.victim_alias_name}}</p>
+      </div>
+      </div>
+
+      {% endif %}
+      {% endif %}
+
 
       {% if victim.victim_address_int_loc == 1 %}
         {% if victim.village_name != None %}
@@ -129,15 +144,19 @@
 
 
 
-      {% if victim.victim_employment_other %}
-      <div class="row">
-      <div class="col-sm-2">
-        <p class="kicker dots">{% trans 'Employment' %}</p>
-      </div>
-      <div class="col-sm-10">
-        <p>{{victim.victim_employment_other}}</p>
-      </div>
-      </div>
+      {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+
+        {% if victim.victim_employment_other %}
+        <div class="row">
+        <div class="col-sm-2">
+          <p class="kicker dots">{% trans 'Employment' %}</p>
+        </div>
+        <div class="col-sm-10">
+          <p>{{victim.victim_employment_other}}</p>
+        </div>
+        </div>
+        {% endif %}
+
       {% endif %}
 
 
@@ -213,7 +232,25 @@
 
 
 
+      {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+      {% if victim.other_victim_caste %}
+
+      <div class="row">
+      <div class="col-sm-2">
+        <p class="kicker dots">{% trans 'Caste' %}</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{{other_victim_caste}}</p>
+      </div>
+      </div>
+
+      {% endif %}
+      {% endif %}
+
+
+
       {% if victim.victim_dob %}
+
       <div class="row">
       <div class="col-sm-2">
         <p class="kicker dots">{% trans 'Date of birth' %}</p>
@@ -222,7 +259,10 @@
         <p>{{victim.victim_dob}}</p>
       </div>
       </div>
+
       {% endif %}
+
+
 
     </div>
 
@@ -254,11 +294,8 @@
 
 
 
-  <p><br></p>
-
-
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 mt-4">
       <h4>
 
       {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}
@@ -304,32 +341,6 @@
 
 
       {% endif %}
-
-
-   {% comment %} <!-- OLD -->
-
-      {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-        {% trans 'Abduction' %}{% if victim.victim_prior_detention_trt == 1 %},{% endif %}
-      {% endif %}
-
-      {% if victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}      
-        {% if victim.victim_prior_detention_trt != 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-          {% trans '&' %}
-        {% endif %}
-        {% trans 'Detention' %}
-        {% if victim.victim_prior_detention_trt == 1 and victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %},{% endif %}
-      {% endif %}
-
-      {% if victim.victim_prior_detention_trt == 1 %}
-        {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 or victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}{% trans '&' %}{% endif %}
-        {% trans 'Torture' %}
-      {% endif %}
-
-      {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}
-        {% trans 'Prior Abuse' %}
-      {% endif %}
-
-   {% endcomment %}
 
       </h4>
     </div>
@@ -408,7 +419,7 @@
         <p class="kicker dots">{% trans 'Place of abduction' %}</p>
       </div>
       <div class="col-sm-6">
-        <p>{% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.victim_arrest_loc_vill != None %}{{victim.victim_arrest_loc_vill}}{% endif %}{% if victim.victim_arrest_loc_thsl %},
+        <p>{% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
 {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
 {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
 {{victim.victim_arrest_loc_st}}{% endif %}</p>
@@ -416,6 +427,22 @@
     {% endif %}
     {% endif %}
     {% endif %}
+
+
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+
+    {% if victim.victim_arrest_location == 11 and victim.victim_arrest_loc_oth %}
+      <div class="col-sm-6">
+        <p class="kicker dots">{% trans 'Place of abduction' %}</p>
+      </div>
+      <div class="col-sm-6">
+        <p>{{victim.victim_arrest_loc_oth}}</p>
+      </div>
+    {% endif %}
+
+  {% endif %}
+
+
 
 
   {%if victim.witness_arrest_0 != 1 and victim.witness_arrest_12 != 1 %}
@@ -457,6 +484,25 @@
     </div>
   {% endif %}
   {% endif %}
+
+
+
+
+{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+
+  {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
+  {% if victim.security_forces_civilcloth != None and victim.security_forces_civilcloth != 9 %}
+    <div class="col-sm-6">
+      <p class="kicker dots">{% trans 'Security forces in civil clothes' %}</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{% hyes_no victim.security_forces_civilcloth %}</p>
+    </div>
+  {% endif %}
+  {% endif %}
+  
+{% endif %}
+
 
 
   {% if victim.demands_2 or victim.demands_3 or victim.demands_4 or victim.demands_5 or victim.demands_6 or victim.demands_7 or victim.demands_8 or victim.demands_10 or victim.other_demands %}
@@ -501,22 +547,18 @@
 
 
 
-  {# if victim.where_victim_detained.all|length > 0 #} <!-- was here -->
-
-  <p><br></p>
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 mt-4">
       <h4>{% trans 'Detention Locations' %}</h4>
     </div>
   </div>
 
-
-
   <div class="row">
 
 
- {% comment %}
+{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+
   {% if victim.where_victim_detained.all|length > 0 %}
     <div class="col-sm-6">
       <p class="kicker dots">{% trans 'Detention locations known' %}</p>
@@ -525,37 +567,46 @@
 
     {% for this in victim.where_victim_detained.all %}
 
-      <p>{% if this.detention_facility_type != None %}{% autoescape off %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endautoescape %}{% endif %}{% if this.facility_name != None %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_district != None %}, {{this.facility_district|title}}{% endif %}{% if this.duration_of_detention != None %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
+      <p>
+      
+      {% if this.detention_facility_type != None %}{% autoescape off %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endautoescape %}{% endif %}{% if this.facility_name != None %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_nearest_villtown != None %}, {% autoescape off %}{% hvictim_address_other this.facility_nearest_villtown %}{% endautoescape %}{% endif %}{% if this.facility_district != None %}, {{this.facility_district|title}}{% endif %}{% if this.duration_of_detention != None %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
 
-    {% if this.witness_detention_3 or this.witness_detention_4 or this.witness_detention_5 or this.witness_detention_6 or this.witness_detention_7 or this.witness_detention_8 or this.witness_detention_9 or this.witness_detention_10 or this.witness_detention_12 or this.witness_detention_13 or this.witness_detention_14 or this.witness_detention_other or this.witness_detention_status %}
-        <br>{% autoescape off %}{% hwitness_detention this.witness_detention_3 this.witness_detention_4 this.witness_detention_5 this.witness_detention_6 this.witness_detention_7 this.witness_detention_8 this.witness_detention_9 this.witness_detention_10 this.witness_detention_12 this.witness_detention_13 this.witness_detention_14 this.witness_detention_other  this.witness_detention_status %}{% endautoescape %}</p>
-    {% endif %}
+      {% if this.witness_detention_3 or this.witness_detention_4 or this.witness_detention_5 or this.witness_detention_6 or this.witness_detention_7 or this.witness_detention_8 or this.witness_detention_9 or this.witness_detention_10 or this.witness_detention_12 or this.witness_detention_13 or this.witness_detention_14 or this.witness_detention_other or this.witness_detention_status %}
+        <br>{% autoescape off %}{% hwitness_detention this.witness_detention_3 this.witness_detention_4 this.witness_detention_5 this.witness_detention_6 this.witness_detention_7 this.witness_detention_8 this.witness_detention_9 this.witness_detention_10 this.witness_detention_12 this.witness_detention_13 this.witness_detention_14 this.witness_detention_other  this.witness_detention_status %}{% endautoescape %}
+      {% endif %}
+
+      {% if this.witness_report %}
+        <br>{% trans 'Witness report' %}: {{this.witness_report}}
+      {% endif %}
+    
       </p>
-
+  
     {% endfor %}
 
     </div>
-  {% endif %} <!-- move down -->
- {% endcomment %}
+    {% else %}
+    <div class="col-sm-6">
+      <p class="dots"><span class="kicker"><em><strong>{% trans "Additional data forthcoming" %}</strong></em></span></p>
+    </div>
+    {% endif %}
+
+{% else %}
 
     <div class="col-sm-6">
       <p class="dots"><span class="kicker"><em><strong>{% trans "Additional data forthcoming" %}</strong></em></span></p>
     </div>
 
+{% endif %}
+
+
   </div>
 
-  {# endif #} <!-- was here -->
 
 
 
-
-
-
-
-  <p><br></p>
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 mt-4">
 
   {% if victim.victim_disappeared_killed == 2 %}
     <h4>{% trans 'Extrajudicial Execution' %}{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}</h4>
@@ -580,8 +631,7 @@
 {% if victim.victim_disappeared_killed == 2 %}
 
   <div class="row">
-    <div class="col-sm-12">
-      <p><br></p>
+    <div class="col-sm-12 mt-4">
       <h4>{% trans 'Body Disposal' %}</h5>
     </div>
   </div>
@@ -658,9 +708,8 @@
 
   {% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_8 or victim.security_killed %}
 
-  <p><br></p>
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 mt-4">
       <h4>{% trans 'Security Forces Implicated' %}</h4>
     </div>
   </div>
@@ -741,7 +790,7 @@
     </div>
     <div class="col-sm-6">
 
-{% if victim.security_killed.all|length > 0 and victim.record_id == 1565 or victim.record_id == 290 or victim.record_id == 1401 or victim.record_id == 2724 or victim.record_id == 2291 or victim.record_id == 2559 or victim.record_id == 16  or victim.record_id == 1068  or victim.record_id == 319 or victim.record_id == 2433 or victim.record_id == 4000 or victim.record_id == 802 or victim.record_id == 809 or victim.record_id == 5584 or victim.record_id == 1057 %}
+{% if victim.security_killed.all|length > 0 and victim.record_id == '1565' or victim.record_id == '290'  or victim.record_id == '1401' or victim.record_id == '2724' or victim.record_id == '2291' or victim.record_id == '2559' or victim.record_id == '16'   or victim.record_id == '1068' or victim.record_id == '319'  or victim.record_id == '2433' or victim.record_id == '4000' or victim.record_id == '802'  or victim.record_id == '809'  or victim.record_id == '5584' or victim.record_id == '1057' or victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
 
     {%if victim.securityforces_idknown_1 == 1 %}<!-- same as abduction -->
 
@@ -782,10 +831,9 @@
 </div>
 
 
-  <p><br></p>
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 mt-4">
       <h4>{% trans 'Militancy Involvement' %}</h4>
     </div>
   </div>
@@ -846,10 +894,8 @@
 
 
 
-  <p><br></p>
-
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 mt-4">
       <h4>{% trans 'Related Incidents' %}</h4>
     </div>
 
@@ -866,10 +912,8 @@
 {% if victim.court_or_commission != 9 %}
 {% if victim.govnt_response_desired_11 != 1 %}
 
-  <p><br></p>
-
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 mt-4">
       <h4>{% if victim.family_effects_1 == 1 %}
             {% trans 'Remedies' %}
           {% else %}
@@ -882,6 +926,7 @@
 {% endif %}
 {% endif %}
 {% endif %}
+
 
 
   <div class="row">
@@ -906,19 +951,21 @@
   {% endif %}
 
 
-  {# Don't show this if victim.security_official_response_13 or victim.security_official_response_13 #}
+  {# Don't show this if victim.security_official_response_13 #}
   {% if victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.other_so_response %}
     <div class="col-sm-6">
       <p class="kicker dots">{% trans 'Response by officials' %}</p>
     </div>
     <div class="col-sm-6">
+    
+    {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
       <p>{% autoescape off %}{% hsecurity_official_response victim.security_official_response_0 victim.security_official_response_1 victim.security_official_response_2 victim.security_official_response_3 victim.security_official_response_4 victim.security_official_response_5 victim.security_official_response_6 victim.security_official_response_7 victim.security_official_response_8 victim.security_official_response_9 victim.security_official_response_10 victim.security_official_response_11 victim.security_official_response_12 victim.security_official_response_13 victim.security_official_response_14 victim.other_so_response %}{% endautoescape %}</p>
+    {% else %}
+      <p>{% autoescape off %}{% hsecurity_official_response victim.security_official_response_0 victim.security_official_response_1 victim.security_official_response_2 victim.security_official_response_3 victim.security_official_response_4 victim.security_official_response_5 victim.security_official_response_6 victim.security_official_response_7 victim.security_official_response_8 victim.security_official_response_9 victim.security_official_response_10 victim.security_official_response_11 victim.security_official_response_12 victim.security_official_response_13 victim.security_official_response_14 '' %}{% endautoescape %}</p>
+    {% endif %}
+
     </div>
   {% endif %}
-
-
-
-
 
 
   {% if victim.court_or_commission != None %}
@@ -927,7 +974,14 @@
       <p class="kicker dots">{% trans 'Legal remedies pursued' %}</p>
     </div>
     <div class="col-sm-6">
+    
+  {# victim.other_no_action_reason not cleaned for everyone, just the 4 profiles #}   
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
       <p>{% hyes_no victim.court_or_commission %}{% if victim.no_action_pursued_reason_1 or victim.no_action_pursued_reason_2 or victim.no_action_pursued_reason_3 or victim.no_action_pursued_reason_4 or victim.other_no_action_reason %}, {% hno_action_pursued_reason victim.no_action_pursued_reason_1 victim.no_action_pursued_reason_2 victim.no_action_pursued_reason_3 victim.no_action_pursued_reason_4 victim.other_no_action_reason %}{% endif %}</p>
+  {% else %}
+      <p>{% hyes_no victim.court_or_commission %}{% if victim.no_action_pursued_reason_1 or victim.no_action_pursued_reason_2 or victim.no_action_pursued_reason_3 or victim.no_action_pursued_reason_4 %}, {% hno_action_pursued_reason victim.no_action_pursued_reason_1 victim.no_action_pursued_reason_2 victim.no_action_pursued_reason_3 victim.no_action_pursued_reason_4 '' %}{% endif %}</p>
+  {% endif %}
+
     </div>
   {% endif %}
   {% endif %}
@@ -958,6 +1012,20 @@
   {% endif %}
 
 
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+  {% if oth_govnt_response_desired %}
+
+    <div class="col-sm-6">
+      <p class="kicker dots">{% trans 'Remedies desired from government' %}</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{victim.other_govnt_response_desired}}</p>
+    </div>
+
+  {% endif %}
+  {% endif %}
+
+
   </div>
 
 
@@ -968,10 +1036,8 @@
 {% if victim.number_of_victims > 1 and victim.genuine_encounters != None and victim.genuine_encounters != 9 or victim.others_arrested == 1 or victim.others_arrested == 2 and victim.others_killed_9 != 1 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 %}
 
 
-  <p><br></p>
-
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-sm-12 mt-4">
       <h4>{% trans 'Connected Victims' %}</h4>
     </div>
   </div>
@@ -1015,25 +1081,155 @@
   {% endif %}
 
 
-  {% if victim.others_killed_9 != 1 %}
-  {% if victim.others_killed_0 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 %}
-  <div class="row">
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Co-victims of extrajudicial execution' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>{% hothers_killed victim.others_killed_0 victim.others_killed_1 victim.others_killed_2 victim.others_killed_3 %}</p>
-    </div>
-  </div>
-  {% endif %}
+
+
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+
+    {% for this in victim.other_arrested.all %}
+
+      {% if forloop.first %}
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="kicker dots">{% trans 'Who else was arrested/abducted' %}</p>
+        </div>
+        <div class="col-sm-6">
+
+      {% endif %}
+        <p>
+        {% if this.covictm_record %}<a href="{% url 'profile' this.covictm_record %}">{% endif %}{{this.other_arrested_first_name}} {{this.other_arrested_last_name}}{% if this.covictm_record %}</a>{% endif %}{%if this.other_arrested_village %},{% endif %}
+        {% autoescape off %}{% hvictim_address_other this.other_arrested_village %}{% endautoescape %}
+        </p>
+
+      {% if forloop.last %}
+          </div>
+        </div>
+      {% endif %}
+
+    {% endfor %}
+
   {% endif %}
 
 
+
+
+
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+
+
+    {% for this in victim.others_killed.all %}
+
+      {% if forloop.first %}
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="kicker dots">{% trans 'Co-victims of extrajudicial execution' %}</p>
+        </div>
+        <div class="col-sm-6">
+
+      {% endif %}
+        <p>
+        {% if this.others_killed_record %}<a href="{% url 'profile' this.others_killed_record %}">{% endif %}{{this.others_killed_first_name}} {{this.others_killed_last_name}}{% if this.others_killed_record %}</a>{% endif %}{%if this.other_arrested_village %},{% endif %}
+        {% autoescape off %}{% hvictim_address_other this.others_killed_villtown %}{% endautoescape %}
+        </p>
+
+      {% if forloop.last %}
+          </div>
+        </div>
+      {% endif %}
+
+    {% endfor %}
+
+
+
+  {% else %}
+
+
+    {% if victim.others_killed_9 != 1 %}
+    {% if victim.others_killed_0 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 %}
+    <div class="row">
+      <div class="col-sm-6">
+        <p class="kicker dots">{% trans 'Co-victims of extrajudicial execution' %}</p>
+      </div>
+      <div class="col-sm-6">
+        <p>{% hothers_killed victim.others_killed_0 victim.others_killed_1 victim.others_killed_2 victim.others_killed_3 %}</p>
+      </div>
+    </div>
+    {% endif %}
+    {% endif %}
+
+
+    <div class="row">
+      <div class="col-sm-6">
+        <p class="dots"><span class="kicker"><em><strong>{% trans "Links to co-victim profiles forthcoming" %}</strong></em></span></p>
+      </div>
+    </div>
+
+
+
+  {% endif %}
+
+{% endif %} {# endif victim.number_of_victims > 1 and victim.genuine_encounters != None and victim.genuine_encounters != 9 or victim.others_arrested == 1 or victim.others_arrested == 2 and victim.others_killed_9 != 1 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 #}
+
+
+
+{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}  
+
+  {% if victim.victim_summary %}
   <div class="row">
-    <div class="col-sm-6">
-      <p class="dots"><span class="kicker"><em><strong>{% trans "Links to co-victim profiles forthcoming" %}</strong></em></span></p>
+    <div class="col-12">
+      <h4 class="mt-4">{% trans 'Summary' %}</h4>
+      {{victim.victim_summary|linebreaks}}
     </div>
   </div>
+  {% endif %}
+
+
+  {% if victim.photo_doc_fn %}
+  <h4 class="mt-4">Select Legal Documents</h4>
+  <div class="row">
+    {% for p in victim.photo_doc_fn|hphotos %}
+      <div class="col-sm-3 mb-4"><a href="{{p}}" target="_blank"><img src="{{p}}"></a></div>
+    {% endfor %}
+  </div>  
+  {% endif %}
+
+  {% if victim.photo_news_fn %}
+  <h4 class="mt-4">Select News Articles</h4>
+  <div class="row">
+    {% for p in victim.photo_news_fn|hphotos %}
+      <div class="col-sm-3 mb-4"><a href="{{p}}" target="_blank"><img src="{{p}}" class="border"></a></div>
+    {% endfor %}
+  </div>  
+  {% endif %}
+
+
+  {% if victim.photo_advocacy_fn %}
+  <h4 class="mt-4">Advocacy</h4>
+  <div class="row">
+    {% for p in victim.photo_advocacy_fn|hphotos %}
+      <div class="col-sm-3 mb-4"><a href="{{p}}" target="_blank"><img src="{{p}}" class="border"></a></div>
+    {% endfor %}
+  </div>  
+  {% endif %}
+
+
+  {% if victim.photo_personalpapers_fn %}
+  <h4 class="mt-4">Personal Papers</h4>
+  <div class="row">
+    {% for p in victim.photo_personalpapers_fn|hphotos %}
+      <div class="col-sm-3 mb-4"><a href="{{p}}" target="_blank"><img src="{{p}}" class="border"></a></div>
+    {% endfor %}
+  </div>  
+  {% endif %}
+
+
+  {% if victim.photo_family_fn %}
+  <h4 class="mt-4">Family Photos</h4>
+  <div class="row">
+    {% for p in victim.photo_family_fn|hphotos %}
+      <div class="col-sm-3 mb-4"><a href="{{p}}" target="_blank"><img src="{{p}}" class="border"></a></div>
+    {% endfor %}
+  </div>  
+  {% endif %}
 
 
 {% endif %}
@@ -1041,12 +1237,9 @@
 
 
 
-
-  <p><br></p>
-
   <div class="row">
     <div class="col-sm-12">
-      <h4>{% trans 'Family Reflections' %}</h4>
+      <h4 class="mt-4">{% trans 'Family Reflections' %}</h4>
     </div>
   </div>
 
@@ -1058,8 +1251,10 @@
 
 
 
-{% comment %}
 
+
+
+{% comment %}
 {% if victim.fullprofile.all|length > 0 %}
   {% for this in victim.fullprofile.all %}
 
@@ -1091,17 +1286,10 @@
     </div>
 
   {% endfor %}
-{% else %}
-
-  <div class="row">
-    <div class="col-sm-6">
-      <p class="dots"><span class="kicker"><em><strong>{% trans "Forthcoming" %}</strong></em></span></p>
-    </div>
-  </div>
-
 {% endif %}
-
 {% endcomment %}
+
+
 
 
 

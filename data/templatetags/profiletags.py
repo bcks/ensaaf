@@ -570,6 +570,17 @@ def htarget_reason(v1, v2, v3, v4, v5, v6, v7, v8, v9, other):
 
 
 
+@register.filter()
+def hphotos(value):
+  photos = value.split(',')
+  array = []
+  for p in photos:
+    p = p.strip()
+    array.append( hphoto(p) )
+  return array
+
+
+
 @register.simple_tag()
 def hcaste(value):
   caste = ['', '<span define="'+_('A caste associated with agriculture')+'">'+_('Jat')+'</span>',_('Ramgarhia'),_('Dalit/SC/BC'),_('Mazbi'),_('Chamar'),_('Khatri'),_('Naee'),_('Don’t know'),_('Other')]
