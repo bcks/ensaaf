@@ -946,7 +946,9 @@
 
 
 
-{% if victim.court_or_commission == 1 or victim.security_officials_apprchd != 9 and victim.security_official_response_14 != 1 and victim.court_or_commission != 9 and victim.govnt_response_desired_11 != 1 %}
+{% if victim.court_or_commission or victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or victim.so_approached_other or victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.other_so_response or victim.family_effects_2 or victim.family_effects_3 or victim.family_effects_4 or victim.family_effects_5 or victim.family_effects_6 or victim.family_effects_7 or victim.family_effects_8 or victim.family_effects_9 or victim.family_effects_12 or victim.other_family_effects or victim.govnt_response_desired_1 or victim.govnt_response_desired_2 or victim.govnt_response_desired_3 or victim.govnt_response_desired_4 or victim.govnt_response_desired_5 or victim.govnt_response_desired_6 or victim.govnt_response_desired_7 or victim.govnt_response_desired_8 or victim.govnt_response_desired_9 or victim.other_govnt_response_desired and victim.court_or_commission != None and victim.court_or_commission != 9 %}
+
+{# victim.security_officials_apprchd != 9 and victim.security_official_response_14 != 1 and victim.court_or_commission != 9 and victim.govnt_response_desired_11 != 1 #}
 
   <div class="row">
     <div class="col-sm-12 mt-4">
@@ -965,8 +967,7 @@
   <div class="row">
 
 
-  {% if victim.security_officials_apprchd != 9 %}
-  {% if victim.security_officials_apprchd != None %}
+  {% if victim.security_officials_apprchd != 9 and victim.security_officials_apprchd != None %}
     <div class="col-sm-6">
       <p class="kicker dots">{% trans 'Security officials approached' %}</p>
     </div>
@@ -981,7 +982,6 @@
       {% endif %}
       {% endif %}</p>
     </div>
-  {% endif %}
   {% endif %}
 
 
