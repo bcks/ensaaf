@@ -1077,17 +1077,15 @@ msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ ਤੋਂ ਪਹਿਲ�
 
 #: data/templates/profile.html:508
 msgid "Security forces in civil clothes"
-msgstr ""
+msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਸਿਵਲ ਵਰਦੀ ਵਿੱਚ ਸਨ"
 
 #: data/templates/profile.html:549
 msgid "Judge/magistrate result"
 msgstr "ਜੱਜ/ਮੈਜਿਸਟਰੇਟ ਦਾ ਨਤੀਜਾ"
 
 #: data/templates/profile.html:577
-#, fuzzy
-#| msgid "Detention Locations"
 msgid "Detention locations known"
-msgstr "ਹਿਰਾਸਤ ਵਾਲੀਆਂ ਥਾਵਾਂ"
+msgstr "ਕੀ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਾਲੀ ਜਗਾ ਦਾ ਪਤਾ ਹੈ"
 
 #: data/templates/profile.html:602 data/templates/profile.html:609
 #: data/templates/profile.html:650 data/templates/profile.html:659
@@ -1149,7 +1147,7 @@ msgstr "ਕਾਨੂੰਨੀ ਪੈਰਵੀ"
 
 #: data/templates/profile.html:1230
 msgid "Personal Papers"
-msgstr ""
+msgstr "ਨਿੱਜੀ ਕਾਗਜਾਤ"
 
 #: data/templates/profile.html:1240
 msgid "Family Photos"
