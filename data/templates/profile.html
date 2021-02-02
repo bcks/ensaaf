@@ -144,18 +144,16 @@
 
 
 
-      {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+      {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' and victim.victim_employment_10 != 1 %}
 
-        {% if victim.victim_employment_other %}
-        <div class="row">
-        <div class="col-sm-2">
-          <p class="kicker dots">{% trans 'Employment' %}</p>
-        </div>
-        <div class="col-sm-10">
-          <p>{{victim.victim_employment_other}}</p>
-        </div>
-        </div>
-        {% endif %}
+      <div class="row">
+      <div class="col-sm-2">
+        <p class="kicker dots">{% trans 'Employment' %}</p>
+      </div>
+      <div class="col-sm-10">
+        <p>{% hvictim_employment victim.victim_employment_1 victim.victim_employment_2 victim.victim_employment_3 victim.victim_employment_4 victim.victim_employment_5 victim.victim_employment_6 victim.victim_employment_7 victim.victim_employment_8 victim.victim_employment_9 victim.victim_employment_10 victim.victim_employment_11 victim.victim_employment_other %}</p>
+      </div>
+      </div>
 
       {% endif %}
 
@@ -231,7 +229,6 @@
       {% endif %}
 
 
-
       {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
       {% if victim.other_victim_caste %}
 
@@ -240,7 +237,7 @@
         <p class="kicker dots">{% trans 'Caste' %}</p>
       </div>
       <div class="col-sm-10">
-        <p>{{other_victim_caste}}</p>
+        <p>{{victim.other_victim_caste}}</p>
       </div>
       </div>
 
@@ -294,16 +291,24 @@
 
 
 
+
+  {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_prior_detention_st != 9 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}
+
   <div class="row">
     <div class="col-sm-12 mt-4">
       <h4>
-
-      {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}
-
           {% trans 'Prior Abuse' %}
+      </h4>
+    </div>
+  </div>
 
-      {% elif victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}<!-- detention -->
 
+  {% elif victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}<!-- detention -->
+
+
+  <div class="row">
+    <div class="col-sm-12 mt-4">
+      <h4>
         {% if victim.victim_prior_detention_trt == 1 %}<!-- torture -->
 
           {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 %}
@@ -321,10 +326,17 @@
           {% endif %}
 
         {% endif %}<!-- /torture -->
-     
-     
-      {% else %}<!-- no detention -->
+      </h4>
+    </div>
+  </div>
 
+
+  {% else %}<!-- no detention -->
+
+
+  <div class="row">
+    <div class="col-sm-12 mt-4">
+      <h4>
         {% if victim.victim_prior_detention_trt == 1 %}<!-- toture -->
           {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 %}
             {% trans 'Torture' %}
@@ -338,18 +350,17 @@
           {% endif %}
         
         {% endif %}
-
-
-      {% endif %}
-
       </h4>
     </div>
   </div>
 
 
+  {% endif %}
+
+
+
 
   <div class="row">
-
 
   {% if victim.victim_prior_detention_st != 9 %}
     <div class="col-sm-6">
@@ -547,6 +558,7 @@
 
 
 
+{% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
 
   <div class="row">
     <div class="col-sm-12 mt-4">
@@ -602,6 +614,8 @@
   </div>
 
 
+{% endif %}
+
 
 
 
@@ -616,12 +630,36 @@
     <h4>{% trans 'Disappeared' %}{% if victim.victim_death_date %}{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}{% elif victim.victim_arrest_date %}{% autoescape off %}{% hdate_link victim.victim_arrest_date %}{% endautoescape %}{% else %}, {% trans 'date unknown' %}{% endif %}</h4>
   {% endif %}
 
-
     </div>
 
-    <div class="col-sm-6">
-      <p class="dots"><span class="kicker"><em><strong>{% trans "Additional data forthcoming" %}</strong></em></span></p>
-    </div>
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+
+    {% if victim.victim_disappeared_killed == 2 and victim.victim_killed_location > 1 %}
+
+        <div class="col-sm-6">
+          <p class="dots"><span class="kicker">{% trans "Location of killing" %}</span></p>
+        </div>
+        <div class="col-sm-6">
+          <p>{% hvictim_arrest_location victim.victim_killed_location %}</p>
+        </div>
+
+    {% else %}
+
+        <div class="col-sm-6">
+          <p class="dots"><span class="kicker"><em><strong>{% trans "Additional data forthcoming" %}</strong></em></span></p>
+        </div>
+
+    {% endif %}
+
+
+  {% else %}
+
+      <div class="col-sm-6">
+        <p class="dots"><span class="kicker"><em><strong>{% trans "Additional data forthcoming" %}</strong></em></span></p>
+      </div>
+
+  {% endif %}
+
   </div>
 
 
@@ -907,10 +945,10 @@
 
 
 
-{% if victim.security_officials_apprchd != 9 %}
-{% if victim.security_official_response_14 != 1 %}
-{% if victim.court_or_commission != 9 %}
-{% if victim.govnt_response_desired_11 != 1 %}
+
+victim.court_or_commission != None and victim.court_or_commission != 9 
+
+{% if victim.security_officials_apprchd != 9 and victim.security_official_response_14 != 1 and victim.court_or_commission != 9 and victim.govnt_response_desired_11 != 1 %}
 
   <div class="row">
     <div class="col-sm-12 mt-4">
@@ -922,9 +960,6 @@
     </div>
   </div>
 
-{% endif %}
-{% endif %}
-{% endif %}
 {% endif %}
 
 
@@ -968,8 +1003,7 @@
   {% endif %}
 
 
-  {% if victim.court_or_commission != None %}
-  {% if victim.court_or_commission != 9 %}
+  {% if victim.court_or_commission != None and victim.court_or_commission != 9 %}
     <div class="col-sm-6">
       <p class="kicker dots">{% trans 'Legal remedies pursued' %}</p>
     </div>
@@ -983,7 +1017,6 @@
   {% endif %}
 
     </div>
-  {% endif %}
   {% endif %}
 
 
@@ -1127,7 +1160,7 @@
 
       {% endif %}
         <p>
-        {% if this.others_killed_record %}<a href="{% url 'profile' this.others_killed_record %}">{% endif %}{{this.others_killed_first_name}} {{this.others_killed_last_name}}{% if this.others_killed_record %}</a>{% endif %}{%if this.other_arrested_village %},{% endif %}
+        {% if this.others_killed_record %}<a href="{% url 'profile' this.others_killed_record %}">{% endif %}{{this.others_killed_first_name}} {{this.others_killed_last_name}}{% if this.others_killed_record %}</a>{% endif %}{%if this.others_killed_villtown %},{% endif %}
         {% autoescape off %}{% hvictim_address_other this.others_killed_villtown %}{% endautoescape %}
         </p>
 
