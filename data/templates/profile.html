@@ -946,7 +946,7 @@
 
 
 
-{% if victim.security_officials_apprchd != 9 and victim.security_official_response_14 != 1 and victim.court_or_commission != 9 and victim.govnt_response_desired_11 != 1 %}
+{% if victim.court_or_commission == 1 or victim.security_officials_apprchd != 9 and victim.security_official_response_14 != 1 and victim.court_or_commission != 9 and victim.govnt_response_desired_11 != 1 %}
 
   <div class="row">
     <div class="col-sm-12 mt-4">
@@ -963,6 +963,7 @@
 
 
   <div class="row">
+
 
   {% if victim.security_officials_apprchd != 9 %}
   {% if victim.security_officials_apprchd != None %}
@@ -1018,9 +1019,6 @@
   {% endif %}
 
 
-
-
-
   {% if victim.family_effects_2 or victim.family_effects_3 or victim.family_effects_4 or victim.family_effects_5 or victim.family_effects_6 or victim.family_effects_7 or victim.family_effects_8 or victim.family_effects_9 or victim.family_effects_12 or victim.other_family_effects and not victim.family_effects_1%}
     <div class="col-sm-6">
       <p class="kicker dots">{% trans 'Impact on family' %}</p>
@@ -1031,29 +1029,13 @@
   {% endif %}
 
 
-
-
-  {% if victim.govnt_response_desired_11 != 1 %}
+  {% if victim.govnt_response_desired_1 or victim.govnt_response_desired_2 or victim.govnt_response_desired_3 or victim.govnt_response_desired_4 or victim.govnt_response_desired_5 or victim.govnt_response_desired_6 or victim.govnt_response_desired_7 or victim.govnt_response_desired_8 or victim.govnt_response_desired_9 or victim.other_govnt_response_desired %}
     <div class="col-sm-6">
       <p class="kicker dots">{% trans 'Remedies desired from government' %}</p>
     </div>
     <div class="col-sm-6">
       <p>{% hgovnt_response_desired victim.govnt_response_desired_1 victim.govnt_response_desired_2 victim.govnt_response_desired_3 victim.govnt_response_desired_4 victim.govnt_response_desired_5 victim.govnt_response_desired_6 victim.govnt_response_desired_7 victim.govnt_response_desired_8 victim.govnt_response_desired_9 victim.govnt_response_desired_10 victim.govnt_response_desired_11 victim.other_govnt_response_desired %}</p>
     </div>
-  {% endif %}
-
-
-  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
-  {% if oth_govnt_response_desired %}
-
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Remedies desired from government' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>{{victim.other_govnt_response_desired}}</p>
-    </div>
-
-  {% endif %}
   {% endif %}
 
 

@@ -978,7 +978,7 @@ def hgovnt_response_desired(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, other)
   groups.append(_('Memorial for victims')) if v8 == 1 else 0
   groups.append(_('Desire nothing from government')) if v9 == 1 else 0
   groups.append(_('Don’t know')) if v11 == 1 else 0
-  if (other):
+  if (other != ''):
     groups.append(other)
   if len(groups):
       s = '; '
