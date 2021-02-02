@@ -1197,7 +1197,7 @@
 
 
   {% if victim.photo_doc_fn %}
-  <h4 class="mt-4">Select Legal Documents</h4>
+  <h4 class="mt-4">{% trans 'Select Legal Documents' %}</h4>
   <div class="row">
     {% for p in victim.photo_doc_fn|hphotos %}
       <div class="col-sm-3 mb-4"><a href="{{p}}" target="_blank"><img src="{{p}}"></a></div>
@@ -1206,7 +1206,7 @@
   {% endif %}
 
   {% if victim.photo_news_fn %}
-  <h4 class="mt-4">Select News Articles</h4>
+  <h4 class="mt-4">{% trans 'Select News Articles' %}</h4>
   <div class="row">
     {% for p in victim.photo_news_fn|hphotos %}
       <div class="col-sm-3 mb-4"><a href="{{p}}" target="_blank"><img src="{{p}}" class="border"></a></div>
@@ -1216,7 +1216,7 @@
 
 
   {% if victim.photo_advocacy_fn %}
-  <h4 class="mt-4">Advocacy</h4>
+  <h4 class="mt-4">{% trans 'Advocacy' %}</h4>
   <div class="row">
     {% for p in victim.photo_advocacy_fn|hphotos %}
       <div class="col-sm-3 mb-4"><a href="{{p}}" target="_blank"><img src="{{p}}" class="border"></a></div>
@@ -1226,7 +1226,7 @@
 
 
   {% if victim.photo_personalpapers_fn %}
-  <h4 class="mt-4">Personal Papers</h4>
+  <h4 class="mt-4">{% trans 'Personal Papers' %}</h4>
   <div class="row">
     {% for p in victim.photo_personalpapers_fn|hphotos %}
       <div class="col-sm-3 mb-4"><a href="{{p}}" target="_blank"><img src="{{p}}" class="border"></a></div>
@@ -1236,7 +1236,7 @@
 
 
   {% if victim.photo_family_fn %}
-  <h4 class="mt-4">Family Photos</h4>
+  <h4 class="mt-4">{% trans 'Family Photos' %}</h4>
   <div class="row">
     {% for p in victim.photo_family_fn|hphotos %}
       <div class="col-sm-3 mb-4"><a href="{{p}}" target="_blank"><img src="{{p}}" class="border"></a></div>
