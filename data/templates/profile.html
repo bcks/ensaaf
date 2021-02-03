@@ -1048,9 +1048,10 @@
 
 
 
+
 {# hide of no connected victims or members of family #}
 
-{% if victim.genuine_encounters != None and victim.genuine_encounters != 9 or victim.others_arrested == 1 or victim.others_arrested == 2 and victim.others_killed_9 != 1 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 %}
+{% if victim.number_of_victims > 1 or victim.genuine_encounters == 1 or victim.others_arrested == 1 or victim.others_arrested == 2 and victim.others_killed_9 != 1 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 %}
 
 
   <div class="row">
