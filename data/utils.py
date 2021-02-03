@@ -197,7 +197,7 @@ def calculate_stats(all):
     no_so_return_body = all.filter(so_return_body='3').count()
 
     securityoff_id_known = all.filter( Q(securityoff_id_known='1') | Q(securityforces_idknown_1='1') | Q(securityforces_idknown_2='1') ).count()
-    no_securityoff_id_known = all.filter(securityoff_id_known='0',securityforces_idknown_3='1').count()
+    no_securityoff_id_known = all.filter( Q(securityoff_id_known='0') | Q(securityforces_idknown_3='1') ).count()
 
     so_body_disposal = {
       _("Cremated the body"): all.filter(so_body_disposal='1').count(),
