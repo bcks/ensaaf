@@ -129,6 +129,12 @@
         function makeList(data, selector) {
           var html = '<ul>';
           for (var i in data) {
+
+           {% if request.LANGUAGE_CODE == 'pb' %}
+              if (data[i].fields['victim_name_pa'] && data[i].fields['victim_name_pa'] != ' ') { data[i].fields['victim_name'] = data[i].fields['victim_name_pa'] }
+              data[i].fields['village_name'] = data[i].fields['village_name_pa'];
+           {% endif %}
+                    
             html += '<li><a href="{% lang %}/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
 
             var thisTime = {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000, "record_id": data[i].pk }};
@@ -799,9 +805,12 @@ function updateMap(start, end) {
     var keys = Object.keys(villages);
     for (var i in keys) {
       var thisVillage = _.find(villageCentroids, function(o) {
-        return o.CODE.endsWith(keys[i]);        
+        return o.CODE.endsWith(keys[i]);
       });
       if (keys[i] && thisVillage) {
+        {% if request.LANGUAGE_CODE == 'pb' %}
+          thisVillage.NAME = thisVillage.NAME_PA;
+        {% endif %}        
         points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]].count,'name':thisVillage.NAME, 'record_ids':villages[keys[i]].record_ids });
       }
     }
@@ -848,14 +857,14 @@ function updateMap(start, end) {
           if (d.id !== '0') {
             var customCircleMarker = L.CircleMarker.extend({
                options: { 
-                  url: '/village/' + d.id + '/?ids=' + d.record_ids.join(',')
+                  url: '{% lang %}/village/' + d.id + '/?ids=' + d.record_ids.join(',')
                }
             });
             markers[String(d.id)] = new customCircleMarker([d.coord[1] + .015,d.coord[0] - .025], {
                 stroke: false,
                 fillColor: '#fc0',
                 fillOpacity: 0.5,
-                url: '/village/' + d.id + '/?ids=' + d.record_ids.join(',')
+                url: '{% lang %}/village/' + d.id + '/?ids=' + d.record_ids.join(',')
             }).addTo(mymap);
           }
         }); // end for points
@@ -966,7 +975,7 @@ function makeTimeline() {
         .attr("cy", function(d) {
             return - d.idx * 2 * d.radius - d.radius; })
         .attr("r", 0)
-        .on("click", function(d) {window.location = "/profile/" + d.profile})
+        .on("click", function(d) {window.location = "{% lang %}/profile/" + d.profile})
         .on("mouseover", function(d) { tip.show(d); })
         .on("mouseout", function(d) { tip.hide(d); })
         .transition()
@@ -1007,7 +1016,7 @@ function makeTimeline() {
           return - d.idx * 2 * d.radius - d.radius; })
         .attr("r", 0)
       .merge(dots)
-        .on("click", function(d) {window.location = "/profile/" + d.profile})
+        .on("click", function(d) {window.location = "{% lang %}/profile/" + d.profile})
         .on("mouseover", function(d) { tip.show(d); })
         .on("mouseout", function(d) { tip.hide(d); })
         .transition()

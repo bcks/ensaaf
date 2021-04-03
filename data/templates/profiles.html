@@ -193,7 +193,7 @@
       </div>
 
         <div class="names">
-          <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{{victim.victim_name}}</a></h5>
+          <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pa %}{{victim.victim_name_pa}}{% else %}{{victim.victim_name}}{% endif %}</a></h5>
           {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}<br>
           {% if victim.victim_disappeared_killed == 2 %}
             {% trans 'Extrajudicial execution' %},

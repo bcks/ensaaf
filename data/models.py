@@ -8,6 +8,7 @@ from django import forms
 
 class Data(models.Model):
     victim_name = models.CharField(max_length=256)
+    victim_name_pa = models.CharField(max_length=256)
     village_name = models.CharField(max_length=256, blank=True, null=True)
     village_name_pa = models.CharField(max_length=256, blank=True, null=True)
     victim_alias = models.IntegerField(blank=True, null=True)

@@ -776,7 +776,7 @@ def dossier_command(geo, slug, start, end):
     Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_4=1) \
     )
 
-  return serializers.serialize("json", all, fields=('victim_name','village_id','village_name','timeline','photo_vic_fn'))
+  return serializers.serialize("json", all, fields=('victim_name','victim_name_pa','village_id','village_name','village_name_pa','timeline','photo_vic_fn'))
 
 
 
