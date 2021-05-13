@@ -833,9 +833,9 @@ def dossier_abduction(slug=None):
         
     victims = Data.objects.filter( record_id__in=records )\
       .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
-      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
+      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name','victim_name')
 
-    return serializers.serialize("json", victims, fields=('victim_name','village_id','village_name','timeline'))
+    return serializers.serialize("json", victims, fields=('victim_name','victim_name_pb','village_id','village_name','timeline'))
 
 
 
