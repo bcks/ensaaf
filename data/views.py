@@ -817,6 +817,7 @@ def dossier_by_id(slug=None):
     return serializers.serialize("json", victims, fields=('victim_name','village_id','village_name','timeline'))
 
 
+
 @register.simple_tag()
 def dossier_abduction(slug=None):
     name =  officials.get(slug)
@@ -837,6 +838,19 @@ def dossier_abduction(slug=None):
     return serializers.serialize("json", victims, fields=('victim_name','village_id','village_name','timeline'))
 
 
+
+
+
+@register.filter()
+def my_name(string):
+    if string:
+        profile = Data.objects.filter(record_id=string).values_list('victim_name', 'victim_name_pb')[0]
+        if profile:
+          if get_language() == 'pb':
+            return profile[1]
+          else:
+            return profile[0]
+    return ''
 
 
 # from pprint import pprint

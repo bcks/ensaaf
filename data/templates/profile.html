@@ -1113,8 +1113,9 @@
         <div class="col-sm-6">
 
       {% endif %}
+      
         <p>
-        {% if this.covictm_record %}<a href="{% url 'profile' this.covictm_record %}">{% endif %}{{this.other_arrested_first_name}} {{this.other_arrested_last_name}}{% if this.covictm_record %}</a>{% endif %}{%if this.other_arrested_village %},{% endif %}
+        {% if this.covictm_record %}<a href="{% url 'profile' this.covictm_record %}">{{this.covictm_record|my_name}}</a>{% else %}{{this.other_arrested_first_name}} {{this.other_arrested_last_name}}{% endif %}{%if this.other_arrested_village %},{% endif %}
         {% autoescape off %}{% hvictim_address_other this.other_arrested_village %}{% endautoescape %}
         </p>
 
@@ -1144,8 +1145,9 @@
         <div class="col-sm-6">
 
       {% endif %}
+
         <p>
-        {% if this.others_killed_record %}<a href="{% url 'profile' this.others_killed_record %}">{% endif %}{{this.others_killed_first_name}} {{this.others_killed_last_name}}{% if this.others_killed_record %}</a>{% endif %}{%if this.others_killed_villtown %},{% endif %}
+        {% if this.others_killed_record %}<a href="{% url 'profile' this.others_killed_record %}">{{ this.others_killed_record|my_name }}{{ this.others_killed_record|my_name }}</a>{% else %}{{this.others_killed_first_name}} {{this.others_killed_last_name}}{% endif %}{%if this.others_killed_villtown %},{% endif %}
         {% autoescape off %}{% hvictim_address_other this.others_killed_villtown %}{% endautoescape %}
         </p>
 
