@@ -59,7 +59,6 @@ def profiles(request):
     selected_caste = request.GET.get('caste','')
     selected_classification = request.GET.get('classification','')
     selected_first_name = request.GET.get('first_name','')
-    selected_first_name_pb = request.GET.get('first_name_pb','')
     selected_gender = request.GET.get('gender','')
     selected_urban_rural = request.GET.get('urban_rural','')
     selected_combatant = request.GET.get('combatant','')
@@ -79,8 +78,6 @@ def profiles(request):
       selected.append(selected_classification)
     if selected_first_name:
       selected.append(selected_first_name)
-    if selected_first_name_pb:
-      selected.append(selected_first_name_pb)
     if selected_gender:
       selected.append(selected_gender)
     if selected_urban_rural:
@@ -124,7 +121,6 @@ def profiles(request):
       'selected_classification': selected_classification,
       'selected_district': selected_district,
       'selected_first_name': selected_first_name,
-      'selected_first_name_pb': selected_first_name_pb,
       'selected_gender': selected_gender,
       'selected_urban_rural': selected_urban_rural,
       'selected_religion': selected_religion,
@@ -552,7 +548,7 @@ def get_first_names():
           return first_names_pb
       try:
           first_names_pb = Data.objects.all()\
-                          .values('victim_first_name_pb')\
+                          .values('victim_first_name_pb','victim_first_name')\
                           .distinct().order_by('victim_first_name_pb')
           cache.set("first_names_pb", first_names_pb, 3600) # 60 * 60 seconds
           return first_names_pb
@@ -564,7 +560,7 @@ def get_first_names():
           return first_names
       try:
         first_names = Data.objects.all()\
-                          .values('victim_first_name')\
+                          .values('victim_first_name','victim_first_name_pb')\
                           .distinct().order_by('victim_first_name')
         cache.set("first_names", first_names, 3600) # 60 * 60 seconds
         return first_names

@@ -79,25 +79,20 @@
       </select>
     </div>
     
-  {% if request.LANGUAGE_CODE == 'pb' %}
-    <div class="form-group filter{% if selected_first_name_pb %} selected{% endif %} col-6 col-md-4 col-lg-3">
-      <select class="form-control" id="first_name_pb" name="first_name_pb" onchange="this.form.submit()">
-        <option value="">{% trans 'First Name' %}</option>
-          {% for o in first_names %}
-          <option{% if selected_first_name_pb == o.victim_first_name_pb %} selected=selected{% endif %}>{{o.victim_first_name_pb}}</option>
-          {% endfor %}
-      </select>
-    </div>
-  {% else %}
     <div class="form-group filter{% if selected_first_name %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="first_name" name="first_name" onchange="this.form.submit()">
         <option value="">{% trans 'First Name' %}</option>
           {% for o in first_names %}
-          <option{% if selected_first_name == o.victim_first_name %} selected=selected{% endif %}>{{o.victim_first_name}}</option>
+          <option{% if selected_first_name == o.victim_first_name %} selected=selected{% endif %} value="{{o.victim_first_name}}">
+            {% if request.LANGUAGE_CODE == 'pb' %}
+              {{o.victim_first_name_pb}}
+            {% else %}
+              {{o.victim_first_name}}
+            {% endif %}
+          </option>
           {% endfor %}
       </select>
     </div>
-  {% endif %}
     
     <div class="form-group filter{% if selected_gender %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="gender" name="gender" onchange="this.form.submit()">
