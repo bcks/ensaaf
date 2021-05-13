@@ -234,7 +234,7 @@ msgstr "ਨਹੀਂ ਜੀ"
 #: data/templates/profile.html:151 data/templates/stats.html:195
 #: data/templatetags/profiletags.py:975 data/utils.py:127
 msgid "Employment"
-msgstr "ਨੌਕਰੀ"
+msgstr "ਕਿੱਤਾ/ਨੌਕਰੀ"
 
 #: data/templates/detail.html:99
 msgid "Rice mill"
@@ -258,7 +258,7 @@ msgstr "ਅੰਮ੍ਰਿਤਧਾਰੀ"
 
 #: data/templates/detail.html:143 data/templates/profile.html:317
 msgid "Abduction, Detention, &amp; Torture"
-msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਗਿਰਫਤਾਰੀ, ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ "
+msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਗ੍ਰਿਫਤਾਰੀ, ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ"
 
 #: data/templates/detail.html:150 data/templates/profile.html:367
 #: data/templates/stats.html:249
@@ -1311,7 +1311,7 @@ msgstr "ਪੀੜਤਾਂ ਦੇ ਕੁਲ ਬੱਚੇ ਜਿਹੜੇ ਜਿ�
 
 #: data/templates/stats.html:242
 msgid "Abduction, Detention, & Torture"
-msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਗਿਰਫਤਾਰੀ, ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ"
+msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਗ੍ਰਿਫਤਾਰੀ, ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ"
 
 #: data/templates/stats.html:297
 msgid "Abduction preceding enforced disappearance/extrajudicial execution"
