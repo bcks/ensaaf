@@ -1147,7 +1147,7 @@
       {% endif %}
 
         <p>
-        {% if this.others_killed_record %}<a href="{% url 'profile' this.others_killed_record %}">{{ this.others_killed_record|my_name }}{{ this.others_killed_record|my_name }}</a>{% else %}{{this.others_killed_first_name}} {{this.others_killed_last_name}}{% endif %}{%if this.others_killed_villtown %},{% endif %}
+        {% if this.others_killed_record %}<a href="{% url 'profile' this.others_killed_record %}">{{ this.others_killed_record|my_name }}</a>{% else %}{{this.others_killed_first_name}} {{this.others_killed_last_name}}{% endif %}{%if this.others_killed_villtown %},{% endif %}
         {% autoescape off %}{% hvictim_address_other this.others_killed_villtown %}{% endautoescape %}
         </p>
 

@@ -1175,4 +1175,7 @@ def my_name(string):
             return profile[1]
           else:
             return profile[0]
-    return ''
+        else:
+          return string
+    else:
+      return ''
