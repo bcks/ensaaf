@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-13 09:54-0400\n"
+"POT-Creation-Date: 2021-05-13 09:57-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -433,10 +433,18 @@ msgstr "ਪੰਜਾਬ ਪੁਲਿਸ"
 msgid "Officials involved in abduction"
 msgstr "ਅਫਸਰ ਜੋ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
+#: data/templates/detail.html:330
+msgid "Jaswinder Singh"
+msgstr "ਜਸਵਿੰਦਰ ਸਿੰਘ"
+
 #: data/templates/detail.html:331 data/templates/detail.html:356
 #: data/templatetags/profiletags.py:1127
 msgid "Station House Officer"
 msgstr "ਸਟੇਸ਼ਨ ਹਾਉਸ ਅਫ਼ਸਰ"
+
+#: data/templates/detail.html:334
+msgid "Jarnail Singh"
+msgstr "ਜਰਨੈਲ ਸਿੰਘ"
 
 #: data/templates/detail.html:335 data/templatetags/profiletags.py:1127
 msgid "Sub Inspector"
@@ -3046,9 +3054,6 @@ msgstr "ਸੀ. ਪਾਲ ਸਿੰਘ"
 
 #~ msgid "Rajan Gupta"
 #~ msgstr "ਰਾਜਨ ਗੁਪਤਾ"
-
-#~ msgid "Sarabjit Singh"
-#~ msgstr "ਸਰਬਜੀਤ ਸਿੰਘ"
 
 #~ msgid "Rohit Choudhary"
 #~ msgstr "ਰੋਹਿਤ ਚੌਧਰੀ"
