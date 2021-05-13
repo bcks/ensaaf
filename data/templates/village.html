@@ -7,24 +7,24 @@
 
 {% block head %}
 
-  <meta name="description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
+  <meta name="description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pb=village.village_name_pb thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
 
-  <meta itemprop="name" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District{% endblocktrans %}" />
-  <meta itemprop="description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
+  <meta itemprop="name" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pb=village.village_name_pb thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District{% endblocktrans %}" />
+  <meta itemprop="description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pb=village.village_name_pb thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta itemprop="image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@ensaaf" />
-  <meta name="twitter:title" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District{% endblocktrans %}" />
-  <meta name="twitter:description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
+  <meta name="twitter:title" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pb=village.village_name_pb thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District{% endblocktrans %}" />
+  <meta name="twitter:description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pb=village.village_name_pb thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta name="twitter:creator" content="@ensaaf" />
   <meta name="twitter:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
 
-  <meta property="og:title" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District{% endblocktrans %}" />
+  <meta property="og:title" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pb=village.village_name_pb thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}Enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District{% endblocktrans %}" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://data.ensaaf.org" />
   <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
-  <meta property="og:description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pa=village.village_name_pa thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
+  <meta property="og:description" content="{% blocktrans with thisvillage=village|vnametranslate thisvillage_pb=village.village_name_pb thistehsil=village.tehsil|translate thisdistrict=village.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisvillage}}, {{thistehsil}}, {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
 
   <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
@@ -92,7 +92,7 @@
           </div>
 
             <div class="names">
-              <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pa %}{{victim.victim_name_pa}}{% else %}{{victim.victim_name}}{% endif %}</a></h5>
+              <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pb %}{{victim.victim_name_pb}}{% else %}{{victim.victim_name}}{% endif %}</a></h5>
               {{victim|vnametranslate}}<br>
               {% if victim.victim_disappeared_killed == 2 %}
                 {% trans 'Extrajudicial execution' %},

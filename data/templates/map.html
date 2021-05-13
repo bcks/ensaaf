@@ -139,9 +139,9 @@
 
     {% if request.LANGUAGE_CODE == 'pb' %}
         {% for o in districts %}
-        <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{{o.district_pa}}</option>
+        <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{{o.district_pb}}</option>
         {% for t in o.subdistricts %}
-        <option value="{{t.tehsil_id}}" {% if selected_district|add:"0" == t.tehsil_id %} selected=selected{% endif %}>&nbsp;&nbsp;- {{t.tehsil_pa}}</option>
+        <option value="{{t.tehsil_id}}" {% if selected_district|add:"0" == t.tehsil_id %} selected=selected{% endif %}>&nbsp;&nbsp;- {{t.tehsil_pb}}</option>
         {% endfor %}
         {% endfor %}
     {% else %}

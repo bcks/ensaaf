@@ -31,6 +31,10 @@ class DataFilter(django_filters.FilterSet):
   def first_name_filter(self, queryset, name, value):
     return queryset.filter(**{'victim_first_name': value})    
 
+  first_name_pb = django_filters.CharFilter(method='first_name_pb_filter')
+  def first_name_pb_filter(self, queryset, name, value):
+    return queryset.filter(**{'victim_first_name_pb': value})    
+
   urban_rural = django_filters.CharFilter(method='urban_rural_filter')
   def urban_rural_filter(self, queryset, name, value):
     if value == 'Urban':
@@ -97,6 +101,7 @@ class DataFilter(django_filters.FilterSet):
       'classification',
       'district',
       'first_name',
+      'first_name_pb',
       'gender',
       'urban_rural',
       'combatant',

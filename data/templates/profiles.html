@@ -79,14 +79,25 @@
       </select>
     </div>
     
+  {% if request.LANGUAGE_CODE == 'pb' %}
+    <div class="form-group filter{% if selected_first_name_pb %} selected{% endif %} col-6 col-md-4 col-lg-3">
+      <select class="form-control" id="first_name_pb" name="first_name_pb" onchange="this.form.submit()">
+        <option value="">{% trans 'First Name' %}</option>
+          {% for o in first_names %}
+          <option{% if selected_first_name_pb == o.victim_first_name_pb %} selected=selected{% endif %}>{{o.victim_first_name_pb}}</option>
+          {% endfor %}
+      </select>
+    </div>
+  {% else %}
     <div class="form-group filter{% if selected_first_name %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="first_name" name="first_name" onchange="this.form.submit()">
         <option value="">{% trans 'First Name' %}</option>
-        {% for o in first_names %}
-        <option{% if selected_first_name == o.victim_first_name %} selected=selected{% endif %}>{{o.victim_first_name}}</option>
-        {% endfor %}
+          {% for o in first_names %}
+          <option{% if selected_first_name == o.victim_first_name %} selected=selected{% endif %}>{{o.victim_first_name}}</option>
+          {% endfor %}
       </select>
     </div>
+  {% endif %}
     
     <div class="form-group filter{% if selected_gender %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="gender" name="gender" onchange="this.form.submit()">
@@ -193,8 +204,8 @@
       </div>
 
         <div class="names">
-          <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pa %}{{victim.victim_name_pa}}{% else %}{{victim.victim_name}}{% endif %}</a></h5>
-          {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}<br>
+          <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pb %}{{victim.victim_name_pb}}{% else %}{{victim.victim_name}}{% endif %}</a></h5>
+          {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %}<br>
           {% if victim.victim_disappeared_killed == 2 %}
             {% trans 'Extrajudicial execution' %},
           {% endif %}

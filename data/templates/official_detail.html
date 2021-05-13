@@ -131,8 +131,8 @@
           for (var i in data) {
 
            {% if request.LANGUAGE_CODE == 'pb' %}
-              if (data[i].fields['victim_name_pa'] && data[i].fields['victim_name_pa'] != ' ') { data[i].fields['victim_name'] = data[i].fields['victim_name_pa'] }
-              data[i].fields['village_name'] = data[i].fields['village_name_pa'];
+              if (data[i].fields['victim_name_pb'] && data[i].fields['victim_name_pb'] != ' ') { data[i].fields['victim_name'] = data[i].fields['victim_name_pb'] }
+              data[i].fields['village_name'] = data[i].fields['village_name_pb'];
            {% endif %}
                     
             html += '<li><a href="{% lang %}/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
@@ -809,7 +809,7 @@ function updateMap(start, end) {
       });
       if (keys[i] && thisVillage) {
         {% if request.LANGUAGE_CODE == 'pb' %}
-          thisVillage.NAME = thisVillage.NAME_PA;
+          thisVillage.NAME = thisVillage.name_pb;
         {% endif %}        
         points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]].count,'name':thisVillage.NAME, 'record_ids':villages[keys[i]].record_ids });
       }

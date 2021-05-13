@@ -59,13 +59,13 @@
       {% for victim in page.object_list %}   
           {% if victim.record_id %}
           
-                <li><a href="{% url 'profile' victim.record_id %}">{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pa %}{{victim.victim_name_pa}}{% else %}{{victim.victim_name}}{% endif %}</a>, 
+                <li><a href="{% url 'profile' victim.record_id %}">{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pb %}{{victim.victim_name_pb}}{% else %}{{victim.victim_name}}{% endif %}</a>, 
                 {% if o.village_id|add:"0" > 0 and village.tehsil%}
-                  <span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{o.village_name_pa}}{% else %}{{o.village_name}}{% endif %},</a></span>
+                  <span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{o.village_name_pb}}{% else %}{{o.village_name}}{% endif %},</a></span>
                   <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
                   <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></span>,
                 {% else %}
-                  {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %},
+                  {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %},
                 {% endif %}
                 {% if victim.victim_disappeared_killed == 2 %}
                   {% trans 'extrajudicial execution' %},
@@ -78,7 +78,7 @@
     
               {% else %}
 
-                <li><span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.vid %}">{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %},</a></span>
+                <li><span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.vid %}">{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %},</a></span>
                 <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' victim.tehsil_id %}">{% trans victim.tehsil %},</a></span>
                 <span define="{% trans 'District' %}"><a href="{% url 'district' victim.district_id %}">{% trans victim.district %}</a></span></li>
 
@@ -107,14 +107,14 @@
             </div>
 
               <div class="names">
-                <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pa %}{{victim.victim_name_pa}}{% else %}{{victim.victim_name}}{% endif %}</a></h5>
+                <h5 style="margin: 0;"><a href="{% url 'profile' victim.record_id %}">{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pb %}{{victim.victim_name_pb}}{% else %}{{victim.victim_name}}{% endif %}</a></h5>
 
                 {% if o.village_id|add:"0" > 0 and village.tehsil%}
-                  <span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{o.village_name_pa}}{% else %}{{o.village_name}}{% endif %},</a></span>
+                  <span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{o.village_name_pb}}{% else %}{{o.village_name}}{% endif %},</a></span>
                   <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
                   <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{% trans village.district %}</a></span>,
                 {% else %}
-                  {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %}<br>
+                  {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %}<br>
                 {% endif %}
                 {% if victim.victim_disappeared_killed == 2 %}
                   {% trans 'Extrajudicial execution' %},
@@ -134,7 +134,7 @@
             <div class="home-box map" style="background-color:#000;" id="map{{victim.vid}}">
             </div>
               <div class="names">
-                <h6 style="margin: 0;"><span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.vid %}">{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pa}}{% else %}{{victim.village_name}}{% endif %},</a></span>
+                <h6 style="margin: 0;"><span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.vid %}">{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %},</a></span>
                 <span define="Subdistrict"><a href="{% url 'tehsil' victim.tehsil_id %}">{% trans victim.tehsil %},</a></span>
                 <span define="District"><a href="{% url 'district' victim.district_id %}">{% trans victim.district %}</a></span></h6>
                 <p><br></p>

@@ -41,7 +41,7 @@ tehsils_for_translation = [ _("Ajnala"), _("Amritsar I"), _("Amritsar II"), _("B
 
 unknown_for_translation = _("unknown")
 
-districts = [{"district":"Amritsar","district_pa":"ਅੰਮ੍ਰਿਤਸਰ","district_id":302,"subdistricts":[{"tehsil":"Ajnala","tehsil_pa":"ਅਜਨਾਲਾ","tehsil_id":3020001},{"tehsil":"Amritsar I","tehsil_pa":"ਅੰਮ੍ਰਿਤਸਰ - I","tehsil_id":3020002},{"tehsil":"Amritsar II","tehsil_pa":"ਅੰਮ੍ਰਿਤਸਰ - II","tehsil_id":3020003},{"tehsil":"Baba Bakala","tehsil_pa":"ਬਾਬਾ ਬਕਾਲਾ","tehsil_id":3020007},{"tehsil":"Khadoor Sahib","tehsil_pa":"ਖਡੂਰ ਸਾਹਿਬ","tehsil_id":3020006},{"tehsil":"Patti","tehsil_pa":"ਪੱਟੀ","tehsil_id":3020005},{"tehsil":"Tarn Taran","tehsil_pa":"ਤਰਨ ਤਾਰਨ","tehsil_id":3020004}]},{"district":"Bathinda","district_pa":"ਬਠਿੰਡਾ","district_id":314,"subdistricts":[{"tehsil":"Bathinda","tehsil_pa":"ਬਠਿੰਡਾ","tehsil_id":3140002},{"tehsil":"Rampura Phul","tehsil_pa":"ਰਾਮਪੁਰਾ ਫੂਲ","tehsil_id":3140001},{"tehsil":"Talwandi Sabo","tehsil_pa":"ਤਲਵੰਡੀ ਸਾਬੋ","tehsil_id":3140003}]},{"district":"Faridkot","district_pa":"ਫਰੀਦਕੋਟ","district_id":313,"subdistricts":[{"tehsil":"Faridkot","tehsil_pa":"ਫਰੀਦਕੋਟ","tehsil_id":3130001},{"tehsil":"Jaitu","tehsil_pa":"ਜੈਤੋ","tehsil_id":3130002}]},{"district":"Fatehgarh Sahib","district_pa":"ਫਤਿਹਗੜ੍ਹ ਸਾਹਿਬ","district_id":308,"subdistricts":[{"tehsil":"Amloh","tehsil_pa":"ਅਮਲੋਹ","tehsil_id":3080003},{"tehsil":"Bassi Pathana","tehsil_pa":"ਬੱਸੀ ਪਠਾਣਾਂ","tehsil_id":3080001},{"tehsil":"Fatehgarh Sahib","tehsil_pa":"ਫਤਿਹਗੜ੍ਹ ਸਾਹਿਬ","tehsil_id":3080002},{"tehsil":"Khamanon","tehsil_pa":"ਖਮਾਣੋ","tehsil_id":3080004}]},{"district":"Firozpur","district_pa":"ਫਿਰੋਜਪੁਰ","district_id":311,"subdistricts":[{"tehsil":"Abohar","tehsil_pa":"ਅਬੋਹਰ","tehsil_id":3110005},{"tehsil":"Fazilka","tehsil_pa":"ਫਾਜ਼ਿਲਕਾ","tehsil_id":3110004},{"tehsil":"Firozpur","tehsil_pa":"ਫਿਰੋਜਪੁਰ","tehsil_id":3110002},{"tehsil":"Jalalabad","tehsil_pa":"ਜਲਾਲਾਬਾਦ","tehsil_id":3110003},{"tehsil":"Zira","tehsil_pa":"ਜ਼ੀਰਾ","tehsil_id":3110001}]},{"district":"Gurdaspur","district_pa":"ਗੁਰਦਾਸਪੁਰ","district_id":301,"subdistricts":[{"tehsil":"Batala","tehsil_pa":"ਬਟਾਲਾ","tehsil_id":3010004},{"tehsil":"Dera Baba Nanak","tehsil_pa":"ਡੇਰਾ ਬਾਬਾ ਨਾਨਕ","tehsil_id":3010005},{"tehsil":"Dhar Kalan","tehsil_pa":"ਧਾਰ ਕਲਾਂ","tehsil_id":3010001},{"tehsil":"Gurdaspur","tehsil_pa":"ਗੁਰਦਾਸਪੁਰ","tehsil_id":3010003},{"tehsil":"Pathankot","tehsil_pa":"ਪਠਾਨਕੋਟ","tehsil_id":3010002}]},{"district":"Hoshiarpur","district_pa":"ਹੁਸ਼ਿਆਰਪੁਰ","district_id":305,"subdistricts":[{"tehsil":"Dasuya","tehsil_pa":"ਦਸੂਹਾ","tehsil_id":3050001},{"tehsil":"Garhshankar","tehsil_pa":"ਗੜਸ਼ੰਕਰ","tehsil_id":3050004},{"tehsil":"Hoshiarpur","tehsil_pa":"ਹੁਸ਼ਿਆਰਪੁਰ","tehsil_id":3050003},{"tehsil":"Mukerian","tehsil_pa":"ਮੁਕੇਰੀਆਂ","tehsil_id":3050002}]},{"district":"Jalandhar","district_pa":"ਜਲੰਧਰ","district_id":304,"subdistricts":[{"tehsil":"Jalandhar I","tehsil_pa":"ਜਲੰਧਰ - I","tehsil_id":3040004},{"tehsil":"Jalandhar II","tehsil_pa":"ਜਲੰਧਰ - II","tehsil_id":3040005},{"tehsil":"Nakodar","tehsil_pa":"ਨਕੋਦਰ","tehsil_id":3040002},{"tehsil":"Phillaur","tehsil_pa":"ਫਿਲੌਰ","tehsil_id":3040003},{"tehsil":"Shahkot","tehsil_pa":"ਸ਼ਾਹਕੋਟ","tehsil_id":3040001}]},{"district":"Kapurthala","district_pa":"ਕਪੂਰਥਲਾ","district_id":303,"subdistricts":[{"tehsil":"Bhulath","tehsil_pa":"ਭੁਲੱਥ","tehsil_id":3030001},{"tehsil":"Kapurthala","tehsil_pa":"ਕਪੂਰਥਲਾ","tehsil_id":3030002},{"tehsil":"Phagwara","tehsil_pa":"ਫੱਗਵਾੜਾ","tehsil_id":3030004},{"tehsil":"Sultanpur Lodhi","tehsil_pa":"ਸੁਲਤਾਨਪੁਰ ਲੋਧੀ","tehsil_id":3030003}]},{"district":"Ludhiana","district_pa":"ਲੁਧਿਆਣਾ","district_id":309,"subdistricts":[{"tehsil":"Jagraon","tehsil_pa":"ਜਗਰਾਓ","tehsil_id":3090007},{"tehsil":"Khanna","tehsil_pa":"ਖੰਨਾ","tehsil_id":3090002},{"tehsil":"Ludhiana East","tehsil_pa":"ਲੁਧਿਆਣਾ ਈਸਟ","tehsil_id":3090004},{"tehsil":"Ludhiana West","tehsil_pa":"ਲੁਧਿਆਣਾ ਵੈਸਟ","tehsil_id":3090005},{"tehsil":"Payal","tehsil_pa":"ਪਾਇਲ","tehsil_id":3090003},{"tehsil":"Raikot","tehsil_pa":"ਰਾਏਕੋਟ","tehsil_id":3090006},{"tehsil":"Samrala","tehsil_pa":"ਸਮਰਾਲਾ","tehsil_id":3090001}]},{"district":"Mansa","district_pa":"ਮਾਨਸਾ","district_id":315,"subdistricts":[{"tehsil":"Budhlada","tehsil_pa":"ਬੁੱਡਲਾਡਾ","tehsil_id":3150002},{"tehsil":"Mansa","tehsil_pa":"ਮਾਨਸਾ","tehsil_id":3150003},{"tehsil":"Sardulgarh","tehsil_pa":"ਸਰਦੂਲਗੱੜ","tehsil_id":3150001}]},{"district":"Moga","district_pa":"ਮੋਗਾ","district_id":310,"subdistricts":[{"tehsil":"Bhagha Purana","tehsil_pa":"ਬਾਘਾ ਪੁਰਾਣਾ","tehsil_id":3100002},{"tehsil":"Moga","tehsil_pa":"ਮੋਗਾ","tehsil_id":3100003},{"tehsil":"Nihal Singhwala","tehsil_pa":"ਨਿਹਾਲ ਸਿੰਘਵਾਲਾ","tehsil_id":3100001}]},{"district":"Muktsar","district_pa":"ਮੁਕਤਸਰ","district_id":312,"subdistricts":[{"tehsil":"Giddarbaha","tehsil_pa":"ਗਿੱਦੜਬਾਹਾ","tehsil_id":3120002},{"tehsil":"Malout","tehsil_pa":"ਮਲੋਟ","tehsil_id":3120001},{"tehsil":"Muktsar","tehsil_pa":"ਮੁਕਤਸਰ","tehsil_id":3120003}]},{"district":"Nawanshahr","district_pa":"ਨਵਾਂਸ਼ਹਿਰ","district_id":306,"subdistricts":[{"tehsil":"Balachaur","tehsil_pa":"ਬਲਾਚੌਰ","tehsil_id":3060002},{"tehsil":"Nawanshahr","tehsil_pa":"ਨਵਾਂਸ਼ਹਿਰ","tehsil_id":3060001}]},{"district":"Patiala","district_pa":"ਪਟਿਆਲਾ","district_id":317,"subdistricts":[{"tehsil":"Dera Bassi","tehsil_pa":"ਡੇਰਾ ਬੱਸੀ","tehsil_id":3170005},{"tehsil":"Nabha","tehsil_pa":"ਨਾਭਾ","tehsil_id":3170002},{"tehsil":"Patiala","tehsil_pa":"ਪਟਿਆਲਾ","tehsil_id":3170003},{"tehsil":"Rajpura","tehsil_pa":"ਰਾਜਪੁਰਾ","tehsil_id":3170004},{"tehsil":"Samana","tehsil_pa":"ਸਮਾਣਾ","tehsil_id":3170001}]},{"district":"Rupnagar","district_pa":"ਰੂਪਨਗਰ","district_id":307,"subdistricts":[{"tehsil":"Anandpur Sahib","tehsil_pa":"ਅਨੰਦਪੁਰ ਸਾਹਿਬ","tehsil_id":3070001},{"tehsil":"Kharar","tehsil_pa":"ਖਰੜ","tehsil_id":3070003},{"tehsil":"Rupnagar","tehsil_pa":"ਰੂਪਨਗਰ","tehsil_id":3070002},{"tehsil":"S.A.S.Nagar (Mohali)","tehsil_pa":"ਸਾਹਿਬਜ਼ਾਦਾ ਅਜੀਤ ਸਿੰਘ ਨਗਰ (ਮੋਹਾਲੀ)","tehsil_id":3070004}]},{"district":"Sangrur","district_pa":"ਸੰਗਰੂਰ","district_id":316,"subdistricts":[{"tehsil":"Barnala","tehsil_pa":"ਬਰਨਾਲਾ","tehsil_id":3160001},{"tehsil":"Dhuri","tehsil_pa":"ਧੂਰੀ","tehsil_id":3160003},{"tehsil":"Malerkotla","tehsil_pa":"ਮਲੇਰਕੋਟਲਾ","tehsil_id":3160002},{"tehsil":"Moonak","tehsil_pa":"ਮੂਨਕ","tehsil_id":3160006},{"tehsil":"Sangrur","tehsil_pa":"ਸੰਗਰੂਰ","tehsil_id":3160004},{"tehsil":"Sunam","tehsil_pa":"ਸੁਨਾਮ","tehsil_id":3160005}]}]
+districts = [{"district":"Amritsar","district_pb":"ਅੰਮ੍ਰਿਤਸਰ","district_id":302,"subdistricts":[{"tehsil":"Ajnala","tehsil_pb":"ਅਜਨਾਲਾ","tehsil_id":3020001},{"tehsil":"Amritsar I","tehsil_pb":"ਅੰਮ੍ਰਿਤਸਰ - I","tehsil_id":3020002},{"tehsil":"Amritsar II","tehsil_pb":"ਅੰਮ੍ਰਿਤਸਰ - II","tehsil_id":3020003},{"tehsil":"Baba Bakala","tehsil_pb":"ਬਾਬਾ ਬਕਾਲਾ","tehsil_id":3020007},{"tehsil":"Khadoor Sahib","tehsil_pb":"ਖਡੂਰ ਸਾਹਿਬ","tehsil_id":3020006},{"tehsil":"Patti","tehsil_pb":"ਪੱਟੀ","tehsil_id":3020005},{"tehsil":"Tarn Taran","tehsil_pb":"ਤਰਨ ਤਾਰਨ","tehsil_id":3020004}]},{"district":"Bathinda","district_pb":"ਬਠਿੰਡਾ","district_id":314,"subdistricts":[{"tehsil":"Bathinda","tehsil_pb":"ਬਠਿੰਡਾ","tehsil_id":3140002},{"tehsil":"Rampura Phul","tehsil_pb":"ਰਾਮਪੁਰਾ ਫੂਲ","tehsil_id":3140001},{"tehsil":"Talwandi Sabo","tehsil_pb":"ਤਲਵੰਡੀ ਸਾਬੋ","tehsil_id":3140003}]},{"district":"Faridkot","district_pb":"ਫਰੀਦਕੋਟ","district_id":313,"subdistricts":[{"tehsil":"Faridkot","tehsil_pb":"ਫਰੀਦਕੋਟ","tehsil_id":3130001},{"tehsil":"Jaitu","tehsil_pb":"ਜੈਤੋ","tehsil_id":3130002}]},{"district":"Fatehgarh Sahib","district_pb":"ਫਤਿਹਗੜ੍ਹ ਸਾਹਿਬ","district_id":308,"subdistricts":[{"tehsil":"Amloh","tehsil_pb":"ਅਮਲੋਹ","tehsil_id":3080003},{"tehsil":"Bassi Pathana","tehsil_pb":"ਬੱਸੀ ਪਠਾਣਾਂ","tehsil_id":3080001},{"tehsil":"Fatehgarh Sahib","tehsil_pb":"ਫਤਿਹਗੜ੍ਹ ਸਾਹਿਬ","tehsil_id":3080002},{"tehsil":"Khamanon","tehsil_pb":"ਖਮਾਣੋ","tehsil_id":3080004}]},{"district":"Firozpur","district_pb":"ਫਿਰੋਜਪੁਰ","district_id":311,"subdistricts":[{"tehsil":"Abohar","tehsil_pb":"ਅਬੋਹਰ","tehsil_id":3110005},{"tehsil":"Fazilka","tehsil_pb":"ਫਾਜ਼ਿਲਕਾ","tehsil_id":3110004},{"tehsil":"Firozpur","tehsil_pb":"ਫਿਰੋਜਪੁਰ","tehsil_id":3110002},{"tehsil":"Jalalabad","tehsil_pb":"ਜਲਾਲਾਬਾਦ","tehsil_id":3110003},{"tehsil":"Zira","tehsil_pb":"ਜ਼ੀਰਾ","tehsil_id":3110001}]},{"district":"Gurdaspur","district_pb":"ਗੁਰਦਾਸਪੁਰ","district_id":301,"subdistricts":[{"tehsil":"Batala","tehsil_pb":"ਬਟਾਲਾ","tehsil_id":3010004},{"tehsil":"Dera Baba Nanak","tehsil_pb":"ਡੇਰਾ ਬਾਬਾ ਨਾਨਕ","tehsil_id":3010005},{"tehsil":"Dhar Kalan","tehsil_pb":"ਧਾਰ ਕਲਾਂ","tehsil_id":3010001},{"tehsil":"Gurdaspur","tehsil_pb":"ਗੁਰਦਾਸਪੁਰ","tehsil_id":3010003},{"tehsil":"Pathankot","tehsil_pb":"ਪਠਾਨਕੋਟ","tehsil_id":3010002}]},{"district":"Hoshiarpur","district_pb":"ਹੁਸ਼ਿਆਰਪੁਰ","district_id":305,"subdistricts":[{"tehsil":"Dasuya","tehsil_pb":"ਦਸੂਹਾ","tehsil_id":3050001},{"tehsil":"Garhshankar","tehsil_pb":"ਗੜਸ਼ੰਕਰ","tehsil_id":3050004},{"tehsil":"Hoshiarpur","tehsil_pb":"ਹੁਸ਼ਿਆਰਪੁਰ","tehsil_id":3050003},{"tehsil":"Mukerian","tehsil_pb":"ਮੁਕੇਰੀਆਂ","tehsil_id":3050002}]},{"district":"Jalandhar","district_pb":"ਜਲੰਧਰ","district_id":304,"subdistricts":[{"tehsil":"Jalandhar I","tehsil_pb":"ਜਲੰਧਰ - I","tehsil_id":3040004},{"tehsil":"Jalandhar II","tehsil_pb":"ਜਲੰਧਰ - II","tehsil_id":3040005},{"tehsil":"Nakodar","tehsil_pb":"ਨਕੋਦਰ","tehsil_id":3040002},{"tehsil":"Phillaur","tehsil_pb":"ਫਿਲੌਰ","tehsil_id":3040003},{"tehsil":"Shahkot","tehsil_pb":"ਸ਼ਾਹਕੋਟ","tehsil_id":3040001}]},{"district":"Kapurthala","district_pb":"ਕਪੂਰਥਲਾ","district_id":303,"subdistricts":[{"tehsil":"Bhulath","tehsil_pb":"ਭੁਲੱਥ","tehsil_id":3030001},{"tehsil":"Kapurthala","tehsil_pb":"ਕਪੂਰਥਲਾ","tehsil_id":3030002},{"tehsil":"Phagwara","tehsil_pb":"ਫੱਗਵਾੜਾ","tehsil_id":3030004},{"tehsil":"Sultanpur Lodhi","tehsil_pb":"ਸੁਲਤਾਨਪੁਰ ਲੋਧੀ","tehsil_id":3030003}]},{"district":"Ludhiana","district_pb":"ਲੁਧਿਆਣਾ","district_id":309,"subdistricts":[{"tehsil":"Jagraon","tehsil_pb":"ਜਗਰਾਓ","tehsil_id":3090007},{"tehsil":"Khanna","tehsil_pb":"ਖੰਨਾ","tehsil_id":3090002},{"tehsil":"Ludhiana East","tehsil_pb":"ਲੁਧਿਆਣਾ ਈਸਟ","tehsil_id":3090004},{"tehsil":"Ludhiana West","tehsil_pb":"ਲੁਧਿਆਣਾ ਵੈਸਟ","tehsil_id":3090005},{"tehsil":"Payal","tehsil_pb":"ਪਾਇਲ","tehsil_id":3090003},{"tehsil":"Raikot","tehsil_pb":"ਰਾਏਕੋਟ","tehsil_id":3090006},{"tehsil":"Samrala","tehsil_pb":"ਸਮਰਾਲਾ","tehsil_id":3090001}]},{"district":"Mansa","district_pb":"ਮਾਨਸਾ","district_id":315,"subdistricts":[{"tehsil":"Budhlada","tehsil_pb":"ਬੁੱਡਲਾਡਾ","tehsil_id":3150002},{"tehsil":"Mansa","tehsil_pb":"ਮਾਨਸਾ","tehsil_id":3150003},{"tehsil":"Sardulgarh","tehsil_pb":"ਸਰਦੂਲਗੱੜ","tehsil_id":3150001}]},{"district":"Moga","district_pb":"ਮੋਗਾ","district_id":310,"subdistricts":[{"tehsil":"Bhagha Purana","tehsil_pb":"ਬਾਘਾ ਪੁਰਾਣਾ","tehsil_id":3100002},{"tehsil":"Moga","tehsil_pb":"ਮੋਗਾ","tehsil_id":3100003},{"tehsil":"Nihal Singhwala","tehsil_pb":"ਨਿਹਾਲ ਸਿੰਘਵਾਲਾ","tehsil_id":3100001}]},{"district":"Muktsar","district_pb":"ਮੁਕਤਸਰ","district_id":312,"subdistricts":[{"tehsil":"Giddarbaha","tehsil_pb":"ਗਿੱਦੜਬਾਹਾ","tehsil_id":3120002},{"tehsil":"Malout","tehsil_pb":"ਮਲੋਟ","tehsil_id":3120001},{"tehsil":"Muktsar","tehsil_pb":"ਮੁਕਤਸਰ","tehsil_id":3120003}]},{"district":"Nawanshahr","district_pb":"ਨਵਾਂਸ਼ਹਿਰ","district_id":306,"subdistricts":[{"tehsil":"Balachaur","tehsil_pb":"ਬਲਾਚੌਰ","tehsil_id":3060002},{"tehsil":"Nawanshahr","tehsil_pb":"ਨਵਾਂਸ਼ਹਿਰ","tehsil_id":3060001}]},{"district":"Patiala","district_pb":"ਪਟਿਆਲਾ","district_id":317,"subdistricts":[{"tehsil":"Dera Bassi","tehsil_pb":"ਡੇਰਾ ਬੱਸੀ","tehsil_id":3170005},{"tehsil":"Nabha","tehsil_pb":"ਨਾਭਾ","tehsil_id":3170002},{"tehsil":"Patiala","tehsil_pb":"ਪਟਿਆਲਾ","tehsil_id":3170003},{"tehsil":"Rajpura","tehsil_pb":"ਰਾਜਪੁਰਾ","tehsil_id":3170004},{"tehsil":"Samana","tehsil_pb":"ਸਮਾਣਾ","tehsil_id":3170001}]},{"district":"Rupnagar","district_pb":"ਰੂਪਨਗਰ","district_id":307,"subdistricts":[{"tehsil":"Anandpur Sahib","tehsil_pb":"ਅਨੰਦਪੁਰ ਸਾਹਿਬ","tehsil_id":3070001},{"tehsil":"Kharar","tehsil_pb":"ਖਰੜ","tehsil_id":3070003},{"tehsil":"Rupnagar","tehsil_pb":"ਰੂਪਨਗਰ","tehsil_id":3070002},{"tehsil":"S.A.S.Nagar (Mohali)","tehsil_pb":"ਸਾਹਿਬਜ਼ਾਦਾ ਅਜੀਤ ਸਿੰਘ ਨਗਰ (ਮੋਹਾਲੀ)","tehsil_id":3070004}]},{"district":"Sangrur","district_pb":"ਸੰਗਰੂਰ","district_id":316,"subdistricts":[{"tehsil":"Barnala","tehsil_pb":"ਬਰਨਾਲਾ","tehsil_id":3160001},{"tehsil":"Dhuri","tehsil_pb":"ਧੂਰੀ","tehsil_id":3160003},{"tehsil":"Malerkotla","tehsil_pb":"ਮਲੇਰਕੋਟਲਾ","tehsil_id":3160002},{"tehsil":"Moonak","tehsil_pb":"ਮੂਨਕ","tehsil_id":3160006},{"tehsil":"Sangrur","tehsil_pb":"ਸੰਗਰੂਰ","tehsil_id":3160004},{"tehsil":"Sunam","tehsil_pb":"ਸੁਨਾਮ","tehsil_id":3160005}]}]
 
 
 
@@ -59,6 +59,7 @@ def profiles(request):
     selected_caste = request.GET.get('caste','')
     selected_classification = request.GET.get('classification','')
     selected_first_name = request.GET.get('first_name','')
+    selected_first_name_pb = request.GET.get('first_name_pb','')
     selected_gender = request.GET.get('gender','')
     selected_urban_rural = request.GET.get('urban_rural','')
     selected_combatant = request.GET.get('combatant','')
@@ -78,6 +79,8 @@ def profiles(request):
       selected.append(selected_classification)
     if selected_first_name:
       selected.append(selected_first_name)
+    if selected_first_name_pb:
+      selected.append(selected_first_name_pb)
     if selected_gender:
       selected.append(selected_gender)
     if selected_urban_rural:
@@ -92,14 +95,14 @@ def profiles(request):
 
     if selected_sort == 'Newest to Oldest':
       victim_list = Data.objects.all().values(\
-        'victim_name','victim_name_pa','victim_disappeared_killed','timeline_start','timeline_end','village_name','village_name_pa','photo_vic_fn','record_id','victim_sex')\
+        'victim_name','victim_name_pb','victim_disappeared_killed','timeline_start','timeline_end','village_name','village_name_pb','photo_vic_fn','record_id','victim_sex')\
         .annotate(year=Trunc('timeline', 'year', output_field=DateField() ))\
         .order_by('-timeline')
       years = list(reversed(range(1981,2008)))
       years.insert(0, 2012)
     else:
       victim_list = Data.objects.all().values(\
-        'victim_name','victim_name_pa','victim_disappeared_killed','timeline_start','timeline_end','village_name','village_name_pa','photo_vic_fn','record_id','victim_sex')\
+        'victim_name','victim_name_pb','victim_disappeared_killed','timeline_start','timeline_end','village_name','village_name_pb','photo_vic_fn','record_id','victim_sex')\
         .annotate(year=Trunc('timeline', 'year', output_field=DateField() ))\
         .extra(select={'timeline_is_null': "timeline = '0000-00-00'"}, order_by=['-timeline_is_null', 'timeline'])
       years = list(range(1981,2008))
@@ -121,6 +124,7 @@ def profiles(request):
       'selected_classification': selected_classification,
       'selected_district': selected_district,
       'selected_first_name': selected_first_name,
+      'selected_first_name_pb': selected_first_name_pb,
       'selected_gender': selected_gender,
       'selected_urban_rural': selected_urban_rural,
       'selected_religion': selected_religion,
@@ -281,9 +285,9 @@ def villages(request):
                             .values('village_id__count')    
     
     if get_language() == 'pb':
-      villages = Villages.objects.all().values('village_name_pa','vid','district','district_id')\
+      villages = Villages.objects.all().values('village_name_pb','vid','district','district_id')\
         .annotate(data_count=Subquery(datas))\
-        .order_by('district','village_name_pa')
+        .order_by('district','village_name_pb')
     else:
       villages = Villages.objects.all().values('village_name','vid','district','district_id')\
         .annotate(data_count=Subquery(datas))\
@@ -434,7 +438,7 @@ def locality(request, slug=None):
     _query = Q(arrest_security_locality__contains=vid) | Q(killing_securityforces_lcl__contains=vid) | Q( record_id__in= _arrest_so_affiliation_loc )
 
     name = get_village_name(vid)
-    name_pa = get_village_name_pa(vid)
+    name_pb = get_village_name_pb(vid)
 
     district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
@@ -448,7 +452,7 @@ def locality(request, slug=None):
     stats = calculate_stats(victims)
     if vid is not None and vid is None:
         return messages.warning(request,"Locality %s was not found"%vid)
-    return render(request, "locality.html", { "victims": victims, "name": name, "name_pa": name_pa, "stats": stats } )
+    return render(request, "locality.html", { "victims": victims, "name": name, "name_pb": name_pb, "stats": stats } )
 
 
 
@@ -457,7 +461,7 @@ def cremation(request, slug=None):
     vid = slug
 
     name = get_village_name(vid)
-    name_pa = get_village_name_pa(vid)
+    name_pb = get_village_name_pb(vid)
 
     district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
     tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
@@ -471,7 +475,7 @@ def cremation(request, slug=None):
     stats = calculate_stats(victims)
     if vid is not None and vid is None:
         return messages.warning(request,"Cremation Location %s was not found"%vid)
-    return render(request, "cremation.html", { "victims": victims, "name": name, "name_pa": name_pa, "stats": stats } )
+    return render(request, "cremation.html", { "victims": victims, "name": name, "name_pb": name_pb, "stats": stats } )
 
 
 
@@ -541,17 +545,34 @@ def tehsil(request, slug=None):
 
 def get_first_names():
     first_names = cache.get("first_names")
-    if first_names:
+    first_names_pb = cache.get("first_names_pb")
+
+    if get_language() == 'pb':
+      if first_names_pb:
+          return first_names_pb
+      try:
+          first_names_pb = Data.objects.all()\
+                          .values('victim_first_name_pb')\
+                          .distinct().order_by('victim_first_name_pb')
+          cache.set("first_names_pb", first_names_pb, 3600) # 60 * 60 seconds
+          return first_names_pb
+      except Exception as e:
+          return messages.warning("Exception get_first_names:"%e)
+          return None
+    else:
+      if first_names:
+          return first_names
+      try:
+        first_names = Data.objects.all()\
+                          .values('victim_first_name')\
+                          .distinct().order_by('victim_first_name')
+        cache.set("first_names", first_names, 3600) # 60 * 60 seconds
         return first_names
-    try:
-      first_names = Data.objects.all()\
-                        .values('victim_first_name')\
-                        .distinct().order_by('victim_first_name')
-      cache.set("first_names", first_names, 3600) # 60 * 60 seconds
-      return first_names
-    except Exception as e:
-        return messages.warning("Exception get_first_names:"%e)
-        return None
+      except Exception as e:
+          return messages.warning("Exception get_first_names:"%e)
+          return None
+
+
 
 def get_tehsil_list():
     tehsil_list = cache.get("tehsil_list")
@@ -593,11 +614,11 @@ def get_village_name(value):
     else:
       return None
 
-def get_village_name_pa(value):
+def get_village_name_pb(value):
     if value:
       try:
-        village_name = Villages.objects.filter(vid=value).values('village_name_pa')[:1].get()
-        return village_name['village_name_pa']
+        village_name = Villages.objects.filter(vid=value).values('village_name_pb')[:1].get()
+        return village_name['village_name_pb']
       except Exception as e:
         return None        
     else:
@@ -776,7 +797,7 @@ def dossier_command(geo, slug, start, end):
     Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_4=1) \
     )
 
-  return serializers.serialize("json", all, fields=('victim_name','victim_name_pa','village_id','village_name','village_name_pa','timeline','photo_vic_fn'))
+  return serializers.serialize("json", all, fields=('victim_name','victim_name_pb','village_id','village_name','village_name_pb','timeline','photo_vic_fn'))
 
 
 

@@ -8,9 +8,9 @@ from django import forms
 
 class Data(models.Model):
     victim_name = models.CharField(max_length=256)
-    victim_name_pa = models.CharField(max_length=256)
+    victim_name_pb = models.CharField(max_length=256)
     village_name = models.CharField(max_length=256, blank=True, null=True)
-    village_name_pa = models.CharField(max_length=256, blank=True, null=True)
+    village_name_pb = models.CharField(max_length=256, blank=True, null=True)
     victim_alias = models.IntegerField(blank=True, null=True)
     victim_alias_name = models.CharField(max_length=256, blank=True, null=True)
     village_id = models.CharField(max_length=64, blank=True, null=True, unique=True)
@@ -30,6 +30,7 @@ class Data(models.Model):
     genuine_encounters = models.IntegerField(blank=True, null=True)
     respondent_information_complete = models.IntegerField()
     victim_first_name = models.CharField(max_length=256)
+    victim_first_name_pb = models.CharField(max_length=256)
     victim_sex = models.IntegerField(blank=True, null=True)
     victim_age = models.CharField(max_length=64)
     victim_age_averaged = models.IntegerField(db_column='victim_age_averaged', blank=True, null=True)
@@ -254,10 +255,12 @@ class Data(models.Model):
 
 
 
+# ALTER TABLE villages CHANGE village_name_pb village_name_pb varchar(256) ;
+
 
 class Villages(models.Model):
     village_name = models.CharField(max_length=256)
-    village_name_pa = models.CharField(max_length=256)
+    village_name_pb = models.CharField(max_length=256)
     tehsil = models.CharField(max_length=64)
     district = models.CharField(max_length=64)
     district_id = models.IntegerField()
@@ -388,14 +391,14 @@ class WhereVictimDetained(models.Model):
 class Page(models.Model):
     title = models.CharField(max_length=200, unique=True)
     body = models.TextField()
+    title_pb = models.CharField(max_length=200, blank=True)
+    body_pb = models.TextField(blank=True)
     slug = models.SlugField(max_length=100, unique=True)
     class Meta:
         db_table = 'Page'
 
 class PageAdmin(admin.ModelAdmin):
-    # define which columns displayed in changelist
     list_display = ('title', 'slug', 'body')
-    # add search field 
     search_fields = ['title', 'body']
 
 admin.site.register(Page, PageAdmin)

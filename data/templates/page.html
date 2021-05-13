@@ -4,17 +4,33 @@
 
 {% block content %}
 
-<div class="row">
-  <div class="col-sm-8">
-    <h1>{{page.title}}</h1>
-    
-    <article>
-      {% autoescape off %}
-      {{page.body}}
-      {% endautoescape %}
-    </article>
 
+{% if request.LANGUAGE_CODE == 'pb' and  page.title_pb != None %}
+
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>{{page.title_pb}}</h1>
+    
+      <article>
+        {{page.body_pb|safe}}
+      </article>
+
+    </div>
   </div>
-</div>
+
+{% else %}
+
+  <div class="row">
+    <div class="col-sm-8">
+      <h1>{{page.title}}</h1>
+    
+      <article>
+        {{page.body|safe}}
+      </article>
+
+    </div>
+  </div>
+
+{% endif %}
 
 {% endblock %}

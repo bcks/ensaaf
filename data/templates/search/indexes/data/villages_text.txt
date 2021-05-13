@@ -1,6 +1,6 @@
 {{ object.vid }}
 {{ object.village_name }}
-{{ object.village_name_pa }}
+{{ object.village_name_pb }}
 {{ object.tehsil }}
 {{ object.district }}
 {{ object.district_id }}

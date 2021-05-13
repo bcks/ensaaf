@@ -49,7 +49,7 @@ def translate(text):
 def vnametranslate(village):
   try:    
     if (get_language() == 'pb'):
-      return village.village_name_pa
+      return village.village_name_pb
     else:
       return village.village_name
   except ValueError:
@@ -124,11 +124,11 @@ def uncensus(value):
 
 
 
-def get_village_name_pa(value):
+def get_village_name_pb(value):
     if value:
       try:
-        village_name = Villages.objects.filter(vid=value).values('village_name_pa')[:1].get()
-        return village_name['village_name_pa']
+        village_name = Villages.objects.filter(vid=value).values('village_name_pb')[:1].get()
+        return village_name['village_name_pb']
       except Exception as e:
         return None        
     else:
@@ -148,7 +148,7 @@ def hvictim_address_other(value):
   if m:
     census_id = m.group(1)
     if get_language() == 'pb':
-      vname = get_village_name_pa(census_id)
+      vname = get_village_name_pb(census_id)
     try:
       village = Villages.objects.filter(vid=census_id)[:1].get()
       
@@ -193,7 +193,7 @@ def censuslink(value):
           census_id = regexp.search(part).group(1)
           vname = re.sub(r'([0123456789.]+)-','', part)
           if lang == '/pb':
-            vname = get_village_name_pa(census_id)
+            vname = get_village_name_pb(census_id)
           newparts.append(
             '<a href="'+lang+'/locality/' + census_id  + '">' + \
              vname + \
@@ -216,7 +216,7 @@ def censuslink(value):
         census_id = parts[0]
         vname = parts[1]
         if lang == '/pb':
-          vname = get_village_name_pa(census_id)
+          vname = get_village_name_pb(census_id)
         newparts = '<a href="'+lang+'/locality/' + census_id  + '">' + \
            vname + '</a>'
       return newparts
@@ -245,7 +245,7 @@ def cremationlink(value):
         census_id = regexp.search(part).group(1)
         vname = re.sub(r'([0123456789.]+)-','', part)
         if lang == '/pb':
-          vname = get_village_name_pa(census_id)
+          vname = get_village_name_pb(census_id)
         newparts.append(
           '<a href="'+lang+'/cremation/' + census_id  + '">' + \
            vname + \
@@ -764,9 +764,9 @@ def hso_approached_type(v1, v2, v3, v4, v5, v6, v7, other):
 def translate_village_by_name(value):
     if value:
       try:
-        village_name = Villages.objects.filter(village_name=value).values('village_name_pa')[:1].get()
+        village_name = Villages.objects.filter(village_name=value).values('village_name_pb')[:1].get()
         if village_name:
-          return village_name['village_name_pa']
+          return village_name['village_name_pb']
         else:
           return value
       except Exception as e:
