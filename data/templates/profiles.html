@@ -60,14 +60,14 @@
     <div class="form-group filter{% if selected_caste %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="caste" name="caste" onchange="this.form.submit()">
         <option value="">{% trans 'Caste' %}</option>
-        <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %}>{% trans 'Chamar' %}</option>
-        <option{% if selected_caste == 'Dalit/SC/BC' %} selected=selected{% endif %}>{% trans 'Dalit/SC/BC' %}</option>
-        <option{% if selected_caste == 'Jat' %} selected=selected{% endif %}>{% trans 'Jat' %}</option>
-        <option{% if selected_caste == 'Khatri' %} selected=selected{% endif %}>{% trans 'Khatri' %}</option>
-        <option{% if selected_caste == 'Mazbi' %} selected=selected{% endif %}>{% trans 'Mazbi' %}</option>
-        <option{% if selected_caste == 'Naee' %} selected=selected{% endif %}>{% trans 'Naee' %}</option>
-        <option{% if selected_caste == 'Ramgarhia' %} selected=selected{% endif %}>{% trans 'Ramgarhia' %}</option>
-        <option{% if selected_caste == 'Other' %} selected=selected{% endif %}>{% trans 'Other' %}</option>
+        <option{% if selected_caste == 'Chamar' %} selected=selected{% endif %} value="Chamar">{% trans 'Chamar' %}</option>
+        <option{% if selected_caste == 'Dalit/SC/BC' %} selected=selected{% endif %} value="Dalit/SC/BC">{% trans 'Dalit/SC/BC' %}</option>
+        <option{% if selected_caste == 'Jat' %} selected=selected{% endif %} value="Jat">{% trans 'Jat' %}</option>
+        <option{% if selected_caste == 'Khatri' %} selected=selected{% endif %} value="Khatri">{% trans 'Khatri' %}</option>
+        <option{% if selected_caste == 'Mazbi' %} selected=selected{% endif %} value="Mazbi">{% trans 'Mazbi' %}</option>
+        <option{% if selected_caste == 'Naee' %} selected=selected{% endif %} value="Naee">{% trans 'Naee' %}</option>
+        <option{% if selected_caste == 'Ramgarhia' %} selected=selected{% endif %} value="Ramgarhia">{% trans 'Ramgarhia' %}</option>
+        <option{% if selected_caste == 'Other' %} selected=selected{% endif %} value="Other">{% trans 'Other' %}</option>
       </select>
     </div>
         
@@ -127,12 +127,12 @@
     <div class="form-group filter{% if selected_religion %} selected{% endif %} col-6 col-md-4 col-lg-3">
       <select class="form-control" id="religion" name="religion" onchange="this.form.submit()">
         <option value="">{% trans 'Religion' %}</option>
-        <option{% if selected_religion == 'Christian' %} selected=selected{% endif %}>{% trans 'Christian' %}</option>
-        <option{% if selected_religion == 'Hindu' %} selected=selected{% endif %}>{% trans 'Hindu' %}</option>
-        <option{% if selected_religion == 'Muslim' %} selected=selected{% endif %}>{% trans 'Muslim' %}</option>
-        <option{% if selected_religion == 'Sikh' %} selected=selected{% endif %}>{% trans 'Sikh' %}</option>
-        <option{% if selected_religion == 'No religion' %} selected=selected{% endif %}>{% trans 'No religion' %}</option>
-        <option{% if selected_religion == 'Other' %} selected=selected{% endif %}>{% trans 'Other' %}</option>
+        <option{% if selected_religion == 'Christian' %} selected=selected{% endif %} value="Christian">{% trans 'Christian' %}</option>
+        <option{% if selected_religion == 'Hindu' %} selected=selected{% endif %} value="Hindu">{% trans 'Hindu' %}</option>
+        <option{% if selected_religion == 'Muslim' %} selected=selected{% endif %} value="Muslim">{% trans 'Muslim' %}</option>
+        <option{% if selected_religion == 'Sikh' %} selected=selected{% endif %} value="Sikh">{% trans 'Sikh' %}</option>
+        <option{% if selected_religion == 'No religion' %} selected=selected{% endif %} value="No religion">{% trans 'No religion' %}</option>
+        <option{% if selected_religion == 'Other' %} selected=selected{% endif %} value="Other">{% trans 'Other' %}</option>
       </select>
     </div>
 
