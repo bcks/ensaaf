@@ -841,18 +841,6 @@ def dossier_abduction(slug=None):
 
 
 
-@register.filter()
-def my_name(string):
-    if string:
-        profile = Data.objects.filter(record_id=string).values_list('victim_name', 'victim_name_pb')[0]
-        if profile:
-          if get_language() == 'pb':
-            return profile[1]
-          else:
-            return profile[0]
-    return ''
-
-
 # from pprint import pprint
 
 spellings = [ ['gurjit','gurjeet'] ]

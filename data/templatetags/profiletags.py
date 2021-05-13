@@ -128,7 +128,7 @@ def get_village_name_pb(value):
     if value:
       try:
         village_name = Villages.objects.filter(vid=value).values('village_name_pb')[:1].get()
-        return village_name['village_name_pb']
+        return unparen( village_name['village_name_pb'] )
       except Exception as e:
         return None        
     else:
@@ -1159,7 +1159,20 @@ def percentpa(item1, total):
       return ''
 
 
+
 @register.simple_tag()
 def dump(var):
     return vars(var)
 
+
+
+@register.filter()
+def my_name(string):
+    if string:
+        profile = Data.objects.filter(record_id=string).values_list('victim_name', 'victim_name_pb')[0]
+        if profile:
+          if get_language() == 'pb':
+            return profile[1]
+          else:
+            return profile[0]
+    return ''
