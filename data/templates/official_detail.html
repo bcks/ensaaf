@@ -123,36 +123,52 @@
 
       <script>
   
-        var timeCapsule = [];
-        var profiles = [];
-    
-        function makeList(data, selector) {
-          var html = '<ul>';
-          for (var i in data) {
+          var timeCapsule = [];
+          var profiles = [];
 
-           {% if request.LANGUAGE_CODE == 'pb' %}
-              if (data[i].fields['victim_name_pb'] && data[i].fields['victim_name_pb'] != ' ') { data[i].fields['victim_name'] = data[i].fields['victim_name_pb'] }
-              data[i].fields['village_name'] = data[i].fields['village_name_pb'];
-           {% endif %}
-                    
-            html += '<li><a href="{% lang %}/profile/' + data[i].pk + '">'+ data[i].fields['victim_name'] +'</a></li>';
+          function makeList(data, selector) {
+            var html = "<ul>";
+            for (var i in data) {
+              html += '<li><a href="{% lang %}/profile/' + data[i].pk + '">' + data[i].fields["victim_name"] + "</a></li>";
 
-            var thisTime = {"v":{"id":data[i].fields['village_id'],"t": new Date(data[i].fields['timeline']).valueOf() / 1000, "record_id": data[i].pk }};
-            var thisProfile =  { "id": data[i].pk, "name": data[i].fields['victim_name'], "village": data[i].fields['village_name'], "date": new Date(data[i].fields['timeline']).valueOf() };
+              {% if request.LANGUAGE_CODE == 'pb' %}
+                if (data[i].fields['victim_name_pb'] && data[i].fields['victim_name_pb'] != ' ') { data[i].fields['victim_name'] = data[i].fields['victim_name_pb'] }
+                data[i].fields['village_name'] = data[i].fields['village_name_pb'];
+              {% endif %}
 
-            if (  _.some(profiles, thisProfile) ) {
-               //console.log('exists in time capsule ',thisTime);
-            } else {
-              timeCapsule.push(thisTime);             
-              profiles.push( thisProfile );
-            }
+              var thisTime = {
+                v: {
+                  id: data[i].fields["village_id"],
+                  t: new Date(data[i].fields["timeline"]).valueOf() / 1000,
+                  record_id: data[i].pk,
+                },
+              };
+              var thisProfile = {
+                id: data[i].pk,
+                name: data[i].fields["victim_name"],
+                village: data[i].fields["village_name"],
+                date: new Date(data[i].fields["timeline"]).valueOf(),
+              };
 
-          } // end for i in data
-          html += '</ul><br>';
+              if (
+                profiles.some((obj) => {
+                  if ( obj.id == thisProfile.id ) {
+                    return 1;
+                  } else {
+                    return 0;
+                  }
+                })
+              ) {
+                //console.log("exists in time capsule ", thisTime);
+              } else {
+                timeCapsule.push(thisTime);
+                profiles.push(thisProfile);
+              }
+            } // end for i in data
+            html += "</ul><br>";
 
-          $( selector ).html(html);
-      
-        }
+            $(selector).html(html);
+          }
     
       </script>
 
@@ -1063,7 +1079,9 @@ function makeTimeline() {
     var templist = '';
     var data = profiles;
     for (var i in profiles) {
-      templist += data[i].pk +' ' + data[i].fields['victim_name'] + '<br>';
+      if (data[i].fields && data[i].fields['victim_name']) {
+        templist += data[i].pk +' ' + data[i].fields['victim_name'] + '<br>';
+      }
     }
     $('h1').html( templist );
 
