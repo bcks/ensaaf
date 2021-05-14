@@ -129,12 +129,13 @@
           function makeList(data, selector) {
             var html = "<ul>";
             for (var i in data) {
-              html += '<li><a href="{% lang %}/profile/' + data[i].pk + '">' + data[i].fields["victim_name"] + "</a></li>";
 
               {% if request.LANGUAGE_CODE == 'pb' %}
                 if (data[i].fields['victim_name_pb'] && data[i].fields['victim_name_pb'] != ' ') { data[i].fields['victim_name'] = data[i].fields['victim_name_pb'] }
                 data[i].fields['village_name'] = data[i].fields['village_name_pb'];
               {% endif %}
+
+              html += '<li><a href="{% lang %}/profile/' + data[i].pk + '">' + data[i].fields["victim_name"] + "</a></li>";
 
               var thisTime = {
                 v: {
