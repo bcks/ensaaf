@@ -6,6 +6,7 @@ class DataIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.EdgeNgramField(document=True, use_template=True)
     record_id = indexes.CharField(model_attr='record_id', null=True)
     victim_name = indexes.CharField(model_attr='victim_name', null=True)
+    victim_name_pb = indexes.CharField(model_attr='victim_name_pb', null=True)
     village_name = indexes.CharField(model_attr='village_name', null=True)
     village_name_pb = indexes.CharField(model_attr='village_name_pb', null=True)
     photo_vic_fn = indexes.CharField(model_attr='photo_vic_fn', null=True)
