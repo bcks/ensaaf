@@ -9,17 +9,5 @@ class Migration(migrations.Migration):
         ('data', '0002_auto_20180426_1333'),
     ]
 
-    operations = [
-        migrations.AddIndex(
-            model_name='villages',
-            index=models.Index(fields=['tehsil_id'], name='villages_tehsil__307175_idx'),
-        ),
-        migrations.AddIndex(
-            model_name='villages',
-            index=models.Index(fields=['district_id'], name='villages_distric_0f574a_idx'),
-        ),
-        migrations.AddIndex(
-            model_name='villages',
-            index=models.Index(fields=['id'], name='villages_id_1bfa92_idx'),
-        ),
+    operations = [        
     ]

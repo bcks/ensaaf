@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['localhost','127.0.0.1','ensaaf.backspace.com','graphonomy.com'
 
 INSTALLED_APPS = [
     'data.apps.DataConfig',
+    'video.apps.VideoConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

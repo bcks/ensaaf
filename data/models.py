@@ -8,7 +8,7 @@ from django import forms
 
 class Data(models.Model):
     victim_name = models.CharField(max_length=256)
-    victim_name_pb = models.CharField(max_length=256)
+    victim_name_pb = models.CharField(max_length=256, blank=True, null=True)
     village_name = models.CharField(max_length=256, blank=True, null=True)
     village_name_pb = models.CharField(max_length=256, blank=True, null=True)
     victim_alias = models.IntegerField(blank=True, null=True)
@@ -29,8 +29,8 @@ class Data(models.Model):
     number_of_victims = models.IntegerField(blank=True, null=True)
     genuine_encounters = models.IntegerField(blank=True, null=True)
     respondent_information_complete = models.IntegerField()
-    victim_first_name = models.CharField(max_length=256)
-    victim_first_name_pb = models.CharField(max_length=256)
+    victim_first_name = models.CharField(max_length=256, blank=True, null=True)
+    victim_first_name_pb = models.CharField(max_length=256, blank=True, null=True)
     victim_sex = models.IntegerField(blank=True, null=True)
     victim_age = models.CharField(max_length=64)
     victim_age_averaged = models.IntegerField(db_column='victim_age_averaged', blank=True, null=True)
@@ -154,9 +154,9 @@ class Data(models.Model):
     killing_securityforcestype_7 = models.IntegerField(db_column='killing_securityforcestype___7')
     killing_securityforcestype_8 = models.IntegerField(db_column='killing_securityforcestype___8')
     killing_securityforces_lcl = models.CharField(max_length=256, blank=True, null=True)
-    securityforces_idknown_1 = models.IntegerField(db_column='securityforces_idknown___1')
-    securityforces_idknown_2 = models.IntegerField(db_column='securityforces_idknown___2')
-    securityforces_idknown_3 = models.IntegerField(db_column='securityforces_idknown___3')
+    securityforces_idknown_1 = models.IntegerField(db_column='securityforces_idknown___1', blank=True, null=True, default='NULL')
+    securityforces_idknown_2 = models.IntegerField(db_column='securityforces_idknown___2', blank=True, null=True, default='NULL')
+    securityforces_idknown_3 = models.IntegerField(db_column='securityforces_idknown___3', blank=True, null=True, default='NULL')
     others_killed_1 = models.IntegerField(db_column='others_killed___1')
     others_killed_2 = models.IntegerField(db_column='others_killed___2')
     others_killed_0 = models.IntegerField(db_column='others_killed___0')
@@ -260,14 +260,14 @@ class Data(models.Model):
 
 class Villages(models.Model):
     village_name = models.CharField(max_length=256)
-    village_name_pb = models.CharField(max_length=256)
+    village_name_pb = models.CharField(max_length=256, blank=True, null=True)
     tehsil = models.CharField(max_length=64)
     district = models.CharField(max_length=64)
     district_id = models.IntegerField()
     tehsil_id = models.IntegerField()
     vid = models.CharField(max_length=16, primary_key=True)
-    lon = models.CharField(max_length=16)
-    lat = models.CharField(max_length=16)
+    lon = models.CharField(max_length=16, blank=True, null=True)
+    lat = models.CharField(max_length=16, blank=True, null=True)
 
     class Meta:
         # managed = False
