@@ -531,7 +531,11 @@ def tehsil(request, slug=None):
 
     all = Data.objects.filter(village_id__in=Subquery(villages.values('vid'))).order_by('victim_name')
     stats = calculate_stats(all)
+
+    district_id = int(slug)
+
     return render(request, "tehsil.html", {
+      'district_id': district_id,
       'villages_with_count': villages_with_count,
       'villages': villages,
       "stats": stats

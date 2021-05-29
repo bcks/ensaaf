@@ -28,7 +28,6 @@
   <meta property="og:description" content="{% blocktrans with thisdistrict=district.0.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
 
-
   <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
   <link rel="stylesheet" href="/static/css/carto.css" />
   <script type="text/javascript" src="/static/js/carto.js"></script>
@@ -135,14 +134,9 @@ function numberWithCommas(x) {
 }
 
 
-
-
-
-
 function updateMap(villages, villageCentroids) {
 
-
-    // make assign village data to locations
+    // assign village data to locations
     var points = [];
     var keys = Object.keys(villages);
     for (var i in keys) {
@@ -153,7 +147,6 @@ function updateMap(villages, villageCentroids) {
         points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':{% if request.LANGUAGE_CODE == 'pb' %}thisVillage.NAME_PA{% else %}thisVillage.NAME{% endif %}});
       }
     }
-
 
     // add points to map
     var markers = {};
@@ -246,8 +239,6 @@ $.getJSON("/map_ajax/?district={{district_id}}", function(d) {
       
   });
 });
-
-
 
 </script>
 
