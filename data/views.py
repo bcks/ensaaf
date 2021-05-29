@@ -670,7 +670,7 @@ def get_tehsils(slug):
 
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def district(request, slug=None):
     tehsils = get_tehsils(slug)
     villages = Villages.objects.filter(district_id=slug).order_by('village_name')
