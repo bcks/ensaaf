@@ -27,6 +27,22 @@
   <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
   <meta property="og:description" content="{% blocktrans with thisdistrict=district.0.district|translate %}A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions in {{thisdistrict}} District, based on data collected through primary source interviews.{% endblocktrans %}" />
   <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
+
+
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="/static/css/carto.css" />
+  <script type="text/javascript" src="/static/js/carto.js"></script>
+  <script type="text/javascript" src="/static/js/leaflet.zoomhome.min.js"></script>
+  <script type="text/javascript" src="/static/js/leaflet.minimap.min.js"></script>
+  <style>
+    #mapid {
+      height:500px;
+      background-color: #000;
+      margin-bottom: 3rem;
+    }
+  </style>
+  <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
+  <script type="text/javascript" src="/static/js/lodash.min.js"></script>
 {% endblock %}
 
 
@@ -76,7 +92,8 @@
 
   </div>
   <div class="col-sm-6 border-left">
-
+    
+    <div id="mapid"></div>
 
     {% if request.LANGUAGE_CODE == 'pb' %}
       <p>{% trans district.0.district %} ਜ਼ਿਲ੍ਹਾ ਵਿੱਚ ਦਰਜ ਕੀਤੇ ਹੋਏ ਕੇਸਾਂ ਦੇ ਮੁੱਖ ਅੰਕੜੇ</p>
@@ -89,5 +106,151 @@
 
   </div>  
 </div>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+function numpa(num) {
+  var num = num.toString();
+  var dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫','6':'੬','7':'੭','8':'੮','9':'੯'};
+  var output = [];
+  for (let i = 0; i < num.length; i++) {
+    output.push( dic[ num[i] ] );
+  }
+  return output.join('');
+}
+
+function numberWithCommas(x) {
+  {% if request.LANGUAGE_CODE == 'pb' %}
+  return numpa( x.toString() );
+  {% else %}
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  {% endif %}
+}
+
+
+
+
+
+
+function updateMap(villages, villageCentroids) {
+
+
+    // make assign village data to locations
+    var points = [];
+    var keys = Object.keys(villages);
+    for (var i in keys) {
+      var thisVillage = _.find(villageCentroids, function(o) {
+        return o.CODE.endsWith(keys[i]);        
+      });
+      if (keys[i] && thisVillage) {
+        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':{% if request.LANGUAGE_CODE == 'pb' %}thisVillage.NAME_PA{% else %}thisVillage.NAME{% endif %}});
+      }
+    }
+
+
+    // add points to map
+    var markers = {};
+    var markers_array = [];
+    const area = d3.scalePow().exponent(0.5).domain([0, 100]).range([1, 15]);
+
+    _.forEach(points, function(d) {
+      if (d.id !== '0') {
+        var customCircleMarker = L.CircleMarker.extend({
+           options: { 
+              url: '/village/' + d.id,
+           }
+        });
+        markers[String(d.id)] = new customCircleMarker([d.coord[1] ,d.coord[0] ], {
+            stroke: false,
+            fillColor: '#fc0',
+            fillOpacity: 0.5,
+            url: '/village/' + d.id,
+            radius: area(d.size)
+        }).addTo(mymap);
+
+        markers_array.push( markers[String(d.id)] );
+
+        var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + numberWithCommas(d.size);
+        {% if request.LANGUAGE_CODE == 'pb' %}
+          if (d.size == 1) { tultipText += ' ਪੀੜਤ'; } else { tultipText += ' ਪੀੜਤ'; }
+        {% else %}
+          tultipText += ' Victim'; if (d.size > 1) { tultipText += 's'; }
+        {% endif %}
+          tultipText += '</div>';
+
+        markers[String(d.id)].bindPopup(tultipText, {offset:[0,-5]});
+        markers[String(d.id)].on('mouseover', function (e) { this.openPopup(); });
+        markers[String(d.id)].on('mouseout', function (e) { this.closePopup(); });
+        markers[String(d.id)].on('click', function (e) {
+          var params = $('#form').serialize();
+          document.location.href = '{% lang %}' + this.options.url + '/?' + params;
+        });
+        
+      }
+      
+    }); // end for points
+
+    var group = new L.featureGroup(markers_array);
+    var bounds = group.getBounds();
+    bounds._northEast.lat = bounds._northEast.lat;
+    bounds._northEast.lng = bounds._northEast.lng;
+    bounds._southWest.lat = bounds._southWest.lat;
+    bounds._southWest.lng = bounds._southWest.lng;  
+    mymap.fitBounds(bounds);
+
+}
+
+
+
+
+// init
+
+// load basemap
+var mymap = new L.Map('mapid', {
+  center: [31.0157601,75.45],
+  zoom: 8
+});
+cartodb.createLayer(mymap, 'https://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9865-4151-a4e7-3456ef906d7d/viz.json', {https: true}).addTo(mymap);
+var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
+zoomHome.addTo(mymap);
+
+var pubs2 = new L.TileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png');
+var layers = new L.LayerGroup([pubs2]);
+
+mymap.setView(new L.LatLng(31.0157601,75.45),8);
+mymap.scrollWheelZoom.disable();
+
+
+
+$.getJSON("/map_ajax/?district={{district_id}}", function(d) {
+  
+  let cases = d.timeline;
+
+  $.getJSON("/static/js/village_loc.json", function(json) {
+      const villageCentroids = json
+        
+      // update size per village
+      villages = {};
+      for (var i=0;i<cases.length;i++) {
+        var id = cases[i]['v']['id'];
+        villages[id] = (villages[id] || 0) + 1;
+      }
+      updateMap(villages, villageCentroids);
+      
+  });
+});
+
+
+
+</script>
+
+
 
 {% endblock %}

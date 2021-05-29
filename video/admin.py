@@ -27,3 +27,13 @@ admin.site.register(Video, VideoAdmin)
 
 admin.site.register(Clip)
 admin.site.register(Theme, ThemeAdmin)
+
+
+
+class PageAdmin(admin.ModelAdmin):
+    list_display = ('title', 'slug', 'body')
+    search_fields = ['title', 'body']
+
+admin.site.register(Page, PageAdmin)
+
+

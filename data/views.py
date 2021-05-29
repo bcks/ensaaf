@@ -670,15 +670,17 @@ def get_tehsils(slug):
 
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def district(request, slug=None):
     tehsils = get_tehsils(slug)
     villages = Villages.objects.filter(district_id=slug).order_by('village_name')
     district = Villages.objects.filter(district_id=slug)[:1].values('district')
     all = Data.objects.filter(village_id__in=Subquery(villages.values('vid'))).order_by('victim_name')
-    stats = calculate_stats(all)
+    stats = calculate_stats(all)    
+    district_id = int(slug)
     
     return render(request, "district.html", {
+      "district_id": district_id,
       "district": district,
       "villages": tehsils,
       "stats": stats

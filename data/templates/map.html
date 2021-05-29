@@ -344,10 +344,8 @@ cartodb.createLayer(mymap, 'https://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9
 var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
 zoomHome.addTo(mymap);
 
-// https://sukhmandhami.carto.com/builder/350efab7-443d-419e-930c-b50ab8e394cd/embed
-var osm2 = new L.TileLayer('https://cartocdn-gusc.global.ssl.fastly.net/sukhmandhami/api/v1/map/sukhmandhami@8cf94c4f@7394194616a5b4936fb73a4555534a43:1554421032266/1,2/{z}/{x}/{y}.png');
 var pubs2 = new L.TileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png');
-var layers = new L.LayerGroup([pubs2, osm2]);
+var layers = new L.LayerGroup([pubs2]);
 var miniMap = new L.Control.MiniMap(layers, { width: 250, height: 200, zoomLevelFixed: 3, position: 'topright', centerFixed: [21.28,77] }).addTo(mymap);
 
 mymap.setView(new L.LatLng(31.0157601,75.45),8);
@@ -449,7 +447,7 @@ function updateMap(start, end) {
           bounds._northEast.lng = bounds._northEast.lng + buffer.lng;
           bounds._southWest.lat = bounds._southWest.lat - buffer.lat;
           bounds._southWest.lng = bounds._southWest.lng - buffer.lng;
-          mymap.flyToBounds(bounds);
+          mymap.fitBounds(bounds);
           previousDistrict = $( "#district" ).val();
         } else if (previousDistrict) {
           // reset map zoom
