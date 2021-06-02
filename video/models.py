@@ -76,6 +76,7 @@ class Video(models.Model):
     combatant_status = models.CharField(choices=COMBATANT_CHOICES,max_length=14, blank=True)
     year = models.CharField(max_length=4, blank=True)
     district = models.CharField(choices=DISTRICT_CHOICES,max_length=14, blank=True)
+    transcription = models.TextField(blank=True)
     slug = models.SlugField(max_length=255, blank=True, null=True, unique=True)
 
     def save(self, *args, **kwargs):
@@ -90,6 +91,7 @@ class Clip(models.Model):
     end_time = models.CharField(blank=True, max_length=8, help_text="Use format MM:SS")
     clip_youtube_id = models.CharField(max_length=200, blank=True, verbose_name="YouTube ID", help_text="YouTube ID, if uploaded as a separate clip")
     theme = models.ManyToManyField(Theme, default=None, blank=True)
+    transcription = models.TextField(blank=True)
     def __str__(self): return self.video.title
 
 
@@ -102,5 +104,3 @@ class Page(models.Model):
     def save(self, *args, **kwargs):
        self.slug = get_unique_slug(self.id,self.title,Page.objects)
        super().save(*args, **kwargs)
-
-
