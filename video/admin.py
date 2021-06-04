@@ -5,9 +5,14 @@ from .models import *
 
 
 
+
 class ThemeAdmin(admin.ModelAdmin):
     model = Theme
     list_display = ('name', )
+
+admin.site.register(Theme, ThemeAdmin)
+
+
 
 
 class ClipAdmin(admin.StackedInline):
@@ -17,7 +22,6 @@ class ClipAdmin(admin.StackedInline):
     }
     extra = 0
 
-
 class VideoAdmin(admin.ModelAdmin):
      list_display = ('title', )
      inlines = [ClipAdmin]
@@ -25,8 +29,14 @@ class VideoAdmin(admin.ModelAdmin):
 admin.site.register(Video, VideoAdmin)
 
 
-admin.site.register(Clip)
-admin.site.register(Theme, ThemeAdmin)
+
+
+class ClipAloneAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        models.ManyToManyField: {'widget': CheckboxSelectMultiple},
+    }
+admin.site.register(Clip, ClipAloneAdmin)
+
 
 
 
