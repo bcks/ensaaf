@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils.text import slugify
-from taggit.managers import TaggableManager
 
 
 
@@ -88,7 +87,6 @@ class Clip(models.Model):
     end_time = models.CharField(blank=True, max_length=8, help_text="Use format MM:SS")
     clip_vimeo_id = models.CharField(max_length=200, blank=True, verbose_name="vimeo ID", help_text="Vimeo ID, if uploaded as a separate clip")
     theme = models.ManyToManyField(Theme, default=None, blank=True)
-    tags = TaggableManager(blank=True)
     transcription = models.TextField(blank=True)
     def __str__(self): return self.video.title
 

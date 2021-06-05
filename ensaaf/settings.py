@@ -42,8 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'debug_toolbar',
     'haystack',
-    'graphene_django',
     'taggit',
+    'graphene_django',
     'admin_honeypot',
 ]
 
@@ -119,9 +119,6 @@ HAYSTACK_CONNECTIONS = {
 LOCALE_PATHS = [ 'data/locale' ]
 
 GRAPHENE = { 'SCHEMA': 'data.schema.schema' }
-
-TAGGIT_CASE_INSENSITIVE = True
-
 
 
 # load a secrets file that isn't in source control; backup is using environ config
