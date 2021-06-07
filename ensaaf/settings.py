@@ -25,14 +25,29 @@ SECRET_KEY = '^c&91u5n2wpr6717u+(4wt0i)%cizz7=0p*=!jj+0o5hjlq!rk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG")
 
-ALLOWED_HOSTS = ['localhost','127.0.0.1','ensaaf.backspace.com','graphonomy.com','data.ensaaf.org']
+ALLOWED_HOSTS = [
+  'localhost',
+  'interviews.localhost',
+  '127.0.0.1',
+  'ensaaf.backspace.com',
+  'graphonomy.com',
+  'data.ensaaf.org',
+  'interviews.ensaaf.org',
+  ]
+
+
+DEFAULT_HOST = 'data'
+ROOT_URLCONF = 'ensaaf.urls'
+ROOT_HOSTCONF = 'ensaaf.hosts'
+
+SITE_ID = 1
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'data.apps.DataConfig',
-    'video.apps.VideoConfig',
+    'interviews.apps.InterviewsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,14 +55,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
-    'debug_toolbar',
     'haystack',
-    'taggit',
+    'django_hosts',
     'graphene_django',
     'admin_honeypot',
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -56,10 +71,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
-
-ROOT_URLCONF = 'ensaaf.urls'
 
 TEMPLATES = [
     {
