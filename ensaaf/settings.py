@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
   'interviews.localhost',
   '127.0.0.1',
   'ensaaf.backspace.com',
+  'interviews.backspace.com',
   'graphonomy.com',
   'data.ensaaf.org',
   'interviews.ensaaf.org',
