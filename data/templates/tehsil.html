@@ -78,7 +78,7 @@
 
     <div class="row">
       <div class="col-sm-12 col-md m-2">
-        <a href="{% url 'village' village.vid %}">{% if request.LANGUAGE_CODE == 'pb' %}{{village.village_name_pb}}{% else %}{{village.village_name}}{% endif %}</a>, {{village.data_count|numpa}}
+        <a href="{% url 'village' village.vid %}" onmouseover="villageOn('{{village.vid}}')" onmouseout="villageOff('{{village.vid}}')">{% if request.LANGUAGE_CODE == 'pb' %}{{village.village_name_pb}}{% else %}{{village.village_name}}{% endif %}</a>, {{village.data_count|numpa}}
         {% if forloop.first %} 
           {% if request.LANGUAGE_CODE == 'pb' %}
             ਦਰਜ ਕੀਤੇ ਕੇਸ
@@ -129,6 +129,21 @@ function numberWithCommas(x) {
 }
 
 
+
+const mouseoverEvent = new Event('mouseover');
+const mouseoutEvent = new Event('mouseout');
+
+function villageOn(vid) {
+  markers[String(vid)].highlight();
+}
+function villageOff(vid) {
+  markers[String(vid)].unhighlight();
+}
+
+
+var markers = {};
+
+
 function updateMap(villages, villageCentroids) {
 
     // assign village data to locations
@@ -144,9 +159,9 @@ function updateMap(villages, villageCentroids) {
     }
 
     // add points to map
-    var markers = {};
-    var markers_array = [];
     const area = d3.scalePow().exponent(0.5).domain([0, 100]).range([1, 15]);
+
+    var markers_array = [];
 
     _.forEach(points, function(d) {
       if (d.id !== '0') {
@@ -173,13 +188,15 @@ function updateMap(villages, villageCentroids) {
         {% endif %}
           tultipText += '</div>';
 
-        markers[String(d.id)].bindPopup(tultipText, {offset:[0,-5]});
+        markers[String(d.id)].bindPopup(tultipText);
         markers[String(d.id)].on('mouseover', function (e) { this.openPopup(); });
         markers[String(d.id)].on('mouseout', function (e) { this.closePopup(); });
         markers[String(d.id)].on('click', function (e) {
           var params = $('#form').serialize();
           document.location.href = '{% lang %}' + this.options.url + '/?' + params;
         });
+        markers[String(d.id)].highlight = function (e) { this.openPopup(); };
+        markers[String(d.id)].unhighlight = function (e) { this.closePopup(); };
         
       }
       
