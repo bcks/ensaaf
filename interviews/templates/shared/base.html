@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
   <style>@import url( {% static "css/bootstrap.min.css" %} );</style>
-  <style>@import url( {% static "css/base.css" %}?1.2 );</style>
+  <style>@import url( {% static "css/interviews.css" %}?1.2 );</style>
   <script src='{% static "js/jquery.js" %}'></script>
   <script src='{% static "js/bootstrap.min.js" %}'></script>
   <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
@@ -16,30 +16,29 @@
 <body>
 <div id="app-wrapper">
 
-
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top">
-
-    <div id="site-title">
-      <div>
-        <a class="navbar-brand" href="https://ensaaf.org/" title="{% trans "Ensaaf" %}">{% trans "Ensaaf" %}</a>  
-        <span><a href="{% url "interviews_home" %}" title="Home" class="home">{% trans "Crimes Against Humanity in Punjab, India" %}</a></span>
-      </div>
-      <div class="social-media">
-          <a href="https://twitter.com/ensaaf"><img class="twitter" title="Twitter" alt="Twitter" src="/static/images/twitter.svg"></a>
-          <a href="https://www.facebook.com/Ensaaf/"><img class="facebook" title="Facebook" alt="Facebook" src="/static/images/facebook.svg"></a>
-      </div>
-
-    </div>
-
-    
+  <nav class="navbar navbar-light fixed-top">
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="closer" data-toggle="collapse" data-target="#navbarSupportedContent">Close Nav</div>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="{% url "interviews_home" %}" title="{% trans "Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions" %}">{% trans "interviews_home" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "interviews_home" %}" title="{% trans "Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions" %}">{% trans "Site Title" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "interviews" %}" title="{% trans "Interviews" %}">{% trans "Interviews" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "search" %}" title="{% trans "Search" %}">{% trans "Search" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url "about" %}" title="{% trans "About" %}">{% trans "About" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/give/199767/#!/donation/checkout?" title="{% trans "Donate" %}">{% trans "Donate" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://ensaaf.org" title="ensaaf.org">ensaaf.org</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://ensaaf.org" title="ensaaf.org">data.ensaaf.org</a></li>
+
+        <li class="nav-item">
+        <div class="social-media">
+          <a href="https://twitter.com/ensaaf"><img class="twitter" title="Twitter" alt="Twitter" src="/static/images/twitter.svg"></a>
+          <a href="https://www.facebook.com/Ensaaf/"><img class="facebook" title="Facebook" alt="Facebook" src="/static/images/facebook.svg"></a>
+        </div>
+        </li>
+
       </ul>
     </div>
 
