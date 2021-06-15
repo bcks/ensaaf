@@ -80,11 +80,11 @@ def about(request):
 
 
 def interviews_home(request):
-    book = None
+    p = Page.objects.filter(slug='home')[0]
     return render(
         request,
         "home.html",
         {
-            "book": book,
+            "p": p,
         },
     )

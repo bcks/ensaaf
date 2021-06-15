@@ -100,8 +100,8 @@ class Clip(models.Model):
 
 
 class Page(models.Model):
-    title = models.CharField(max_length=200, unique=True)
-    body = models.TextField()
+    title = models.CharField(max_length=200)
+    body = models.TextField(blank=True)
     background_video = models.FileField(
         upload_to="video/", blank=True, verbose_name="Background Video"
     )
