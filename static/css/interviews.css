@@ -35,6 +35,7 @@ a { color: #008eaf; }
 	background-image: url('/static/images/dot_pattern.png');
 	background-size: 4px 4px;
 	background-repeat: repeat;
+	z-index: 1;
 }
 
 #background video
