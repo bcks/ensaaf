@@ -1,19 +1,20 @@
 {% extends "shared/base.html" %}
 
-{% block title %}About{% endblock %}
+{% block title %}Interviews{% endblock %}
 
 {% block content %}
 
 
-<h1 class="mb-4 lato-black">About</h1>
-
-
 <div class="row">
-    <div class="col-md-6">
 
-        
 
-    </div>
+</div>
+
+
+<div id="background">
+  <video autoplay loop muted>
+      <source src="/media/{{p.background_video}}" type="video/mp4">
+  </video>
 </div>
 
 {% endblock %}

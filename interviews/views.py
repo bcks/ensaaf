@@ -68,23 +68,13 @@ def interviews(request):
     )
 
 
+
 def about(request):
-    book = None
-    return render(
-        request,
-        "about.html",
-        {
-            "book": book,
-        },
-    )
+    p = Page.objects.filter(slug='about')[0]
+    return render( request, "about.html", { "p": p, }, )
 
 
 def interviews_home(request):
     p = Page.objects.filter(slug='home')[0]
-    return render(
-        request,
-        "home.html",
-        {
-            "p": p,
-        },
-    )
+    return render( request, "home.html", { "p": p, }, )
+
