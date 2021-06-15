@@ -171,10 +171,13 @@ a { color: #008eaf; }
 h1 { font-family: 'Inconsolata', monospace; font-weight: 800; }
 h1, h2, h3, h4, h5, h6, h7 {
   color: #000;
-  margin-bottom: 1em;
   font-weight: 600;
 }
 h5 { margin-top: 1em; }
+
+@media only screen and (max-width : 616px) {
+  h1 { margin-left: 3rem; }
+}
 
 .smallparen { 
   font-size: 1rem;
@@ -202,6 +205,18 @@ tr { vertical-align: top; }
 .dots { border-bottom: 1px dotted #ccc;	 }
 
 .gray { color: #bbb; }
+
+
+
+
+.bg-white {
+  background-color: #fff;
+  box-shadow: 3px 3px 10px #000;
+}
+
+
+
+
 
 
 
