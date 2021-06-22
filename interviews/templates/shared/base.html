@@ -24,14 +24,14 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="closer" data-toggle="collapse" data-target="#navbarSupportedContent">Close Nav</div>
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="{% url "interviews_home" %}" title="{% trans "Crimes Against Humanity in Punjab, India: Enforced Disappearances and Extrajudicial Executions" %}">{% trans "Site Title" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="{% url "interviews" %}" title="{% trans "Interviews" %}">{% trans "Interviews" %}</a></li>
-        <li class="nav-item"><a class="nav-link" id="nav-search" href="{% url "search" %}" title="{% trans "Search" %}">{% trans "Search" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "about" %}" title="{% trans "About" %}">{% trans "About" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/give/199767/#!/donation/checkout?" title="{% trans "Donate" %}">{% trans "Donate" %}</a></li>
-        <li class="nav-item"><a class="nav-link" href="https://ensaaf.org" title="Main Ensaaf website">ensaaf.org</a></li>
-        <li class="nav-item"><a class="nav-link" href="https://data.ensaaf.org" title="Mapping Crimes Against Humanity: Enforced Disappearances & Extrajudicial Executions in Punjab, India">data.ensaaf.org</a></li>
-
+        <li class="nav-item"><a class="nav-link" href="{% url "interviews" %}" title="{% trans "Video Interviews" %}">{% trans "Video Interviews" %}</a></li>
+        <li class="nav-item"><a class="nav-link" id="search-toggle" title="{% trans "Search" %}">{% trans "Search" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/give/199767/#!/donation/checkout?" title="{% trans "Donate" %}">{% trans "Donate" %}</a></li>        
+        <li class="nav-item"><hr></li>
+        <li class="nav-item"><a class="nav-link" href="https://data.ensaaf.org" title="The Victims">The Victims</a></li>
+        <li class="nav-item"><a class="nav-link navbar-brand ml-2 my-2" href="https://ensaaf.org" title="Main Ensaaf website">Ensaaf</a></li>
+        <li class="nav-item"><hr></li>
         <li class="nav-item">
         <div class="social-media">
           <a href="https://twitter.com/ensaaf"><img class="twitter" title="Twitter" alt="Twitter" src="/static/images/twitter.svg"></a>
@@ -41,20 +41,36 @@
 
       </ul>
     </div>
+  </nav>
 
-    <div class="collapse row" id="search-form">
-      <div class="col-12">
-        <form class="form-inline autocomplete-me" method="get" action="{% lang %}/search/">
-          <input class="form-control mr-2 col-9" name="q" id="id_q" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
-          <button class="btn col-2 my-2" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
-        </form>
-        <div class="row">
-          <div class="col-12 suggestions"></div>
-        </div>
+
+  <div class="collapse row" id="search-form">
+    <div class="col-12">
+      <h1>Search</h1>
+      <form class="form-inline autocomplete-me" method="get" action="{% lang %}/search/">
+        <input class="form-control mr-2 col-9" name="q" id="id_q" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
+        <button class="btn col-2 my-2" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
+      </form>
+      <div class="row">
+        <div class="col-12 suggestions"></div>
       </div>
     </div>
+  </div>
+
+
+  <div class="collapse row" id="search-form">
+    <div class="col-12">
+      <form class="form-inline autocomplete-me" method="get" action="{% lang %}/search/">
+        <input class="form-control mr-2 col-9" name="q" id="id_q" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
+        <button class="btn col-2 my-2" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
+      </form>
+      <div class="row">
+        <div class="col-12 suggestions"></div>
+      </div>
+    </div>
+  </div>  
   
-  </nav>
+
 
 
   <div class="container">
@@ -67,7 +83,18 @@
 
 
 </div>
-<script src="/static/js/main.js?1"></script>
+
+<script>
+$( document ).ready(function() {
+
+  $('#search-toggle').on('click', function() {
+    $('#navbarSupportedContent').collapse('hide');
+    $('#search-form').collapse('show');    
+  });
+
+});
+</script>
+
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-124579006-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
