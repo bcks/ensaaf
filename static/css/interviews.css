@@ -23,7 +23,7 @@ a {
   z-index: -1;
 }
 
-#background:before {
+.dotted:before {
   content: " ";
   position: absolute;
   width: 100%;
@@ -90,6 +90,30 @@ a {
   width: 40px;
   border-radius: 4px;
   padding: 7px;
+}
+
+.navbar-toggler::after {
+  content: " ";
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 65px;
+  height: 65px;
+  top: -15px;
+  left: -15px;
+  position: absolute;
+  z-index: -1;
+}
+
+.navbar-toggler::before {
+  content: " ";
+  top: 50px;
+  left: -15px;
+  position: absolute;
+  z-index: -1;
+  width: 0;
+  height: 0;
+  border-left: 32.5px solid transparent;
+  border-right: 32.5px solid transparent;
+  border-top: 20px solid rgba(0, 0, 0, 0.3);
 }
 
 .navbar-light .navbar-toggler-icon {
@@ -167,10 +191,9 @@ a {
 }
 
 .navbar-collapse .nav-item hr {
-    border-color: #883;
-    margin: 12px
+  border-color: #883;
+  margin: 12px;
 }
-
 
 #language {
   border: 1px solid #fc0;
@@ -224,9 +247,6 @@ h6 {
 .bg-white h6 {
   color: #000;
 }
-
-
-
 
 h5 {
   margin-top: 1em;
@@ -802,4 +822,3 @@ img.footer_logo {
   top: 50%;
   left: 100%;
 }
-

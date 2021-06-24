@@ -16,7 +16,7 @@
 <body>
 <div id="app-wrapper">
 
-  <nav class="navbar navbar-light fixed-top">
+  <nav class="navbar navbar-light fixed-top container">
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -44,32 +44,21 @@
   </nav>
 
 
-  <div class="collapse row" id="search-form">
-    <div class="col-12">
-      <h1>Search</h1>
-      <form class="form-inline autocomplete-me" method="get" action="{% lang %}/search/">
-        <input class="form-control mr-2 col-9" name="q" id="id_q" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
-        <button class="btn col-2 my-2" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
-      </form>
+  <div class="collapse" id="search-form">
+    <div class="container">
       <div class="row">
-        <div class="col-12 suggestions"></div>
+        <div class="offset-1 col-11">
+
+          <form class="form-inline" method="get" action="{% lang %}/search/">
+            <h2>Search</h2>
+            <input class="form-control mx-2" name="q" id="id_q" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
+            <button class="btn" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
+          </form>
+
+        </div>
       </div>
     </div>
   </div>
-
-
-  <div class="collapse row" id="search-form">
-    <div class="col-12">
-      <form class="form-inline autocomplete-me" method="get" action="{% lang %}/search/">
-        <input class="form-control mr-2 col-9" name="q" id="id_q" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
-        <button class="btn col-2 my-2" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
-      </form>
-      <div class="row">
-        <div class="col-12 suggestions"></div>
-      </div>
-    </div>
-  </div>  
-  
 
 
 

@@ -5,7 +5,7 @@
 {% block content %}
 
 
-<h1 class="mb-4 lato-black">Interviews</h1>
+<h1 class="offset-1 mb-4 lato-black">Interviews</h1>
 
 
 <div class="row">
@@ -15,5 +15,14 @@
 
     </div>
 </div>
+
+
+
+<div id="background" class="dotted">
+  <video autoplay loop muted>
+      <source src="/media/{{p.background_video}}" type="video/mp4">
+  </video>
+</div>
+
 
 {% endblock %}
