@@ -47,16 +47,17 @@
   <div class="collapse" id="search-form">
     <div class="container">
       <div class="row">
-        <div class="offset-1 col-11">
 
-          <form class="form-inline" method="get" action="{% lang %}/search/">
-            <h2>Search</h2>
-            <input class="form-control mx-2" name="q" id="id_q" type="search" placeholder="{% trans "Search" %}" aria-label="Search">
-            <button class="btn" type="submit" style="width:100px;"><img src="/static/images/search.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
-          </form>
+        <form method="get" action="{% lang %}/search/" class="offset-1 col-11 d-flex">
 
-        </div>
-      </div>
+            <h2 class="text-uppercase">Search</h2>
+            <div class="input-group">
+              <input class="form-control" name="q" id="id_q" type="search" aria-label="Search">
+              <button class="btn btn-link" type="submit"><img src="/static/images/search-yellow.svg" title="{% trans "Search" %}" alt="Search" style="height:25px;width:25px;" height="25" width="25"></button>
+            </div>
+        
+        </form>
+
     </div>
   </div>
 
