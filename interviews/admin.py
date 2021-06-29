@@ -9,7 +9,7 @@ from image_cropping import ImageCroppingMixin
 class ThemeAdmin(ImageCroppingMixin, admin.ModelAdmin):
     model = Theme
     list_display = ("name",)
-
+    
 admin.site.register(Theme, ThemeAdmin)
 
 
