@@ -1,20 +1,24 @@
 {% extends "shared/base.html" %}
+{% load cropping %}
 
 {% block title %}Themes{% endblock %}
 
 {% block content %}
 
 
-<h1 class="mb-4 lato-black">Themes</h1>
+<h1 class="offset-1 mt-1 mb-4 text-uppercase">Themes</h1>
 
 
 <div class="row">
-    <div class="col-md-6">
-
-        
-
+    {% for t in themes %}
+    <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'theme' t.slug %}'">
+      <div class="inner-slate" style="background-image: url('{% cropped_thumbnail t "image_cropping" %}')">
+        <h4>{{t.name}}</h4>
+      </div>
     </div>
+    {% endfor %}
 </div>
+
 
 <div id="background" class="dotted">
   <video autoplay loop muted>

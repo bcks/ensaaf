@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from image_cropping import ImageRatioField
 
 
 def get_unique_slug(id, title, obj):
@@ -19,6 +20,8 @@ def get_unique_slug(id, title, obj):
 
 class Theme(models.Model):
     name = models.CharField(max_length=200, blank=True)
+    image = models.ImageField(upload_to = 'themes/', max_length=200, blank=True)
+    image_cropping = ImageRatioField('image', '830x500', size_warning=True)
     slug = models.SlugField(max_length=255, blank=True, null=True, unique=True)
 
     class Meta:
