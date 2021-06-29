@@ -157,31 +157,6 @@ a {
   }
 }
 
-@media only screen and (max-width: 992px) {
-  .navbar-collapse {
-    margin-top: 10px;
-    border: 1px solid #ddd;
-  }
-
-  .nav-item .nav-link {
-    border-left: 0;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .navbar-brand {
-    background-size: 50px 18px;
-    width: 50px;
-    height: 18px;
-    flex: 0 0 50px;
-    margin-right: 0.75rem;
-  }
-
-  #site-title {
-    padding-top: 0;
-    font-size: 0.9rem;
-  }
-}
-
 .navbar-collapse {
   z-index: 10;
 }
@@ -844,6 +819,7 @@ img.footer_logo {
 .inner-slate {
   cursor: pointer;
   background-color: #000;
+  height: 100%;
   padding: 0.25rem 1rem;
   box-shadow: 2px 2px 10px #00000099;
   transition: 0.25s box-shadow;
@@ -854,6 +830,7 @@ img.footer_logo {
 .inner-slate h4 {
   z-index: 1;
   position: relative;
+  text-shadow: 0px 0px 15px #000000;
 }
 .inner-slate:hover {
   box-shadow: 2px 2px 10px #000000;
@@ -868,9 +845,9 @@ img.footer_logo {
 .inner-slate:after {
   content: "";
   position: absolute;
-  left: 1rem;
+  left: calc(1rem - 1px);
   bottom: 0;
-  right: 1rem;
+  right: calc(1rem - 1px);
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.6)));
   background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 100%);
