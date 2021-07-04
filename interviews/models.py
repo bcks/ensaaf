@@ -1,6 +1,9 @@
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
 from django.db import models
 from django.utils.text import slugify
 from image_cropping import ImageRatioField
+import requests
 
 
 def get_unique_slug(id, title, obj):
@@ -67,9 +70,30 @@ DISTRICT_CHOICES = (
 )
 
 
+
+def get_vimeo_thumbnail(vimeo_id):
+    vimeo_json = requests.get( 'http://vimeo.com/api/v2/video/{}.json'.format(vimeo_id) ).json()
+    image_url = vimeo_json[0]['thumbnail_large']
+    r = requests.get(image_url, stream = True)
+    file_name = '{}images/{}.jpg'.format(settings.MEDIA_ROOT, vimeo_id) 
+
+    if r.status_code == 200:
+        r.raw.decode_content = True        
+        fs = FileSystemStorage()
+        file_name_saved = fs.save(file_name, r.raw)
+        file_name_field = file_name_saved.replace(settings.MEDIA_ROOT,'')
+        return(file_name_field)
+    else:
+        return None
+
+
+
 class Video(models.Model):
     title = models.CharField(max_length=200, blank=True)
-    vimeo_id = models.CharField(max_length=200, blank=True, verbose_name="vimeo ID")
+    profile_id = models.CharField(max_length=10, blank=True, verbose_name="data.ensaaf.org Profile ID")
+    vimeo_id = models.CharField(max_length=64, blank=True, verbose_name="vimeo ID")
+    image = models.ImageField(upload_to = 'themes/', max_length=200, blank=True)
+    image_cropping = ImageRatioField('image', '830x500', size_warning=True)
     gender = models.CharField(choices=GENDER_CHOICES, max_length=6, blank=True)
     age = models.CharField(max_length=3, blank=True)
     combatant_status = models.CharField(
@@ -77,10 +101,16 @@ class Video(models.Model):
     )
     year = models.CharField(max_length=4, blank=True)
     district = models.CharField(choices=DISTRICT_CHOICES, max_length=14, blank=True)
+    theme = models.ManyToManyField(Theme, default=None, blank=True)
     transcription = models.TextField(blank=True)
 
     def __str__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if self.image == '':          
+          self.image = get_vimeo_thumbnail(self.vimeo_id)
+        super().save(*args, **kwargs)
 
 
 class Clip(models.Model):
@@ -89,6 +119,8 @@ class Clip(models.Model):
         blank=True, max_length=8, help_text="Use format MM:SS"
     )
     end_time = models.CharField(blank=True, max_length=8, help_text="Use format MM:SS")
+    image = models.ImageField(upload_to = 'themes/', max_length=200, blank=True)
+    image_cropping = ImageRatioField('image', '830x500', size_warning=True)
     clip_vimeo_id = models.CharField(
         max_length=200,
         blank=True,

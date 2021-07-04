@@ -3,23 +3,19 @@
 {% block title %}About{% endblock %}
 
 {% block content %}
+<div class="container">
+  <div class="row">
 
-
-<div class="row">
-
-  <div class="offset-1 bg-white col-md-6 pt-2 pb-4 px-4">
-  <h1 class="text-uppercase">About</h1>
-
-  {{p.body}}
+    <div class="offset-1 bg-white col-md-6 pt-2 pb-4 px-4">
+    <h1 class="text-uppercase">About</h1>
+    {{p.body}}
+    </div>
 
   </div>
 </div>
-
-
 <div id="background" class="dotted">
   <video autoplay loop muted>
       <source src="/media/{{p.background_video}}" type="video/mp4">
   </video>
 </div>
-
 {% endblock %}

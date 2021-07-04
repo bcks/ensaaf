@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import *
 
 
@@ -8,24 +8,12 @@ districts = [{"district":"Amritsar","district_pb":"ਅੰਮ੍ਰਿਤਸਰ",
 
 def search(request):
     book = None
-    return render(
-        request,
-        "search.html",
-        {
-            "book": book,
-        },
-    )
+    return render( request, "search.html", { "book": book, }, )
 
 
 def theme(request, slug=None):
-    book = None
-    return render(
-        request,
-        "theme.html",
-        {
-            "book": book,
-        },
-    )
+    theme = get_object_or_404(Theme, slug=slug)
+    return render( request, "theme.html", { "t": theme, }, )
 
 
 def themes(request):
@@ -33,33 +21,18 @@ def themes(request):
     return render( request, "themes.html", { "themes": themes, }, )
 
 
-def clip(request):
-    book = None
-    return render(
-        request,
-        "clip.html",
-        {
-            "book": book,
-        },
-    )
+def video(request, id=None):
+    video = get_object_or_404(Video, id=id)
+    return render( request, "video.html", { "video": video, }, )
 
 
-def video(request):
-    book = None
-    return render(
-        request,
-        "video.html",
-        {
-            "book": book,
-        },
-    )
+def clip(request, id=None):
+    clip = get_object_or_404(Clip, id=id)
+    return render( request, "clip.html", { "clip": clip, }, )
 
 
 def interviews(request):
-    return render(
-        request, "interviews.html", { "districts": districts, },
-    )
-
+    return render( request, "interviews.html", { "districts": districts, }, )
 
 
 def about(request):

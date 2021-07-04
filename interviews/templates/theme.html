@@ -1,21 +1,38 @@
 {% extends "shared/base.html" %}
 
-{% block title %}Theme{% endblock %}
+{% block title %}{{t.name}}{% endblock %}
 
 {% block content %}
+<div class="container">
+
+  <h1 class="offset-1 mt-1 mb-4 text-uppercase">{{t.name}}</h1>
+
+  <div class="row">
+
+    {% for v in t.video_set.all %}
+      
+      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'video' v.id %}'">
+        <div class="inner-slate" style="background-image: url('/media/{{v.image}}')">
+          <h4>{{v.title}}</h4>
+        </div>
+      </div>
+
+    {% endfor %}
+  
+    {% for v in t.clip_set.all %}
+      <p class="card">
+      {{v.vimeo_id}}
+      <img src="https://i.vimeocdn.com/video/{{v.vimeo_id}}?mw=1920&amp;mh=1080&amp;q=70"><br>    
+      {{v.title}}</p>
+    {% endfor %}
+  </div>
 
 
-<h1 class="mb-4 lato-black">Theme</h1>
-
-
-<div class="row">
 </div>
-
 
 <div id="background" class="dotted">
   <video autoplay loop muted>
       <source src="/media/{{p.background_video}}" type="video/mp4">
   </video>
 </div>
-
 {% endblock %}

@@ -13,6 +13,13 @@ strong {
 a {
   color: #008eaf;
 }
+.btn-outline-primary {
+  color: #008eaf;
+  border-color: #008eaf;
+}
+.btn-outline-primary:hover {
+  background-color: #008eaf;
+}
 
 #background {
   position: fixed;
@@ -229,6 +236,11 @@ h5 {
   h1 {
     margin-left: 3rem;
   }
+}
+
+ul {
+  padding: 0;
+  list-style: none;
 }
 
 .smallparen {

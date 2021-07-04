@@ -13,7 +13,7 @@ class ThemeAdmin(ImageCroppingMixin, admin.ModelAdmin):
 admin.site.register(Theme, ThemeAdmin)
 
 
-class ClipAdmin(admin.StackedInline):
+class ClipAdmin(ImageCroppingMixin, admin.StackedInline):
     model = Clip
     formfield_overrides = {
         models.ManyToManyField: {"widget": CheckboxSelectMultiple},
@@ -21,8 +21,11 @@ class ClipAdmin(admin.StackedInline):
     extra = 0
 
 
-class VideoAdmin(admin.ModelAdmin):
+class VideoAdmin(ImageCroppingMixin, admin.ModelAdmin):
     list_display = ("title",)
+    formfield_overrides = {
+        models.ManyToManyField: {"widget": CheckboxSelectMultiple},
+    }
     inlines = [ClipAdmin]
 
 admin.site.register(Video, VideoAdmin)
