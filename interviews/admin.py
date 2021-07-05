@@ -18,6 +18,13 @@ class ClipAdmin(ImageCroppingMixin, admin.StackedInline):
     formfield_overrides = {
         models.ManyToManyField: {"widget": CheckboxSelectMultiple},
     }
+    fields = (
+        'video',
+        ('start_time_minutes', 'start_time_seconds'),
+        ('end_time_minutes', 'end_time_seconds'),
+        'theme',
+        'transcription'
+    )
     extra = 0
 
 
@@ -30,13 +37,6 @@ class VideoAdmin(ImageCroppingMixin, admin.ModelAdmin):
 
 admin.site.register(Video, VideoAdmin)
 
-
-class ClipAloneAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        models.ManyToManyField: {"widget": CheckboxSelectMultiple},
-    }
-
-admin.site.register(Clip, ClipAloneAdmin)
 
 
 class PageAdmin(admin.ModelAdmin):

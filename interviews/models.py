@@ -115,18 +115,10 @@ class Video(models.Model):
 
 class Clip(models.Model):
     video = models.ForeignKey(Video, default=None, on_delete=models.CASCADE, blank=True)
-    start_time = models.CharField(
-        blank=True, max_length=8, help_text="Use format MM:SS"
-    )
-    end_time = models.CharField(blank=True, max_length=8, help_text="Use format MM:SS")
-    image = models.ImageField(upload_to = 'themes/', max_length=200, blank=True)
-    image_cropping = ImageRatioField('image', '830x500', size_warning=True)
-    clip_vimeo_id = models.CharField(
-        max_length=200,
-        blank=True,
-        verbose_name="vimeo ID",
-        help_text="Vimeo ID, if uploaded as a separate clip",
-    )
+    start_time_minutes = models.CharField(blank=True, max_length=10)
+    start_time_seconds = models.CharField(blank=True, max_length=10)
+    end_time_minutes =   models.CharField(blank=True, max_length=10)
+    end_time_seconds =   models.CharField(blank=True, max_length=10)
     theme = models.ManyToManyField(Theme, default=None, blank=True)
     transcription = models.TextField(blank=True)
 
