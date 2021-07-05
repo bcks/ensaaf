@@ -1,0 +1,51 @@
+{% extends "shared/base.html" %}
+{% load cropping %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<div class="container">
+
+  {% if q %}
+
+  <h1 class="offset-1 mt-1 mb-4 text-uppercase">Search results for {{q}}</h1>
+
+  <div class="row">
+
+    {% for v in video_results %}
+      
+      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'video' v.id %}'">
+        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail v "image_cropping" %}')">
+          <h4>{{v.title}}</h4>
+        </div>
+      </div>
+
+    {% endfor %}
+
+    {% for v in clip_results %}
+      
+      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'video' v.id %}'">
+        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail v "image_cropping" %}')">
+          <h4>{{v.title}}</h4>
+        </div>
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+  {% else %}
+
+  <h1 class="offset-1 mt-1 mb-4 text-uppercase">Search</h1>
+
+  {% endif %}
+
+
+</div>
+
+<div id="background" class="dotted">
+  <video autoplay loop muted>
+      <source src="/media/{{p.background_video}}" type="video/mp4">
+  </video>
+</div>
+{% endblock %}

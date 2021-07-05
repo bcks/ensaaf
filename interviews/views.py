@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
+from simple_search import search_filter
 
 
 
@@ -7,8 +8,28 @@ districts = [{"district":"Amritsar","district_pb":"ਅੰਮ੍ਰਿਤਸਰ",
 
 
 def search(request):
-    book = None
-    return render( request, "search.html", { "book": book, }, )
+
+    p = Page.objects.filter(slug='search')[0]
+    
+    q = request.POST.get('q', None)
+    if q:
+      
+      video_filter = search_filter([ 'title', 'transcription' ], q)
+      video_results = Video.objects.filter(video_filter)
+      
+      clip_filter = search_filter([ 'video__title', 'transcription' ], q)
+      clip_results = Clip.objects.filter(clip_filter)
+
+    else:
+      clip_results = None
+      video_results = None
+
+    return render( request, "search.html", {
+      "p": p,
+      "q": q,
+      "video_results": video_results,
+      "clip_results": clip_results
+      }, )
 
 
 def theme(request, slug=None):
@@ -17,8 +38,9 @@ def theme(request, slug=None):
 
 
 def themes(request):
+    p = Page.objects.filter(slug='themes')[0]
     themes = Theme.objects.all()
-    return render( request, "themes.html", { "themes": themes, }, )
+    return render( request, "themes.html", { "themes": themes, "p": p}, )
 
 
 def video(request, id=None):
