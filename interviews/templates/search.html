@@ -6,11 +6,30 @@
 {% block content %}
 <div class="container">
 
-  {% if q %}
+
+{% if q %}
+
+
+
+  {% if video_results.0 == None and clip_results.0 == None %}
+
+    <h1 class="offset-1 mt-1 mb-4 text-uppercase">Search</h1>
+
+    <div class="row">
+      <div class="col-md-4 col-sm-6 slate">
+        <div class="inner-slate">
+          <h4>No results found for {{q}}</h4>
+        </div>
+      </div>
+    </div>
+
+  {% else %}
+
 
   <h1 class="offset-1 mt-1 mb-4 text-uppercase">Search results for {{q}}</h1>
 
   <div class="row">
+
 
     {% for v in video_results %}
       
@@ -34,11 +53,15 @@
 
   </div>
 
-  {% else %}
-
-  <h1 class="offset-1 mt-1 mb-4 text-uppercase">Search</h1>
-
   {% endif %}
+
+
+{% else %}
+
+<h1 class="offset-1 mt-1 mb-4 text-uppercase">Search</h1>
+
+
+{% endif %}
 
 
 </div>
