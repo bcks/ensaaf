@@ -21,11 +21,13 @@
         </div>
         <div class="col-md-3">
 
-          <p><a href="#" class="btn btn-outline-primary">Full Profile »</a></p>
+          {% if video.profile_id %}
+          <p><a href="https://data.ensaaf.org/profile/{{video.profile_id}}/" class="btn btn-outline-primary">Full Profile »</a></p>
+              <br>
+          {% endif %}
           
           {% for t in video.theme.all %}
               {% if forloop.first %}  
-              <br>
               Theme
               <ul>
               {% endif %}   
