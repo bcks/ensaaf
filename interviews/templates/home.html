@@ -9,9 +9,11 @@
 
 
 <div id="background">
+{% if p.background_video %}
   <video autoplay loop muted>
       <source src="/media/{{p.background_video}}" type="video/mp4">
   </video>
+{% endif %}
 </div>
 
 
