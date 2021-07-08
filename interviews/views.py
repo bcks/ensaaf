@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.cache import cache
 from .models import *
 from simple_search import search_filter
+from .filters import InterviewFilter
 
 
 
@@ -54,7 +56,10 @@ def clip(request, id=None):
 
 
 def interviews(request):
-    return render( request, "interviews.html", { "districts": districts, }, )
+    videos = Video.objects.all()
+    years = list(reversed(range(1981,2008)))
+    years.insert(0, 2012)
+    return render( request, "interviews.html", { "districts": districts, "videos": videos, "years": years }, )
 
 
 def about(request):
@@ -65,4 +70,11 @@ def about(request):
 def interviews_home(request):
     p = Page.objects.filter(slug='home')[0]
     return render( request, "home.html", { "p": p, }, )
+
+
+#@cache_page(60 * 60)
+def interviews_ajax(request):
+    victim_list = Video.objects.all();
+    victim_filter = InterviewFilter(request.GET, queryset=victim_list)
+    return render(request, "interviews_ajax.html", { "all": victim_filter.qs, }, content_type='application/json')
 

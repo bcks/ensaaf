@@ -41,12 +41,17 @@ class Theme(models.Model):
         return self.__str__()
 
 
-GENDER_CHOICES = (("Male", "Male"), ("Female", "Female"))
+GENDER_CHOICES = (("1", "Male"), ("2", "Female"))
+
+CLASSIFICATION_CHOICES = (
+    ("1", "Enforced Disappearance"),
+    ("2", "Extrajudicial Execution"),
+)
 
 COMBATANT_CHOICES = (
-    ("Combatant", "Combatant"),
-    ("Non-Combatant", "Non-Combatant"),
-    ("Unknown", "Unknown"),
+    ("1", "Combatant"),
+    ("0", "Non-Combatant"),
+    ("9", "Unknown"),
 )
 
 DISTRICT_CHOICES = (
@@ -121,9 +126,11 @@ class Video(models.Model):
     combatant_status = models.CharField(
         choices=COMBATANT_CHOICES, max_length=14, blank=True
     )
-    year = models.CharField(max_length=4, blank=True)
+    classification = models.CharField(
+        choices=CLASSIFICATION_CHOICES, max_length=24, blank=True
+    )
+    year = models.DateField(null=True, blank=True)
     village = models.CharField(max_length=10, blank=True, verbose_name="Village Census Code")
-    district = models.CharField(choices=DISTRICT_CHOICES, max_length=14, blank=True)
     theme = models.ManyToManyField(Theme, default=None, blank=True)
     transcription = models.TextField(blank=True)
 

@@ -352,6 +352,12 @@ tr {
 #clear-filters {
   display: none;
 }
+#clear-filters a {
+  color: #fc0;
+  display: inline-block;
+  margin-top: 2px;
+  padding-bottom: 3px;
+}
 
 #mapid {
   height: 650px;
@@ -369,9 +375,8 @@ tr {
   font-weight: normal;
 }
 
-#count {
-  font-weight: bold;
-  color: #fc0;
+.hidden {
+  display: none !important;
 }
 
 .cartodb-logo {
@@ -866,3 +871,4 @@ img.footer_logo {
   height: 45%;
   z-index: 0;
 }
+

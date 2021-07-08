@@ -5,6 +5,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    path('interviews_ajax/', views.interviews_ajax, name="interviews_ajax"),
     path("theme/<slug>", views.theme, name="theme"),
     path("themes", views.themes, name="themes"),
     path("clip/<id>", views.clip, name="clip"),
