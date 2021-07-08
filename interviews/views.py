@@ -50,7 +50,7 @@ def video(request, id=None):
 
 def clip(request, id=None):
     clip = get_object_or_404(Clip, id=id)
-    return render( request, "clip.html", { "clip": clip, }, )
+    return render( request, "clip.html", { "clip": clip, "video": clip.video, }, )
 
 
 def interviews(request):

@@ -71,6 +71,28 @@ DISTRICT_CHOICES = (
 
 
 
+class Villages(models.Model):
+    village_name = models.CharField(max_length=256)
+    village_name_pb = models.CharField(max_length=256, blank=True, null=True)
+    tehsil = models.CharField(max_length=64)
+    district = models.CharField(max_length=64)
+    district_id = models.IntegerField()
+    tehsil_id = models.IntegerField()
+    vid = models.CharField(max_length=16, primary_key=True)
+    lon = models.CharField(max_length=16, blank=True, null=True)
+    lat = models.CharField(max_length=16, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'villages'
+        indexes = [
+            models.Index(fields=['tehsil_id']),
+            models.Index(fields=['district_id']),
+            models.Index(fields=['vid']),
+        ]
+
+
+
 def get_vimeo_thumbnail(vimeo_id):
     vimeo_json = requests.get( 'http://vimeo.com/api/v2/video/{}.json'.format(vimeo_id) ).json()
     image_url = vimeo_json[0]['thumbnail_large']
@@ -100,6 +122,7 @@ class Video(models.Model):
         choices=COMBATANT_CHOICES, max_length=14, blank=True
     )
     year = models.CharField(max_length=4, blank=True)
+    village = models.CharField(max_length=10, blank=True, verbose_name="Village Census Code")
     district = models.CharField(choices=DISTRICT_CHOICES, max_length=14, blank=True)
     theme = models.ManyToManyField(Theme, default=None, blank=True)
     transcription = models.TextField(blank=True)
@@ -141,3 +164,6 @@ class Page(models.Model):
 
     def __str__(self):
         return self.title
+
+
+

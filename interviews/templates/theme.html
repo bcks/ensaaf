@@ -21,10 +21,13 @@
     {% endfor %}
   
     {% for v in t.clip_set.all %}
-      <p class="card">
-      {{v.vimeo_id}}
-      <img src="https://i.vimeocdn.com/video/{{v.vimeo_id}}?mw=1920&amp;mh=1080&amp;q=70"><br>    
-      {{v.title}}</p>
+
+      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'clip' v.id %}'">
+        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail v.video "image_cropping" %}')">
+          <h4>{{v.video.title}}</h4>
+        </div>
+      </div>
+
     {% endfor %}
   </div>
 

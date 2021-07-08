@@ -1,19 +1,49 @@
 {% extends "shared/base.html" %}
 
-{% block title %}Clip{% endblock %}
+{% block title %}{{video.title}}{% endblock %}
 
 {% block content %}
 
+<iframe src="https://player.vimeo.com/video/{{video.vimeo_id}}#t={% if clip.start_time_minutes != '' %}{{clip.start_time_minutes}}{% else %}0{% endif %}m{% if clip.start_time_seconds != '' %}{{clip.start_time_seconds}}{% else %}0{% endif %}s?title=0&byline=0" style="width:100%;height:calc(100vw * .56);" name="iframe" scrolling="no" frameborder="0" marginheight="0px" marginwidth="0px" width="100%" allow="fullscreen" allowfullscreen></iframe>
 
-<h1 class="mb-4 lato-black">Clip</h1>
+<div class="bg-white" style="margin-top:-5px;">
+  <div class="container">
+    <div class="row">
 
+        <div class="col-12">
+          <h1 class="my-4 lato-black">{{video.title}}</h1>
+        </div>
 
-<div class="row">
-    <div class="col-md-6">
+        <div class="col-md-9 mb-5">
 
-        
+          {{clip.transcription|linebreaks}}
 
+        </div>
+        <div class="col-md-3">
+
+          <p><a href="{% url 'video' video.id %}" class="btn btn-outline-primary">Full Interview »</a></p>
+
+          {% if video.profile_id %}
+          <p><a href="https://data.ensaaf.org/profile/{{video.profile_id}}/" class="btn btn-outline-primary">Full Profile »</a></p>
+              <br>
+          {% endif %}
+          
+          {% for t in video.theme.all %}
+              {% if forloop.first %}  
+              Theme
+              <ul>
+              {% endif %}   
+            
+              <li><a href="{% url 'theme' t.slug %}">{{t.name}}</a></li>
+
+              {% if forloop.last %}  
+              </ul>
+              {% endif %}
+          {% endfor %}
+
+        </div>
     </div>
+  </div>
 </div>
 
 {% endblock %}

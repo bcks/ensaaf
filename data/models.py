@@ -255,8 +255,6 @@ class Data(models.Model):
 
 
 
-# ALTER TABLE villages CHANGE village_name_pb village_name_pb varchar(256) ;
-
 
 class Villages(models.Model):
     village_name = models.CharField(max_length=256)
@@ -277,6 +275,7 @@ class Villages(models.Model):
             models.Index(fields=['district_id']),
             models.Index(fields=['vid']),
         ]
+
 
 
 # COUNT_CHOICES = (
