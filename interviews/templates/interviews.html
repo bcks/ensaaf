@@ -312,7 +312,6 @@ function updateMarkers(markers, points) {
               d.size = villages[d.id].length ;
               
               markers[key]._icon.classList.remove('hidden');
-              markers[key]._shadow.classList.remove('hidden');
 
               var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + numberWithCommas(d.size);
               {% if request.LANGUAGE_CODE == 'pb' %}
@@ -337,7 +336,6 @@ function updateMarkers(markers, points) {
             console.log(markers[key]);
 
             markers[key]._icon.classList.add('hidden');
-            markers[key]._shadow.classList.add('hidden');
             markers[key].unbindPopup();
           }
         });
@@ -376,9 +374,7 @@ function updateMap(start, end) {
 
             var imageIcon = L.icon({
                 iconUrl:  '/static/images/play-button.png',
-                shadowUrl: villages[d.id][0].img,
-                iconSize:  [60,40],
-                shadowSize: [60,40],
+                iconSize:  [25,25],
                 opacity: 1,
                 url: '/video/' + villages[d.id][0].uid,
             });

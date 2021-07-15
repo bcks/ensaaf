@@ -730,6 +730,16 @@ iframe {
   top: 0;
 }
 
+#down-arrow {
+  position: absolute;
+  width: 60px;
+  height: 40px;
+  right: 30px;
+  z-index: 20;
+  top: calc(51vw - 30px);
+  cursor: pointer;
+}
+
 /* footer! */
 footer {
   border-top: 1px solid #ccc;
@@ -871,4 +881,3 @@ img.footer_logo {
   height: 45%;
   z-index: 0;
 }
-
