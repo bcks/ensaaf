@@ -56,10 +56,16 @@ def clip(request, id=None):
 
 
 def interviews(request):
+    p = Page.objects.filter(slug='interviews')[0]
     videos = Video.objects.all()
     years = list(reversed(range(1981,2008)))
     years.insert(0, 2012)
-    return render( request, "interviews.html", { "districts": districts, "videos": videos, "years": years }, )
+    return render( request, "interviews.html", {
+        "districts": districts,
+        "videos": videos,
+        "years": years,
+        "p": p 
+      }, )
 
 
 def about(request):
