@@ -208,6 +208,7 @@ a {
 h1 {
   font-family: "Inconsolata", monospace;
   font-weight: 800;
+  text-shadow: 0 0px 10px #666;
 }
 
 h1,
