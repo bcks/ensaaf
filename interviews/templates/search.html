@@ -68,7 +68,7 @@
 
 <div id="background" class="dotted" {% if p.background_image %} style="background: url('/media/{{p.background_image}}') no-repeat fixed center;background-size: cover;"{% endif %}>
 {% if p.background_video %}
-  <video autoplay loop muted>
+  <video autoplay loop muted{% if p.background_image %} poster="/media/{{p.background_image}}"{% endif %}>
       <source src="/media/{{p.background_video}}" type="video/mp4">
   </video>
 {% endif %}
