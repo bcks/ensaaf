@@ -229,6 +229,9 @@ h1 {
   font-weight: 800;
   text-shadow: 0 0px 10px #666;
 }
+.bg-white h1 {
+  text-shadow: none;
+}
 
 h1,
 h2,
