@@ -916,7 +916,7 @@ img.footer_logo {
   align-items: center;
   height: 100vh;
   opacity: 0;
-  transition-delay: 10s;
+  transition-delay: 20s;
   transition-property: opacity;
   transition-timing-function: ease-in-out;
   transition-duration: 3s;       
