@@ -4,6 +4,13 @@
 
 {% block content %}
 
+<div id="home">
+  <div class="inner">
+    <h1>Testimonies of Truth</h1>
+    <h2>A Video Archive</h2>
+  </div>
+</div>
+
 <a id="enter" href="/interviews">Enter</a>
 
 <div id="background">
@@ -13,5 +20,12 @@
   </video>
 {% endif %}
 </div>
+
+
+<script>
+$( document ).ready(function() {
+  $('#home').addClass('active');
+});
+</script>
 
 {% endblock %}

@@ -903,3 +903,40 @@ img.footer_logo {
   height: 45%;
   z-index: 0;
 }
+
+
+
+
+
+
+#home {
+  max-width: 700px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  opacity: 0;
+  transition-delay: 10s;
+  transition-property: opacity;
+  transition-timing-function: ease-in-out;
+  transition-duration: 3s;       
+}
+#home.active {
+  opacity: 1;
+}
+
+#home h1, #home h2  {
+  color: #fff;
+  text-shadow: 0 0 15px #000;
+  text-transform: uppercase;
+  margin-left: 2.5rem;
+}
+
+@media only screen and (min-width: 992px) {
+  #home h1 {
+    font-size: 3.5rem;
+  }
+  #home h2 {
+    font-size: 2.75rem;
+  }
+}
