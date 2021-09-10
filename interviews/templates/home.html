@@ -6,16 +6,16 @@
 
 <div id="home">
   <div class="inner">
-    <h1>Testimonies of Truth</h1>
-    <h2>A Video Archive</h2>
+    <h1>{% trans "Testimonies of Truth" %}</h1>
+    <h2>{% trans "A Video Archive" %}</h2>
   </div>
 </div>
 
-<a id="enter" href="/interviews">Enter</a>
+<a id="enter" href="{% url "interviews" %}">{% trans "Enter" %}</a>
 
 <div id="background">
 {% if p.background_video %}
-  <video autoplay loop muted{% if p.background_image %} poster="/media/{{p.background_image}}"{% endif %}>
+  <video id="video" autoplay loop muted{% if p.background_image %} poster="/media/{{p.background_image}}"{% endif %}>
       <source src="/media/{{p.background_video}}" type="video/mp4">
   </video>
 {% endif %}
@@ -24,7 +24,15 @@
 
 <script>
 $( document ).ready(function() {
+
   $('#home').addClass('active');
+
+  var video = document.getElementById('video');
+  video.play();
+  video.addEventListener('ended',function(){
+      window.location = '{% url "interviews" %}';
+  });
+
 });
 </script>
 
