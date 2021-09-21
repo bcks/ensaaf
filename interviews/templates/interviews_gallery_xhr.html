@@ -1,0 +1,10 @@
+{% load cropping %}
+{% load i18n %}
+{% load profiletags %}
+{% for v in all %}
+  <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'video' v.id %}'">
+    <div class="inner-slate" style="background-image: url('{% cropped_thumbnail v "image_cropping" %}')">
+      <h4>{{v.title}}</h4>
+    </div>
+  </div>
+{% endfor %}

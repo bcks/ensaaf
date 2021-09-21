@@ -213,7 +213,7 @@ function updateMapData() {
 
   var params = $('#form').serialize();
 
-  $.getJSON("/interviews_ajax/?" + params, function(json) {
+  $.getJSON("/interviews_map_xhr/?" + params, function(json) {
         
       timeCapsule = [];
       timeCapsule = json.timeline;

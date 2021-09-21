@@ -1,0 +1,200 @@
+{% extends "shared/base.html" %}
+{% load cropping %}
+{% load i18n %}
+{% load profiletags %}
+
+{% block title %}Interviews{% endblock %}
+
+
+{% block head %}
+
+  <meta name="description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions, based on data collected through primary source interviews." />
+
+  <meta itemprop="name" content="Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India" />
+  <meta itemprop="description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions, based on data collected through primary source interviews." />
+  <meta itemprop="image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@ensaaf" />
+  <meta name="twitter:title" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
+  <meta name="twitter:description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions, based on data collected through primary source interviews." />
+  <meta name="twitter:creator" content="@ensaaf" />
+  <meta name="twitter:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+
+  <meta property="og:title" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://data.ensaaf.org" />
+  <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+  <meta property="og:description" content="A portrait of widespread &amp; systematic enforced disappearances &amp; extrajudicial executions, based on data collected through primary source interviews." />
+  <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+
+
+  <h1 class="offset-1 mt-1 mb-4 text-uppercase">Interviews</h1>
+
+  <form method="get" id="form">
+
+  <br>
+
+  <div class="row bg-black pt-1 pb-4">
+
+      <div class="form-group filter{% if selected_gender %} selected{% endif %} col-6 col-md-3 col-lg-2">
+        <select class="form-control" id="gender" name="gender" onchange="updateMapData()">
+          <option value="">{% trans "Gender" %}</option>
+          <option {% if selected_gender == 'Female' %} selected=selected{% endif %} value="Female">{% trans "Female" %}</option>
+          <option {% if selected_gender == 'Male' %} selected=selected{% endif %} value="Male">{% trans "Male" %}</option>
+        </select>
+      </div>
+
+
+      <div class="form-group filter{% if selected_age %} selected{% endif %} col-6 col-md-3 col-lg-2">
+        <select class="form-control" id="age" name="age" onchange="updateMapData()">
+          <option value="">{% trans "Age" %}</option>
+          <option{% if selected_age == '0-17' %} selected=selected{% endif %} value="0-17">{% trans '0-17' %}</option>
+          <option{% if selected_age == '18-33' %} selected=selected{% endif %} value="18-33">{% trans '18-33' %}</option>
+          <option{% if selected_age == '34-49' %} selected=selected{% endif %} value="34-49">{% trans '34-49' %}</option>
+          <option{% if selected_age == '50-64' %} selected=selected{% endif %} value="50-64">{% trans '50-64' %}</option>
+          <option{% if selected_age == '65+' %} selected=selected{% endif %} value="65+">{% trans '65+' %}</option>
+        </select>
+      </div>
+
+
+      <div class="form-group filter{% if selected_classification %} selected{% endif %} col-6 col-md-3 col-lg-2">
+        <select class="form-control" id="classification" name="classification" onchange="updateMapData()">
+          <option value="">{% trans "Classification" %}</option>
+          <option {% if selected_classification == 'Enforced Disappearance' %} selected=selected{% endif %} value="Enforced Disappearance">{% trans "Enforced Disappearance" %}</option>
+          <option {% if selected_classification == 'Extrajudicial Execution' %} selected=selected{% endif %} value="Extrajudicial Execution">{% trans "Extrajudicial Execution" %}</option>
+        </select>
+      </div>
+
+
+      <div class="form-group filter{% if selected_district %} selected{% endif %} col-6 col-md-3 col-lg-2">
+        <select class="form-control" id="district" name="district" onchange="updateMapData()">
+          <option value="">{% trans "District" %}</option>
+
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          {% for o in districts %}
+          <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{{o.district_pb}}</option>
+          {% for t in o.subdistricts %}
+          <option value="{{t.tehsil_id}}" {% if selected_district|add:"0" == t.tehsil_id %} selected=selected{% endif %}>&nbsp;&nbsp;- {{t.tehsil_pb}}</option>
+          {% endfor %}
+          {% endfor %}
+      {% else %}
+          {% for o in districts %}
+          <option value="{{o.district_id}}" {% if selected_district|add:"0" == o.district_id %} selected=selected{% endif %}>{{o.district}}</option>
+          {% for t in o.subdistricts %}
+          <option value="{{t.tehsil_id}}" {% if selected_district|add:"0" == t.tehsil_id %} selected=selected{% endif %}>&nbsp;&nbsp;- {{t.tehsil}}</option>
+          {% endfor %}
+          {% endfor %}
+      {% endif %}
+
+        </select>
+      </div>
+
+
+      <div class="form-group filter{% if selected_year %} selected{% endif %} col-6 col-md-3 col-lg-2">
+        <select class="form-control" id="year" name="year" onchange="updateMapData()">
+          <option value="">{% trans "Year" %}</option>
+          {% for o in years %}
+          <option{% if selected_year|add:"0" == o %} selected=selected{% endif %} value="{{o}}">{{o|yearpa}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+
+      <div class="form-group  col-6 col-md-3 col-lg-2" id="clear-filters"{%if selected %} style="display:block;"{%endif%}>
+        <p class="text-right"><a href="#" onclick="clearFilters();return false;">{% trans 'Clear filters' %}</a></p>
+      </div>
+
+  </div>
+
+  </form>
+
+
+
+  <div id="videos" class="row">
+  
+    {% for v in videos %}
+      
+      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'video' v.id %}'">
+        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail v "image_cropping" %}')">
+          <h4>{{v.title}}</h4>
+        </div>
+      </div>
+
+    {% endfor %}
+  
+    {% for v in t.clip_set.all %}
+
+      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'clip' v.id %}'">
+        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail v.video "image_cropping" %}')">
+          <h4>{{v.video.title}}</h4>
+        </div>
+      </div>
+
+    {% endfor %}
+    
+  </div>
+</div>
+
+
+
+<div id="background" class="dotted" {% if p.background_image %} style="background: url('/media/{{p.background_image}}') no-repeat fixed center;background-size: cover;"{% endif %}>
+{% if p.background_video %}
+  <video autoplay loop muted{% if p.background_image %} poster="/media/{{p.background_image}}"{% endif %}>
+      <source src="/media/{{p.background_video}}" type="video/mp4">
+  </video>
+{% endif %}
+</div>
+
+<script>
+
+
+function updateMapData() {
+
+  var hasFilters = 0;
+  
+  $('.filter select').each(function(i, obj) {
+    $o = $(obj);
+    if ($o.val() !== '') {
+      $o.parent().addClass('selected'); 
+      hasFilters = 1;
+    } else {
+      $o.parent().removeClass('selected');
+    }
+  });
+
+  if (hasFilters) {
+    $('#clear-filters').fadeIn(); 
+  } else {
+    $('#clear-filters').hide(); 
+  }
+
+  var params = $('#form').serialize();
+
+  $.get("/interviews_gallery_xhr/?" + params, function(data) {
+      $('#videos').html(data);
+  })
+  .fail(function(error) {
+    console.log("error");
+    console.log(error);
+  })
+}
+
+
+function clearFilters() {
+  $("#form option[selected]").removeAttr("selected");    
+  $("#form .filter").removeClass('selected');
+  $("#form .filter select").val($("#form option:first").val());
+  updateMapData();
+}
+
+</script>
+
+{% endblock %}
