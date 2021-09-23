@@ -99,17 +99,20 @@ class Villages(models.Model):
 
 
 def get_vimeo_thumbnail(vimeo_id):
-    vimeo_json = requests.get( 'http://vimeo.com/api/v2/video/{}.json'.format(vimeo_id) ).json()
-    image_url = vimeo_json[0]['thumbnail_large']
-    r = requests.get(image_url, stream = True)
-    file_name = '{}images/{}.jpg'.format(settings.MEDIA_ROOT, vimeo_id) 
+    if vimeo_id:
+      vimeo_json = requests.get( 'http://vimeo.com/api/v2/video/{}.json'.format(vimeo_id) ).json()
+      image_url = vimeo_json[0]['thumbnail_large']
+      r = requests.get(image_url, stream = True)
+      file_name = '{}images/{}.jpg'.format(settings.MEDIA_ROOT, vimeo_id) 
 
-    if r.status_code == 200:
-        r.raw.decode_content = True        
-        fs = FileSystemStorage()
-        file_name_saved = fs.save(file_name, r.raw)
-        file_name_field = file_name_saved.replace(settings.MEDIA_ROOT,'')
-        return(file_name_field)
+      if r.status_code == 200:
+          r.raw.decode_content = True        
+          fs = FileSystemStorage()
+          file_name_saved = fs.save(file_name, r.raw)
+          file_name_field = file_name_saved.replace(settings.MEDIA_ROOT,'')
+          return(file_name_field)
+      else:
+          return None
     else:
         return None
 
