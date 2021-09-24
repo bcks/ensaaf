@@ -3,6 +3,7 @@ from django.core.files.storage import FileSystemStorage
 from django.db import models
 from django.utils.text import slugify
 from image_cropping import ImageRatioField
+from tinymce import models as tinymce_models
 import requests
 
 
@@ -135,7 +136,7 @@ class Video(models.Model):
     year = models.DateField(null=True, blank=True)
     village = models.CharField(max_length=10, blank=True, verbose_name="Village Census Code")
     theme = models.ManyToManyField(Theme, default=None, blank=True)
-    transcription = models.TextField(blank=True)
+    transcription = tinymce_models.HTMLField(blank=True, null=True, default=None)
 
     def __str__(self):
         return self.title

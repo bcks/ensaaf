@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'easy_thumbnails',
     'image_cropping',
+    'tinymce',
     'haystack',
     'django_hosts',
     'graphene_django',
@@ -83,6 +84,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ensaaf.wsgi.application'
+
+
+TINYMCE_DEFAULT_CONFIG = {
+    "menubar": "edit view insert format",
+    "plugins": "advlist autolink lists link charmap anchor searchreplace code",
+    "toolbar": 'undo redo | styleselect | forecolor | bold italic | alignleft aligncenter alignright alignjustify | outdent indent | image link | removeformat',
+    "valid_elements" : 'a[href|target=_blank],strong/b,div[align],i/em,u,br,p[align],h2,h3,h4,h5,span[style]',
+    'statusbar': False,
+    'height': 400,
+    'media_live_embeds': False,
+}
 
 
 THUMBNAIL_PROCESSORS = (

@@ -39,6 +39,7 @@ urlpatterns = i18n_patterns(
     path('search/autocomplete/', autocomplete, name='autocomplete'),
     url(r'^graphql', GraphQLView.as_view(graphiql=True)),
     path('vikus/data/', vikusdata, name="vikusdata"),
+    path('tinymce/', include('tinymce.urls')),
     path('<slug:slug>/', page),
     prefix_default_language=False 
 ) 
