@@ -154,7 +154,7 @@ class Clip(models.Model):
     end_time_minutes =   models.CharField(blank=True, max_length=10)
     end_time_seconds =   models.CharField(blank=True, max_length=10)
     theme = models.ManyToManyField(Theme, default=None, blank=True)
-    transcription = models.TextField(blank=True)
+    transcription = tinymce_models.HTMLField(blank=True)
 
     def __str__(self):
         return self.video.title
