@@ -29,8 +29,8 @@
           <p><a href="https://data.ensaaf.org/profile/{{video.profile_id}}/" class="btn btn-outline-primary">Full Profile »</a></p>
               <br>
           {% endif %}
-          
-          {% for t in video.theme.all %}
+                    
+          {% for t in clip.theme.all %}
               {% if forloop.first %}  
               Theme
               <ul>

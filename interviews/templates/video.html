@@ -28,17 +28,28 @@
               <br>
           {% endif %}
           
+          
           {% for t in video.theme.all %}
               {% if forloop.first %}  
               Theme
               <ul>
               {% endif %}   
-            
               <li><a href="{% url 'theme' t.slug %}">{{t.name}}</a></li>
-
               {% if forloop.last %}  
               </ul>
               {% endif %}
+          {% endfor %}
+
+          {% for c in video.clip_set.all %}
+          {% for t in c.theme.all %}
+              {% if forloop.first %}  
+              <ul>
+              {% endif %}   
+              <li><a href="{% url 'theme' t.slug %}">{{t.name}}</a></li>
+              {% if forloop.last %}  
+              </ul>
+              {% endif %}
+          {% endfor %}          
           {% endfor %}
 
         </div>
