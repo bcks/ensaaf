@@ -43,7 +43,7 @@
 
           {% for c in video.clip_set.all %}
             {% if forloop.first %}  
-              Clips from this Video by Theme
+              Clips from this video by theme
               <ul>
             {% endif %}      
             {% for t in c.theme.all %}
