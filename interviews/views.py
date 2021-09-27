@@ -47,7 +47,16 @@ def themes(request):
 
 def video(request, id=None):
     video = get_object_or_404(Video, id=id)
-    return render( request, "video.html", { "video": video, }, )
+
+    if video:
+      other_videos = Video.objects.filter(profile_id=video.profile_id)
+    else:
+      other_videos = None
+
+    return render( request, "video.html", {
+        "video": video,
+        "other_videos": other_videos
+      }, )
 
 
 def clip(request, id=None):

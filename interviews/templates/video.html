@@ -28,8 +28,21 @@
               <br>
           {% endif %}
           
-
+                    
+          {% for v in other_videos %}
+            {% if forloop.first %}  
+              Related interviews
+              <ul class="mb-4">
+            {% endif %}
+            {% if v.id != video.id %}  
+              <li class="my-1"><a href="{% url 'video' v.id %}">{{v.title}}</a></li>
+            {% endif %}
+            {% if forloop.last %}  
+              </ul>
+            {% endif %}      
+          {% endfor %}
           
+
           {% for t in video.theme.all %}
             {% if forloop.first %}  
               Theme
@@ -40,6 +53,7 @@
               </ul>
             {% endif %}      
           {% endfor %}
+
 
           {% for c in video.clip_set.all %}
             {% if forloop.first %}  
