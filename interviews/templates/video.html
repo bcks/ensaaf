@@ -34,9 +34,7 @@
               Related interviews
               <ul class="mb-4">
             {% endif %}
-            {% if v.id != video.id %}  
               <li class="my-1"><a href="{% url 'video' v.id %}">{{v.title}}</a></li>
-            {% endif %}
             {% if forloop.last %}  
               </ul>
             {% endif %}      

@@ -49,7 +49,7 @@ def video(request, id=None):
     video = get_object_or_404(Video, id=id)
 
     if video:
-      other_videos = Video.objects.filter(profile_id=video.profile_id)
+      other_videos = Video.objects.filter(profile_id=video.profile_id).exclude(id= video.id)
     else:
       other_videos = None
 
