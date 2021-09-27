@@ -33,7 +33,7 @@
           {% for t in clip.theme.all %}
               {% if forloop.first %}  
               Theme
-              <ul>
+              <ul class="mb-4">
               {% endif %}   
             
               <li><a href="{% url 'theme' t.slug %}">{{t.name}}</a></li>
@@ -42,6 +42,22 @@
               </ul>
               {% endif %}
           {% endfor %}
+
+          {% for c in video.clip_set.all %}
+            {% if forloop.first %}  
+              Other clips from this interview
+              <ul>
+            {% endif %}      
+            {% for t in c.theme.all %}
+              {% if c.id != clip.id %}
+              <li class="my-1"><a href="{% url 'clip' c.id %}">{{t.name}}</a></li>
+              {% endif %}
+            {% endfor %}          
+            {% if forloop.last %}  
+              </ul>
+            {% endif %}      
+          {% endfor %}
+          </ul>
 
         </div>
     </div>
