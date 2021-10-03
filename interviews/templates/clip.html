@@ -31,38 +31,39 @@
           {% endif %}
                     
 
-          {% if clip.theme or video.theme %}  
+          {% if clip.theme %}  
           Theme
           <ul class="mb-4">
-          {% endif %}   
-                    
+          {% endif %}                       
           {% for t in clip.theme.all %}            
               <li class="my-1"><a href="{% url 'theme' t.slug %}">{{t.name}}</a></li>
           {% endfor %}
-          {% for t in video.theme.all %}
-              <li class="my-1"><a href="{% url 'theme' t.slug %}">{{t.name}}</a></li>
-          {% endfor %}
-
-          {% if clip.theme or video.theme %}            
+          {% if clip.theme %}            
           </ul>
           {% endif %}   
 
 
-          {% for c in video.clip_set.all %}
-            {% if forloop.first %}  
+          {% if video.theme or video.clip_set.all %}  
               Other clips from this interview
-              <ul>
-            {% endif %}      
+          <ul class="mb-4">
+          {% endif %}                       
+
+          {% for t in video.theme.all %}
+              <li class="my-1"><a href="{% url 'theme' t.slug %}">{{t.name}}</a></li>
+          {% endfor %}
+
+          {% for c in video.clip_set.all %}
             {% for t in c.theme.all %}
               {% if c.id != clip.id %}
               <li class="my-1"><a href="{% url 'clip' c.id %}">{{t.name}}</a></li>
               {% endif %}
             {% endfor %}          
-            {% if forloop.last %}  
-              </ul>
-            {% endif %}      
           {% endfor %}
+
+          {% if video.theme or video.clip_set.all %}  
           </ul>
+          {% endif %}                       
+
 
         </div>
     </div>

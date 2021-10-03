@@ -29,18 +29,6 @@
           {% endif %}
           
                     
-          {% for v in other_videos %}
-            {% if forloop.first %}  
-              Related interviews
-              <ul class="mb-4">
-            {% endif %}
-              <li class="my-1"><a href="{% url 'video' v.id %}">{{v.title}}</a></li>
-            {% if forloop.last %}  
-              </ul>
-            {% endif %}      
-          {% endfor %}
-          
-
           {% for t in video.theme.all %}
             {% if forloop.first %}  
               Theme
@@ -56,7 +44,7 @@
           {% for c in video.clip_set.all %}
             {% if forloop.first %}  
               Clips from this video by theme
-              <ul>
+              <ul class="mb-4">
             {% endif %}      
             {% for t in c.theme.all %}
               <li class="my-1"><a href="{% url 'clip' c.id %}">{{t.name}}</a></li>
@@ -65,7 +53,20 @@
               </ul>
             {% endif %}      
           {% endfor %}
-          </ul>
+
+
+          {% for v in other_videos %}
+            {% if forloop.first %}  
+              Related interviews
+              <ul class="mb-4">
+            {% endif %}
+              <li class="my-1"><a href="{% url 'video' v.id %}">{{v.title}}</a></li>
+            {% if forloop.last %}  
+              </ul>
+            {% endif %}      
+          {% endfor %}
+          
+
           
         </div>
     </div>
