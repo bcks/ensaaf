@@ -285,14 +285,14 @@ function makeVillageNames(start, end) {
     for (var i=0;i<timeCapsule.length;i++) {
         if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start) && ( timeCapsule[i]['v']['id'] ))  {
         
-          if (! profiles_used.includes(timeCapsule[i]['p'])) {        
+          if (! profiles_used.includes(timeCapsule[i]['v']['p'])) {        
               var id = timeCapsule[i]['v']['id'];
               if (villages[id]) {
                 villages[id].push(timeCapsule[i]['v']);
               } else {
                 villages[id] = [timeCapsule[i]['v']];
               }
-              profiles_used.push( timeCapsule[i]['p'] );
+              profiles_used.push( timeCapsule[i]['v']['p'] );
           }
         }
     }
