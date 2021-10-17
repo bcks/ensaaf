@@ -165,7 +165,7 @@ class Clip(models.Model):
 
 class Page(models.Model):
     title = models.CharField(max_length=200)
-    body = models.TextField(blank=True)
+    body = tinymce_models.HTMLField(blank=True)
     background_image = models.ImageField(upload_to = 'images/', max_length=200, blank=True)
     background_video = models.FileField(
         upload_to="video/", blank=True, verbose_name="Background Video"
