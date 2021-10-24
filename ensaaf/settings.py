@@ -94,6 +94,7 @@ TINYMCE_DEFAULT_CONFIG = {
     'statusbar': False,
     'height': 400,
     'media_live_embeds': False,
+    'relative_urls': False,
 }
 
 
