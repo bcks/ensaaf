@@ -95,6 +95,8 @@ TINYMCE_DEFAULT_CONFIG = {
     'height': 400,
     'media_live_embeds': False,
     'convert_urls': False,
+    'relative_urls': False,
+    'remove_script_host': False,
 }
 
 
