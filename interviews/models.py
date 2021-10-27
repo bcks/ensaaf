@@ -148,6 +148,8 @@ class Video(models.Model):
     def save(self, *args, **kwargs):
         if self.image == '':          
           self.image = get_vimeo_thumbnail(self.vimeo_id)
+        if self.date_range_end == None and self.date_range_start != None:
+          self.date_range_end = self.date_range_start
         super().save(*args, **kwargs)
 
 
