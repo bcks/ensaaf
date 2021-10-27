@@ -136,7 +136,8 @@ class Video(models.Model):
     classification = models.CharField(
         choices=CLASSIFICATION_CHOICES, max_length=24, blank=True
     )
-    year = models.DateField(null=True, blank=True)
+    date_range_start = models.DateField(null=True, blank=True)
+    date_range_end = models.DateField(null=True, blank=True)
     village = models.CharField(max_length=10, blank=True, verbose_name="Village Census Code")
     theme = models.ManyToManyField(Theme, default=None, blank=True)
     transcription = tinymce_models.HTMLField(blank=True, null=True, default=None)
