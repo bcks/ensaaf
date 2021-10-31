@@ -129,7 +129,7 @@ class Video(models.Model):
     image = models.ImageField(upload_to = 'themes/', max_length=200, blank=True)
     image_cropping = ImageRatioField('image', '830x500', size_warning=True)
     gender = models.CharField(choices=GENDER_CHOICES, max_length=6, blank=True)
-    age = models.CharField(max_length=3, blank=True)
+    age = models.CharField(max_length=6, blank=True)
     combatant_status = models.CharField(
         choices=COMBATANT_CHOICES, max_length=14, blank=True
     )
