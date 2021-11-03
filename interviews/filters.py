@@ -52,11 +52,10 @@ class InterviewFilter(django_filters.FilterSet):
     if value == "ਪਤਾ ਨਹੀਂ":
       return queryset.filter(**{'date_range_start': None})
     else:
-      startvalue = value + '-01-01'
-      endvalue = value + '-12-31'
+      value = Number(value)
       return queryset.filter(**{
-        'date_range_start__gte': startvalue,
-        'date_range_end__lte': endvalue,
+        'date_range_start__year__lte': value,
+        'date_range_end__year__gte': value,
       })
 
   class Meta:
