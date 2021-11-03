@@ -64,12 +64,23 @@ def clip(request, id=None):
     return render( request, "clip.html", { "clip": clip, "video": clip.video, }, )
 
 
+
+def get_years(videos):
+    years1 = videos.values_list('date_range_start__year', flat=True)    
+    years2 = videos.values_list('date_range_end__year', flat=True)    
+    years1 = list(dict.fromkeys(years1))
+    years2 = list(dict.fromkeys(years2))
+    years = list(dict.fromkeys(years1 + years2))
+    years = [i for i in years if i] # remove None
+    years.sort(reverse=True)
+    years.append('Date Unknown')
+    return years
+
+
 def interviews(request):
     p = Page.objects.filter(slug='interviews')[0]
     videos = Video.objects.all()
-    years = list(reversed(range(1981,2008)))
-    years.insert(0, 2012)
-    years.append('Date Unknown')
+    years = get_years(videos)
     return render( request, "interviews_map.html", {
         "districts": districts,
         "videos": videos,
@@ -80,10 +91,8 @@ def interviews(request):
 
 def gallery(request):
     p = Page.objects.filter(slug='interviews')[0]
-    videos = Video.objects.all()
-    years = list(reversed(range(1981,2008)))
-    years.insert(0, 2012)
-    years.append('Date Unknown')
+    videos = Video.objects.all()    
+    years = get_years(videos)
     return render( request, "interviews_gallery.html", {
         "districts": districts,
         "videos": videos,
