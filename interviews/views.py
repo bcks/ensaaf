@@ -69,6 +69,7 @@ def interviews(request):
     videos = Video.objects.all()
     years = list(reversed(range(1981,2008)))
     years.insert(0, 2012)
+    years.append('Date Unknown')
     return render( request, "interviews_map.html", {
         "districts": districts,
         "videos": videos,
@@ -82,6 +83,7 @@ def gallery(request):
     videos = Video.objects.all()
     years = list(reversed(range(1981,2008)))
     years.insert(0, 2012)
+    years.append('Date Unknown')
     return render( request, "interviews_gallery.html", {
         "districts": districts,
         "videos": videos,
