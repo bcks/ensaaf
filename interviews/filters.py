@@ -54,8 +54,8 @@ class InterviewFilter(django_filters.FilterSet):
     else:
       value = Number(value)
       return queryset.filter(**{
-        'date_range_start__year__lte': value,
-        'date_range_end__year__gte': value,
+        'date_range_start__year__gte': value,
+        'date_range_end__year__lte': value,
       })
 
   class Meta:
