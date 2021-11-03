@@ -52,7 +52,7 @@ class InterviewFilter(django_filters.FilterSet):
     if value == "ਪਤਾ ਨਹੀਂ":
       return queryset.filter(**{'date_range_start': None})
     else:
-      value = Number(value)
+      value = int(value)
       return queryset.filter(**{
         'date_range_start__year__gte': value,
         'date_range_end__year__lte': value,
