@@ -916,11 +916,17 @@ img.footer_logo {
   align-items: center;
   height: 100vh;
   opacity: 0;
-  transition-delay: 20s;
+  transition-delay: 0s;
   transition-property: opacity;
   transition-timing-function: ease-in-out;
   transition-duration: 3s;       
 }
+@media only screen and (min-width: 786px) {
+  #home {
+    transition-delay: 20s;
+  }
+}
+
 #home.active {
   opacity: 1;
 }
