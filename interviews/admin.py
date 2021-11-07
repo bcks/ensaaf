@@ -27,7 +27,7 @@ class VictimAdmin(admin.StackedInline):
       'date_range_end',
       'village',
     )
-    extra = 1
+    extra = 0
 
 
 class ClipAdmin(ImageCroppingMixin, admin.StackedInline):

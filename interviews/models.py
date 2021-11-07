@@ -136,18 +136,18 @@ class Video(models.Model):
 
 
     # start remove after migraion to multi
-    profile_id = models.CharField(max_length=10, blank=True, verbose_name="data.ensaaf.org Profile ID")
-    gender = models.CharField(choices=GENDER_CHOICES, max_length=6, blank=True)
-    age = models.CharField(max_length=6, blank=True)
+    profile_id = models.CharField(max_length=10, blank=True, verbose_name="data.ensaaf.org Profile ID", editable=False)
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=6, blank=True, editable=False)
+    age = models.CharField(max_length=6, blank=True, editable=False)
     combatant_status = models.CharField(
-        choices=COMBATANT_CHOICES, max_length=14, blank=True
+        choices=COMBATANT_CHOICES, max_length=14, blank=True, editable=False
     )
     classification = models.CharField(
-        choices=CLASSIFICATION_CHOICES, max_length=24, blank=True
+        choices=CLASSIFICATION_CHOICES, max_length=24, blank=True, editable=False
     )
-    date_range_start = models.DateField(null=True, blank=True)
-    date_range_end = models.DateField(null=True, blank=True)
-    village = models.CharField(max_length=10, blank=True, verbose_name="Village Census Code")
+    date_range_start = models.DateField(null=True, blank=True, editable=False)
+    date_range_end = models.DateField(null=True, blank=True, editable=False)
+    village = models.CharField(max_length=10, blank=True, verbose_name="Village Census Code", editable=False)
     # end remove
 
 
