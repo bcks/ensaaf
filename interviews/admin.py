@@ -13,6 +13,23 @@ class ThemeAdmin(ImageCroppingMixin, admin.ModelAdmin):
 admin.site.register(Theme, ThemeAdmin)
 
 
+class VictimAdmin(admin.StackedInline):
+    model = Victim
+    fields = (
+      'video',
+      'victim_name',
+      'profile_id',
+      'gender',
+      'age',
+      'combatant_status',
+      'classification',
+      'date_range_start',
+      'date_range_end',
+      'village',
+    )
+    extra = 1
+
+
 class ClipAdmin(ImageCroppingMixin, admin.StackedInline):
     model = Clip
     formfield_overrides = {
@@ -33,7 +50,7 @@ class VideoAdmin(ImageCroppingMixin, admin.ModelAdmin):
     formfield_overrides = {
         models.ManyToManyField: {"widget": CheckboxSelectMultiple},
     }
-    inlines = [ClipAdmin]
+    inlines = [VictimAdmin, ClipAdmin]
 
 admin.site.register(Video, VideoAdmin)
 

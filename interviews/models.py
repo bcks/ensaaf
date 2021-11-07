@@ -7,6 +7,7 @@ from tinymce import models as tinymce_models
 import requests
 
 
+
 def get_unique_slug(id, title, obj):
     title = title.replace(".", "")
     title = title.replace("ı", "i")
@@ -20,6 +21,7 @@ def get_unique_slug(id, title, obj):
         unique_slug = "{}-{}".format(slug, counter)
         counter += 1
     return unique_slug
+
 
 
 class Theme(models.Model):
@@ -40,6 +42,7 @@ class Theme(models.Model):
 
     def __unicode__(self):
         return self.__str__()
+
 
 
 GENDER_CHOICES = (("1", "Male"), ("2", "Female"))
@@ -77,6 +80,7 @@ DISTRICT_CHOICES = (
 
 
 
+
 class Villages(models.Model):
     village_name = models.CharField(max_length=256)
     village_name_pb = models.CharField(max_length=256, blank=True, null=True)
@@ -96,6 +100,7 @@ class Villages(models.Model):
             models.Index(fields=['district_id']),
             models.Index(fields=['vid']),
         ]
+
 
 
 
@@ -122,12 +127,16 @@ def get_vimeo_thumbnail(vimeo_id):
 
 
 
+
 class Video(models.Model):
     title = models.CharField(max_length=200, blank=True)
-    profile_id = models.CharField(max_length=10, blank=True, verbose_name="data.ensaaf.org Profile ID")
     vimeo_id = models.CharField(max_length=64, blank=True, verbose_name="vimeo ID")
     image = models.ImageField(upload_to = 'themes/', max_length=200, blank=True)
     image_cropping = ImageRatioField('image', '830x500', size_warning=True)
+
+
+    # start remove after migraion to multi
+    profile_id = models.CharField(max_length=10, blank=True, verbose_name="data.ensaaf.org Profile ID")
     gender = models.CharField(choices=GENDER_CHOICES, max_length=6, blank=True)
     age = models.CharField(max_length=6, blank=True)
     combatant_status = models.CharField(
@@ -139,6 +148,9 @@ class Video(models.Model):
     date_range_start = models.DateField(null=True, blank=True)
     date_range_end = models.DateField(null=True, blank=True)
     village = models.CharField(max_length=10, blank=True, verbose_name="Village Census Code")
+    # end remove
+
+
     theme = models.ManyToManyField(Theme, default=None, blank=True)
     transcription = tinymce_models.HTMLField(blank=True, null=True, default=None)
 
@@ -153,6 +165,30 @@ class Video(models.Model):
         super().save(*args, **kwargs)
 
 
+
+
+class Victim(models.Model):
+    video = models.ForeignKey(Video, default=None, on_delete=models.CASCADE, blank=True)
+    victim_name = models.CharField(max_length=200, blank=True)
+    profile_id = models.CharField(max_length=10, blank=True, verbose_name="data.ensaaf.org Profile ID")
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=6, blank=True)
+    age = models.CharField(max_length=6, blank=True)
+    combatant_status = models.CharField(
+        choices=COMBATANT_CHOICES, max_length=14, blank=True
+    )
+    classification = models.CharField(
+        choices=CLASSIFICATION_CHOICES, max_length=24, blank=True
+    )
+    date_range_start = models.DateField(null=True, blank=True)
+    date_range_end = models.DateField(null=True, blank=True)
+    village = models.CharField(max_length=10, blank=True, verbose_name="Village Census Code")
+
+    def __str__(self):
+        return self.victim_name
+
+
+
+
 class Clip(models.Model):
     video = models.ForeignKey(Video, default=None, on_delete=models.CASCADE, blank=True)
     start_time_minutes = models.CharField(blank=True, max_length=10)
@@ -164,6 +200,8 @@ class Clip(models.Model):
 
     def __str__(self):
         return self.video.title
+
+
 
 
 class Page(models.Model):

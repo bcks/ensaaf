@@ -23,10 +23,13 @@
         </div>
         <div class="col-md-3">
 
-          {% if video.profile_id %}
-          <p><a href="https://data.ensaaf.org/profile/{{video.profile_id}}/" class="btn btn-outline-primary">Full Profile »</a></p>
+
+          {% for v in video.victim_set.all %}
+          <p><a href="https://data.ensaaf.org/profile/{{v.profile_id}}/" class="btn btn-outline-primary">Profile of {{v.victim_name}}&nbsp;»</a></p>
+            {% if forloop.last %}  
               <br>
-          {% endif %}
+            {% endif %}      
+          {% endfor %}
           
                     
           {% for t in video.theme.all %}

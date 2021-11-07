@@ -122,9 +122,9 @@
   
     {% for v in videos %}
       
-      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'video' v.id %}'">
-        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail v "image_cropping" %}')">
-          <h4>{{v.title}}</h4>
+      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'video' v.video.id %}'">
+        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail v.video "image_cropping" %}')">
+          <h4>{{v.victim_name}}</h4>
         </div>
       </div>
 
@@ -132,7 +132,7 @@
   
     {% for v in t.clip_set.all %}
 
-      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'clip' v.id %}'">
+      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'clip' v.video.id %}'">
         <div class="inner-slate" style="background-image: url('{% cropped_thumbnail v.video "image_cropping" %}')">
           <h4>{{v.video.title}}</h4>
         </div>

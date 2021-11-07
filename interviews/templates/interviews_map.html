@@ -162,7 +162,7 @@ function numberWithCommas(x) {
   {% endif %}
 }
 
-var timeCapsule = [{% for o in videos %}{"v":{"uid":"{{o.id}}","img":"{% cropped_thumbnail o "image_cropping" %}","id":"{{o.village|default:"0"}}","p":"{{o.profile_id|default:""}}","t":{{o.date|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}];
+var timeCapsule = [{% for o in videos %}{"v":{"uid":"{{o.video.id}}","img":"{% cropped_thumbnail o.video "image_cropping" %}","id":"{{o.village|default:"0"}}","p":"{{o.profile_id|default:""}}","t":{{o.date|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}];
 
 for (var i=0;i<timeCapsule.length;i++) {
     if ( timeCapsule[i]['v']['id'] ) {

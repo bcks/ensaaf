@@ -1,3 +1,3 @@
-{% load cropping %}{"timeline":[{% for o in all %}{"v":{"uid":"{{o.id}}","img":"{% cropped_thumbnail o "image_cropping" %}","id":"{{o.village|default:"0"}}","p":"{{o.profile_id|default:""}}","t":{{o.date|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}]}
+{% load cropping %}{"timeline":[{% for o in all %}{"v":{"uid":"{{o.video.id}}","img":"{% cropped_thumbnail o.video "image_cropping" %}","id":"{{o.village|default:"0"}}","p":"{{o.profile_id|default:""}}","t":{{o.date|date:"U"|default:"0"}}}}{% if forloop.last %}{%else%},{% endif %}{% endfor %}]}
 
 

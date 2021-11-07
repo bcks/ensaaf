@@ -79,7 +79,7 @@ def get_years(videos):
 
 def interviews(request):
     p = Page.objects.filter(slug='interviews')[0]
-    videos = Video.objects.all()
+    videos = Victim.objects.all()
     years = get_years(videos)
     return render( request, "interviews_map.html", {
         "districts": districts,
@@ -91,7 +91,7 @@ def interviews(request):
 
 def gallery(request):
     p = Page.objects.filter(slug='interviews')[0]
-    videos = Video.objects.all()    
+    videos = Victim.objects.all()    
     years = get_years(videos)
     return render( request, "interviews_gallery.html", {
         "districts": districts,
@@ -113,13 +113,13 @@ def interviews_home(request):
 
 #@cache_page(60 * 60)
 def interviews_map_xhr(request):
-    victim_list = Video.objects.all();
+    victim_list = Victim.objects.all();
     victim_filter = InterviewFilter(request.GET, queryset=victim_list)
     return render(request, "interviews_map_xhr.html", { "all": victim_filter.qs, }, content_type='application/json')
 
 
 #@cache_page(60 * 60)
 def interviews_gallery_xhr(request):
-    victim_list = Video.objects.all();
+    victim_list = Victim.objects.all();
     victim_filter = InterviewFilter(request.GET, queryset=victim_list)
     return render( request, "interviews_gallery_xhr.html", { "all": victim_filter.qs, }, )
