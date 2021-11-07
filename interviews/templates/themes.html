@@ -23,7 +23,7 @@
 
 {% if p.background_video %}
   <video autoplay loop muted{% if p.background_image %} poster="/media/{{p.background_image}}"{% endif %}>
-      <source src="/media/{{p.background_video}}" type="video/mp4">
+      <source data-src="/media/{{p.background_video}}" type="video/mp4">
   </video>
 {% endif %}
 

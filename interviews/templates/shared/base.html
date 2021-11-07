@@ -91,7 +91,17 @@ $( document ).ready(function() {
       scrollTop: $("#main").offset().top
     }, 1000);  
   });
-  
+
+  const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+
+  if (isMobile) {
+    var sources = document.querySelectorAll('#background video source');
+    var video = document.querySelector('#background video');
+    for(var i = 0; i<sources.length;i++) {
+      sources[i].setAttribute('src', sources[i].getAttribute('data-src'));
+    }
+    video.load(); 
+  }
 
 });
 </script>
