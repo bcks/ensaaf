@@ -92,6 +92,11 @@ $( document ).ready(function() {
     }, 1000);  
   });
 
+
+  if ($('#home')) {
+    $('#home').addClass('active');
+  }
+
   const isDesktop = window.matchMedia("only screen and (min-width: 760px)").matches;
 
   if (isDesktop) {
