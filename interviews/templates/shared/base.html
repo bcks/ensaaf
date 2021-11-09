@@ -92,16 +92,24 @@ $( document ).ready(function() {
     }, 1000);  
   });
 
-  const isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+  const isDesktop = window.matchMedia("only screen and (min-width: 760px)").matches;
 
-  if (isMobile) {
+  if (isDesktop) {
     var sources = document.querySelectorAll('#background video source');
     var video = document.querySelector('#background video');
     for(var i = 0; i<sources.length;i++) {
       sources[i].setAttribute('src', sources[i].getAttribute('data-src'));
     }
     video.load(); 
-  }
+    video.play(); 
+
+    if ($('#home')) {
+      video.addEventListener('ended',function(){
+        window.location = '{% url "interviews" %}';
+      });
+    }
+
+  } // end isDesktop
 
 });
 </script>

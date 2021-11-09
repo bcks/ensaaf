@@ -1,4 +1,4 @@
-from .models import Video, Villages
+from .models import Victim, Villages
 import django_filters
 
 
@@ -59,7 +59,7 @@ class InterviewFilter(django_filters.FilterSet):
       })
 
   class Meta:
-    model = Video
+    model = Victim
     fields = [
       'age',
       'classification',
