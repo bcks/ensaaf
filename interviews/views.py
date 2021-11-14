@@ -48,8 +48,10 @@ def themes(request):
 def video(request, id=None):
     video = get_object_or_404(Video, id=id)
 
+    victim_ids = Victim.objects.filter(video = video.id).values_list('profile_id', flat=True)
+
     if video:
-      other_videos = Video.objects.filter(profile_id=video.profile_id).exclude(id= video.id)
+      other_videos = Video.objects.filter(victim__profile_id__in = victim_ids ).exclude(id=id)
     else:
       other_videos = None
 
