@@ -39,18 +39,19 @@
           {% for t in clip.theme.all %}            
               <li class="my-1"><a href="{% url 'theme' t.slug %}">{{t.name}}</a></li>
           {% endfor %}
-          {% for t in video.theme.all %}
-              <li class="my-1"><a href="{% url 'theme' t.slug %}">{{t.name}}</a></li>
-          {% endfor %}
           {% if clip.theme or video.theme.all %}  
           </ul>
           {% endif %}   
 
 
-          {% if video.clip_set.all %}  
+          {% if video.clip_set.all or video.theme.all %}  
               Other clips from this interview
           <ul class="mb-4">
           {% endif %}                       
+
+          {% for t in video.theme.all %}
+              <li class="my-1"><a href="{% url 'video' video.id %}">{{t.name}}</a></li>
+          {% endfor %}
 
           {% for c in video.clip_set.all %}
             {% for t in c.theme.all %}
@@ -60,7 +61,7 @@
             {% endfor %}          
           {% endfor %}
 
-          {% if video.theme or video.clip_set.all %}  
+          {% if video.clip_set.all or video.theme.all %}  
           </ul>
           {% endif %}                       
 
