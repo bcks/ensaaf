@@ -552,7 +552,7 @@ def get_first_names():
           return first_names_pb
       try:
           first_names_pb = Data.objects.all()\
-                          .values('victim_first_name_pb','victim_first_name')\
+                          .values('victim_first_name_pb')\
                           .distinct().order_by('victim_first_name_pb')
           cache.set("first_names_pb", first_names_pb, 3600) # 60 * 60 seconds
           return first_names_pb
@@ -564,7 +564,7 @@ def get_first_names():
           return first_names
       try:
         first_names = Data.objects.all()\
-                          .values('victim_first_name','victim_first_name_pb')\
+                          .values('victim_first_name')\
                           .distinct().order_by('victim_first_name')
         cache.set("first_names", first_names, 3600) # 60 * 60 seconds
         return first_names
