@@ -27,7 +27,7 @@
 
 
           {% for v in video.victim_set.all %}
-          <p><a href="https://data.ensaaf.org/profile/{{v.profile_id}}/" class="btn btn-outline-primary">Full Profile »</a></p>
+          <p><a href="https://data.ensaaf.org/profile/{{v.profile_id}}/" class="btn btn-outline-primary">Full Profile of {{v.victim_name}}»</a></p>
           {% if forloop.last %}<br>{% endif %}              
           {% endfor %}
                     
