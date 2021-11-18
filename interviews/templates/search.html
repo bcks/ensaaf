@@ -45,7 +45,7 @@
       
       <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='{% url 'video' v.id %}'">
         <div class="inner-slate" style="background-image: url('{% cropped_thumbnail v.video "image_cropping" %}')">
-          <h4>{{v.title}}</h4>
+          <h4>{{v.video.title}}</h4>
         </div>
       </div>
 
