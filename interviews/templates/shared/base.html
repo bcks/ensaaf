@@ -29,7 +29,9 @@
       <ul class="navbar-nav mr-auto">
         <li class="nav-item"><a class="nav-link" href="{% url "about" %}" title="{% trans "About" %}">{% trans "About" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url "interviews" %}" title="{% trans "Video Interviews" %}">{% trans "Map: Videos" %}</a></li>
+        {% comment %}
         <li class="nav-item"><a class="nav-link" href="{% url "gallery" %}" title="{% trans "Video Interviews" %}">{% trans "Gallery: Videos" %}</a></li>
+        {% endcomment %}
         <li class="nav-item"><a class="nav-link" href="{% url "themes" %}" title="{% trans "Themes" %}">{% trans "Themes" %}</a></li>
         <li class="nav-item"><a class="nav-link" id="search-toggle" title="{% trans "Search" %}">{% trans "Search" %}</a></li>
         <li class="nav-item"><a class="nav-link" href="https://donate.ensaaf.org/give/199767/#!/donation/checkout?" title="{% trans "Donate" %}">{% trans "Donate" %}</a></li>        
