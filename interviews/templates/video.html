@@ -58,16 +58,20 @@
           {% endfor %}
 
 
-          {% for v in other_videos %}
-            {% if forloop.first %}  
+
+          {% if other_videos_with_victim or other_videos_with_vimeo %}
               Related interviews
               <ul class="mb-4">
-            {% endif %}
+          {% endif %}
+          {% for v in other_videos_with_victim %}
               <li class="my-1"><a href="{% url 'video' v.id %}">{{v.title}}</a></li>
-            {% if forloop.last %}  
-              </ul>
-            {% endif %}      
           {% endfor %}
+          {% for v in other_videos_with_vimeo %}
+              <li class="my-1"><a href="{% url 'video' v.id %}">{{v.title}}</a></li>
+          {% endfor %}
+          {% if other_videos_with_victim or other_videos_with_vimeo %}
+              </ul>
+          {% endif %}
           
 
           

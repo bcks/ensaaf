@@ -49,15 +49,15 @@ def video(request, id=None):
     video = get_object_or_404(Video, id=id)
 
     victim_ids = Victim.objects.filter(video = video.id).values_list('profile_id', flat=True)
-
-    if video:
-      other_videos = Video.objects.filter(victim__profile_id__in = victim_ids ).exclude(id=id)
-    else:
-      other_videos = None
+    
+    other_videos_with_victim = Video.objects.filter(victim__profile_id__in = victim_ids ).exclude(id=id)
+    
+    other_vimeos = Video.objects.filter(vimeo_id = video.vimeo_id ).exclude(id=id)
 
     return render( request, "video.html", {
         "video": video,
-        "other_videos": other_videos
+        "other_videos_with_victim": other_videos_with_victim,
+        "other_videos_with_vimeo": other_vimeos
       }, )
 
 
