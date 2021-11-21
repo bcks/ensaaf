@@ -330,8 +330,10 @@ function updateMarkers(markers, points) {
               markers[key].on('mouseover', function (e) { this.openPopup(); });
               markers[key].on('mouseout', function (e) { this.closePopup(); });
               markers[key].on('click', function (e) {
+                {% comment %}
                 //var params = $('#form').serialize();
                 //document.location.href = '{% lang %}' + this.options.url + '/?' + params;
+                {% endcomment %}
                   document.location.href = this.options.icon.options.url;
               });
 
