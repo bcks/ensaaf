@@ -330,20 +330,19 @@ function updateMarkers(markers, points) {
               markers[key].on('mouseover', function (e) { this.openPopup(); });
               markers[key].on('mouseout', function (e) { this.closePopup(); });
               markers[key].on('click', function (e) {
-                {% comment %}
                 //var params = $('#form').serialize();
                 //document.location.href = '{% lang %}' + this.options.url + '/?' + params;
-                {% endcomment %}
-                document.location.href = this.options.icon.options.url
+                  document.location.href = this.options.icon.options.url;
               });
+
+              console.log('SHOW', markers[key].options.icon.options.url);
 
               markers_array.push( markers[key] );
           } else {
 
-            console.log(markers[key]);
-
             markers[key]._icon.classList.add('hidden');
             markers[key].unbindPopup();
+
           }
         });
 
@@ -367,33 +366,28 @@ function updateMap(start, end) {
       }
     }
 
-    // test Object.keys(markers).length to see less than total? see if need to recreate map or just update
 
-    if (Object.keys(markers).length > 0) {
-    
-        var markers_array = updateMarkers(markers, points);
-    
-    } else {
+    // if markers, remove all
+    for(var i = 0; i < this.markers.length; i++){
+      this.map.removeLayer(this.markers[i]);
+    }
 
-        // add points to map
-        _.forEach(points, function(d) {
-          if (d.id !== '0') {
+    // add points to map
+    _.forEach(points, function(d) {
+      if (d.id !== '0') {
 
-            var imageIcon = L.icon({
-                iconUrl:  '/static/images/play-button.png',
-                iconSize:  [25,25],
-                opacity: 1,
-                url: '/video/' + villages[d.id][0].uid,
-            });
-            markers[String(d.id)] = L.marker([d.coord[1], d.coord[0] ], {icon: imageIcon}).addTo(mymap);
+        var imageIcon = L.icon({
+            iconUrl:  '/static/images/play-button.png',
+            iconSize:  [25,25],
+            opacity: 1,
+            url: '/video/' + villages[d.id][0].uid,
+        });
+        markers[String(d.id)] = L.marker([d.coord[1], d.coord[0] ], {icon: imageIcon}).addTo(mymap);
 
-          }
-        }); // end for points
+      }
+    }); // end for points
 
-        updateMarkers(markers, points);
-
-
-    } // end if markers
+    updateMarkers(markers, points);
 
 }
 
