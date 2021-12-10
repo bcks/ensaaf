@@ -57,13 +57,18 @@ def video(request, id=None):
     return render( request, "video.html", {
         "video": video,
         "other_videos_with_victim": other_videos_with_victim,
-        "other_videos_with_vimeo": other_vimeos
+        "other_videos_with_vimeo": other_vimeos,
+        "body_class": 'light'
       }, )
 
 
 def clip(request, id=None):
     clip = get_object_or_404(Clip, id=id)
-    return render( request, "clip.html", { "clip": clip, "video": clip.video, }, )
+    return render( request, "clip.html", {
+      "clip": clip,
+      "video": clip.video,
+      "body_class": 'light'
+    }, )
 
 
 
