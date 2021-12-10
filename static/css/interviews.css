@@ -5,6 +5,9 @@ body {
   color: #808080;
 }
 
+#app-wrapper {
+  min-height: calc(100vh - 287px);    
+}
 
 
 strong {
