@@ -1,6 +1,7 @@
 *.sql.gz
 *.pgdump
 .DS_Store
+media/*
 # Makefile
 # Byte-compiled / optimized / DLL files
 __pycache__/
