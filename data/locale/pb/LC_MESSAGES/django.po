@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-29 17:06-0500\n"
+"POT-Creation-Date: 2022-01-15 09:44-0500\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -103,8 +103,8 @@ msgstr "ਪਿੰਡ"
 msgid "About"
 msgstr "ਬਾਰੇ"
 
-#: templates/base.html:50 templates/profile.html:949
-#: templates/profile.html:1269
+#: templates/base.html:50 templates/profile.html:968
+#: templates/profile.html:1288
 msgid "Forthcoming"
 msgstr "ਆਉਣ ਵਾਲੀ ਜਾਣਕਾਰੀ"
 
@@ -254,11 +254,11 @@ msgstr "ਸਿੱਖ"
 msgid "Amritdhari"
 msgstr "ਅੰਮ੍ਰਿਤਧਾਰੀ"
 
-#: templates/detail.html:143 templates/profile.html:324
+#: templates/detail.html:143 templates/profile.html:341
 msgid "Abduction, Detention, &amp; Torture"
 msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਗ੍ਰਿਫਤਾਰੀ, ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ"
 
-#: templates/detail.html:150 templates/profile.html:374
+#: templates/detail.html:150 templates/profile.html:393
 #: templates/stats.html:249
 msgid "Prior detentions"
 msgstr "ਪੁਰਾਣੀਆਂ ਗ੍ਰਿਫ਼ਤਾਰੀਆਂ"
@@ -278,7 +278,7 @@ msgstr "ਪੁਰਾਣੀਆਂ ਗ੍ਰਿਫ਼ਤਾਰੀਆਂ"
 msgid "Yes"
 msgstr "ਹਾਂ ਜੀ"
 
-#: templates/detail.html:157 templates/profile.html:384
+#: templates/detail.html:157 templates/profile.html:403
 #: templates/stats.html:273
 msgid "Prior torture"
 msgstr "ਪੁਰਾਣੇ ਤਸ਼ੱਦਦ"
@@ -291,7 +291,7 @@ msgstr "ਪਰਿਵਾਰ ਦੀ ਸਮਝ ਮੁਤਾਬਕ ਪੀੜਤ ਨ�
 msgid "Victim was a militant"
 msgstr "ਪੀੜਤ ਖਾੜਕੂ ਸੀ"
 
-#: templates/detail.html:173 templates/profile.html:419
+#: templates/detail.html:173 templates/profile.html:438
 msgid "Abduction preceding extrajudicial execution"
 msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਤੋਂ ਪਹਿਲਾਂ ਗ੍ਰਿਫ਼ਤਾਰ ਕੀਤਾ"
 
@@ -303,8 +303,8 @@ msgstr ""
 "ਮਾਰਚ ੨੯, <a href=\"/pb/year/1993\">੧੯੯੩</a> ਅਤੇ ਐਪ੍ਰਲ ੧, <a href=\"/pb/"
 "year/1993\">੧੯੯੩</a> ਦੇ ਵਿੱਚ"
 
-#: templates/detail.html:181 templates/profile.html:438
-#: templates/profile.html:455
+#: templates/detail.html:181 templates/profile.html:457
+#: templates/profile.html:474
 msgid "Place of abduction"
 msgstr "ਗ੍ਰਿਫ਼ਤਾਰੀ ਦੀ ਜਗ੍ਹਾ"
 
@@ -312,7 +312,7 @@ msgstr "ਗ੍ਰਿਫ਼ਤਾਰੀ ਦੀ ਜਗ੍ਹਾ"
 msgid "Friend/relative’s residence, in Kolkata, West Bengal"
 msgstr "ਕਲਕੱਤਾ, ਪੱਛਮੀ ਬੰਗਾਲ ਵਿੱਚ ਦੋਸਤ/ਰਿਸ਼ਤੇਦਾਰ ਦਾ ਘਰ"
 
-#: templates/detail.html:191 templates/profile.html:471
+#: templates/detail.html:191 templates/profile.html:490
 msgid "Witness(es) to abduction"
 msgstr "ਗਰਿਫਤਾਰੀ ਦੇ ਗਵਾਹ"
 
@@ -320,15 +320,15 @@ msgstr "ਗਰਿਫਤਾਰੀ ਦੇ ਗਵਾਹ"
 msgid "Parents; Sibling; Cousin; Aunt/uncle"
 msgstr "ਮਾਂ ਪਿਓ; ਭੈਣ ਭਰਾ; ਰਿਸ਼ਤੇਦਾਰ"
 
-#: templates/detail.html:199 templates/profile.html:485
+#: templates/detail.html:199 templates/profile.html:504
 msgid "Security officials informed witnesses about destination"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤਿਆਂ ਨੇ ਗਵਾਹਾਂ ਨੂੰ ਦੱਸਿਆ ਕਿ ੳਹ ਪੀੜਤ ਨੂੰ ਕਿੱਥੇ ਲੈ ਕੇ ਜਾ ਰਹੇ ਹਨ"
 
-#: templates/detail.html:206 templates/profile.html:499
+#: templates/detail.html:206 templates/profile.html:518
 msgid "Security officials uniformed"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤਿਆਂ ਨੇ ਵਰਦੀ ਪਾਈ ਹੋਈ ਸੀ"
 
-#: templates/detail.html:213 templates/profile.html:530
+#: templates/detail.html:213 templates/profile.html:549
 msgid "Demands by security forces"
 msgstr "ਸੁਰੱਖਿਆ ਬਲਾਂ ਦੀਆਂ ਮੰਗਾ"
 
@@ -336,12 +336,12 @@ msgstr "ਸੁਰੱਖਿਆ ਬਲਾਂ ਦੀਆਂ ਮੰਗਾ"
 msgid "Money"
 msgstr "ਪੈਸੇ"
 
-#: templates/detail.html:220 templates/profile.html:543
+#: templates/detail.html:220 templates/profile.html:562
 #: templates/stats.html:490
 msgid "Victim presented before judge/magistrate"
 msgstr "ਪੀੜਤ ਨੂੰ ਜੱਜ ਜਾਂ ਮਜਿਸਟਰੇਟ ਸਾਮ੍ਹਣੇ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ"
 
-#: templates/detail.html:236 templates/profile.html:573
+#: templates/detail.html:236 templates/profile.html:592
 msgid "Detention Locations"
 msgstr "ਹਿਰਾਸਤ ਵਾਲੀਆਂ ਥਾਵਾਂ"
 
@@ -362,7 +362,7 @@ msgstr "ਦੀਨਾਨਗਰ"
 msgid "15+ days, witnessed by relative"
 msgstr "੧੫+ ਦਿਨ, ਰਿਸ਼ਤੇਦਾਰ ਨੇ ਦੇਖਿਆ"
 
-#: templates/detail.html:250 templates/profile.html:599
+#: templates/detail.html:250 templates/profile.html:618
 msgid "Witness report"
 msgstr "ਗਵਾਹ ਦੀ ਰਿਪੋਰਟ"
 
@@ -374,16 +374,16 @@ msgstr ""
 "ਪੀੜਤ ਨੇ ਤਸ਼ੱਦਦ ਦੀ ਖਬਰ ਦਿੱਤੀ, ਜਿਸ ਵਿੱਚ ਪੱਟਾਂ ਦੇ ਜ਼ਖਮਾਂ ਉੱਤੇ ਗਰਮ ਮਿਰਚਾਂ ਦਾਖਲ ਹੋਣਾ ਸ਼ਾਮਲ ਹੈ, ਅਤੇ "
 "ਖੜ੍ਹੇ ਨਹੀਂ ਹੋ ਸਕਦੇ"
 
-#: templates/detail.html:275 templates/profile.html:681
+#: templates/detail.html:275 templates/profile.html:700
 #: templates/stats.html:599
 msgid "Body Disposal"
 msgstr "ਸਰੀਰ ਨਾਲ ਕੀ ਕੀਤਾ"
 
-#: templates/detail.html:282 templates/profile.html:691
+#: templates/detail.html:282 templates/profile.html:710
 msgid "Body returned"
 msgstr "ਸਰੀਰ ਵਾਪਸ ਮੋੜ ਦਿੱਤਾ"
 
-#: templates/detail.html:289 templates/profile.html:704
+#: templates/detail.html:289 templates/profile.html:723
 #: templates/stats.html:606
 msgid "Body disposal by security forces"
 msgstr "ਸੁਰੱਖਿਆ ਬਲਾਂ ਨੇ ਸਰੀਰ ਵਾਪਸ ਮੋੜ ਦਿੱਤਾ"
@@ -392,7 +392,7 @@ msgstr "ਸੁਰੱਖਿਆ ਬਲਾਂ ਨੇ ਸਰੀਰ ਵਾਪਸ ਮ�
 msgid "Cremated the body"
 msgstr "ਸਰੀਰ ਦਾ ਸਸਕਾਰ ਕਰ ਦਿੱਤਾ ਗਿਆ"
 
-#: templates/detail.html:296 templates/profile.html:718
+#: templates/detail.html:296 templates/profile.html:737
 msgid "Cremation location"
 msgstr "ਸਸਕਾਰ ਵਾਲੀ ਜਗ੍ਹਾ"
 
@@ -400,13 +400,13 @@ msgstr "ਸਸਕਾਰ ਵਾਲੀ ਜਗ੍ਹਾ"
 msgid "Municipal cremation ground"
 msgstr "ਨਗਰ ਨਿਗਮ ਸ਼ਮਸ਼ਾਨ ਘਾਟ"
 
-#: templates/detail.html:309 templates/profile.html:759
+#: templates/detail.html:309 templates/profile.html:778
 #: templates/stats.html:685
 msgid "Security Forces Implicated"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਕਾਰਵਾਈ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
-#: templates/detail.html:316 templates/profile.html:771
-#: templates/profile.html:781
+#: templates/detail.html:316 templates/profile.html:790
+#: templates/profile.html:800
 msgid "Forces involved in abduction"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
@@ -418,7 +418,7 @@ msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਗ੍ਰਿਫ਼ਤਾਰ
 msgid "Punjab Police"
 msgstr "ਪੰਜਾਬ ਪੁਲਿਸ"
 
-#: templates/detail.html:326 templates/profile.html:796
+#: templates/detail.html:326 templates/profile.html:815
 msgid "Officials involved in abduction"
 msgstr "ਅਫਸਰ ਜੋ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
@@ -439,15 +439,15 @@ msgstr "ਜਰਨੈਲ ਸਿੰਘ"
 msgid "Sub Inspector"
 msgstr "ਸਬ ਇੰਸਪੈਕਟਰ"
 
-#: templates/detail.html:341 templates/profile.html:820
+#: templates/detail.html:341 templates/profile.html:839
 msgid "Forces involved in extrajudicial execution"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜੋ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
-#: templates/detail.html:353 templates/profile.html:835
+#: templates/detail.html:353 templates/profile.html:854
 msgid "Officials involved in extrajudicial execution"
 msgstr "ਅਫਸਰ ਜੋ ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
-#: templates/detail.html:365 templates/profile.html:883
+#: templates/detail.html:365 templates/profile.html:902
 #: templates/stats.html:792
 msgid "Militancy Involvement"
 msgstr "ਖਾੜਕੂ ਲਹਿਰ ਨਾਲ ਸੰਬੰਧਿਤ"
@@ -460,13 +460,13 @@ msgstr "ਉਰਫ"
 msgid "Haneri"
 msgstr "ਹਨੇਰੀ"
 
-#: templates/detail.html:379 templates/map.html:118 templates/profile.html:890
+#: templates/detail.html:379 templates/map.html:118 templates/profile.html:909
 #: templates/profiles.html:116 templates/stats.html:801
 msgid "Combatant"
 msgstr "ਹਾਂ ਜੀ"
 
-#: templates/detail.html:387 templates/profile.html:904
-#: templates/profile.html:917
+#: templates/detail.html:387 templates/profile.html:923
+#: templates/profile.html:936
 msgid "Reason(s) for joining militancy"
 msgstr "ਖਾੜਕੂ ਲਹਿਰ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੀ ਵਜਾ"
 
@@ -480,16 +480,16 @@ msgstr ""
 msgid "Persecution (i.e. arbitrary arrest, torture, self-defense)"
 msgstr "ਅੱਤਿਆਚਾਰ (ਗੈਰ ਕਾਨੂੰਨੀ ਗ੍ਰਿਫ਼ਤਾਰੀ, ਤਸ਼ੱਦਦ, ਆਤਮ ਰੱਖਿਆ)"
 
-#: templates/detail.html:400 templates/profile.html:964
+#: templates/detail.html:400 templates/profile.html:983
 #: templates/stats.html:870
 msgid "Remedies & Impact"
 msgstr "ਹੀਲਾ ਅਤੇ ਅਸਰ"
 
-#: templates/detail.html:407 templates/profile.html:978
+#: templates/detail.html:407 templates/profile.html:997
 msgid "Security officials approached"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜਿਨ੍ਹਾਂ ਤਕ ਪਹੁੰਚ ਕੀਤੀ"
 
-#: templates/detail.html:414 templates/profile.html:1013
+#: templates/detail.html:414 templates/profile.html:1032
 msgid "Legal remedies pursued"
 msgstr "ਕੋਈ ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਕੀਤੀ"
 
@@ -497,7 +497,7 @@ msgstr "ਕੋਈ ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਕੀਤੀ"
 msgid "No, Afraid of retaliation, Believed it would have been ineffective"
 msgstr "ਨਹੀਂ, ਡਰ/ਬਦਲੇ ਤੋਂ ਡਰ, ਪਰਿਵਾਰ ਨੂੰ ਇਹ ਲੱਗਦਾ ਸੀ ਕਿ ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਨਿਕਲਣਾ"
 
-#: templates/detail.html:421 templates/profile.html:1030
+#: templates/detail.html:421 templates/profile.html:1049
 msgid "Impact on family"
 msgstr "ਪਰਿਵਾਰ ਉੱਪਰ ਅਸਰ"
 
@@ -509,7 +509,7 @@ msgstr ""
 "ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਦੀ ਪੜ੍ਹਈ ਛੁੱਟ ਗਈ, ਪਰਿਵਾਰ ਨੇ ਘਰ ਛੱਡ ਦਿੱਤਾ, ਪਰਿਵਾਰ ਦੇ ਸਦੱਸ ਉਦਾਸ ਮਨੋਦਸ਼ਾ/ਸਦਮੇ "
 "ਕਾਰਨ ਮੌਤ ਹੋ ਗਈ, ਪਰਿਵਾਰ ਗਰੀਬ ਹੋ ਗਿਆ"
 
-#: templates/detail.html:428 templates/profile.html:1040
+#: templates/detail.html:428 templates/profile.html:1059
 #: templates/stats.html:950
 msgid "Remedies desired from government"
 msgstr "ਸਰਕਾਰ ਤੋਂ ਕੀ ਮੰਗ"
@@ -518,25 +518,25 @@ msgstr "ਸਰਕਾਰ ਤੋਂ ਕੀ ਮੰਗ"
 msgid "Memorial for victims"
 msgstr "ਪੀੜਤਾਂ ਲਈ ਯਾਦਗਾਰ"
 
-#: templates/detail.html:440 templates/profile.html:1060
+#: templates/detail.html:440 templates/profile.html:1079
 msgid "Connected Victims"
 msgstr "ਸੰਬੰਧਿਤ ਪੀੜਤ"
 
-#: templates/detail.html:446 templates/profile.html:1081
+#: templates/detail.html:446 templates/profile.html:1100
 #: templates/stats.html:573
 msgid "Genuine encounters in family"
 msgstr "ਪਰਿਵਾਰ ਵਿੱਚ ਅਸਲ ਮੁਕਾਬਲੇ"
 
-#: templates/detail.html:455 templates/profile.html:1094
+#: templates/detail.html:455 templates/profile.html:1113
 msgid "Co-victims of abduction"
 msgstr "ਹੋਰਾਂ ਨੂੰ ਨਾਲ ਗ੍ਰਿਫ਼ਤਾਰ ਕੀਤਾ"
 
-#: templates/detail.html:464 templates/profile.html:1144
-#: templates/profile.html:1171
+#: templates/detail.html:464 templates/profile.html:1163
+#: templates/profile.html:1190
 msgid "Co-victims of extrajudicial execution"
 msgstr "ਹੋਰਾਂ ਦੀ ਨਾਲ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਕੀਤੀ"
 
-#: templates/detail.html:467 views.py:360
+#: templates/detail.html:467 views.py:370
 msgid "Baldev Singh"
 msgstr "ਬਲਦੇਵ ਸਿੰਘ"
 
@@ -544,15 +544,15 @@ msgstr "ਬਲਦੇਵ ਸਿੰਘ"
 msgid "Dorangla"
 msgstr "ਦੋਰਾਂਗਲਾ"
 
-#: templates/detail.html:475 templates/profile.html:1263
+#: templates/detail.html:475 templates/profile.html:1282
 msgid "Family Reflections"
 msgstr "ਪਰਿਵਾਰ ਦੇ ਵਿਚਾਰ"
 
-#: templates/detail.html:496 templates/profile.html:1200
+#: templates/detail.html:496 templates/profile.html:1219
 msgid "Summary"
 msgstr "ਸੰਖੇਪ ਵਰਨਣ/ਸਾਰੰਸ਼"
 
-#: templates/detail.html:525 templates/profile.html:1321
+#: templates/detail.html:525 templates/profile.html:1340
 msgid ""
 "Note: Subdistrict and district boundaries are based on the 2001 census. Read "
 "more about <a href=\"/about\">our methodology</a>."
@@ -755,7 +755,7 @@ msgstr "ਗ਼ੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ/ਲਾਪਤਾ"
 msgid "Enforced Disappearance"
 msgstr "ਲਾਪਤਾ"
 
-#: templates/map.html:103 templates/profile.html:634 templates/profiles.html:78
+#: templates/map.html:103 templates/profile.html:653 templates/profiles.html:78
 msgid "Extrajudicial Execution"
 msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ"
 
@@ -867,7 +867,7 @@ msgid ""
 "in Punjab, India"
 msgstr "ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਏ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੇ ਮੁੱਖ ਦੋਸ਼ੀ"
 
-#: templates/official_detail.html:73 views.py:313
+#: templates/official_detail.html:73 views.py:323
 msgid "Sumedh Singh [Saini]"
 msgstr "ਸੁਮੇਧ ਸਿੰਘ [ਸੈਣੀ]"
 
@@ -961,14 +961,14 @@ msgstr "ਦੀ ਪ੍ਰੋਫਾਈਲ"
 #: templates/profile.html:6 templates/profile.html:11 templates/profile.html:13
 #: templates/profile.html:14 templates/profile.html:19
 #: templates/profile.html:20 templates/profile.html:24
-#: templates/profile.html:28 templates/profile.html:278
-#: templates/profile.html:282 templates/profile.html:286
+#: templates/profile.html:28 templates/profile.html:276
+#: templates/profile.html:280 templates/profile.html:284
 msgid "victim of extrajudicial execution"
 msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਆਿ ਦਾ/ਦੀ ਪੀੜਤ"
 
 #: templates/profile.html:6 templates/profile.html:13 templates/profile.html:19
 #: templates/profile.html:24 templates/profile.html:49
-#: templates/profile.html:638 templates/profiles.html:208
+#: templates/profile.html:657 templates/profiles.html:208
 #: templates/search/search.html:123 templates/village.html:101
 msgid "Disappeared"
 msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ"
@@ -977,8 +977,8 @@ msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ"
 #: templates/profile.html:14 templates/profile.html:19
 #: templates/profile.html:20 templates/profile.html:24
 #: templates/profile.html:28 templates/profile.html:49
-#: templates/profile.html:278 templates/profile.html:282
-#: templates/profile.html:286 templates/profile.html:638
+#: templates/profile.html:276 templates/profile.html:280
+#: templates/profile.html:284 templates/profile.html:657
 #: templatetags/profiletags.py:289 templatetags/profiletags.py:334
 #: templatetags/profiletags.py:336 templatetags/profiletags.py:338
 #: templatetags/profiletags.py:381 templatetags/profiletags.py:394
@@ -989,8 +989,8 @@ msgstr "ਤਾਰੀਖ਼ ਪਤਾ ਨਹੀਂ"
 
 #: templates/profile.html:11 templates/profile.html:14
 #: templates/profile.html:20 templates/profile.html:28
-#: templates/profile.html:278 templates/profile.html:282
-#: templates/profile.html:286 templates/search/search.html:74
+#: templates/profile.html:276 templates/profile.html:280
+#: templates/profile.html:284 templates/search/search.html:74
 msgid "disappeared"
 msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ"
 
@@ -1029,121 +1029,125 @@ msgstr "ਕੇਸਧਾਰੀ"
 msgid "Date of birth"
 msgstr "ਜਨਮ ਤਾਰੀਖ"
 
-#: templates/profile.html:282
+#: templates/profile.html:280
 msgid "Share this profile"
 msgstr "ਪੀੜਤ ਦੀ ਪ੍ਰੋਫ਼ਾਈਲ ਸਾਂਝੀ ਕਰੋ"
 
-#: templates/profile.html:307
+#: templates/profile.html:301
+msgid "Video Interviews"
+msgstr "ਵੀਡੀਓ ਇੰਟਰਵਿਊਜ਼"
+
+#: templates/profile.html:324
 msgid "Prior Abuse"
 msgstr "ਪਹਿਲਾਂ ਕੀਤੀ ਗਈ ਬਦਸਲੂਕੀ"
 
-#: templates/profile.html:322
+#: templates/profile.html:339
 msgid "Detention &amp; Torture"
 msgstr "ਹਿਰਾਸਤ ਅਤੇ ਤਸ਼ੱਦਦ"
 
-#: templates/profile.html:330
+#: templates/profile.html:347
 msgid "Abduction &amp; Detention"
 msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਗਿਰਫਤਾਰੀ ਅਤੇ ਹਿਰਾਸਤ"
 
-#: templates/profile.html:332
+#: templates/profile.html:349
 msgid "Detention"
 msgstr "ਹਿਰਾਸਤ"
 
-#: templates/profile.html:349
+#: templates/profile.html:366
 msgid "Torture"
 msgstr "ਤਸ਼ੱਦਦਾ"
 
-#: templates/profile.html:351
+#: templates/profile.html:368
 msgid "Abduction &amp; Torture"
 msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਗਿਰਫਤਾਰੀ ਅਤੇ ਤਸ਼ੱਦਦ"
 
-#: templates/profile.html:356
+#: templates/profile.html:373
 msgid "Abduction"
 msgstr "ਗੈਰ ਕਾਨੂੰਨੀ ਗਿਰਫਤਾਰੀ"
 
-#: templates/profile.html:422
+#: templates/profile.html:441
 msgid "Abduction preceding disappearance"
 msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ ਤੋਂ ਪਹਿਲਾਂ ਗ੍ਰਿਫ਼ਤਾਰ ਕੀਤਾ"
 
-#: templates/profile.html:515
+#: templates/profile.html:534
 msgid "Security forces in civil clothes"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਸਿਵਲ ਵਰਦੀ ਵਿੱਚ ਸਨ"
 
-#: templates/profile.html:556
+#: templates/profile.html:575
 msgid "Judge/magistrate result"
 msgstr "ਜੱਜ/ਮੈਜਿਸਟਰੇਟ ਦਾ ਨਤੀਜਾ"
 
-#: templates/profile.html:584
+#: templates/profile.html:603
 msgid "Detention locations known"
 msgstr "ਕੀ ਗ੍ਰਿਫ਼ਤਾਰੀ ਵਾਲੀ ਜਗਾ ਦਾ ਪਤਾ ਹੈ"
 
-#: templates/profile.html:609 templates/profile.html:616
-#: templates/profile.html:657 templates/profile.html:666
-#: templates/profile.html:868
+#: templates/profile.html:628 templates/profile.html:635
+#: templates/profile.html:676 templates/profile.html:685
+#: templates/profile.html:887
 msgid "Additional data forthcoming"
 msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਅੱਗੇ ਸਾਂਝੀ ਕੀਤੀ ਜਾਵੇਗੀ"
 
-#: templates/profile.html:648
+#: templates/profile.html:667
 msgid "Location of killing"
 msgstr "ਮੌਤ ਵਾਲੀ ਜਗਾ"
 
-#: templates/profile.html:732
+#: templates/profile.html:751
 msgid "Condition of corpse"
 msgstr "ਸਰੀਰ ਦੀ ਹਾਲਤ"
 
-#: templates/profile.html:929
+#: templates/profile.html:948
 msgid "Militant support provided"
 msgstr "ਖਾੜਕੂਆਂ ਦੀ ਸਹਾਇਤਾ ਕੀਤੀ"
 
-#: templates/profile.html:945
+#: templates/profile.html:964
 msgid "Related Incidents"
 msgstr "ਸੰਬੰਧਿਤ ਹਾਦਸੇ"
 
-#: templates/profile.html:962
+#: templates/profile.html:981
 msgid "Remedies"
 msgstr "ਹੀਲਾ ਅਤੇ ਅਸਰ"
 
-#: templates/profile.html:987
+#: templates/profile.html:1006
 msgid "from"
 msgstr "ਤੋਂ"
 
-#: templates/profile.html:997
+#: templates/profile.html:1016
 msgid "Response by officials"
 msgstr "ਅਫਸਰਾਂ ਦਾ ਜਵਾਬ"
 
-#: templates/profile.html:1068
+#: templates/profile.html:1087
 msgid "Extrajudicial executions/disappearances in family"
 msgstr "ਪਰਿਵਾਰ ਵਿੱਚ ਲਾਪਤਾ ਜਾਂ ਫਿਰ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਨਾਲ ਸੰਬੰਧਿਤ ਹਾਦਸੇ"
 
-#: templates/profile.html:1112
+#: templates/profile.html:1131
 msgid "Who else was arrested/abducted"
 msgstr ""
 
-#: templates/profile.html:1183
+#: templates/profile.html:1202
 msgid "Links to co-victim profiles forthcoming"
 msgstr "ਸਹਿ-ਪੀੜਤ ਦੀ ਸੂਚੀ ਭਵਿੱਖ ਵਿੱਚ ਨਾਲ ਜੋੜੀ ਜਾਵੇਗੀ।"
 
-#: templates/profile.html:1208
+#: templates/profile.html:1227
 msgid "Select Legal Documents"
 msgstr "ਚੁਣੇ ਹੋਏ ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਦੇ ਪੰਨੇ"
 
-#: templates/profile.html:1217
+#: templates/profile.html:1236
 msgid "Select News Articles"
 msgstr "ਚੁਣੇ ਹੋਏ ਅਖ਼ਬਾਰੀ ਪੰਨੇ"
 
-#: templates/profile.html:1227
+#: templates/profile.html:1246
 msgid "Advocacy"
 msgstr "ਕਾਨੂੰਨੀ ਪੈਰਵੀ"
 
-#: templates/profile.html:1237
+#: templates/profile.html:1256
 msgid "Personal Papers"
 msgstr "ਨਿੱਜੀ ਕਾਗਜਾਤ"
 
-#: templates/profile.html:1247
+#: templates/profile.html:1266
 msgid "Family Photos"
 msgstr "ਪਰਿਵਾਰ ਦੀਆਂ ਤਸਵੀਰਾਂ"
 
-#: templates/profile.html:1332
+#: templates/profile.html:1351
 msgid ""
 "<a href=\"/email\" class=\"btn btn-light\">Report additional information on "
 "this case</a>"
@@ -1151,7 +1155,7 @@ msgstr ""
 "<a href=\"/pb/email\" class=\"btn btn-light\">ਇਸ ਕੇਸ ਨਾਲ ਸੰਬੰਧਤਿ ਹੋਰ ਜਾਣਕਾਰੀ "
 "ਸਾਂਝੀ ਕਰੋ</a>"
 
-#: templates/profile.html:1333
+#: templates/profile.html:1352
 msgid "Report a new case"
 msgstr "ਨਵਾਂ ਕੇਸ ਦਰਜ ਕਰੋ"
 
@@ -2521,450 +2525,450 @@ msgid ""
 msgstr ""
 "<span define=\"ਗੈਰ ਕਾਨੂੰਨੀ ਸੁਰੱਖਿਆ ਬਲ ਜਿਸ ਵਿੱਚ ਅਕਸਰ ਅਪਰਾਧੀ ਹੁੰਦੇ ਹਨ\">ਬਲੈਕ ਕੈਟ</span>"
 
-#: views.py:40
+#: views.py:43
 msgid "Ajnala"
 msgstr "ਅਜਨਾਲਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Amritsar I"
 msgstr "ਅੰਮ੍ਰਿਤਸਰ - I"
 
-#: views.py:40
+#: views.py:43
 msgid "Amritsar II"
 msgstr "ਅੰਮ੍ਰਿਤਸਰ - II"
 
-#: views.py:40
+#: views.py:43
 msgid "Baba Bakala"
 msgstr "ਬਾਬਾ ਬਕਾਲਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Khadoor Sahib"
 msgstr "ਖਡੂਰ ਸਾਹਿਬ"
 
-#: views.py:40
+#: views.py:43
 msgid "Patti"
 msgstr "ਪੱਟੀ"
 
-#: views.py:40
+#: views.py:43
 msgid "Tarn Taran"
 msgstr "ਤਰਨ ਤਾਰਨ"
 
-#: views.py:40
+#: views.py:43
 msgid "Rampura Phul"
 msgstr "ਰਾਮਪੁਰਾ ਫੂਲ"
 
-#: views.py:40
+#: views.py:43
 msgid "Talwandi Sabo"
 msgstr "ਤਲਵੰਡੀ ਸਾਬੋ"
 
-#: views.py:40
+#: views.py:43
 msgid "Jaitu"
 msgstr "ਜੈਤੋ"
 
-#: views.py:40
+#: views.py:43
 msgid "Amloh"
 msgstr "ਅਮਲੋਹ"
 
-#: views.py:40
+#: views.py:43
 msgid "Bassi Pathana"
 msgstr "ਬੱਸੀ ਪਠਾਣਾਂ"
 
-#: views.py:40
+#: views.py:43
 msgid "Khamanon"
 msgstr "ਖਮਾਣੋ"
 
-#: views.py:40
+#: views.py:43
 msgid "Abohar"
 msgstr "ਅਬੋਹਰ"
 
-#: views.py:40
+#: views.py:43
 msgid "Fazilka"
 msgstr "ਫਾਜ਼ਿਲਕਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Jalalabad"
 msgstr "ਜਲਾਲਾਬਾਦ"
 
-#: views.py:40
+#: views.py:43
 msgid "Zira"
 msgstr "ਜ਼ੀਰਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Batala"
 msgstr "ਬਟਾਲਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Dera Baba Nanak"
 msgstr "ਡੇਰਾ ਬਾਬਾ ਨਾਨਕ"
 
-#: views.py:40
+#: views.py:43
 msgid "Dhar Kalan"
 msgstr "ਧਾਰ ਕਲਾਂ"
 
-#: views.py:40
+#: views.py:43
 msgid "Pathankot"
 msgstr "ਪਠਾਨਕੋਟ"
 
-#: views.py:40
+#: views.py:43
 msgid "Dasuya"
 msgstr "ਦਸੂਹਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Garhshankar"
 msgstr "ਗੜਸ਼ੰਕਰ"
 
-#: views.py:40
+#: views.py:43
 msgid "Mukerian"
 msgstr "ਮੁਕੇਰੀਆਂ"
 
-#: views.py:40
+#: views.py:43
 msgid "Jalandhar I"
 msgstr "ਜਲੰਧਰ - I"
 
-#: views.py:40
+#: views.py:43
 msgid "Jalandhar II"
 msgstr "ਜਲੰਧਰ - II"
 
-#: views.py:40
+#: views.py:43
 msgid "Nakodar"
 msgstr "ਨਕੋਦਰ"
 
-#: views.py:40
+#: views.py:43
 msgid "Phillaur"
 msgstr "ਫਿਲੌਰ"
 
-#: views.py:40
+#: views.py:43
 msgid "Shahkot"
 msgstr "ਸ਼ਾਹਕੋਟ"
 
-#: views.py:40
+#: views.py:43
 msgid "Bhulath"
 msgstr "ਭੁਲੱਥ"
 
-#: views.py:40
+#: views.py:43
 msgid "Phagwara"
 msgstr "ਫੱਗਵਾੜਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Sultanpur Lodhi"
 msgstr "ਸੁਲਤਾਨਪੁਰ ਲੋਧੀ"
 
-#: views.py:40
+#: views.py:43
 msgid "Jagroan"
 msgstr "ਜਗਰਾਓ"
 
-#: views.py:40
+#: views.py:43
 msgid "Khanna"
 msgstr "ਖੰਨਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Ludhiana East"
 msgstr "ਲੁਧਿਆਣਾ ਈਸਟ"
 
-#: views.py:40
+#: views.py:43
 msgid "Ludhiana West"
 msgstr "ਲੁਧਿਆਣਾ ਵੈਸਟ"
 
-#: views.py:40
+#: views.py:43
 msgid "Payal"
 msgstr "ਪਾਇਲ"
 
-#: views.py:40
+#: views.py:43
 msgid "Raikot"
 msgstr "ਰਾਏਕੋਟ"
 
-#: views.py:40
+#: views.py:43
 msgid "Samrala"
 msgstr "ਸਮਰਾਲਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Budhlada"
 msgstr "ਬੁੱਡਲਾਡਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Sardulgarh"
 msgstr "ਸਰਦੂਲਗੱੜ"
 
-#: views.py:40
+#: views.py:43
 msgid "Bhagha Purana"
 msgstr "ਬਾਘਾ ਪੁਰਾਣਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Nihal Singhwala"
 msgstr "ਨਿਹਾਲ ਸਿੰਘਵਾਲਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Giddarbaha"
 msgstr "ਗਿੱਦੜਬਾਹਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Malout"
 msgstr "ਮਲੋਟ"
 
-#: views.py:40
+#: views.py:43
 msgid "Balachaur"
 msgstr "ਬਲਾਚੌਰ"
 
-#: views.py:40
+#: views.py:43
 msgid "Dera Bassi"
 msgstr "ਡੇਰਾ ਬੱਸੀ"
 
-#: views.py:40
+#: views.py:43
 msgid "Nabha"
 msgstr "ਨਾਭਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Rajpura"
 msgstr "ਰਾਜਪੁਰਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Samana"
 msgstr "ਸਮਾਣਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Anandpur Sahib"
 msgstr "ਅਨੰਦਪੁਰ ਸਾਹਿਬ"
 
-#: views.py:40
+#: views.py:43
 msgid "Kharar"
 msgstr "ਖਰੜ"
 
-#: views.py:40
+#: views.py:43
 msgid "S.A.S.Nagar (Mohali)"
 msgstr "ਸਾਹਿਬਜ਼ਾਦਾ ਅਜੀਤ ਸਿੰਘ ਨਗਰ (ਮੋਹਾਲੀ)"
 
-#: views.py:40
+#: views.py:43
 msgid "Barnala"
 msgstr "ਬਰਨਾਲਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Dhuri"
 msgstr "ਧੂਰੀ"
 
-#: views.py:40
+#: views.py:43
 msgid "Malerkotla"
 msgstr "ਮਲੇਰਕੋਟਲਾ"
 
-#: views.py:40
+#: views.py:43
 msgid "Moonak"
 msgstr "ਮੂਨਕ"
 
-#: views.py:40
+#: views.py:43
 msgid "Sunam"
 msgstr "ਸੁਨਾਮ"
 
-#: views.py:42
+#: views.py:45
 msgid "unknown"
 msgstr "ਪਤਾ ਨਹੀਂ"
 
-#: views.py:314
+#: views.py:324
 msgid "Mohd. Izhar Alam"
 msgstr "ਮੁਹੰਮਦ ਇਜ਼ਹਾਰ ਆਲਮ"
 
-#: views.py:315
+#: views.py:325
 msgid "Suresh Arora"
 msgstr "ਸੁਰੇਸ਼ ਅਰੋੜਾ"
 
-#: views.py:316
+#: views.py:326
 msgid "Lok Nath Angra"
 msgstr "ਲੋਕ ਨਾਥ ਆਂਗਰਾ"
 
-#: views.py:317
+#: views.py:327
 msgid "Swaran Singh [Ghotna]"
 msgstr "ਸਵਰਨ ਸਿੰਘ [ਘੋਟਣਾ]"
 
-#: views.py:318
+#: views.py:328
 msgid "Ajit Singh Sandhu"
 msgstr "ਅਜੀਤ ਸਿੰਘ ਸੰਧੂ"
 
-#: views.py:319
+#: views.py:329
 msgid "Jasminder [Jaswinder] Singh"
 msgstr "ਜਸਮਿੰਦਰ [ਜਸਵਿੰਦਰ] ਸਿੰਘ"
 
-#: views.py:320
+#: views.py:330
 msgid "Gur Iqbal Singh Bhullar"
 msgstr "ਗੁਰਇਕਬਾਲ ਸਿੰਘ ਭੁੱਲਰ"
 
-#: views.py:321
+#: views.py:331
 msgid "Dinkar Gupta"
 msgstr "ਦਿਨਕਰ ਗੁਪਤਾ"
 
-#: views.py:322
+#: views.py:332
 msgid "Shiv Kumar"
 msgstr "ਸ਼ਿਵ ਕੁਮਾਰ"
 
-#: views.py:323
+#: views.py:333
 msgid "Sant Kumar"
 msgstr "ਸੰਤ ਕੁਮਾਰ"
 
-#: views.py:324
+#: views.py:334
 msgid "Raj Kishan Bedi"
 msgstr "ਰਾਜ ਕਿਸ਼ਨ ਬੇਦੀ"
 
-#: views.py:325
+#: views.py:335
 msgid "Harinder Singh [Chahal]"
 msgstr "ਹਰਿੰਦਰ ਸਿੰਘ [ਚਾਹਲ]"
 
-#: views.py:326
+#: views.py:336
 msgid "Gurmeet Singh [Pinky]"
 msgstr "ਗੁਰਮੀਤ ਸਿੰਘ [ਪਿੰਕੀ]"
 
-#: views.py:327
+#: views.py:337
 msgid "D.R. Bhatti"
 msgstr "ਡੀ.ਆਰ. ਭੱਟੀ"
 
-#: views.py:328
+#: views.py:338
 msgid "Mohd. Mustafa"
 msgstr "ਮੁਹੰਮਦ ਮੁਸਤਫਾ"
 
-#: views.py:329
+#: views.py:339
 msgid "Satish Kumar Sharma"
 msgstr "ਸਤੀਸ਼ ਕੁਮਾਰ ਸ਼ਰਮਾ"
 
-#: views.py:330
+#: views.py:340
 msgid "Harkishan Singh Kahlon"
 msgstr "ਹਰਕਿਸ਼ਨ ਸਿੰਘ ਕਾਹਲੋਂ"
 
-#: views.py:331
+#: views.py:341
 msgid "Gobind Ram"
 msgstr "ਗੋਬਿੰਦ ਰਾਮ"
 
-#: views.py:332
+#: views.py:342
 msgid "Anil Kumar Sharma"
 msgstr "ਅਨਿਲ ਕੁਮਾਰ ਸ਼ਰਮਾ"
 
-#: views.py:333
+#: views.py:343
 msgid "M.K. Tiwari"
 msgstr "ਐਮ.ਕੇ. ਤਿਵਾੜੀ"
 
-#: views.py:334
+#: views.py:344
 msgid "Samant Kumar Goel"
 msgstr "ਸਮੰਤ ਕੁਮਾਰ ਗੋਇਲ"
 
-#: views.py:335
+#: views.py:345
 msgid "J.P. Birdi"
 msgstr "ਜੇ.ਪੀ. ਬਿਰਦੀ"
 
-#: views.py:336
+#: views.py:346
 msgid "A.P. Pandey"
 msgstr "ਏ.ਪੀ. ਪਾਂਡੇ"
 
-#: views.py:337
+#: views.py:347
 msgid "Sita Ram"
 msgstr "ਸੀਤਾ ਰਾਮ"
 
-#: views.py:338
+#: views.py:348
 msgid "Sanjiv Gupta"
 msgstr "ਸੰਜੀਵ ਗੁਪਤਾ"
 
-#: views.py:339
+#: views.py:349
 msgid "Khubi Ram"
 msgstr "ਖੂਬੀ ਰਾਮ"
 
-#: views.py:340
+#: views.py:350
 msgid "Sidharth Chattopadhyaya"
 msgstr "ਸਿਧਾਰਥ ਚਟੋਪਾਧਿਆਯ"
 
-#: views.py:341
+#: views.py:351
 msgid "Bachan Singh Randhawa"
 msgstr "ਬਚਨ ਸਿੰਘ ਰੰਧਾਵਾ"
 
-#: views.py:342
+#: views.py:352
 msgid "C.S.R. Reddy"
 msgstr "ਸੀ.ਐਸ.ਆਰ. ਰੈਡੀ"
 
-#: views.py:343
+#: views.py:353
 msgid "Narinderpal Singh"
 msgstr "ਨਰਿੰਦਰਪਾਲ ਸਿੰਘ"
 
-#: views.py:344
+#: views.py:354
 msgid "P.S. Bhinder"
 msgstr "ਪੀ.ਐਸ. ਭਿੰਡਰ"
 
-#: views.py:345
+#: views.py:355
 msgid "Ajaypal Singh Mann"
 msgstr "ਅਜੇਪਾਲ ਸਿੰਘ ਮਾਨ"
 
-#: views.py:346
+#: views.py:356
 msgid "Rajinder Singh"
 msgstr "ਰਜਿੰਦਰ ਸਿੰਘ"
 
-#: views.py:347
+#: views.py:357
 msgid "R.S. Chalia"
 msgstr "ਆਰ.ਐਸ. ਚਲੀਆ"
 
-#: views.py:348
+#: views.py:358
 msgid "Bua Singh"
 msgstr "ਬੂਆ ਸਿੰਘ"
 
-#: views.py:349
+#: views.py:359
 msgid "D.S. Mangat"
 msgstr "ਡੀ.ਐਸ. ਮਾਂਗਟ"
 
-#: views.py:350
+#: views.py:360
 msgid "D.S. Mohi"
 msgstr "ਡੀ.ਐਸ. ਮੋਹੀ"
 
-#: views.py:351
+#: views.py:361
 msgid "Barjinder S. Mann"
 msgstr "Barjinder S. Mann"
 
-#: views.py:352
+#: views.py:362
 msgid "P.S. Sandhu"
 msgstr "ਪੀ.ਐਸ. ਸੰਧੂ"
 
-#: views.py:353
+#: views.py:363
 msgid "A.S. Bajwa"
 msgstr "ਏ.ਐਸ. ਬਾਜਵਾ"
 
-#: views.py:354
+#: views.py:364
 msgid "S.V. Singh"
 msgstr "ਐਸ.ਵੀ. ਸਿੰਘ"
 
-#: views.py:355
+#: views.py:365
 msgid "Harjit Singh Randhawa"
 msgstr "ਹਰਜੀਤ ਸਿੰਘ ਰੰਧਾਵਾ"
 
-#: views.py:356
+#: views.py:366
 msgid "Sital Dass"
 msgstr "ਸੀਤਲ ਦਾਸ"
 
-#: views.py:357
+#: views.py:367
 msgid "P.S. Hura"
 msgstr "ਪੀ.ਐਸ. ਹੁਰਾ"
 
-#: views.py:358
+#: views.py:368
 msgid "M.S. Bhullar"
 msgstr "ਐਮ.ਐਸ. ਭੁੱਲਰ"
 
-#: views.py:359
+#: views.py:369
 msgid "K.P.S. Gill"
 msgstr "ਕੇ.ਪੀ.ਐਸ. ਗਿੱਲ"
 
-#: views.py:361
+#: views.py:371
 msgid "H.R. Banga"
 msgstr "ਐਚ.ਆਰ. ਬੰਗਾ"
 
-#: views.py:362
+#: views.py:372
 msgid "Surjit Singh"
 msgstr "ਸੁਰਜੀਤ ਸਿੰਘ"
 
-#: views.py:363
+#: views.py:373
 msgid "Hardeep Dhillon"
 msgstr "ਹਰਦੀਪ ਢਿੱਲੋਂ"
 
-#: views.py:364
+#: views.py:374
 msgid "Arpit Shukla"
 msgstr "ਅਰਪਿਤ ਸ਼ੁਕਲਾ"
 
-#: views.py:365
+#: views.py:375
 msgid "Paramjit Gill"
 msgstr "ਪਰਮਜੀਤ ਗਿੱਲ"
 
-#: views.py:366
+#: views.py:376
 msgid "Ashok Kumar"
 msgstr "ਅਸ਼ੋਕ ਕੁਮਾਰ"
 
-#: views.py:367
+#: views.py:377
 msgid "C. Pal Singh"
 msgstr "ਸੀ. ਪਾਲ ਸਿੰਘ"
