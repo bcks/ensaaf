@@ -36,6 +36,9 @@ import pysolr
 solr = pysolr.Solr(settings.HAYSTACK_CONNECTIONS['default']['URL'], timeout=10)
 
 
+from interviews.models import Victim
+
+
 
 tehsils_for_translation = [ _("Ajnala"), _("Amritsar I"), _("Amritsar II"), _("Baba Bakala"), _("Khadoor Sahib"), _("Patti"), _("Tarn Taran"), _("Rampura Phul"), _("Talwandi Sabo"), _("Jaitu"), _("Amloh"), _("Bassi Pathana"), _("Khamanon"), _("Abohar"), _("Fazilka"), _("Jalalabad"), _("Zira"), _("Batala"), _("Dera Baba Nanak"), _("Dhar Kalan"), _("Pathankot"), _("Dasuya"), _("Garhshankar"), _("Mukerian"), _("Jalandhar I"), _("Jalandhar II"), _("Nakodar"), _("Phillaur"), _("Shahkot"), _("Bhulath"), _("Phagwara"), _("Sultanpur Lodhi"), _("Jagroan"), _("Khanna"), _("Ludhiana East"), _("Ludhiana West"), _("Payal"), _("Raikot"), _("Samrala"), _("Budhlada"), _("Sardulgarh"), _("Bhagha Purana"), _("Nihal Singhwala"), _("Giddarbaha"), _("Malout"), _("Balachaur"), _("Dera Bassi"), _("Nabha"), _("Rajpura"), _("Samana"), _("Anandpur Sahib"), _("Kharar"), _("S.A.S.Nagar (Mohali)"), _("Barnala"), _("Dhuri"), _("Malerkotla"), _("Moonak"), _("Sunam") ]
 
@@ -236,7 +239,14 @@ def profile(request, record_id=None):
       village = None
     if record_id is not None and victim is None:
         return messages.warning(request,"Profile %s was not found"%record_id)
-    return render(request, "profile.html", { "victim": victim, "village": village } )
+
+    interviews = Victim.objects.filter(profile_id=record_id)
+
+    return render(request, "profile.html", {
+      "victim": victim,
+      "village": village,
+      "interviews": interviews
+    })
 
 
 @cache_page(60 * 60)
