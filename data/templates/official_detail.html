@@ -1076,17 +1076,6 @@ function makeTimeline() {
     makeVillageNames( x.invert(s[0]), x.invert(s[1]) );
   }
 
-
-    var templist = '';
-    var data = profiles;
-    for (var i in profiles) {
-      if (data[i].fields && data[i].fields['victim_name']) {
-        templist += data[i].pk +' ' + data[i].fields['victim_name'] + '<br>';
-      }
-    }
-    $('h1').html( templist );
-
-
 } // end makeTimeline
 
 </script>
