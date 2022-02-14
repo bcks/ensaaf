@@ -1035,7 +1035,7 @@ msgstr "ਪੀੜਤ ਦੀ ਪ੍ਰੋਫ਼ਾਈਲ ਸਾਂਝੀ ਕਰ�
 
 #: templates/profile.html:301
 msgid "Video Interviews"
-msgstr "ਵੀਡੀਓ ਇੰਟਰਵਿਊਜ਼"
+msgstr "ਵੀਡੀਓ ਇੰਟਰਵੀਊ"
 
 #: templates/profile.html:324
 msgid "Prior Abuse"
