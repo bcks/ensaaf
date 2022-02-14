@@ -301,9 +301,10 @@
     <div class="row">
     {% for i in interviews %}    
       <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='https://interviews.ensaaf.org/video/{{i.video.id}}'">
-        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail i.video "image_cropping" %}')">Img</div>
+        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail i.video "image_cropping" %}')"></div>
       </div>
     {% endfor %}
+
     </div>
 
   <br>
@@ -1284,6 +1285,39 @@
       <p class="dots"><span class="kicker"><em><strong>{% trans "Forthcoming" %}</strong></em></span></p>
     </div>
   </div>
+
+
+
+
+
+
+{% if victim.video_url or victim.video_url2 or victim.related_materials %}
+
+  <h4><br>{% trans 'Related Material' %}</h4>
+
+  <div class="row">
+  {% if victim.video_url %}    
+    <div class="col-md-4 col-sm-6 slate mb-3" onclick="document.location.href='{{victim.video_url}}'">
+      <div class="inner-slate" style="background-image: url('{{victim.video_url|vimeo_thumb}}')"></div>
+    </div>
+  {% endif %}
+
+  {% if victim.video_url2 %}    
+    <div class="col-md-4 col-sm-6 slate mb-3" onclick="document.location.href='{{victim.video_url2}}'">
+      <div class="inner-slate" style="background-image: url('{{victim.video_url2|vimeo_thumb}}')"></div>
+    </div>
+  {% endif %}
+
+  {% if victim.related_materials %}    
+    <div class="col-12">
+      <p>{{victim.related_materials|safe}}</p>
+    </div>
+  {% endif %}
+
+  </div>
+
+<br>
+{% endif %}
 
 
 

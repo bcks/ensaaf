@@ -6,6 +6,9 @@ from django.utils.translation import get_language
 from django.urls import reverse
 from ..models import *
 
+import requests
+import json
+
 register = template.Library()
 
 
@@ -1179,3 +1182,19 @@ def my_name(string):
           return string
     else:
       return ''
+
+
+
+@register.filter()
+def vimeo_thumb(var):
+  try:
+    vimeo_id = var.replace('https://vimeo.com/','')
+    url =  'http://vimeo.com/api/v2/video/{}.json'.format(vimeo_id);
+    text = requests.get(url).text
+    data = json.loads(text)
+    return data[0]['thumbnail_large']
+  except:
+    return None
+
+
+

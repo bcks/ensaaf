@@ -245,6 +245,10 @@ class Data(models.Model):
     photo_personalpapers_fn = models.CharField(max_length=256, blank=True, null=True)
     photo_family_fn = models.CharField(max_length=256, blank=True, null=True)
     victim_summary = models.TextField(blank=True, null=True)
+    photo_family_fn = models.CharField(max_length=256, blank=True, null=True)
+    video_url = models.CharField(max_length=256, blank=True, null=True)
+    video_url2 = models.CharField(max_length=256, blank=True, null=True)
+    related_materials = models.TextField(blank=True, null=True)
 
     class Meta:
         db_table = 'data'
