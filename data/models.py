@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.functions import Cast
 from django.contrib import admin
 from django import forms
 
@@ -255,6 +256,9 @@ class Data(models.Model):
         indexes = [
           models.Index(fields=['village_id']),
           models.Index(fields=['village_name']),
+        ]
+        ordering = [
+            Cast("record_id", output_field=models.IntegerField()),
         ]
 
 

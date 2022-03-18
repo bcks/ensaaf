@@ -11,6 +11,7 @@ from graphene_django.views import GraphQLView
 
 urlpatterns = i18n_patterns(
     path('', map, name='map'),
+    path('all_profiles/<slug:slug>/', all_profiles, name="all_profiles"),
     path('map_ajax/', map_ajax, name="map_ajax"),
     path('email/', emailView, name='email'),
     path('profiles/', profiles, name="profiles"),

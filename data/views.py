@@ -249,6 +249,18 @@ def profile(request, record_id=None):
     })
 
 
+
+
+def all_profiles(request, slug=0):
+    start = int(slug) * 500
+    end = start + 500
+    victims = Data.objects.all()[start:end]
+    return render(request, "all_profiles.html", {
+      "victims": victims,
+    })
+
+
+
 @cache_page(60 * 60)
 def village(request, slug=None):
 
