@@ -257,9 +257,9 @@ class Data(models.Model):
           models.Index(fields=['village_id']),
           models.Index(fields=['village_name']),
         ]
-        ordering = [
-            Cast("record_id", output_field=models.IntegerField()),
-        ]
+        #ordering = [
+        #    Cast("record_id", output_field=models.IntegerField()),
+        #]
 
 
 
