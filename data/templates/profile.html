@@ -292,28 +292,6 @@
 
 
 
-
-
-  {% if interviews %}
-
-    <h4><br>{% trans 'Video Interviews' %}</h4>
-
-    <div class="row">
-    {% for i in interviews %}    
-      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='https://interviews.ensaaf.org/video/{{i.video.id}}'">
-        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail i.video "image_cropping" %}')"></div>
-      </div>
-    {% endfor %}
-
-    </div>
-
-  <br>
-  {% endif %}
-
-
-
-
-
   {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_prior_detention_st != 9 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}
 
   <div class="row">
@@ -1287,6 +1265,20 @@
   </div>
 
 
+{% if interviews %}
+
+    <h4><br>{% trans 'Video Interviews' %}</h4>
+
+    <div class="row">
+    {% for i in interviews %}    
+      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='https://interviews.ensaaf.org/video/{{i.video.id}}'">
+        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail i.video "image_cropping" %}')"></div>
+      </div>
+    {% endfor %}
+
+    </div>
+
+{% endif %}
 
 
 
@@ -1367,7 +1359,7 @@
 <div class="row">
   <div class="col-12">
     <div class="footnotes">
-      <p>{% trans 'Note: Subdistrict and district boundaries are based on the 2001 census. Read more about <a href="/about">our methodology</a>.' %}</p>
+      <p><br>{% trans 'Note: Subdistrict and district boundaries are based on the 2001 census. Read more about <a href="/about">our methodology</a>.' %}</p>
     </div>
   </div>
 </div>
