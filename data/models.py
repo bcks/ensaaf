@@ -250,6 +250,7 @@ class Data(models.Model):
     video_url = models.CharField(max_length=256, blank=True, null=True)
     video_url2 = models.CharField(max_length=256, blank=True, null=True)
     related_materials = models.TextField(blank=True, null=True)
+    related_materials_pb = models.TextField(blank=True, null=True)
 
     class Meta:
         db_table = 'data'

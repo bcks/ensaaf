@@ -1300,7 +1300,12 @@
     </div>
   {% endif %}
 
-  {% if victim.related_materials %}    
+
+  {% if request.LANGUAGE_CODE == 'pb' and victim.related_materials_pb %}
+    <div class="col-12">
+      <p>{{victim.related_materials_pb|safe}}</p>
+    </div>
+  {% elif victim.related_materials %}    
     <div class="col-12">
       <p>{{victim.related_materials|safe}}</p>
     </div>
