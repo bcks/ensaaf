@@ -295,7 +295,7 @@ def year(request, year=None):
 
 
 
-@cache_page(60 * 60 * 24)
+@cache_page(60 * 60 * 365) # cache for a year
 def villages(request):
     datas = Data.objects.filter(village_id=OuterRef('pk'))\
                             .values('village_id')\
