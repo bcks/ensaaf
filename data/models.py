@@ -255,8 +255,8 @@ class Data(models.Model):
     class Meta:
         db_table = 'data'
         indexes = [
-          models.Index(fields=['village_id']),
-          models.Index(fields=['village_name']),
+          models.Index(fields=['village_id'],name="village_id"),
+          models.Index(fields=['village_name'],name="village_name"),
         ]
         #ordering = [
         #    Cast("record_id", output_field=models.IntegerField()),
@@ -280,9 +280,9 @@ class Villages(models.Model):
         # managed = False
         db_table = 'villages'
         indexes = [
-            models.Index(fields=['tehsil_id']),
-            models.Index(fields=['district_id']),
-            models.Index(fields=['vid']),
+            models.Index(fields=['tehsil_id'], name="tehsil_id"),
+            models.Index(fields=['district_id'], name="district_id"),
+            models.Index(fields=['vid'], name="vid"),
         ]
 
 
