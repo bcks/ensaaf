@@ -127,6 +127,7 @@ class Data(models.Model):
     witness_arrest_12 = models.IntegerField(db_column='witness_arrest___12')
     so_inform_witnesses = models.IntegerField(blank=True, null=True)
     others_arrested = models.IntegerField(blank=True, null=True)
+    others_arrested_num = models.IntegerField(blank=True, null=True)
     victim_detention_loc_known = models.IntegerField(blank=True, null=True)
     demands_1 = models.IntegerField(db_column='demands___1')
     demands_2 = models.IntegerField(db_column='demands___2')
@@ -251,6 +252,15 @@ class Data(models.Model):
     video_url2 = models.CharField(max_length=256, blank=True, null=True)
     related_materials = models.TextField(blank=True, null=True)
     related_materials_pb = models.TextField(blank=True, null=True)
+    family_reflections = models.TextField(blank=True, null=True)
+    bhog_notice_status = models.IntegerField(blank=True, null=True)
+    bhog_notice_paper_1 = models.IntegerField(db_column='bhog_notice_paper___1')
+    bhog_notice_paper_2 = models.IntegerField(db_column='bhog_notice_paper___2')
+    bhog_notice_paper_3 = models.IntegerField(db_column='bhog_notice_paper___3')
+    bhog_notice_paper_4 = models.IntegerField(db_column='bhog_notice_paper___4')
+    bhog_notice_paper_5 = models.IntegerField(db_column='bhog_notice_paper___5')
+    other_bhog_notice_paper = models.CharField(max_length=256, blank=True, null=True)
+    bhog_notice_date = models.CharField(max_length=256, blank=True, null=True)
 
     class Meta:
         db_table = 'data'

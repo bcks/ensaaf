@@ -385,7 +385,7 @@
 
 
 
- {% comment %}
+{% if victim.record_id == '3734' %}
 
     {% if victim.target_reason_8 != 1 %}
     {% if victim.target_reason_9 != 1 %}
@@ -402,7 +402,7 @@
     {% endif %}
     {% endif %}
 
- {% endcomment %}
+ {% endif %}
 
 
 
@@ -432,7 +432,7 @@
         <p class="kicker dots">{% trans 'Place of abduction' %}</p>
       </div>
       <div class="col-sm-6">
-        <p>{% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
+        <p>{% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
 {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
 {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
 {{victim.victim_arrest_loc_st}}{% endif %}</p>
@@ -442,7 +442,7 @@
     {% endif %}
 
 
-  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}
 
     {% if victim.victim_arrest_location == 11 and victim.victim_arrest_loc_oth %}
       <div class="col-sm-6">
@@ -501,7 +501,7 @@
 
 
 
-{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}
 
   {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
   {% if victim.security_forces_civilcloth != None and victim.security_forces_civilcloth != 9 %}
@@ -571,7 +571,7 @@
   <div class="row">
 
 
-{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}
 
   {% if victim.where_victim_detained.all|length > 0 %}
     <div class="col-sm-6">
@@ -680,56 +680,70 @@
 
 
 
-  {% if victim.so_return_body != None and victim.so_return_body != 0 %}
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Body returned' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>{% hso_return_body victim.so_return_body %}</p>
-    </div>
-  {% endif %}
+    {% if victim.so_return_body != None and victim.so_return_body != 0 %}
+      <div class="col-sm-6">
+        <p class="kicker dots">{% trans 'Body returned' %}</p>
+      </div>
+      <div class="col-sm-6">
+        <p>{% hso_return_body victim.so_return_body %}</p>
+      </div>
+    {% endif %}
 
 
 
-  {% if victim.so_body_disposal %}
-  {% if victim.so_body_disposal != 5 %}
-  {% if victim.so_body_disposal != 6 %}
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Body disposal by security forces' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>{% hso_body_disposal victim.so_body_disposal %}</p>
-    </div>
-  {% endif %}
-  {% endif %}
-  {% endif %}
+    {% if victim.so_body_disposal %}
+    {% if victim.so_body_disposal != 5 %}
+    {% if victim.so_body_disposal != 6 %}
+      <div class="col-sm-6">
+        <p class="kicker dots">{% trans 'Body disposal by security forces' %}</p>
+      </div>
+      <div class="col-sm-6">
+        <p>{% hso_body_disposal victim.so_body_disposal %}</p>
+      </div>
+    {% endif %}
+    {% endif %}
+    {% endif %}
 
 
 
 
-  {% if victim.cremation_location_type != 4 and victim.cremation_location_type != 5 and victim.cremation_location_type %}
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Cremation location' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>
-      {% if victim.cremation_location_type != 5 %}{% hcremation_location_type victim.cremation_location_type %}{% endif %}{% if victim.cremation_location_type == 5 and victim.cremation_loctype_other %}{{victim.cremation_loctype_other}}{% endif %}{% if victim.cremation_location_name  %}{% if victim.cremation_location_type != 5 and not victim.cremation_location_name|is_numeric %}, {% endif %}{{victim.cremation_location_name|cremationlink|safe}}{% endif %}
-      </p>
-    </div>
-  {% endif %}
+    {% if victim.cremation_location_type != 4 and victim.cremation_location_type != 5 and victim.cremation_location_type %}
+      <div class="col-sm-6">
+        <p class="kicker dots">{% trans 'Cremation location' %}</p>
+      </div>
+      <div class="col-sm-6">
+        <p>
+        {% if victim.cremation_location_type != 5 %}{% hcremation_location_type victim.cremation_location_type %}{% endif %}{% if victim.cremation_location_type == 5 and victim.cremation_loctype_other %}{{victim.cremation_loctype_other}}{% endif %}{% if victim.cremation_location_name  %}{% if victim.cremation_location_type != 5 and not victim.cremation_location_name|is_numeric %}, {% endif %}{{victim.cremation_location_name|cremationlink|safe}}{% endif %}
+        </p>
+      </div>
+    {% endif %}
 
 
 
-  {% if victim.condition_of_remains_1 or victim.condition_of_remains_2 or victim.condition_of_remains_3 or victim.condition_of_remains_4 or victim.condition_of_remains_5 or victim.condition_of_remains_6 or victim.condition_of_remains_7 or victim.other_condition_of_remains %}
+    {% if victim.condition_of_remains_1 or victim.condition_of_remains_2 or victim.condition_of_remains_3 or victim.condition_of_remains_4 or victim.condition_of_remains_5 or victim.condition_of_remains_6 or victim.condition_of_remains_7 or victim.other_condition_of_remains %}
 
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Condition of corpse' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>{% hcondition_of_remains victim.condition_of_remains_1 victim.condition_of_remains_2 victim.condition_of_remains_3 victim.condition_of_remains_4 victim.condition_of_remains_5 victim.condition_of_remains_6 victim.condition_of_remains_7 victim.other_condition_of_remains %}</p>
-    </div>
+      <div class="col-sm-6">
+        <p class="kicker dots">{% trans 'Condition of corpse' %}</p>
+      </div>
+      <div class="col-sm-6">
+        <p>{% hcondition_of_remains victim.condition_of_remains_1 victim.condition_of_remains_2 victim.condition_of_remains_3 victim.condition_of_remains_4 victim.condition_of_remains_5 victim.condition_of_remains_6 victim.condition_of_remains_7 victim.other_condition_of_remains %}</p>
+      </div>
 
-  {% endif %}
+    {% endif %}
+
+
+
+    {% if victim.bhog_notice_status != None %}
+      <div class="col-sm-6">
+        <p class="kicker dots">{% trans 'Was a Bhog (funeral) notice published?' %}</p>
+      </div>
+      <div class="col-sm-6">
+        <p>{% hyes_no victim.bhog_notice_status %}{% hbhog victim.bhog_notice_paper_1 victim.bhog_notice_paper_2 victim.bhog_notice_paper_3 victim.other_bhog_notice_paper %}
+        
+      </div>
+    {% endif %}
+    
+
 
 
 
@@ -830,7 +844,7 @@
     </div>
     <div class="col-sm-6">
 
-{% if victim.security_killed.all|length > 0 and victim.record_id == '1565' or victim.record_id == '290'  or victim.record_id == '1401' or victim.record_id == '2724' or victim.record_id == '2291' or victim.record_id == '2559' or victim.record_id == '16'   or victim.record_id == '1068' or victim.record_id == '319'  or victim.record_id == '2433' or victim.record_id == '4000' or victim.record_id == '802'  or victim.record_id == '809'  or victim.record_id == '5584' or victim.record_id == '1057' or victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+{% if victim.security_killed.all|length > 0 and victim.record_id == '1565' or victim.record_id == '290'  or victim.record_id == '1401' or victim.record_id == '2724' or victim.record_id == '2291' or victim.record_id == '2559' or victim.record_id == '16'   or victim.record_id == '1068' or victim.record_id == '319'  or victim.record_id == '2433' or victim.record_id == '4000' or victim.record_id == '802'  or victim.record_id == '809'  or victim.record_id == '5584' or victim.record_id == '1057' or victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}
 
     {%if victim.securityforces_idknown_1 == 1 %}<!-- same as abduction -->
 
@@ -946,7 +960,7 @@
 
 
 
-{% if victim.court_or_commission != 9 or victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or victim.so_approached_other or victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.other_so_response or victim.family_effects_2 or victim.family_effects_3 or victim.family_effects_4 or victim.family_effects_5 or victim.family_effects_6 or victim.family_effects_7 or victim.family_effects_8 or victim.family_effects_9 or victim.family_effects_12 or victim.other_family_effects or victim.govnt_response_desired_1 or victim.govnt_response_desired_2 or victim.govnt_response_desired_3 or victim.govnt_response_desired_4 or victim.govnt_response_desired_5 or victim.govnt_response_desired_6 or victim.govnt_response_desired_7 or victim.govnt_response_desired_8 or victim.govnt_response_desired_9 or victim.other_govnt_response_desired and victim.court_or_commission != None %}
+{% if victim.court_or_commission != 9 or victim.so_approached_type_1 or victim.so_approached_type_2 or victim.so_approached_type_3 or  victim.so_approached_type_4 or victim.so_approached_type_5 or  victim.so_approached_type_6 or victim.so_approached_type_7 or victim.so_approached_other or victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.other_so_response or victim.family_effects_2 or victim.family_effects_3 or victim.family_effects_4 or victim.family_effects_5 or victim.family_effects_6 or victim.family_effects_7 or victim.family_effects_8 or victim.family_effects_9 or victim.family_effects_12 or victim.other_family_effects or victim.govnt_response_desired_1 or victim.govnt_response_desired_2 or victim.govnt_response_desired_3 or victim.govnt_response_desired_4 or victim.govnt_response_desired_5 or victim.govnt_response_desired_6 or victim.govnt_response_desired_7 or victim.govnt_response_desired_8 or victim.govnt_response_desired_9 or victim.oth_govnt_response_desired and victim.court_or_commission != None %}
 
 {# victim.security_officials_apprchd != 9 and victim.security_official_response_14 != 1 and victim.court_or_commission != 9 and victim.govnt_response_desired_11 != 1 #}
 
@@ -986,13 +1000,13 @@
 
 
   {# Don't show this if victim.security_official_response_13 #}
-  {% if victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.other_so_response %}
+  {% if victim.security_official_response_0 or victim.security_official_response_1 or victim.security_official_response_2 or victim.security_official_response_3 or victim.security_official_response_4 or victim.security_official_response_5 or victim.security_official_response_6 or victim.security_official_response_7 or victim.security_official_response_8 or victim.security_official_response_9 or victim.security_official_response_10 or victim.security_official_response_11 or victim.security_official_response_12 or victim.security_official_response_13 or victim.other_so_response %}
     <div class="col-sm-6">
       <p class="kicker dots">{% trans 'Response by officials' %}</p>
     </div>
     <div class="col-sm-6">
     
-    {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+    {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}
       <p>{% autoescape off %}{% hsecurity_official_response victim.security_official_response_0 victim.security_official_response_1 victim.security_official_response_2 victim.security_official_response_3 victim.security_official_response_4 victim.security_official_response_5 victim.security_official_response_6 victim.security_official_response_7 victim.security_official_response_8 victim.security_official_response_9 victim.security_official_response_10 victim.security_official_response_11 victim.security_official_response_12 victim.security_official_response_13 victim.security_official_response_14 victim.other_so_response %}{% endautoescape %}</p>
     {% else %}
       <p>{% autoescape off %}{% hsecurity_official_response victim.security_official_response_0 victim.security_official_response_1 victim.security_official_response_2 victim.security_official_response_3 victim.security_official_response_4 victim.security_official_response_5 victim.security_official_response_6 victim.security_official_response_7 victim.security_official_response_8 victim.security_official_response_9 victim.security_official_response_10 victim.security_official_response_11 victim.security_official_response_12 victim.security_official_response_13 victim.security_official_response_14 '' %}{% endautoescape %}</p>
@@ -1009,7 +1023,7 @@
     <div class="col-sm-6">
     
   {# victim.other_no_action_reason not cleaned for everyone, just the 4 profiles #}   
-  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}
       <p>{% hyes_no victim.court_or_commission %}{% if victim.no_action_pursued_reason_1 or victim.no_action_pursued_reason_2 or victim.no_action_pursued_reason_3 or victim.no_action_pursued_reason_4 or victim.other_no_action_reason %}, {% hno_action_pursued_reason victim.no_action_pursued_reason_1 victim.no_action_pursued_reason_2 victim.no_action_pursued_reason_3 victim.no_action_pursued_reason_4 victim.other_no_action_reason %}{% endif %}</p>
   {% else %}
       <p>{% hyes_no victim.court_or_commission %}{% if victim.no_action_pursued_reason_1 or victim.no_action_pursued_reason_2 or victim.no_action_pursued_reason_3 or victim.no_action_pursued_reason_4 %}, {% hno_action_pursued_reason victim.no_action_pursued_reason_1 victim.no_action_pursued_reason_2 victim.no_action_pursued_reason_3 victim.no_action_pursued_reason_4 '' %}{% endif %}</p>
@@ -1029,12 +1043,12 @@
   {% endif %}
 
 
-  {% if victim.govnt_response_desired_1 or victim.govnt_response_desired_2 or victim.govnt_response_desired_3 or victim.govnt_response_desired_4 or victim.govnt_response_desired_5 or victim.govnt_response_desired_6 or victim.govnt_response_desired_7 or victim.govnt_response_desired_8 or victim.govnt_response_desired_9 or victim.other_govnt_response_desired %}
+  {% if victim.govnt_response_desired_1 or victim.govnt_response_desired_2 or victim.govnt_response_desired_3 or victim.govnt_response_desired_4 or victim.govnt_response_desired_5 or victim.govnt_response_desired_6 or victim.govnt_response_desired_7 or victim.govnt_response_desired_8 or victim.govnt_response_desired_9 or victim.oth_govnt_response_desired %}
     <div class="col-sm-6">
       <p class="kicker dots">{% trans 'Remedies desired from government' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>{% hgovnt_response_desired victim.govnt_response_desired_1 victim.govnt_response_desired_2 victim.govnt_response_desired_3 victim.govnt_response_desired_4 victim.govnt_response_desired_5 victim.govnt_response_desired_6 victim.govnt_response_desired_7 victim.govnt_response_desired_8 victim.govnt_response_desired_9 victim.govnt_response_desired_10 victim.govnt_response_desired_11 victim.other_govnt_response_desired %}</p>
+      <p>{% hgovnt_response_desired victim.govnt_response_desired_1 victim.govnt_response_desired_2 victim.govnt_response_desired_3 victim.govnt_response_desired_4 victim.govnt_response_desired_5 victim.govnt_response_desired_6 victim.govnt_response_desired_7 victim.govnt_response_desired_8 victim.govnt_response_desired_9 victim.govnt_response_desired_10 victim.govnt_response_desired_11 victim.oth_govnt_response_desired %}</p>
     </div>
   {% endif %}
 
@@ -1088,7 +1102,7 @@
       <p class="kicker dots">{% trans 'Co-victims of abduction' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>{% hothers_arrested victim.others_arrested %}</p>
+      <p>{% hothers_arrested victim.others_arrested %}{%if victim.others_arrested_num %}; {{victim.others_arrested_num}}{% endif %}</p>
     </div>
   </div>
   {% endif %}
@@ -1096,7 +1110,7 @@
 
 
 
-  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}
 
     {% for this in victim.other_arrested.all %}
 
@@ -1127,7 +1141,7 @@
 
 
 
-  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734'  %}
 
 
     {% for this in victim.others_killed.all %}
@@ -1186,7 +1200,62 @@
 
 
 
-{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}  
+
+
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h4 class="mt-4">{% trans 'Family Reflections' %}</h4>
+    </div>
+  </div>
+
+
+{% if victim.record_id == '3734' %}
+
+ <div class="row">
+    <div class="col-12">
+      {{victim.family_reflections}}
+    </div>
+  </div>
+
+  <hr>
+
+{% else %}
+
+ <div class="row">
+    <div class="col-sm-6">
+      <p class="dots"><span class="kicker"><em><strong>{% trans "Forthcoming" %}</strong></em></span></p>
+    </div>
+  </div>
+
+{% endif %}
+
+
+
+{% if interviews %}
+
+    <h4 class="mt-4">{% trans 'Video Interviews' %}</h4>
+
+    <div class="row">
+    {% for i in interviews %}    
+      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='https://interviews.ensaaf.org/video/{{i.video.id}}'">
+        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail i.video "image_cropping" %}')"></div>
+      </div>
+    {% endfor %}
+
+    </div>
+
+{% endif %}
+
+
+
+
+
+
+
+
+{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}  
 
   {% if victim.victim_summary %}
   <div class="row">
@@ -1246,39 +1315,10 @@
   </div>  
   {% endif %}
 
+<hr>
 
 {% endif %}
 
-
-
-
-  <div class="row">
-    <div class="col-sm-12">
-      <h4 class="mt-4">{% trans 'Family Reflections' %}</h4>
-    </div>
-  </div>
-
- <div class="row">
-    <div class="col-sm-6">
-      <p class="dots"><span class="kicker"><em><strong>{% trans "Forthcoming" %}</strong></em></span></p>
-    </div>
-  </div>
-
-
-{% if interviews %}
-
-    <h4 class="mt-4">{% trans 'Video Interviews' %}</h4>
-
-    <div class="row">
-    {% for i in interviews %}    
-      <div class="col-md-4 col-sm-6 slate" onclick="document.location.href='https://interviews.ensaaf.org/video/{{i.video.id}}'">
-        <div class="inner-slate" style="background-image: url('{% cropped_thumbnail i.video "image_cropping" %}')"></div>
-      </div>
-    {% endfor %}
-
-    </div>
-
-{% endif %}
 
 
 
@@ -1315,7 +1355,6 @@
 
   <hr>
 {% endif %}
-
 
 
 
