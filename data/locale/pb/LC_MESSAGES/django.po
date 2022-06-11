@@ -402,7 +402,7 @@ msgstr "ਖਾੜਕੂ ਲਹਿਰ ਨਾਲ ਸੰਬੰਧਿਤ"
 #: templates/map.html:118 templates/profile.html:907
 #: templates/profiles.html:116 templates/stats.html:801
 msgid "Combatant"
-msgstr "ਹਾਂ ਜੀ"
+msgstr "ਖਾੜਕੂ"
 
 #: templates/all_profiles.html:918 templates/all_profiles.html:931
 #: templates/detail.html:387 templates/profile.html:921
