@@ -222,7 +222,7 @@ def change(request):
 
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def profile(request, record_id=None):
     try:
       queryset = Data.objects.filter(record_id=record_id)

@@ -574,30 +574,35 @@
 {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}
 
   {% if victim.where_victim_detained.all|length > 0 %}
+
+
+    {% for this in victim.where_victim_detained.all %}
+
     <div class="col-sm-6">
       <p class="kicker dots">{% trans 'Detention locations known' %}</p>
     </div>
     <div class="col-sm-6">
-
-    {% for this in victim.where_victim_detained.all %}
-
-      <p>
-      
-      {% if this.detention_facility_type != None %}{% autoescape off %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endautoescape %}{% endif %}{% if this.facility_name != None %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_nearest_villtown != None %}, {% autoescape off %}{% hvictim_address_other this.facility_nearest_villtown %}{% endautoescape %}{% endif %}{% if this.facility_district != None %}, {{this.facility_district|title}}{% endif %}{% if this.duration_of_detention != None %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
+      <p>      
+      {% if this.detention_facility_type != None %}{% autoescape off %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endautoescape %}{% endif %}{% if this.facility_name != None %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_nearest_villtown != None %}, {% autoescape off %}{% hvictim_village this.facility_nearest_villtown %}{% endautoescape %}{% endif %}{% if this.duration_of_detention != None %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
 
       {% if this.witness_detention_3 or this.witness_detention_4 or this.witness_detention_5 or this.witness_detention_6 or this.witness_detention_7 or this.witness_detention_8 or this.witness_detention_9 or this.witness_detention_10 or this.witness_detention_12 or this.witness_detention_13 or this.witness_detention_14 or this.witness_detention_other or this.witness_detention_status %}
         <br>{% autoescape off %}{% hwitness_detention this.witness_detention_3 this.witness_detention_4 this.witness_detention_5 this.witness_detention_6 this.witness_detention_7 this.witness_detention_8 this.witness_detention_9 this.witness_detention_10 this.witness_detention_12 this.witness_detention_13 this.witness_detention_14 this.witness_detention_other  this.witness_detention_status %}{% endautoescape %}
       {% endif %}
-
-      {% if this.witness_report %}
-        <br>{% trans 'Witness report' %}: {{this.witness_report}}
-      {% endif %}
-    
       </p>
+    </div>
+
+    {% if this.witness_report %}
+    <div class="col-sm-6">
+      <p class="kicker dots">{% trans 'Witness report' %}</p>
+    </div>
+    <div class="col-sm-6">
+      <p>{{this.witness_report}}</p>
+    </div>
+    {% endif %}
+    
   
     {% endfor %}
 
-    </div>
     {% else %}
     <div class="col-sm-6">
       <p class="dots"><span class="kicker"><em><strong>{% trans "Additional data forthcoming" %}</strong></em></span></p>
@@ -634,7 +639,7 @@
 
     </div>
 
-  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}
 
     {% if victim.victim_disappeared_killed == 2 and victim.victim_killed_location > 1 %}
 
@@ -647,10 +652,12 @@
 
     {% else %}
 
+        {% if victim.record_id != '3734' %}
         <div class="col-sm-6">
           <p class="dots"><span class="kicker"><em><strong>{% trans "Additional data forthcoming" %}</strong></em></span></p>
         </div>
-
+        {% endif %}
+        
     {% endif %}
 
 
@@ -735,7 +742,7 @@
 
     {% if victim.bhog_notice_status != None %}
       <div class="col-sm-6">
-        <p class="kicker dots">{% trans 'Was a Bhog (funeral) notice published?' %}</p>
+        <p class="kicker dots">{% trans 'Bhog notice' %}</p>
       </div>
       <div class="col-sm-6">
         <p>{% hyes_no victim.bhog_notice_status %}{% hbhog victim.bhog_notice_paper_1 victim.bhog_notice_paper_2 victim.bhog_notice_paper_3 victim.other_bhog_notice_paper %}

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-11 10:42-0400\n"
+"POT-Creation-Date: 2022-06-13 20:57-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -217,7 +217,7 @@ msgstr "ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ"
 msgid "Share this profile"
 msgstr "ਪੀੜਤ ਦੀ ਪ੍ਰੋਫ਼ਾਈਲ ਸਾਂਝੀ ਕਰੋ"
 
-#: templates/all_profiles.html:296 templates/profile.html:1238
+#: templates/all_profiles.html:296 templates/profile.html:1225
 msgid "Video Interviews"
 msgstr "ਵੀਡੀਓ ਇੰਟਰਵੀਊ"
 
@@ -414,122 +414,121 @@ msgstr "ਖਾੜਕੂ ਲਹਿਰ ਵਿੱਚ ਸ਼ਾਮਲ ਹੋਣ ਦੀ 
 msgid "Militant support provided"
 msgstr "ਖਾੜਕੂਆਂ ਦੀ ਸਹਾਇਤਾ ਕੀਤੀ"
 
-#: templates/all_profiles.html:959 templates/profile.html:953
+#: templates/all_profiles.html:959
 msgid "Related Incidents"
 msgstr "ਸੰਬੰਧਿਤ ਹਾਦਸੇ"
 
 #: templates/all_profiles.html:963 templates/all_profiles.html:1283
-#: templates/base.html:50 templates/profile.html:957
-#: templates/profile.html:1228
+#: templates/base.html:50 templates/profile.html:1215
 msgid "Forthcoming"
 msgstr "ਆਉਣ ਵਾਲੀ ਜਾਣਕਾਰੀ"
 
-#: templates/all_profiles.html:976 templates/profile.html:970
+#: templates/all_profiles.html:976 templates/profile.html:957
 msgid "Remedies"
 msgstr "ਹੀਲਾ ਅਤੇ ਅਸਰ"
 
 #: templates/all_profiles.html:978 templates/detail.html:400
-#: templates/profile.html:972 templates/stats.html:870
+#: templates/profile.html:959 templates/stats.html:870
 msgid "Remedies & Impact"
 msgstr "ਹੀਲਾ ਅਤੇ ਅਸਰ"
 
 #: templates/all_profiles.html:992 templates/detail.html:407
-#: templates/profile.html:986
+#: templates/profile.html:973
 msgid "Security officials approached"
 msgstr "ਸੁਰੱਖਿਅਕ ਦਸਤੇ ਜਿਨ੍ਹਾਂ ਤਕ ਪਹੁੰਚ ਕੀਤੀ"
 
-#: templates/all_profiles.html:1001 templates/profile.html:995
+#: templates/all_profiles.html:1001 templates/profile.html:982
 msgid "from"
 msgstr "ਤੋਂ"
 
-#: templates/all_profiles.html:1011 templates/profile.html:1005
+#: templates/all_profiles.html:1011 templates/profile.html:992
 msgid "Response by officials"
 msgstr "ਅਫਸਰਾਂ ਦਾ ਜਵਾਬ"
 
 #: templates/all_profiles.html:1027 templates/detail.html:414
-#: templates/profile.html:1021
+#: templates/profile.html:1008
 msgid "Legal remedies pursued"
 msgstr "ਕੋਈ ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਕੀਤੀ"
 
 #: templates/all_profiles.html:1044 templates/detail.html:421
-#: templates/profile.html:1038
+#: templates/profile.html:1025
 msgid "Impact on family"
 msgstr "ਪਰਿਵਾਰ ਉੱਪਰ ਅਸਰ"
 
 #: templates/all_profiles.html:1054 templates/detail.html:428
-#: templates/profile.html:1048 templates/stats.html:950
+#: templates/profile.html:1035 templates/stats.html:950
 msgid "Remedies desired from government"
 msgstr "ਸਰਕਾਰ ਤੋਂ ਕੀ ਮੰਗ"
 
 #: templates/all_profiles.html:1074 templates/detail.html:440
-#: templates/profile.html:1068
+#: templates/profile.html:1055
 msgid "Connected Victims"
 msgstr "ਸੰਬੰਧਿਤ ਪੀੜਤ"
 
-#: templates/all_profiles.html:1082 templates/profile.html:1076
+#: templates/all_profiles.html:1082 templates/profile.html:1063
 msgid "Extrajudicial executions/disappearances in family"
 msgstr "ਪਰਿਵਾਰ ਵਿੱਚ ਲਾਪਤਾ ਜਾਂ ਫਿਰ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਨਾਲ ਸੰਬੰਧਿਤ ਹਾਦਸੇ"
 
 #: templates/all_profiles.html:1095 templates/detail.html:446
-#: templates/profile.html:1089 templates/stats.html:573
+#: templates/profile.html:1076 templates/stats.html:573
 msgid "Genuine encounters in family"
 msgstr "ਪਰਿਵਾਰ ਵਿੱਚ ਅਸਲ ਮੁਕਾਬਲੇ"
 
 #: templates/all_profiles.html:1108 templates/detail.html:455
-#: templates/profile.html:1102
+#: templates/profile.html:1089
 msgid "Co-victims of abduction"
 msgstr "ਹੋਰਾਂ ਨੂੰ ਨਾਲ ਗ੍ਰਿਫ਼ਤਾਰ ਕੀਤਾ"
 
-#: templates/all_profiles.html:1126 templates/profile.html:1120
+#: templates/all_profiles.html:1126 templates/profile.html:1107
 msgid "Who else was arrested/abducted"
 msgstr ""
 
 #: templates/all_profiles.html:1158 templates/all_profiles.html:1185
-#: templates/detail.html:464 templates/profile.html:1152
-#: templates/profile.html:1179
+#: templates/detail.html:464 templates/profile.html:1139
+#: templates/profile.html:1166
 msgid "Co-victims of extrajudicial execution"
 msgstr "ਹੋਰਾਂ ਦੀ ਨਾਲ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਕੀਤੀ"
 
-#: templates/all_profiles.html:1197 templates/profile.html:1191
+#: templates/all_profiles.html:1197 templates/profile.html:1178
 msgid "Links to co-victim profiles forthcoming"
 msgstr "ਸਹਿ-ਪੀੜਤ ਦੀ ਸੂਚੀ ਭਵਿੱਖ ਵਿੱਚ ਨਾਲ ਜੋੜੀ ਜਾਵੇਗੀ।"
 
 #: templates/all_profiles.html:1214 templates/detail.html:496
-#: templates/profile.html:1263
+#: templates/profile.html:1250
 msgid "Summary"
 msgstr "ਸੰਖੇਪ ਵਰਨਣ/ਸਾਰੰਸ਼"
 
-#: templates/all_profiles.html:1222 templates/profile.html:1271
+#: templates/all_profiles.html:1222 templates/profile.html:1258
 msgid "Select Legal Documents"
 msgstr "ਚੁਣੇ ਹੋਏ ਕਾਨੂੰਨੀ ਪੈਰਵੀ ਦੇ ਪੰਨੇ"
 
-#: templates/all_profiles.html:1231 templates/profile.html:1280
+#: templates/all_profiles.html:1231 templates/profile.html:1267
 msgid "Select News Articles"
 msgstr "ਚੁਣੇ ਹੋਏ ਅਖ਼ਬਾਰੀ ਪੰਨੇ"
 
-#: templates/all_profiles.html:1241 templates/profile.html:1290
+#: templates/all_profiles.html:1241 templates/profile.html:1277
 msgid "Advocacy"
 msgstr "ਕਾਨੂੰਨੀ ਪੈਰਵੀ"
 
-#: templates/all_profiles.html:1251 templates/profile.html:1300
+#: templates/all_profiles.html:1251 templates/profile.html:1287
 msgid "Personal Papers"
 msgstr "ਨਿੱਜੀ ਕਾਗਜਾਤ"
 
-#: templates/all_profiles.html:1261 templates/profile.html:1310
+#: templates/all_profiles.html:1261 templates/profile.html:1297
 msgid "Family Photos"
 msgstr "ਪਰਿਵਾਰ ਦੀਆਂ ਤਸਵੀਰਾਂ"
 
 #: templates/all_profiles.html:1277 templates/detail.html:475
-#: templates/profile.html:1209
+#: templates/profile.html:1196
 msgid "Family Reflections"
 msgstr "ਪਰਿਵਾਰ ਦੇ ਵਿਚਾਰ"
 
-#: templates/all_profiles.html:1294 templates/profile.html:1328
+#: templates/all_profiles.html:1294 templates/profile.html:1315
 msgid "Related Material"
 msgstr "ਸੰਬੰਧਿਤ ਲੇਖ ਅਤੇ ਹੋਰ ਸੂਚਨਾਵਾਂ"
 
 #: templates/all_profiles.html:1368 templates/detail.html:525
-#: templates/profile.html:1406
+#: templates/profile.html:1393
 msgid ""
 "Note: Subdistrict and district boundaries are based on the 2001 census. Read "
 "more about <a href=\"/about\">our methodology</a>."
@@ -1203,10 +1202,10 @@ msgid "Profile of"
 msgstr "ਦੀ ਪ੍ਰੋਫਾਈਲ"
 
 #: templates/profile.html:738
-msgid "Was a Bhog (funeral) notice published?"
-msgstr ""
+msgid "Bhog notice"
+msgstr "ਭੋਗ ਦੀ ਖਬਰ"
 
-#: templates/profile.html:1417
+#: templates/profile.html:1404
 msgid ""
 "<a href=\"/email\" class=\"btn btn-light\">Report additional information on "
 "this case</a>"
@@ -1214,7 +1213,7 @@ msgstr ""
 "<a href=\"/pb/email\" class=\"btn btn-light\">ਇਸ ਕੇਸ ਨਾਲ ਸੰਬੰਧਤਿ ਹੋਰ ਜਾਣਕਾਰੀ "
 "ਸਾਂਝੀ ਕਰੋ</a>"
 
-#: templates/profile.html:1418
+#: templates/profile.html:1405
 msgid "Report a new case"
 msgstr "ਨਵਾਂ ਕੇਸ ਦਰਜ ਕਰੋ"
 
