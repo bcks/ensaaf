@@ -1165,22 +1165,18 @@
     {% endfor %}
 
 
-
-
-  {% if victim.record_id == '3734'  %}
+    {% if victim.others_killed|length  == 0 and victim.others_killed_num != 0 %}
       <div class="row">
         <div class="col-sm-6">
           <p class="kicker dots">{% trans 'Co-victims of extrajudicial execution' %}</p>
         </div>
         <div class="col-sm-6">
           <p>
-          Yes, 1
+          Yes, {{victim.others_killed_num}}
           </p>
           </div>
         </div>
-  {% endif %}
-
-
+    {% endif %}
 
 
   {% else %}

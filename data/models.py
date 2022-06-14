@@ -164,6 +164,7 @@ class Data(models.Model):
     others_killed_0 = models.IntegerField(db_column='others_killed___0')
     others_killed_9 = models.IntegerField(db_column='others_killed___9')
     others_killed_3 = models.IntegerField(db_column='others_killed___3')
+    others_killed_num = models.CharField(max_length=8, blank=True, null=True)
     security_officials_apprchd = models.IntegerField(blank=True, null=True)
     so_approached_type_1 = models.IntegerField(db_column='so_approached_type___1')
     so_approached_type_2 = models.IntegerField(db_column='so_approached_type___2')
