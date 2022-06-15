@@ -583,7 +583,7 @@
     </div>
     <div class="col-sm-6">
       <p>      
-      {% if this.detention_facility_type != None %}{% autoescape off %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endautoescape %}{% endif %}{% if this.facility_name != None %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_nearest_villtown != None %}, {% autoescape off %}{% hvictim_village this.facility_nearest_villtown %}{% endautoescape %}{% endif %}{% if this.duration_of_detention != None %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
+      {% if this.detention_facility_type != None %}{% autoescape off %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endautoescape %}{% endif %}{% if this.facility_name != None %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_nearest_villtown != None %}, {{this.facility_nearest_villtown|censuslink|safe}}{% endif %}{% if this.duration_of_detention != None %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
 
       {% if this.witness_detention_3 or this.witness_detention_4 or this.witness_detention_5 or this.witness_detention_6 or this.witness_detention_7 or this.witness_detention_8 or this.witness_detention_9 or this.witness_detention_10 or this.witness_detention_12 or this.witness_detention_13 or this.witness_detention_14 or this.witness_detention_other or this.witness_detention_status %}
         <br>{% autoescape off %}{% hwitness_detention this.witness_detention_3 this.witness_detention_4 this.witness_detention_5 this.witness_detention_6 this.witness_detention_7 this.witness_detention_8 this.witness_detention_9 this.witness_detention_10 this.witness_detention_12 this.witness_detention_13 this.witness_detention_14 this.witness_detention_other  this.witness_detention_status %}{% endautoescape %}
@@ -1165,14 +1165,14 @@
     {% endfor %}
 
 
-    {% if victim.others_killed|length  == 0 and victim.others_killed_num != 0 %}
+    {% if victim.others_killed|length  == 0 and victim.others_killed_num != 0  and victim.others_killed_num != None %}
       <div class="row">
         <div class="col-sm-6">
           <p class="kicker dots">{% trans 'Co-victims of extrajudicial execution' %}</p>
         </div>
         <div class="col-sm-6">
           <p>
-          Yes, {{victim.others_killed_num}}
+          {% trans 'Yes' %}, {{victim.others_killed_num|numpa}}
           </p>
           </div>
         </div>
