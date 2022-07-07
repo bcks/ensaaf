@@ -1150,7 +1150,15 @@
         </div>
         <div class="col-sm-6">
 
+        {% if victim.others_killed_num != 0  and victim.others_killed_num != None %}
+          <p>
+          {% trans 'Yes' %}, {{victim.others_killed_num|numpa}}
+          </p>
+        {% endif %}
+
+
       {% endif %}
+
 
         <p>
         {% if this.others_killed_record %}<a href="{% url 'profile' this.others_killed_record %}">{{ this.others_killed_record|my_name }}</a>{% else %}{{this.others_killed_first_name}} {{this.others_killed_last_name}}{% endif %}{%if this.others_killed_villtown %},{% endif %}
@@ -1165,7 +1173,7 @@
     {% endfor %}
 
 
-    {% if victim.others_killed|length  == 0 and victim.others_killed_num != 0  and victim.others_killed_num != None %}
+    {% if victim.others_killed.all|length == 0 and victim.others_killed|length  == 0 and victim.others_killed_num != 0  and victim.others_killed_num != None %}
       <div class="row">
         <div class="col-sm-6">
           <p class="kicker dots">{% trans 'Co-victims of extrajudicial execution' %}</p>
