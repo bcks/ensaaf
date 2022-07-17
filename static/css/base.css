@@ -387,6 +387,9 @@ a.leaflet-control-zoomhome-out {
 .leaflet-oldie .leaflet-control-minimap a.minimized {
   filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
 }
+.leaflet-popup-pane {
+  pointer-events: none;
+}
 
 #year_buttons {
   text-align: center;
