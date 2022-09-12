@@ -323,7 +323,7 @@ def villages_cache(request):
     return HttpResponse('<h1>Villages page is cached</h1>')
 
 
-@cache_page(60 * 60 * 365) # cache for a year
+#@cache_page(60 * 60 * 365) # cache for a year
 def villages(request):
     if get_language() == 'pb':
       return render(request, "villages_cached_pb.html")

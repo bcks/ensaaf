@@ -62,10 +62,13 @@ def vnametranslate(village):
 
 @register.simple_tag(takes_context=True)
 def change_lang(context, lang=None, *args, **kwargs):
+    path = context['request'].path.replace('_cache','')
+    print(path)
     if lang == 'en':
-      return context['request'].path.replace('/pb/','/')    
+      return path.replace('/pb/','/')
     else:
-      return '/' + lang + context['request'].path
+      return '/' + lang + path
+
 
 def not_int(s):
     if "-" in str(s): 
