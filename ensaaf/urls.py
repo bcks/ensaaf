@@ -16,6 +16,7 @@ urlpatterns = i18n_patterns(
     path('email/', emailView, name='email'),
     path('profiles/', profiles, name="profiles"),
     path('perpetrators/', perpetrators, name="perpetrators"),
+    path('villages_cache/', villages_cache, name="villages_cache"),
     path('villages/', villages, name="villages"),
     path('overview/', overview, name="overview"),
     path('change/', change, name="change"),

@@ -1,3 +1,4 @@
+import os
 import re
 import operator
 from functools import reduce
@@ -11,6 +12,7 @@ from django.db.models import OuterRef, Subquery, Count, Sum, F, Q, DateField
 from django.db.models.functions import Trunc
 from django.http import Http404
 from django.template.defaulttags import register
+from django.template.loader import render_to_string
 from django.views.decorators.cache import cache_page
 from django.urls import reverse
 from django.utils.translation import gettext as _
@@ -295,8 +297,8 @@ def year(request, year=None):
 
 
 
-@cache_page(60 * 60 * 365) # cache for a year
-def villages(request):
+
+def villages_cache(request):
     datas = Data.objects.filter(village_id=OuterRef('pk'))\
                             .values('village_id')\
                             .annotate(Count('village_id'))\
@@ -310,8 +312,23 @@ def villages(request):
       villages = Villages.objects.all().values('village_name','vid','district','district_id')\
         .annotate(data_count=Subquery(datas))\
         .order_by('district','village_name')
-    return render(request, "villages.html", { "villages": villages } )
 
+    output = render_to_string("villages.html", { "villages": villages }, request)
+    
+    current_dir = os.path.dirname(__file__)  # get current directory
+    file_path = os.path.join(current_dir, 'templates/villages_cached_' + get_language() + '.html')
+    f=open(file_path,'w+')
+    f.write( output ) 
+    f.close()
+    return HttpResponse('<h1>Villages page is cached</h1>')
+
+
+@cache_page(60 * 60 * 365) # cache for a year
+def villages(request):
+    if get_language() == 'pb':
+      return render(request, "villages_cached_pb.html")
+    else:
+      return render(request, "villages_cached_en-us.html")
 
 
 @cache_page(60 * 60)
