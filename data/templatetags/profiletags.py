@@ -36,7 +36,10 @@ def sex(var):
 def concatenate(v1, v2):
   if str(v1) == "Don't know": v1 = ''
   if str(v2) == "Don't know": v2 = ''  
-  concatenated = str(v1) + ' ' + str(v2)
+  if v1:
+    concatenated =  str(v1)
+  if v2:
+    concatenated = concatenated + ' ' + str(v2)
   return _( concatenated )
 
 
@@ -481,6 +484,9 @@ def heducation(value):
 
 
 
+
+
+
 @register.simple_tag()
 def district_count(value):
   count = 0
@@ -839,6 +845,19 @@ def hvictim_arrest_location(value):
     return value
   location = ['', '', _('Victim\'s residence'), _('Friend/relative\'s residence'), _('Checkpoint (naka)'), _('Roadside'), _('Village fields'), _('Shop/market'), _('Bus station/stand'), _('Police station'), _('Village drain')]
   return location[value]
+
+
+
+@register.simple_tag()
+def hvictim_killed_location(value, other):
+  if value != None:
+    killed_location  = ['', _('Don’t Know'), _('Victim’s Residence'), _('Friend/relative\'s residence'), _('Checkpoint (naka)'), _('Roadside'), _('Village fields'), _('Shop/market'), _('Bus station/stand'), _('Police station'), _('Village drain'), _('Other'),]
+    if value == 11:
+      return other
+    else:
+      return killed_location[value]
+  else:
+    return value
 
 
 

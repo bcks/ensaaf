@@ -147,6 +147,8 @@ class Data(models.Model):
     #victim_last_heard_alive = models.IntegerField(blank=True, null=True)
     #dt_last_heard_victim_alive = models.CharField(max_length=64, blank=True, null=True)
     victim_killed_location = models.IntegerField(blank=True, null=True)
+    victim_killed_loc_other = models.CharField(max_length=256, blank=True, null=True)
+    victim_killed_loc_vill = models.CharField(max_length=256, blank=True, null=True)    
     killing_securityforcestype_1 = models.IntegerField(db_column='killing_securityforcestype___1')
     killing_securityforcestype_2 = models.IntegerField(db_column='killing_securityforcestype___2')
     killing_securityforcestype_3 = models.IntegerField(db_column='killing_securityforcestype___3')

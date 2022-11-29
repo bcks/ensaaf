@@ -639,7 +639,7 @@
 
     </div>
 
-  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' %}
+  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' or victim.record_id == '1203' %}
 
     {% if victim.victim_disappeared_killed == 2 and victim.victim_killed_location > 1 %}
 
@@ -647,7 +647,7 @@
           <p class="dots"><span class="kicker">{% trans "Location of killing" %}</span></p>
         </div>
         <div class="col-sm-6">
-          <p>{% hvictim_arrest_location victim.victim_killed_location %}</p>
+          <p>{% hvictim_killed_location victim.victim_killed_location victim.victim_killed_loc_other %}{% if victim.victim_killed_loc_vill %}{%if victim.victim_killed_location > 1 %}, {% endif %}{{victim.victim_killed_loc_vill|censuslink|safe}}{% endif %}</p>
         </div>
 
     {% else %}
@@ -817,7 +817,7 @@
 
     {% for this in victim.security_arrest.all %}
 
-      <p>{% if this.soa_code %}<a href="{% url 'official' this.soa_code %}">{% endif %}{% concatenate this.arrest_so_first_name|default:""|title this.arrest_so_last_name|default:""|title %}{% if this.soa_code %}</a>{% endif %}<!-- rank -->{% if this.arrest_so_rank != None %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}{% if this.soa_code or this.arrest_so_last_name %},{%endif%}
+      <p>{% if this.soa_code %}<a href="{% url 'official' this.soa_code %}">{% endif %}{% concatenate this.arrest_so_first_name|default:""|title this.arrest_so_last_name|default:""|title %}{% if this.soa_code %}</a>{% endif %}<!-- rank -->{% if this.arrest_so_rank != None %}{% if this.arrest_so_rank != 13 %}{% if this.arrest_so_rank != 14 %}{% if this.soa_code or this.arrest_so_first_name or this.arrest_so_last_name %},{%endif%}
 {% harrest_so_rank this.arrest_so_rank %}{% endif %}{% endif %}{% if this.arrest_so_rank == 13 and this.arrest_so_rank_other %}{% if this.soa_code or this.arrest_so_first_name or this.arrest_so_last_name or this.arrest_so_rank != 13 %},{% endif %}
 {{this.arrest_so_rank_other}}{% endif %}{% endif %}<!-- affiliaton -->{% if this.arrest_so_affiliation != None %}{% if this.arrest_so_affiliation != 8 %}{% if this.arrest_so_affiliation != 7 %},
 {% autoescape off %}{% haffiliation this.arrest_so_affiliation %}{% endautoescape %}{% endif %}{% endif %}{% endif %}<!-- arrest_so_affiliation_oth -->{% if this.arrest_so_affiliation_oth != None %},
