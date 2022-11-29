@@ -385,7 +385,7 @@
 
 
 
-{% if victim.record_id == '3734' %}
+{% if victim.record_id == '3734' or victim.record_id == '1203'  %}
 
     {% if victim.target_reason_8 != 1 %}
     {% if victim.target_reason_9 != 1 %}
@@ -740,7 +740,7 @@
 
 
 
-  {% if victim.record_id == '3734' %}
+  {% if victim.record_id == '3734' or victim.record_id == '1203' %}
 
     {% if victim.bhog_notice_status != None %}
       <div class="col-sm-6">
@@ -879,6 +879,7 @@
         {% endfor %}
 
     {% endif %}
+
 
 
 {% else %}
@@ -1140,10 +1141,11 @@
 
   {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' or victim.record_id == '1203'  %}
 
-
     {% for this in victim.others_killed.all %}
 
+
       {% if forloop.first %}
+      
       <div class="row">
         <div class="col-sm-6">
           <p class="kicker dots">{% trans 'Co-victims of extrajudicial execution' %}</p>
@@ -1156,12 +1158,13 @@
           </p>
         {% endif %}
 
-
       {% endif %}
 
-
         <p>
-        {% if this.others_killed_record %}<a href="{% url 'profile' this.others_killed_record %}">{{ this.others_killed_record|my_name }}</a>{% else %}{{this.others_killed_first_name}} {{this.others_killed_last_name}}{% endif %}{%if this.others_killed_villtown %},{% endif %}
+        {% if this.others_killed_record %}
+          <a href="{% url 'profile' this.others_killed_record %}">{{ this.others_killed_record|my_name }}</a>
+        {% else %}
+          {{this.others_killed_first_name}} {{this.others_killed_last_name}}{% endif %}{%if this.others_killed_villtown %},{% endif %}
         {% autoescape off %}{% hvictim_address_other this.others_killed_villtown %}{% endautoescape %}
         </p>
 
@@ -1229,7 +1232,7 @@
   </div>
 
 
-{% if victim.record_id == '3734' %}
+{% if victim.record_id == '3734' or victim.record_id == '1203' %}
 
  <div class="row">
     <div class="col-12">
