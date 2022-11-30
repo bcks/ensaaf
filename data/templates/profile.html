@@ -1100,7 +1100,7 @@
       <p class="kicker dots">{% trans 'Co-victims of abduction' %}</p>
     </div>
     <div class="col-sm-6">
-      <p>{% hothers_arrested victim.others_arrested %}{%if victim.others_arrested_num %}; {{victim.others_arrested_num}}{% endif %}</p>
+      <p>{% hothers_arrested victim.others_arrested %}{%if victim.others_arrested_num %}, {{victim.others_arrested_num}}{% endif %}</p>
     </div>
   </div>
   {% endif %}
@@ -1172,7 +1172,6 @@
 
     {% endfor %}
 
-
     {% if victim.others_killed.all|length == 0 and victim.others_killed|length  == 0 and victim.others_killed_num != 0  and victim.others_killed_num != None %}
       <div class="row">
         <div class="col-sm-6">
@@ -1182,12 +1181,25 @@
           <p>
           {% trans 'Yes' %}, {{victim.others_killed_num|numpa}}
           </p>
+
+          {% if victim.others_killed_1 %} {# same as arrested $}
+              {% for this in victim.other_arrested.all %}
+                  <p>
+                  {% if this.covictm_record %}<a href="{% url 'profile' this.covictm_record %}">{{this.covictm_record|my_name}}</a>{% else %}{{this.other_arrested_first_name}} {{this.other_arrested_last_name}}{% endif %}{%if this.other_arrested_village %},{% endif %}
+                  {% autoescape off %}{% hvictim_address_other this.other_arrested_village %}{% endautoescape %}
+                  </p>
+              {% endfor %}
+          {% endif %}
+
           </div>
         </div>
     {% endif %}
 
 
-  {% else %}
+
+
+  {% else %} {# victim.record_id == '5510' or victim.record_id == '5511' or ... #}
+
 
 
     {% if victim.others_killed_9 != 1 %}
@@ -1198,6 +1210,16 @@
       </div>
       <div class="col-sm-6">
         <p>{% hothers_killed victim.others_killed_0 victim.others_killed_1 victim.others_killed_2 victim.others_killed_3 %}</p>
+
+        {% if victim.others_killed_1 %} {# same as arrested $}
+            {% for this in victim.other_arrested.all %}
+                <p>
+                {% if this.covictm_record %}<a href="{% url 'profile' this.covictm_record %}">{{this.covictm_record|my_name}}</a>{% else %}{{this.other_arrested_first_name}} {{this.other_arrested_last_name}}{% endif %}{%if this.other_arrested_village %},{% endif %}
+                {% autoescape off %}{% hvictim_address_other this.other_arrested_village %}{% endautoescape %}
+                </p>
+            {% endfor %}
+        {% endif %}
+
       </div>
     </div>
     {% endif %}
@@ -1212,7 +1234,7 @@
 
 
 
-  {% endif %}
+  {% endif %}  
 
 {% endif %} {# endif victim.number_of_victims > 1 and victim.genuine_encounters != None and victim.genuine_encounters != 9 or victim.others_arrested == 1 or victim.others_arrested == 2 and victim.others_killed_9 != 1 or victim.others_killed_1 or victim.others_killed_2 or victim.others_killed_3 #}
 
