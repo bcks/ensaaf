@@ -1182,7 +1182,7 @@
           {% trans 'Yes' %}, {{victim.others_killed_num|numpa}}
           </p>
 
-          {% if victim.others_killed_1 %} {# same as arrested $}
+          {% if victim.others_killed_1 %} {# same as arrested #}
               {% for this in victim.other_arrested.all %}
                   <p>
                   {% if this.covictm_record %}<a href="{% url 'profile' this.covictm_record %}">{{this.covictm_record|my_name}}</a>{% else %}{{this.other_arrested_first_name}} {{this.other_arrested_last_name}}{% endif %}{%if this.other_arrested_village %},{% endif %}
@@ -1211,7 +1211,7 @@
       <div class="col-sm-6">
         <p>{% hothers_killed victim.others_killed_0 victim.others_killed_1 victim.others_killed_2 victim.others_killed_3 %}</p>
 
-        {% if victim.others_killed_1 %} {# same as arrested $}
+        {% if victim.others_killed_1 %} {# same as arrested #}
             {% for this in victim.other_arrested.all %}
                 <p>
                 {% if this.covictm_record %}<a href="{% url 'profile' this.covictm_record %}">{{this.covictm_record|my_name}}</a>{% else %}{{this.other_arrested_first_name}} {{this.other_arrested_last_name}}{% endif %}{%if this.other_arrested_village %},{% endif %}
