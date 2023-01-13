@@ -85,9 +85,11 @@ def transcript(request, id=None, endtime=None):
       clip = Clip.objects.annotate(\
           startime=ExpressionWrapper(F('start_time_minutes') * 60 + F('start_time_seconds'),
           output_field=DecimalField()),\
-          ).filter(video=id, start_time_minutes__gte=endtime )[0]
+          ).filter(video=id, startime__gte=endtime )[0]
 
       output = {
+        "start_time_minutes": clip.start_time_minutes,
+        "start_time_seconds": clip.start_time_seconds,
         "transcript": clip.transcription,
         "endtime": int(clip.end_time_minutes) * 60 + int(clip.end_time_seconds),
         }
