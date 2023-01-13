@@ -21,6 +21,9 @@
   <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share-interviews.jpg" />
   <meta property="og:description" content="An archive of video interviews documenting widespread and systematic enforced disappearances and extrajudicial executions." />
   <meta property="og:site_name" content="{% trans 'Testimonies of Truth: Video Interviews with Survivors of Crimes Against Humanity in Punjab, India' %}" />
+
+  <script src="https://player.vimeo.com/api/player.js"></script>
+
 {% endblock %}
 
 
@@ -38,7 +41,7 @@
           <h1 class="my-4 lato-black">{{video.title}}</h1>
         </div>
 
-        <div class="col-md-9 mb-5">
+        <div class="col-md-9 mb-5" id="transcript">
 
           {{video.transcription|safe}}
 
@@ -101,5 +104,28 @@
     </div>
   </div>
 </div>
+
+<script>
+
+var starttime = 0;
+var endtime = {{video.clip_set.all.0.start_time_minutes}} * 60 + {{video.clip_set.all.0.start_time_seconds}};
+var iframe = document.querySelector('iframe');
+var player = new Vimeo.Player(iframe);
+
+player.on('timeupdate', function(data) {
+  //console.log(data.seconds ,' ', endtime);
+  if (data.seconds > endtime || data.seconds < starttime) {
+      let url = "/transcript/{{video.id}}/" + starttime + "/" + endtime + "/" + data.seconds;
+      console.log(url);
+      $.get( url, function( data ) {
+        $("#transcript").html( data.transcript );
+        endtime = Number(data.endtime);
+        starttime = Number(data.starttime);
+      });
+  }
+});
+
+</script>
+
 
 {% endblock %}

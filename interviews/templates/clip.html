@@ -98,18 +98,20 @@
 </div>
 
 <script>
+var starttime = {{clip.start_time_minutes}} * 60 + {{clip.start_time_seconds}};
 var endtime = {{clip.end_time_minutes}} * 60 + {{clip.end_time_seconds}};
 var iframe = document.querySelector('iframe');
 var player = new Vimeo.Player(iframe);
 
 player.on('timeupdate', function(data) {
   //console.log(data.seconds ,' ', endtime);
-  if (data.seconds > endtime) {
-      let url = "/transcript/{{video.id}}/" + endtime;
+  if (data.seconds > endtime || data.seconds < starttime) {
+      let url = "/transcript/{{video.id}}/" + starttime + "/" + endtime + "/" + data.seconds;
       console.log(url);
       $.get( url, function( data ) {
         $("#transcript").html( data.transcript );
         endtime = Number(data.endtime);
+        starttime = Number(data.starttime);
       });
   }
 });
