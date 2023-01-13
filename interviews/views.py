@@ -374,7 +374,7 @@ def transcript(request, id=None, starttime=0, endtime=None, currenttime=None):
       pass
 
     if currenttime < starttime:
-        print("get first")
+        #print("get first")
         video = Video.objects.filter(id=id).get()
 
         clip = (
