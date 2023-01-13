@@ -106,6 +106,7 @@ player.on('timeupdate', function(data) {
   //console.log(data.seconds ,' ', endtime);
   if (data.seconds > endtime) {
       let url = "/transcript/{{video.id}}/" + endtime;
+      //console.log(url);
       $.get( url, function( data ) {
         $("#transcript").html( data.transcript );
         endtime = Number(data.endtime);

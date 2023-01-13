@@ -1,8 +1,8 @@
 import math
 from django.shortcuts import render, get_object_or_404
 from django.core.cache import cache
-from django.db.models import FloatField
-from django.db.models.functions import Cast
+from django.db.models import FloatField, ExpressionWrapper, DecimalField
+from django.db.models import F
 from django.http import JsonResponse
 from .models import *
 from simple_search import search_filter
@@ -78,22 +78,16 @@ def clip(request, id=None):
 
 def transcript(request, id=None, endtime=None):
     endtime = int(endtime)
-    endtime_minutes = math.floor( endtime / 60 )
-    endtime_seconds = endtime % 60
 
-    output = {}
+    output = {'endtime': endtime }
 
     try:
       clip = Clip.objects.annotate(\
-          start_minutes=Cast('start_time_minutes', FloatField()),
-          start_seconds=Cast('start_time_seconds', FloatField()),
-        ).filter(\
-          video=id,
-          start_minutes__gte=endtime_minutes,
-          start_seconds__gte=endtime_seconds)[0]
+          startime=ExpressionWrapper(F('start_time_minutes') * 60 + F('start_time_seconds'),
+          output_field=DecimalField()),\
+          ).filter(video=id, start_time_minutes__gte=endtime )[0]
+
       output = {
-        "start_minutes_query": endtime_minutes,
-        "start_seconds_query": endtime_seconds,
         "transcript": clip.transcription,
         "endtime": int(clip.end_time_minutes) * 60 + int(clip.end_time_seconds),
         }
