@@ -10,6 +10,7 @@ urlpatterns = [
     path("theme/<slug>", views.theme, name="theme"),
     path("themes", views.themes, name="themes"),
     path("clip/<id>", views.clip, name="clip"),
+    path("transcript/<id>/<endtime>", views.transcript, name="transcript"),
     path("video/<id>", views.video, name="video"),
     path("search", views.search, name="search"),
     path("interviews", views.interviews, name="interviews"),
