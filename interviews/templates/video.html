@@ -121,6 +121,7 @@ player.on('timeupdate', function(data) {
         $("#transcript").html( data.transcript );
         endtime = Number(data.endtime);
         starttime = Number(data.starttime);
+        console.log(starttime, endtime);
       });
   }
 });

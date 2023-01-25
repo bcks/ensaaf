@@ -391,7 +391,7 @@ def transcript(request, id=None, starttime=0, endtime=None, currenttime=None):
         output = {
             "transcript": video.transcription,
             "starttime": 0,
-            "endtime": int(clip.end_time_minutes) * 60 + int(clip.end_time_seconds),
+            "endtime": int(clip.start_time_minutes) * 60 + int(clip.start_time_seconds),
         }
 
     return JsonResponse(output, safe=False)
