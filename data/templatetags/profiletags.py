@@ -34,6 +34,7 @@ def sex(var):
 
 @register.simple_tag(name='concatenate')
 def concatenate(v1, v2):
+  concatenated = ''
   if str(v1) == "Don't know": v1 = ''
   if str(v2) == "Don't know": v2 = ''  
   if v1:
