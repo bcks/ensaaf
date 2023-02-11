@@ -165,7 +165,8 @@ for (var i=0;i<timeCapsule.length;i++) {
     if ( timeCapsule[i]['v']['id'] ) {
       timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
       var d = new Date(0);
-      timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
+      timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );      
+      timeCapsule[i]['v']['id']  = timeCapsule[i]['v']['id'].replace(/[^\x00-\x7F]/g, "");
     }
 }  
 
@@ -357,15 +358,16 @@ function updateMap(start, end) {
     var points = [];
     var keys = Object.keys(villages);
     for (var i in keys) {
+    
       var thisVillage = _.find(villageCentroids, function(o) {
         return o.CODE.endsWith(keys[i]);        
       });
-      if (keys[i] && thisVillage) {
+
+      if (keys[i] && thisVillage) {      
         points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]],'name':{% if request.LANGUAGE_CODE == 'pb' %}thisVillage.NAME_PA{% else %}thisVillage.NAME{% endif %}});
       }
     }
-
-
+    
     // if markers, remove all
     for(var i = 0; i < this.markers.length; i++){
       this.map.removeLayer(this.markers[i]);
