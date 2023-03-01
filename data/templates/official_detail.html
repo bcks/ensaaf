@@ -1045,7 +1045,7 @@ function makeTimeline() {
   svg.append("g")
       .attr("transform", "translate(0," + height + ")")
       .attr('class','axis')
-      .call( d3.axisBottom(xScale).tickFormat(
+      .call( d3.axisBottom(x).tickFormat(
         function(d) {
           var formatDate = d3.timeFormat("%Y");
           var year = formatDate(Date.parse(d));
