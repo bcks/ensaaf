@@ -850,8 +850,6 @@
 
 
 
-{% if victim.security_killed.all|length > 0 and victim.record_id == '1565' or victim.record_id == '290'  or victim.record_id == '1401' or victim.record_id == '2724' or victim.record_id == '2291' or victim.record_id == '2559' or victim.record_id == '16'   or victim.record_id == '1068' or victim.record_id == '319'  or victim.record_id == '2433' or victim.record_id == '4000' or victim.record_id == '802'  or victim.record_id == '809'  or victim.record_id == '5584' or victim.record_id == '1057' or victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' or victim.record_id == '1203' or victim.record_id == '5668' or victim.record_id == '565' %}
-
     {%if victim.securityforces_idknown_1 == 1 %}<!-- same as abduction -->
 
         {% for this in victim.security_arrest.all %}
@@ -897,21 +895,6 @@
         {% endfor %}
 
     {% endif %}
-
-
-
-{% else %}
-
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Officials involved in extrajudicial execution' %}</p>
-    </div>
-    <div class="col-sm-6">
-
-      <p><span class="kicker"><em><strong>{% trans "Additional data forthcoming" %}</strong></em></span></p>
-    </div>
-
-{% endif %}
-
 
 
 
