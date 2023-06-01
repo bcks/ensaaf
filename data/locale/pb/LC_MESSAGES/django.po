@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-01 06:20-0400\n"
+"POT-Creation-Date: 2023-06-01 16:34-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -1186,7 +1186,12 @@ msgstr "ਮੁੱਖ ਦੋਸ਼ੀ ਸੁਮੇਧ ਸੈਣੀ ਦੀ ਪੂ�
 
 #: templates/perpetrators.html:49
 msgid ""
-"This page identifies many of the senior officials who reportedly perpetrated gross human rights violations in Punjab, India. Victim profiles that directly implicate these officials in abductions and/or enforced disappearances or extrajudicial executions are linked to each perpetrator. This page will be updated to also identify officials who  bear command responsibility for abuses committed under their command."
+"This page identifies many of the senior officials who reportedly perpetrated "
+"gross human rights violations in Punjab, India. Victim profiles "
+"that directly implicate these officials in abductions and/or enforced "
+"disappearances or extrajudicial executions are linked to each perpetrator. "
+"This page will be updated to also identify officials who  bear command "
+"responsibility for abuses committed under their command."
 msgstr ""
 "ਇਹ ਪੰਨਾ ਬਹੁਤ ਸਾਰੇ ਸੀਨੀਅਰ ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਛਾਨ ਕਰਦਾ ਹੈ ਜਿਨ੍ਹਾਂ ਨੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਮਨੱਖੀ "
 "ਅਧਿਕਾਰਾਂ ਦੀ ਘੋਰ ਉਲੰਘਣਾ ਕੀਤੀ। ਪੀੜਤਾਂ ਦੀ ਸੂਚੀ ਜੋ ਇਨ੍ਹਾਂ ਅਧਿਕਾਰੀਆਂ ਨੂੰ ਸਿੱਧੇ ਤੌਰ ਤੇ ਅਗਵਾ ਅਤੇ/ਜਾਂ "
@@ -3038,10 +3043,8 @@ msgstr "ਸੀ. ਪਾਲ ਸਿੰਘ"
 
 #: views.py:506
 msgid "Sita Ram Rattan"
-msgstr "ਮੀਤਾ ਰਾਸ ਰਤਨ"
+msgstr "ਸੀਤਾ ਰਾਸ ਰਤਨ"
 
 #: views.py:507
 msgid "Sutanter Pal Singh (S.P.S.) Basra"
 msgstr "ਸੁਤੰਤਰ ਪਾਲ ਸਿੰਘ [ਐਸ. ਪੀ. ਐਸ.] ਬਸਰਾ"
-
-
