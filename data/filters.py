@@ -10,8 +10,8 @@ class DataFilter(django_filters.FilterSet):
       value = "65-99"
     age_start, age_end = value.split('-')
     return queryset.filter(**{
-      'victim_age__gte': age_start,
-      'victim_age__lte': age_end,
+      'victim_age_end__gte': age_start,
+      'victim_age_start__lte': age_end,
     })
 
   caste = django_filters.CharFilter(method='caste_filter')
