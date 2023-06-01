@@ -1186,13 +1186,7 @@ msgstr "ਮੁੱਖ ਦੋਸ਼ੀ ਸੁਮੇਧ ਸੈਣੀ ਦੀ ਪੂ�
 
 #: templates/perpetrators.html:49
 msgid ""
-"This page identifies many of the senior officials who reportedly perpetrated "
-"gross human rights violations in Punjab, India. Victim profiles "
-"that directly implicate these officials in abductions and/or enforced "
-"disappearances are linked to each perpetrator. This page will be updated to "
-"also identify officials who are directly implicated in extrajudicial "
-"executions, and who bear command responsibility for abuses committed under "
-"their command."
+"This page identifies many of the senior officials who reportedly perpetrated gross human rights violations in Punjab, India. Victim profiles that directly implicate these officials in abductions and/or enforced disappearances or extrajudicial executions are linked to each perpetrator. This page will be updated to also identify officials who  bear command responsibility for abuses committed under their command."
 msgstr ""
 "ਇਹ ਪੰਨਾ ਬਹੁਤ ਸਾਰੇ ਸੀਨੀਅਰ ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਛਾਨ ਕਰਦਾ ਹੈ ਜਿਨ੍ਹਾਂ ਨੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਮਨੱਖੀ "
 "ਅਧਿਕਾਰਾਂ ਦੀ ਘੋਰ ਉਲੰਘਣਾ ਕੀਤੀ। ਪੀੜਤਾਂ ਦੀ ਸੂਚੀ ਜੋ ਇਨ੍ਹਾਂ ਅਧਿਕਾਰੀਆਂ ਨੂੰ ਸਿੱਧੇ ਤੌਰ ਤੇ ਅਗਵਾ ਅਤੇ/ਜਾਂ "
