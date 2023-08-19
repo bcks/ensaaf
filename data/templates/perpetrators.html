@@ -49,7 +49,7 @@
       <ul>
       {% for o in officials %}
         {% if o.2 > 0 %}
-          <li><a href="{% lang %}/official/{{o.0}}"> {% trans o.1 %} {% if o.0 in so_has_detail %}<span class="text-danger">[{% trans "complete dossier" %}]</span>{% endif %} </a></li>
+          <li><a href="{% lang %}/official/{{o.0}}{% if o.0 in so_has_detail %}/detail/{% endif %}"> {% trans o.1 %} {% if o.0 in so_has_detail %}<span class="text-danger">[{% trans "complete dossier" %}]</span>{% endif %} </a></li>
         {% endif %}
       {% endfor %}
       </ul>

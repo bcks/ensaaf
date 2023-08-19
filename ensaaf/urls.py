@@ -30,6 +30,7 @@ urlpatterns = i18n_patterns(
     path('official/<slug:slug>/detail', official, name="official_detail"),
     path('official/<slug:slug>/detail/', official, name="official_detail"),
     path('official/<slug:slug>/', official, name="official"),
+    path('official/<slug:slug>', official, name="official"),
     url(r'^search/', include('haystack.urls')),
     path('cremation/<slug:slug>/', cremation, name="cremation"),
     path('securityforce/<slug:slug>/', securityforce, name="securityforce"),
