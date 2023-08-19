@@ -1,0 +1,1035 @@
+{% extends "../base.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load profiletags %}
+
+{% block title %}{% trans 'Mohd. Izhar Alam and enforced disappearances &amp; extrajudicial executions in Punjab, India' %}{% endblock %}
+
+{% block head %}
+  <meta name="description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
+
+  <meta itemprop="name" content="{% trans 'Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India' %}" />
+  <meta itemprop="description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
+  <meta itemprop="image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@ensaaf" />
+  <meta name="twitter:title" content="{% trans 'Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India' %}" />
+  <meta name="twitter:description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
+  <meta name="twitter:creator" content="@ensaaf" />
+  <meta name="twitter:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+
+  <meta property="og:title" content="{% trans 'Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India' %}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://data.ensaaf.org" />
+  <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+  <meta property="og:description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
+  <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
+
+
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="/static/css/carto.css" />
+  <script type="text/javascript" src="/static/js/carto.js"></script>
+  <script type="text/javascript" src="/static/js/leaflet.zoomhome.min.js"></script>
+  <script type="text/javascript" src="/static/js/leaflet.minimap.min.js"></script>
+
+
+
+  <style>
+    #mapid {
+      height:500px;
+      width: calc(100% - 2rem);
+      background-color: #000;
+      margin: 0 1rem;
+    }
+    h1 { margin-bottom: 1rem; }
+    #timeline { height: 170px; }
+    #timeline circle { fill: #ca0; cursor: pointer; }
+    .tick text:hover { fill: #ccc; }
+    .brush { display: none; }
+    .d3-tip {
+      background-color: #fff;
+      color: #999;
+      font-weight: 400;
+      font-family: "Helvetica Neue", Helvetica, Arial;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .d3-tip:after { color: #fff; }
+    .thumb { width:calc(50% - 2px); float:right; border: 1px solid #ddd;}
+  </style>
+  <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
+  <script type="text/javascript" src="/static/js/lodash.min.js"></script>
+  <script type="text/javascript" src="/static/js/d3-tip.js"></script>
+
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-12">  
+        <h1>{% trans 'Mohd. Izhar Alam' %}</h1>
+    </div>
+  </div>
+</div><!-- end container -->
+
+ 
+<div id="map-over">
+  <div class="container">    
+    {% if request.LANGUAGE_CODE == 'pb' %}
+      <h4>ਘੱਟੋ ਘੱਟ <span id="count"></span> ਜ਼ਬਰਨ ਲਾਪਤਾ/ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੀ ਗਿਣਤੀ</h4>
+    {% else %}
+      <h4>At least <span id="count"></span> Enforced Disappearances/Extrajudicial Executions</h4>
+    {% endif %}  
+  </div>
+</div>
+<div id="mapid"></div>
+<div id="timeline"></div>
+
+
+<div class="container">
+
+  <div class="row">
+      <div class="col-sm-9">
+    {% if request.LANGUAGE_CODE == 'pb' %}
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Curabitur blandit tempus porttitor. Vestibulum id ligula porta felis euismod semper.</p>
+        <p>Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Nulla vitae elit libero, a pharetra augue. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p>Cras mattis consectetur purus sit amet fermentum. Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Donec id elit non mi porta gravida at eget metus. Cras mattis consectetur purus sit amet fermentum.</p>
+        <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+    {% else %}    
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Vestibulum id ligula porta felis euismod semper. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Maecenas sed diam eget risus varius blandit sit amet non magna. Curabitur blandit tempus porttitor. Vestibulum id ligula porta felis euismod semper.</p>
+        <p>Cras mattis consectetur purus sit amet fermentum. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Nulla vitae elit libero, a pharetra augue. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <p>Cras mattis consectetur purus sit amet fermentum. Maecenas sed diam eget risus varius blandit sit amet non magna. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere consectetur est at lobortis. Donec id elit non mi porta gravida at eget metus. Cras mattis consectetur purus sit amet fermentum.</p>
+        <p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Maecenas sed diam eget risus varius blandit sit amet non magna. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Praesent commodo cursus magna, vel scelerisque nisl consectetur et.</p>
+    {% endif %}
+      </div>
+      <div class="col-sm-3">
+      <!--
+        <p><img src="https://data.ensaaf.org/static/files/saini/sumedh-saini.jpg" width="100%" height="auto" vspace="5" style="border:1px solid #ddd;"></p>
+      -->
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">  
+        <hr>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+
+
+      <script>
+  
+          var timeCapsule = [];
+          var profiles = [];
+
+          function makeList(data, selector) {
+            var html = "<ul>";
+            for (var i in data) {
+
+              {% if request.LANGUAGE_CODE == 'pb' %}
+                if (data[i].fields['victim_name_pb'] && data[i].fields['victim_name_pb'] != ' ') { data[i].fields['victim_name'] = data[i].fields['victim_name_pb'] }
+                data[i].fields['village_name'] = data[i].fields['village_name_pb'];
+              {% endif %}
+
+              html += '<li><a href="{% lang %}/profile/' + data[i].pk + '">' + data[i].fields["victim_name"] + "</a></li>";
+
+              var thisTime = {
+                v: {
+                  id: data[i].fields["village_id"],
+                  t: new Date(data[i].fields["timeline"]).valueOf() / 1000,
+                  record_id: data[i].pk,
+                },
+              };
+              var thisProfile = {
+                id: data[i].pk,
+                name: data[i].fields["victim_name"],
+                village: data[i].fields["village_name"],
+                date: new Date(data[i].fields["timeline"]).valueOf(),
+              };
+
+              if (
+                profiles.some((obj) => {
+                  if ( obj.id == thisProfile.id ) {
+                    return 1;
+                  } else {
+                    return 0;
+                  }
+                })
+              ) {
+                //console.log("exists in time capsule ", thisTime);
+              } else {
+                timeCapsule.push(thisTime);
+                profiles.push(thisProfile);
+              }
+            } // end for i in data
+            html += "</ul><br>";
+
+            $(selector).html(html);
+          }
+    
+      </script>
+
+
+
+ 
+      <h5>{% trans 'Command History' %}</h5>
+
+    {% if request.LANGUAGE_CODE == 'pb' %}
+      <p><em><small style="line-height:1.2;">Unless otherwise noted, Mohammad Izhar Alam’s command history draws from the following sources: (1) the annual Civil List of the Indian Police Service (IPS) for the Punjab cadre, prepared by the Ministry of Home Affairs, naming the position and date of posting of the senior police official as of January 1 of that year for 1983 to 1996, (2) news reports from the Punjabi daily newspaper Ajit and the English daily Tribune (Chandigarh), and (3) the individual websites of Punjab’s police districts, listing the names of Senior Superintendents of Police (SSP) and their dates of tenure. This information draws from publicly available records/sources; the complete account of Alam’s official postings and activities lies with the government of India.</small></em></p>
+    {% else %}
+      <p><em><small style="line-height:1.2;">Unless otherwise noted, Mohammad Izhar Alam’s command history draws from the following sources: (1) the annual Civil List of the Indian Police Service (IPS) for the Punjab cadre, prepared by the Ministry of Home Affairs, naming the position and date of posting of the senior police official as of January 1 of that year for 1983 to 1996, (2) news reports from the Punjabi daily newspaper Ajit and the English daily Tribune (Chandigarh), and (3) the individual websites of Punjab’s police districts, listing the names of Senior Superintendents of Police (SSP) and their dates of tenure. This information draws from publicly available records/sources; the complete account of Alam’s official postings and activities lies with the government of India.</small></em></p>    
+    {% endif %}
+
+      <ul>
+
+
+      <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong>SSP Ropar</strong>, October 31, 1983 - November 14, 1985</p>
+      {% else %}
+        <p><strong>SSP Ropar</strong>, October 31, 1983 - November 14, 1985</p>
+      {% endif %}
+        <div id="d1"></div>
+      </li>      
+      {% autoescape off %}
+      <script>
+      makeList( {% dossier_command 'vid' '00670700' '1983-10-31' '1985-11-14' %}, '#d1');
+      </script>
+      {% endautoescape %}    
+      
+      
+      
+      
+      <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong>SSP Jalandhar</strong>, November 15, 1985 - June 30, 1986</p>
+      {% else %}
+        <p><strong>SSP Jalandhar</strong>, November 15, 1985 - June 30, 1986</p>
+      {% endif %}
+        <div id="d1"></div>
+      </li>      
+      {% autoescape off %}
+      <script>
+      makeList( {% dossier_command 'district' '0304' '1985-11-15' '1986-06-30' %}, '#d1');
+      </script>
+      {% endautoescape %}    
+      
+
+      
+      
+      <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong>SSP Amritsar</strong>, July 1, 1986 - April 19, 1988<br>(The IPS List from 1987 and the Amritsar police website vary by one week on both the starting and ending dates. The dates provided by the Amritsar police are used here.)</p>
+      {% else %}
+        <p><strong>SSP Amritsar</strong>, July 1, 1986 - April 19, 1988<br>(The IPS List from 1987 and the Amritsar police website vary by one week on both the starting and ending dates. The dates provided by the Amritsar police are used here.)</p>
+      {% endif %}
+        <div id="d2"></div>
+      </li>      
+      {% autoescape off %}
+      <script>
+      makeList( {% dossier_command 'district' '0302' '1986-07-01' '1988-04-19' %}, '#d2');
+      </script>
+      {% endautoescape %}    
+      
+      
+
+      <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong>Padma Shri awarded by Government of India in August 1987।</strong></p>
+      {% else %}
+        <p><strong>Padma Shri awarded by Government of India in August 1987</strong></p>
+      {% endif %}
+      </li>
+
+
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong>SSP Jalandhar</strong>, April 27, 1988 - most likely May 21, 1989</p>
+      {% else %}
+        <p><strong>SSP Jalandhar</strong>, April 27, 1988 - most likely May 21, 1989</p>
+      {% endif %}
+        <div id="d3"></div>
+      </li>      
+      {% autoescape off %}
+      <script>
+      makeList( {% dossier_command 'district' '0304' '1988-04-27' '1989-05-21' %}, '#d3');
+      </script>
+      {% endautoescape %}    
+
+
+
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p>Most likely <strong>DIG, Border Range</strong>, May 27, 1989 - November 14 ,1989<br>(On May 21, 1989, the Tribune reported that Alam took over as DIG Jalandhar Range on May 21, 1989, but then subsequent articles stated he was DIG Border Range as of May 27. See, e.g., May 27, 1989, p. 8, “Areas Changed”. Because this posting falls in the middle of the year, it is not reported in the IPS Civil List. Further, the Punjab Police website does not provide information regarding its historical postings of DIG.)</p>
+      {% else %}
+        <p>Most likely <strong>DIG, Border Range</strong>, May 27, 1989 - November 14 ,1989<br>(On May 21, 1989, the Tribune reported that Alam took over as DIG Jalandhar Range on May 21, 1989, but then subsequent articles stated he was DIG Border Range as of May 27. See, e.g., May 27, 1989, p. 8, “Areas Changed”. Because this posting falls in the middle of the year, it is not reported in the IPS Civil List. Further, the Punjab Police website does not provide information regarding its historical postings of DIG.)</p>
+      {% endif %}
+        <div id="d4"></div>
+      </li>      
+      {% autoescape off %}
+      <script>
+      makeList( {% dossier_command 'district' '0304' '1989-05-27' '1989-11-14' %}, '#d4');
+      </script>
+      {% endautoescape %}    
+
+
+      </ul>
+
+
+    </div>
+    <div class="col-sm-6 border-left">
+
+
+      <h5>{% trans 'Personal Participation' %}</h5>
+
+      <ul>
+
+      <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong><span id="abduction_count"></span> cases directly implicating Mohd. Izhar Alam in abduction, disappearance, and/or killing</strong></p>
+      {% else %}
+        <p><strong><span id="abduction_count"></span> cases directly implicating Mohd. Izhar Alam in abduction, disappearance, and/or killing</strong></p>
+      {% endif %}
+       <div id="d10"></div>
+      </li>
+
+      {% autoescape off %}
+      <script>
+
+      function numpa(num) {
+        var num = num.toString();
+        var dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫','6':'੬','7':'੭','8':'੮','9':'੯'};
+        var output = [];
+        for (let i = 0; i < num.length; i++) {
+          output.push( dic[ num[i] ] );
+        }
+        return output.join('');
+      }
+      
+      var oversight = {% dossier_abduction 'S0002' %};
+      
+      makeList( oversight, '#d10');
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        $('#abduction_count').html( numpa(oversight.length) );
+      {% else %}
+        $('#abduction_count').html( oversight.length );
+      {% endif %}
+      </script>
+      {% endautoescape %}
+      
+      </ul>
+
+  
+      <hr>
+
+
+      <h5>{% trans 'Known Promotions' %}</h5>
+
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+      {% else %}
+        <p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+      {% endif %}
+
+      <!--
+
+      <ul>
+      <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <strong>ਡੀ.ਆਈ.ਜੀ. ਪ੍ਰਸ਼ਾਸਨ (ਐਡਮਨੀਸਟਰੇਸ਼ਨ) (ਸੀ.ਪੀ.ਓ.), ਪੰਜਾਬ, ਚੰਡੀਗੜ੍ਹ (ਓ.ਆਰ.ਪੀ.)</strong>, ੨੦ ਜੂਨ ੧੯੯੪
+      {% else %}
+        <strong>DIG Admn. (CPO), Punjab, Chandigarh (ORP)</strong>, June 20, 1994
+      {% endif %}
+      <br><br></li>
+
+      <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <strong>ਇੰਸਪੈਕਟਰ ਜਨਰਲ ਆਫ ਪੁਲਿਸ</strong>, ੫ ਸਤੰਬਰ ੨੦੦੫, ਜਾਣਕਾਰੀ ਮੁਤਾਬਕ ਆਰਥਿਕ ਅਪਰਾਧ ਵਿੰਗ ਦਾ ਆਈ.ਜੀ.
+      {% else %}
+        <strong>Inspector General of Police</strong>, on September 5, 2005, reported to currently be IG, Economic Offences
+      {% endif %}
+      <br><br></li>
+
+      <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <strong>ਇੰਸਪੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ</strong>, ਵਿਜੀਲੈਂਸ, ੮ ਮਾਰਚ ੨੦੦੭ 
+      {% else %}
+        <strong>Inspector General of Police</strong>, Vigilance, March 8, 2007
+      {% endif %}
+      <br><br></li>
+
+      <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <strong>ਵਧੀਕ ਡਾਇਰੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ ਅਤੇ ਚੀਫ ਡਾਇਰੈਕਟਰ, ਵਿਜੀਲੈਂਸ ਬਿਊਰੋ, ਪੰਜਾਬ, ਚੰਡੀਗੜ੍ਹ</strong>, ੧੬ ਫਰਵਰੀ ੨੦੦੯
+      {% else %}
+        <strong>Additional Director General of Police-Cum-Chief Dir., Vigilance Bureau, Pb, Chg.</strong>, February 16, 2009
+      {% endif %}
+      <br><br></li>
+
+      <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <strong>ਡਾਇਰੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ, ਪੰਜਾਬ</strong>, ੧੫ ਮਾਰਚ ੨੦੧੨ ਤੋਂ ੨੫ ਅਕਤੂਬਰ ੨੦੧੫
+      {% else %}
+        <strong>Director General of Police, Punjab</strong>, March 15, 2012 - October 25, 2015
+      {% endif %}
+      <br><br></li>
+
+      <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <strong>ਡਾਇਰੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ ਅਤੇ ਪਰਧਾਨ, ਪੁਲਿਸ ਹਾਉਸਿੰਗ ਕਾਰਪੋਰੇਸ਼ਨ</strong>, ੨੬ ਅਕਤੂਬਰ ੨੦੧੫ (ਸੇਵਾਮੁਕਤੀ ਦੀ ਤਾਰੀਖ ੨੦ ਜੂਨ ੨੦੧੮)
+      {% else %}
+        <strong>Director General of Police-Cum-Chairman, Police Housing Corporation</strong>, October 26, 2015 (date of retirement June 20, 2018)
+      {% endif %}
+      </li>
+      </ul>
+
+      -->
+
+      <hr>
+
+
+      <h5>{% trans 'Disciplinary Proceedings / Legal Cases' %}</h5>
+
+      <!--     
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p4.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1993-01-03-p4.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1993-01-03-p1.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p16.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1993-01-03-p16.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          ਲੈਫੀਟੀਨੈਟ ਕਰਨਲ ਆਰ. ਵੈਟਸ ਦੀ ਗੈਰ ਕਾਨੂੰਨੀ ਹਿਰਾਸਤ ਅਤੇ ਕੁੱਟਮਾਰ: ਟ੍ਰਿਬਿਊਨ, ੩ ਜਨਵਰੀ ੧੯੯੩, "<a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p1.pdf">ਸੈਣੀ ਦੇ ਖਿਲਾਫ ਦੋਸ਼ ਲਾਏ ਗਏ</a>," "<a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p4.pdf">ਸੈਣੀ ਦੀ ਵਾਪਸੀ</a>," ਅਤੇ "<a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p16.pdf">ਐਸ.ਐਸ.ਪੀ. ਸੈਣੀ ਦੇ ਖਿਲਾਫ ਦੋਸ਼</a>"
+      {% else %}
+          Beating and Illegal Detention of Lt. Col. R. Vats: <em>Tribune</em>, January 3, 1993, <a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p1.pdf">“Charges being framed against Saini,”</a> <a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p4.pdf">“Saini to be reverted,”</a> and <a href="https://data.ensaaf.org/static/files/saini/pdf/1993-01-03-p16.pdf">“Charges against SSP Saini”</a>
+      {% endif %}
+          </div>
+      </div>
+
+      <div class="row mb-4">
+          <div class="col-12">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            <strong>ਲਾਪਤਾ ਅਸ਼ੋਕ ਕੁਮਾਰ (ਵਾਲੀਆ), ਵਿਨੋਦ ਕੁਮਾਰ (ਵਾਲੀਆ), ਅਤੇ ਮੁਖਤਿਆਰ ਸਿੰਘ</strong>: ਵਿਨੋਦ ਕੁਮਾਰ ਅਤੇ ਉਸ ਦੇ ਭਰਾ ਵੱਲੋ ਐਸ.ਐਸ.ਪੀ. ਸੁਮੇਧ ਸੈਣੀ ਦੇ ਖਿਲਾਫ ਤੰਗ ਪਰੇਸ਼ਾਨ ਕਰਨ ਦਾ ਮੁਕੱਦਮਾ ਦਰਜ ਕਰਵਾਊਣ ਦੇ ਇੱਕ ਹਫਤੇ ਬਾਅਦ ਉਹ ਅਤੇ ਉਸ ਦਾ ਸਾਲਾ ਅਤੇ ਉਸ ਦਾ ਡਰਾਇਵਰ ਲਾਪਤਾ ਕੀਤੇ ਗਏ।
+      {% else %}
+            <strong>Disappearances of Ashok Kumar (Walia), Vinod Kumar (Walia), and Mukhtiar Singh</strong>: A week after Vinod Kumar and his brother filed a harassment suit against SSP Sumedh Saini, he, his brother-in-law, and their driver disappeared.
+      {% endif %}
+          </div>
+      </div>
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-10-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-10-p1.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੦ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-10-p1.pdf">ਐਸ.ਐਸ.ਪੀ. ਵਿਰੁਧ ਵਧੀਕੀ ਲਈ ਵਰੰਟ</a>" 
+      {% else %}
+            <em>Tribune</em>, March 10, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-10-p1.pdf">“Warrants against SSP for contempt”</a>
+      {% endif %}
+          </div>
+      </div>
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-16-p5.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-16-p5.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-16-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-16-p1.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੬ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-16-p1.pdf">ਜੱਜ ਵੱਲੋਂ ਐਸ.ਐਸ.ਪੀ. ਖਿਲਾਫ ਦੋਸ਼ਾਂ ਦੀ ਜਾਂਚ</a>"
+      {% else %}
+            <em>Tribune</em>, March 16, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-16-p1.pdf">“Judge to probe charges against SSP”</a>
+      {% endif %}
+          </div>
+      </div>
+      
+            
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-17-p13.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-17-p13.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੭ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-17-p13.pdf">ਸੈਣੀ ਕੇਸ ਵਿੱਚ ਭਰਾ ਅਤੇ ਦੋ ਹੋਰ ਲਾਪਤਾ</a>" 
+      {% else %}
+           <em>Tribune</em>, March 17, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-17-p13.pdf">“Brother, 2 others missing in Saini case”</a>
+     {% endif %}
+          </div>
+      </div>
+      
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-18-p16.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-18-p16.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-18-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-18-p1.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੮ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-18-p16.pdf">ਹਾਈ ਕੋਰਟ: ਅੱਜ ਹੀ ਲਾਪਤਾ ਆਦਮੀ ਨੂੰ ਪੇਸ਼ ਕਰੋ</a>"
+      {% else %}
+            <em>Tribune</em>, March 18, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-18-p16.pdf">“HC: produce missing men today”</a>
+      {% endif %}
+          </div>
+      </div>
+     
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-19-p16.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-19-p16.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੯ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-19-p16.pdf">ਆਦਮੀਆਂ ਦਾ ਪਤਾ ਲਗਾਉਣ ਲਈ ਤਾਰੀਖ ਸੋਮਵਾਰ ਤਕ ਵਧਾਈ ਗਈ</a>"
+      {% else %}
+            <em>Tribune</em>, March 19, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-19-p16.pdf">“Monday new deadline to trace men”</a>
+      {% endif %}
+          </div>
+      </div>
+     
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-23-p16.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-23-p16.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੨੩ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-23-p16.pdf">ਸੈਣੀ ਕੇਸ ਵਿੱਚ ਫੈਂਸਲਾ ਰਾਖਵਾਂ</a>"
+      {% else %}
+            <em>Tribune</em>, March 23, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-23-p16.pdf">“Verdict reserved in Saini case”</a>
+      {% endif %}
+          </div>
+      </div>
+     
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p20.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-25-p20.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-03-25-p1.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੨੫ ਮਾਰਚ ੧੯੯੪: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p1.pdf">ਹਾਈ ਕੋਰਟ ਨੇ ਸੈਣੀ ਦਾ ਕੇਸ ਸੀ.ਬੀ.ਆਈ. ਨੂੰ ਸੌਂਪਿਆ</a>" ਅਤੇ "<a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p20.pdf">ਪੁਲੀਸ ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਟੀਸ਼ਨ ਰੱਦ ਕਰ ਦਿੱਤੀ ਗਈ</a>"
+      {% else %}
+            <em>Tribune</em>, March 25, 1994: <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p1.pdf">“HC entrusts Saini case to CBI”</a> and <a href="https://data.ensaaf.org/static/files/saini/pdf/1994-03-25-p20.pdf">“Petition on police officers rejected”</a>
+      {% endif %}
+          </div>
+      </div>
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-05-19-p18.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-05-19-p18.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੯ ਮਈ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-05-19-p18.pdf">ਤਿੰਨ ਮਹੀਨਿਆਂ ਵਿੱਚ ਜਾਂਚ ਰਿਪੋਰਟ: ਸੀ.ਬੀ.ਆਈ.</a>" 
+      {% else %}
+            <em>Tribune</em>, May 19, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-05-19-p18.pdf">“Probe report in 3 months: CBI”</a>
+      {% endif %}
+          </div>
+      </div>
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-25-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-08-25-p1.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੨੫ ਅਗਸਤ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-25-p1.pdf">ਲਾਪਤਾ ਵਪਾਰੀ ਨਹੀਂ ਮਿਲੀਆ</a>"
+      {% else %}
+            <em>Tribune</em>, August 25, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-25-p1.pdf">“Missing business man untraced”</a>
+      {% endif %}
+          </div>
+      </div>
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-31-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-08-31-p1.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੩੧ ਅਗਸਤ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-31-p1.pdf">ਸੀ.ਬੀ.ਆਈ. ਨੇ ਸੈਣੀ ਅਤੇ ਤਿੰਨ ਹੋਰਾਂ ਨੂੰ ਦੋਸ਼ੀ ਠਹਿਰਾਈਆ</a>"
+      {% else %}
+            <em>Tribune</em>, August 31, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-08-31-p1.pdf">“CBI blames Saini, three others”</a>
+      {% endif %}
+          </div>
+      </div>
+     
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-12-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-09-12-p1.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੨ ਸਤੰਬਰ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-12-p1.pdf">ਸੈਣੀ ਕੇਸ ਦਾ ਫੈਂਸਲਾ ੧੪ ਸਤੰਬਰ ਨੂੰ</a>"
+      {% else %}
+            <em>Tribune</em>, September 12, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-12-p1.pdf">“Verdict in Saini case on Sept 14”</a>
+      {% endif %}
+          </div>
+      </div>
+      
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-15-p18.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-09-15-p18.png" class="thumb"></a><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-15-p1.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-09-15-p1.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੧੫ ਸਤੰਬਰ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-15-p1.pdf">ਸੈਣੀ ਨੂੰ ਅਦਾਲਤ ਦੇ ਅਪਮਾਣ ਦੇ ਦੋਸ਼ ਤੋਂ ਮੁਕਤੀ</a>"
+      {% else %}
+             <em>Tribune</em>, September 15, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-09-15-p1.pdf">“Saini cleared of contempt”</a>
+     {% endif %}
+          </div>
+      </div>
+      
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/1995-12-20-p4.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1995-12-20-p4.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            ਟ੍ਰਿਬਿਊਨ, ੨੦ ਦਸੰਬਰ ੧੯੯੫: "<a href="https://data.ensaaf.org/static/files/saini/pdf/1995-12-20-p4.pdf">ਸੈਣੀ ਮਾਮਲੇ ਵਿੱਚ ਦੇਰੀ ਲਈ ਪੰਜਾਬ (ਸਰਕਾਰ) ਅਤੇ ਸੀ.ਬੀ.ਆਈ. ਨੂੰ ਫਿਟਕਾਰ</a>"
+      {% else %}
+             <em>Tribune</em>, December 20, 1995: <a href="https://data.ensaaf.org/static/files/saini/pdf/1995-12-20-p4.pdf">“Punjab, CBI pulled up for delay in Saini case”</a>
+     {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/saini/pdf/Vinod_Kumar_S_O_Rattan_Singh_vs_State_Of_Punjab_on_14_September,_1995.pdf"><img src="https://data.ensaaf.org/static/files/saini/thumbs/Vinod_Kumar_S_O_Rattan_Singh_vs_State_Of_Punjab_on_14_September,_1995.png" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <a href="https://data.ensaaf.org/static/files/saini/pdf/Vinod_Kumar_S_O_Rattan_Singh_vs_State_Of_Punjab_on_14_September,_1995.pdf">ਪੰਜਾਬ ਅਤੇ ਹਰਿਆਣਾ ਹਾਈ ਕੋਰਟ ਦਾ ਹੁਕਮ</a>, ੧੯੯੬ ਸੀ.ਆਰ.ਆਈ.ਅਲੈ.ਜੇ. ੧੦੩੭ 
+      {% else %}
+          <a href="https://data.ensaaf.org/static/files/saini/pdf/Vinod_Kumar_S_O_Rattan_Singh_vs_State_Of_Punjab_on_14_September,_1995.pdf">Order of the High Court of Punjab and Haryana</a>, 1996 CriLJ 1037
+      {% endif %}
+        </div>
+      </div>
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://economictimes.indiatimes.com/news/politics-and-nation/1994-triple-murder-cbi-alleges-sumedh-singh-saini-tampered-with-documents/articleshow/34960151.cms"><img src="https://data.ensaaf.org/static/files/saini/thumbs/1994-triple-murder_-CBI-alleges-Sumedh-Singh-Saini-tampered-with-documents---The-Economic-Times.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+            <a href="https://economictimes.indiatimes.com/news/politics-and-nation/1994-triple-murder-cbi-alleges-sumedh-singh-saini-tampered-with-documents/articleshow/34960151.cms">ਇਕੋਨਾਮੀਕ ਟਾਈਮਜ਼</a>, ੧੧ ਮਈ ੨੦੧੪: "੧੯੯੪ ਦਾ ਤਹਿਰਾ ਕਤਲ ਮਾਮਲਾ: ਸੀ.ਬੀ.ਆਈ. ਨੇ ਲਾਇਆ ਸੁਮੇਧ ਸਿੰਘ ਸੈਣੀ ਉੱਪਰ ਦਸਤਾਵੇਜ਼ਾਂ ਨਾਲ ਛੇੜ ਖਾਨੀ ਦਾ ਦੋਸ਼"
+      {% else %}
+            <a href="https://economictimes.indiatimes.com/news/politics-and-nation/1994-triple-murder-cbi-alleges-sumedh-singh-saini-tampered-with-documents/articleshow/34960151.cms"><em>Economic Times</em>, May 11, 2014: “1994 triple murder: CBI alleges Sumedh Singh Saini tampered with documents”</a>
+      {% endif %}
+          </div>
+      </div>
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://timesofindia.indiatimes.com/city/chandigarh/103-yr-old-woman-dies-awaiting-justice-for-her-son/articleshowprint/62044531.cms"><img src="https://data.ensaaf.org/static/files/saini/thumbs/103-year-old-woman-dies-awaiting-justice-for-her-son---Times-of-India.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <a href="https://timesofindia.indiatimes.com/city/chandigarh/103-yr-old-woman-dies-awaiting-justice-for-her-son/articleshowprint/62044531.cms">ਟਾਈਮਜ਼ ਆਫ ਇੰਡੀਆ, ੧੨ ਦਸੰਬਰ ੨੦੧੭: "੧੦੩ ਸਾਲਾਂ ਦੀ ਬਜ਼ੁਰਗ ਔਰਤ ਆਪਣੇ ਪੁੱਤਰ ਦੇ ਇਨਸਾਫ ਦੀ ਉਡੀਕ ਵਿੱਚ ਪੂਰੀ ਹੋ ਗਈ"</a>
+      {% else %}
+          <a href="https://timesofindia.indiatimes.com/city/chandigarh/103-yr-old-woman-dies-awaiting-justice-for-her-son/articleshowprint/62044531.cms"><em>Times of India</em>, Dec. 12, 2017: “103-year-old woman dies awaiting justice for her son”</a>
+      {% endif %}
+          </div>
+      </div>
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://www.tribuneindia.com/news/punjab/cbi-io-turns-hostile-in-kidnapping-case-against-punjab-ex-dgp-saini/809278.html"><img src="https://data.ensaaf.org/static/files/saini/thumbs/CBI-IO-turns-hostile-in-kidnapping-case-against-Punjab-ex-DGP-Saini.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <a href="https://www.tribuneindia.com/news/punjab/cbi-io-turns-hostile-in-kidnapping-case-against-punjab-ex-dgp-saini/809278.html">ਟ੍ਰਿਬਿਊਨ, ੨੮ ਜੁਲਾਈ ੨੦੧੯: "ਸੀ.ਬੀ.ਆਈ. ਦਾ ਆਈ.ਓ. ਪੰਜਾਬ ਦੇ ਸਾਬਕਾ ਡੀ.ਜੀ.ਪੀ. ਸੈਣੀ ਦੇ ਖੀਲਾਫ ਅਗਵਾਹੀ ਦੇ ਕੇਸ ਵਿੱਚ ਪੂਰੀ ਤਰ੍ਹਾਂ ਉਸ ਦਾ ਵਿਰੋਧੀ ਹੋ ਗਇਆ"</a>
+      {% else %}
+          <a href="https://www.tribuneindia.com/news/punjab/cbi-io-turns-hostile-in-kidnapping-case-against-punjab-ex-dgp-saini/809278.html"><em>The Tribune</em>, July 28, 2019: “CBI IO turns hostile in kidnapping case against Punjab ex-DGP Saini”</a>
+      {% endif %}
+          </div>
+      </div>
+      
+      -->
+
+      <hr>
+
+
+      <h5>{% trans 'Other reports and articles' %}</h5>
+
+      <!--
+
+      <ul>
+        <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <a href="https://www.hindustantimes.com/punjab/sumedh-singh-saini-between-rights-and-wrongs-top-cop-who-walked-his-own-line/story-qEiRfiyJ6MRLTI95aeGPuI.html">ਹਿੰਦੂਸਤਾਨ ਟਾਈਮਜ਼, ੧ ਜੁਲਾਈ ੨੦੧੮: "ਸੁਮੇਧ ਸਿੰਘ ਸੈਣੀ, ਸਹੀ ਅਤੇ ਗਲਤ ਦੇ ਵਿਚਕਾਰ: ਚੋਟੀ ਦਾ ਅਫਸਰ ਜੋ ਆਪਣੇ ਰਾਹ ਉੱਤੇ ਚਲਿਆ"</a>
+      {% else %}
+        <a href="https://www.hindustantimes.com/punjab/sumedh-singh-saini-between-rights-and-wrongs-top-cop-who-walked-his-own-line/story-qEiRfiyJ6MRLTI95aeGPuI.html"><em>Hindustan Times</em>, July 1, 2018: “Sumedh Singh Saini, Between rights and wrongs: top cop who walked his own line”</a>
+      {% endif %}
+        <br><br></li>
+
+        <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <a href="https://www.hrw.org/sites/default/files/reports/India0594.pdf">ਹਿਊਮਨ ਰਾਈਟਸ ਵਾਚ, ਖਾਮੋਸ਼ ਮੌਤ, ਮਈ ੧੯੯੪, ਸਫਾ ੧੮ ਤੋਂ ੧੯ (ਖਾੜਕੂ ਦੇ ੫ ਪਰੀਵਾਰਕ ਮੈਬਰਾਂ ਦਾ ਕਤਲ); ਇਹ ਵੀ ਦੇਖੋ, ਦੁਰਵਿਵਹਾਰ ਦੇ ਹੋਰ ਦਸਤਾਵੇਜ਼ ਸਫਾ ੪੭, ੫੧, ੭੯, ੮੩</a>
+      {% else %}
+        <a href="https://www.hrw.org/sites/default/files/reports/India0594.pdf">Human Rights Watch, <em>Dead Silence</em>, May 1994, pp.18-19 (killing of 5 family members of militant); See also, other abuses documented on pp.47, 51, 79, 83</a>
+      {% endif %}
+        <br><br></li>
+
+        <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <a href="https://www.hrw.org/sites/default/files/reports/INDIA918.PDF">ਹਿਊਮਨ ਰਾਈਟਸ ਵਾਚ, ਸੰਕਟ ਵਿੱਚ ਪੰਜਾਬ, ਅਗਸਤ ੧੯੯੧, ਸਫਾ ੬੩, ੬੮, ੯੭ ਤੋਂ ੯੯, ੧੩੮ ਤੋਂ ੧੩੯</a>
+      {% else %}
+        <a href="https://www.hrw.org/sites/default/files/reports/INDIA918.PDF">Human Rights Watch, <em>Punjab in Crisis</em>, August 1991, pp. 63, 68, 97-99, 138-9</a>
+      {% endif %}
+      </ul>
+
+      -->
+  
+    
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+function numpa(num) {
+  {% if request.LANGUAGE_CODE == 'pb' %}
+    var num = num.toString();
+    var dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫','6':'੬','7':'੭','8':'੮','9':'੯'};
+    var output = [];
+    for (let i = 0; i < num.length; i++) {
+      output.push( dic[ num[i] ] );
+    }
+    return output.join('');
+  {% else %}
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  {% endif %}
+}
+
+
+for (var i=0;i<timeCapsule.length;i++) {
+    if ( timeCapsule[i]['v']['id'] ) {
+      timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
+      var d = new Date(0);
+      timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
+    }
+}  
+
+
+
+var timeline_margin = {top: 10, right: 10, bottom: 35, left: 10};
+
+var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
+    height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
+
+var start = d3.min(d3.entries(timeCapsule), function(d) { return d.value.date; });
+var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
+
+var xScale = d3.scaleTime()
+    .domain([start, end])
+    .rangeRound([0, width]);
+
+var villages = {};
+var villageCentroids = [];
+var markers = {};
+
+
+
+
+
+// init
+
+var previousDistrict = '';
+
+
+
+// load basemap
+var mymap = new L.Map('mapid', {
+  center: [31.0157601,75.45],
+  zoom: 8
+});
+cartodb.createLayer(mymap, 'https://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9865-4151-a4e7-3456ef906d7d/viz.json', {https: true}).addTo(mymap);
+var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
+zoomHome.addTo(mymap);
+
+// https://sukhmandhami.carto.com/builder/350efab7-443d-419e-930c-b50ab8e394cd/embed
+var osm2 = new L.TileLayer('https://cartocdn-gusc.global.ssl.fastly.net/sukhmandhami/api/v1/map/sukhmandhami@8cf94c4f@7394194616a5b4936fb73a4555534a43:1554421032266/1,2/{z}/{x}/{y}.png');
+var pubs2 = new L.TileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png');
+var layers = new L.LayerGroup([pubs2, osm2]);
+var miniMap = new L.Control.MiniMap(layers, { width: 250, height: 200, zoomLevelFixed: 3, position: 'topright', centerFixed: [21.28,77] }).addTo(mymap);
+
+mymap.setView(new L.LatLng(31.0157601,75.45),8);
+mymap.scrollWheelZoom.disable();
+
+
+// load village centroids
+
+$.getJSON("/static/js/village_loc.json", function(json) {
+    villageCentroids = json
+    makeTimeline();
+});
+
+
+
+
+function makeVillageNames(start, end) {
+
+    villages = {};
+
+    // update size per village
+    for (var i=0;i<timeCapsule.length;i++) {
+        if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start) && ( timeCapsule[i]['v']['id'] ))  {
+          var id = timeCapsule[i]['v']['id'];
+          if (villages[id] && villages[id].count) {
+            villages[id].count = villages[id].count + 1;
+          } else {
+            villages[id] = {};
+            villages[id].count = 1;
+            villages[id].record_ids = [timeCapsule[i]['v']['record_id']];            
+          }
+          villages[id].record_ids.push( [timeCapsule[i]['v']['record_id']] );  
+        }
+    }
+    updateMap(start, end);
+}
+
+
+
+var area = d3.scalePow().exponent(0.5).domain([0, 10]).range([1, 15]);
+
+
+
+function updateMap(start, end) {
+
+    // make map
+    var points = [];
+    var keys = Object.keys(villages);
+    for (var i in keys) {
+      var thisVillage = _.find(villageCentroids, function(o) {
+        return o.CODE.endsWith(keys[i]);
+      });
+      if (keys[i] && thisVillage) {
+        {% if request.LANGUAGE_CODE == 'pb' %}
+          thisVillage.NAME = thisVillage.name_pb;
+        {% endif %}        
+        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]].count,'name':thisVillage.NAME, 'record_ids':villages[keys[i]].record_ids });
+      }
+    }
+
+
+    // test Object.keys(markers).length to see less than total? see if need to recreate map or just update
+
+    if (Object.keys(markers).length > 0) {
+
+        var markers_array = [];
+
+        // update markers
+        _.forEach(markers, function(value, key) {
+          if ( d = _.find(points, { 'id': key }) ) {
+          
+              markers[key].setStyle({fillOpacity: .5});
+              markers[key].setRadius(area(d.size));
+
+              var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + numpa(d.size);
+              {% if request.LANGUAGE_CODE == 'pb' %}
+                if (d.size == 1) { tultipText += ' ਪੀੜਤ'; } else { tultipText += ' ਪੀੜਤਾਂ'; }
+              {% else %}
+                tultipText += ' Victim'; if (d.size > 1) { tultipText += 's'; }
+              {% endif %}
+                tultipText += '</div>';
+
+              markers[key].bindPopup(tultipText, {offset:[0,-5]});
+              markers[key].on('mouseover', function (e) { this.openPopup(); });
+              markers[key].on('mouseout', function (e) { this.closePopup(); });
+              markers[key].on('click', function (e) {
+                document.location.href = this.options.url;
+              });
+
+              markers_array.push( markers[key] );
+          }
+        });
+
+          mymap.setView([31.0157601,75.45], 8);            
+    
+    } else {
+        
+        // add points to map
+        _.forEach(points, function(d) {
+          if (d.id !== '0') {
+            var customCircleMarker = L.CircleMarker.extend({
+               options: { 
+                  url: '{% lang %}/village/' + d.id + '/?ids=' + d.record_ids.join(',')
+               }
+            });
+            markers[String(d.id)] = new customCircleMarker([d.coord[1] + .015,d.coord[0] - .025], {
+                stroke: false,
+                fillColor: '#fc0',
+                fillOpacity: 0.5,
+                url: '{% lang %}/village/' + d.id + '/?ids=' + d.record_ids.join(',')
+            }).addTo(mymap);
+          }
+        }); // end for points
+
+    } // end if markers
+
+}
+
+
+
+
+d3.select(window).on('resize', function() {
+  makeTimeline();
+});
+
+var maxHeight = 0;
+
+
+
+
+function makeTimeline() {
+
+  d3.select("#timeline").html("")
+ 
+  var timeline_margin = {top: 10, right: 25, bottom: 35, left: 25};
+
+  var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
+      height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
+
+  var start = new Date('January 1, 1987');
+  var end = new Date('December 31, 1996');
+
+  var x = d3.scaleTime()
+      .domain([start, end])
+      .rangeRound([0, width]);
+
+  //console.log(f);
+
+
+
+
+
+  var y = d3.scaleLinear()
+      .range([height, 0]);
+
+  var histogram = d3.histogram()
+      .value(function(d) { return d.date; })
+      .domain(x.domain())
+      .thresholds(x.ticks(d3.timeMonth));
+
+  var svg = d3.select("#timeline").append("svg")
+      .attr("width", width + timeline_margin.left + timeline_margin.right)
+      .attr("height", height + timeline_margin.top + timeline_margin.bottom)
+    .append("g")
+      .attr("transform", 
+            "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
+
+
+  // Create Tooltips
+  var tip = d3.tip().attr('class', 'd3-tip').direction('n').offset([-10,0])
+    .html(function(d) {
+      var content = d.name + '<br>' + d.village;
+      return content;
+    });
+
+  svg.call(tip);
+
+
+  $('#count').html( numpa(profiles.length) );
+
+
+  var bins = histogram(profiles).filter(d => d.length>0);
+
+  if (maxHeight == 0) {
+    maxHeight = d3.max(bins, function(d) { return d.length; });
+  }
+  
+  y.domain([-3, maxHeight ]);
+
+
+
+
+    //g container for each bin
+    let binContainer = svg.selectAll(".gBin")
+      .data(bins);
+
+    binContainer.exit().remove()
+
+    let binContainerEnter = binContainer.enter()
+      .append("g")
+        .attr("class", "gBin")
+        .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
+
+  //need to populate the bin containers with data the first time
+  binContainerEnter.selectAll("circle")
+      .data(d => d.map((p, i) => {
+        return {idx: i,
+                profile: p.id,
+                name: p.name,
+                village: p.village,
+                radius: (x(d.x1)-x(d.x0))/2
+              }
+      }))
+    .enter()
+    .append("circle")
+        .attr("class", "enter")
+        .attr("cx", 0) //g element already at correct x pos
+        .attr("cy", function(d) {
+            return - d.idx * 2 * d.radius - d.radius; })
+        .attr("r", 0)
+        .on("click", function(d) {window.location = "{% lang %}/profile/" + d.profile})
+        .on("mouseover", function(d) { tip.show(d); })
+        .on("mouseout", function(d) { tip.hide(d); })
+        .transition()
+          .duration(500)
+          .attr("r", function(d) {
+          return (d.length==0) ? 0 : d.radius; })
+
+    binContainerEnter.merge(binContainer)
+        .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
+
+    //enter/update/exit for circles, inside each container
+    let dots = binContainer.selectAll("circle")
+        .data(d => d.map((p, i) => {
+          return {idx: i,
+                  profile: p.id,
+                  name: p.name,
+                  village: p.village,
+                  radius: (x(d.x1)-x(d.x0))/2
+                }
+        }))
+
+    //EXIT old elements not present in data
+    dots.exit()
+        .attr("class", "exit")
+      .transition(1000)
+        .attr("r", 0)
+        .remove();
+
+    //UPDATE old elements present in new data.
+    dots.attr("class", "update");
+
+    //ENTER new elements present in new data.
+    dots.enter()
+      .append("circle")
+        .attr("class", "enter")
+        .attr("cx", 0) //g element already at correct x pos
+        .attr("cy", function(d) {
+          return - d.idx * 2 * d.radius - d.radius; })
+        .attr("r", 0)
+      .merge(dots)
+        .on("click", function(d) {window.location = "{% lang %}/profile/" + d.profile})
+        .on("mouseover", function(d) { tip.show(d); })
+        .on("mouseout", function(d) { tip.hide(d); })
+        .transition()
+          .duration(500)
+          .attr("r", function(d) {
+          return (d.length==0) ? 0 : d.radius; })
+          
+
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .attr('class','axis')
+      .call( d3.axisBottom(x).tickFormat(
+        function(d) {
+          var formatDate = d3.timeFormat("%Y");
+          var year = formatDate(Date.parse(d));
+          {% if request.LANGUAGE_CODE == 'pb' %}
+          return numpa(year);
+          {% else %}
+          return year;
+          {% endif %}
+        })
+      );
+
+
+
+
+  var brush = d3.brushX().on("start brush end", brushed);
+
+  // brush
+  var gBrush = svg.append("g")
+      .attr("class", "brush")
+      .call(brush);
+
+  gBrush.call(brush.move, x.range());
+
+  // https://bl.ocks.org/mbostock/4349545
+  
+  function brushed() {
+    var s = x.range();    
+    makeVillageNames( x.invert(s[0]), x.invert(s[1]) );
+  }
+
+} // end makeTimeline
+
+</script>
+
+
+
+
+
+
+{% endblock %}

@@ -512,7 +512,7 @@ officials = {
 #  "S0029":"Bakhshi Ram",
 
 
-so_has_detail = ['S0001']
+so_has_detail = ['S0001','S0002']
 
 
 @register.filter(name='seniorofficial')
