@@ -546,7 +546,6 @@ def official(request, slug=None):
       else:
         return redirect("/official/"+slug+"/detail/")
 
-
     name =  officials.get(slug)
 
     district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
