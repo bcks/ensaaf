@@ -512,6 +512,7 @@ officials = {
 #  "S0029":"Bakhshi Ram",
 
 
+so_has_detail = ['S0001']
 
 
 @register.filter(name='seniorofficial')
@@ -532,12 +533,17 @@ def perpetrators(request):
       p = o + (soas + soks,)
       p_officials.append(p)
 
-    return render(request, "perpetrators.html", { "officials": p_officials })
+    return render(request, "perpetrators.html", { "dossiers/officials": p_officials, "so_has_detail": so_has_detail })
 
 
 
 @cache_page(60 * 60)
 def official(request, slug=None):
+
+    if slug in so_has_detail:
+      return redirect("detail/")
+
+
     name =  officials.get(slug)
 
     district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
@@ -562,7 +568,10 @@ def official(request, slug=None):
 
 @cache_page(60 * 60)
 def official_detail(request, slug=None):
-    return render(request, "official_detail.html" )
+    if slug in so_has_detail:
+      return render(request, "official_detail_" + slug + ".html" )
+    else:
+      return messages.warning(request,"Official %s was not found"%id)
 
 
 
