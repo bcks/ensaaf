@@ -521,7 +521,7 @@ def seniorofficial(value):
 
 
 
-@cache_page(60 * 60)
+#@cache_page(60 * 60)
 def perpetrators(request):
     
     s_officials = sorted(officials.items(), key=operator.itemgetter(1))    
@@ -533,7 +533,7 @@ def perpetrators(request):
       p = o + (soas + soks,)
       p_officials.append(p)
 
-    return render(request, "perpetrators.html", { "dossiers/officials": p_officials, "so_has_detail": so_has_detail })
+    return render(request, "perpetrators.html", { "officials": p_officials, "so_has_detail": so_has_detail })
 
 
 
@@ -541,7 +541,10 @@ def perpetrators(request):
 def official(request, slug=None):
 
     if slug in so_has_detail:
-      return redirect("detail/")
+      if get_language() == 'pb':
+        return redirect("/pb/official/"+slug+"/detail/")
+      else:
+        return redirect("/official/"+slug+"/detail/")
 
 
     name =  officials.get(slug)
@@ -569,7 +572,7 @@ def official(request, slug=None):
 @cache_page(60 * 60)
 def official_detail(request, slug=None):
     if slug in so_has_detail:
-      return render(request, "official_detail_" + slug + ".html" )
+      return render(request, "dossiers/official_detail_" + slug + ".html" )
     else:
       return messages.warning(request,"Official %s was not found"%id)
 

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Django\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-01 16:34-0400\n"
+"POT-Creation-Date: 2023-08-19 16:58-0400\n"
 "PO-Revision-Date: 2010-05-13 15:35+0200\n"
 "Last-Translator: Django team\n"
 "Language-Team: English <en@li.org>\n"
@@ -872,9 +872,9 @@ msgstr ""
 "ਮੁਢਲੇ ਸਰੋਤ ਇੰਟਰਵਿਊ ਦੁਆਰਾ ਇਕੱਠੇ ਕੀਤੇ ਅੰਕੜਿਆਂ ਦੇ ਅਧਾਰ ਤੇ %(thisdistrict)s ਜ਼ਿਲੇ ਵਿੱਚ ਹੋਏ ਵਿਆਪਕ "
 "ਅਤੇ ਯੋਜਨਾਬੱਧ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੀ ਇੱਕ ਤਸਵੀਰ।"
 
-#: templates/district.html:29 templates/map.html:8 templates/map.html:20
-#: templates/map.html:25 templates/map.html:30
-#: templates/official_detail.html:28 templates/overview.html:30
+#: templates/district.html:29 templates/dossiers/official_detail_S0001.html:28
+#: templates/map.html:8 templates/map.html:20 templates/map.html:25
+#: templates/map.html:30 templates/overview.html:30
 #: templates/perpetrators.html:27 templates/profile.html:29
 #: templates/profiles.html:28 templates/securityforce.html:28
 #: templates/tehsil.html:28 templates/village.html:28
@@ -884,6 +884,60 @@ msgid ""
 "Executions in Punjab, India"
 msgstr ""
 "ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਈ ਮਨੁੱਖੀ ਅਧਿਕਾਰਾਂ ਦੀ ਉਲੰਘਣਾ: ਲਾਪਤਾ/ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ"
+
+#: templates/dossiers/official_detail_S0001.html:7
+msgid ""
+"Sumedh Singh [Saini] and enforced disappearances &amp; extrajudicial "
+"executions in Punjab, India"
+msgstr "ਸੁਮੇਧ ਸਿੰਘ [ਸੈਣੀ] ਅਤੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ"
+
+#: templates/dossiers/official_detail_S0001.html:10
+#: templates/dossiers/official_detail_S0001.html:13
+#: templates/dossiers/official_detail_S0001.html:19
+#: templates/dossiers/official_detail_S0001.html:27
+#: templates/perpetrators.html:9 templates/perpetrators.html:12
+#: templates/perpetrators.html:18 templates/perpetrators.html:26
+msgid ""
+"Senior officials implicated in documented cases of enforced disappearances "
+"&amp; extrajudicial executions in Punjab, India based on data collected "
+"through primary source interviews."
+msgstr ""
+"ਮੁਢਲੇ ਸਰੋਤ ਇੰਟਰਵਿਊ ਦੁਆਰਾ ਇਕੱਠੇ ਕੀਤੇ ਅੰਕੜਿਆਂ ਦੇ ਅਧਾਰ ਤੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਏ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ "
+"ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਮੁੱਖ ਅਧਿਕਾਰੀ।"
+
+#: templates/dossiers/official_detail_S0001.html:12
+#: templates/dossiers/official_detail_S0001.html:18
+#: templates/dossiers/official_detail_S0001.html:23
+#: templates/perpetrators.html:6 templates/perpetrators.html:11
+#: templates/perpetrators.html:17 templates/perpetrators.html:22
+msgid ""
+"Key perpetrators of enforced disappearances &amp; extrajudicial executions "
+"in Punjab, India"
+msgstr "ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਏ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੇ ਮੁੱਖ ਦੋਸ਼ੀ"
+
+#: templates/dossiers/official_detail_S0001.html:73 views.py:352
+msgid "Sumedh Singh [Saini]"
+msgstr "ਸੁਮੇਧ ਸਿੰਘ [ਸੈਣੀ]"
+
+#: templates/dossiers/official_detail_S0001.html:179
+msgid "Command History"
+msgstr "ਕਾਰਜ ਕਾਲ ਦਾ ਇਤਹਾਸ"
+
+#: templates/dossiers/official_detail_S0001.html:349
+msgid "Personal Participation"
+msgstr "ਨਿੱਜੀ ਸ਼ਮੂਲੀਅਤ"
+
+#: templates/dossiers/official_detail_S0001.html:392
+msgid "Known Promotions"
+msgstr "ਪ੍ਰਸਿੱਧ ਤਰੱਕੀਆਂ"
+
+#: templates/dossiers/official_detail_S0001.html:453
+msgid "Disciplinary Proceedings / Legal Cases"
+msgstr "ਅਨੁਸ਼ਾਸਨੀ ਪ੍ਰਕਿਰਿਆਵਾਂ/ਕਾਨੂੰਨੀ ਕਾਰਵਾਈਆਂ"
+
+#: templates/dossiers/official_detail_S0001.html:671
+msgid "Other reports and articles"
+msgstr "ਹੋਰ ਰਿਪੋਰਟਾਂ ਅਤੇ ਲੇਖ"
 
 #: templates/email.html:4
 msgid "Profile Feedback"
@@ -1086,57 +1140,6 @@ msgstr ""
 "ਅਪਰਾਧ ਭਾਰਤੀ ਸੁਰੱਖਿਆ ਬੱਲਾਂ ਨੇ ਪੰਜਾਬ ਵਿੱਚ ਕੀਤੇ ਹਨ ਉਹਨਾਂ ਦੀ ਸਚਾਈ ਨੂੰ ਦੁਨਿਆਵੀ ਪੱਧਰ ਤੇ ਪੇਸ਼ ਕੀਤਾ "
 "ਜਾਵੇ। <a href=\"/pb/about/\">ਹੋਰ ਵਧੇਰੀ ਜਾਣਕਾਰੀ ਵਾਸਤੇ ਅਗੇ ਪੜ੍ਹੋ।</a>"
 
-#: templates/official_detail.html:7
-msgid ""
-"Sumedh Singh [Saini] and enforced disappearances &amp; extrajudicial "
-"executions in Punjab, India"
-msgstr "ਸੁਮੇਧ ਸਿੰਘ [ਸੈਣੀ] ਅਤੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ"
-
-#: templates/official_detail.html:10 templates/official_detail.html:13
-#: templates/official_detail.html:19 templates/official_detail.html:27
-#: templates/perpetrators.html:9 templates/perpetrators.html:12
-#: templates/perpetrators.html:18 templates/perpetrators.html:26
-msgid ""
-"Senior officials implicated in documented cases of enforced disappearances "
-"&amp; extrajudicial executions in Punjab, India based on data collected "
-"through primary source interviews."
-msgstr ""
-"ਮੁਢਲੇ ਸਰੋਤ ਇੰਟਰਵਿਊ ਦੁਆਰਾ ਇਕੱਠੇ ਕੀਤੇ ਅੰਕੜਿਆਂ ਦੇ ਅਧਾਰ ਤੇ ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਏ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ "
-"ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਮੁੱਖ ਅਧਿਕਾਰੀ।"
-
-#: templates/official_detail.html:12 templates/official_detail.html:18
-#: templates/official_detail.html:23 templates/perpetrators.html:6
-#: templates/perpetrators.html:11 templates/perpetrators.html:17
-#: templates/perpetrators.html:22
-msgid ""
-"Key perpetrators of enforced disappearances &amp; extrajudicial executions "
-"in Punjab, India"
-msgstr "ਪੰਜਾਬ, ਭਾਰਤ ਵਿੱਚ ਹੋਏ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੇ ਮੁੱਖ ਦੋਸ਼ੀ"
-
-#: templates/official_detail.html:73 views.py:352
-msgid "Sumedh Singh [Saini]"
-msgstr "ਸੁਮੇਧ ਸਿੰਘ [ਸੈਣੀ]"
-
-#: templates/official_detail.html:179
-msgid "Command History"
-msgstr "ਕਾਰਜ ਕਾਲ ਦਾ ਇਤਹਾਸ"
-
-#: templates/official_detail.html:349
-msgid "Personal Participation"
-msgstr "ਨਿੱਜੀ ਸ਼ਮੂਲੀਅਤ"
-
-#: templates/official_detail.html:392
-msgid "Known Promotions"
-msgstr "ਪ੍ਰਸਿੱਧ ਤਰੱਕੀਆਂ"
-
-#: templates/official_detail.html:453
-msgid "Disciplinary Proceedings / Legal Cases"
-msgstr "ਅਨੁਸ਼ਾਸਨੀ ਪ੍ਰਕਿਰਿਆਵਾਂ/ਕਾਨੂੰਨੀ ਕਾਰਵਾਈਆਂ"
-
-#: templates/official_detail.html:671
-msgid "Other reports and articles"
-msgstr "ਹੋਰ ਰਿਪੋਰਟਾਂ ਅਤੇ ਲੇਖ"
-
 #: templates/overview.html:7 templates/overview.html:14
 #: templates/overview.html:20 templates/overview.html:25
 msgid ""
@@ -1181,10 +1184,6 @@ msgid "Police structure chart"
 msgstr "ਪੁਲਿਸ ਆਹੁਦੇਦਾਰਾਂ ਦੀ ਸੂਚੀ"
 
 #: templates/perpetrators.html:47
-msgid "Complete Perpetrator Profile on Sumedh Saini [Example of dossier]"
-msgstr "ਮੁੱਖ ਦੋਸ਼ੀ ਸੁਮੇਧ ਸੈਣੀ ਦੀ ਪੂਰੀ ਪ੍ਰੋਫਾਈਲ [ਪੂਰੀ ਪ੍ਰੋਫਾਈਲ ਦਾ ਨਮੂਨਾ]"
-
-#: templates/perpetrators.html:49
 msgid ""
 "This page identifies many of the senior officials who reportedly perpetrated "
 "gross human rights violations in Punjab, India. Victim profiles "
@@ -1198,6 +1197,10 @@ msgstr ""
 "ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਹਨ ਨੂੰ ਅਪਰਾਧ ਨਾਲ ਜੋੜਦੀ ਹੈ। ਇਸ ਪੰਨੇ ਨੂੰ ਓਹਨਾ "
 "ਅਧਿਕਾਰੀਆਂ ਦੀ ਪਛਾਣ ਕਰਨ ਲਈ ਅਪਡੇਟ ਕੀਤਾ ਜਾਵੇਗਾ ਜੋ ਜ਼ਬਰਨ ਲਾਪਤਾ ਅਤੇ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਵਿੱਚ "
 "ਸ਼ਾਮਲ ਹਨ ਅਤੇ ਜੋ ਆਪਣੀ ਕਮਾਂਡ/ਆਦੇਸ਼ ਅਧੀਨ ਕੀਤੇ ਗਏ ਦੁਰਵਿਵਹਾਰਾਂ ਲਈ ਜ਼ਿੰਮੇਵਾਰ ਹਨ।"
+
+#: templates/perpetrators.html:52
+msgid "complete dossier"
+msgstr "ਪੂਰੀ ਪ੍ਰੋਫਾਈਲ"
 
 #: templates/profile.html:6
 msgid "Profile of"
@@ -2005,14 +2008,10 @@ msgid "Village drain"
 msgstr "ਪਿੰਡ ਦਾ ਨਾਲਾ"
 
 #: templatetags/profiletags.py:855
-#, fuzzy
-#| msgid "Don’t know"
 msgid "Don’t Know"
 msgstr "ਪਤਾ ਨਹੀਂ"
 
 #: templatetags/profiletags.py:855
-#, fuzzy
-#| msgid "Victim’s residence"
 msgid "Victim’s Residence"
 msgstr "ਪੀੜਤ ਦਾ ਘਰ"
 
@@ -2877,6 +2876,10 @@ msgstr "ਗੁਰਇਕਬਾਲ ਸਿੰਘ ਭੁੱਲਰ"
 msgid "Dinkar Gupta"
 msgstr "ਦਿਨਕਰ ਗੁਪਤਾ"
 
+#: views.py:361
+msgid "Des Raj"
+msgstr ""
+
 #: views.py:362
 msgid "Shiv Kumar"
 msgstr "ਸ਼ਿਵ ਕੁਮਾਰ"
@@ -2989,6 +2992,14 @@ msgstr "ਡੀ.ਐਸ. ਮਾਂਗਟ"
 msgid "D.S. Mohi"
 msgstr "ਡੀ.ਐਸ. ਮੋਹੀ"
 
+#: views.py:390
+msgid "N.P.S. Aulakh"
+msgstr ""
+
+#: views.py:391
+msgid "P.S. [Paramjit Singh] Sandhu"
+msgstr ""
+
 #: views.py:392
 msgid "A.S. Bajwa"
 msgstr "ਏ.ਐਸ. ਬਾਜਵਾ"
@@ -3000,6 +3011,10 @@ msgstr "ਐਸ.ਵੀ. ਸਿੰਘ"
 #: views.py:394
 msgid "Harjit Singh Randhawa"
 msgstr "ਹਰਜੀਤ ਸਿੰਘ ਰੰਧਾਵਾ"
+
+#: views.py:395
+msgid "Sital Das"
+msgstr ""
 
 #: views.py:396
 msgid "P.S. Hura"
@@ -3037,9 +3052,401 @@ msgstr "ਪਰਮਜੀਤ ਗਿੱਲ"
 msgid "Ashok Kumar"
 msgstr "ਅਸ਼ੋਕ ਕੁਮਾਰ"
 
+#: views.py:406
+msgid "P.M. Das"
+msgstr ""
+
 #: views.py:407
 msgid "C. Pal Singh"
 msgstr "ਸੀ. ਪਾਲ ਸਿੰਘ"
+
+#: views.py:408
+msgid "Chander Shekhar"
+msgstr ""
+
+#: views.py:409
+msgid "G.S. [Gurbachan Singh] Mann"
+msgstr ""
+
+#: views.py:410
+msgid "R.S. [Rajdeep Singh] Gill"
+msgstr ""
+
+#: views.py:411
+msgid "A.A. Siddique"
+msgstr ""
+
+#: views.py:412
+msgid "Harbhajan Chand"
+msgstr ""
+
+#: views.py:413
+msgid "Jagdish Kumar"
+msgstr ""
+
+#: views.py:414
+msgid "Ishwar Chander Sharma"
+msgstr ""
+
+#: views.py:415
+msgid "Iqbal Preet Singh Sahota"
+msgstr ""
+
+#: views.py:416
+msgid "Anil Kaushik"
+msgstr ""
+
+#: views.py:417
+msgid "Chaman Lal"
+msgstr ""
+
+#: views.py:418
+msgid "Gurcharan Singh"
+msgstr ""
+
+#: views.py:419
+msgid "Sukhdev Chhina"
+msgstr ""
+
+#: views.py:420
+msgid "Bakhshi Ram"
+msgstr ""
+
+#: views.py:421
+msgid "O.P. [Om Parkash] Sharma"
+msgstr ""
+
+#: views.py:422
+msgid "R.S. Khatra"
+msgstr ""
+
+#: views.py:423
+msgid "V.K. Bhawra"
+msgstr ""
+
+#: views.py:424
+msgid "Rajan Gupta"
+msgstr ""
+
+#: views.py:425
+msgid "Sarabjit Singh"
+msgstr ""
+
+#: views.py:426
+msgid "Rohit Choudhary"
+msgstr ""
+
+#: views.py:427
+msgid "V.N. Singh"
+msgstr ""
+
+#: views.py:428
+msgid "S.K. Verma"
+msgstr ""
+
+#: views.py:429
+msgid "J.F. Ribeiro"
+msgstr ""
+
+#: views.py:430
+msgid "H.R. Chadha"
+msgstr ""
+
+#: views.py:431
+msgid "Rajpal Meena"
+msgstr ""
+
+#: views.py:432
+msgid "R.C. Singh"
+msgstr ""
+
+#: views.py:433
+msgid "K.L. Likhi"
+msgstr ""
+
+#: views.py:434
+msgid "Jagdish Mittal"
+msgstr ""
+
+#: views.py:435
+msgid "S.S. [Sukhdyal Singh] Bhullar"
+msgstr ""
+
+#: views.py:436
+msgid "Sube Singh"
+msgstr ""
+
+#: views.py:437
+msgid "Daljit Singh Bhullar"
+msgstr ""
+
+#: views.py:438 views.py:502
+msgid "R.P. Singh"
+msgstr ""
+
+#: views.py:439
+msgid "Janngi Singh"
+msgstr ""
+
+#: views.py:440
+msgid "Gian Singh"
+msgstr ""
+
+#: views.py:441
+msgid "Gurbachan Jagat"
+msgstr ""
+
+#: views.py:442
+msgid "Surjit Singh Bains"
+msgstr ""
+
+#: views.py:443
+msgid "V.K. Rajagopalan"
+msgstr ""
+
+#: views.py:444
+msgid "M.P. Singh"
+msgstr ""
+
+#: views.py:445
+msgid "S. Bhullar"
+msgstr ""
+
+#: views.py:446
+msgid "R.L. Wadhwa"
+msgstr ""
+
+#: views.py:447
+msgid "S.S. Virk"
+msgstr ""
+
+#: views.py:448
+msgid "Sudarshan Singh"
+msgstr ""
+
+#: views.py:449
+msgid "Jarnail Singh Chahal"
+msgstr ""
+
+#: views.py:450
+msgid "G.S. Aujla"
+msgstr ""
+
+#: views.py:451
+msgid "Gurdial Singh"
+msgstr ""
+
+#: views.py:452
+msgid "S.S. Nahar"
+msgstr ""
+
+#: views.py:453
+msgid "S.R. Sharma"
+msgstr ""
+
+#: views.py:454
+msgid "Devinder Singh"
+msgstr ""
+
+#: views.py:455
+msgid "H.K.L. Dewan"
+msgstr ""
+
+#: views.py:456
+msgid "S.C. Jain"
+msgstr ""
+
+#: views.py:457
+msgid "Joginder Singh"
+msgstr ""
+
+#: views.py:458
+msgid "A.K. Sarbhadhikari"
+msgstr ""
+
+#: views.py:459
+msgid "R.P. Joshi"
+msgstr ""
+
+#: views.py:460
+msgid "P.G. Harlankar"
+msgstr ""
+
+#: views.py:461
+msgid "Parkash Singh"
+msgstr ""
+
+#: views.py:462
+msgid "V.K. Sirdhi"
+msgstr ""
+
+#: views.py:463
+msgid "Arvinder Singh Brar"
+msgstr ""
+
+#: views.py:464
+msgid "Gurpreet Singh Dhillon"
+msgstr ""
+
+#: views.py:465
+msgid "Balkar Singh"
+msgstr ""
+
+#: views.py:466
+msgid "H.P. Bhatnagar"
+msgstr ""
+
+#: views.py:467
+msgid "T. Anthachari"
+msgstr ""
+
+#: views.py:468
+msgid "P.N. Ramakrishnan"
+msgstr ""
+
+#: views.py:469
+msgid "K.R.K. Prasad"
+msgstr ""
+
+#: views.py:470
+msgid "B.S. Bisht"
+msgstr ""
+
+#: views.py:471
+msgid "Arjun Singh"
+msgstr ""
+
+#: views.py:472
+msgid "S.M. Sharma"
+msgstr ""
+
+#: views.py:473
+msgid "Ashok Patel"
+msgstr ""
+
+#: views.py:474
+msgid "Beant Singh"
+msgstr ""
+
+#: views.py:475
+msgid "R.K. Mehta"
+msgstr ""
+
+#: views.py:476
+msgid "B.S. Tyagi"
+msgstr ""
+
+#: views.py:477
+msgid "B.S. Sandhu"
+msgstr ""
+
+#: views.py:478
+msgid "A.S. Atwal"
+msgstr ""
+
+#: views.py:479
+msgid "G.S. Yadav"
+msgstr ""
+
+#: views.py:480
+msgid "B.S. Suhag"
+msgstr ""
+
+#: views.py:481
+msgid "Y.S. Bhatti"
+msgstr ""
+
+#: views.py:482
+msgid "Udaibir Singh"
+msgstr ""
+
+#: views.py:483
+msgid "Sunith Francis Rodrigues"
+msgstr ""
+
+#: views.py:484
+msgid "V.K. Nayar"
+msgstr ""
+
+#: views.py:485
+msgid "Parodh Kumar"
+msgstr ""
+
+#: views.py:486
+msgid "Harinder Singh"
+msgstr ""
+
+#: views.py:487
+msgid "N.S. Gill"
+msgstr ""
+
+#: views.py:488
+msgid "B.P. Nawani"
+msgstr ""
+
+#: views.py:489
+msgid "Gurdarshan Singh"
+msgstr ""
+
+#: views.py:490
+msgid "A.K. Mittal"
+msgstr ""
+
+#: views.py:491
+msgid "Ramesh  Chander"
+msgstr ""
+
+#: views.py:492
+msgid "U.K. Bhavra"
+msgstr ""
+
+#: views.py:493
+msgid "Shashi Kant"
+msgstr ""
+
+#: views.py:494
+msgid "B.S. Gill"
+msgstr ""
+
+#: views.py:495
+msgid "Sudharshan Likhi"
+msgstr ""
+
+#: views.py:496
+msgid "J.P. Mohla"
+msgstr ""
+
+#: views.py:497
+msgid "Swarn Singh"
+msgstr ""
+
+#: views.py:498
+msgid "Ravinderpal Singh"
+msgstr ""
+
+#: views.py:499
+msgid "S.N. Mathur"
+msgstr ""
+
+#: views.py:500
+msgid "B.T. Pandit"
+msgstr ""
+
+#: views.py:501
+msgid "A.C. Sharma"
+msgstr ""
+
+#: views.py:503
+msgid "Barjinder Kumar"
+msgstr ""
+
+#: views.py:504
+msgid "U.K. Chaudhury"
+msgstr ""
+
+#: views.py:505
+msgid "A.S. Shaheed"
+msgstr ""
 
 #: views.py:506
 msgid "Sita Ram Rattan"
@@ -3048,3 +3455,6 @@ msgstr "ਸੀਤਾ ਰਾਸ ਰਤਨ"
 #: views.py:507
 msgid "Sutanter Pal Singh (S.P.S.) Basra"
 msgstr "ਸੁਤੰਤਰ ਪਾਲ ਸਿੰਘ [ਐਸ. ਪੀ. ਐਸ.] ਬਸਰਾ"
+
+#~ msgid "Complete Perpetrator Profile on Sumedh Saini [Example of dossier]"
+#~ msgstr "ਮੁੱਖ ਦੋਸ਼ੀ ਸੁਮੇਧ ਸੈਣੀ ਦੀ ਪੂਰੀ ਪ੍ਰੋਫਾਈਲ [ਪੂਰੀ ਪ੍ਰੋਫਾਈਲ ਦਾ ਨਮੂਨਾ]"
