@@ -537,6 +537,12 @@ def perpetrators(request):
 
 
 @cache_page(60 * 60)
+def robots(request):
+    return render(request, "robots.txt")
+
+
+
+@cache_page(60 * 60)
 def official(request, slug=None):
     name =  officials.get(slug)
 
