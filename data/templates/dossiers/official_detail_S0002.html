@@ -44,7 +44,7 @@
       margin: 0 1rem;
     }
     h1 { margin-bottom: 1rem; }
-    #timeline { height: 170px; }
+    #timeline { height: 450px; }
     #timeline circle { fill: #ca0; cursor: pointer; }
     .tick text:hover { fill: #ccc; }
     .brush { display: none; }
@@ -168,7 +168,7 @@
                 profiles.push(thisProfile);
               }
             } // end for i in data
-            html += "</ul><br>";
+            html += "</ul>";
 
             $(selector).html(html);
           }
@@ -196,10 +196,11 @@
         <p><strong>SSP Ropar</strong>, October 31, 1983 - November 14, 1985</p>
       {% endif %}
         <div id="d1"></div>
+        <br>
       </li>      
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'vid' '00670700' '1983-10-31' '1985-11-14' %}, '#d1');
+      makeList( {% dossier_command 'district' 0307 '1983-10-31' '1985-11-14' %}, '#d1');
       </script>
       {% endautoescape %}    
       
@@ -212,11 +213,12 @@
       {% else %}
         <p><strong>SSP Jalandhar</strong>, November 15, 1985 - June 30, 1986</p>
       {% endif %}
-        <div id="d1"></div>
+        <div id="d2"></div>
+        <br>
       </li>      
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' '0304' '1985-11-15' '1986-06-30' %}, '#d1');
+      makeList( {% dossier_command 'district' 0304 '1985-11-15' '1986-06-30' %}, '#d2');
       </script>
       {% endautoescape %}    
       
@@ -229,11 +231,12 @@
       {% else %}
         <p><strong>SSP Amritsar</strong>, July 1, 1986 - April 19, 1988<br>(The IPS List from 1987 and the Amritsar police website vary by one week on both the starting and ending dates. The dates provided by the Amritsar police are used here.)</p>
       {% endif %}
-        <div id="d2"></div>
+        <div id="d3"></div>
+        <br>
       </li>      
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' '0302' '1986-07-01' '1988-04-19' %}, '#d2');
+      makeList( {% dossier_command 'district' '0302' '1986-07-01' '1988-04-19' %}, '#d3');
       </script>
       {% endautoescape %}    
       
@@ -248,31 +251,38 @@
       </li>
 
 
+
+      <li class="stats-block">
       {% if request.LANGUAGE_CODE == 'pb' %}
         <p><strong>SSP Jalandhar</strong>, April 27, 1988 - most likely May 21, 1989</p>
       {% else %}
         <p><strong>SSP Jalandhar</strong>, April 27, 1988 - most likely May 21, 1989</p>
       {% endif %}
-        <div id="d3"></div>
+        <div id="d4"></div>
+        <br>
       </li>      
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' '0304' '1988-04-27' '1989-05-21' %}, '#d3');
+      makeList( {% dossier_command 'district' '0304' '1988-04-27' '1989-05-21' %}, '#d4');
       </script>
       {% endautoescape %}    
 
 
 
+      <li class="stats-block">
       {% if request.LANGUAGE_CODE == 'pb' %}
-        <p>Most likely <strong>DIG, Border Range</strong>, May 27, 1989 - November 14 ,1989<br>(On May 21, 1989, the Tribune reported that Alam took over as DIG Jalandhar Range on May 21, 1989, but then subsequent articles stated he was DIG Border Range as of May 27. See, e.g., <em>May 27, 1989, p. 8, “Areas Changed”.</em> Because this posting falls in the middle of the year, it is not reported in the IPS Civil List. Further, the Punjab Police website does not provide information regarding its historical postings of DIG.)</p>
+        <p>Most likely <strong>DIG, Border Range</strong>, May 27, 1989 - November 14,1989<br>(On May 21, 1989, the Tribune reported that Alam took over as DIG Jalandhar Range on May 21, 1989, but then subsequent articles stated he was DIG Border Range as of May 27. See, e.g., <em>May 27, 1989, p. 8, “Areas Changed”.</em> Because this posting falls in the middle of the year, it is not reported in the IPS Civil List. Further, the Punjab Police website does not provide information regarding its historical postings of DIG.)</p>
       {% else %}
-        <p>Most likely <strong>DIG, Border Range</strong>, May 27, 1989 - November 14 ,1989<br>(On May 21, 1989, the Tribune reported that Alam took over as DIG Jalandhar Range on May 21, 1989, but then subsequent articles stated he was DIG Border Range as of May 27. See, e.g., <em>May 27, 1989, p. 8, “Areas Changed”.</em> Because this posting falls in the middle of the year, it is not reported in the IPS Civil List. Further, the Punjab Police website does not provide information regarding its historical postings of DIG.)</p>
+        <p>Most likely <strong>DIG, Border Range</strong>, May 27, 1989 - November 14,1989<br>(On May 21, 1989, the Tribune reported that Alam took over as DIG Jalandhar Range on May 21, 1989, but then subsequent articles stated he was DIG Border Range as of May 27. See, e.g., <em>May 27, 1989, p. 8, “Areas Changed”.</em> Because this posting falls in the middle of the year, it is not reported in the IPS Civil List. Further, the Punjab Police website does not provide information regarding its historical postings of DIG.)</p>
       {% endif %}
-        <div id="d4"></div>
+        <div id="d5"></div>
+        <div id="d6"></div>
+        <br>
       </li>      
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' '0304' '1989-05-27' '1989-11-14' %}, '#d4');
+      makeList( {% dossier_command 'district' '0301' '1989-05-27' '1989-11-14' %}, '#d5');
+      makeList( {% dossier_command 'district' '0302' '1989-05-27' '1989-11-14' %}, '#d6');
       </script>
       {% endautoescape %}    
 
@@ -351,30 +361,6 @@
         <strong>ਇੰਸਪੈਕਟਰ ਜਨਰਲ ਆਫ ਪੁਲਿਸ</strong>, ੫ ਸਤੰਬਰ ੨੦੦੫, ਜਾਣਕਾਰੀ ਮੁਤਾਬਕ ਆਰਥਿਕ ਅਪਰਾਧ ਵਿੰਗ ਦਾ ਆਈ.ਜੀ.
       {% else %}
         <strong>Inspector General of Police</strong>, on September 5, 2005, reported to currently be IG, Economic Offences
-      {% endif %}
-      <br><br></li>
-
-      <li>
-      {% if request.LANGUAGE_CODE == 'pb' %}
-        <strong>ਇੰਸਪੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ</strong>, ਵਿਜੀਲੈਂਸ, ੮ ਮਾਰਚ ੨੦੦੭ 
-      {% else %}
-        <strong>Inspector General of Police</strong>, Vigilance, March 8, 2007
-      {% endif %}
-      <br><br></li>
-
-      <li>
-      {% if request.LANGUAGE_CODE == 'pb' %}
-        <strong>ਵਧੀਕ ਡਾਇਰੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ ਅਤੇ ਚੀਫ ਡਾਇਰੈਕਟਰ, ਵਿਜੀਲੈਂਸ ਬਿਊਰੋ, ਪੰਜਾਬ, ਚੰਡੀਗੜ੍ਹ</strong>, ੧੬ ਫਰਵਰੀ ੨੦੦੯
-      {% else %}
-        <strong>Additional Director General of Police-Cum-Chief Dir., Vigilance Bureau, Pb, Chg.</strong>, February 16, 2009
-      {% endif %}
-      <br><br></li>
-
-      <li>
-      {% if request.LANGUAGE_CODE == 'pb' %}
-        <strong>ਡਾਇਰੈਕਟਰ ਜਨਰਲ ਆਫ਼ ਪੁਲਿਸ, ਪੰਜਾਬ</strong>, ੧੫ ਮਾਰਚ ੨੦੧੨ ਤੋਂ ੨੫ ਅਕਤੂਬਰ ੨੦੧੫
-      {% else %}
-        <strong>Director General of Police, Punjab</strong>, March 15, 2012 - October 25, 2015
       {% endif %}
       <br><br></li>
 

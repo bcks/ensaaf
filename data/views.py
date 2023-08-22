@@ -521,7 +521,7 @@ def seniorofficial(value):
 
 
 
-#@cache_page(60 * 60)
+@cache_page(60 * 60)
 def perpetrators(request):
     
     s_officials = sorted(officials.items(), key=operator.itemgetter(1))    
