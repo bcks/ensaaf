@@ -910,9 +910,9 @@ def dossier_command(geo, slug, start, end):
 
   if geo == 'vid':
     all = Data.objects.filter( Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
-      village_id=slug).order_by('record_id') \
+      village_id=slug, victim_arrest_location=2).order_by('record_id') \
       | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
-      village_id=slug).order_by('record_id')
+      village_id=slug, victim_arrest_location=2).order_by('record_id')
 
     vids_for_mysql_regex = slug
     
@@ -922,9 +922,9 @@ def dossier_command(geo, slug, start, end):
     villages = Villages.objects.filter( **{geo_id: slug} ).values('vid','district','district_id','tehsil')
 
     all = Data.objects.filter( Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
-      village_id__in=Subquery(villages.values('vid'))).order_by('record_id') \
+      village_id__in=Subquery(villages.values('vid')), victim_arrest_location=2).order_by('record_id') \
       | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
-      village_id__in=Subquery(villages.values('vid'))).order_by('record_id')
+      village_id__in=Subquery(villages.values('vid')), victim_arrest_location=2).order_by('record_id')
 
     vids = Villages.objects.filter( **{geo_id: slug} ).values_list('vid', flat=True)
     seperator = '|'
@@ -945,9 +945,11 @@ def dossier_command(geo, slug, start, end):
     Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_2=1) | \
     Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_3=1) | \
     Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_4=1) | \
+    Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_6=1) | \
     Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_2=1) | \
     Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_3=1) | \
-    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_4=1) \
+    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_4=1) | \
+    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_6=1) \
     )
 
   return serializers.serialize("json", all, fields=('victim_name','victim_name_pb','village_id','village_name','village_name_pb','timeline','photo_vic_fn'))
