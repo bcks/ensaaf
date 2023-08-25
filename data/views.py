@@ -945,11 +945,9 @@ def dossier_command(geo, slug, start, end):
     Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_2=1) | \
     Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_3=1) | \
     Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_4=1) | \
-    Q(arrest_security_type_1 = 0, arrest_security_type_5=0, arrest_security_type_6=1) | \
     Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_2=1) | \
     Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_3=1) | \
-    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_4=1) | \
-    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_6=1) \
+    Q(killing_securityforcestype_1=0, killing_securityforcestype_5=0, killing_securityforcestype_4=1) \
     )
 
   return serializers.serialize("json", all, fields=('victim_name','victim_name_pb','village_id','village_name','village_name_pb','timeline','photo_vic_fn'))
