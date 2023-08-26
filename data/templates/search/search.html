@@ -59,7 +59,7 @@
       {% for victim in page.object_list %}   
           {% if victim.record_id %}
           
-                <li><a href="{% url 'profile' victim.record_id %}"{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pb %}{{victim.victim_name_pb}}{% else %}{{victim.victim_name}}{% endif %}</a>, 
+                <li><a href="{% url 'profile' victim.record_id %}">{% if request.LANGUAGE_CODE == 'pb' and victim.victim_name_pb %}{{victim.victim_name_pb}}{% else %}{{victim.victim_name}}{% endif %}</a>, 
                 {% if o.village_id|add:"0" > 0 and village.tehsil%}
                   <span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{o.village_name_pb}}{% else %}{{o.village_name}}{% endif %},</a></span>
                   <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
