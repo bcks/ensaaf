@@ -13,6 +13,7 @@ urlpatterns = i18n_patterns(
     path('', map, name='map'),
     path('all_profiles/<slug:slug>/', all_profiles, name="all_profiles"),
     path('map_ajax/', map_ajax, name="map_ajax"),
+    path('robots.txt', robots, name="robots"),
     path('email/', emailView, name='email'),
     path('profiles/', profiles, name="profiles"),
     path('perpetrators/', perpetrators, name="perpetrators"),
