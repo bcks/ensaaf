@@ -576,8 +576,24 @@ def official(request, slug=None):
 
 @cache_page(60 * 60)
 def official_detail(request, slug=None):
+
+    district = Villages.objects.filter(vid=OuterRef('village_id')).values('district')
+    tehsil = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil')
+    tehsil_id = Villages.objects.filter(vid=OuterRef('village_id')).values('tehsil_id')
+    village = Villages.objects.filter(vid=OuterRef('village_id')).values('village_name')
+
+    soas = SecurityArrest.objects.filter(soa_code=slug).values_list('record_id', flat=True)
+    soks = SecurityKilled.objects.filter(sok_code=slug).values_list('record_id', flat=True)
+    records = list(soas) + list(soks)
+        
+    victims = Data.objects.filter( record_id__in=records )\
+      .annotate( village_name_checked=Subquery(village), district=Subquery(district), tehsil=Subquery(tehsil), tehsil_id=Subquery(tehsil_id) )\
+      .order_by(F('district').asc(nulls_last=True),'tehsil','victim_name')
+
+    stats = calculate_stats(victims)
+
     if slug in so_has_detail:
-      return render(request, "dossiers/official_detail_" + slug + ".html" )
+      return render(request, "dossiers/official_detail_" + slug + ".html", {"stats": stats} )
     else:
       return messages.warning(request,"Official %s was not found"%id)
 

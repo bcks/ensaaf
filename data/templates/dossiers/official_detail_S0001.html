@@ -697,6 +697,17 @@
 
 
 
+      <hr>
+    
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <h5>ਕੇਸਾਂ ਦੇ ਮੁੱਖ ਅੰਕੜੇ ਜੋ {% trans 'Sumedh Singh [Saini]' %} ਵੱਲ ਸਿੱਧਾ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ:</h5>
+      {% else %}
+        <h5>Key statistics of cases directly implicating Sumedh Singh [Saini]:</h5>
+      {% endif %}
+    
+        {% include 'stats.html' %}
+
+
     </div>
 
   </div>
