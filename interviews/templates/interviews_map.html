@@ -307,14 +307,12 @@ var area = d3.scalePow().exponent(0.5).domain([0, 100]).range([1, 15]);
 function updateMarkers(markers, points) {
         // update markers
 
-        var markers_array = [];
 
         _.forEach(markers, function(value, key) {
           if ( d = _.find(points, { 'id': key }) ) {
 
               d.size = villages[d.id].length ;
               
-              markers[key]._icon.classList.remove('hidden');
 
               var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + numberWithCommas(d.size);
               {% if request.LANGUAGE_CODE == 'pb' %}
@@ -336,9 +334,12 @@ function updateMarkers(markers, points) {
               });
 
               console.log('SHOW', markers[key].options.icon.options.url);
+              markers[key]._icon.classList.remove('hidden');
 
-              markers_array.push( markers[key] );
+//              markers_array.push( markers[key] );
           } else {
+
+              console.log('HIDE', markers[key].options.icon.options.url);
 
             markers[key]._icon.classList.add('hidden');
             markers[key].unbindPopup();
@@ -346,7 +347,7 @@ function updateMarkers(markers, points) {
           }
         });
 
-        return markers_array;
+        return;
 }
 
 
@@ -368,25 +369,23 @@ function updateMap(start, end) {
       }
     }
     
-    // if markers, remove all
-    for(var i = 0; i < this.markers.length; i++){
-      this.map.removeLayer(this.markers[i]);
+    
+    if (! Object.keys(markers).length ) {
+      // add points to map
+      _.forEach(points, function(d) {
+        if (d.id !== '0') {
+
+          var imageIcon = L.icon({
+              iconUrl:  '/static/images/play-button.png',
+              iconSize:  [25,25],
+              opacity: 1,
+              url: '/video/' + villages[d.id][0].uid,
+          });
+          markers[String(d.id)] = L.marker([d.coord[1], d.coord[0] ], {icon: imageIcon}).addTo(mymap);
+
+        }
+      }); // end for points
     }
-
-    // add points to map
-    _.forEach(points, function(d) {
-      if (d.id !== '0') {
-
-        var imageIcon = L.icon({
-            iconUrl:  '/static/images/play-button.png',
-            iconSize:  [25,25],
-            opacity: 1,
-            url: '/video/' + villages[d.id][0].uid,
-        });
-        markers[String(d.id)] = L.marker([d.coord[1], d.coord[0] ], {icon: imageIcon}).addTo(mymap);
-
-      }
-    }); // end for points
 
     updateMarkers(markers, points);
 
