@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <script src="./jquery.js"></script>
+  <script src="./papaparse.min.js"></script>
+</head>
+<body>
+
+<div id="status"><b>Process</b><br></div>
+
+<script>
+
+
+let villages;
+let data;
+let total;
+
+let $status = document.getElementById('status');
+
+let output = [];
+let districts_used = [];
+
+
+$(document).ready(function() {
+  getVillages();
+});
+
+
+function getVillages() {
+    $status.innerHTML += 'getVillages<br>';
+    $.ajax({
+        type: "GET",
+        url: './villages.csv',
+        dataType: "text",
+        success: function(data) {
+          processVillages(data)
+        }
+     });
+}
+
+function processVillages(d) {
+  $status.innerHTML += 'processVillages<br>';
+  Papa.parse(d, {
+    header: true,
+    worker: true,
+    complete: function(results) {
+      villages = results.data;
+      console.log("Villages:", villages);
+      getData();
+    }
+  });
+}
+
+function getData() {
+    $status.innerHTML += 'getData<br>';
+    $.ajax({
+        type: "GET",
+        url: './data.csv',
+        dataType: "text",
+        success: function(data) {
+          processData(data);
+        }
+     });
+}
+
+function processData(d) {
+  $status.innerHTML += 'processData<br>';
+  Papa.parse(d, {
+    header: true,
+    worker: true,
+    complete: function(results) {
+      data = results.data;
+      console.log("Data:", data);
+      total = Math.round(data.length * .01);
+      console.log(total);
+      getDistrict();      
+    }
+  });
+}
+
+
+function shuffle(array) {
+  $status.innerHTML += 'shuffle array<br>';
+  let currentIndex = array.length,  randomIndex;
+  while (currentIndex > 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex], array[currentIndex]];
+  }
+  return array;
+}
+
+function getDistrict() {
+  $status.innerHTML += 'assign districts from victim village IDs<br>';
+  for (var v of villages) {
+    for (var d of data) {
+      if (v.vid == d.village_id) {
+        d.district_id = v.district_id;
+        break;
+      }
+    }
+  }
+  shuffle(data);
+  pluckByDistrict()
+}
+
+function pluckByDistrict() {
+  $status.innerHTML += 'pluck one from each district<br>';
+  let i = 0;
+  for (var d of data) {
+    if (d.district_id !== "NULL")  {
+      if (! districts_used.includes(d.district_id) ) {
+        output.push(d);
+        districts_used.push(d.district_id);
+        data.splice(i, 1);
+      }    
+    }
+    i++;
+  }
+  console.log(districts_used);
+  console.log(output);
+  
+  $status.innerHTML += 'pluck random remaining<br>';
+  
+  for (var n = 0;  output.length < total; n++) {
+    output.push( data.pop() );  
+  }  
+  saveAs( Papa.unparse(output), "sample.csv");
+}
+
+function saveAs(text, filename){
+  $status.innerHTML += 'download CSV<br>';
+  var pom = document.createElement('a');
+  pom.setAttribute('href', 'data:text/plain;charset=urf-8,'+encodeURIComponent(text));
+  pom.setAttribute('download', filename);
+  pom.click();
+};
+
+</script>
+</body>
+</html>
