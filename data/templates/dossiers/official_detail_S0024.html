@@ -44,7 +44,7 @@
       margin: 0 1rem;
     }
     h1 { margin-bottom: 1rem; }
-    #timeline { height: 400px; }
+    #timeline { height: 200px; }
     #timeline circle { fill: #ca0; cursor: pointer; }
     .tick text:hover { fill: #ccc; }
     .brush { display: none; }
@@ -193,12 +193,14 @@
       {% else %}
         <p><strong>SSP Batala</strong>, September 13, 1989 - April 30, 1990</p>
       {% endif %}
+        <div id="d0"></div>
         <div id="d1"></div>
         <br>
       </li>      
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'tehsil' 03010004 '1989-09-13' '1990-04-30' %}, '#d1');
+      makeList( {% dossier_command 'tehsil' 03010004 '1989-09-13' '1990-04-30' %}, '#d0');
+      makeList( {% dossier_command 'tehsil' 03010005 '1989-09-13' '1990-04-30' %}, '#d1');
       </script>
       {% endautoescape %}    
       
@@ -210,12 +212,16 @@
       {% else %}
         <p><strong>SSP Gurdaspur</strong>, September 21, 1990 - October 5, 1993<br>(The Punjabi daily Ajit reported on September 19, 1990 that Goel was currently serving as Assistant Inspector General (Punjab Armed Police). Because this posting fell in the middle of the year, it was not reported in the IPS Civil List. That position would explain the gap between May and September 1990.)</p>
       {% endif %}
-        <div id="d2"></div>
+        <div id="d20"></div>
+        <div id="d21"></div>
+        <div id="d22"></div>
         <br>
       </li>      
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' 0301 '1990-09-21' '1993-10-05' %}, '#d2');
+      makeList( {% dossier_command 'tehsil' 03010001 '1990-09-21' '1993-10-05' %}, '#d20');
+      makeList( {% dossier_command 'tehsil' 03010002 '1990-09-21' '1993-10-05' %}, '#d21');
+      makeList( {% dossier_command 'tehsil' 03010003 '1990-09-21' '1993-10-05' %}, '#d23');
       </script>
       {% endautoescape %}    
       
