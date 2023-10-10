@@ -219,12 +219,14 @@
       {% else %}
         <p><strong>SSP Batala</strong>, April 19, 1988 – July 31, 1988</p>
       {% endif %}
-        <div id="d2"></div>
+        <div id="d20"></div>
+        <div id="d21"></div>
       </li>
 
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'tehsil' 3010004 '1988-04-19' '1988-07-31' %}, '#d2');
+      makeList( {% dossier_command 'tehsil' 3010004 '1988-04-19' '1988-07-31' %}, '#d20');
+      makeList( {% dossier_command 'tehsil' 3010005 '1988-04-19' '1988-07-31' %}, '#d21');
       </script>
       {% endautoescape %}    
 
