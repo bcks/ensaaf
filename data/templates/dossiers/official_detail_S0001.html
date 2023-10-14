@@ -339,13 +339,15 @@
       {% else %}
         <p><strong>SSP/Police Commissioner Ludhiana</strong>, September 30, 1993  – June 19, 1994 (The IPS Civil List describes this posting as SSP, whereas the <a href="https://data.ensaaf.org/static/files/sumedh_saini_police_commissioner_19930929.pdf"><em>Tribune</em> reported</a> this position as the newly created Commissioner of Police of Ludhiana. The Ludhiana police website lists a non-cadre Punjab Police Service official as SSP.)</p>
       {% endif %}
-        <div id="d7"></div>
+        <div id="d70"></div>
+        <div id="d71"></div>
         <br>
       </li>      
 
       {% autoescape off %}
       <script>
-      makeList( {% dossier_command 'district' 309 '1993-09-30' '1994-06-19' %}, '#d7');
+      makeList( {% dossier_command 'tehsil' 03090004 '1993-09-30' '1994-06-19' %}, '#d70');
+      makeList( {% dossier_command 'tehsil' 03090005 '1993-09-30' '1994-06-19' %}, '#d71');
       </script>
       {% endautoescape %}
 
