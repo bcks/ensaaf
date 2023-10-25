@@ -943,10 +943,16 @@ def dossier_command(geo, slug, start, end):
 
     villages = Villages.objects.filter( **{geo_id: slug} ).values('vid','district','district_id','tehsil')
 
-    all = Data.objects.filter( Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
-      village_id__in=Subquery(villages.values('vid')), victim_arrest_location=2).order_by('record_id') \
-      | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
-      village_id__in=Subquery(villages.values('vid')), victim_arrest_location=2).order_by('record_id')
+    all = Data.objects.filter( \
+        Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
+        village_id__in=Subquery(villages.values('vid')), \
+        victim_arrest_location=2).order_by('record_id'
+      ) | \
+      Data.objects.filter( \
+        Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
+        village_id__in=Subquery(villages.values('vid')), \
+        victim_arrest_location=2 \
+      ).order_by('record_id')
 
     vids = Villages.objects.filter( **{geo_id: slug} ).values_list('vid', flat=True)
     seperator = '|'
@@ -955,10 +961,15 @@ def dossier_command(geo, slug, start, end):
 
   if vids_for_mysql_regex:
 
-    also = Data.objects.filter(  Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
-      Q(arrest_security_locality__iregex=vids_for_mysql_regex) | Q(killing_securityforces_lcl__iregex=vids_for_mysql_regex) ) \
-      | Data.objects.filter(  Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
-      Q(arrest_security_locality__iregex=vids_for_mysql_regex) | Q(killing_securityforces_lcl__iregex=vids_for_mysql_regex) ) 
+    also = Data.objects.filter( \
+        Q(timeline_start__gte=start), Q(timeline_end__lte=end), \
+        Q(arrest_security_locality__iregex=vids_for_mysql_regex) | \
+        Q(killing_securityforces_lcl__iregex=vids_for_mysql_regex) \
+      ) | \
+      Data.objects.filter(\
+         Q(arrest_start__gte=start), Q(arrest_end__lte=end), \
+         Q(arrest_security_locality__iregex=vids_for_mysql_regex) | \
+         Q(killing_securityforces_lcl__iregex=vids_for_mysql_regex) ) 
 
     all = all | also
 
