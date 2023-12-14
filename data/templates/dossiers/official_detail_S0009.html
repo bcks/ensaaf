@@ -1,0 +1,934 @@
+{% extends "../base.html" %}
+
+{% load i18n %}
+{% load humanize %}
+{% load profiletags %}
+
+{% block title %}{% trans 'Dinkar Gupta and enforced disappearances &amp; extrajudicial executions in Punjab, India' %}{% endblock %}
+
+{% block head %}
+  <meta name="description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
+
+  <meta itemprop="name" content="{% trans 'Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India' %}" />
+  <meta itemprop="description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
+  <meta itemprop="image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@ensaaf" />
+  <meta name="twitter:title" content="{% trans 'Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India' %}" />
+  <meta name="twitter:description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
+  <meta name="twitter:creator" content="@ensaaf" />
+  <meta name="twitter:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+
+  <meta property="og:title" content="{% trans 'Key perpetrators of enforced disappearances &amp; extrajudicial executions in Punjab, India' %}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://data.ensaaf.org" />
+  <meta property="og:image" content="https://data.ensaaf.org/static/images/social-share.jpg" />
+  <meta property="og:description" content="{% trans 'Senior officials implicated in documented cases of enforced disappearances &amp; extrajudicial executions in Punjab, India based on data collected through primary source interviews.' %}" />
+  <meta property="og:site_name" content="{% trans 'Mapping Crimes Against Humanity: Enforced Disappearances &amp; Extrajudicial Executions in Punjab, India' %}" />
+
+
+  <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+  <link rel="stylesheet" href="/static/css/carto.css" />
+  <script type="text/javascript" src="/static/js/carto.js"></script>
+  <script type="text/javascript" src="/static/js/leaflet.zoomhome.min.js"></script>
+  <script type="text/javascript" src="/static/js/leaflet.minimap.min.js"></script>
+
+
+
+  <style>
+    #mapid {
+      height:500px;
+      width: calc(100% - 2rem);
+      background-color: #000;
+      margin: 0 1rem;
+    }
+    h1 { margin-bottom: 1rem; }
+    #timeline { height: 200px; }
+    #timeline circle { fill: #ca0; cursor: pointer; }
+    .tick text:hover { fill: #ccc; }
+    .brush { display: none; }
+    .d3-tip {
+      background-color: #fff;
+      color: #999;
+      font-weight: 400;
+      font-family: "Helvetica Neue", Helvetica, Arial;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    .d3-tip:after { color: #fff; }
+    .thumb { width:calc(50% - 2px); float:right; border: 1px solid #ddd;}
+  </style>
+  <script type="text/javascript" src="/static/js/d3.v4.min.js"></script>
+  <script type="text/javascript" src="/static/js/lodash.min.js"></script>
+  <script type="text/javascript" src="/static/js/d3-tip.js"></script>
+
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="row">
+    <div class="col-12">  
+        <h1>{% trans 'Dinkar Gupta' %}</h1>
+    </div>
+  </div>
+</div><!-- end container -->
+
+ 
+<div id="map-over">
+  <div class="container">    
+    {% if request.LANGUAGE_CODE == 'pb' %}
+      <h4>ਘੱਟੋ ਘੱਟ <span id="count"></span> ਜ਼ਬਰਨ ਲਾਪਤਾ/ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆਵਾਂ ਦੀ ਗਿਣਤੀ</h4>
+    {% else %}
+      <h4>At least <span id="count"></span> Enforced Disappearances/Extrajudicial Executions</h4>
+    {% endif %}  
+  </div>
+</div>
+<div id="mapid"></div>
+<div id="timeline"></div>
+
+
+<div class="container">
+
+  <div class="row">
+      <div class="col-sm-9">
+    {% if request.LANGUAGE_CODE == 'pb' %}
+      <p>The dossier of Dinkar Gupta visualizes cases of enforced disappearances and extrajudicial executions reportedly committed under his command during his tenure as Senior Superintendent of Police (SSP) in two jurisdictions of Punjab. </p>
+      <p>The number of cases presented here is an undercounting of the likely cases perpetrated under his command. These cases draw from Ensaaf’s interviews with family members of the victims and other witnesses, and present the information provided by them. This visualization excludes all cases where complete incident dates or locations were not available. Without this information, it is difficult to ascertain whether those incidents occurred under Gupta’s command. This data also excludes cases of individuals who were arbitrarily detained or tortured by Gupta or officials under his command.</p>
+      <p>We will update the cases of enforced disappearances and extrajudicial executions reported under his command, as we receive more information. To a large extent, however, this information and the complete truth rests with the government of India.</p>
+      <p>Despite his role in perpetrating crimes against humanity, Gupta served as Director General of Police in Punjab, and currently serves as the Director General of India's counter-terrorism law enforcement agency, National Investigation Agency. His retirement is currently set for March 31, 2024. The Indian government has given him multiple awards and promotions throughout his career.</p>
+    {% else %}    
+      <p>The dossier of Dinkar Gupta visualizes cases of enforced disappearances and extrajudicial executions reportedly committed under his command during his tenure as Senior Superintendent of Police (SSP) in two jurisdictions of Punjab. </p>
+      <p>The number of cases presented here is an undercounting of the likely cases perpetrated under his command. These cases draw from Ensaaf’s interviews with family members of the victims and other witnesses, and present the information provided by them. This visualization excludes all cases where complete incident dates or locations were not available. Without this information, it is difficult to ascertain whether those incidents occurred under Gupta’s command. This data also excludes cases of individuals who were arbitrarily detained or tortured by Gupta or officials under his command.</p>
+      <p>We will update the cases of enforced disappearances and extrajudicial executions reported under his command, as we receive more information. To a large extent, however, this information and the complete truth rests with the government of India.</p>
+      <p>Despite his role in perpetrating crimes against humanity, Gupta served as Director General of Police in Punjab, and currently serves as the Director General of India's counter-terrorism law enforcement agency, National Investigation Agency. His retirement is currently set for March 31, 2024. The Indian government has given him multiple awards and promotions throughout his career.</p>
+    {% endif %}
+      </div>
+      <div class="col-sm-3">
+      <!--
+        <p><img src="https://data.ensaaf.org/static/files/saini/sumedh-saini.jpg" width="100%" height="auto" vspace="5" style="border:1px solid #ddd;"></p>
+      -->
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">  
+        <hr>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-6">
+
+
+      <script>
+  
+          var timeCapsule = [];
+          var profiles = [];
+
+          function makeList(data, selector) {
+            var html = "<ul>";
+            for (var i in data) {
+
+              {% if request.LANGUAGE_CODE == 'pb' %}
+                if (data[i].fields['victim_name_pb'] && data[i].fields['victim_name_pb'] != ' ') { data[i].fields['victim_name'] = data[i].fields['victim_name_pb'] }
+                data[i].fields['village_name'] = data[i].fields['village_name_pb'];
+              {% endif %}
+
+              html += '<li><a href="{% lang %}/profile/' + data[i].pk + '">' + data[i].fields["victim_name"] + "</a></li>";
+
+              var thisTime = {
+                v: {
+                  id: data[i].fields["village_id"],
+                  t: new Date(data[i].fields["timeline"]).valueOf() / 1000,
+                  record_id: data[i].pk,
+                },
+              };
+              var thisProfile = {
+                id: data[i].pk,
+                name: data[i].fields["victim_name"],
+                village: data[i].fields["village_name"],
+                date: new Date(data[i].fields["timeline"]).valueOf(),
+              };
+
+              if (
+                profiles.some((obj) => {
+                  if ( obj.id == thisProfile.id ) {
+                    return 1;
+                  } else {
+                    return 0;
+                  }
+                })
+              ) {
+                //console.log("exists in time capsule ", thisTime);
+              } else {
+                timeCapsule.push(thisTime);
+                profiles.push(thisProfile);
+              }
+            } // end for i in data
+            html += "</ul>";
+
+            $(selector).html(html);
+          }
+    
+      </script>
+
+
+
+ 
+      <h5>{% trans 'Command History' %}</h5>
+
+    {% if request.LANGUAGE_CODE == 'pb' %}
+      <p><em><small style="line-height:1.2;">Unless otherwise noted, Dinkar Gupta’s command history draws from the following sources: (1) the annual Civil List of the Indian Police Service (IPS) for the Punjab cadre, prepared by the Ministry of Home Affairs, naming the position and date of posting of the senior police official as of January 1 of that year for 1983 to 1997, (2) news reports from the Punjabi daily newspaper Ajit and the English daily Tribune (Chandigarh), and (3) the individual websites of Punjab’s police districts, listing the names of Senior Superintendents of Police (SSP) and their dates of tenure. This information draws from publicly available records/sources; the complete account of Gupta’s official postings and activities lies with the government of India.</small></em></p>
+    {% else %}
+      <p><em><small style="line-height:1.2;">Unless otherwise noted, Dinkar Gupta’s command history draws from the following sources: (1) the annual Civil List of the Indian Police Service (IPS) for the Punjab cadre, prepared by the Ministry of Home Affairs, naming the position and date of posting of the senior police official as of January 1 of that year for 1983 to 1997, (2) news reports from the Punjabi daily newspaper Ajit and the English daily Tribune (Chandigarh), and (3) the individual websites of Punjab’s police districts, listing the names of Senior Superintendents of Police (SSP) and their dates of tenure. This information draws from publicly available records/sources; the complete account of Gupta’s official postings and activities lies with the government of India.</small></em></p>    
+    {% endif %}
+
+      <ul>
+
+
+      <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong>SSP Hoshiarpur</strong>, January 9, 1992 - September 21, 1993</p>
+      {% else %}
+        <p><strong>SSP Hoshiarpur</strong>, January 9, 1992 - September 21, 1993</p>
+      {% endif %}
+        <div id="d0"></div>
+        <br>
+      </li>      
+      {% autoescape off %}
+      <script>
+      makeList( {% dossier_command 'district' 0305 '1992-01-09' '1993-09-21' %}, '#d0');
+      </script>
+      {% endautoescape %}    
+      
+      
+      <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong>Awarded Police Medal of Gallantry</strong> in 1992</p>
+      {% else %}
+        <p><strong>Awarded Police Medal of Gallantry</strong> in 1992</p>
+      {% endif %}
+      </li>
+
+
+
+      <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong>SSP Jalandhar</strong>, December 5, 1993 - at least December 31, 1996<br><small> [There was no information available on Gupta’s posting during October and November 1993. This post was first reported as SSP Jalandhar (Rural) in IPS 1994, and then SSP Jalandhar, as of June 18, 1994 in IPS 1995. We do not have the end date for this position. On September 29, 1997, The Hindu referred to Gupta as SSP Ludhiana.]</small></p>
+      {% else %}
+        <p><strong>SSP Jalandhar</strong>, December 5, 1993 - at least December 31, 1996<br><small> [There was no information available on Gupta’s posting during October and November 1993. This post was first reported as SSP Jalandhar (Rural) in IPS 1994, and then SSP Jalandhar, as of June 18, 1994 in IPS 1995. We do not have the end date for this position. On September 29, 1997, The Hindu referred to Gupta as SSP Ludhiana.]</small></p>
+      {% endif %}
+        <div id="d3"></div>
+        <br>
+      </li>      
+      {% autoescape off %}
+      <script>
+      makeList( {% dossier_command 'district' 0305 '1993-12-05' '1993-12-31' %}, '#d3');
+      </script>
+      {% endautoescape %}          
+      
+      
+      
+      <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong>Awarded Police Medal of Gallantry</strong> in 1994</p>
+      {% else %}
+        <p><strong>Awarded Police Medal of Gallantry</strong> in 1994</p>
+      {% endif %}
+      </li>
+
+
+
+
+
+      </ul>
+
+
+    </div>
+    <div class="col-sm-6 border-left">
+
+
+      <h5>{% trans 'Personal Participation' %}</h5>
+
+      <ul>
+
+      <li class="stats-block">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <p><strong><span id="abduction_count"></span> cases directly implicating Dinkar Gupta in abduction, disappearance, and/or killing</strong></p>
+      {% else %}
+        <p><strong><span id="abduction_count"></span> cases directly implicating Dinkar Gupta in abduction, disappearance, and/or killing</strong></p>
+      {% endif %}
+       <div id="d10"></div>
+      </li>
+
+      {% autoescape off %}
+      <script>
+
+      function numpa(num) {
+        var num = num.toString();
+        var dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫','6':'੬','7':'੭','8':'੮','9':'੯'};
+        var output = [];
+        for (let i = 0; i < num.length; i++) {
+          output.push( dic[ num[i] ] );
+        }
+        return output.join('');
+      }
+      
+      var oversight = {% dossier_abduction 'S0024' %};
+      
+      makeList( oversight, '#d10');
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        $('#abduction_count').html( numpa(oversight.length) );
+      {% else %}
+        $('#abduction_count').html( oversight.length );
+      {% endif %}
+      </script>
+      {% endautoescape %}
+      
+      </ul>
+
+  
+
+
+
+      <hr>
+
+      <h5>{% trans 'Known Promotions' %}</h5>
+
+        <p>The government of India consistently promoted Dinkar Gupta throughout his career, and as of December 2023, he serves as the leader of India’s National Investigation Agency. India also rewarded Gupta in 2003 with the Police Medal of Meritorious Service and in 2010 with the President’s Police Medal for Distinguished Service. He has escaped accountability. Some of his known promotions reported by news media include:</p>
+
+      <ul>
+      <li>In March 2002, the Times of India reported that Gupta had been promoted from <strong>Deputy Inspector General (Intelligence)</strong> to <strong>DIG (Jalandhar Range)</strong>. He reportedly also served as <strong>DIG (Ludhiana Range)</strong> and <strong>DIG (Counter-Intelligence)</strong> by 2004.<br></li>
+      <li>Gupta served for 8 years from 2004 to 2012, on deputation to the central government at the level of <strong>Additional Director General (ADGP) with the Ministry of Home Affairs</strong>. This included time with the <strong>Intelligence Bureau and the Dignitary Protection Division</strong>.<br></li>
+      <li>Gupta returned to Punjab in 2012, reportedly serving in the following positions: <strong>ADGP (Law & Order), ADGP (Security), ADGP (Provisioning & Modernization), ADGP (Administration & Community Policing),</strong> and <strong>ADGP (Traffic)</strong>.<br></li>
+      <li>On June 30, 2017, Gupta was appointed as <strong>Director General of Police (Intelligence), Punjab</strong>, where he managed the Intelligence Wing, the Anti-Terrorist Squad, and the Organised Crime Control Unit. <br></li>
+      <li>From February 2019 to October 2021, Gupta served as <strong>DGP of Punjab Police</strong>.<br></li>
+      <li>On June 23, 2022, Gupta was appointed as <strong>Director General of the National Investigation Agency</strong>. His date of retirement is March 31, 2024.<br></li>
+      </ul>
+
+      <p>In addition, Gupta served as a visiting professor at the George Washington University and American University in Spring 2001.</p>
+
+
+{% comment %}
+      
+      <hr>
+
+      <h5>{% trans 'Legal Cases / Select News Articles' %}</h5>
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1989-09-17-p5.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1989-09-17-p5.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit, </i>September 17, 1989, p. 5, “Batala’s New SSP Advises Runaway Youth to Return Home.” Goel reassures militant youth that they will receive leniency if they turn in their weapons. He also announces the establishment of Rural Defense Committees. Goel issues assurances that civilians will not be harassed.
+      {% else %}
+          <i>Ajit, </i>September 17, 1989, p. 5, “Batala’s New SSP Advises Runaway Youth to Return Home.” Goel reassures militant youth that they will receive leniency if they turn in their weapons. He also announces the establishment of Rural Defense Committees. Goel issues assurances that civilians will not be harassed.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1989-10-03-p3.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1989-10-03-p3.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit,</i> October 3, 1989, p. 3, “Nawaz Sharif’s Beeco Factory vs Torture Center.” <i>Ajit</i> reports on the past history of a notorious unofficial detention and torture center, documented by international human rights groups, as a factory. Due to opposition and protests, Goel alleges that the police have cleared out Beeco, but the reporter has observed police continuing to visit the detention center. Amnesty International documented Beeco's use as a torture center in its May 1991 report <a href="https://data.ensaaf.org/static/files/goel/pdf/asa200111991en.pdf" target="_blank"><i>Human Rights Violations in Punjab: Use and Abuse of the Law.</i></a>
+      {% else %}
+          <i>Ajit,</i> October 3, 1989, p. 3, “Nawaz Sharif’s Beeco Factory vs Torture Center.” <i>Ajit</i> reports on the past history of a notorious unofficial detention and torture center, documented by international human rights groups, as a factory. Due to opposition and protests, Goel alleges that the police have cleared out Beeco, but the reporter has observed police continuing to visit the detention center. Amnesty International documented Beeco's use as a torture center in its May 1991 report <a href="https://data.ensaaf.org/static/files/goel/pdf/asa200111991en.pdf" target="_blank"><i>Human Rights Violations in Punjab: Use and Abuse of the Law.</i></a>
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1989-10-17-p1.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1989-10-17-p1.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit, </i>October 17, 1989, p. 1, “14 Individuals Killed in Punjab, including 3 Members of Family, 2 Suspects.” Goel reports on the killing of <a href="https://data.ensaaf.org/profile/4035/">Mehal Singh</a> and Gurmukh Singh as a genuine police encounter and the escape of a third associate, followed by the recovery of weapons at the scene. Mehal Singh’s family reported the killing to Ensaaf as an unlawful killing that followed an unlawful abduction. <a href="https://data.ensaaf.org/profile/4036/">Kulwant Singh</a>’s family also reported his unlawful killing the same night, as a co-victim with Mehal Singh. In an article published the next day on October 18, p. 1 (“7 Killed in Punjab, including 2 Suspicious Individuals—He is not Mehal Singh”), Goel clarifies the victim’s identity (Mehal Singh, village Saido; not Mehal Singh, village Dasuwal).
+      {% else %}
+          <i>Ajit, </i>October 17, 1989, p. 1, “14 Individuals Killed in Punjab, including 3 Members of Family, 2 Suspects.” Goel reports on the killing of <a href="https://data.ensaaf.org/profile/4035/">Mehal Singh</a> and Gurmukh Singh as a genuine police encounter and the escape of a third associate, followed by the recovery of weapons at the scene. Mehal Singh’s family reported the killing to Ensaaf as an unlawful killing that followed an unlawful abduction. <a href="https://data.ensaaf.org/profile/4036/">Kulwant Singh</a>’s family also reported his unlawful killing the same night, as a co-victim with Mehal Singh. In an article published the next day on October 18, p. 1 (“7 Killed in Punjab, including 2 Suspicious Individuals—He is not Mehal Singh”), Goel clarifies the victim’s identity (Mehal Singh, village Saido; not Mehal Singh, village Dasuwal).
+      {% endif %}
+          </div>
+      </div>
+
+
+
+      <div class="row mb-4">
+          <div class="col-3">
+          <a href="https://data.ensaaf.org/static/files/goel/pdf/1989-10-18-p1.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1989-10-18-p1.jpg" class="thumb"></a>
+          <a href="https://data.ensaaf.org/static/files/goel/pdf/1989-10-18-p5.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1989-10-18-p5.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit</i>, October 18, 1989, p. 5, “Blame of Mehal Singh Killing in Fake Encounter.” All India Sikh Student Federation blames Goel for killing <a href="https://data.ensaaf.org/profile/4035/">Mehal Singh</a> in a fake encounter.
+      {% else %}
+          <i>Ajit</i>, October 18, 1989, p. 5, “Blame of Mehal Singh Killing in Fake Encounter.” All India Sikh Student Federation blames Goel for killing <a href="https://data.ensaaf.org/profile/4035/">Mehal Singh</a> in a fake encounter.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1989-10-19-p7.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1989-10-19-p7.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit</i>, October 19, 1989, p. 7, “Strict Action Against Terrorism Will Continue—Police Chief.” Punjab police chief KPS Gill praised the performance of SSP Goel, citing the surrender of 6 fugitives and killing of 5 terrorists. Gill provided further alleged statistics about the deaths of civilians and militants, recovery of weapons, and other details about the counterinsurgency movement.
+      {% else %}
+          <i>Ajit</i>, October 19, 1989, p. 7, “Strict Action Against Terrorism Will Continue—Police Chief.” Punjab police chief KPS Gill praised the performance of SSP Goel, citing the surrender of 6 fugitives and killing of 5 terrorists. Gill provided further alleged statistics about the deaths of civilians and militants, recovery of weapons, and other details about the counterinsurgency movement.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1989-11-16-p7.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1989-11-16-p7.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit</i>, November 16, 1989, p.7, “Incidents—Two Arrested.” The article mentions the arrest of <a href="https://data.ensaaf.org/profile/2410/">Jasbir Singh</a> of village Madra. His family reported to Ensaaf that he was subsequent killed in an unlawful killing in 1990, after two to three prior unlawful detentions and torture by Indian security forces.
+      {% else %}
+          <i>Ajit</i>, November 16, 1989, p.7, “Incidents—Two Arrested.” The article mentions the arrest of <a href="https://data.ensaaf.org/profile/2410/">Jasbir Singh</a> of village Madra. His family reported to Ensaaf that he was subsequent killed in an unlawful killing in 1990, after two to three prior unlawful detentions and torture by Indian security forces.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1989-11-18-p1.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1989-11-18-p1.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit</i>, November 18, 1989, p. 1, “15 Killed including a Suspect...How was Mahinder Singh killed?” Goel attributes <a href="https://data.ensaaf.org/profile/2796/">Mahinder Singh</a>’s death to a genuine encounter between militants housed at Mahinder Singh’s house and the BSF. Mahinder Singh’s family, however, reported it as an unlawful killing from indiscriminate firing by the BSF. Mahinder Singh had denied the presence of any militants at his house; instead, they had scripture readers there to perform an Akandh Path for his son’s wedding. (Discrepancy in village reported).
+      {% else %}
+          <i>Ajit</i>, November 18, 1989, p. 1, “15 Killed including a Suspect...How was Mahinder Singh killed?” Goel attributes <a href="https://data.ensaaf.org/profile/2796/">Mahinder Singh</a>’s death to a genuine encounter between militants housed at Mahinder Singh’s house and the BSF. Mahinder Singh’s family, however, reported it as an unlawful killing from indiscriminate firing by the BSF. Mahinder Singh had denied the presence of any militants at his house; instead, they had scripture readers there to perform an Akandh Path for his son’s wedding. (Discrepancy in village reported).
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1990-01-05-p3.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1990-01-05-p3.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit</i>, January 5, 1990, p. 3, “Protest at Hargobindpur Police Station—Cases Should be Withdrawn: Federation.” Article describes a protest at a police station over two cases of unlawful detention and torture.
+      {% else %}
+          <i>Ajit</i>, January 5, 1990, p. 3, “Protest at Hargobindpur Police Station—Cases Should be Withdrawn: Federation.” Article describes a protest at a police station over two cases of unlawful detention and torture.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1990-01-31-p7.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1990-01-31-p7.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit, </i>January 31, 1990, p. 7 (column 4), “Killed by Police.” Goel admits to the accidental unlawful killing of <a href="https://data.ensaaf.org/profile/5536/">Jagdish Singh</a> by his police force, and promises compensation. The survivors reported to Ensaaf that they did not receive compensation.
+      {% else %}
+          <i>Ajit, </i>January 31, 1990, p. 7 (column 4), “Killed by Police.” Goel admits to the accidental unlawful killing of <a href="https://data.ensaaf.org/profile/5536/">Jagdish Singh</a> by his police force, and promises compensation. The survivors reported to Ensaaf that they did not receive compensation.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1990-02-12-p7.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1990-02-12-p7.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit</i>, February 12, 1990, p. 7, “Extensive Arrangements to Fight Terrorism in Batala Police District.” Article describes the new police control room, additional equipment, and extra deployment of Border Security Force (BSF) companies.
+      {% else %}
+          <i>Ajit</i>, February 12, 1990, p. 7, “Extensive Arrangements to Fight Terrorism in Batala Police District.” Article describes the new police control room, additional equipment, and extra deployment of Border Security Force (BSF) companies.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1990-02-12-p7.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1990-02-12-p7.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit</i>, February 12, 1990, p. 7 (column 1), “SSP Narrowly Survived.” Goel survives landmine blast and firing by militants.
+      {% else %}
+          <i>Ajit</i>, February 12, 1990, p. 7 (column 1), “SSP Narrowly Survived.” Goel survives landmine blast and firing by militants.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1991-08-05-p7.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1991-08-05-p7.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit</i>, August 5, 1991, p. 7, “Challenge to Police Chief Goel’s Statement in Representative Board’s Report.” Sikh Representative Board gives further information on the victims of the Pilibhit police massacre, including <a href="https://data.ensaaf.org/profile/2481/">Jaswant Singh</a>, <a href="https://data.ensaaf.org/profile/2662/">Mukhwinder Singh</a>, and <a href="https://data.ensaaf.org/profile/2480/">Baljit Singh</a>. This information contradicts SSP Goel’s earlier statement that the victims were wanted criminals (Ajit, July 20, 1991, p. 7, “Goel’s Claim”).
+      {% else %}
+          <i>Ajit</i>, August 5, 1991, p. 7, “Challenge to Police Chief Goel’s Statement in Representative Board’s Report.” Sikh Representative Board gives further information on the victims of the Pilibhit police massacre, including <a href="https://data.ensaaf.org/profile/2481/">Jaswant Singh</a>, <a href="https://data.ensaaf.org/profile/2662/">Mukhwinder Singh</a>, and <a href="https://data.ensaaf.org/profile/2480/">Baljit Singh</a>. This information contradicts SSP Goel’s earlier statement that the victims were wanted criminals (Ajit, July 20, 1991, p. 7, “Goel’s Claim”).
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1992-05-05-p1.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1992-05-05-p1.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit,</i> May 5, 1992, p. 1, “SSP Narrowly Escaped—15 Killed in Incidents.” Article describes assassination attempt on SSP Goel.
+      {% else %}
+          <i>Ajit,</i> May 5, 1992, p. 1, “SSP Narrowly Escaped—15 Killed in Incidents.” Article describes assassination attempt on SSP Goel.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1992-05-14-p1.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1992-05-14-p1.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit, </i>May 14, 1992, p. 1, “12 Injured in Bomb Blast in Phagwara.” Article describes another militant attack on SSP Goel.
+      {% else %}
+          <i>Ajit, </i>May 14, 1992, p. 1, “12 Injured in Bomb Blast in Phagwara.” Article describes another militant attack on SSP Goel.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <div class="row mb-4">
+          <div class="col-3"><a href="https://data.ensaaf.org/static/files/goel/pdf/1993-01-18-p3.jpg" target="_blank"><img src="https://data.ensaaf.org/static/files/goel/thumbs/1993-01-18-p3.jpg" class="thumb"></a></div>
+          <div class="col-9">
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <i>Ajit,</i> January 18, 1993, p. 3, “In Gurdaspur, Akali-Supported 200 Candidates are Detained in Police Stations–Chhotepur.” SSP Goel denies Akali allegations of police interference with panchayat elections by unlawfully detaining Gurdaspur candidates supported by Akalis.
+      {% else %}
+          <i>Ajit,</i> January 18, 1993, p. 3, “In Gurdaspur, Akali-Supported 200 Candidates are Detained in Police Stations–Chhotepur.” SSP Goel denies Akali allegations of police interference with panchayat elections by unlawfully detaining Gurdaspur candidates supported by Akalis.
+      {% endif %}
+          </div>
+      </div>
+
+
+      <hr>
+
+
+      <h5>{% trans 'Other Reports' %}</h5>
+
+      <ul>
+        <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <a href="https://wikileaks.org/plusd/cables/05NEWDELHI9513_a.html">Cable, US Embassy in New Delhi</a>, December 19, 2005, shared on Wikileaks: “During the insurgency, he [Alam] assembled a large, personal paramilitary force of approximately 150 men known as the ‘Black Cats’ or ‘Alam Sena’ (‘Alam’s Army’) that included cashiered police officers and rehabilitated Sikh terrorists. The group had reach throughout the Punjab and is alleged to have had carte blanche in carrying out possibly thousands of staged ‘encounter killings.’”
+      {% else %}
+          <a href="https://wikileaks.org/plusd/cables/05NEWDELHI9513_a.html">Cable, US Embassy in New Delhi</a>, December 19, 2005, shared on Wikileaks: “During the insurgency, he [Alam] assembled a large, personal paramilitary force of approximately 150 men known as the ‘Black Cats’ or ‘Alam Sena’ (‘Alam’s Army’) that included cashiered police officers and rehabilitated Sikh terrorists. The group had reach throughout the Punjab and is alleged to have had carte blanche in carrying out possibly thousands of staged ‘encounter killings.’”
+      {% endif %}
+        <br><br></li>
+
+        <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          <a href="https://wikileaks.org/plusd/cables/06NEWDELHI4667_a.html">Cable, US Embassy in New Delhi</a>, July 3, 2006, shared on Wikileaks, mentioning Alam Sena.
+      {% else %}
+          <a href="https://wikileaks.org/plusd/cables/06NEWDELHI4667_a.html">Cable, US Embassy in New Delhi</a>, July 3, 2006, shared on Wikileaks, mentioning Alam Sena.
+      {% endif %}
+        <br><br></li>
+
+
+        <li>
+      {% if request.LANGUAGE_CODE == 'pb' %}
+          Tribune, February 28, 1988, p.5, <a href="https://data.ensaaf.org/static/files/alam/pdf/19880228-p5.pdf">“Police, terrorism and justice.”</a>
+      {% else %}
+          Tribune, February 28, 1988, p.5, <a href="https://data.ensaaf.org/static/files/alam/pdf/19880228-p5.pdf">“Police, terrorism and justice.”</a>
+      {% endif %}
+        </li>
+      </ul>
+
+{% endcomment %}
+
+
+      <hr>
+    
+      {% if request.LANGUAGE_CODE == 'pb' %}
+        <h5>ਕੇਸਾਂ ਦੇ ਮੁੱਖ ਅੰਕੜੇ ਜੋ {% trans 'Dinkar Gupta' %} ਵੱਲ ਸਿੱਧਾ ਇਸ਼ਾਰਾ ਕਰਦੇ ਹਨ:</h5>
+      {% else %}
+        <h5>Key Statistics of cases directly implicating Dinkar Gupta:</h5>
+      {% endif %}
+    
+        {% include 'stats.html' %}
+
+    
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+
+
+function numpa(num) {
+  {% if request.LANGUAGE_CODE == 'pb' %}
+    var num = num.toString();
+    var dic = {'0':'੦','1':'੧','2':'੨','3':'੩','4':'੪','5':'੫','6':'੬','7':'੭','8':'੮','9':'੯'};
+    var output = [];
+    for (let i = 0; i < num.length; i++) {
+      output.push( dic[ num[i] ] );
+    }
+    return output.join('');
+  {% else %}
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  {% endif %}
+}
+
+
+for (var i=0;i<timeCapsule.length;i++) {
+    if ( timeCapsule[i]['v']['id'] ) {
+      timeCapsule[i]['date'] = timeCapsule[i]['v']['t'];
+      var d = new Date(0);
+      timeCapsule[i]['date'] = d.setUTCSeconds( timeCapsule[i]['date'] );
+    }
+}  
+
+
+
+var timeline_margin = {top: 10, right: 10, bottom: 35, left: 10};
+
+var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
+    height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
+
+var start = d3.min(d3.entries(timeCapsule), function(d) { return d.value.date; });
+var end = d3.max(d3.entries(timeCapsule), function(d) { return d.value.date; });
+
+var xScale = d3.scaleTime()
+    .domain([start, end])
+    .rangeRound([0, width]);
+
+var villages = {};
+var villageCentroids = [];
+var markers = {};
+
+
+
+
+
+// init
+
+var previousDistrict = '';
+
+
+
+// load basemap
+var mymap = new L.Map('mapid', {
+  center: [31.0157601,75.45],
+  zoom: 8
+});
+cartodb.createLayer(mymap, 'https://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9865-4151-a4e7-3456ef906d7d/viz.json', {https: true}).addTo(mymap);
+var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
+zoomHome.addTo(mymap);
+
+// https://sukhmandhami.carto.com/builder/350efab7-443d-419e-930c-b50ab8e394cd/embed
+var osm2 = new L.TileLayer('https://cartocdn-gusc.global.ssl.fastly.net/sukhmandhami/api/v1/map/sukhmandhami@8cf94c4f@7394194616a5b4936fb73a4555534a43:1554421032266/1,2/{z}/{x}/{y}.png');
+var pubs2 = new L.TileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png');
+var layers = new L.LayerGroup([pubs2, osm2]);
+var miniMap = new L.Control.MiniMap(layers, { width: 250, height: 200, zoomLevelFixed: 3, position: 'topright', centerFixed: [21.28,77] }).addTo(mymap);
+
+mymap.setView(new L.LatLng(31.0157601,75.45),8);
+mymap.scrollWheelZoom.disable();
+
+
+// load village centroids
+
+$.getJSON("/static/js/village_loc.json", function(json) {
+    villageCentroids = json
+    makeTimeline();
+});
+
+
+
+
+function makeVillageNames(start, end) {
+
+    villages = {};
+
+    // update size per village
+    for (var i=0;i<timeCapsule.length;i++) {
+        if ((end >= timeCapsule[i]['date']) && (timeCapsule[i]['date'] >= start) && ( timeCapsule[i]['v']['id'] ))  {
+          var id = timeCapsule[i]['v']['id'];
+          if (villages[id] && villages[id].count) {
+            villages[id].count = villages[id].count + 1;
+          } else {
+            villages[id] = {};
+            villages[id].count = 1;
+            villages[id].record_ids = [timeCapsule[i]['v']['record_id']];            
+          }
+          villages[id].record_ids.push( [timeCapsule[i]['v']['record_id']] );  
+        }
+    }
+    updateMap(start, end);
+}
+
+
+
+var area = d3.scalePow().exponent(0.5).domain([0, 10]).range([1, 15]);
+
+
+
+function updateMap(start, end) {
+
+    // make map
+    var points = [];
+    var keys = Object.keys(villages);
+    for (var i in keys) {
+      var thisVillage = _.find(villageCentroids, function(o) {
+        return o.CODE.endsWith(keys[i]);
+      });
+      if (keys[i] && thisVillage) {
+        {% if request.LANGUAGE_CODE == 'pb' %}
+          thisVillage.NAME = thisVillage.name_pb;
+        {% endif %}        
+        points.push({'id':keys[i],'coord':thisVillage.coord,'subdist':thisVillage.SUBDIST,'dist':thisVillage.DIST,'size':villages[keys[i]].count,'name':thisVillage.NAME, 'record_ids':villages[keys[i]].record_ids });
+      }
+    }
+
+
+    // test Object.keys(markers).length to see less than total? see if need to recreate map or just update
+
+    if (Object.keys(markers).length > 0) {
+
+        var markers_array = [];
+
+        // update markers
+        _.forEach(markers, function(value, key) {
+          if ( d = _.find(points, { 'id': key }) ) {
+          
+              markers[key].setStyle({fillOpacity: .5});
+              markers[key].setRadius(area(d.size));
+
+              var tultipText = '<div class="name">' + d.name + '</div><div class="position">' + numpa(d.size);
+              {% if request.LANGUAGE_CODE == 'pb' %}
+                if (d.size == 1) { tultipText += ' ਪੀੜਤ'; } else { tultipText += ' ਪੀੜਤਾਂ'; }
+              {% else %}
+                tultipText += ' Victim'; if (d.size > 1) { tultipText += 's'; }
+              {% endif %}
+                tultipText += '</div>';
+
+              markers[key].bindPopup(tultipText, {offset:[0,-5]});
+              markers[key].on('mouseover', function (e) { this.openPopup(); });
+              markers[key].on('mouseout', function (e) { this.closePopup(); });
+              markers[key].on('click', function (e) {
+                document.location.href = this.options.url;
+              });
+
+              markers_array.push( markers[key] );
+          }
+        });
+
+          mymap.setView([31.0157601,75.45], 8);            
+    
+    } else {
+        
+        // add points to map
+        _.forEach(points, function(d) {
+          if (d.id !== '0') {
+            var customCircleMarker = L.CircleMarker.extend({
+               options: { 
+                  url: '{% lang %}/village/' + d.id + '/?ids=' + d.record_ids.join(',')
+               }
+            });
+            markers[String(d.id)] = new customCircleMarker([d.coord[1] + .015,d.coord[0] - .025], {
+                stroke: false,
+                fillColor: '#fc0',
+                fillOpacity: 0.5,
+                url: '{% lang %}/village/' + d.id + '/?ids=' + d.record_ids.join(',')
+            }).addTo(mymap);
+          }
+        }); // end for points
+
+    } // end if markers
+
+}
+
+
+
+
+d3.select(window).on('resize', function() {
+  makeTimeline();
+});
+
+var maxHeight = 0;
+
+
+
+
+function makeTimeline() {
+
+  d3.select("#timeline").html("")
+ 
+  var timeline_margin = {top: 10, right: 25, bottom: 35, left: 25};
+
+  var width = $('#timeline').width() - timeline_margin.left - timeline_margin.right,
+      height = $('#timeline').height() - timeline_margin.top - timeline_margin.bottom;
+
+  var start = new Date('January 1, 1987');
+  var end = new Date('December 31, 1996');
+
+  var x = d3.scaleTime()
+      .domain([start, end])
+      .rangeRound([0, width]);
+
+  //console.log(f);
+
+
+
+
+
+  var y = d3.scaleLinear()
+      .range([height, 0]);
+
+  var histogram = d3.histogram()
+      .value(function(d) { return d.date; })
+      .domain(x.domain())
+      .thresholds(x.ticks(d3.timeMonth));
+
+  var svg = d3.select("#timeline").append("svg")
+      .attr("width", width + timeline_margin.left + timeline_margin.right)
+      .attr("height", height + timeline_margin.top + timeline_margin.bottom)
+    .append("g")
+      .attr("transform", 
+            "translate(" + timeline_margin.left + "," + timeline_margin.top + ")");
+
+
+  // Create Tooltips
+  var tip = d3.tip().attr('class', 'd3-tip').direction('n').offset([-10,0])
+    .html(function(d) {
+      var content = d.name + '<br>' + d.village;
+      return content;
+    });
+
+  svg.call(tip);
+
+
+  $('#count').html( numpa(profiles.length) );
+
+
+  var bins = histogram(profiles).filter(d => d.length>0);
+
+  if (maxHeight == 0) {
+    maxHeight = d3.max(bins, function(d) { return d.length; });
+  }
+  
+  y.domain([-3, maxHeight ]);
+
+
+
+
+    //g container for each bin
+    let binContainer = svg.selectAll(".gBin")
+      .data(bins);
+
+    binContainer.exit().remove()
+
+    let binContainerEnter = binContainer.enter()
+      .append("g")
+        .attr("class", "gBin")
+        .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
+
+  //need to populate the bin containers with data the first time
+  binContainerEnter.selectAll("circle")
+      .data(d => d.map((p, i) => {
+        return {idx: i,
+                profile: p.id,
+                name: p.name,
+                village: p.village,
+                radius: (x(d.x1)-x(d.x0))/2
+              }
+      }))
+    .enter()
+    .append("circle")
+        .attr("class", "enter")
+        .attr("cx", 0) //g element already at correct x pos
+        .attr("cy", function(d) {
+            return - d.idx * 2 * d.radius - d.radius; })
+        .attr("r", 0)
+        .on("click", function(d) {window.location = "{% lang %}/profile/" + d.profile})
+        .on("mouseover", function(d) { tip.show(d); })
+        .on("mouseout", function(d) { tip.hide(d); })
+        .transition()
+          .duration(500)
+          .attr("r", function(d) {
+          return (d.length==0) ? 0 : d.radius; })
+
+    binContainerEnter.merge(binContainer)
+        .attr("transform", d => `translate(${x(d.x0)}, ${height})`)
+
+    //enter/update/exit for circles, inside each container
+    let dots = binContainer.selectAll("circle")
+        .data(d => d.map((p, i) => {
+          return {idx: i,
+                  profile: p.id,
+                  name: p.name,
+                  village: p.village,
+                  radius: (x(d.x1)-x(d.x0))/2
+                }
+        }))
+
+    //EXIT old elements not present in data
+    dots.exit()
+        .attr("class", "exit")
+      .transition(1000)
+        .attr("r", 0)
+        .remove();
+
+    //UPDATE old elements present in new data.
+    dots.attr("class", "update");
+
+    //ENTER new elements present in new data.
+    dots.enter()
+      .append("circle")
+        .attr("class", "enter")
+        .attr("cx", 0) //g element already at correct x pos
+        .attr("cy", function(d) {
+          return - d.idx * 2 * d.radius - d.radius; })
+        .attr("r", 0)
+      .merge(dots)
+        .on("click", function(d) {window.location = "{% lang %}/profile/" + d.profile})
+        .on("mouseover", function(d) { tip.show(d); })
+        .on("mouseout", function(d) { tip.hide(d); })
+        .transition()
+          .duration(500)
+          .attr("r", function(d) {
+          return (d.length==0) ? 0 : d.radius; })
+          
+
+  svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .attr('class','axis')
+      .call( d3.axisBottom(x).tickFormat(
+        function(d) {
+          var formatDate = d3.timeFormat("%Y");
+          var year = formatDate(Date.parse(d));
+          {% if request.LANGUAGE_CODE == 'pb' %}
+          return numpa(year);
+          {% else %}
+          return year;
+          {% endif %}
+        })
+      );
+
+
+
+
+  var brush = d3.brushX().on("start brush end", brushed);
+
+  // brush
+  var gBrush = svg.append("g")
+      .attr("class", "brush")
+      .call(brush);
+
+  gBrush.call(brush.move, x.range());
+
+  // https://bl.ocks.org/mbostock/4349545
+  
+  function brushed() {
+    var s = x.range();    
+    makeVillageNames( x.invert(s[0]), x.invert(s[1]) );
+  }
+
+} // end makeTimeline
+
+</script>
+
+
+{% endblock %}
