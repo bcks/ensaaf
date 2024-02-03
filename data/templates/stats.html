@@ -792,11 +792,11 @@
 
         <div class="row">
           <div class="col-12">
-            <p><strong>{% trans "Combatant status" %}</strong></p>
+            <p><strong>{% trans "Militant status" %}</strong></p>
 
           <div>
             <span class="percent">{% percentpa stats.militant stats.total%}%</span>
-            {% trans "Combatant" %}
+            {% trans "Militant" %}
             <span class="number-of-cases">{{stats.militant|numpa}}</span>
             <div class="percent-bar" style="width:{% percent stats.militant stats.total%}%">&nbsp;</div>
           </div> 
@@ -804,7 +804,7 @@
           <div>
             <div class="percent-bar bar-2" style="width:{% percent stats.not_militant stats.total%}%">&nbsp;</div>
             <span class="percent">{% percentpa stats.not_militant stats.total%}%</span>
-            {% trans "Non-combatant" %}
+            {% trans "Non-militant" %}
             <span class="number-of-cases">{{stats.not_militant|numpa}}</span>
           </div> 
 
@@ -815,7 +815,7 @@
 
         <div class="row">
           <div class="col-12">
-            <p><strong>{% trans "Non-combatant, provided support to militants" %}</strong></p>
+            <p><strong>{% trans "Non-militant, provided support to militants" %}</strong></p>
 
             <div>          
             <span class="percent">{% percentpa stats.militant_support stats.total%}%</span>

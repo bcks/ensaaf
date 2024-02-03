@@ -401,7 +401,7 @@ msgstr "ਖਾੜਕੂ ਲਹਿਰ ਨਾਲ ਸੰਬੰਧਿਤ"
 #: templates/all_profiles.html:904 templates/detail.html:379
 #: templates/map.html:118 templates/profile.html:915
 #: templates/profiles.html:116 templates/stats.html:801
-msgid "Combatant"
+msgid "Militant"
 msgstr "ਖਾੜਕੂ"
 
 #: templates/all_profiles.html:918 templates/all_profiles.html:931
@@ -1069,11 +1069,11 @@ msgid "Female"
 msgstr "ਇਸਤਰੀ"
 
 #: templates/map.html:117 templates/profiles.html:115
-msgid "Combatant Status"
+msgid "Militant Status"
 msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਸੰਬੰਧ"
 
 #: templates/map.html:119 templates/profiles.html:117
-msgid "Non-Combatant"
+msgid "Non-Militant"
 msgstr "ਨਹੀਂ ਜੀ"
 
 #: templates/map.html:120 templates/profiles.html:118
@@ -1465,15 +1465,15 @@ msgid "Type(s) of security forces involved in extrajudicial execution"
 msgstr "ਕਿਸ ਤਰਾਂ ਦੇ ਸੁਰੱਖਿਆ ਬਲ ਗੈਰ ਕਾਨੂੰਨੀ ਹੱਤਿਆ ਵਿੱਚ ਸ਼ਾਮਲ ਸਨ"
 
 #: templates/stats.html:797
-msgid "Combatant status"
+msgid "Militant status"
 msgstr "ਖਾੜਕੂਆਂ ਨਾਲ ਸੰਬੰਧ"
 
 #: templates/stats.html:809
-msgid "Non-combatant"
+msgid "Non-militant"
 msgstr "ਨਹੀਂ ਜੀੀ"
 
 #: templates/stats.html:820
-msgid "Non-combatant, provided support to militants"
+msgid "Non-militant, provided support to militants"
 msgstr "ਖਾੜਕੂ ਨਹੀਂ ਸੀ ਪਰ ਖਾੜਕੂਆਂ ਦੀ ਸਹਾਇਤਾ ਕਰਦਾ/ਕਰਦੀ ਸੀ"
 
 #: templates/stats.html:843
