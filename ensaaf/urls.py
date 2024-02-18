@@ -12,6 +12,7 @@ from graphene_django.views import GraphQLView
 urlpatterns = i18n_patterns(
     path('', map, name='map'),
     path('all_profiles/<slug:slug>/', all_profiles, name="all_profiles"),
+    path('100photos/', random_photos, name="random_photos"),
     path('map_ajax/', map_ajax, name="map_ajax"),
     path('robots.txt', robots, name="robots"),
     path('email/', emailView, name='email'),

@@ -223,6 +223,23 @@ def change(request):
 
 
 
+def random_photos(request, record_id=None):
+    male_child = Data.objects.filter(photo_vic_fn__isnull=False,victim_age__lt=18,victim_sex='1').order_by('?')[:1]
+    female_child = Data.objects.filter(photo_vic_fn__isnull=False,victim_age__lt=18,victim_sex='2').order_by('?')[:1]
+    female_elderly = Data.objects.filter(photo_vic_fn__isnull=False,victim_age__gt=60,victim_sex='2').order_by('?')[:1]
+    male_elderly = Data.objects.filter(photo_vic_fn__isnull=False,victim_age__gt=60,victim_sex='1').order_by('?')[:1]
+    randoms = Data.objects.filter(photo_vic_fn__isnull=False).order_by('?')[:96]
+    result_list = randoms.union(male_child,female_child,male_elderly,female_elderly)
+    return render(request, "100photos.html", { "victims": result_list }, content_type="text/csv")
+
+
+# one female child victim
+# one female elderly victim
+# one male child victm
+# one male elderly victim 
+      
+
+
 
 @cache_page(60 * 60)
 def profile(request, record_id=None):
