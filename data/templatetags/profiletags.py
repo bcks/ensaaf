@@ -181,6 +181,41 @@ def hvictim_address_other(value):
     return str
 
 
+@register.simple_tag()
+def hashtag_victim_address_other(value):
+  if value == None:
+    return value
+  str = value.split('_')
+  str = str[0]
+  p = re.compile(r'([0123456789.]+)-')
+  m = p.search(str)
+  vname = re.sub(r'([0123456789.]+)-','', str)
+  if m:
+    census_id = m.group(1)
+    if get_language() == 'pb':
+      vname = get_village_name_pb(census_id)
+    try:
+      village = Villages.objects.filter(vid=census_id)[:1].get()
+      
+      if village.district == 'Chandigarh':
+        return '<a href="' + \
+          reverse('village', args=(census_id,)) + '">' + vname + '</a>'
+      else:      
+        return '<span define="' + _('Village/town/city') + '"><a href="' + \
+          reverse('village', args=(census_id,)) + '">' + vname + '</a></span>, '\
+          '<span define="' + _('Subdistrict') + '"><a href="' + \
+          reverse('tehsil', args=(village.tehsil_id,)) + '">' + \
+          _(village.tehsil) + '</a></span>, '\
+          '<span define="' + _('District') + '"><a href="'  + reverse('district', args=(village.district_id,)) + '">' + '#' + village.district.replace(' ','') + 'District</a></span>'
+
+    except Villages.DoesNotExist:
+      str = re.sub(r'([0123456789.]+)-','', str)
+      return str
+  else:
+    str = re.sub(r'([0123456789.]+)-','', str)
+    return str
+
+
 
 @register.simple_tag()
 def hvictim_village(value):
@@ -1256,6 +1291,12 @@ def my_name(string):
     else:
       return ''
 
+
+
+@register.filter()
+def hashtag(string):
+  print('#' + string.replace(' ',''))
+  return '#' + string.replace(' ','')
 
 
 @register.filter()

@@ -269,6 +269,32 @@ def profile(request, record_id=None):
 
 
 
+def tweetfarm(request, record_id=None):
+    try:
+      queryset = Data.objects.filter(record_id=record_id)
+      victim = queryset[:1].get()
+    except Exception as e:
+        raise Http404("Profile was not found")
+
+    if victim.village_id:
+      try:
+        village = Villages.objects.filter(vid=victim.village_id)[:1].get()
+      except Villages.DoesNotExist:
+        village = None
+    else:
+      village = None
+    if record_id is not None and victim is None:
+        return messages.warning(request,"Profile %s was not found"%record_id)
+
+    interviews = Victim.objects.filter(profile_id=record_id)
+
+    return render(request, "tweetfarm.html", {
+      "victim": victim,
+      "village": village,
+      "interviews": interviews
+    })
+
+
 
 def all_profiles(request, slug=0):
     start = int(slug) * 500

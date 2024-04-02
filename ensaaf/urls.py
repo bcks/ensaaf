@@ -24,6 +24,7 @@ urlpatterns = i18n_patterns(
     path('change/', change, name="change"),
     path('detail/', detail, name="detail"),
     path('profile/<slug:record_id>/', profile, name="profile"),
+    path('tweetfarm/<slug:record_id>/', tweetfarm, name="tweetfarm"),
     path('village/<slug:slug>/', village, name="village"),
     path('tehsil/<slug:slug>/', tehsil, name="tehsil"),
     path('district/<slug:slug>/', district, name="district"),
