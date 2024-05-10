@@ -1,0 +1,22 @@
+{% load static %}<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
+    <style>@import url( {% static "css/bootstrap.min.css" %} );</style>
+    <style>@import url( {% static "css/base.css" %}?1.2 );</style>
+</head>
+<body>
+<div id="app-wrapper">
+
+
+<div class="container">
+
+
+{% include 'tweet/tweet_card.html' %}
+
+
+</div>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400" media="all">
+</body>
+</html>

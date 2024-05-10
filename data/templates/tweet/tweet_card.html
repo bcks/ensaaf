@@ -1,21 +1,7 @@
-{% load static %}{% load i18n %}{% load profiletags %}{% load cropping %}<!DOCTYPE html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700" rel="stylesheet">
-    <style>@import url( {% static "css/bootstrap.min.css" %} );</style>
-    <style>@import url( {% static "css/base.css" %}?1.2 );</style>
-</head>
-<body>
-<div id="app-wrapper">
+{% load i18n %}{% load profiletags %}{% load cropping %}
 
 
 
-
-  <div class="container">
-
-
-  <div class="row">
 
   {% if victim.arrest_security_type_1 == 0 and victim.arrest_security_type_2 == 0 and victim.arrest_security_type_3 == 0 and victim.arrest_security_type_4 == 0 and victim.arrest_security_type_5 == 0 and victim.arrest_security_type_6 == 0 and victim.arrest_security_type_7 == 0 and victim.arrest_security_type_8 == 1 and victim.arrest_security_locality %}
 
@@ -162,39 +148,21 @@
 
 
 
-      {% if victim.victim_dob %}
-
-      <div class="row">
-      <div class="col-sm-2">
-        <p class="kicker dots">{% trans 'Date of birth' %}</p>
-      </div>
-      <div class="col-sm-10">
-        <p>{{victim.victim_dob}}</p>
-      </div>
-      </div>
-
-      {% endif %}
-
-
-  </div>
 
 
 
   {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_prior_detention_st != 9 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}
 
-  <div class="row">
     <div class="col-sm-12 mt-4">
       <h4>
           {% trans 'Prior Abuse' %}
       </h4>
     </div>
-  </div>
 
 
   {% elif victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}<!-- detention -->
 
 
-  <div class="row">
     <div class="col-sm-12 mt-4">
       <h4>
         {% if victim.victim_prior_detention_trt == 1 %}<!-- torture -->
@@ -216,13 +184,11 @@
         {% endif %}<!-- /torture -->
       </h4>
     </div>
-  </div>
 
 
   {% else %}<!-- no detention -->
 
 
-  <div class="row">
     <div class="col-sm-12 mt-4">
       <h4>
         {% if victim.victim_prior_detention_trt == 1 %}<!-- toture -->
@@ -240,7 +206,6 @@
         {% endif %}
       </h4>
     </div>
-  </div>
 
 
   {% endif %}
@@ -255,27 +220,6 @@
       <p>{% hyes_no_na victim.victim_prior_detention_trt %}</p>
     </div>
   {% endif %}
-
-
-
-{% if victim.record_id == '3734' or victim.record_id == '1203' or victim.record_id == '5668' or victim.record_id == '565'  %}
-
-    {% if victim.target_reason_8 != 1 %}
-    {% if victim.target_reason_9 != 1 %}
-
-    {% if victim.target_reason_1 or victim.target_reason_2 or victim.target_reason_3 or victim.target_reason_4 or victim.target_reason_5 or victim.target_reason_6 or victim.target_reason_7 or victim.target_reason_8 or victim.target_reason_9 or victim.target_reason_other%}
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Perceived reason for targeting victim' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>{% htarget_reason victim.target_reason_1 victim.target_reason_2 victim.target_reason_3 victim.target_reason_4 victim.target_reason_5 victim.target_reason_6 victim.target_reason_7 victim.target_reason_8 victim.target_reason_9 victim.target_reason_other %}</p>
-    </div>
-    {% endif %}
-
-    {% endif %}
-    {% endif %}
-
- {% endif %}
 
 
 
@@ -509,6 +453,7 @@
       </div>
       <div class="col-sm-6">
         <p>{% hso_return_body victim.so_return_body %}</p>
+        {% if victim.so_return_body == 3 %}The body was not returned{% endif %}
       </div>
     {% endif %}
 
@@ -566,103 +511,12 @@
 
 
 
+<p>https://data.ensaaf.org/{% url 'profile' victim.record_id %}</p>
 
 
-
-
-</div>
-
-
-
-
-
-
-
-
-
-
-{% if victim.record_id == '3734' or victim.record_id == '1203' or victim.record_id == '5668' or victim.record_id == '565' %}
-
-  <div class="row">
-    <div class="col-sm-12">
-      <h4 class="mt-4">{% trans 'Family Reflections' %}</h4>
-    </div>
-  </div>
-
- <div class="row">
-    <div class="col-12">
-      {{victim.family_reflections}}
-    </div>
-  </div>
-
-  <hr>
-
+{% if victim.photo_vic_fn %}
+{% hphoto victim.photo_vic_fn %}
 {% endif %}
 
+<p>#Human Rights #Justice #Punjab #India #Impunity</p>
 
-
-
-{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' or victim.record_id == '1203' or victim.record_id == '5668' or victim.record_id == '565' %}  
-
-  {% if victim.victim_summary %}
-  <div class="row">
-    <div class="col-12">
-      <h4 class="mt-4">{% trans 'Summary' %}</h4>
-      {{victim.victim_summary|linebreaks}}
-    </div>
-  </div>
-  {% endif %}
-
-<hr>
-
-{% endif %}
-
-
-
-
-{% if victim.video_url or victim.video_url2 or victim.related_materials %}
-
-  <h4><br>{% trans 'Related Material' %}</h4>
-
-  <div class="row">
-
-  {% if request.LANGUAGE_CODE == 'pb' and victim.related_materials_pb %}
-    <div class="col-12">
-      <p>{{victim.related_materials_pb|safe}}</p>
-    </div>
-  {% elif victim.related_materials %}    
-    <div class="col-12">
-      <p>{{victim.related_materials|safe}}</p>
-    </div>
-  {% endif %}
-
-  </div>
-
-  <hr>
-{% endif %}
-
-
-
-
-
-
-
-
-
-
-
-</div>
-
-
-<p><br></p>
-
-<div class="image">{% if victim.photo_vic_fn %}{% hphoto victim.photo_vic_fn %}{% endif %}</div>
-
-
-
-
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400" media="all">
-</body>
-</html>

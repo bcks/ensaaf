@@ -269,7 +269,7 @@ def profile(request, record_id=None):
 
 
 
-def tweetfarm(request, record_id=None):
+def tweet(request, record_id=None):
     try:
       queryset = Data.objects.filter(record_id=record_id)
       victim = queryset[:1].get()
@@ -286,14 +286,17 @@ def tweetfarm(request, record_id=None):
     if record_id is not None and victim is None:
         return messages.warning(request,"Profile %s was not found"%record_id)
 
-    interviews = Victim.objects.filter(profile_id=record_id)
-
-    return render(request, "tweetfarm.html", {
+    return render(request, "tweet/tweet.html", {
       "victim": victim,
       "village": village,
-      "interviews": interviews
     })
 
+
+def tweets(request):
+    victims = Data.objects.all()
+    return render(request, "tweet/tweets.html", {
+      "victims": victims,
+    })
 
 
 def all_profiles(request, slug=0):
