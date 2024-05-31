@@ -1,26 +1,43 @@
-{% load i18n %}{% load profiletags %}
-
+{% load i18n %}
+{% load profiletags %} 
+{% load tweetxtags %}
 
 
       {% if victim.victim_disappeared_killed == 2 %}
       
-      {% autoescape off %}{% hdate victim.victim_death_date %}{% endautoescape %} 
+      {% autoescape off %} {% hdate_t victim.victim_death_date %}  {% endautoescape %}, 
+
+      {% autoescape off %}
+      {% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}
+
+      <u>from</u> 
+
+      {% autoescape off %}
+        {% if victim.arrest_security_locality  %}{{victim.arrest_security_locality|censuslink_t}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} {% endif %}{% endif %}{% endautoescape %}
       
-      PERPETRATOR HERE TK      
-      
-      #UnlawfullyKilled 
+       <u> Police station</u>
+
+       {% if victim.victim_disappeared_killed == 2 %}
+       {% trans '#UnlawfullyKilled' %}
+     {% endif %}
+   
+     {% if victim.victim_disappeared_killed == 1 %}
+       {% trans '#Disappeared' %}
+     {% endif %}
       {% endif %}
 
 
-{{victim.victim_name}}{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}{% if victim.victim_alias == 1 and victim.victim_alias_name  %}, also known as {{victim.victim_alias_name}}, {% endif %}{% endif %}
+{{victim.victim_name}}
+{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}{% if victim.victim_alias == 1 and victim.victim_alias_name  %}, also known as {{victim.victim_alias_name}}, {% endif %}{% endif %}
 
+ 
       {% if victim.victim_age != "Don't know" %}      
       ({{victim.victim_age|default:"unknown"|numpa}})
       {% endif %}
 
 
 
-      
+<!---      Do we need this? --> 
       {% if victim.victim_disappeared_killed == 1 %}was {% trans 'Disappeared' %}
 
         {% if victim.victim_death_date %}
@@ -32,55 +49,14 @@
       {% endif %}
 
 
-      <p>
+      <!-- sex -->      
       {% if victim.victim_sex != None %}{% sex victim.victim_sex %}{% endif %}
       
-      </p>
-
-
-
-  {% if victim.arrest_security_type_1 == 0 and victim.arrest_security_type_2 == 0 and victim.arrest_security_type_3 == 0 and victim.arrest_security_type_4 == 0 and victim.arrest_security_type_5 == 0 and victim.arrest_security_type_6 == 0 and victim.arrest_security_type_7 == 0 and victim.arrest_security_type_8 == 1 and victim.arrest_security_locality %}
-
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Security Forces involved in abduction' %}</p>
-    </div>
-    <div class="col-sm-6">
-
-      <p>{% autoescape off %}
-      {% if victim.arrest_security_locality  %}{{victim.arrest_security_locality|censuslink}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%}, {% endif %}{% endif %}{% harrest_security_type_link victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}</p>
-    </div>
-
-  {% elif victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%}
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Security Forces involved in abduction' %}</p>
-    </div>
-    <div class="col-sm-6">
-
-      <p>{% autoescape off %}
-      {% if victim.arrest_security_locality  %}{{victim.arrest_security_locality|censuslink}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%}, {% endif %}{% endif %}{% harrest_security_type_link victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}</p>
-    </div>
-  {% endif %}
-
-
-
-
-
-
-{% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforcestype_8 or victim.killing_securityforces_oth %}
-
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Security forces unlawfully killed' %}</p>
-    </div>
-    <div class="col-sm-6">
-
-      <p>{% if victim.killing_securityforces_lcl != 'Don\'t know' and  victim.killing_securityforces_lcl != None %}
-      {{victim.killing_securityforces_lcl|censuslink|safe}}{% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforces_oth %}{% if victim.killing_securityforces_lcl %}, {% endif %}{% endif %}{% endif %}{% autoescape off %}{% harrest_security_type_link victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}{% endautoescape %}</p>
-
-    </div>
-
-{% endif %}
-
-
+      <br /> <br />
+      <u> near the canal near village #Kotla(near #AmmoNangal) in #Gurdaspur district.
+        
+        <br /> <br />Security officials did not return Amarjeet Singh's body to his family.</u><br /> <br />
+      
 
 
 
