@@ -3,9 +3,17 @@
 {% load tweetxtags %}
 
 
+
+{% if victim.photo_vic_fn %}
+<img src="{% hphoto victim.photo_vic_fn %}"/>
+{% endif %}
+
+<br />
+
+<br />
       {% if victim.victim_disappeared_killed == 2 %}
       
-      {% autoescape off %} {% hdate_t victim.victim_death_date %}  {% endautoescape %}, 
+      <b>{% autoescape off %} {% hdate_t victim.victim_death_date %}  {% endautoescape %}, </b>
 
       {% autoescape off %}
       {% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}
@@ -49,18 +57,42 @@
       {% endif %}
 
 
+
+      
       <!-- sex -->      
-      {% if victim.victim_sex != None %}{% sex victim.victim_sex %}{% endif %}
+      {% comment %} {% if victim.victim_sex != None %}{% sex victim.victim_sex %}{% endif %} {% endcomment %}
       
       <br /> <br />
       <u> near the canal near village #Kotla(near #AmmoNangal) in #Gurdaspur district.
+        <br /><br /></u>
+     
+  {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
+  {% if victim.security_forces_uniformed != None and victim.security_forces_uniformed != 9 %}
+{% trans 'Security officials' %}
+
+  {% endif %}
+  {% endif %}
+
         
-        <br /> <br />Security officials did not return Amarjeet Singh's body to his family.</u><br /> <br />
+                {% comment %} Victim's body  {% endcomment %}
+        {% if victim.so_return_body != None and victim.so_return_body != 0 %}
+        {% if victim.so_return_body == 3 %} did not return 
+        
+        {{victim.victim_name}}
+        {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}{% if victim.victim_alias == 1 and victim.victim_alias_name  %}, also known as {{victim.victim_alias_name}}, {% endif %}{% endif %}'s body to
+        
+        {% if victim.victim_sex == 1 %}his{% endif %}
+        {% if victim.victim_sex == 2 %}her{% endif %}
+        family.{% endif %}
+        {% endif %}
       
+    <br />    <br />
+        <a href="https://data.ensaaf.org{% url 'profile' victim.record_id %}">https://data.ensaaf.org{% url 'profile' victim.record_id %}</a><br /> <br />
+  
+        <p>#Human Rights #Justice #Punjab #India #Impunity</p>
+        
 
-
-
-
+        <br />
       {% if victim.victim_address_int_loc == 1 %}
         {% if victim.village_name != None %}
           <div class="row">
