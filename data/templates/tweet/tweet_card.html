@@ -4,15 +4,16 @@
 
 
 
-{% if victim.photo_vic_fn %}
+ {% if victim.photo_vic_fn %}
 <img src="{% hphoto victim.photo_vic_fn %}"/>
-{% endif %}
+{% endif %} 
 
 <br />
 
 <br />
       {% if victim.victim_disappeared_killed == 2 %}
       
+
       <b>{% autoescape off %} {% hdate_t victim.victim_death_date %}  {% endautoescape %}, </b>
 
       {% autoescape off %}
@@ -62,10 +63,64 @@
       <!-- sex -->      
       {% comment %} {% if victim.victim_sex != None %}{% sex victim.victim_sex %}{% endif %} {% endcomment %}
       
-      <br /> <br />
+      
+      <!-- abduction-->
+      {% if victim.victim_arrest_location != 1 %}
+      {% if victim.victim_arrest_location != 11 %}
+      {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
+         {% trans '. The place of abduction was' %} 
+          
+         {% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
+  {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
+  {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
+  {{victim.victim_arrest_loc_st}}{% endif %} 
+      
+      {% endif %}
+
+      {% trans 'at' %}
+       
+      
+      {% endif %}
+  
+  
+      
+      <!--- residence -->
+      {% if victim.victim_address_int_loc == 1 %}
+      {% if victim.village_name != None %}
+        
+            {% if victim.village_id|add:"0" > 0 and village.tehsil%}
+              <span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %} Village ,</a></span>
+              <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %} Subdistrict,</a></span>
+              <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{{village.district|hashtag}} District </a></span>
+            {% else %}
+              {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %}
+            {% endif %}
+     {% trans 'village.' %}
+      {% endif %}
+    {% endif %}
+
+
+
+
+    {% if victim.victim_address_int_loc == 0 %}
+      {% if victim.victim_address_other != 'Don\'t know' %}
+      {% trans 'Residence' %}
+      
+          {% autoescape off %}
+   {% hashtag_victim_address_other victim.victim_address_other %}
+          {% endautoescape %}
+      
+      {% endif %}
+    {% endif %}
+
+
+
+
+      {% comment %} <br /> <br />
       <u> near the canal near village #Kotla(near #AmmoNangal) in #Gurdaspur district.
         <br /><br /></u>
-     
+      {% endcomment %}
+
   {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
   {% if victim.security_forces_uniformed != None and victim.security_forces_uniformed != 9 %}
 {% trans 'Security officials' %}
