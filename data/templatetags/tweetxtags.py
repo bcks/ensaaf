@@ -143,14 +143,14 @@ def hdate_link_t(var):
   if '/' in var and '-' in var:
     var = var.replace('/','-')
     parts = var.split('-')
-    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + numpa(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  yearpa(parts[5]) + '</a>'
+    return _(' Between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + numpa(int(parts[4])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  yearpa(parts[5]) + '</a>'
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in var:
     var = var.replace(' ','')
     parts = var.split('-')
-    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + numpa(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  yearpa(parts[5]) + '</a>'
+    return _(' Between ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>' + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + numpa(int(parts[3])) + ',  <a href="'+lang+'/year/'+str(parts[5])+'">' +  yearpa(parts[5]) + '</a>'
 
   # 23-07-1991
   #    pattern => '%d-%m-%Y',
@@ -160,7 +160,7 @@ def hdate_link_t(var):
       parts[2] = int(parts[2]) + 2000    
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
-    return _(' on ') + _(monthNames[int(parts[1])]) + ' ' + numpa( int(parts[0]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
+    return _(' On ') + _(monthNames[int(parts[1])]) + ' ' + numpa( int(parts[0]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
 
   # 10/15/1992
   #      pattern => '%m/%d/%Y',
@@ -171,7 +171,7 @@ def hdate_link_t(var):
     elif int(parts[2]) < 1900:
       parts[2] = int(parts[2]) + 1900
     parts[0] = int(parts[0])
-    return _(' on ') + _(monthNames[ parts[0] ]) + ' ' + numpa( int(parts[1]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
+    return _(' On ') + _(monthNames[ parts[0] ]) + ' ' + numpa( int(parts[1]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
 
 
 
@@ -189,14 +189,14 @@ def hdate_t(var):
   if '/' in var and '-' in var:
     var = var.replace('/','-')
     parts = var.split('-')
-    return _(' between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', ' +  yearpa(parts[2]) + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + numpa(int(parts[4])) + ',  ' +  yearpa(parts[5])
+    return _(' Between ') + _(monthNames[int(parts[0])]) + ' ' + numpa(int(parts[1])) + ', ' +  yearpa(parts[2]) + _(' and ') + _(monthNames[int(parts[3])]) + ' ' + numpa(int(parts[4])) + ',  ' +  yearpa(parts[5])
 
   # 15-02-1992 - 15-03-1992    
   #        pattern => '%d-%m-%Y',
   if ' - ' in var:
     var = var.replace(' ','')
     parts = var.split('-')
-    return _(' between ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', ' +  yearpa(parts[2]) + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + numpa(int(parts[3])) + ',  ' +  yearpa(parts[5])
+    return _(' Between ') + _(monthNames[int(parts[1])]) + ' ' + numpa(int(parts[0])) + ', ' +  yearpa(parts[2]) + _(' and ') + _(monthNames[int(parts[4])]) + ' ' + numpa(int(parts[3])) + ',  ' +  yearpa(parts[5])
 
   # 23-07-1991
   #    pattern => '%d-%m-%Y',
@@ -286,8 +286,8 @@ def harrest_security_type_link_t(v1, v2, v3, v4, v5, v6, v7, other):
 
   groups = []
   groups.append('<span class="tweethash">#PunjabPolice <span>') if v1 == 1 else 0
-  groups.append('<a href="'+lang+'/securityforce/bsf/"><span define="'+_('Border Security Force')+'">'+_('BSF')+'</span></a>') if v2 == 1 else 0
-  groups.append('<a href="'+lang+'/securityforce/crpf/"><span define="'+_('Central Reserve Police Force')+'">'+_('CRPF')+'</span></a>') if v3 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/bsf/"><span define="'+_('Border Security Force')+'">'+_('Border Security Force')+'</span></a>') if v2 == 1 else 0
+  groups.append('<a href="'+lang+'/securityforce/crpf/"><span define="'+_('Central Reserve Police Force')+'">'+_('Central Reserve Police Force')+'</span></a>') if v3 == 1 else 0
   groups.append('<a href="'+lang+'/securityforce/army/">'+_('Army')+'</a>') if v4 == 1 else 0
   groups.append('<a href="'+lang+'/securityforce/cia/">'+_('Criminal Investigation Agency')+'</a>') if v5 == 1 else 0
   groups.append('<a href="'+lang+'/securityforce/black-cat/"><span define="'+_('Irregular undercover security force, often consisting of criminals')+'">'+_('Black cat')+'</span></a>') if v6 == 1 else 0
