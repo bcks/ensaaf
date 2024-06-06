@@ -8,13 +8,13 @@
 <img src="{% hphoto victim.photo_vic_fn %}"/>
 {% endif %}  {% endcomment %}
 
-<br />
 
-<br />
+
+
       {% if victim.victim_disappeared_killed == 2 %}
       
 
-      <b>{% autoescape off %} {% hdate_t victim.victim_death_date %}  {% endautoescape %}, </b>
+      {% autoescape off %}{% hdate_t victim.victim_death_date %}{% endautoescape %},
 
       {% autoescape off %}
       {% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}
@@ -492,3 +492,5 @@
 
 <p>#Human Rights #Justice #Punjab #India #Impunity</p>
  {% endcomment %}
+
+
