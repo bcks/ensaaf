@@ -12,8 +12,6 @@ import json
 register = template.Library()
 
 
-
-
 monthNames = ["", 'January', 'February', 'March', 'April', 'May',\
   'June', 'July', 'August', 'September', 'October', 'November',\
   'December',"13####","14####","15####","16####","17####","18####","19####",\
@@ -65,7 +63,6 @@ def vnametranslate(village):
     return text
 
 
-
 @register.simple_tag(takes_context=True)
 def change_lang(context, lang=None, *args, **kwargs):
     path = context['request'].path.replace('_cache','')
@@ -84,7 +81,6 @@ def not_int(s):
         return False
     except:
         return True
-
 
 
 @register.filter()
@@ -115,7 +111,6 @@ def numpa(number_string):
         return number_string
 
 
-
 @register.filter()
 def yearpa(number_string):
     number_string = str(number_string)
@@ -127,7 +122,6 @@ def yearpa(number_string):
       return "".join([dic[c] for c in number_string])
     else:
       return number_string
-
 
 
 @register.simple_tag()
@@ -172,7 +166,6 @@ def hdate_link_t(var):
       parts[2] = int(parts[2]) + 1900
     parts[0] = int(parts[0])
     return _(' On ') + _(monthNames[ parts[0] ]) + ' ' + numpa( int(parts[1]) ) + ', <a href="'+lang+'/year/'+str(parts[2])+'">' +  yearpa(parts[2]) + '</a>';
-
 
 
 @register.simple_tag()
@@ -220,8 +213,6 @@ def hdate_t(var):
     return _(' On ') + _(monthNames[ parts[0] ]) + ' ' + numpa(parts[1]) + ', ' +  yearpa(parts[2])
 
 
-
-
 @register.simple_tag()
 def hdateslash_t(start, end):
   if (start == None):
@@ -232,7 +223,6 @@ def hdateslash_t(start, end):
     return yearpa(start)
   else:
     return yearpa(start) + '-' + yearpa(end)
-
 
 
 @register.simple_tag()
@@ -277,21 +267,20 @@ def hyear_t(var):
     return ', ' + yearpa(parts[2])
 
 
-
-
 @register.simple_tag()
 def harrest_security_type_link_t(v1, v2, v3, v4, v5, v6, v7, other):
   lang = '/' + str(get_language())
   lang = lang.replace('/en-us','')
 
+#remove all lings
   groups = []
-  groups.append('<span class="tweethash">#PunjabPolice <span>') if v1 == 1 else 0
-  groups.append('<a href="'+lang+'/securityforce/bsf/"><span define="'+_('Border Security Force')+'">'+_('Border Security Force')+'</span></a>') if v2 == 1 else 0
-  groups.append('<a href="'+lang+'/securityforce/crpf/"><span define="'+_('Central Reserve Police Force')+'">'+_('Central Reserve Police Force')+'</span></a>') if v3 == 1 else 0
-  groups.append('<a href="'+lang+'/securityforce/army/">'+_('Army')+'</a>') if v4 == 1 else 0
-  groups.append('<a href="'+lang+'/securityforce/cia/">'+_('Criminal Investigation Agency')+'</a>') if v5 == 1 else 0
-  groups.append('<a href="'+lang+'/securityforce/black-cat/"><span define="'+_('Irregular undercover security force, often consisting of criminals')+'">'+_('Black cat')+'</span></a>') if v6 == 1 else 0
-  groups.append( _('Unknown type of security forces') ) if v7 == 1 else 0
+  groups.append('#PunjabPolice') if v1 == 1 else 0
+  groups.append('#BorderSecurityForce') if v2 == 1 else 0
+  groups.append('#CentralReservePoliceForce') if v3 == 1 else 0
+  groups.append('#Army') if v4 == 1 else 0
+  groups.append('#CriminalInvestigationAgency') if v5 == 1 else 0
+  groups.append('#Blackcat (Irregular undercover security force, often consisting of criminals)') if v6 == 1 else 0
+  groups.append( 'Unknown type of security forces') if v7 == 1 else 0
   if (other):
     groups.append(other)
   if len(groups):
@@ -320,10 +309,6 @@ def harrest_security_type_t(v1, v2, v3, v4, v5, v6, v7, other):
   else:
       return ''
 
-
-
-
-
   
 @register.filter(name='censuslink_t')
 def censuslink(value):
@@ -348,9 +333,7 @@ def censuslink(value):
           if lang == '/pb':
             vname = get_village_name_pb(census_id)
           newparts.append(
-            '<a href="'+lang+'/locality/' + census_id  + '">' + \
-             vname + \
-             '</a>')
+             vname )
         else:
           newparts.append(part)
 
@@ -370,8 +353,69 @@ def censuslink(value):
         vname = parts[1]
         if lang == '/pb':
           vname = get_village_name_pb(census_id)
-        newparts = '<span class="hashtag"> #' + \
-           vname + '</span>'
+        newparts =   vname 
       return newparts
 
     return value
+
+
+@register.simple_tag()
+def hvictim_address_other_t(value):
+  if value == None:
+    return value
+  str = value.split('_')
+  str = str[0]
+  p = re.compile(r'([0123456789.]+)-')
+  m = p.search(str)
+  vname = re.sub(r'([0123456789.]+)-','', str)
+  if m:
+    census_id = m.group(1)
+    if get_language() == 'pb':
+      vname = get_village_name_pb(census_id)
+    try:
+      village = Villages.objects.filter(vid=census_id)[:1].get()
+      
+      if village.district == 'Chandigarh':
+        return '<a href="' + \
+          reverse('village', args=(census_id,)) + '">' + vname + '</a>'
+      else:      
+        return reverse('village') + vname + ', ' + ('Subdistrict') + \
+          _(village.tehsil) + \
+         + _(village.district)
+
+    except Villages.DoesNotExist:
+      str = re.sub(r'([0123456789.]+)-','', str)
+      return str
+  else:
+    str = re.sub(r'([0123456789.]+)-','', str)
+    return str
+
+
+@register.simple_tag()
+def hashtag_victim_address_other_t(value):
+  if value == None:
+    return value
+  str = value.split('_')
+  str = str[0]
+  p = re.compile(r'([0123456789.]+)-')
+  m = p.search(str)
+  vname = re.sub(r'([0123456789.]+)-','', str)
+  if m:
+    census_id = m.group(1)
+    if get_language() == 'pb':
+      vname = get_village_name_pb(census_id)
+    try:
+      village = Villages.objects.filter(vid=census_id)[:1].get()
+      
+      if village.district == 'Chandigarh':
+        return  vname 
+      else:      
+        return  vname + ', ' + _(village.tehsil) + ' #' + village.district.replace(' ','') + ' District'
+
+    except Villages.DoesNotExist:
+      str = re.sub(r'([0123456789.]+)-','', str)
+      return str
+  else:
+    str = re.sub(r'([0123456789.]+)-','', str)
+    return str
+

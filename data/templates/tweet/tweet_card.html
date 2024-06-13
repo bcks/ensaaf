@@ -9,16 +9,14 @@
 {% endif %}  {% endcomment %}
 
 
-
-
       {% if victim.victim_disappeared_killed == 2 %}
       
-
       {% autoescape off %}{% hdate_t victim.victim_death_date %}{% endautoescape %},
 
       {% autoescape off %}
       {% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %}
 
+      
      
       {% autoescape off %}
         {% if victim.arrest_security_locality  %}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} from {% endif %}{% endif %}{% endautoescape %}
@@ -27,6 +25,13 @@
       {% autoescape off %}
         {% if victim.arrest_security_locality  %}{{victim.arrest_security_locality|censuslink_t}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} {% endif %}{% endif %}{% endautoescape %}
       
+<!-- security officials -->
+        {% if victim.killing_securityforces_lcl != 'Don\'t know' and  victim.killing_securityforces_lcl != None %}
+        {{victim.killing_securityforces_lcl|censuslink|safe}}{% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforces_oth %}{% if victim.killing_securityforces_lcl %}, {% endif %}{% endif %}{% endif %}{% autoescape off %}{% harrest_security_type_link victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}{% endautoescape %}
+
+
+               {% comment %} use a big statement and loop through possibilities?  victim.killing_securityforcestype {% endcomment %}
+
        {% comment %} <u> Police station</u> {% endcomment %}
 
        {% if victim.victim_disappeared_killed == 2 %}
@@ -69,9 +74,9 @@
       {% if victim.victim_arrest_location != 1 %}
       {% if victim.victim_arrest_location != 11 %}
       {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
-         {% trans '. The place of abduction was' %} 
+         {% trans '. The place of abduction is' %} 
           
-         {% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
+         {% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
   {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
   {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
   {{victim.victim_arrest_loc_st}}{% endif %} 
@@ -89,9 +94,9 @@
       {% if victim.village_name != None %}
         
             {% if victim.village_id|add:"0" > 0 and village.tehsil%}
-              <span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %} Village ,</a></span>
-              <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %} Subdistrict,</a></span>
-              <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{{village.district|hashtag}} District </a></span>
+            {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %} Village ,
+         {% trans village.tehsil %} Subdistrict,
+            {% trans 'District' %} District 
             {% else %}
               {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %}
             {% endif %}
@@ -99,14 +104,12 @@
       {% endif %}
     {% endif %}
 
-
-
     {% if victim.victim_address_int_loc == 0 %}
       {% if victim.victim_address_other != 'Don\'t know' %}
       {% trans 'Residence' %}
       
           {% autoescape off %}
-   {% hashtag_victim_address_other victim.victim_address_other %}
+   {% hashtag_victim_address_other_t victim.victim_address_other %}
           {% endautoescape %}
       
       {% endif %}
@@ -125,6 +128,9 @@
   {% endif %}
   {% endif %}
 
+  {% if victim.killing_securityforces_lcl != 'Don\'t know' and  victim.killing_securityforces_lcl != None %}
+      {% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforces_oth %}{% if victim.killing_securityforces_lcl %}, {% endif %}{% endif %}{% endif %}{% autoescape off %}{% harrest_security_type_link victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}{% endautoescape %}
+
         
                 {% comment %} Victim's body  {% endcomment %}
         {% if victim.so_return_body != None and victim.so_return_body != 0 %}
@@ -139,363 +145,15 @@
         {% endif %}
       
     <br />    <br />
-        <a href="https://data.ensaaf.org{% url 'profile' victim.record_id %}">https://data.ensaaf.org{% url 'profile' victim.record_id %}</a><br /> <br />
+        https://data.ensaaf.org{% url 'profile' victim.record_id %}<br /> <br />
   
         <p>#Human Rights #Justice #Punjab #India #Impunity</p>
         
 
         <br />
-        <!-- end -->
-<!-- Abuduction -->
-      {% comment %} {% if victim.victim_address_int_loc == 1 %}
-        {% if victim.village_name != None %}
-          <div class="row">
-            <div class="col-sm-2">
-              <p class="kicker dots">{% trans 'Residence' %}</p>
-            </div>
-            <div class="col-sm-10">
-              {% if victim.village_id|add:"0" > 0 and village.tehsil%}
-                <p><span define="{% trans 'Village/town/city' %}"><a href="{% url 'village' victim.village_id %}">{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %},</a></span>
-                <span define="{% trans 'Subdistrict' %}"><a href="{% url 'tehsil' village.tehsil_id %}">{% trans village.tehsil %},</a></span>
-                <span define="{% trans 'District' %}"><a href="{% url 'district' village.district_id %}">{{village.district|hashtag}}</a></span></p>
-              {% else %}
-                <p>{% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %}</p>
-              {% endif %}
-            </div>
-          </div>
-        {% endif %}
-      {% endif %}
-
-
-
-
-      {% if victim.victim_address_int_loc == 0 %}
-        {% if victim.victim_address_other != 'Don\'t know' %}
-        <div class="row">
-          <div class="col-sm-2">
-            <p class="kicker dots">{% trans 'Residence' %}</p>
-          </div>
-          <div class="col-sm-10">
-            {% autoescape off %}
-            <p>{% hashtag_victim_address_other victim.victim_address_other %}</p>
-            {% endautoescape %}
-          </div>
-        </div>
-        {% endif %}
-      {% endif %} {% endcomment %}
-
-
-
-<!-- employment -->
-      {% comment %} {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' and victim.victim_employment_10 != 1 %}
-
-          <div class="row">
-          <div class="col-sm-2">
-          </div>
-          <div class="col-sm-10">
-            <p>{% hvictim_employment victim.victim_employment_1 victim.victim_employment_2 victim.victim_employment_3 victim.victim_employment_4 victim.victim_employment_5 victim.victim_employment_6 victim.victim_employment_7 victim.victim_employment_8 victim.victim_employment_9 victim.victim_employment_10 victim.victim_employment_11 victim.victim_employment_other %}</p>
-          </div>
-          </div>
-      
-      {% else %}
-      
-          {# victim_employment_other is not cleaned yet #}
-          
-          {% if victim.victim_employment_10 != 1 %}
-          {% if victim.victim_employment_11 != 1 %}
-
-          <div class="row">
-          <div class="col-sm-2">
-          </div>
-          <div class="col-sm-10">
-            <p>{% hvictim_employment victim.victim_employment_1 victim.victim_employment_2 victim.victim_employment_3 victim.victim_employment_4 victim.victim_employment_5 victim.victim_employment_6 victim.victim_employment_7 victim.victim_employment_8 victim.victim_employment_9 victim.victim_employment_10 victim.victim_employment_11 '' %}</p>
-          </div>
-          </div>
-
-          {% endif %}
-          {% endif %}
-      
-      
-      {% endif %} {% endcomment %}
-
-
-
-
-
-{% comment %} 
-
-  {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 and victim.victim_prior_detention_st != 1 and victim.victim_prior_detention_st != 9 and victim.victim_detention_loc_known != 1 and victim.victim_prior_detention_trt != 1 %}
-
-    <div class="col-sm-12 mt-4">
-      <h4>
-          {% trans 'Prior Abuse' %}
-      </h4>
-    </div>
-
-
-  {% elif victim.victim_prior_detention_st == 1 or victim.victim_detention_loc_known == 1 %}<!-- detention -->
-
-
-    <div class="col-sm-12 mt-4">
-      <h4>
-        {% if victim.victim_prior_detention_trt == 1 %}<!-- torture -->
-
-          {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 %}
-            {% trans 'Detention &amp; Torture' %}
-          {% elif victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-            {% trans 'Abduction, Detention, &amp; Torture' %}
-          {% endif %}
-
-        {% else %}
-
-          {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-            {% trans 'Abduction &amp; Detention' %}
-          {% else %}
-            {% trans 'Detention' %}
-          {% endif %}
-
-        {% endif %}<!-- /torture -->
-      </h4>
-    </div>
-
-
-  {% else %}<!-- no detention -->
-
-
-    <div class="col-sm-12 mt-4">
-      <h4>
-        {% if victim.victim_prior_detention_trt == 1 %}<!-- toture -->
-          {% if victim.victim_arrest_status != 1 and victim.victim_arrest_status != 2 %}
-            {% trans 'Torture' %}
-          {% elif victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-            {% trans 'Abduction &amp; Torture' %}
-          {% endif %}
-        {% else %}
-
-          {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2  %}
-            {% trans 'Abduction' %}
-          {% endif %}
-        
-        {% endif %}
-      </h4>
-    </div>
-
-
-  {% endif %}
-
-
-
-
-
-    {% if victim.victim_arrest_status != None and victim.victim_arrest_status != 3 %}
-    <div class="row">
-    <div class="col-sm-6">
-      <p class="kicker dots">
-      {% if victim.victim_disappeared_killed == 2 %}
-        {% trans 'Abduction preceding unlawful killing' %}
-      {% endif %}
-      {% if victim.victim_disappeared_killed == 1 %}
-        {% trans 'Abduction preceding disappearance' %}
-      {% endif %}
-    </p>
-    </div>
-    <div class="col-sm-6">
-      <p>{% hvictim_arrest_status victim.victim_arrest_status %}{% if victim.victim_arrest_date %}, {% autoescape off %}{% hvictim_arrest_date victim.victim_arrest_date %}{% endautoescape %}{% endif %}</p>
-    </div>
-    </div>
-    {% endif %}
-
-
-
-
-    {% if victim.victim_arrest_location != 1 %}
-    {% if victim.victim_arrest_location != 11 %}
-    {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
-      <div class="col-sm-6">
-        <p class="kicker dots">{% trans 'Place of abduction' %}</p>
-      </div>
-      <div class="col-sm-6">
-        <p>{% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' or victim.record_id == '1203' or victim.record_id == '5668' or victim.record_id == '565' %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
-{{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
-{{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
-{{victim.victim_arrest_loc_st}}{% endif %}</p>
-      </div>
-    {% endif %}
-    {% endif %}
-    {% endif %}
-
-
-  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' or victim.record_id == '1203' or victim.record_id == '5668' or victim.record_id == '565' %}
-
-    {% if victim.victim_arrest_location == 11 and victim.victim_arrest_loc_oth %}
-      <div class="col-sm-6">
-        <p class="kicker dots">{% trans 'Place of abduction' %}</p>
-      </div>
-      <div class="col-sm-6">
-        <p>{{victim.victim_arrest_loc_oth}}</p>
-      </div>
-    {% endif %}
-
-  {% endif %}
-
-
-
-
-
-  {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-  {% if victim.security_forces_uniformed != None and victim.security_forces_uniformed != 9 %}
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Security officials uniformed' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>{% hyes_no victim.security_forces_uniformed %}</p>
-    </div>
-  {% endif %}
-  {% endif %}
-
-
-
-
-{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' or victim.record_id == '1203' or victim.record_id == '5668' or victim.record_id == '565' %}
-
-  {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-  {% if victim.security_forces_civilcloth != None and victim.security_forces_civilcloth != 9 %}
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Security forces in civil clothes' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>{% hyes_no victim.security_forces_civilcloth %}</p>
-    </div>
-  {% endif %}
-  {% endif %}
-  
-{% endif %}
-
-
-
-
-  {% if victim.judge_or_magistrate_status != 9 %}
-  {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Victim presented before judge/magistrate' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>{% hyes_no_unknown victim.judge_or_magistrate_status %}</p>
-    </div>
-   {% endif %}
-   {% endif %}
-
-
-
-  {% if victim.judge_or_magistrate_result_3 != 1  %}
-  {% if victim.judge_or_magistrate_result_1 or victim.judge_or_magistrate_result_2 or victim.judge_or_magistrate_result_3 or victim.judge_or_magistrate_result_4 or victim.judge_or_magistrate_resoth %}
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Judge/magistrate result' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>{% hjudge_or_magistrate_result victim.judge_or_magistrate_result_1 victim.judge_or_magistrate_result_2 victim.judge_or_magistrate_result_3 victim.judge_or_magistrate_result_4 victim.judge_or_magistrate_resoth %}</p>
-    </div>
-  {% endif %}
-  {% endif %} {% endcomment %}
-
-
-
-{% comment %} 
-<!-- unlawful killing-->
-{% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-
-  <div class="row">
-
-
-{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' or victim.record_id == '1203' or victim.record_id == '5668' or victim.record_id == '565' %}
-
-  {% if victim.where_victim_detained.all|length > 0 %}
-
-
-    {% for this in victim.where_victim_detained.all %}
-
-    <div class="col-sm-6">
-      <p class="kicker dots">{% trans 'Detention locations known' %}</p>
-    </div>
-    <div class="col-sm-6">
-      <p>      
-      {% if this.detention_facility_type != None %}{% autoescape off %}{% hdetention_facility_type this.detention_facility_type this.detention_fac_type_oth %}{% endautoescape %}{% endif %}{% if this.facility_name != None %}: <a href="{% url 'detention' type=this.detention_facility_type name=this.facility_name %}">{{this.facility_name|title}}</a>{% endif %}{% if this.facility_nearest_villtown != None %}, {{this.facility_nearest_villtown|censuslink|safe}}{% endif %}{% if this.duration_of_detention != None %}{% if this.duration_of_detention != 'Don\'t know' %}, for {% hduration_of_detention this.duration_of_detention %}{% endif %}{% endif %}
-
-      {% if this.witness_detention_3 or this.witness_detention_4 or this.witness_detention_5 or this.witness_detention_6 or this.witness_detention_7 or this.witness_detention_8 or this.witness_detention_9 or this.witness_detention_10 or this.witness_detention_12 or this.witness_detention_13 or this.witness_detention_14 or this.witness_detention_other or this.witness_detention_status %}
-        <br>{% autoescape off %}{% hwitness_detention this.witness_detention_3 this.witness_detention_4 this.witness_detention_5 this.witness_detention_6 this.witness_detention_7 this.witness_detention_8 this.witness_detention_9 this.witness_detention_10 this.witness_detention_12 this.witness_detention_13 this.witness_detention_14 this.witness_detention_other  this.witness_detention_status %}{% endautoescape %}
-      {% endif %}
-      </p>
-    </div>
     
-  
-    {% endfor %}
 
-    {% endif %}
-
-{% endif %}
-
-
-  </div>
-
-
-{% endif %}
-
-
-
-
-  <div class="row">
-    <div class="col-sm-12 mt-4">
-
-  {% if victim.victim_disappeared_killed == 2 %}
-    <h4>{% trans 'unlawful killing' %}{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}</h4>
-  {% endif %}
-
-  {% if victim.victim_disappeared_killed == 1 %}
-    <h4>{% trans 'Disappeared' %}{% if victim.victim_death_date %}{% autoescape off %}{% hdate_link victim.victim_death_date %}{% endautoescape %}{% elif victim.victim_arrest_date %}{% autoescape off %}{% hdate_link victim.victim_arrest_date %}{% endautoescape %}{% else %}, {% trans 'date unknown' %}{% endif %}</h4>
-  {% endif %}
-
-    </div>
-
-  {% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' or victim.record_id == '3734' or victim.record_id == '1203' or victim.record_id == '5668' or victim.record_id == '565' %}
-
-    {% if victim.victim_disappeared_killed == 2 and victim.victim_killed_location > 1 %}
-
-        <div class="col-sm-6">
-          <p class="dots"><span class="kicker">{% trans "Location of killing" %}</span></p>
-        </div>
-        <div class="col-sm-6">
-          <p>{% hvictim_killed_location victim.victim_killed_location victim.victim_killed_loc_other %}{% if victim.victim_killed_loc_vill %}{%if victim.victim_killed_location > 1 %}, {% endif %}{{victim.victim_killed_loc_vill|censuslink|safe}}{% endif %}</p>
-        </div>
-        
-    {% endif %}
-
-
-  {% endif %}
-
-  </div>
-
-
-
-{% if victim.so_return_body != None and victim.so_return_body != 0 %}
-    {% if victim.so_return_body == 3 %}They did not return his body to     
-    {% if victim.victim_sex == 1 %}his{% endif %}
-    {% if victim.victim_sex == 2 %}her{% endif %}
-    family.{% endif %}
-{% endif %}
-
-
-<p>https://data.ensaaf.org{% url 'profile' victim.record_id %}</p>
-
-{% if victim.photo_vic_fn %}
-<p>{% hphoto victim.photo_vic_fn %}</p>
-{% endif %}
-
-<p>#Human Rights #Justice #Punjab #India #Impunity</p>
-
-
-
-
-## TO ADD official involved in killing:
+{% comment %} ## TO ADD official involved in killing: {% endcomment %}
 
 {% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforcestype_8 or victim.killing_securityforces_oth %}
 
@@ -510,11 +168,4 @@
     </div>
 
 {% endif %}
-
-
-
-
-
- {% endcomment %}
-
 
