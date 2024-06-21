@@ -16,7 +16,7 @@
       {% if victim.victim_death_date %}
       {% hdate_t victim.victim_death_date %},
       {% else %}
-      On unknown date
+      <!-- On unknown date -->
       {% endif %}
       
       {% endautoescape %}
@@ -105,7 +105,7 @@
 
 
         {% else %} 
-        On unknown date 
+        <!-- On unknown date  -->
         
         {% autoescape off %}
 
@@ -127,7 +127,7 @@
 {% endif %}
 
 {% if victim.victim_disappeared_killed == 1 %}     
-#Abducted
+#abducted
 {% endif %}
   {% comment %} figure out about profile 1948 {% endcomment %}
      
@@ -153,24 +153,29 @@
       {% if victim.victim_arrest_location != 1 %}
       {% if victim.victim_arrest_location != 11 %}
       {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
-         {% trans '. The place of abduction is' %} 
+         from
           
-         {% hvictim_arrest_location victim.victim_arrest_location %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
+         {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
   {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
   {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
   {{victim.victim_arrest_loc_st}}{% endif %} 
       
       {% endif %}
 
-      {% trans 'at' %}
+      in
        
       {% endif %}
   
+    
+      {% if victim.victim_arrest_location == 1 %}
+       from an undisclosed location in #Punjab state{% if victim.victim_disappeared_killed == 1 %} and #disappeared him{% endif %}.       
+      {% endif %}
   
       
       <!--- residence -->
-      {% if victim.victim_address_int_loc == 1 %}
-      {% if victim.village_name != None %}
+      {% if victim.victim_arrest_location == 2 %}<!-- victim arrested/abducted at residence -->
+        {% if victim.victim_address_int_loc == 1 %}
+        {% if victim.village_name != None %}
         
             {% if victim.village_id|add:"0" > 0 and village.tehsil%}
             {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %} Village ,
@@ -180,6 +185,7 @@
               {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %}
             {% endif %}
      {% trans 'village.' %}
+      {% endif %}
       {% endif %}
     {% endif %}
 
@@ -218,11 +224,11 @@ family does not know the date of
 {% if victim.victim_sex == 1 %}his{% endif %}
 {% if victim.victim_sex == 2 %}her{% endif %} 
 {% if victim.victim_disappeared_killed == 2 %}
-#UnlawfullyKilling
+#UnlawfullyKilling.
 {% endif %}
 
 {% if victim.victim_disappeared_killed == 1 %}
-#Disappearance
+abduction.
 {% endif %}
 
   {% endif %}

@@ -83,6 +83,23 @@ def not_int(s):
         return True
 
 
+
+@register.simple_tag()
+def vvictim_arrest_location(value, gender):
+  if value == None:
+    return value
+
+  pronoun = ''
+  if gender == 1:
+    pronoun = ' his '
+  elif gender == 2:
+    pronoun = ' her '
+
+  location = ['', '', _(pronoun + 'home'), _(pronoun + 'friend/relative\'s residence'), _('a checkpoint (naka)'), _('the roadside'), _('the village fields'), _('a shop/market'), _('a bus station/stand'), _('a police station'), _('a village drain')]
+  return location[value]
+
+
+
 @register.filter()
 def numpa(number_string):
     
