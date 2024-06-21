@@ -31,6 +31,8 @@
      {% elif victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforces_oth %}{% elif victim.killing_securityforces_lcl %}
      <p><b>| cats</b></p>
 
+
+
       
   
 {% endif %}
@@ -40,7 +42,6 @@
         {% comment %} {% autoescape off %}
       {% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %} {% endcomment %}
 
-      
      
       {% autoescape off %}
         {% if victim.arrest_security_locality  %}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} from {% endif %}{% endif %}{% endautoescape %}
@@ -62,7 +63,7 @@
        #UnlawfullyKilled
      {% endif %}
    
-     {% if victim.victim_disappeared_killed == 1 %}
+     {% if victim.victim_disappeared_killed == 1 %}     
      #Disappeared
      {% endif %}
       {% endif %}
@@ -91,6 +92,8 @@
         {% elif victim.victim_arrest_date %}
           {% hdate_t victim.victim_arrest_date %}, 
           
+         
+
           {% if victim.arrest_security_locality  %}{{victim.arrest_security_locality|censuslink_t}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%}, {% endif %}{% endif %}{% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}
 
         #abducted
@@ -101,7 +104,42 @@
           {% endif %}
 
 
-        {% else %}, {% trans 'date unknown' %}{% endif %}
+        {% else %} 
+        On unknown date 
+        
+        {% autoescape off %}
+
+      {% comment %} need uknown secrurity forces or data forthcoming here {% endcomment %}
+        {% comment %} unknown security officials {% endcomment %}
+        
+
+       
+
+{% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %} 
+
+
+
+{% if victim.arrest_security_locality  %} from  {{victim.arrest_security_locality|censuslink_t}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} {% endif %}{% endif %}
+
+        
+{% if victim.victim_disappeared_killed == 2 %}
+#UnlawfullyKilled
+{% endif %}
+
+{% if victim.victim_disappeared_killed == 1 %}     
+#Abducted
+{% endif %}
+  {% comment %} figure out about profile 1948 {% endcomment %}
+     
+        
+        {{victim.victim_name}}
+
+
+ 
+
+
+        {% comment %} {% trans 'date unknown' %}{% endcomment %}
+        {% endif %} 
         
       {% endif %}
 
@@ -109,7 +147,8 @@
       <!-- sex -->      
       {% comment %} {% if victim.victim_sex != None %}{% sex victim.victim_sex %}{% endif %} {% endcomment %}
       
-      
+     
+
       <!-- abduction-->
       {% if victim.victim_arrest_location != 1 %}
       {% if victim.victim_arrest_location != 11 %}
@@ -145,6 +184,8 @@
     {% endif %}
 
     {% if victim.victim_address_int_loc == 0 %}
+
+    
       {% if victim.victim_address_other != 'Don\'t know' %}
       {% trans 'Residence' %}
       
@@ -157,12 +198,14 @@
 
     {% if victim.victim_death_date %}
     
-    {% if victim.arrest_security_type_1  or victim.arrest_security_type_2 or  victim.arrest_security_locality_3 or   victim.arrest_security_type_4 or  victim.arrest_security_type_5 or  victim.arrest_security_type_6 or  victim.arrest_security_type_7 or  victim.arrest_security_type_oth %}
+    {% if victim.arrest_security_type_1  or victim.arrest_security_type_2 or  victim.arrest_security_locality_3 or   victim.arrest_security_type_4 or  victim.arrest_security_type_5 or victim.arrest_security_type_6 or  victim.arrest_security_type_7 or  victim.arrest_security_type_oth %}
     {% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %} 
   {% elif victim.killing_securityforces_lcl != 'Don\'t know' and  victim.killing_securityforces_lcl != None %}
+  
   {% harrest_security_type_link_t victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}
+
+
  {% elif victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforces_oth %}{% elif victim.killing_securityforces_lcl %}
- <p><b>| cats</b></p>
 
   {% endif %}
 
