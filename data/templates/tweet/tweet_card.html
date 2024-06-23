@@ -106,7 +106,7 @@
 
         {% else %} 
         <!-- On unknown date  -->
-        
+
         {% autoescape off %}
 
       {% comment %} need uknown secrurity forces or data forthcoming here {% endcomment %}
@@ -121,6 +121,11 @@
 
 {% if victim.arrest_security_locality  %} from  {{victim.arrest_security_locality|censuslink_t}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} {% endif %}{% endif %}
 
+
+{% comment %} Profile 1948 {% endcomment %}
+{% if victim.record_id == '1948'%}
+Unidentified security officials 
+{% endif %}
         
 {% if victim.victim_disappeared_killed == 2 %}
 #UnlawfullyKilled
@@ -132,8 +137,7 @@
   {% comment %} figure out about profile 1948 {% endcomment %}
      
         
-        {{victim.victim_name}}
-
+        {{victim.victim_name}}{% if victim.record_id == '1948'%} from undisclosed location.{% endif %}
 
  
 
@@ -149,9 +153,11 @@
       
      
 
+
       <!-- abduction-->
       {% if victim.victim_arrest_location != 1 %}
       {% if victim.victim_arrest_location != 11 %}
+      
       {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
          from
           
@@ -161,12 +167,13 @@
   {{victim.victim_arrest_loc_st}}{% endif %} 
       
       {% endif %}
-
+      
+        {% if victim.record_id != '1948'%}
       in
+      {% endif %}
        
       {% endif %}
   
-    
       {% if victim.victim_arrest_location == 1 %}
        from an undisclosed location in #Punjab state{% if victim.victim_disappeared_killed == 1 %} and #disappeared him{% endif %}.       
       {% endif %}
