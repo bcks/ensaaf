@@ -123,9 +123,12 @@
 
 
 {% comment %} Profile 1948 {% endcomment %}
-{% if victim.record_id == '1948'%}
+
+{% if victim.arrest_security_type_1 == 0 and victim.arrest_security_type_2 == 0 and  victim.arrest_security_type_3 == 0 and victim.arrest_security_type_4 == 0 and victim.arrest_security_type_5 == 0 and victim.arrest_security_type_6 == 0 and victim.arrest_security_type_7 == 0 %}
 Unidentified security officials 
 {% endif %}
+        
+        
         
 {% if victim.victim_disappeared_killed == 2 %}
 #UnlawfullyKilled
@@ -134,12 +137,17 @@ Unidentified security officials
 {% if victim.victim_disappeared_killed == 1 %}     
 #abducted
 {% endif %}
+
   {% comment %} figure out about profile 1948 {% endcomment %}
      
         
-        {{victim.victim_name}}{% if victim.record_id == '1948'%} from undisclosed location.{% endif %}
+        {{victim.victim_name}}
+        
+        {% if victim.record_id == '1948'%} from undisclosed location.{% endif %}
 
- 
+{% comment %} 
+victim.victim_arrest_location: {{victim.victim_arrest_location}}
+ {% endcomment %}
 
 
         {% comment %} {% trans 'date unknown' %}{% endcomment %}
@@ -164,14 +172,9 @@ Unidentified security officials
          {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
   {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
   {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
-  {{victim.victim_arrest_loc_st}}{% endif %} 
-      
+  {{victim.victim_arrest_loc_st}}{% endif %}.
       {% endif %}
-      
-        {% if victim.record_id != '1948'%}
-      in
-      {% endif %}
-       
+             
       {% endif %}
   
       {% if victim.victim_arrest_location == 1 %}
