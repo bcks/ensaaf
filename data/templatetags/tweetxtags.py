@@ -95,7 +95,7 @@ def vvictim_arrest_location(value, gender):
   elif gender == 2:
     pronoun = ' her '
 
-  location = ['', '', _(pronoun + 'home'), _(pronoun + 'friend/relative\'s residence'), _('a checkpoint (naka)'), _('the roadside'), _('the village fields'), _('a shop/market'), _('a bus station/stand'), _('a police station'), _('a village drain')]
+  location = ['', '', _(pronoun + 'home in '), _(pronoun + 'friend/relative\'s residence.'), _('a checkpoint (naka).'), _('the roadside.'), _('the village fields.'), _('a shop/market.'), _('a bus station/stand.'), _('a police station.'), _('a village drain.')]
   return location[value]
 
 
