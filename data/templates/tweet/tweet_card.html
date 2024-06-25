@@ -143,11 +143,8 @@ Unidentified security officials
         
         {{victim.victim_name}}
         
-        {% if victim.record_id == '1948'%} from undisclosed location.{% endif %}
+        {% if victim.victim_arrest_location is None %} from an undisclosed location.{% endif %}
 
-{% comment %} 
-victim.victim_arrest_location: {{victim.victim_arrest_location}}
- {% endcomment %}
 
 
         {% comment %} {% trans 'date unknown' %}{% endcomment %}
@@ -172,7 +169,7 @@ victim.victim_arrest_location: {{victim.victim_arrest_location}}
          {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
   {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
   {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
-  {{victim.victim_arrest_loc_st}}{% endif %}.
+  {{victim.victim_arrest_loc_st}}{% endif %}
       {% endif %}
              
       {% endif %}
