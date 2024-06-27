@@ -29,7 +29,6 @@
       {% elif victim.killing_securityforces_lcl != 'Don\'t know' and  victim.killing_securityforces_lcl != None %}
       {{victim.killing_securityforces_lcl|censuslink_t|safe}}  {% harrest_security_type_link_t victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}
      {% elif victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforces_oth %}{% elif victim.killing_securityforces_lcl %}
-     <p><b>| cats</b></p>
 
 
 
@@ -50,14 +49,6 @@
       {% autoescape off %}
         {% if victim.arrest_security_locality  %}{{victim.arrest_security_locality|censuslink_t}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} {% endif %}{% endif %}{% endautoescape %}
       
-{% comment %} <!-- security officials -->
-        {% if victim.killing_securityforces_lcl != 'Don\'t know' and  victim.killing_securityforces_lcl != None %}
-        {{victim.killing_securityforces_lcl|censuslink|safe}}{% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforces_oth %}{% if victim.killing_securityforces_lcl %}, {% endif %}{% endif %}{% endif %}{% autoescape off %}{% harrest_security_type_link_t victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}{% endautoescape %} {% endcomment %}
-
-
-               {% comment %} use a big statement and loop through possibilities?  victim.killing_securityforcestype {% endcomment %}
-
-       {% comment %} <u> Police station</u> {% endcomment %}
 
        {% if victim.victim_disappeared_killed == 2 %}
        #UnlawfullyKilled
@@ -81,9 +72,20 @@
       {% endif %}
 
       {% endif %}
+<!-- if second security force equals... 
 
+  https://data.ensaaf.org/profile/1377/  missing period
+https://data.ensaaf.org/profile/2153/ missing period
+https://data.ensaaf.org/profile/2454/ missing period
+https://data.ensaaf.org/profile/2573/ missing period
+https://data.ensaaf.org/profile/301/ missing period
+
+
+-->
       <!-- if vicitem has disappared -->
-<!---      Do we need this? --> 
+
+<!-- second security force -->
+
       {% if victim.victim_disappeared_killed == 1 %} 
       
 
@@ -105,15 +107,12 @@
 
 
         {% else %} 
+        
         <!-- On unknown date  -->
 
         {% autoescape off %}
 
-      {% comment %} need uknown secrurity forces or data forthcoming here {% endcomment %}
-        {% comment %} unknown security officials {% endcomment %}
-        
-
-       
+             
 
 {% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %} 
 
@@ -122,12 +121,11 @@
 {% if victim.arrest_security_locality  %} from  {{victim.arrest_security_locality|censuslink_t}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} {% endif %}{% endif %}
 
 
-{% comment %} Profile 1948 {% endcomment %}
+
 
 {% if victim.arrest_security_type_1 == 0 and victim.arrest_security_type_2 == 0 and  victim.arrest_security_type_3 == 0 and victim.arrest_security_type_4 == 0 and victim.arrest_security_type_5 == 0 and victim.arrest_security_type_6 == 0 and victim.arrest_security_type_7 == 0 %}
 Unidentified security officials 
 {% endif %}
-        
         
         
 {% if victim.victim_disappeared_killed == 2 %}
@@ -138,7 +136,6 @@ Unidentified security officials
 #abducted
 {% endif %}
 
-  {% comment %} figure out about profile 1948 {% endcomment %}
      
         
         {{victim.victim_name}}
@@ -146,27 +143,20 @@ Unidentified security officials
         {% if victim.victim_arrest_location is None %} from an undisclosed location.{% endif %}
 
 
-
-        {% comment %} {% trans 'date unknown' %}{% endcomment %}
         {% endif %} 
         
       {% endif %}
 
       
-      <!-- sex -->      
-      {% comment %} {% if victim.victim_sex != None %}{% sex victim.victim_sex %}{% endif %} {% endcomment %}
-      
-     
-
 
       <!-- abduction-->
-      {% if victim.victim_arrest_location != 1 %}
+      {% if victim.victim_arrest_location != 1 %} 
       {% if victim.victim_arrest_location != 11 %}
       
       {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
          from
           
-         {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %},
+         {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex %}{% if victim.victim_arrest_location and victim.victim_arrest_loc_vill %}, {% endif %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
   {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
   {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
   {{victim.victim_arrest_loc_st}}{% endif %}
@@ -212,12 +202,28 @@ Unidentified security officials
     {% if victim.victim_death_date %}
     
     {% if victim.arrest_security_type_1  or victim.arrest_security_type_2 or  victim.arrest_security_locality_3 or   victim.arrest_security_type_4 or  victim.arrest_security_type_5 or victim.arrest_security_type_6 or  victim.arrest_security_type_7 or  victim.arrest_security_type_oth %}
-    {% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %} 
-  {% elif victim.killing_securityforces_lcl != 'Don\'t know' and  victim.killing_securityforces_lcl != None %}
+    <!-- https://data.ensaaf.org/profile/2568/ extra BorderSecurityForce
+-->
+    {% comment %} {% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %} 
+  {% elif victim.killing_securityforces_lcl != 'Don\'t know' and  victim.killing_securityforces_lcl != None %} {% endcomment %}
+
+  <!-- 
+    https://data.ensaaf.org/profile/2203/  extra PunjabPolice
+https://data.ensaaf.org/profile/1281/  extra PunjabPolice
+  -->
   
+  <!-- Punjab police did not return ... -->
+
+
+  {% elif victim.killing_securityforcestype_1 == 1 or victim.killing_securityforcestype_2 == 1 or victim.killing_securityforcestype_3 == 1 or victim.killing_securityforcestype_4 == 1 or victim.killing_securityforcestype_5 == 1 or victim.killing_securityforcestype_6 == 1 or victim.killing_securityforcestype_7 == 1 or victim.killing_securityforcestype_oth == 1 %}
+
+  
+
   {% harrest_security_type_link_t victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}
+  
 
-
+   
+   
  {% elif victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforces_oth %}{% elif victim.killing_securityforces_lcl %}
 
   {% endif %}
@@ -240,20 +246,38 @@ abduction.
 
   {% endif %}
 
-{% comment %} {% if victim.victim_arrest_status == 1 or victim.victim_arrest_status == 2 %}
-  {% if victim.security_forces_uniformed != None and victim.security_forces_uniformed != 9 %}
-{% trans 'Security officials' %}
 
-  {% endif %}
-  {% endif %} {% endcomment %}
+    {% if victim.so_return_body != None and victim.so_return_body != 0 %}
 
-{% comment %} 
-  {% if victim.killing_securityforces_lcl != 'Don\'t know' and  victim.killing_securityforces_lcl != None %}
-      {% if victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforces_oth %}{% if victim.killing_securityforces_lcl %}, {% endif %}{% endif %}{% endif %}{% autoescape off %}{% harrest_security_type_link_t victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}{% endautoescape %} {% endcomment %}
+
+    <!--  https://data.ensaaf.org/profile/2659/ 
+    
+    fixed but now need to fix
+   https://data.ensaaf.org/profile/1003/
+   https://data.ensaaf.org/profile/2382/
+    https://data.ensaaf.org/profile/2454/
+     https://data.ensaaf.org/profile/2573/
+     of 10
+
+     search term "#PunjabPolice The"
+  -->
+
+    {% if victim.so_return_body == 3 and victim.security_arrest.all|length == 0 %}
+
+    The body of  
+      {{victim.victim_name}}{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}{% if victim.victim_alias == 1 and victim.victim_alias_name  %}, also known as {{victim.victim_alias_name}}, {% endif %}{% endif %} has not been returned to
         
-                {% comment %} Victim's body  {% endcomment %}
-        {% if victim.so_return_body != None and victim.so_return_body != 0 %}
-        {% if victim.so_return_body == 3 %} did not return 
+    {% if victim.victim_sex == 1 %}his{% endif %}
+    {% if victim.victim_sex == 2 %}her{% endif %}
+    family.
+  
+  
+
+{%endif %}
+
+        {% if victim.so_return_body == 3  and victim.security_arrest.all|length > 0 %} 
+        
+        did not return 
         
         {{victim.victim_name}}{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}{% if victim.victim_alias == 1 and victim.victim_alias_name  %}, also known as {{victim.victim_alias_name}}, {% endif %}{% endif %}'s body to
         

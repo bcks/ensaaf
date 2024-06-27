@@ -95,6 +95,7 @@ def vvictim_arrest_location(value, gender):
   elif gender == 2:
     pronoun = ' her '
 
+# village fields. vs village fields near
   location = ['', '', _(pronoun + 'home in '), _(pronoun + 'friend/relative\'s residence.'), _('a checkpoint (naka).'), _('the roadside.'), _('the village fields.'), _('a shop/market.'), _('a bus station/stand.'), _('a police station.'), _('a village drain.')]
   return location[value]
 
@@ -301,7 +302,7 @@ def harrest_security_type_link_t(v1, v2, v3, v4, v5, v6, v7, other):
   if (other):
     groups.append(other)
   if len(groups):
-      s = '; '
+      s = ', '
       return s.join(groups)
   else:
       return ''
