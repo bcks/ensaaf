@@ -184,8 +184,6 @@ Unidentified security officials
      {% trans 'village.' %}
       {% endif %}
       {% endif %}
-      {% else %}
-      .
     {% endif %}
 
     {% if victim.victim_address_int_loc == 0 %}
@@ -217,13 +215,9 @@ https://data.ensaaf.org/profile/1281/  extra PunjabPolice
   
   <!-- Punjab police did not return ... -->
 
-  {% comment %} {% elif victim.killing_securityforcestype_1 == 1 or victim.killing_securityforcestype_2 == 1 or victim.killing_securityforcestype_3 == 1 or victim.killing_securityforcestype_4 == 1 or victim.killing_securityforcestype_5 == 1 or victim.killing_securityforcestype_6 == 1 or victim.killing_securityforcestype_7 == 1 or victim.killing_securityforcestype_oth == 1 %}
-
-  dog {% endcomment %}
+{% elif victim.killing_securityforcestype_1 == 1 or victim.killing_securityforcestype_2 == 1 or victim.killing_securityforcestype_3 == 1 or victim.killing_securityforcestype_4 == 1 or victim.killing_securityforcestype_5 == 1 or victim.killing_securityforcestype_6 == 1 or victim.killing_securityforcestype_7 == 1 or victim.killing_securityforcestype_oth == 1 %}
 
   {% harrest_security_type_link_t victim.killing_securityforcestype_1 victim.killing_securityforcestype_2 victim.killing_securityforcestype_3 victim.killing_securityforcestype_4 victim.killing_securityforcestype_5 victim.killing_securityforcestype_6 victim.killing_securityforcestype_7 victim.killing_securityforces_oth %}
-  
-
    
    
  {% elif victim.killing_securityforcestype_1 or victim.killing_securityforcestype_2 or victim.killing_securityforcestype_3 or victim.killing_securityforcestype_4 or victim.killing_securityforcestype_5 or victim.killing_securityforcestype_6 or victim.killing_securityforces_oth %}{% elif victim.killing_securityforces_lcl %}
