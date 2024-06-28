@@ -428,7 +428,7 @@ def hashtag_victim_address_other_t(value):
       if village.district == 'Chandigarh':
         return  vname 
       else:      
-        return  vname + ', ' + _(village.tehsil) + ' #' + village.district.replace(' ','') + ' District'
+        return  vname + ', ' + _(village.tehsil) + ' #' + village.district.replace(' ','') + ' District.'
 
     except Villages.DoesNotExist:
       str = re.sub(r'([0123456789.]+)-','', str)
