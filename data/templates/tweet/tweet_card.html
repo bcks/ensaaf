@@ -68,8 +68,11 @@
 
 
       {% if victim.victim_age != "Don't know" %}      
-      ({{victim.victim_age|default:"unknown"|numpa}})
+      ({{victim.victim_age|default:"unknown"|numpa}}){% if victim.so_return_body != None and victim.so_return_body != 0 %}.{% endif %}
       {% endif %}
+      
+      
+    
 
       {% endif %}
 <!-- if second security force equals... 
