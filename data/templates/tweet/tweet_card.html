@@ -156,6 +156,15 @@ Unidentified security officials
       {% if victim.victim_arrest_location != 1 %} 
       {% if victim.victim_arrest_location != 11 %}
       
+  {% if victim.victim_arrest_location is not None %}
+    {% if victim.victim_disappeared_killed == 2 %}
+      {% if victim.victim_sex == 1 %}He{% endif %}
+      {% if victim.victim_sex == 2 %}She{% endif %} 
+          was abducted 
+    {% endif %}
+  {% endif%}
+
+      
       {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
          from
           
