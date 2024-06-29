@@ -96,7 +96,7 @@ def vvictim_arrest_location(value, gender):
     pronoun = ' her '
 
 # village fields. vs village fields near
-  location = ['', '', _(pronoun + 'home in '), _(pronoun + 'friend/relative\'s residence.'), _('a checkpoint (naka).'), _('the roadside.'), _('the village fields.'), _('a shop/market.'), _('a bus station/stand.'), _('a police station.'), _('a village drain.')]
+  location = ['', '', _(pronoun + 'home in '), _(pronoun + 'friend/relative\'s residence'), _('a checkpoint (naka).'), _('the roadside'), _('the village fields'), _('a shop/market'), _('a bus station/stand'), _('a police station'), _('a village drain')]
   return location[value]
 
 
@@ -293,19 +293,23 @@ def harrest_security_type_link_t(v1, v2, v3, v4, v5, v6, v7, other):
 #remove all lings
   groups = []
   groups.append('#PunjabPolice') if v1 == 1 else 0
-  groups.append('#BorderSecurityForce') if v2 == 1 else 0
-  groups.append('#CentralReservePoliceForce') if v3 == 1 else 0
+  groups.append('#BorderSecurityForce (#BSF)') if v2 == 1 else 0
+  groups.append('#CentralReservePoliceForce (#CRPF)') if v3 == 1 else 0
   groups.append('#Army') if v4 == 1 else 0
   groups.append('#CriminalInvestigationAgency') if v5 == 1 else 0
-  groups.append('#Blackcat (Irregular undercover security force, often consisting of criminals)') if v6 == 1 else 0
+  groups.append('#Blackcat (irregular undercover security force, often consisting of criminals)') if v6 == 1 else 0
   groups.append( 'Unknown type of security forces') if v7 == 1 else 0
   if (other):
     groups.append(other)
-  if len(groups):
-      s = ', '
-      return s.join(groups)
-  else:
+
+  if len(groups) == 0:
       return ''
+  if len(groups) == 1:
+      return groups[0]
+  elif len(groups) == 2:
+      return ' and '.join(groups)
+  else:
+      return ', '.join(groups[:-1]) + ', and ' + groups[-1]
 
 
 
@@ -428,7 +432,7 @@ def hashtag_victim_address_other_t(value):
       if village.district == 'Chandigarh':
         return  vname 
       else:      
-        return  vname + ', ' + _(village.tehsil) + ' #' + village.district.replace(' ','') + ' District.'
+        return  vname + ', ' + _(village.tehsil) + ', #' + village.district.replace(' ','') + ' District.'
 
     except Villages.DoesNotExist:
       str = re.sub(r'([0123456789.]+)-','', str)
