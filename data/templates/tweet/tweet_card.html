@@ -167,7 +167,7 @@ Unidentified security officials
       <!--- residence -->
       
     {% if victim.victim_arrest_location == 2 %}<!-- victim arrested/abducted at residence -->
-      {% if victim.victim_address_int_loc == 1 %}
+      {% if victim.victim_address_int_loc == 1 %} <!-- same as interview location -->
         {% if victim.village_name != None %}
         
             {% if victim.village_id|add:"0" > 0 and village.tehsil%}
@@ -175,6 +175,8 @@ Unidentified security officials
             {% trans village.tehsil %} Subdistrict,
             {% trans 'District' %} District
             {% else %}
+            <!-- double village https://data.ensaaf.org/profile/3637/ 
+            do not remove else, but maybe conditional statement for mudhal ? -->
               {{victim.village_name}}
             {% endif %}
             
