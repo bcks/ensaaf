@@ -292,7 +292,7 @@ def harrest_security_type_link_t(v1, v2, v3, v4, v5, v6, v7, other):
 
 #remove all lings
   groups = []
-  groups.append('#PunjabPolice') if v1 == 1 else 0
+  groups.append('#PunjabPolice officials') if v1 == 1 else 0
   groups.append('#BorderSecurityForce (#BSF)') if v2 == 1 else 0
   groups.append('#CentralReservePoliceForce (#CRPF)') if v3 == 1 else 0
   groups.append('#Army') if v4 == 1 else 0
@@ -360,7 +360,14 @@ def censuslink(value):
           newparts.append(part)
 
       s = ", ";
-      return s.join(newparts)
+      if len(newparts) == 0:
+          return ''
+      if len(newparts) == 1:
+          return newparts[0]
+      elif len(newparts) == 2:
+          return ' and '.join(newparts)
+      else:
+          return ', '.join(newparts[:-1]) + ', and ' + newparts[-1]
 
     elif "-" in value:
       # split on dash
