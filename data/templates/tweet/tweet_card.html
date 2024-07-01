@@ -115,7 +115,7 @@
         
         {{victim.victim_name}}{% if victim.victim_arrest_location == 11 and victim.victim_arrest_loc_oth %}. {% endif %}{% comment %}<!-- victim.victim_arrest_loc_oth is not cleaned -->{% endcomment %}
         
-        {% if victim.victim_arrest_location is None %} from an undisclosed location.{% endif %}
+        {% if victim.victim_arrest_location is None %} from an undisclosed location  and #disappeared him (add if statement for gender ) {% endif %}
 
         {% endif %} 
         
@@ -139,10 +139,12 @@
       
       {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}<!-- in custody before killed -->
         from
-        {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex victim.victim_arrest_loc_vill %}{% if victim.victim_arrest_loc_vill != None %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}.{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
+        {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex victim.victim_arrest_loc_vill %}{% if victim.victim_arrest_loc_vill != None %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% if victim.victim_disappeared_killed == 1 %} and #disappeared him{% endif %}.{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
   {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
   {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
-  {{victim.victim_arrest_loc_st}}.{% endif %}{% endif %}{% if victim.victim_arrest_location == 2 and victim.victim_arrest_loc_vill == None and victim.village_name %}{{victim.village_name}} village{% getdistrict victim.village_id %}.{% endif %}
+  {{victim.victim_arrest_loc_st}}.{% endif %}{% endif %}{% if victim.victim_arrest_location == 2 and victim.victim_arrest_loc_vill == None and victim.village_name %}{{victim.village_name}} village{% getdistrict victim.village_id %}
+  {% if victim.victim_disappeared_killed == 1 %} and #disappeared him and add gender{% endif %} 
+  .{% endif %}
 
       {% else %}
 
@@ -158,11 +160,11 @@
                 <!-- double village https://data.ensaaf.org/profile/3637/ 
                 do not remove else, but maybe conditional statement for mudhal ? -->
 
-                <!-- {% if victim.victim_disappeared_killed == 1 %} and #disappeared him{% endif %} -->
                   {{victim.village_name}} village. 
                 {% endif %}            
                             
             {% endif %}
+               
           {% endif %}
         {% endif %}
 
