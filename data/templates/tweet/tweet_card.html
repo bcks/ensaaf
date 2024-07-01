@@ -36,7 +36,7 @@
             
     {% if victim.arrest_security_locality  %}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} from {% endif %}{% endif %}
         
-    {% if victim.arrest_security_locality  %}{{victim.arrest_security_locality|censuslink_t}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} {% endif %}{% endif %}
+    {% if victim.arrest_security_locality  %}{{victim.arrest_security_locality|censuslink_t}}{% endif %}
 
     {% endif %}
 
