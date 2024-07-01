@@ -80,6 +80,7 @@
 
         #abducted
 
+
           {{victim.victim_name}}
           {% if victim.victim_age != "Don't know" %}      
           ({{victim.victim_age|default:"unknown"}})
@@ -113,9 +114,9 @@
 
      
         
-        {{victim.victim_name}}{% if victim.victim_arrest_location == 11 and victim.victim_arrest_loc_oth %}. {% endif %}{% comment %}<!-- victim.victim_arrest_loc_oth is not cleaned -->{% endcomment %}
+        {{victim.victim_name}}{% if victim.victim_arrest_location == 11 and victim.victim_arrest_loc_oth %} and #disappeared {% if victim.victim_sex == 1 %}him{% endif %}{% if victim.victim_sex == 2 %}her{% endif %}.{% endif %}{% comment %}<!-- victim.victim_arrest_loc_oth is not cleaned -->{% endcomment %}
         
-        {% if victim.victim_arrest_location is None %} from an undisclosed location  and #disappeared him (add if statement for gender ) {% endif %}
+        {% if victim.victim_arrest_location is None %} from an undisclosed location  and #disappeared {% if victim.victim_sex == 1 %}him{% endif %}{% if victim.victim_sex == 2 %}her{% endif %}.{% endif %}
 
         {% endif %} 
         
@@ -143,8 +144,7 @@
   {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
   {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
   {{victim.victim_arrest_loc_st}}.{% endif %}{% endif %}{% if victim.victim_arrest_location == 2 and victim.victim_arrest_loc_vill == None and victim.village_name %}{{victim.village_name}} village{% getdistrict victim.village_id %}
-  {% if victim.victim_disappeared_killed == 1 %} and #disappeared him and add gender{% endif %} 
-  .{% endif %}
+  {% if victim.victim_disappeared_killed == 1 %} and #disappeared {% if victim.victim_sex == 1 %}him{% endif %}{% if victim.victim_sex == 2 %}her{% endif %}{% endif %}.{% endif %}
 
       {% else %}
 
@@ -174,8 +174,7 @@
       {% endif %}
   
       {% if victim.victim_arrest_location == 1 %}
-       from an undisclosed location in #Punjab state{% if victim.victim_disappeared_killed == 1 %} and #disappeared him{% endif %}.       
-      {% endif %}
+       from an undisclosed location in #Punjab state{% if victim.victim_disappeared_killed == 1 %} and #disappeared {% if victim.victim_sex == 1 %}him{% endif %}{% if victim.victim_sex == 2 %}her{% endif %}{% endif %}.{% endif %}
   
       
       
