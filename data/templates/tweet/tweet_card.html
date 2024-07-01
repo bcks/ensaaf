@@ -7,7 +7,6 @@
 
 {% if victim.victim_disappeared_killed == 2 %}
       
-  {% autoescape off %}
       
   {% if victim.victim_death_date %}
     {% hdate_t victim.victim_death_date %},
@@ -41,7 +40,6 @@
 
     {% endif %}
 
-    {% endautoescape %}
 
      
     
@@ -60,7 +58,7 @@
       {{victim.victim_name}}{% if victim.record_id == '5510' or victim.record_id == '5511' or victim.record_id == '5512' or victim.record_id == '5513' %}{% if victim.victim_alias == 1 and victim.victim_alias_name  %}, also known as {{victim.victim_alias_name}}, {% endif %}{% endif %}
 
       {% if victim.victim_age != "Don't know" %}      
-      ({{victim.victim_age|default:"unknown"|numpa}}){% if victim.so_return_body != None and victim.so_return_body != 0 %}.{% endif %}
+      ({{victim.victim_age|default:"unknown"|numpa}}){% if victim.so_return_body != None and victim.so_return_body != 0 and victim.victim_address_int_loc != 0 and victim.victim_address_other != 'Don\'t know'%}.{% endif %}
       {% endif %}
           
     {% endif %}
@@ -95,11 +93,10 @@
         
         <!-- On unknown date  -->
 
-        {% autoescape off %}
 
              
 
-{% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}{% endautoescape %} 
+{% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}
 
 
 
@@ -109,16 +106,16 @@
 
 
 {% if victim.arrest_security_type_1 == 0 and victim.arrest_security_type_2 == 0 and  victim.arrest_security_type_3 == 0 and victim.arrest_security_type_4 == 0 and victim.arrest_security_type_5 == 0 and victim.arrest_security_type_6 == 0 and victim.arrest_security_type_7 == 0 %}
-Unidentified security officials 
+  Unidentified security officials 
 {% endif %}
         
         
 {% if victim.victim_disappeared_killed == 2 %}
-#UnlawfullyKilled
+  #UnlawfullyKilled
 {% endif %}
 
 {% if victim.victim_disappeared_killed == 1 %}     
-#abducted
+  #abducted
 {% endif %}
 
      
@@ -137,25 +134,45 @@ Unidentified security officials
       <!-- abduction-->
       {% if victim.victim_arrest_location != 1 %} 
       {% if victim.victim_arrest_location != 11 %}
-      
-  {% if victim.victim_arrest_location is not None %}
-    {% if victim.victim_disappeared_killed == 2 %}
-      {% if victim.victim_sex == 1 %}He{% endif %}
-      {% if victim.victim_sex == 2 %}She{% endif %} 
-          was abducted 
-    {% endif %}
-  {% endif%}
+            
+        {% if victim.victim_arrest_location is not None %}
+          {% if victim.victim_disappeared_killed == 2 %}
+            {% if victim.victim_sex == 1 %}He{% endif %}
+            {% if victim.victim_sex == 2 %}She{% endif %} 
+                was abducted 
+          {% endif %}
+        {% endif%}
+
 
       
-      {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}
-         from
-          
-         {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex %}{% if victim.victim_arrest_loc_vill != None %}{% autoescape off %} {% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% endautoescape %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
+      {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}<!-- in custody before killed -->
+        from
+        {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex %}{% if victim.victim_arrest_loc_vill != None %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
   {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
   {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
-  {{victim.victim_arrest_loc_st}}{% endif %}{% endif %}{% if victim.victim_arrest_location is not None and victim.victim_arrest_location != 2 and victim.victim_arrest_location != 11 %}.{% endif %}
-  
-      
+  {{victim.victim_arrest_loc_st}}{% endif %}{% endif %}{% if victim.victim_arrest_location == 2 and victim.victim_arrest_loc_vill == None and victim.village_name %}{{victim.village_name}} village{% endif %}{% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}.{% endif %}
+
+      {% else %}
+
+
+        {% if victim.victim_arrest_location == 2 %}<!-- victim arrested/abducted at residence -->
+          {% if victim.victim_address_int_loc == 1 %} <!-- same as interview location -->
+            {% if victim.village_name != None %}
+            
+                {% if victim.village_id|add:"0" > 0 and village.tehsil%}
+                  {{victim.village_name}} village, {{ village.tehsil }}, {{village.district}} District.
+                {% else %}
+                <!-- double village https://data.ensaaf.org/profile/3637/ 
+                do not remove else, but maybe conditional statement for mudhal ? -->
+                  {{victim.village_name}} village.
+                {% endif %}            
+                            
+            {% endif %}
+          {% endif %}
+        {% endif %}
+
+
+        
       {% endif %}
   
       {% if victim.victim_arrest_location == 1 %}
@@ -166,34 +183,10 @@ Unidentified security officials
       
       <!--- residence -->
       
-    {% if victim.victim_arrest_location == 2 %}<!-- victim arrested/abducted at residence -->
-      {% if victim.victim_address_int_loc == 1 %} <!-- same as interview location -->
-        {% if victim.village_name != None %}
-        
-            {% if victim.village_id|add:"0" > 0 and village.tehsil%}
-            {% if request.LANGUAGE_CODE == 'pb' %}{{victim.village_name_pb}}{% else %}{{victim.village_name}}{% endif %} Village ,
-            {% trans village.tehsil %} Subdistrict,
-            {% trans 'District' %} District
-            {% else %}
-            <!-- double village https://data.ensaaf.org/profile/3637/ 
-            do not remove else, but maybe conditional statement for mudhal ? -->
-              {{victim.village_name}}
-            {% endif %}
-            
-           {% trans 'village.' %}
-        {% endif %}
-      {% endif %}
-    {% endif %}
-
 
     {% if victim.victim_address_int_loc == 0 %}
-      {% if victim.victim_address_other != 'Don\'t know' %}
-        {% trans 'village' %}
-      
-          {% autoescape off %}
-           {% hashtag_victim_address_other_t victim.victim_address_other %}
-          {% endautoescape %}
-      
+      {% if victim.victim_address_other and victim.victim_address_other != 'Don\'t know' %}
+          from {% hashtag_victim_address_other_t victim.victim_address_other %}
       {% endif %}
     {% endif %}
 
