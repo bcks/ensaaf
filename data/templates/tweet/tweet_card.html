@@ -153,10 +153,13 @@
             
                 {% if victim.village_id|add:"0" > 0 and village.tehsil%}
                   {{victim.village_name}} village, {{ village.tehsil }}, {{village.district}} District.
+                  
                 {% else %}
                 <!-- double village https://data.ensaaf.org/profile/3637/ 
                 do not remove else, but maybe conditional statement for mudhal ? -->
-                  {{victim.village_name}} village.
+
+                <!-- {% if victim.victim_disappeared_killed == 1 %} and #disappeared him{% endif %} -->
+                  {{victim.village_name}} village. 
                 {% endif %}            
                             
             {% endif %}
