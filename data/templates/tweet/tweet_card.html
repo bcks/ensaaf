@@ -95,14 +95,10 @@
 
 {% harrest_security_type_link_t victim.arrest_security_type_1 victim.arrest_security_type_2 victim.arrest_security_type_3 victim.arrest_security_type_4 victim.arrest_security_type_5 victim.arrest_security_type_6 victim.arrest_security_type_7 victim.arrest_security_type_oth %}
 
+{% if victim.arrest_security_locality  %} from  {{victim.arrest_security_locality|censuslink_t}}{% endif %}
 
 
-{% if victim.arrest_security_locality  %} from  {{victim.arrest_security_locality|censuslink_t}}{% if victim.arrest_security_type_1 or victim.arrest_security_type_2 or victim.arrest_security_type_3 or victim.arrest_security_type_4 or victim.arrest_security_type_5 or victim.arrest_security_type_6 or victim.arrest_security_type_7 or victim.arrest_security_type_oth%} {% endif %}{% endif %}
-
-
-
-
-{% if victim.arrest_security_type_1 == 0 and victim.arrest_security_type_2 == 0 and  victim.arrest_security_type_3 == 0 and victim.arrest_security_type_4 == 0 and victim.arrest_security_type_5 == 0 and victim.arrest_security_type_6 == 0 and victim.arrest_security_type_7 == 0 %}
+{% if victim.arrest_security_type_1 == 0 and victim.arrest_security_type_2 == 0 and victim.arrest_security_type_3 == 0 and victim.arrest_security_type_4 == 0 and victim.arrest_security_type_5 == 0 and victim.arrest_security_type_6 == 0 and victim.arrest_security_type_7 == 0 %}
   Unidentified security officials 
 {% endif %}
         
@@ -117,10 +113,9 @@
 
      
         
-        {{victim.victim_name}}
+        {{victim.victim_name}}{% if victim.victim_arrest_location == 11 and victim.victim_arrest_loc_oth %}. {% endif %}{% comment %}<!-- victim.victim_arrest_loc_oth is not cleaned -->{% endcomment %}
         
         {% if victim.victim_arrest_location is None %} from an undisclosed location.{% endif %}
-
 
         {% endif %} 
         
@@ -148,7 +143,7 @@
   {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
   {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
   {{victim.victim_arrest_loc_st}}.{% endif %}{% endif %}{% if victim.victim_arrest_location == 2 and victim.victim_arrest_loc_vill == None and victim.village_name %}{{victim.village_name}} village{% getdistrict victim.village_id %}.{% endif %}
-  
+
       {% else %}
 
 
@@ -169,6 +164,7 @@
         {% endif %}
 
 
+
         
       {% endif %}
   
@@ -178,17 +174,7 @@
   
       
       
-      <!--- residence -->
-      
-
-    {% if victim.victim_arrest_location == 2 and victim.victim_address_int_loc == 0 %}
-      {% if victim.victim_address_other and victim.victim_address_other != 'Don\'t know' %}
-          from {% hashtag_victim_address_other_t victim.victim_address_other %}
-      {% endif %}
-    {% endif %}
-
-
-
+      <!--- residence -->      
 
   {% if victim.victim_death_date %}
     

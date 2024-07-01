@@ -88,7 +88,7 @@ def getdistrict(vid):
     if vid:
       try:
         village = Villages.objects.filter(vid=vid)[:1].get()
-        return " in #" + village.district + " district"
+        return " in #" + str( village.district ).replace(' ','') + " district"
       except Villages.DoesNotExist:
         return ''
     else:
@@ -106,7 +106,7 @@ def vvictim_arrest_location(value, gender, victim_arrest_loc_vill):
     pronoun = ' her '
 
 # village fields. vs village fields near
-  location = ['', '', _(pronoun + 'home in '), _(pronoun + 'friend/relative\'s residence'), _('a checkpoint (naka)'), _('the roadside. '), _('the village fields'), _('a shop/market'), _('a bus station/stand'), _('a police station'), _('a village drain')]
+  location = ['', '', _(pronoun + 'home in '), _(pronoun + 'friend/relative\'s residence'), _('a checkpoint (naka)'), _('the roadside'), _('the village fields'), _('a shop/market'), _('a bus station/stand'), _('a police station'), _('a village drain')]
 
   if victim_arrest_loc_vill and value != 2:
     return location[value] + ' in '
