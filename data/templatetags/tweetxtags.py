@@ -83,9 +83,19 @@ def not_int(s):
         return True
 
 
+@register.simple_tag()
+def getdistrict(vid):
+    if vid:
+      try:
+        village = Villages.objects.filter(vid=vid)[:1].get()
+        return " in #" + village.district + " district"
+      except Villages.DoesNotExist:
+        return ''
+    else:
+      return ''
 
 @register.simple_tag()
-def vvictim_arrest_location(value, gender):
+def vvictim_arrest_location(value, gender, victim_arrest_loc_vill):
   if value == None:
     return value
 
@@ -96,8 +106,14 @@ def vvictim_arrest_location(value, gender):
     pronoun = ' her '
 
 # village fields. vs village fields near
-  location = ['', '', _(pronoun + 'home in '), _(pronoun + 'friend/relative\'s residence'), _('a checkpoint (naka).'), _('the roadside'), _('the village fields'), _('a shop/market'), _('a bus station/stand'), _('a police station'), _('a village drain')]
-  return location[value]
+  location = ['', '', _(pronoun + 'home in '), _(pronoun + 'friend/relative\'s residence'), _('a checkpoint (naka)'), _('the roadside. '), _('the village fields'), _('a shop/market'), _('a bus station/stand'), _('a police station'), _('a village drain')]
+
+  if victim_arrest_loc_vill and value != 2:
+    return location[value] + ' in '
+  elif value == 2:
+    return location[value]   
+  else:
+    return location[value] + '. '
 
 
 
