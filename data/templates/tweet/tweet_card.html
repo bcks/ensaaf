@@ -140,7 +140,7 @@
       
       {% if victim.victim_arrest_status == 2 or victim.victim_arrest_status == 1 %}<!-- in custody before killed -->
         from
-        {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex victim.victim_arrest_loc_vill %}{% if victim.victim_arrest_loc_vill != None %}{% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% if victim.victim_disappeared_killed == 1 %} and #disappeared him{% endif %}.{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
+        {% vvictim_arrest_location victim.victim_arrest_location victim.victim_sex victim.victim_arrest_loc_vill %}{% if victim.victim_arrest_loc_vill != None %} {% hvictim_address_other_t victim.victim_arrest_loc_vill %}{% if victim.victim_disappeared_killed == 1 %} and #disappeared  {% if victim.victim_sex == 1 %}him{% endif %}{% if victim.victim_sex == 2 %}her{% endif %}{% endif %}.{% endif %}{% endif %}{% if victim.victim_arrest_loc_thsl %}, 
   {{victim.victim_arrest_loc_thsl}}{% endif %}{% if victim.victim_arrest_loc_dist %},
   {{victim.victim_arrest_loc_dist}}{% endif %}{% if victim.victim_arrest_loc_st %},
   {{victim.victim_arrest_loc_st}}.{% endif %}{% endif %}{% if victim.victim_arrest_location == 2 and victim.victim_arrest_loc_vill == None and victim.village_name %}{{victim.village_name}} village{% getdistrict victim.village_id %}
