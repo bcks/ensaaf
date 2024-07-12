@@ -125,14 +125,19 @@
       
 
       <!-- abduction-->
+      <!-- re phrase to 
+      security officals abuctted tem 
+      -->
       {% if victim.victim_arrest_location != 1 %} 
       {% if victim.victim_arrest_location != 11 %}
             
         {% if victim.victim_arrest_location is not None %}
           {% if victim.victim_disappeared_killed == 2 %}
-            {% if victim.victim_sex == 1 %}He{% endif %}
-            {% if victim.victim_sex == 2 %}She{% endif %} 
-                was abducted 
+         
+            They abducted 
+
+               {% if victim.victim_sex == 1 %}him{% endif %}
+            {% if victim.victim_sex == 2 %}her{% endif %} 
           {% endif %}
         {% endif%}
 
@@ -157,8 +162,7 @@
                   {{victim.village_name}} village, {{ village.tehsil }}, {{village.district}} District.
                   
                 {% else %}
-                <!-- double village https://data.ensaaf.org/profile/3637/ 
-                do not remove else, but maybe conditional statement for mudhal ? -->
+                <!-- double village https://data.ensaaf.org/profile/3637/ -->
 
                   {{victim.village_name}} village. 
                 {% endif %}            

@@ -4,6 +4,8 @@ from django import template
 from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
 from django.urls import reverse
+
+from interviews.models import Victim
 from ..models import *
 
 import requests
@@ -105,8 +107,11 @@ def vvictim_arrest_location(value, gender, victim_arrest_loc_vill):
   elif gender == 2:
     pronoun = ' her '
 
+
 # village fields. vs village fields near
   location = ['', '', _(pronoun + 'home in '), _(pronoun + 'friend/relative\'s residence'), _('a checkpoint (naka)'), _('the roadside'), _('the village fields'), _('a shop/market'), _('a bus station/stand'), _('a police station'), _('a village drain')]
+
+
 
   if victim_arrest_loc_vill and value != 2:
     return location[value] + ' in '
@@ -114,6 +119,7 @@ def vvictim_arrest_location(value, gender, victim_arrest_loc_vill):
     return location[value]   
   else:
     return location[value] + '. '
+# there may need to be a 3rd conditional for profile number 1201 
 
 
 
