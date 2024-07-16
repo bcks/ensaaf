@@ -26,6 +26,7 @@ urlpatterns = i18n_patterns(
     path('profile/<slug:record_id>/', profile, name="profile"),
     path('tweet/<slug:record_id>/', tweet, name="tweet"),
     path('tweets/', tweets, name="tweets"),
+    url(r'^tweets/(?P<year>[0-9,\-]+)-(?P<month>[0-9,\-]+)-(?P<date>[0-9,\-]+)/$', tweetsdate, name="tweetsdate"),
     path('village/<slug:slug>/', village, name="village"),
     path('tehsil/<slug:slug>/', tehsil, name="tehsil"),
     path('district/<slug:slug>/', district, name="district"),

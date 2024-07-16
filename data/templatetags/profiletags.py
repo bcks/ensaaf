@@ -1,6 +1,7 @@
 import re
 import numbers
 from django import template
+from django.utils.html import strip_tags
 from django.utils.translation import ugettext as _
 from django.utils.translation import get_language
 from django.urls import reverse
@@ -48,7 +49,7 @@ def concatenate(v1, v2):
 def translate(text):
   try:    
     return _(text)
-  except ValueError:
+  except:
     return text
 
 
@@ -59,7 +60,7 @@ def vnametranslate(village):
       return village.village_name_pb
     else:
       return village.village_name
-  except ValueError:
+  except:
     return text
 
 
@@ -109,7 +110,7 @@ def numpa(number_string):
       try:
         number_string = format(number_string, ",")
         return number_string
-      except ValueError:       
+      except:       
         return number_string
 
 
@@ -139,7 +140,7 @@ def get_village_name_pb(value):
       try:
         village_name = Villages.objects.filter(vid=value).values('village_name_pb')[:1].get()
         return unparen( village_name['village_name_pb'] )
-      except Exception as e:
+      except:
         return None        
     else:
       return None
@@ -173,7 +174,7 @@ def hvictim_address_other(value):
           _(village.tehsil) + '</a></span>, '\
           '<span define="' + _('District') + '"><a href="'  + reverse('district', args=(village.district_id,)) + '">' + _(village.district) + '</a></span>'
 
-    except Villages.DoesNotExist:
+    except:
       str = re.sub(r'([0123456789.]+)-','', str)
       return str
   else:
@@ -208,7 +209,7 @@ def hashtag_victim_address_other(value):
           _(village.tehsil) + '</a></span>, '\
           '<span define="' + _('District') + '"><a href="'  + reverse('district', args=(village.district_id,)) + '">' + '#' + village.district.replace(' ','') + 'District</a></span>'
 
-    except Villages.DoesNotExist:
+    except:
       str = re.sub(r'([0123456789.]+)-','', str)
       return str
   else:
@@ -240,7 +241,7 @@ def hvictim_village(value):
         return '<span define="' + _('Village/town/city') + '"><a href="' + \
           reverse('village', args=(census_id,)) + '">' + vname + '</a></span></span>'
 
-    except Villages.DoesNotExist:
+    except:
       str = re.sub(r'([0123456789.]+)-','', str)
       return str
   else:
@@ -850,7 +851,7 @@ def translate_village_by_name(value):
           return village_name['village_name_pb']
         else:
           return value
-      except Exception as e:
+      except:
         return value        
     else:
       return value
@@ -1226,7 +1227,7 @@ def hduration_of_detention(v1):
       return v1 + ' ' + _('days')
      else:
       return v1 + ' ' + _('day')
-  except ValueError:
+  except:
      return v1.lower()
 
 
@@ -1255,7 +1256,7 @@ def percent(item1, total):
       return 0
     try:
         return "%.1f" % ((float(item1) / float(total)) * 100) 
-    except ValueError as e:
+    except:
       return ''
 
 
@@ -1266,7 +1267,7 @@ def percentpa(item1, total):
       return numpa( 0 )
     try:
       return numpa( float( "%.1f" % ( ( float(item1) / float(total) ) * 100 ) ) )
-    except ValueError as e:
+    except:
       return ''
 
 
@@ -1312,3 +1313,23 @@ def vimeo_thumb(var):
 
 
 
+@register.tag(name="linebreakless")
+def linebreakless(parser, token):
+    nodelist = parser.parse(("endlinebreakless",))
+    parser.delete_first_token()
+    return LinebreaklessNode(nodelist)
+
+class LinebreaklessNode(template.Node):
+    def __init__(self, nodelist):
+        self.nodelist = nodelist
+
+    def render(self, context):
+        output = self.nodelist.render(context)
+        output = strip_tags(output)
+        output = output.replace("\n", " ")
+        output = output.replace('"','\"')
+        output = output.strip()
+        while '  ' in output:
+            output = output.replace('  ', ' ')
+        
+        return output

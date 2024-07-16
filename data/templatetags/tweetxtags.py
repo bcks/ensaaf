@@ -50,7 +50,7 @@ def concatenate(v1, v2):
 def translate(text):
   try:    
     return _(text)
-  except ValueError:
+  except:
     return text
 
 
@@ -61,7 +61,7 @@ def vnametranslate(village):
       return village.village_name_pb
     else:
       return village.village_name
-  except ValueError:
+  except:
     return text
 
 
@@ -91,7 +91,7 @@ def getdistrict(vid):
       try:
         village = Villages.objects.filter(vid=vid)[:1].get()
         return " in #" + str( village.district ).replace(' ','') + " district"
-      except Villages.DoesNotExist:
+      except:
         return ''
     else:
       return ''
@@ -147,7 +147,7 @@ def numpa(number_string):
       try:
         number_string = format(number_string, ",")
         return number_string
-      except ValueError:       
+      except:       
         return number_string
 
 
@@ -427,14 +427,13 @@ def hvictim_address_other_t(value):
       village = Villages.objects.filter(vid=census_id)[:1].get()
       
       if village.district == 'Chandigarh':
-        return '<a href="' + \
-          reverse('village', args=(census_id,)) + '">' + vname + '</a>'
+        return vname
       else:      
         return reverse('village') + vname + ', ' + ('Subdistrict') + \
           _(village.tehsil) + \
          + _(village.district)
 
-    except Villages.DoesNotExist:
+    except:
       str = re.sub(r'([0123456789.]+)-','', str)
       return str
   else:
@@ -463,7 +462,7 @@ def hashtag_victim_address_other_t(value):
       else:      
         return  vname + ', ' + _(village.tehsil) + ', #' + village.district.replace(' ','') + ' District.'
 
-    except Villages.DoesNotExist:
+    except:
       str = re.sub(r'([0123456789.]+)-','', str)
       return str
   else:

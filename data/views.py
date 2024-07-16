@@ -298,6 +298,12 @@ def tweets(request):
       "victims": victims,
     })
 
+def tweetsdate(request, year=None, month=None, date=None):
+    victims = Data.objects.filter(timeline__month=month,timeline__day=date)
+    return render(request, "tweet/tweetsdate.html", {
+      "victims": victims,
+    })
+
 
 def all_profiles(request, slug=0):
     start = int(slug) * 500
