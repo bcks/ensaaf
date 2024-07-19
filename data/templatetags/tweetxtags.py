@@ -119,7 +119,6 @@ def vvictim_arrest_location(value, gender, victim_arrest_loc_vill):
     return location[value]   
   else:
     return location[value] + '. '
-# there may need to be a 3rd conditional for profile number 1201
 
 
 
