@@ -3,8 +3,8 @@
   "total": {{victims|length}},
   "tweets": [{% for victim in victims %}
       {
-        "tweet": "{% linebreakless %}{% include 'tweet/tweet_card.html' %}{% endlinebreakless %}\\n\\n#HumanRights #Justice #Punjab #India #Impunity",
-        "url": "https://data.ensaaf.org{% url 'profile' victim.record_id %}"{% if victim.photo_vic_fn %},
+        "tweet": "{% linebreakless %}{% include 'tweet/tweet_card.html' %}{% endlinebreakless %} #Punjab #India #EndImpunity",
+        "url": Visit "https://data.ensaaf.org{% url 'profile' victim.record_id %}"{% if victim.photo_vic_fn %},
         "image": "{% hphoto victim.photo_vic_fn %}"{% endif %}
       }{% if not forloop.last %},{% endif %}{% endfor %}
     ]
