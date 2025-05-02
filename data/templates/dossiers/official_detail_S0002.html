@@ -588,7 +588,8 @@ var mymap = new L.Map('mapid', {
   center: [31.0157601,75.45],
   zoom: 8
 });
-cartodb.createLayer(mymap, 'https://sukhmandhami.carto.com/api/v2/viz/9650d7c6-9865-4151-a4e7-3456ef906d7d/viz.json', {https: true}).addTo(mymap);
+var basemap = new L.TileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png').addTo(mymap);
+
 var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
 zoomHome.addTo(mymap);
 
