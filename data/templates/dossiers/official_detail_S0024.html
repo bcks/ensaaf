@@ -671,6 +671,23 @@ var mymap = new L.Map('mapid', {
 });
 var basemap = new L.TileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png').addTo(mymap);
 
+fetch('/static/js/punjab.geojson')
+  .then(response => response.json())
+  .then(geojsonData => {
+    new L.GeoJSON(geojsonData, {
+      style: {
+        fillOpacity: 0,
+        fillColor:null,
+        color: '#999999',
+        weight: 1
+      }
+    }).addTo(mymap);
+
+  }).catch(error => {
+    console.error('Error fetching GeoJSON data:', error);
+  });
+
+
 var zoomHome = L.Control.zoomHome({ zoomHomeIcon: 'refresh' });
 zoomHome.addTo(mymap);
 
