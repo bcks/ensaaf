@@ -306,6 +306,7 @@ def hyear_t(var):
     return ', ' + yearpa(parts[2])
 
 
+# Tweet Json
 @register.simple_tag()
 def harrest_security_type_link_t(v1, v2, v3, v4, v5, v6, v7, other):
   lang = '/' + str(get_language())
@@ -351,6 +352,55 @@ def harrest_security_type_t(v1, v2, v3, v4, v5, v6, v7, other):
       return s.join(groups)
   else:
       return ''
+
+
+#tweet on profile
+@register.simple_tag()
+def harrest_security_type_link_t_share(v1, v2, v3, v4, v5, v6, v7, other):
+  lang = '/' + str(get_language())
+  lang = lang.replace('/en-us','')
+
+#remove all lings
+  groups = []
+  groups.append('%23PunjabPolice officials') if v1 == 1 else 0
+  groups.append('Security officials from the #BorderSecurityForce (%23BSF)') if v2 == 1 else 0
+  groups.append('%23CentralReservePoliceForce (%23CRPF)') if v3 == 1 else 0
+  groups.append('%23Army') if v4 == 1 else 0
+  groups.append('%23CriminalInvestigationAgency') if v5 == 1 else 0
+  groups.append('%23Blackcat (irregular undercover security force, often consisting of criminals)') if v6 == 1 else 0
+  groups.append( 'Unknown type of security forces') if v7 == 1 else 0
+  if (other):
+    groups.append(other)
+
+  if len(groups) == 0:
+      return ''
+  if len(groups) == 1:
+      return groups[0]
+  elif len(groups) == 2:
+      return ' and '.join(groups)
+  else:
+      return ', '.join(groups[:-1]) + ', and ' + groups[-1]
+
+
+
+@register.simple_tag()
+def harrest_security_type_t_share(v1, v2, v3, v4, v5, v6, v7, other):
+  groups = []
+  groups.append(_('%23PunjabPolice')) if v1 == 1 else 0
+  groups.append(_('Border Security Force')) if v2 == 1 else 0
+  groups.append(_('Central Reserve Police Force')) if v3 == 1 else 0
+  groups.append(_('Army')) if v4 == 1 else 0
+  groups.append(_('Criminal Investigation Agency')) if v5 == 1 else 0
+  groups.append(_('Black cat')) if v6 == 1 else 0
+  groups.append(_('Unknown type of security forces')) if v7 == 1 else 0
+  if (other):
+    groups.append(other)
+  if len(groups):
+      s = '; '
+      return s.join(groups)
+  else:
+      return ''
+
 
   
 @register.filter(name='censuslink_t')
